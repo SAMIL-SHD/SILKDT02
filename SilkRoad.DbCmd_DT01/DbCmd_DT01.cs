@@ -761,8 +761,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSDEPTInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSDEPT(SAWON_NO, FR_DEPT, TO_DEPT, REG_DT, REG_ID"
-                                   + ") VALUES (@SAWON_NO, @FR_DEPT, @TO_DEPT, @REG_DT, @REG_ID"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSDEPT(SAWON_NO, MOVE_DATE, FR_DEPT, TO_DEPT, REG_DT, REG_ID"
+                                   + ") VALUES (@SAWON_NO, @MOVE_DATE, @FR_DEPT, @TO_DEPT, @REG_DT, @REG_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -770,6 +770,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.CommandType = CommandType.Text;
 			
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@MOVE_DATE", SqlDbType.Char, 8, "MOVE_DATE");
             ocm.Parameters.Add("@FR_DEPT", SqlDbType.Char, 4, "FR_DEPT");
             ocm.Parameters.Add("@TO_DEPT", SqlDbType.Char, 4, "TO_DEPT");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
@@ -1025,8 +1026,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_INFOSD02InCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_INFOSD02(A01, A01_DFEE, A01_D01, A01_D02, A01_NFEE, A01_N01, A01_N02, A11, A12, A13, A14, A02, A02_INSU01, A02_INSU02, A21, A22, A03, A03_INSU01, A03_INSU02, A31, A04, A04_INSU01, A04_INSU02, A04_INSU11, A04_INSU12, A41, A05, A51, A06, A06_INSU01, A61, A07, A07_INSU01, A07_INSU02, A07_INSU11, A07_INSU12, A71, A72, A08, A08_INSU01, A81, REG_DT, REG_ID"
-                                   + ") VALUES (@A01, @A01_DFEE, @A01_D01, @A01_D02, @A01_NFEE, @A01_N01, @A01_N02, @A11, @A12, @A13, @A14, @A02, @A02_INSU01, @A02_INSU02, @A21, @A22, @A03, @A03_INSU01, @A03_INSU02, @A31, @A04, @A04_INSU01, @A04_INSU02, @A04_INSU11, @A04_INSU12, @A41, @A05, @A51, @A06, @A06_INSU01, @A61, @A07, @A07_INSU01, @A07_INSU02, @A07_INSU11, @A07_INSU12, @A71, @A72, @A08, @A08_INSU01, @A81, @REG_DT, @REG_ID"
+            string queryStatements = "INSERT INTO DBO.DUTY_INFOSD02(A01, A01_DFEE, A01_D01, A01_D02, A01_NFEE, A01_N01, A01_N02, A11, A12, A13, A14, A02, A02_INSU01, A02_INSU02, A21, A22, A03, A03_INSU01, A03_INSU02, A31, A04, A04_INSU01, A04_INSU02, A04_INSU11, A04_INSU12, A41, A05, A51, A06, A06_INSU01, A61, A07, A07_INSU01, A07_INSU02, A07_INSU11, A07_INSU12, A71, A72, A08, A08_INSU01, A81, B01, B01_FEE01, C91, A010, A010_INSU01, A010_INSU02, A011, A012, C010, C011, REG_DT, REG_ID"
+                                   + ") VALUES (@A01, @A01_DFEE, @A01_D01, @A01_D02, @A01_NFEE, @A01_N01, @A01_N02, @A11, @A12, @A13, @A14, @A02, @A02_INSU01, @A02_INSU02, @A21, @A22, @A03, @A03_INSU01, @A03_INSU02, @A31, @A04, @A04_INSU01, @A04_INSU02, @A04_INSU11, @A04_INSU12, @A41, @A05, @A51, @A06, @A06_INSU01, @A61, @A07, @A07_INSU01, @A07_INSU02, @A07_INSU11, @A07_INSU12, @A71, @A72, @A08, @A08_INSU01, @A81, @B01, @B01_FEE01, @C91, @A010, @A010_INSU01, @A010_INSU02, @A011, @A012, @C010, @C011, @REG_DT, @REG_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -1077,6 +1078,13 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@B01", SqlDbType.Char, 4, "B01");
             ocm.Parameters.Add("@B01_FEE01", SqlDbType.Decimal, 5, "B01_FEE01");
             ocm.Parameters.Add("@C91", SqlDbType.Char, 4, "C91");
+            ocm.Parameters.Add("@A010", SqlDbType.Char, 4, "A010");
+            ocm.Parameters.Add("@A010_INSU01", SqlDbType.Decimal, 5, "A010_INSU01");
+            ocm.Parameters.Add("@A010_INSU02", SqlDbType.Decimal, 5, "A010_INSU02");
+            ocm.Parameters.Add("@A011", SqlDbType.Char, 4, "A011");
+            ocm.Parameters.Add("@A012", SqlDbType.Char, 4, "A012");
+            ocm.Parameters.Add("@C010", SqlDbType.Char, 4, "C010");
+            ocm.Parameters.Add("@C011", SqlDbType.Char, 4, "C011");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
             ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
 
@@ -1130,6 +1138,13 @@ namespace SilkRoad.DbCmd_DT01
                                    + "   B01 = @B01, "
                                    + "   B01_FEE01 = @B01_FEE01, "
                                    + "   C91 = @C91, "
+                                   + "   A010 = @A010, "
+                                   + "   A010_INSU01 = @A010_INSU01, "
+                                   + "   A010_INSU02 = @A010_INSU02, "
+                                   + "   A011 = @A011, "
+                                   + "   A012 = @A012, "
+                                   + "   C010 = @C010, "
+                                   + "   C011 = @C011, "
                                    + "   REG_DT = @REG_DT, "
                                    + "   REG_ID = @REG_ID "
                                    + "";
@@ -1182,6 +1197,13 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@B01", SqlDbType.Char, 4, "B01");
             ocm.Parameters.Add("@B01_FEE01", SqlDbType.Decimal, 5, "B01_FEE01");
             ocm.Parameters.Add("@C91", SqlDbType.Char, 4, "C91");
+            ocm.Parameters.Add("@A010", SqlDbType.Char, 4, "A010");
+            ocm.Parameters.Add("@A010_INSU01", SqlDbType.Decimal, 5, "A010_INSU01");
+            ocm.Parameters.Add("@A010_INSU02", SqlDbType.Decimal, 5, "A010_INSU02");
+            ocm.Parameters.Add("@A011", SqlDbType.Char, 4, "A011");
+            ocm.Parameters.Add("@A012", SqlDbType.Char, 4, "A012");
+            ocm.Parameters.Add("@C010", SqlDbType.Char, 4, "C010");
+            ocm.Parameters.Add("@C011", SqlDbType.Char, 4, "C011");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
             ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
 
@@ -2056,8 +2078,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSPLANInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSPLAN(SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, BF_NIGHT, BF_OFF, MAX_NCNT, ALLOW_OFF, REMAIN_NIGHT, REMAIN_OFF, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, MM_CNT6, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @BF_NIGHT, @BF_OFF, @MAX_NCNT, @ALLOW_OFF, @REMAIN_NIGHT, @REMAIN_OFF, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @MM_CNT6, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSPLAN(SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, BF_NIGHT, BF_OFF, MAX_NCNT, ALLOW_OFF, REMAIN_NIGHT, REMAIN_OFF, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, MM_CNT6, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, EDU_CNT1, EDU_CNT2, HG_CNT1, HG_CNT2, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @BF_NIGHT, @BF_OFF, @MAX_NCNT, @ALLOW_OFF, @REMAIN_NIGHT, @REMAIN_OFF, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @MM_CNT6, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @EDU_CNT1, @EDU_CNT2, @HG_CNT1, @HG_CNT2, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -2111,6 +2133,10 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@D29", SqlDbType.Char, 2, "D29");
             ocm.Parameters.Add("@D30", SqlDbType.Char, 2, "D30");
             ocm.Parameters.Add("@D31", SqlDbType.Char, 2, "D31");
+            ocm.Parameters.Add("@EDU_CNT1", SqlDbType.Decimal, 9, "EDU_CNT1");
+            ocm.Parameters.Add("@EDU_CNT2", SqlDbType.Decimal, 9, "EDU_CNT2");
+            ocm.Parameters.Add("@HG_CNT1", SqlDbType.Decimal, 9, "HG_CNT1");
+            ocm.Parameters.Add("@HG_CNT2", SqlDbType.Decimal, 9, "HG_CNT2");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
@@ -2166,6 +2192,10 @@ namespace SilkRoad.DbCmd_DT01
                                    + "   D29 = @D29, "
                                    + "   D30 = @D30, "
                                    + "   D31 = @D31, "
+                                   + "   EDU_CNT1 = @EDU_CNT1, "
+                                   + "   EDU_CNT2 = @EDU_CNT2, "
+                                   + "   HG_CNT1 = @HG_CNT1, "
+                                   + "   HG_CNT2 = @HG_CNT2, "
                                    + "   INDT = @INDT, "
                                    + "   UPDT = @UPDT, "
                                    + "   USID = @USID, "
@@ -2226,6 +2256,10 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@D29", SqlDbType.Char, 2, "D29");
             ocm.Parameters.Add("@D30", SqlDbType.Char, 2, "D30");
             ocm.Parameters.Add("@D31", SqlDbType.Char, 2, "D31");
+            ocm.Parameters.Add("@EDU_CNT1", SqlDbType.Decimal, 9, "EDU_CNT1");
+            ocm.Parameters.Add("@EDU_CNT2", SqlDbType.Decimal, 9, "EDU_CNT2");
+            ocm.Parameters.Add("@HG_CNT1", SqlDbType.Decimal, 9, "HG_CNT1");
+            ocm.Parameters.Add("@HG_CNT2", SqlDbType.Decimal, 9, "HG_CNT2");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
@@ -3705,8 +3739,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSJREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSJREQ(SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, HOLI_DAYS, PAY_YN, SAWON_LV, EXCEPT_MID, AP_TAG, MID_DT, MID_USID, AP_DT, AP_USID, CANC_DT, CANC_USID, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @HOLI_DAYS, @PAY_YN, @SAWON_LV, @EXCEPT_MID, @AP_TAG, @MID_DT, @MID_USID, @AP_DT, @AP_USID, @CANC_DT, @CANC_USID, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSJREQ(SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, PAY_YN, HOLI_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @PAY_YN, @HOLI_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -3717,17 +3751,38 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
             ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
             ocm.Parameters.Add("@REQ_TYPE", SqlDbType.VarChar, 10, "REQ_TYPE");
-            ocm.Parameters.Add("@HOLI_DAYS", SqlDbType.Decimal, 7, "HOLI_DAYS");
             ocm.Parameters.Add("@PAY_YN", SqlDbType.Int, 4, "PAY_YN");
-            ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
-            ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
+            ocm.Parameters.Add("@HOLI_DAYS", SqlDbType.Decimal, 7, "HOLI_DAYS");
             ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
-            ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
-            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
+            ocm.Parameters.Add("@LINE_CNT", SqlDbType.Int, 1, "LINE_CNT");
+            ocm.Parameters.Add("@GW_SABN1", SqlDbType.VarChar, 20, "GW_SABN1");
+            ocm.Parameters.Add("@GW_DT1", SqlDbType.VarChar, 20, "GW_DT1");
+            ocm.Parameters.Add("@GW_NAME1", SqlDbType.VarChar, 20, "GW_NAME1");
+            ocm.Parameters.Add("@GW_JICK1", SqlDbType.VarChar, 20, "GW_JICK1");
+            ocm.Parameters.Add("@GW_SABN2", SqlDbType.VarChar, 20, "GW_SABN2");
+            ocm.Parameters.Add("@GW_DT2", SqlDbType.VarChar, 20, "GW_DT2");
+            ocm.Parameters.Add("@GW_CHKID2", SqlDbType.VarChar, 20, "GW_CHKID2");
+            ocm.Parameters.Add("@GW_NAME2", SqlDbType.VarChar, 20, "GW_NAME2");
+            ocm.Parameters.Add("@GW_JICK2", SqlDbType.VarChar, 20, "GW_JICK2");
+            ocm.Parameters.Add("@GW_SABN3", SqlDbType.VarChar, 20, "GW_SABN3");
+            ocm.Parameters.Add("@GW_DT3", SqlDbType.VarChar, 20, "GW_DT3");
+            ocm.Parameters.Add("@GW_CHKID3", SqlDbType.VarChar, 20, "GW_CHKID3");
+            ocm.Parameters.Add("@GW_NAME3", SqlDbType.VarChar, 20, "GW_NAME3");
+            ocm.Parameters.Add("@GW_JICK3", SqlDbType.VarChar, 20, "GW_JICK3");
+            ocm.Parameters.Add("@GW_SABN4", SqlDbType.VarChar, 20, "GW_SABN4");
+            ocm.Parameters.Add("@GW_DT4", SqlDbType.VarChar, 20, "GW_DT4");
+            ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
+            ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
+            ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
+            //ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
+            //ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
+            //ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
+            //ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
+            //ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
+            //ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
+            //ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
+            //ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            //ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
             //ocm.Parameters.Add("@LAST_TAG", SqlDbType.Char, 1, "LAST_TAG");
             //ocm.Parameters.Add("@LAST_DT", SqlDbType.VarChar, 20, "LAST_DT");
             //ocm.Parameters.Add("@LAST_USID", SqlDbType.VarChar, 20, "LAST_USID");
@@ -3746,17 +3801,38 @@ namespace SilkRoad.DbCmd_DT01
         {
             string queryStatements = "UPDATE DBO.DUTY_TRSJREQ SET "
                                    + "   REQ_TYPE = @REQ_TYPE, "
-                                   + "   HOLI_DAYS = @HOLI_DAYS, "
                                    + "   PAY_YN = @PAY_YN, "
-                                   + "   SAWON_LV = @SAWON_LV, "
-                                   + "   EXCEPT_MID = @EXCEPT_MID, "
+                                   + "   HOLI_DAYS = @HOLI_DAYS, "
                                    + "   AP_TAG = @AP_TAG, "
-                                   + "   MID_DT = @MID_DT, "
-                                   + "   MID_USID = @MID_USID, "
-                                   + "   AP_DT = @AP_DT, "
-                                   + "   AP_USID = @AP_USID, "
-                                   + "   CANC_DT = @CANC_DT, "
-                                   + "   CANC_USID = @CANC_USID, "
+                                   + "   LINE_CNT = @LINE_CNT, "
+                                   + "   GW_SABN1 = @GW_SABN1, "
+                                   + "   GW_DT1 = @GW_DT1, "
+                                   + "   GW_NAME1 = @GW_NAME1, "
+                                   + "   GW_JICK1 = @GW_JICK1, "
+                                   + "   GW_SABN2 = @GW_SABN2, "
+                                   + "   GW_DT2 = @GW_DT2, "
+                                   + "   GW_CHKID2 = @GW_CHKID2, "
+                                   + "   GW_NAME2 = @GW_NAME2, "
+                                   + "   GW_JICK2 = @GW_JICK2, "
+                                   + "   GW_SABN3 = @GW_SABN3, "
+                                   + "   GW_DT3 = @GW_DT3, "
+                                   + "   GW_CHKID3 = @GW_CHKID3, "
+                                   + "   GW_NAME3 = @GW_NAME3, "
+                                   + "   GW_JICK3 = @GW_JICK3, "
+                                   + "   GW_SABN4 = @GW_SABN4, "
+                                   + "   GW_DT4 = @GW_DT4, "
+                                   + "   GW_CHKID4 = @GW_CHKID4, "
+                                   + "   GW_NAME4 = @GW_NAME4, "
+                                   + "   GW_JICK4 = @GW_JICK4, "
+                                   //+ "   SAWON_LV = @SAWON_LV, "
+                                   //+ "   EXCEPT_MID = @EXCEPT_MID, "
+                                   //+ "   AP_TAG = @AP_TAG, "
+                                   //+ "   MID_DT = @MID_DT, "
+                                   //+ "   MID_USID = @MID_USID, "
+                                   //+ "   AP_DT = @AP_DT, "
+                                   //+ "   AP_USID = @AP_USID, "
+                                   //+ "   CANC_DT = @CANC_DT, "
+                                   //+ "   CANC_USID = @CANC_USID, "
                                    //+ "   LAST_TAG = @LAST_TAG, "
                                    //+ "   LAST_DT = @LAST_DT, "
                                    //+ "   LAST_USID = @LAST_USID, "
@@ -3779,17 +3855,38 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
             ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
             ocm.Parameters.Add("@REQ_TYPE", SqlDbType.VarChar, 10, "REQ_TYPE");
-            ocm.Parameters.Add("@HOLI_DAYS", SqlDbType.Decimal, 7, "HOLI_DAYS");
             ocm.Parameters.Add("@PAY_YN", SqlDbType.Int, 4, "PAY_YN");
-            ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
-            ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
+            ocm.Parameters.Add("@HOLI_DAYS", SqlDbType.Decimal, 7, "HOLI_DAYS");
             ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
-            ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
-            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
+            ocm.Parameters.Add("@LINE_CNT", SqlDbType.Int, 1, "LINE_CNT");
+            ocm.Parameters.Add("@GW_SABN1", SqlDbType.VarChar, 20, "GW_SABN1");
+            ocm.Parameters.Add("@GW_DT1", SqlDbType.VarChar, 20, "GW_DT1");
+            ocm.Parameters.Add("@GW_NAME1", SqlDbType.VarChar, 20, "GW_NAME1");
+            ocm.Parameters.Add("@GW_JICK1", SqlDbType.VarChar, 20, "GW_JICK1");
+            ocm.Parameters.Add("@GW_SABN2", SqlDbType.VarChar, 20, "GW_SABN2");
+            ocm.Parameters.Add("@GW_DT2", SqlDbType.VarChar, 20, "GW_DT2");
+            ocm.Parameters.Add("@GW_CHKID2", SqlDbType.VarChar, 20, "GW_CHKID2");
+            ocm.Parameters.Add("@GW_NAME2", SqlDbType.VarChar, 20, "GW_NAME2");
+            ocm.Parameters.Add("@GW_JICK2", SqlDbType.VarChar, 20, "GW_JICK2");
+            ocm.Parameters.Add("@GW_SABN3", SqlDbType.VarChar, 20, "GW_SABN3");
+            ocm.Parameters.Add("@GW_DT3", SqlDbType.VarChar, 20, "GW_DT3");
+            ocm.Parameters.Add("@GW_CHKID3", SqlDbType.VarChar, 20, "GW_CHKID3");
+            ocm.Parameters.Add("@GW_NAME3", SqlDbType.VarChar, 20, "GW_NAME3");
+            ocm.Parameters.Add("@GW_JICK3", SqlDbType.VarChar, 20, "GW_JICK3");
+            ocm.Parameters.Add("@GW_SABN4", SqlDbType.VarChar, 20, "GW_SABN4");
+            ocm.Parameters.Add("@GW_DT4", SqlDbType.VarChar, 20, "GW_DT4");
+            ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
+            ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
+            ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
+            //ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
+            //ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
+            //ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
+            //ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
+            //ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
+            //ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
+            //ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
+            //ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            //ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
             //ocm.Parameters.Add("@LAST_TAG", SqlDbType.Char, 1, "LAST_TAG");
             //ocm.Parameters.Add("@LAST_DT", SqlDbType.VarChar, 20, "LAST_DT");
             //ocm.Parameters.Add("@LAST_USID", SqlDbType.VarChar, 20, "LAST_USID");
@@ -3831,8 +3928,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDEL_TRSJREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DEL_TRSJREQ(SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, HOLI_DAYS, PAY_YN, SAWON_LV, EXCEPT_MID, AP_TAG, MID_DT, MID_USID, AP_DT, AP_USID, CANC_DT, CANC_USID, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
-                                   + ") VALUES (@SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @HOLI_DAYS, @PAY_YN, @SAWON_LV, @EXCEPT_MID, @AP_TAG, @MID_DT, @MID_USID, @AP_DT, @AP_USID, @CANC_DT, @CANC_USID, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
+            string queryStatements = "INSERT INTO DBO.DEL_TRSJREQ(SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, PAY_YN, HOLI_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
+                                   + ") VALUES (@SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @PAY_YN, @HOLI_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -3843,17 +3940,29 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
             ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
             ocm.Parameters.Add("@REQ_TYPE", SqlDbType.VarChar, 10, "REQ_TYPE");
-            ocm.Parameters.Add("@HOLI_DAYS", SqlDbType.Decimal, 7, "HOLI_DAYS");
             ocm.Parameters.Add("@PAY_YN", SqlDbType.Int, 4, "PAY_YN");
-            ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
-            ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
+            ocm.Parameters.Add("@HOLI_DAYS", SqlDbType.Decimal, 7, "HOLI_DAYS");
             ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
-            ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
-            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
+            ocm.Parameters.Add("@LINE_CNT", SqlDbType.Int, 1, "LINE_CNT");
+            ocm.Parameters.Add("@GW_SABN1", SqlDbType.VarChar, 20, "GW_SABN1");
+            ocm.Parameters.Add("@GW_DT1", SqlDbType.VarChar, 20, "GW_DT1");
+            ocm.Parameters.Add("@GW_NAME1", SqlDbType.VarChar, 20, "GW_NAME1");
+            ocm.Parameters.Add("@GW_JICK1", SqlDbType.VarChar, 20, "GW_JICK1");
+            ocm.Parameters.Add("@GW_SABN2", SqlDbType.VarChar, 20, "GW_SABN2");
+            ocm.Parameters.Add("@GW_DT2", SqlDbType.VarChar, 20, "GW_DT2");
+            ocm.Parameters.Add("@GW_CHKID2", SqlDbType.VarChar, 20, "GW_CHKID2");
+            ocm.Parameters.Add("@GW_NAME2", SqlDbType.VarChar, 20, "GW_NAME2");
+            ocm.Parameters.Add("@GW_JICK2", SqlDbType.VarChar, 20, "GW_JICK2");
+            ocm.Parameters.Add("@GW_SABN3", SqlDbType.VarChar, 20, "GW_SABN3");
+            ocm.Parameters.Add("@GW_DT3", SqlDbType.VarChar, 20, "GW_DT3");
+            ocm.Parameters.Add("@GW_CHKID3", SqlDbType.VarChar, 20, "GW_CHKID3");
+            ocm.Parameters.Add("@GW_NAME3", SqlDbType.VarChar, 20, "GW_NAME3");
+            ocm.Parameters.Add("@GW_JICK3", SqlDbType.VarChar, 20, "GW_JICK3");
+            ocm.Parameters.Add("@GW_SABN4", SqlDbType.VarChar, 20, "GW_SABN4");
+            ocm.Parameters.Add("@GW_DT4", SqlDbType.VarChar, 20, "GW_DT4");
+            ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
+            ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
+            ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");

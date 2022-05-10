@@ -347,6 +347,24 @@ namespace DUTY1000
 				if (ds.Tables["SEARCH_DANG_PLAN"].Rows.Count == 0)
 				{
 					df.GetSEARCH_DANG_PLANDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);
+					for (int i = 0; i < ds.Tables["SEARCH_DANG_PLAN"].Rows.Count; i++)
+					{
+						DataRow crow = ds.Tables["SEARCH_DANG_PLAN"].Rows[i];
+						for (int k = 1; k <= lastday; k++)
+						{
+							if (crow["D" + k.ToString().PadLeft(2, '0')].ToString().Trim() == "")
+							{
+								DateTime day = clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddDays(k - 1);
+								if (clib.WeekDay(day) == "토")
+									crow["D" + k.ToString().PadLeft(2, '0')] = "16";  //하프근무							
+								else if (clib.WeekDay(day) == "일")
+									crow["D" + k.ToString().PadLeft(2, '0')] = "11";  //오프
+								else
+									crow["D" + k.ToString().PadLeft(2, '0')] = "01";  //데이근무		
+							}					
+						}
+					}
+
 					//SetButtonEnable("011011");
 					if (p_dpcd == "%" || p_dpcd == sl_dept.EditValue.ToString())
 						SetButtonEnable("011011");
@@ -808,7 +826,7 @@ namespace DUTY1000
 					if (ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'") != null && ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'").Length > 0)
 					{
 						int g_type = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_TYPE"].ToString());
-						if (g_type < 7 || g_type == 9 || g_type == 10) //근무 or 당직근무인데 출근이면 근무색상
+						if (g_type == 2 || g_type == 4 || g_type == 5 || g_type == 9 || g_type == 10) //근무 or 당직근무인데 출근이면 근무색상
 						{
 							int colVAlue = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_COLOR"].ToString());
 							e.Appearance.BackColor = Color.FromArgb(colVAlue);
@@ -830,7 +848,7 @@ namespace DUTY1000
 					if (ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'") != null && ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'").Length > 0)
 					{
 						int g_type = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_TYPE"].ToString());
-						if (g_type < 7 || g_type == 9 || g_type == 10) //근무 or 당직근무인데 출근하지 않으면 붉은색
+						if (g_type == 2 || g_type == 4 || g_type == 5 || g_type == 9 || g_type == 10) //근무 or 당직근무인데 출근하지 않으면 붉은색
 						{
 							if (clib.TextToDate(date) <= clib.TextToDate(stdt))  //현재일 이전일때 오류색상
 								e.Appearance.BackColor = Color.Red;

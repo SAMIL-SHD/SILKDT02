@@ -486,6 +486,10 @@ namespace DUTY1000
 							{
 								nrow["D" + j.ToString().PadLeft(2, '0')] = drow["D" + j.ToString().PadLeft(2, '0')].ToString();
 							}
+							nrow["EDU_CNT1"] = clib.TextToDecimal(drow["EDU_CNT1"].ToString());
+							nrow["EDU_CNT2"] = clib.TextToDecimal(drow["EDU_CNT2"].ToString());
+							nrow["HG_CNT1"] = clib.TextToDecimal(drow["HG_CNT1"].ToString());
+							nrow["HG_CNT2"] = clib.TextToDecimal(drow["HG_CNT2"].ToString());
 							sq++;
 						}
 						else
@@ -781,20 +785,24 @@ namespace DUTY1000
 			{
 				if (grdv1.FocusedColumn.Name.ToString().Substring(0, 10) == "grdcol_day")
 				{
-					if (e.KeyCode == Keys.D || e.KeyCode == Keys.E || e.KeyCode == Keys.N || e.KeyCode == Keys.O || e.KeyCode == Keys.Y)
+					if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.D || e.KeyCode == Keys.E || e.KeyCode == Keys.N || e.KeyCode == Keys.O || e.KeyCode == Keys.Y)
 					{
 						if (e.KeyCode == Keys.D)   //DAY
 							drow["D" + grdv1.FocusedColumn.Name.ToString().Substring(10, 2)] = "01";
-						if (e.KeyCode == Keys.E)   //EVENING
+						else if (e.KeyCode == Keys.E)   //EVENING
 							drow["D" + grdv1.FocusedColumn.Name.ToString().Substring(10, 2)] = "02";
-						if (e.KeyCode == Keys.N)   //NIGHT
+						else if (e.KeyCode == Keys.N)   //NIGHT
 							drow["D" + grdv1.FocusedColumn.Name.ToString().Substring(10, 2)] = "03";
-						if (e.KeyCode == Keys.O)   //OFF
+						else if (e.KeyCode == Keys.O)   //OFF
 							drow["D" + grdv1.FocusedColumn.Name.ToString().Substring(10, 2)] = "11";
-						if (e.KeyCode == Keys.Y)   //연차
+						else if (e.KeyCode == Keys.Y)   //연차
 							drow["D" + grdv1.FocusedColumn.Name.ToString().Substring(10, 2)] = "12";
+						else if (e.KeyCode == Keys.Delete)   //삭제
+							drow["D" + grdv1.FocusedColumn.Name.ToString().Substring(10, 2)] = "";
 						
+						e.SuppressKeyPress = true;
 						month_calc(drow["SAWON_NO"].ToString());
+
 						SendKeys.Send("{ENTER}");
 					}
 				}
@@ -1226,7 +1234,7 @@ namespace DUTY1000
 			int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
 			//남은 필드 visible = false;
 			int Day = 0, Eve = 0, Night = 0, Off = 0; //, yc = 0;
-			decimal yc = 0;
+			decimal yc = 0, edu1 = 0, edu2 = 0, hg1 = 0, hg2 = 0;
 			for (int k = 1; k <= lastday; k++)
 			{
 				if (ds.Tables["3010_SEARCH_GNMU"].Select("G_CODE = '" + srow["D" + k.ToString().PadLeft(2, '0')].ToString() + "'").Length > 0)
@@ -1249,6 +1257,21 @@ namespace DUTY1000
 							break;
 						case "8":
 							yc += clib.TextToDecimal(trow["YC_DAY"].ToString());
+							if (trow["G_CODE"].ToString() == "05")
+								edu1 += 1;
+							else if (trow["G_CODE"].ToString() == "07")
+								edu2 += 1;
+							break;
+						case "12":
+							df.Get3010_SEARCH_HUGADatas(sabn, clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + k.ToString().PadLeft(2, '0'), srow["D" + k.ToString().PadLeft(2, '0')].ToString(), ds);							
+							if (ds.Tables["3010_SEARCH_HUGA"].Rows.Count > 0)
+							{
+								DataRow hrow = ds.Tables["3010_SEARCH_HUGA"].Rows[0];
+								if (hrow["PAY_YN"].ToString() == "0")
+									hg1 += 1;
+								else if (hrow["PAY_YN"].ToString() == "1")
+									hg2 += 1;
+							}
 							break;
 					}
 				}
@@ -1258,6 +1281,11 @@ namespace DUTY1000
 			srow["MM_CNT3"] = Night;
 			srow["MM_CNT4"] = Off;
 			srow["MM_CNT5"] = yc;
+			
+			srow["EDU_CNT1"] = edu1;
+			srow["EDU_CNT2"] = edu2;
+			srow["HG_CNT1"] = hg1;
+			srow["HG_CNT2"] = hg2;
 			//srow["Y_CNT1"] = clib.TextToInt(srow["YEAR_CNT1"].ToString()) + Day;
 			//srow["Y_CNT2"] = clib.TextToInt(srow["YEAR_CNT2"].ToString()) + Eve;
 			//srow["Y_CNT3"] = clib.TextToInt(srow["YEAR_CNT3"].ToString()) + Night;

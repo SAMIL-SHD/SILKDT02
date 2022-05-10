@@ -70,9 +70,6 @@
 			this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
@@ -104,8 +101,8 @@
 			// 
 			// gridColumn6
 			// 
-			this.gridColumn6.Caption = "승인시간";
-			this.gridColumn6.FieldName = "AP_DT";
+			this.gridColumn6.Caption = "결재라인";
+			this.gridColumn6.FieldName = "GW_LINE";
 			this.gridColumn6.Name = "gridColumn6";
 			this.gridColumn6.OptionsColumn.AllowEdit = false;
 			this.gridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
@@ -114,7 +111,7 @@
 			this.gridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn6.Visible = true;
 			this.gridColumn6.VisibleIndex = 7;
-			this.gridColumn6.Width = 128;
+			this.gridColumn6.Width = 190;
 			// 
 			// repositoryItemTextEdit1
 			// 
@@ -522,10 +519,7 @@
             this.gridColumn19,
             this.gridColumn5,
             this.gridColumn6,
-            this.gridColumn10,
-            this.gridColumn14,
-            this.gridColumn3,
-            this.gridColumn4});
+            this.gridColumn10});
 			gridFormatRule1.ApplyToRow = true;
 			gridFormatRule1.Name = "Format0";
 			formatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -569,7 +563,7 @@
 			// 
 			this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
 			this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumn1.Caption = "휴가일자";
+			this.gridColumn1.Caption = "연차/휴가일자";
 			this.gridColumn1.FieldName = "DATE_NM";
 			this.gridColumn1.Name = "gridColumn1";
 			this.gridColumn1.OptionsColumn.AllowEdit = false;
@@ -644,7 +638,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "USE_DAYS", "{0:#,##0.#}")});
 			this.gridColumn19.Visible = true;
 			this.gridColumn19.VisibleIndex = 5;
-			this.gridColumn19.Width = 41;
+			this.gridColumn19.Width = 56;
 			// 
 			// gridColumn5
 			// 
@@ -667,8 +661,8 @@
 			// 
 			// gridColumn10
 			// 
-			this.gridColumn10.Caption = "승인자";
-			this.gridColumn10.FieldName = "AP_USID";
+			this.gridColumn10.Caption = "결재상태";
+			this.gridColumn10.FieldName = "LINE_STAT";
 			this.gridColumn10.Name = "gridColumn10";
 			this.gridColumn10.OptionsColumn.AllowEdit = false;
 			this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
@@ -677,51 +671,7 @@
 			this.gridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn10.Visible = true;
 			this.gridColumn10.VisibleIndex = 8;
-			this.gridColumn10.Width = 90;
-			// 
-			// gridColumn14
-			// 
-			this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
-			this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumn14.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.gridColumn14.Caption = "승인여부";
-			this.gridColumn14.FieldName = "LAST_TAG_NM";
-			this.gridColumn14.Name = "gridColumn14";
-			this.gridColumn14.OptionsColumn.AllowEdit = false;
-			this.gridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumn14.OptionsColumn.ReadOnly = true;
-			this.gridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.gridColumn14.Width = 39;
-			// 
-			// gridColumn3
-			// 
-			this.gridColumn3.Caption = "취소시간";
-			this.gridColumn3.FieldName = "CANC_DT";
-			this.gridColumn3.Name = "gridColumn3";
-			this.gridColumn3.OptionsColumn.AllowEdit = false;
-			this.gridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumn3.OptionsColumn.AllowMove = false;
-			this.gridColumn3.OptionsColumn.ReadOnly = true;
-			this.gridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.gridColumn3.Visible = true;
-			this.gridColumn3.VisibleIndex = 9;
-			this.gridColumn3.Width = 121;
-			// 
-			// gridColumn4
-			// 
-			this.gridColumn4.Caption = "취소자";
-			this.gridColumn4.FieldName = "CANC_USID";
-			this.gridColumn4.Name = "gridColumn4";
-			this.gridColumn4.OptionsColumn.AllowEdit = false;
-			this.gridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumn4.OptionsColumn.AllowMove = false;
-			this.gridColumn4.OptionsColumn.ReadOnly = true;
-			this.gridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.gridColumn4.Visible = true;
-			this.gridColumn4.VisibleIndex = 10;
-			this.gridColumn4.Width = 89;
+			this.gridColumn10.Width = 522;
 			// 
 			// duty8090
 			// 
@@ -793,9 +743,6 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 		private SilkRoad.UserControls.SRLabel lb_power;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
 		private SilkRoad.UserControls.SRLabel srLabel10;
 		private SilkRoad.UserControls.SRDate dat_yymm2;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;

@@ -514,6 +514,7 @@
 			this.lb_ends.Size = new System.Drawing.Size(118, 19);
 			this.lb_ends.TabIndex = 9;
 			this.lb_ends.Text = "[ 최종마감 체크 ]";
+			this.lb_ends.Visible = false;
 			// 
 			// btn_clear
 			// 
@@ -2175,6 +2176,8 @@
 			// 
 			// grdv_yc
 			// 
+			this.grdv_yc.Appearance.FocusedRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_yc.Appearance.FocusedRow.Options.UseBackColor = true;
 			this.grdv_yc.Appearance.FooterPanel.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.grdv_yc.Appearance.FooterPanel.Options.UseFont = true;
 			this.grdv_yc.Appearance.HeaderPanel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
@@ -2182,6 +2185,8 @@
 			this.grdv_yc.Appearance.HeaderPanel.Options.UseFont = true;
 			this.grdv_yc.Appearance.HeaderPanel.Options.UseTextOptions = true;
 			this.grdv_yc.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.grdv_yc.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_yc.Appearance.HideSelectionRow.Options.UseBackColor = true;
 			this.grdv_yc.Appearance.Row.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.grdv_yc.Appearance.Row.Options.UseFont = true;
 			this.grdv_yc.Appearance.SelectedRow.BackColor = System.Drawing.Color.Transparent;

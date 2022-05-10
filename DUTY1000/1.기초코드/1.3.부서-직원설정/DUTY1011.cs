@@ -51,6 +51,8 @@ namespace DUTY1000
         private void duty1011_Load(object sender, EventArgs e)
         {
             SetCancel();
+			dat_frdt.DateTime = clib.TextToDateFirst(clib.DateToText(DateTime.Today));
+			dat_todt.DateTime = DateTime.Today;
         }
 
         #endregion
@@ -112,6 +114,7 @@ namespace DUTY1000
 						{
 							DataRow nrow = ds.Tables["DUTY_TRSDEPT"].NewRow();
 							nrow["SAWON_NO"] = drow["SAWON_NO"].ToString();
+							nrow["MOVE_DATE"] = clib.DateToText(dat_move.DateTime);
 							nrow["FR_DEPT"] = drow["DEPTCODE"].ToString();
 							nrow["TO_DEPT"] = sl_dept.EditValue;
 							nrow["REG_DT"] = gd.GetNow();
@@ -145,16 +148,26 @@ namespace DUTY1000
                 }
             }
         }
-        
-		private void btn_exel_Click(object sender, EventArgs e)
-		{
-            clib.gridToExcel(grdv2, this.Text + "(" + this.Name + ")_" + clib.DateToText(DateTime.Now), true);
-		}
         /// <summary>취소버튼</summary>
         private void btn_clear_Click(object sender, EventArgs e)
         {
             SetCancel();
         }
+        
+		private void btn_search_Click(object sender, EventArgs e)
+		{
+			if (isNoError_um(1))
+			{
+				Cursor = Cursors.WaitCursor;
+				df.GetSEARCH_TRSDEPTDatas(clib.DateToText(dat_frdt.DateTime), clib.DateToText(dat_todt.DateTime), ds);
+				grd_search.DataSource = ds.Tables["SEARCH_TRSDEPT"];
+				Cursor = Cursors.Default;
+			}
+		}
+		private void btn_exel_Click(object sender, EventArgs e)
+		{
+            clib.gridToExcel(grdv_search, this.Text + "(" + this.Name + ")_" + clib.DateToText(DateTime.Now), true);
+		}
 
         #endregion
 
@@ -250,15 +263,35 @@ namespace DUTY1000
         {
             bool isError = false;
 
-            if (mode == 1)  //처리
+            if (mode == 1)  //조회
             {
-              
+				if (clib.DateToText(dat_frdt.DateTime) == "")
+				{
+					MessageBox.Show("이동일자(fr)을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					dat_frdt.Focus();
+					return false;
+				}
+				else if (clib.DateToText(dat_todt.DateTime) == "")
+				{
+					MessageBox.Show("이동일자(to)을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					dat_todt.Focus();
+					return false;
+				}
+				else
+				{
+					isError = true;
+				}
             }
             else if (mode == 2)  //저장
             {
 				if (ds.Tables["SEARCH_NURS"].Select("CHK = '1'").Length == 0)
 				{
 					MessageBox.Show("선택된 직원이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
+				else if (clib.DateToText(dat_move.DateTime) == "")
+				{
+					MessageBox.Show("이동일자를 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return false;
 				}
 				else if (clib.isLookupNull(sl_dept.EditValue) || sl_dept.EditValue.ToString().Equals("부서선택"))
@@ -281,9 +314,9 @@ namespace DUTY1000
             
         }
 
-        #endregion
+		#endregion
 
-        #region 9. ETC
+		#region 9. ETC
 
 		#endregion
 

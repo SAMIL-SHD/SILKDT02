@@ -183,7 +183,7 @@ namespace DUTY1000
 									{
 										nrow = ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND YYMM = '" + drow["SLDT"].ToString().Substring(0, 6) + "' ")[0];
 
-										nrow["TIME_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
+										nrow["TIME_AMT"] = clib.TextToDecimal(drow["TIME_AMT"].ToString());
 										if (drow["GUBN"].ToString() == "5")
 											nrow["NIGHT_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
 
@@ -209,7 +209,7 @@ namespace DUTY1000
 										nrow["SAWON_NO"] = drow["SAWON_NO"].ToString().Trim();
 										nrow["YYMM"] = drow["SLDT"].ToString().Substring(0, 6);
 
-										nrow["TIME_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
+										nrow["TIME_AMT"] = clib.TextToDecimal(drow["TIME_AMT"].ToString());
 										if (drow["GUBN"].ToString() == "5")
 											nrow["NIGHT_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
 

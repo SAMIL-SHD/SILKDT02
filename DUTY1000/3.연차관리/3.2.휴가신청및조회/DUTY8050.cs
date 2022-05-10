@@ -44,9 +44,10 @@ namespace DUTY1000
 				
 				if (ds.Tables["DUTY_TRSJREQ"] != null)
 					ds.Tables["DUTY_TRSJREQ"].Clear();
+				grd_hg.DataSource = null;
 				if (ds.Tables["SEARCH_JREQ_LIST"] != null)
 					ds.Tables["SEARCH_JREQ_LIST"].Clear();
-				grd1.DataSource = null;
+				grd_del.DataSource = null;
 				schedulerStorage1.Appointments.DataSource = null;
 
 				//SetButtonEnable("10");
@@ -62,13 +63,22 @@ namespace DUTY1000
 				dat_ycdt.Enabled = false;
 				dat_ycdt2.Enabled = false;
 				sl_gnmu.Enabled = false;
+				chk_line.Enabled = false;
+				
+				sl_line1.EditValue = null;
+				sl_line2.EditValue = null;
+				sl_line3.EditValue = null;
+				sl_line1.Enabled = false;
+				sl_line2.Enabled = false;
+				sl_line3.Enabled = false;
+
 				SetButtonEnable2("1000");
 			}
 
 			df.GetSEARCH_DEPTDatas(ds);
 			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-			df.Get2020_SEARCH_EMBSDatas(p_dpcd, ds);
-			sl_embs.Properties.DataSource = ds.Tables["2020_SEARCH_EMBS"];
+			df.Get8030_SEARCH_EMBSDatas(p_dpcd, ds);
+			sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
 			df.Get8050_SEARCH_GNMUDatas(ds);
 			sl_gnmu.Properties.DataSource = ds.Tables["8050_SEARCH_GNMU"];
         }
@@ -79,9 +89,9 @@ namespace DUTY1000
 			//END_CHK();
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
 			df.GetSEARCH_JREQ_LISTDatas("C", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
-			grd1.DataSource = ds.Tables["SEARCH_JREQ_LIST"];
+			grd_hg.DataSource = ds.Tables["SEARCH_JREQ_LIST"];
 			df.GetSEARCH_JREQ_LISTDatas("D", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
-			grd2.DataSource = ds.Tables["SEARCH_DEL_JREQ_LIST"];
+			grd_del.DataSource = ds.Tables["SEARCH_DEL_JREQ_LIST"];
 
 			int start_index = 0;
 			switch (clib.WeekDay(clib.TextToDateFirst(clib.DateToText(dat_yymm.DateTime))))
@@ -141,9 +151,6 @@ namespace DUTY1000
 			
 			sl_embs.EditValue = null;
 			sl_gnmu.EditValue = null;
-			//dat_ycdt.DateTime = DateTime.Today;
-			//dat_ycdt2.DateTime = DateTime.Today;
-			//lb_yc_remark.Text = "[연차사용기간 / 잔여연차]";
 
 			#region 요일체크       
 			int start_index = 0;
@@ -252,213 +259,7 @@ namespace DUTY1000
 		{
 			if (isNoError_um(1))
 			{
-				//dat_yymm.Enabled = false;
-				//dat_yymm2.Enabled = false;
-				//sl_dept.Enabled = false;
 				baseInfoSearch();
-				//SetButtonEnable("01");
-			}
-		}
-        //승인
-		private void btn_ap_save_Click(object sender, EventArgs e)
-		{
-			if (isNoError_um(2))
-            {
-                Cursor = Cursors.WaitCursor;
-                int outVal = 0;
-                try
-                {
-					for (int i = 0; i < ds.Tables["SEARCH_JREQ_LIST"].Rows.Count; i++)
-					{
-						DataRow drow = ds.Tables["SEARCH_JREQ_LIST"].Rows[i];
-						if (drow["CHK"].ToString() == "1")
-						{
-							df.GetDUTY_TRSJREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), drow["REQ_DATE2"].ToString(), ds);
-							if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
-							{
-								DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
-								if (hrow["SAWON_LV"].ToString().Trim() == "1" && hrow["EXCEPT_MID"].ToString().Trim() != "1" && hrow["AP_TAG"].ToString().Trim() == "")
-								{
-									hrow["AP_TAG"] = "3";
-									hrow["MID_DT"] = gd.GetNow();
-									hrow["MID_USID"] = SilkRoad.Config.SRConfig.USID;
-								}
-								else if (hrow["AP_TAG"].ToString().Trim() == "" || hrow["AP_TAG"].ToString() == "3")
-								{
-									hrow["AP_TAG"] = "1";
-									hrow["AP_DT"] = gd.GetNow();
-									hrow["AP_USID"] = SilkRoad.Config.SRConfig.USID;
-								}
-								string[] tableNames = new string[] { "DUTY_TRSJREQ" };
-								SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-								outVal += cmd.setUpdate(ref ds, tableNames, null);
-
-								//if (ds.Tables["DUTY_TRSJREQ"].Rows[0]["AP_TAG"].ToString() != "1")
-								//{
-								//	DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
-								//	hrow["AP_TAG"] = "1";
-								//	hrow["AP_DT"] = gd.GetNow();
-								//	hrow["AP_USID"] = SilkRoad.Config.SRConfig.USID;
-
-								//	string[] tableNames = new string[] { "DUTY_TRSJREQ" };
-								//	SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-								//	outVal += cmd.setUpdate(ref ds, tableNames, null);
-								//}
-							}
-						}
-					}
-                }
-                catch (Exception ec)
-                {
-                    MessageBox.Show(ec.Message, "승인오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 승인처리 되었습니다.", "승인", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					SetCancel(0);
-					baseInfoSearch();
-                    Cursor = Cursors.Default;
-                }
-            }
-		}
-        //승인취소
-        private void btn_ap_canc_Click(object sender, EventArgs e)
-        {
-			if (isNoError_um(3))
-			{
-                Cursor = Cursors.WaitCursor;
-				int outVal = 0;
-				try
-				{
-					for (int i = 0; i < ds.Tables["SEARCH_JREQ_LIST"].Rows.Count; i++)
-					{
-						DataRow drow = ds.Tables["SEARCH_JREQ_LIST"].Rows[i];
-						if (drow["C_CHK"].ToString() == "1")
-						{
-							df.GetDUTY_TRSJREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), drow["REQ_DATE2"].ToString(), ds);
-							if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
-							{
-								DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
-								if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3")
-								{
-									hrow["AP_TAG"] = "2";
-									hrow["CANC_DT"] = gd.GetNow();
-									hrow["CANC_USID"] = SilkRoad.Config.SRConfig.USID;
-
-									string[] tableNames = new string[] { "DUTY_TRSJREQ" };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-									outVal += cmd.setUpdate(ref ds, tableNames, null);
-								}
-							}
-						}
-					}
-				}
-				catch (Exception ec)
-				{
-					MessageBox.Show(ec.Message, "승인취소오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-				finally
-				{
-					if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 승인취소 되었습니다.", "승인취소", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					SetCancel(0);
-					baseInfoSearch();
-					Cursor = Cursors.Default;
-				}
-			}
-        }
-		
-        //관리자승인->사용X
-		private void btn_last_save_Click(object sender, EventArgs e)
-		{
-			if (isNoError_um(12))
-            {
-                Cursor = Cursors.WaitCursor;
-                int outVal = 0;
-                try
-                {
-					for (int i = 0; i < ds.Tables["SEARCH_JREQ_LIST"].Rows.Count; i++)
-					{
-						DataRow drow = ds.Tables["SEARCH_JREQ_LIST"].Rows[i];
-						if (drow["L_CHK"].ToString() == "1")
-						{
-							df.GetDUTY_TRSJREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), drow["REQ_DATE2"].ToString(), ds);
-							if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
-							{
-								if (ds.Tables["DUTY_TRSJREQ"].Rows[0]["LAST_TAG"].ToString() != "1")
-								{
-									DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
-									hrow["LAST_TAG"] = "1";
-									hrow["LAST_DT"] = gd.GetNow();
-									hrow["LAST_USID"] = SilkRoad.Config.SRConfig.USID;
-
-									string[] tableNames = new string[] { "DUTY_TRSJREQ" };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-									outVal += cmd.setUpdate(ref ds, tableNames, null);
-								}
-							}
-						}
-					}
-                }
-                catch (Exception ec)
-                {
-                    MessageBox.Show(ec.Message, "승인오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 관리자 승인처리 되었습니다.", "승인", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					SetCancel(0);
-					baseInfoSearch();
-                    Cursor = Cursors.Default;
-                }
-            }
-		}		
-        //관리자승인취소->사용X
-		private void btn_last_canc_Click(object sender, EventArgs e)
-		{
-			if (isNoError_um(3))
-			{
-                Cursor = Cursors.WaitCursor;
-				int outVal = 0;
-				try
-				{
-					for (int i = 0; i < ds.Tables["SEARCH_JREQ_LIST"].Rows.Count; i++)
-					{
-						DataRow drow = ds.Tables["SEARCH_JREQ_LIST"].Rows[i];
-						if (drow["L_C_CHK"].ToString() == "1")
-						{
-							df.GetDUTY_TRSJREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), drow["REQ_DATE2"].ToString(), ds);
-							if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
-							{
-								if (ds.Tables["DUTY_TRSJREQ"].Rows[0]["LAST_TAG"].ToString() == "1")
-								{
-									DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
-									hrow["LAST_TAG"] = "2";
-									hrow["LAST_CANC_DT"] = gd.GetNow();
-									hrow["LAST_CANC_USID"] = SilkRoad.Config.SRConfig.USID;
-
-									string[] tableNames = new string[] { "DUTY_TRSJREQ" };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-									outVal += cmd.setUpdate(ref ds, tableNames, null);
-								}
-							}
-						}
-					}
-				}
-				catch (Exception ec)
-				{
-					MessageBox.Show(ec.Message, "승인취소오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-				finally
-				{
-					if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 승인취소 되었습니다.", "승인취소", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					SetCancel(0);
-					baseInfoSearch();
-					Cursor = Cursors.Default;
-				}
 			}
 		}
 
@@ -471,33 +272,92 @@ namespace DUTY1000
 				sl_embs.Focus();
 			}
 			else
-			{
+			{				
 				sl_embs.Enabled = false;
 				dat_ycdt.Enabled = true;
 				dat_ycdt2.Enabled = true;
 				sl_gnmu.Enabled = true;
 				chk_line.Enabled = true;
 
-				string line_txt = "";
-				string adgb = ds.Tables["2020_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-				if (adgb == "1")
-					line_txt = "[팀장 -> 부서장 -> 대표원장]";
-				else if (adgb == "2")
-					line_txt = "[부서장 -> 대표원장]";
-				else if (adgb == "3")
-					line_txt = "[원장단 -> 대표원장]";
-				else if (adgb == "4")
-					line_txt = "[대표원장]";
-				else
-					line_txt = "[사원 -> 팀장]";
-
-				lb_line.Text = line_txt;
-				chk_line.Visible = adgb == "1" ? true : false;
-				chk_line.Checked = false;
+				sl_line1.EditValue = null;
+				sl_line2.EditValue = null;
+				sl_line3.EditValue = null;
+				sl_line1.Enabled = true;
+				sl_line2.Enabled = true;
+				sl_line3.Enabled = true;
+				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
+				ADGB_STAT(adgb);
 
 				SetButtonEnable2("0101");
 				dat_ycdt.Focus();
 			}
+		}
+		private void ADGB_STAT(string adgb)
+		{
+			string line_txt = "";
+			if (adgb == "1")
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'2'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+				df.GetGW_LINE2Datas(sl_embs.EditValue.ToString(), "'5','6'", ds);
+				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
+
+				sl_line2.Visible = true;
+				line_txt = "[팀장 -> 부서장 -> 대표/담당원장]";
+			}
+			else if (adgb == "2")
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'5','6'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+
+				sl_line2.Visible = false;
+				line_txt = "[부서장 -> 대표/담당원장]";
+			}
+			else if (adgb == "3")
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'5'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+
+				sl_line2.Visible = false;
+				line_txt = "[원장단 -> 담당원장]";
+			}
+			else if (adgb == "4")
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'6'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+
+				sl_line2.Visible = false;
+				line_txt = "[원장단 -> 대표원장]";
+			}
+			else if (adgb == "5")
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'5'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+				sl_line1.EditValue = sl_embs.EditValue;
+
+				sl_line2.Visible = false;
+				line_txt = "[담당원장]";
+			}
+			else if (adgb == "6")
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'6'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+				sl_line1.EditValue = sl_embs.EditValue;
+
+				sl_line2.Visible = false;
+				line_txt = "[대표원장]";
+			}
+			else
+			{
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'1'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+
+				sl_line2.Visible = false;
+				line_txt = "[팀원 -> 팀장]";
+			}
+			lb_line.Text = line_txt;
+			chk_line.Visible = adgb == "1" ? true : false;
+			chk_line.Checked = false;
 		}
 		
 		//휴가신청 취소
@@ -519,12 +379,44 @@ namespace DUTY1000
 					if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
 					{
 						DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
+						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;
 						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), ds);
-						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;	
-						hrow["SAWON_LV"] = ds.Tables["2020_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-						hrow["EXCEPT_MID"] = chk_line.Checked == true ? "1" : "";		
+						if (sl_line3.EditValue != null)
+							hrow["LINE_CNT"] = 4;
+						else if (sl_line2.EditValue != null)
+							hrow["LINE_CNT"] = 3;
+						else if (sl_line1.EditValue != null)
+							hrow["LINE_CNT"] = 2;	
+
+						hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
+						hrow["GW_DT1"] = gd.GetNow();
+						hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
+						hrow["GW_JICK1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						for (int i = 2; i < 5; i++)
+						{
+							hrow["GW_SABN" + i.ToString()] = "";
+							hrow["GW_DT" + i.ToString()] = "";
+							hrow["GW_CHKID" + i.ToString()] = "";
+							hrow["GW_NAME" + i.ToString()] = "";
+							hrow["GW_JICK" + i.ToString()] = "";
+						}
+						if (sl_line1.EditValue != null)
+						{
+							hrow["GW_SABN2"] = sl_line1.EditValue.ToString();
+							hrow["GW_NAME2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["NAME"].ToString();
+							hrow["GW_JICK2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						}
+						if (sl_line2.EditValue != null)
+						{
+							hrow["GW_SABN3"] = sl_line2.EditValue.ToString();
+							hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
+							hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						}		
+						//hrow["SAWON_LV"] = ds.Tables["2020_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
+						//hrow["EXCEPT_MID"] = chk_line.Checked == true ? "1" : "";		
 						hrow["UPDT"] = gd.GetNow();
 						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
+						hrow["PSTY"] = "U";
 					}
 					else
 					{
@@ -533,17 +425,42 @@ namespace DUTY1000
 						hrow["REQ_DATE"] = clib.DateToText(dat_ycdt.DateTime);
 						hrow["REQ_DATE2"] = clib.DateToText(dat_ycdt2.DateTime);
 						hrow["REQ_TYPE"] = sl_gnmu.EditValue.ToString();
-						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), ds);
 						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;
-						hrow["SAWON_LV"] = ds.Tables["2020_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-						hrow["EXCEPT_MID"] = chk_line.Checked == true ? "1" : "";
+						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), ds);
+						
 						hrow["AP_TAG"] = "";
-						hrow["MID_DT"] = "";
-						hrow["MID_USID"] = "";
-						hrow["AP_DT"] = "";
-						hrow["AP_USID"] = "";
-						hrow["CANC_DT"] = "";
-						hrow["CANC_USID"] = "";
+						hrow["LINE_CNT"] = 1;
+						if (sl_line3.EditValue != null)
+							hrow["LINE_CNT"] = 4;
+						else if (sl_line2.EditValue != null)
+							hrow["LINE_CNT"] = 3;
+						else if (sl_line1.EditValue != null)
+							hrow["LINE_CNT"] = 2;
+						
+						hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
+						hrow["GW_DT1"] = gd.GetNow();
+						hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
+						hrow["GW_JICK1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						for (int i = 2; i < 5; i++)
+						{
+							hrow["GW_SABN" + i.ToString()] = "";
+							hrow["GW_DT" + i.ToString()] = "";
+							hrow["GW_CHKID" + i.ToString()] = "";
+							hrow["GW_NAME" + i.ToString()] = "";
+							hrow["GW_JICK" + i.ToString()] = "";
+						}
+						if (sl_line1.EditValue != null)
+						{
+							hrow["GW_SABN2"] = sl_line1.EditValue.ToString();
+							hrow["GW_NAME2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["NAME"].ToString();
+							hrow["GW_JICK2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						}
+						if (sl_line2.EditValue != null)
+						{
+							hrow["GW_SABN3"] = sl_line2.EditValue.ToString();
+							hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
+							hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						}
 
 						hrow["INDT"] = gd.GetNow();
 						hrow["UPDT"] = "";
@@ -598,18 +515,30 @@ namespace DUTY1000
 							hrow["REQ_DATE"] = drow["REQ_DATE"].ToString();
 							hrow["REQ_DATE2"] = drow["REQ_DATE2"].ToString();
 							hrow["REQ_TYPE"] = drow["REQ_TYPE"].ToString();
-
-							hrow["HOLI_DAYS"] = clib.TextToDecimal(drow["HOLI_DAYS"].ToString());
 							hrow["PAY_YN"] = drow["PAY_YN"].ToString();
-							hrow["SAWON_LV"] = drow["SAWON_LV"].ToString();
-							hrow["EXCEPT_MID"] = drow["EXCEPT_MID"].ToString();
+							hrow["HOLI_DAYS"] = clib.TextToDecimal(drow["HOLI_DAYS"].ToString());
+							
 							hrow["AP_TAG"] = drow["AP_TAG"].ToString();
-							hrow["MID_DT"] = drow["MID_DT"].ToString();
-							hrow["MID_USID"] = drow["MID_USID"].ToString();
-							hrow["AP_DT"] = drow["AP_DT"].ToString();
-							hrow["AP_USID"] = drow["AP_USID"].ToString();
-							hrow["CANC_DT"] = drow["CANC_DT"].ToString();
-							hrow["CANC_USID"] = drow["CANC_USID"].ToString();
+							hrow["LINE_CNT"] = clib.TextToInt(drow["LINE_CNT"].ToString());
+							for (int i = 1; i < 5; i++)
+							{
+								hrow["GW_SABN" + i.ToString()] = drow["GW_SABN" + i.ToString()].ToString();
+								hrow["GW_DT" + i.ToString()] = drow["GW_DT" + i.ToString()].ToString();
+								if (i != 1)
+									hrow["GW_CHKID" + i.ToString()] = drow["GW_CHKID" + i.ToString()].ToString();
+								hrow["GW_NAME" + i.ToString()] = drow["GW_NAME" + i.ToString()].ToString();
+								hrow["GW_JICK" + i.ToString()] = drow["GW_JICK" + i.ToString()].ToString();
+							}
+
+							//hrow["SAWON_LV"] = drow["SAWON_LV"].ToString();
+							//hrow["EXCEPT_MID"] = drow["EXCEPT_MID"].ToString();
+							//hrow["AP_TAG"] = drow["AP_TAG"].ToString();
+							//hrow["MID_DT"] = drow["MID_DT"].ToString();
+							//hrow["MID_USID"] = drow["MID_USID"].ToString();
+							//hrow["AP_DT"] = drow["AP_DT"].ToString();
+							//hrow["AP_USID"] = drow["AP_USID"].ToString();
+							//hrow["CANC_DT"] = drow["CANC_DT"].ToString();
+							//hrow["CANC_USID"] = drow["CANC_USID"].ToString();
 
 							hrow["INDT"] = drow["INDT"].ToString();
 							hrow["UPDT"] = drow["UPDT"].ToString();
@@ -670,13 +599,13 @@ namespace DUTY1000
             }
         }
 		//그리드 더블클릭시
-		private void grdv1_DoubleClick(object sender, EventArgs e)
+		private void grdv_hg_DoubleClick(object sender, EventArgs e)
 		{
-			DataRow drow = grdv1.GetFocusedDataRow();
+			DataRow drow = grdv_hg.GetFocusedDataRow();
             if (drow == null)
                 return;
 
-			sl_embs.EditValue = grdv1.GetFocusedRowCellValue("SABN").ToString().Trim();
+			sl_embs.EditValue = grdv_hg.GetFocusedRowCellValue("SABN").ToString().Trim();
 			btn_proc.PerformClick();
 			df.GetDUTY_TRSJREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), drow["REQ_DATE2"].ToString(), ds);
 			if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
@@ -686,113 +615,25 @@ namespace DUTY1000
 				dat_ycdt.DateTime = clib.TextToDate(hrow["REQ_DATE"].ToString());
 				dat_ycdt2.DateTime = clib.TextToDate(hrow["REQ_DATE2"].ToString());
 
-				if (hrow["AP_TAG"].ToString() == "1")
+				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "4" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,4진행,9정산
 					SetButtonEnable2("0001");
 				else
-				if (hrow["AP_TAG"].ToString() == "2")
 					SetButtonEnable2("0011");
-				else
-					SetButtonEnable2("0111");
 			}
 			dat_ycdt.Enabled = false;
 			dat_ycdt2.Enabled = false;
 			sl_gnmu.Enabled = false;
 
-			string adgb = ds.Tables["2020_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-			chk_line.Visible = adgb == "1" ? true : false;
-			chk_line.Enabled = true;
-			chk_line.Checked = grdv1.GetFocusedRowCellValue("EXCEPT_MID").ToString() == "1" ? true : false;
-
-			string line_txt = "";
-			if (adgb == "1")
-				line_txt = chk_line.Checked == false ? "[팀장 -> 부서장 -> 대표원장]" : "[팀장 -> 대표원장]";
-			else if (adgb == "2")
-				line_txt = "[부서장 -> 대표원장]";
-			else if (adgb == "3")
-				line_txt = "[원장단 -> 대표원장]";
-			else if (adgb == "4")
-				line_txt = "[대표원장]";
-			else
-				line_txt = "[사원 -> 팀장]";
-
-			lb_line.Text = line_txt;
+			string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
+			ADGB_STAT(adgb);
 		}
-
-		private void grdv1_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-            DataRow drow = grdv1.GetFocusedDataRow();
-			if (drow != null)
-			{
-				if (grdv1.FocusedColumn.Name == "col_chk") //admin_lv 1,2,3 조건
-				{
-					if (ends_yn == "Y")
-						e.Cancel = true;
-					else if (drow["AP_TAG"].ToString() == "1" || drow["AP_TAG"].ToString() == "2")
-						e.Cancel = true;
-
-					if (admin_lv == 1 && clib.TextToInt(drow["SABN"].ToString()) == 0 && drow["AP_TAG"].ToString().Trim() == "")
-						e.Cancel = false;
-					else if (admin_lv == 2 && clib.TextToInt(drow["SABN"].ToString()) == 1 && drow["EXCEPT_MID"].ToString().Trim() == "" && drow["AP_TAG"].ToString().Trim() == "")
-						e.Cancel = false;
-					else if (admin_lv == 3 && clib.TextToInt(drow["SABN"].ToString()) == 1 && drow["EXCEPT_MID"].ToString().Trim() == "1" && drow["AP_TAG"].ToString().Trim() == "")
-						e.Cancel = false;
-					else if (admin_lv == 3 && clib.TextToInt(drow["SABN"].ToString()) == 1 && drow["AP_TAG"].ToString().Trim() == "3")
-						e.Cancel = false;
-					else if (admin_lv == 3 && clib.TextToInt(drow["SABN"].ToString()) == 2 && drow["AP_TAG"].ToString().Trim() == "")
-						e.Cancel = false;
-				}
-				if (grdv1.FocusedColumn.Name == "col_c_chk")
-				{
-					if (ends_yn == "Y")
-						e.Cancel = true;
-					else if (drow["AP_TAG"].ToString().Trim() == "" || drow["AP_TAG"].ToString() == "2")
-						e.Cancel = true;
-				}
-
-				//if (grdv1.FocusedColumn.Name == "col_chk")
-				//{
-				//	if (ends_yn == "Y")
-				//		e.Cancel = true;
-				//	else if (drow["AP_TAG"].ToString() == "1")
-				//		e.Cancel = true;
-				//}
-				//if (grdv1.FocusedColumn.Name == "col_c_chk")
-				//{
-				//	if (ends_yn == "Y")
-				//		e.Cancel = true;
-				//	else if (drow["AP_TAG"].ToString() != "1")
-				//		e.Cancel = true;
-				//	else if (drow["LAST_TAG"].ToString() == "1")
-				//		e.Cancel = true;
-				//}
-				//if (grdv1.FocusedColumn.Name == "col_last_chk")
-				//{
-				//	if (drow["LAST_TAG"].ToString() == "1")
-				//		e.Cancel = true;
-				//	else if (drow["AP_TAG"].ToString() != "1")
-				//		e.Cancel = true;
-					
-				//	if (ends_yn == "Y")
-				//		e.Cancel = true;
-				//}
-				//if (grdv1.FocusedColumn.Name == "col_last_c_chk")
-				//{
-				//	if (drow["LAST_TAG"].ToString() != "1")
-				//		e.Cancel = true;
-					
-				//	if (ends_yn == "Y")
-				//		e.Cancel = true;
-				//}
-			}
-		}
+		
 				
 		//휴가사용일자 선택시
 		private void dat_ycdt_EditValueChanged(object sender, EventArgs e)
 		{
-			if (clib.isDate(clib.DateToText(dat_ycdt.DateTime)) && sl_embs.EditValue != null)
-				END_CHK();
-			else
-				lb_ends.Text = "[ 최종마감 체크 ]";
+			if (clib.DateToText(dat_ycdt2.DateTime) == "")
+				dat_ycdt2.DateTime = dat_ycdt.DateTime;
 		}
 		
 		private void END_CHK()
@@ -816,20 +657,41 @@ namespace DUTY1000
 		private void chk_line_CheckedChanged(object sender, EventArgs e)
 		{
 			if (chk_line.Checked == false)
-				lb_line.Text = "[팀장 -> 부서장 -> 대표원장]";
-			else 
-				lb_line.Text = "[팀장 -> 대표원장]";
+			{
+				sl_line1.EditValue = null;
+				sl_line2.EditValue = null;
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'2'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+				df.GetGW_LINE2Datas(sl_embs.EditValue.ToString(), "'5','6'", ds);
+				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
+
+				sl_line2.Visible = true;
+				lb_line.Text = "[팀장 -> 부서장 -> 대표/담당원장]";
+			}
+			else
+			{
+				sl_line1.EditValue = null;
+				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'5','6'", ds);
+				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+
+				sl_line2.Visible = false;
+				lb_line.Text = "[팀장 -> 대표/담당원장]";
+			}
+			//if (chk_line.Checked == false)
+			//	lb_line.Text = "[팀장 -> 부서장 -> 대표원장]";
+			//else 
+			//	lb_line.Text = "[팀장 -> 대표원장]";
 		}
 		
-		private void grdv1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		private void grdv_hg_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
 		{			
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();     
 		}
-		private void grdv2_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-		{			
+		private void grdv_del_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();     
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();   
 		}
 
         #endregion
@@ -868,90 +730,6 @@ namespace DUTY1000
                     isError = true;
                 }
             }
-            else if (mode == 2)  //승인
-            {
-				if (ends_yn == "Y")
-				{
-					MessageBox.Show("최종마감되어 승인 할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
-				}
-
-				if (ds.Tables["SEARCH_JREQ_LIST"] != null)
-				{
-					ds.Tables["SEARCH_JREQ_LIST"].AcceptChanges();
-					if (ds.Tables["SEARCH_JREQ_LIST"].Select("CHK='1'").Length == 0)
-					{
-						MessageBox.Show("선택된 내역이 없습니다!", "승인에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return false;
-					}
-					else
-					{
-						isError = true;
-					}
-				}
-            }
-            else if (mode == 3)  //승인취소
-            {
-				if (ends_yn == "Y")
-				{
-					MessageBox.Show("최종마감되어 승인취소 할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
-				}
-				if (ds.Tables["SEARCH_JREQ_LIST"] != null)
-				{
-					if (ds.Tables["SEARCH_JREQ_LIST"].Select("C_CHK='1'").Length == 0)
-					{
-						MessageBox.Show("선택된 내역이 없습니다!", "취소에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return false;
-					}
-					else
-					{
-						isError = true;
-					}
-				}
-            }
-            else if (mode == 12)  //관리자승인
-            {
-				if (ends_yn == "Y")
-				{
-					MessageBox.Show("최종마감되어 승인 할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
-				}
-
-				if (ds.Tables["SEARCH_JREQ_LIST"] != null)
-				{
-					ds.Tables["SEARCH_JREQ_LIST"].AcceptChanges();
-					if (ds.Tables["SEARCH_JREQ_LIST"].Select("L_CHK='1'").Length == 0)
-					{
-						MessageBox.Show("선택된 내역이 없습니다!", "승인에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return false;
-					}
-					else
-					{
-						isError = true;
-					}
-				}
-            }
-            else if (mode == 13)  //관리자승인취소
-            {
-				if (ends_yn == "Y")
-				{
-					MessageBox.Show("최종마감되어 승인취소 할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
-				}
-				if (ds.Tables["SEARCH_JREQ_LIST"] != null)
-				{
-					if (ds.Tables["SEARCH_JREQ_LIST"].Select("L_C_CHK='1'").Length == 0)
-					{
-						MessageBox.Show("선택된 내역이 없습니다!", "취소에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return false;
-					}
-					else
-					{
-						isError = true;
-					}
-				}
-            }
             else if (mode == 5)  //등록
             {
 				if (ends_yn2 == "Y")
@@ -977,6 +755,24 @@ namespace DUTY1000
 					sl_gnmu.Focus();
 					return false;
 				}
+				else if (sl_line1.Visible == true && sl_line1.EditValue == null)
+				{
+					MessageBox.Show("결재자1이 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sl_line1.Focus();
+					return false;
+				}
+				else if (sl_line2.Visible == true && sl_line2.EditValue == null)
+				{
+					MessageBox.Show("결재자2가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sl_line2.Focus();
+					return false;
+				}
+				else if (sl_line3.Visible == true && sl_line3.EditValue == null)
+				{
+					MessageBox.Show("결재자3이 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sl_line3.Focus();
+					return false;
+				}
 				else
 				{
 					isError = true;
@@ -984,12 +780,7 @@ namespace DUTY1000
             }
             else if (mode == 6)  //삭제
             {
-				if (ends_yn2 == "Y")
-				{
-					MessageBox.Show("최종마감되어 삭제할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
-				}
-				else if (clib.DateToText(dat_ycdt.DateTime) == "")
+				if (clib.DateToText(dat_ycdt.DateTime) == "")
 				{
 					MessageBox.Show("신청일자(시작)이 입력되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					dat_ycdt.Focus();

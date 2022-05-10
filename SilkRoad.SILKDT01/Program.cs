@@ -57,7 +57,7 @@ namespace SilkRoad.SILKDT01
 				}
 
 				#endregion
-
+				
 				#region 접속정보 가져오기
 				queryStatements = "SELECT * FROM INFOCFCM.DBF";
 				dCom = db.GetSqlStringCommand(queryStatements);
@@ -81,14 +81,15 @@ namespace SilkRoad.SILKDT01
 
 				#endregion
 
-				//디버깅할때
-				SilkRoad.Config.SRConfig.WorkPlaceNo = "01";
-				SilkRoad.DAL.DataAccess.DBname = "DT01DB01";
-				SilkRoad.DAL.DataAccess.DBhost = "125.136.91.159,9245";
-				SilkRoad.DAL.DataAccess.DBuspw = "Samil1234";
-				SilkRoad.Config.SRConfig.USID = "SAMIL";
+				////디버깅할때
+				//SilkRoad.Config.SRConfig.WorkPlaceNo = "01";
+				//SilkRoad.DAL.DataAccess.DBname = "DT01DB01";
+				//SilkRoad.DAL.DataAccess.DBhost = "125.136.91.159,9245";
+				//SilkRoad.DAL.DataAccess.DBuspw = "Samil1234";
+				//SilkRoad.Config.SRConfig.USID = "SAMIL";
 
-				//Config.SRConfig.USID = "10003"; //"56000"; //"10003"; //"56000"; //"52017";
+				//Config.SRConfig.USID = "52017"; //"10003"; //"56000"; //"10003"; //"56000"; //"52017";
+
 				//"kshosp9393"; // kshosp88 정우현 // ks9240@ 박영미 // 51032 김소영 // 21323 최경숙-중간           
 			}
 

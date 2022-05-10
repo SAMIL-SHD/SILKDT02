@@ -1,46 +1,42 @@
 ﻿namespace DUTY1000
 {
-    partial class duty5060
-    {
-        /// <summary>
-        /// 필수 디자이너 변수입니다.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class duty5080
+	{
+		/// <summary>
+		/// 필수 디자이너 변수입니다.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// 사용 중인 모든 리소스를 정리합니다.
-        /// </summary>
-        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// 사용 중인 모든 리소스를 정리합니다.
+		/// </summary>
+		/// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form 디자이너에서 생성한 코드
+		#region Windows Form 디자이너에서 생성한 코드
 
-        /// <summary>
-        /// 디자이너 지원에 필요한 메서드입니다.
-        /// 이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// 디자이너 지원에 필요한 메서드입니다.
+		/// 이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty5060));
-			this.col_chk = new DevExpress.XtraGrid.Columns.GridColumn();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty5080));
 			this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-			this.col_c_chk = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
 			this.srPanel3 = new SilkRoad.UserControls.SRPanel();
-			this.btn_exit = new SilkRoad.UserControls.SRButton();
 			this.btn_ap_search = new SilkRoad.UserControls.SRButton();
 			this.btn_ap_clear = new SilkRoad.UserControls.SRButton();
-			this.btn_ap_canc = new SilkRoad.UserControls.SRButton();
-			this.btn_ap_save = new SilkRoad.UserControls.SRButton();
+			this.btn_exit = new SilkRoad.UserControls.SRButton();
 			this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
 			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -65,9 +61,13 @@
 			this.gridColumn68 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn69 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn70 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.col_c_chk = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.srGroupBox3 = new SilkRoad.UserControls.SRGroupBox();
 			this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+			this.btn_ap_canc = new SilkRoad.UserControls.SRButton();
+			this.cmb_type = new SilkRoad.UserControls.SRCombo();
+			this.srLabel2 = new SilkRoad.UserControls.SRLabel();
 			this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
 			this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -90,33 +90,13 @@
 			this.srGroupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
 			this.panelControl1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_type.Properties)).BeginInit();
 			this.xtraTabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srTabControl1)).BeginInit();
 			this.srTabControl1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// col_chk
-			// 
-			this.col_chk.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
-			this.col_chk.AppearanceHeader.Options.UseForeColor = true;
-			this.col_chk.AppearanceHeader.Options.UseTextOptions = true;
-			this.col_chk.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.col_chk.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.col_chk.Caption = "승인선택";
-			this.col_chk.ColumnEdit = this.repositoryItemCheckEdit3;
-			this.col_chk.FieldName = "CHK";
-			this.col_chk.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-			this.col_chk.Name = "col_chk";
-			this.col_chk.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.col_chk.OptionsFilter.AllowAutoFilter = false;
-			this.col_chk.OptionsFilter.AllowFilter = false;
-			this.col_chk.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-			this.col_chk.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.col_chk.Visible = true;
-			this.col_chk.VisibleIndex = 9;
-			this.col_chk.Width = 40;
 			// 
 			// repositoryItemCheckEdit3
 			// 
@@ -125,28 +105,6 @@
 			this.repositoryItemCheckEdit3.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
 			this.repositoryItemCheckEdit3.ValueChecked = "1";
 			this.repositoryItemCheckEdit3.ValueUnchecked = "0";
-			// 
-			// col_c_chk
-			// 
-			this.col_c_chk.AppearanceHeader.ForeColor = System.Drawing.Color.Blue;
-			this.col_c_chk.AppearanceHeader.Options.UseForeColor = true;
-			this.col_c_chk.AppearanceHeader.Options.UseTextOptions = true;
-			this.col_c_chk.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.col_c_chk.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.col_c_chk.Caption = "취소선택";
-			this.col_c_chk.ColumnEdit = this.repositoryItemCheckEdit3;
-			this.col_c_chk.FieldName = "C_CHK";
-			this.col_c_chk.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-			this.col_c_chk.Name = "col_c_chk";
-			this.col_c_chk.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.col_c_chk.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.col_c_chk.OptionsFilter.AllowAutoFilter = false;
-			this.col_c_chk.OptionsFilter.AllowFilter = false;
-			this.col_c_chk.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-			this.col_c_chk.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.col_c_chk.Visible = true;
-			this.col_c_chk.VisibleIndex = 10;
-			this.col_c_chk.Width = 40;
 			// 
 			// srPanel1
 			// 
@@ -171,7 +129,7 @@
 			this.srTitle1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.srTitle1.Name = "srTitle1";
 			this.srTitle1.Size = new System.Drawing.Size(162, 39);
-			this.srTitle1.SRTitleTxt = "결재문서관리";
+			this.srTitle1.SRTitleTxt = "완결문서관리";
 			this.srTitle1.TabIndex = 26;
 			this.srTitle1.TabStop = false;
 			// 
@@ -180,33 +138,16 @@
 			this.srPanel3.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.srPanel3.Appearance.Options.UseBackColor = true;
 			this.srPanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.srPanel3.Controls.Add(this.btn_exit);
 			this.srPanel3.Controls.Add(this.btn_ap_search);
 			this.srPanel3.Controls.Add(this.btn_ap_clear);
+			this.srPanel3.Controls.Add(this.btn_exit);
 			this.srPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-			this.srPanel3.Location = new System.Drawing.Point(996, 3);
+			this.srPanel3.Location = new System.Drawing.Point(1013, 3);
 			this.srPanel3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
 			this.srPanel3.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.srPanel3.Name = "srPanel3";
-			this.srPanel3.Size = new System.Drawing.Size(281, 40);
+			this.srPanel3.Size = new System.Drawing.Size(264, 40);
 			this.srPanel3.TabIndex = 0;
-			// 
-			// btn_exit
-			// 
-			this.btn_exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_exit.Authority = false;
-			this.btn_exit.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.btn_exit.Image = ((System.Drawing.Image)(resources.GetObject("btn_exit.Image")));
-			this.btn_exit.Location = new System.Drawing.Point(189, 9);
-			this.btn_exit.Name = "btn_exit";
-			this.btn_exit.Size = new System.Drawing.Size(80, 24);
-			this.btn_exit.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
-			this.btn_exit.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.종료;
-			this.btn_exit.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
-			this.btn_exit.TabIndex = 6;
-			this.btn_exit.Text = "종  료";
-			this.btn_exit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btn_exit.UseVisualStyleBackColor = true;
 			// 
 			// btn_ap_search
 			// 
@@ -214,7 +155,7 @@
 			this.btn_ap_search.Authority = false;
 			this.btn_ap_search.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_ap_search.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_search.Image")));
-			this.btn_ap_search.Location = new System.Drawing.Point(27, 9);
+			this.btn_ap_search.Location = new System.Drawing.Point(8, 9);
 			this.btn_ap_search.Name = "btn_ap_search";
 			this.btn_ap_search.Size = new System.Drawing.Size(80, 24);
 			this.btn_ap_search.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
@@ -232,7 +173,7 @@
 			this.btn_ap_clear.Authority = false;
 			this.btn_ap_clear.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_ap_clear.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_clear.Image")));
-			this.btn_ap_clear.Location = new System.Drawing.Point(108, 9);
+			this.btn_ap_clear.Location = new System.Drawing.Point(90, 9);
 			this.btn_ap_clear.Name = "btn_ap_clear";
 			this.btn_ap_clear.Size = new System.Drawing.Size(80, 24);
 			this.btn_ap_clear.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
@@ -244,43 +185,22 @@
 			this.btn_ap_clear.UseVisualStyleBackColor = true;
 			this.btn_ap_clear.Click += new System.EventHandler(this.btn_ap_clear_Click);
 			// 
-			// btn_ap_canc
+			// btn_exit
 			// 
-			this.btn_ap_canc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_ap_canc.Authority = false;
-			this.btn_ap_canc.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.btn_ap_canc.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_canc.Image")));
-			this.btn_ap_canc.Location = new System.Drawing.Point(1182, 8);
-			this.btn_ap_canc.Name = "btn_ap_canc";
-			this.btn_ap_canc.Size = new System.Drawing.Size(80, 24);
-			this.btn_ap_canc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
-			this.btn_ap_canc.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.라인삭제;
-			this.btn_ap_canc.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
-			this.btn_ap_canc.TabIndex = 8;
-			this.btn_ap_canc.TabStop = false;
-			this.btn_ap_canc.Text = "승인취소";
-			this.btn_ap_canc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btn_ap_canc.UseVisualStyleBackColor = true;
-			this.btn_ap_canc.Click += new System.EventHandler(this.btn_ap_canc_Click);
-			// 
-			// btn_ap_save
-			// 
-			this.btn_ap_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_ap_save.Authority = false;
-			this.btn_ap_save.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.btn_ap_save.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_save.Image")));
-			this.btn_ap_save.Location = new System.Drawing.Point(1101, 8);
-			this.btn_ap_save.Name = "btn_ap_save";
-			this.btn_ap_save.Size = new System.Drawing.Size(80, 24);
-			this.btn_ap_save.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
-			this.btn_ap_save.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.라인삽입;
-			this.btn_ap_save.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
-			this.btn_ap_save.TabIndex = 7;
-			this.btn_ap_save.TabStop = false;
-			this.btn_ap_save.Text = "승인처리";
-			this.btn_ap_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btn_ap_save.UseVisualStyleBackColor = true;
-			this.btn_ap_save.Click += new System.EventHandler(this.btn_ap_save_Click);
+			this.btn_exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_exit.Authority = false;
+			this.btn_exit.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_exit.Image = ((System.Drawing.Image)(resources.GetObject("btn_exit.Image")));
+			this.btn_exit.Location = new System.Drawing.Point(172, 9);
+			this.btn_exit.Name = "btn_exit";
+			this.btn_exit.Size = new System.Drawing.Size(80, 24);
+			this.btn_exit.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
+			this.btn_exit.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.종료;
+			this.btn_exit.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
+			this.btn_exit.TabIndex = 6;
+			this.btn_exit.Text = "종  료";
+			this.btn_exit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_exit.UseVisualStyleBackColor = true;
 			// 
 			// barManager1
 			// 
@@ -416,7 +336,6 @@
             this.gridColumn68,
             this.gridColumn69,
             this.gridColumn70,
-            this.col_chk,
             this.col_c_chk});
 			this.grdv_ap.GridControl = this.grd_ap;
 			this.grdv_ap.IndicatorWidth = 40;
@@ -577,6 +496,26 @@
 			this.gridColumn70.VisibleIndex = 8;
 			this.gridColumn70.Width = 252;
 			// 
+			// col_c_chk
+			// 
+			this.col_c_chk.AppearanceHeader.ForeColor = System.Drawing.Color.Blue;
+			this.col_c_chk.AppearanceHeader.Options.UseForeColor = true;
+			this.col_c_chk.AppearanceHeader.Options.UseTextOptions = true;
+			this.col_c_chk.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.col_c_chk.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.col_c_chk.Caption = "취소선택";
+			this.col_c_chk.ColumnEdit = this.repositoryItemCheckEdit3;
+			this.col_c_chk.FieldName = "C_CHK";
+			this.col_c_chk.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+			this.col_c_chk.Name = "col_c_chk";
+			this.col_c_chk.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.col_c_chk.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.col_c_chk.OptionsFilter.AllowAutoFilter = false;
+			this.col_c_chk.OptionsFilter.AllowFilter = false;
+			this.col_c_chk.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+			this.col_c_chk.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.col_c_chk.Width = 41;
+			// 
 			// repositoryItemTextEdit3
 			// 
 			this.repositoryItemTextEdit3.AutoHeight = false;
@@ -601,13 +540,68 @@
 			// 
 			// panelControl1
 			// 
-			this.panelControl1.Controls.Add(this.btn_ap_save);
 			this.panelControl1.Controls.Add(this.btn_ap_canc);
+			this.panelControl1.Controls.Add(this.cmb_type);
+			this.panelControl1.Controls.Add(this.srLabel2);
 			this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelControl1.Location = new System.Drawing.Point(2, 22);
 			this.panelControl1.Name = "panelControl1";
 			this.panelControl1.Size = new System.Drawing.Size(1270, 43);
 			this.panelControl1.TabIndex = 0;
+			// 
+			// btn_ap_canc
+			// 
+			this.btn_ap_canc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_ap_canc.Authority = false;
+			this.btn_ap_canc.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_ap_canc.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_canc.Image")));
+			this.btn_ap_canc.Location = new System.Drawing.Point(1182, 8);
+			this.btn_ap_canc.Name = "btn_ap_canc";
+			this.btn_ap_canc.Size = new System.Drawing.Size(80, 24);
+			this.btn_ap_canc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
+			this.btn_ap_canc.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.라인삭제;
+			this.btn_ap_canc.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
+			this.btn_ap_canc.TabIndex = 539;
+			this.btn_ap_canc.TabStop = false;
+			this.btn_ap_canc.Text = "승인취소";
+			this.btn_ap_canc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_ap_canc.UseVisualStyleBackColor = true;
+			this.btn_ap_canc.Visible = false;
+			this.btn_ap_canc.Click += new System.EventHandler(this.btn_ap_canc_Click);
+			// 
+			// cmb_type
+			// 
+			this.cmb_type.EditValue = "전체";
+			this.cmb_type.EnterMoveNextControl = true;
+			this.cmb_type.Location = new System.Drawing.Point(76, 9);
+			this.cmb_type.Name = "cmb_type";
+			this.cmb_type.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_type.Properties.Appearance.Options.UseFont = true;
+			this.cmb_type.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_type.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_type.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_type.Properties.Items.AddRange(new object[] {
+            "전체",
+            "연차",
+            "휴가"});
+			this.cmb_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_type.Size = new System.Drawing.Size(112, 22);
+			this.cmb_type.TabIndex = 538;
+			// 
+			// srLabel2
+			// 
+			this.srLabel2.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel2.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel2.ForeColor = System.Drawing.Color.Black;
+			this.srLabel2.Location = new System.Drawing.Point(11, 9);
+			this.srLabel2.Name = "srLabel2";
+			this.srLabel2.Size = new System.Drawing.Size(65, 22);
+			this.srLabel2.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel2.TabIndex = 537;
+			this.srLabel2.Text = "종류";
+			this.srLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// xtraTabPage2
 			// 
@@ -673,7 +667,7 @@
 			this.xtraTabPage4.Size = new System.Drawing.Size(1274, 694);
 			this.xtraTabPage4.Text = "근무표";
 			// 
-			// duty5060
+			// duty5080
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -685,11 +679,11 @@
 			this.Controls.Add(this.barDockControlBottom);
 			this.Controls.Add(this.barDockControlTop);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Name = "duty5060";
-			this.Text = "duty5060";
-			this.Activated += new System.EventHandler(this.duty5060_Activated);
-			this.Load += new System.EventHandler(this.duty5060_Load);
-			this.Shown += new System.EventHandler(this.duty5060_Shown);
+			this.Name = "duty5080";
+			this.Text = "duty5080";
+			this.Activated += new System.EventHandler(this.duty5080_Activated);
+			this.Load += new System.EventHandler(this.duty5080_Load);
+			this.Shown += new System.EventHandler(this.duty5080_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
 			this.srPanel1.ResumeLayout(false);
@@ -705,6 +699,7 @@
 			this.srGroupBox3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
 			this.panelControl1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.cmb_type.Properties)).EndInit();
 			this.xtraTabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
@@ -713,28 +708,26 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private SilkRoad.UserControls.SRButton btn_exit;
-        private SilkRoad.UserControls.SRPanel srPanel1;
-        private SilkRoad.UserControls.SRPanel srPanel3;
-        private SilkRoad.UserControls.SRTitle srTitle1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+		private SilkRoad.UserControls.SRButton btn_exit;
+		private SilkRoad.UserControls.SRPanel srPanel1;
+		private SilkRoad.UserControls.SRPanel srPanel3;
+		private SilkRoad.UserControls.SRTitle srTitle1;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+		private DevExpress.XtraBars.BarManager barManager1;
+		private DevExpress.XtraBars.BarDockControl barDockControlTop;
+		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+		private DevExpress.XtraBars.BarDockControl barDockControlRight;
 		protected DevExpress.XtraScheduler.SchedulerStorage schedulerStorage1;
-		private SilkRoad.UserControls.SRButton btn_ap_save;
-		private SilkRoad.UserControls.SRButton btn_ap_canc;
 		private DevExpress.XtraGrid.GridControl grd_ap;
 		private DevExpress.XtraGrid.Views.Grid.GridView grdv_ap;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn60;
@@ -747,9 +740,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn69;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn70;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn71;
-		private DevExpress.XtraGrid.Columns.GridColumn col_chk;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit3;
-		private DevExpress.XtraGrid.Columns.GridColumn col_c_chk;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit3;
 		private SilkRoad.UserControls.SRGroupBox srGroupBox3;
 		private DevExpress.XtraEditors.PanelControl panelControl1;
@@ -762,6 +753,10 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView9;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+		private SilkRoad.UserControls.SRCombo cmb_type;
+		private SilkRoad.UserControls.SRLabel srLabel2;
+		private DevExpress.XtraGrid.Columns.GridColumn col_c_chk;
+		private SilkRoad.UserControls.SRButton btn_ap_canc;
 	}
 }
 

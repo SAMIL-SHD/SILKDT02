@@ -35,6 +35,9 @@ namespace DUTY1000
 			sl_sdcd6.EditValue = null;
 			sl_sdcd7.EditValue = null;
 			sl_sdcd8.EditValue = null;
+			sl_sdcd010.EditValue = null;
+			sl_sdcd011.EditValue = null;
+			sl_sdcd012.EditValue = null;
 			
 			sl_gjcd1.EditValue = null;
 
@@ -63,6 +66,9 @@ namespace DUTY1000
 			sl_sdcd6.Properties.DataSource = ds.Tables["SL_SD"];
 			sl_sdcd7.Properties.DataSource = ds.Tables["SL_SD"];
 			sl_sdcd8.Properties.DataSource = ds.Tables["SL_SD"];
+			sl_sdcd010.Properties.DataSource = ds.Tables["SL_SD"];
+			sl_sdcd011.Properties.DataSource = ds.Tables["SL_SD"];
+			sl_sdcd012.Properties.DataSource = ds.Tables["SL_SD"];
 			
 			df.GetSL_GJDatas(ds);
 			sl_gjcd1.Properties.DataSource = ds.Tables["SL_GJ"];
@@ -82,6 +88,8 @@ namespace DUTY1000
 			sl_gtcd72.Properties.DataSource = ds.Tables["SL_GT"];
 			sl_gtcd81.Properties.DataSource = ds.Tables["SL_GT"];
 			sl_gtcd91.Properties.DataSource = ds.Tables["SL_GT"];
+			sl_gtcd010.Properties.DataSource = ds.Tables["SL_GT"];			
+			sl_gtcd011.Properties.DataSource = ds.Tables["SL_GT"];
 
 			df.GetDUTY_INFOSD02Datas(ds);
 			if (ds.Tables["DUTY_INFOSD02"].Rows.Count > 0)
@@ -96,6 +104,10 @@ namespace DUTY1000
 				sl_sdcd6.EditValue = srow["A06"].ToString().Trim() == "" ? null : srow["A06"].ToString().Trim();
 				sl_sdcd7.EditValue = srow["A07"].ToString().Trim() == "" ? null : srow["A07"].ToString().Trim();
 				sl_sdcd8.EditValue = srow["A08"].ToString().Trim() == "" ? null : srow["A08"].ToString().Trim();
+				
+				sl_sdcd010.EditValue = srow["A010"].ToString().Trim() == "" ? null : srow["A010"].ToString().Trim();
+				sl_sdcd011.EditValue = srow["A011"].ToString().Trim() == "" ? null : srow["A011"].ToString().Trim();
+				sl_sdcd012.EditValue = srow["A012"].ToString().Trim() == "" ? null : srow["A012"].ToString().Trim();
 				
 				sl_gjcd1.EditValue = srow["B01"].ToString().Trim() == "" ? null : srow["B01"].ToString().Trim();
 				txt_b01_fee01.Text = srow["B01_FEE01"].ToString();
@@ -114,6 +126,8 @@ namespace DUTY1000
 				sl_gtcd72.EditValue = srow["A72"].ToString().Trim() == "" ? null : srow["A72"].ToString().Trim();
 				sl_gtcd81.EditValue = srow["A81"].ToString().Trim() == "" ? null : srow["A81"].ToString().Trim();
 				sl_gtcd91.EditValue = srow["C91"].ToString().Trim() == "" ? null : srow["C91"].ToString().Trim();
+				sl_gtcd010.EditValue = srow["C010"].ToString().Trim() == "" ? null : srow["C010"].ToString().Trim();
+				sl_gtcd011.EditValue = srow["C011"].ToString().Trim() == "" ? null : srow["C011"].ToString().Trim();
 
 				txt_dfee.Text = srow["A01_DFEE"].ToString();
 				txt_d01.Text = srow["A01_D01"].ToString();
@@ -128,6 +142,9 @@ namespace DUTY1000
 				txt_a03_insu01.Text = srow["A03_INSU01"].ToString();
 				txt_a03_insu02.Text = srow["A03_INSU02"].ToString();
 				
+				txt_a010_insu01.Text = srow["A010_INSU01"].ToString();
+				txt_a010_insu02.Text = srow["A010_INSU02"].ToString();
+
 				txt_a04_insu01.Text = srow["A04_INSU01"].ToString();
 				txt_a04_insu02.Text = srow["A04_INSU02"].ToString();
 				txt_a04_insu11.Text = srow["A04_INSU11"].ToString();
@@ -176,6 +193,10 @@ namespace DUTY1000
 				nrow["A07"] = sl_sdcd7.EditValue == null ? "" : sl_sdcd7.EditValue.ToString();
 				nrow["A08"] = sl_sdcd8.EditValue == null ? "" : sl_sdcd8.EditValue.ToString();
 				
+				nrow["A010"] = sl_sdcd010.EditValue == null ? "" : sl_sdcd010.EditValue.ToString();
+				nrow["A011"] = sl_sdcd011.EditValue == null ? "" : sl_sdcd011.EditValue.ToString();
+				nrow["A012"] = sl_sdcd012.EditValue == null ? "" : sl_sdcd012.EditValue.ToString();
+				
 				nrow["B01"] = sl_gjcd1.EditValue == null ? "" : sl_gjcd1.EditValue.ToString();
 				nrow["B01_FEE01"] = clib.TextToDecimal(txt_b01_fee01.Text.ToString());
 				
@@ -193,6 +214,8 @@ namespace DUTY1000
 				nrow["A72"] = sl_gtcd72.EditValue == null ? "" : sl_gtcd72.EditValue.ToString();
 				nrow["A81"] = sl_gtcd81.EditValue == null ? "" : sl_gtcd81.EditValue.ToString();
 				nrow["C91"] = sl_gtcd91.EditValue == null ? "" : sl_gtcd91.EditValue.ToString();
+				nrow["C010"] = sl_gtcd010.EditValue == null ? "" : sl_gtcd010.EditValue.ToString();
+				nrow["C011"] = sl_gtcd011.EditValue == null ? "" : sl_gtcd011.EditValue.ToString();
 
 				nrow["A01_DFEE"] = clib.TextToDecimal(txt_dfee.Text.ToString());
 				nrow["A01_D01"] = clib.TextToDecimal(txt_d01.Text.ToString());
@@ -206,6 +229,9 @@ namespace DUTY1000
 					
 				nrow["A03_INSU01"] = clib.TextToDecimal(txt_a03_insu01.Text.ToString());
 				nrow["A03_INSU02"] = clib.TextToDecimal(txt_a03_insu02.Text.ToString());
+					
+				nrow["A010_INSU01"] = clib.TextToDecimal(txt_a03_insu01.Text.ToString());
+				nrow["A010_INSU02"] = clib.TextToDecimal(txt_a03_insu02.Text.ToString());
 					
 				nrow["A04_INSU01"] = clib.TextToDecimal(txt_a04_insu01.Text.ToString());
 				nrow["A04_INSU02"] = clib.TextToDecimal(txt_a04_insu02.Text.ToString());

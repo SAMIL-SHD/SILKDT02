@@ -375,8 +375,10 @@ namespace DUTY1000
 			{
 				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'1'", ds);
 				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
+				df.GetGW_LINE2Datas(sl_embs.EditValue.ToString(), "'2'", ds);
+				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
 
-				sl_line2.Visible = false;
+				sl_line2.Visible = true;
 				line_txt = "[팀원 -> 팀장]";
 			}
 			lb_line.Text = line_txt;
@@ -989,6 +991,7 @@ namespace DUTY1000
 				//	MessageBox.Show("최종마감되어 등록할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				//	return false;
 				//}
+				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
 				if (clib.DateToText(dat_ycdt.DateTime) == "")
 				{
 					MessageBox.Show("신청일자(시작)가 입력되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1037,7 +1040,7 @@ namespace DUTY1000
 					sl_line1.Focus();
 					return false;
 				}
-				else if (sl_line2.Visible == true && sl_line2.EditValue == null)
+				else if (adgb == "1" && sl_line2.Visible == true && sl_line2.EditValue == null)
 				{
 					MessageBox.Show("결재자2가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					sl_line2.Focus();

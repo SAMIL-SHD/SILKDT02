@@ -57,7 +57,6 @@
 			this.pnlDetailTop = new DevExpress.XtraEditors.PanelControl();
 			this.btn_ap_canc = new SilkRoad.UserControls.SRButton();
 			this.btn_ap_save = new SilkRoad.UserControls.SRButton();
-			this.cmb_gubn = new SilkRoad.UserControls.SRCombo();
 			this.btn_exel = new SilkRoad.UserControls.SRButton();
 			this.dat_tomm = new SilkRoad.UserControls.SRDate();
 			this.srLabel3 = new SilkRoad.UserControls.SRLabel();
@@ -188,7 +187,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pnlDetailTop)).BeginInit();
 			this.pnlDetailTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tomm.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tomm.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_dept.Properties)).BeginInit();
@@ -272,7 +270,7 @@
 			this.srPanel1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
 			this.srPanel1.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.srPanel1.Name = "srPanel1";
-			this.srPanel1.Size = new System.Drawing.Size(1097, 46);
+			this.srPanel1.Size = new System.Drawing.Size(1240, 46);
 			this.srPanel1.TabIndex = 1;
 			// 
 			// srTitle1
@@ -295,7 +293,7 @@
 			this.srPanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.srPanel3.Controls.Add(this.btn_exit);
 			this.srPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-			this.srPanel3.Location = new System.Drawing.Point(973, 3);
+			this.srPanel3.Location = new System.Drawing.Point(1116, 3);
 			this.srPanel3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
 			this.srPanel3.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.srPanel3.Name = "srPanel3";
@@ -409,7 +407,7 @@
 			this.schedulerControl1.PrintStyles.Add(calendarDetailsPrintStyle1);
 			this.schedulerControl1.PrintStyles.Add(memoPrintStyle1);
 			this.schedulerControl1.ResourceNavigator.Visibility = DevExpress.XtraScheduler.ResourceNavigatorVisibility.Never;
-			this.schedulerControl1.Size = new System.Drawing.Size(1091, 336);
+			this.schedulerControl1.Size = new System.Drawing.Size(1234, 414);
 			this.schedulerControl1.Start = new System.DateTime(2021, 9, 26, 0, 0, 0, 0);
 			this.schedulerControl1.TabIndex = 2;
 			this.schedulerControl1.Text = "schedulerControl1";
@@ -439,15 +437,15 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.barManager1;
-			this.barDockControlTop.Size = new System.Drawing.Size(1097, 0);
+			this.barDockControlTop.Size = new System.Drawing.Size(1240, 0);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 679);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 757);
 			this.barDockControlBottom.Manager = this.barManager1;
-			this.barDockControlBottom.Size = new System.Drawing.Size(1097, 0);
+			this.barDockControlBottom.Size = new System.Drawing.Size(1240, 0);
 			// 
 			// barDockControlLeft
 			// 
@@ -455,21 +453,20 @@
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlLeft.Manager = this.barManager1;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 679);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 757);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(1097, 0);
+			this.barDockControlRight.Location = new System.Drawing.Point(1240, 0);
 			this.barDockControlRight.Manager = this.barManager1;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 679);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 757);
 			// 
 			// pnlDetailTop
 			// 
 			this.pnlDetailTop.Controls.Add(this.btn_ap_canc);
 			this.pnlDetailTop.Controls.Add(this.btn_ap_save);
-			this.pnlDetailTop.Controls.Add(this.cmb_gubn);
 			this.pnlDetailTop.Controls.Add(this.btn_exel);
 			this.pnlDetailTop.Controls.Add(this.dat_tomm);
 			this.pnlDetailTop.Controls.Add(this.srLabel3);
@@ -482,7 +479,7 @@
 			this.pnlDetailTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlDetailTop.Location = new System.Drawing.Point(2, 22);
 			this.pnlDetailTop.Name = "pnlDetailTop";
-			this.pnlDetailTop.Size = new System.Drawing.Size(1087, 43);
+			this.pnlDetailTop.Size = new System.Drawing.Size(1230, 43);
 			this.pnlDetailTop.TabIndex = 0;
 			// 
 			// btn_ap_canc
@@ -491,7 +488,7 @@
 			this.btn_ap_canc.Authority = false;
 			this.btn_ap_canc.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_ap_canc.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_canc.Image")));
-			this.btn_ap_canc.Location = new System.Drawing.Point(998, 9);
+			this.btn_ap_canc.Location = new System.Drawing.Point(1141, 9);
 			this.btn_ap_canc.Name = "btn_ap_canc";
 			this.btn_ap_canc.Size = new System.Drawing.Size(80, 24);
 			this.btn_ap_canc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
@@ -510,7 +507,7 @@
 			this.btn_ap_save.Authority = false;
 			this.btn_ap_save.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_ap_save.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_save.Image")));
-			this.btn_ap_save.Location = new System.Drawing.Point(917, 9);
+			this.btn_ap_save.Location = new System.Drawing.Point(1060, 9);
 			this.btn_ap_save.Name = "btn_ap_save";
 			this.btn_ap_save.Size = new System.Drawing.Size(80, 24);
 			this.btn_ap_save.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
@@ -522,33 +519,6 @@
 			this.btn_ap_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btn_ap_save.UseVisualStyleBackColor = true;
 			this.btn_ap_save.Click += new System.EventHandler(this.btn_ap_save_Click);
-			// 
-			// cmb_gubn
-			// 
-			this.cmb_gubn.EditValue = "전체";
-			this.cmb_gubn.EnterMoveNextControl = true;
-			this.cmb_gubn.Location = new System.Drawing.Point(770, 15);
-			this.cmb_gubn.Name = "cmb_gubn";
-			this.cmb_gubn.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_gubn.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.cmb_gubn.Properties.Appearance.Options.UseFont = true;
-			this.cmb_gubn.Properties.Appearance.Options.UseForeColor = true;
-			this.cmb_gubn.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_gubn.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.cmb_gubn.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.cmb_gubn.Properties.AppearanceFocused.Options.UseBackColor = true;
-			this.cmb_gubn.Properties.AutoHeight = false;
-			this.cmb_gubn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.cmb_gubn.Properties.DropDownRows = 10;
-			this.cmb_gubn.Properties.Items.AddRange(new object[] {
-            "전체",
-            "콜",
-            "OT"});
-			this.cmb_gubn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.cmb_gubn.Size = new System.Drawing.Size(54, 23);
-			this.cmb_gubn.TabIndex = 527;
-			this.cmb_gubn.Visible = false;
 			// 
 			// btn_exel
 			// 
@@ -771,20 +741,20 @@
 			this.srGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.srGroupBox1.Location = new System.Drawing.Point(0, 0);
 			this.srGroupBox1.Name = "srGroupBox1";
-			this.srGroupBox1.Size = new System.Drawing.Size(1091, 336);
+			this.srGroupBox1.Size = new System.Drawing.Size(1234, 414);
 			this.srGroupBox1.TabIndex = 0;
 			this.srGroupBox1.Text = "조회";
 			// 
 			// grd1_ex
 			// 
 			this.grd1_ex.Dock = System.Windows.Forms.DockStyle.Right;
-			this.grd1_ex.Location = new System.Drawing.Point(961, 65);
+			this.grd1_ex.Location = new System.Drawing.Point(1104, 65);
 			this.grd1_ex.MainView = this.grdv1_ex;
 			this.grd1_ex.Name = "grd1_ex";
 			this.grd1_ex.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit3,
             this.repositoryItemTextEdit3});
-			this.grd1_ex.Size = new System.Drawing.Size(128, 269);
+			this.grd1_ex.Size = new System.Drawing.Size(128, 347);
 			this.grd1_ex.TabIndex = 7;
 			this.grd1_ex.TabStop = false;
 			this.grd1_ex.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -974,7 +944,7 @@
 			this.grd1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemTextEdit1});
-			this.grd1.Size = new System.Drawing.Size(1087, 269);
+			this.grd1.Size = new System.Drawing.Size(1230, 347);
 			this.grd1.TabIndex = 6;
 			this.grd1.TabStop = false;
 			this.grd1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1318,7 +1288,7 @@
 			this.srTabControl1.Location = new System.Drawing.Point(0, 46);
 			this.srTabControl1.Name = "srTabControl1";
 			this.srTabControl1.SelectedTabPage = this.xtraTabPage1;
-			this.srTabControl1.Size = new System.Drawing.Size(1097, 366);
+			this.srTabControl1.Size = new System.Drawing.Size(1240, 444);
 			this.srTabControl1.TabIndex = 0;
 			this.srTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -1333,7 +1303,7 @@
 			this.xtraTabPage1.Appearance.HeaderActive.Options.UseFont = true;
 			this.xtraTabPage1.Controls.Add(this.srGroupBox1);
 			this.xtraTabPage1.Name = "xtraTabPage1";
-			this.xtraTabPage1.Size = new System.Drawing.Size(1091, 336);
+			this.xtraTabPage1.Size = new System.Drawing.Size(1234, 414);
 			this.xtraTabPage1.Text = "콜 등록및조회";
 			// 
 			// xtraTabPage2
@@ -1344,7 +1314,7 @@
 			this.xtraTabPage2.Appearance.HeaderActive.Options.UseFont = true;
 			this.xtraTabPage2.Controls.Add(this.srGroupBox3);
 			this.xtraTabPage2.Name = "xtraTabPage2";
-			this.xtraTabPage2.Size = new System.Drawing.Size(1091, 336);
+			this.xtraTabPage2.Size = new System.Drawing.Size(1234, 414);
 			this.xtraTabPage2.Text = "OT 등록및조회";
 			// 
 			// srGroupBox3
@@ -1357,17 +1327,17 @@
 			this.srGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.srGroupBox3.Location = new System.Drawing.Point(0, 0);
 			this.srGroupBox3.Name = "srGroupBox3";
-			this.srGroupBox3.Size = new System.Drawing.Size(1091, 336);
+			this.srGroupBox3.Size = new System.Drawing.Size(1234, 414);
 			this.srGroupBox3.TabIndex = 1;
 			this.srGroupBox3.Text = "조회";
 			// 
 			// grd2_ex
 			// 
 			this.grd2_ex.Dock = System.Windows.Forms.DockStyle.Right;
-			this.grd2_ex.Location = new System.Drawing.Point(972, 65);
+			this.grd2_ex.Location = new System.Drawing.Point(1115, 65);
 			this.grd2_ex.MainView = this.grdv2_ex;
 			this.grd2_ex.Name = "grd2_ex";
-			this.grd2_ex.Size = new System.Drawing.Size(117, 269);
+			this.grd2_ex.Size = new System.Drawing.Size(117, 347);
 			this.grd2_ex.TabIndex = 7;
 			this.grd2_ex.TabStop = false;
 			this.grd2_ex.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1516,7 +1486,7 @@
 			this.grd2.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2,
             this.repositoryItemTextEdit2});
-			this.grd2.Size = new System.Drawing.Size(1087, 269);
+			this.grd2.Size = new System.Drawing.Size(1230, 347);
 			this.grd2.TabIndex = 6;
 			this.grd2.TabStop = false;
 			this.grd2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1813,7 +1783,7 @@
 			this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelControl1.Location = new System.Drawing.Point(2, 22);
 			this.panelControl1.Name = "panelControl1";
-			this.panelControl1.Size = new System.Drawing.Size(1087, 43);
+			this.panelControl1.Size = new System.Drawing.Size(1230, 43);
 			this.panelControl1.TabIndex = 0;
 			// 
 			// btn_ap_canc2
@@ -1822,7 +1792,7 @@
 			this.btn_ap_canc2.Authority = false;
 			this.btn_ap_canc2.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_ap_canc2.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_canc2.Image")));
-			this.btn_ap_canc2.Location = new System.Drawing.Point(998, 9);
+			this.btn_ap_canc2.Location = new System.Drawing.Point(1141, 9);
 			this.btn_ap_canc2.Name = "btn_ap_canc2";
 			this.btn_ap_canc2.Size = new System.Drawing.Size(80, 24);
 			this.btn_ap_canc2.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
@@ -1841,7 +1811,7 @@
 			this.btn_ap_save2.Authority = false;
 			this.btn_ap_save2.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_ap_save2.Image = ((System.Drawing.Image)(resources.GetObject("btn_ap_save2.Image")));
-			this.btn_ap_save2.Location = new System.Drawing.Point(917, 9);
+			this.btn_ap_save2.Location = new System.Drawing.Point(1060, 9);
 			this.btn_ap_save2.Name = "btn_ap_save2";
 			this.btn_ap_save2.Size = new System.Drawing.Size(80, 24);
 			this.btn_ap_save2.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
@@ -2043,7 +2013,7 @@
 			this.xtraTabPage3.Controls.Add(this.schedulerControl1);
 			this.xtraTabPage3.Name = "xtraTabPage3";
 			this.xtraTabPage3.PageVisible = false;
-			this.xtraTabPage3.Size = new System.Drawing.Size(1091, 336);
+			this.xtraTabPage3.Size = new System.Drawing.Size(1234, 414);
 			this.xtraTabPage3.Text = "캘린더";
 			// 
 			// srGroupBox2
@@ -2068,9 +2038,9 @@
 			this.srGroupBox2.Controls.Add(this.txt_cnt2);
 			this.srGroupBox2.Controls.Add(this.srLabel10);
 			this.srGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.srGroupBox2.Location = new System.Drawing.Point(0, 412);
+			this.srGroupBox2.Location = new System.Drawing.Point(0, 490);
 			this.srGroupBox2.Name = "srGroupBox2";
-			this.srGroupBox2.Size = new System.Drawing.Size(1097, 267);
+			this.srGroupBox2.Size = new System.Drawing.Size(1240, 267);
 			this.srGroupBox2.TabIndex = 0;
 			this.srGroupBox2.Text = "등록";
 			// 
@@ -2161,7 +2131,7 @@
 			this.srPanel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.srPanel2.Location = new System.Drawing.Point(2, 22);
 			this.srPanel2.Name = "srPanel2";
-			this.srPanel2.Size = new System.Drawing.Size(1093, 41);
+			this.srPanel2.Size = new System.Drawing.Size(1236, 41);
 			this.srPanel2.TabIndex = 0;
 			// 
 			// btn_canc
@@ -2560,7 +2530,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1097, 679);
+			this.ClientSize = new System.Drawing.Size(1240, 757);
 			this.Controls.Add(this.srTabControl1);
 			this.Controls.Add(this.srGroupBox2);
 			this.Controls.Add(this.srPanel1);
@@ -2587,7 +2557,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pnlDetailTop)).EndInit();
 			this.pnlDetailTop.ResumeLayout(false);
 			this.pnlDetailTop.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tomm.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tomm.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_dept.Properties)).EndInit();
@@ -2722,7 +2691,6 @@
 		private SilkRoad.UserControls.SRDate dat_tomm;
 		private SilkRoad.UserControls.SRLabel srLabel3;
 		private SilkRoad.UserControls.SRButton btn_exel;
-		private SilkRoad.UserControls.SRCombo cmb_gubn;
 		private SilkRoad.UserControls.SRButton btn_ap_canc;
 		private SilkRoad.UserControls.SRButton btn_ap_save;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;

@@ -119,7 +119,6 @@ namespace DUTY1000
         {
 			//END_CHK();
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-			//string gubn = cmb_gubn.SelectedIndex == 0 ? "%" : cmb_gubn.SelectedIndex.ToString();
 			string dt_nm = gubn == "1" ? "SEARCH_OVTM" : "SEARCH_OVTM2";
 			if (gubn == "1")
 			{
