@@ -300,8 +300,8 @@ namespace DUTY1000
 		
 		private void cmb_gtype_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			txt_yc_day.Enabled = cmb_gtype.SelectedIndex == 7 ? true : false;
-			if (cmb_gtype.SelectedIndex != 7)
+			txt_yc_day.Enabled = cmb_gtype.SelectedIndex == 7 || cmb_gtype.SelectedIndex == 11 ? true : false;
+			if (cmb_gtype.SelectedIndex != 7 || cmb_gtype.SelectedIndex != 11)
 				txt_yc_day.Text = "0";
 		}
 

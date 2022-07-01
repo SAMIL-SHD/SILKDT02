@@ -320,9 +320,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DUTY1000\DUTY1000.csproj">
       <Project>{6a973976-38f7-47c6-8556-89fe440610e1}</Project>
@@ -332,6 +330,13 @@
       <Project>{097c1a73-49b0-4bc2-8e5d-26fb67d14a65}</Project>
       <Name>SilkRoad.DbCmd_DT01</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WAGE1000\WAGE1000.csproj">
+      <Project>{10126734-6b3f-4810-8852-7976e33be76e}</Project>
+      <Name>WAGE1000</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kshp_qr.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,7 +32,7 @@ namespace DUTY1000
 					ds.Tables["DUTY_TRSHREQ"].Clear();
 				grd_search.DataSource = null;
 				SetButtonEnable("100");
-				dat_s_yymm.Enabled = false;
+				dat_s_yymm.Enabled = true;
 			}
 			else if (stat == 2)
 			{
@@ -40,7 +40,7 @@ namespace DUTY1000
 					ds.Tables["SEARCH_LAST_YC"].Clear();
 				grd1.DataSource = null;
 				SetButtonEnable2("100");
-				dat_yymm.Enabled = false;
+				dat_yymm.Enabled = true;
 			}
 			else if (stat == 3)
 			{
@@ -79,15 +79,15 @@ namespace DUTY1000
 				df.GetDEL_DUTY_TRSHREQDatas(clib.DateToText(dat_s_yymm.DateTime).Substring(0, 6), ds);
 				grd_search.DataSource = ds.Tables["DEL_DUTY_TRSHREQ"];				
 				SetButtonEnable("011");
-				dat_s_yymm.Enabled = true;
+				dat_s_yymm.Enabled = false;
 			}
 		}
 
 		//삭제
 		private void btn_del_Click(object sender, EventArgs e)
 		{
-			string yymm = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
-			END_CHK(clib.DateToText(dat_yymm.DateTime).Substring(0, 6));
+			string yymm = clib.DateToText(dat_s_yymm.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_s_yymm.DateTime).Substring(4, 2);
+			END_CHK(clib.DateToText(dat_s_yymm.DateTime).Substring(0, 6));
 			if (ends_yn == "Y")
 			{
 				MessageBox.Show(yymm + "월은 최종 마감되어 삭제할 수 없습니다.", "마감완료", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -154,6 +154,7 @@ namespace DUTY1000
 					{
 						DataRow nrow = ds.Tables["SEARCH_LAST_YC"].Select("SABN = '" + drow["SABN"].ToString() + "'")[0];
 						nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
+						nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
 						nrow["SABN"] = drow["SABN"].ToString();
 						nrow["YC_YEAR"] = drow["YC_YEAR"].ToString();
 						nrow["USE_TODT"] = drow["USE_TODT"].ToString();
@@ -170,6 +171,7 @@ namespace DUTY1000
 					{
 						DataRow nrow = ds.Tables["SEARCH_LAST_YC"].NewRow();
 						nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
+						nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
 						nrow["SABN"] = drow["SABN"].ToString();
 						nrow["YC_YEAR"] = drow["YC_YEAR"].ToString();
 						nrow["USE_TODT"] = drow["USE_TODT"].ToString();

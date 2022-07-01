@@ -61,7 +61,7 @@
 			this.col_desig_yn = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_desig_tp = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.col_tmslc = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.col_exp = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_tm_frto = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_same1st = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_msxwk_n = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -140,6 +140,7 @@
 			this.srLabel7 = new DevExpress.XtraEditors.LabelControl();
 			this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
 			this.bgWorker = new System.ComponentModel.BackgroundWorker();
+			this.txt_exp = new SilkRoad.UserControls.SRTextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
@@ -185,6 +186,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.cmb_rsp_yn.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_exp.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.txt_exp.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridColumn4
@@ -513,13 +515,13 @@
             this.col_priceptor,
             this.col_desig_yn,
             this.col_desig_tp,
-            this.gridColumn3,
-            this.col_tmslc,
             this.col_tm_frto,
             this.col_same1st,
+            this.gridColumn3,
             this.col_msxwk_n,
             this.col_allowoff,
             this.col_limitoff,
+            this.col_exp,
             this.col_hpno,
             this.col_email,
             this.col_rns_dt,
@@ -663,28 +665,32 @@
 			this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
 			this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.gridColumn3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.gridColumn3.Caption = "교대근무여부";
+			this.gridColumn3.Caption = "밤근무 여부";
 			this.gridColumn3.FieldName = "SHIFT_WORK_NM";
 			this.gridColumn3.Name = "gridColumn3";
 			this.gridColumn3.Visible = true;
 			this.gridColumn3.VisibleIndex = 4;
 			this.gridColumn3.Width = 59;
 			// 
-			// col_tmslc
+			// col_exp
 			// 
-			this.col_tmslc.AppearanceCell.Options.UseTextOptions = true;
-			this.col_tmslc.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.col_tmslc.AppearanceHeader.Options.UseTextOptions = true;
-			this.col_tmslc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.col_tmslc.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.col_tmslc.Caption = "시간선택여부";
-			this.col_tmslc.FieldName = "TM_YN";
-			this.col_tmslc.Name = "col_tmslc";
-			this.col_tmslc.OptionsColumn.AllowEdit = false;
-			this.col_tmslc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.col_tmslc.OptionsColumn.ReadOnly = true;
-			this.col_tmslc.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.col_tmslc.Width = 60;
+			this.col_exp.AppearanceCell.Options.UseTextOptions = true;
+			this.col_exp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.col_exp.AppearanceHeader.Options.UseTextOptions = true;
+			this.col_exp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.col_exp.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.col_exp.Caption = "경력인정";
+			this.col_exp.DisplayFormat.FormatString = "{0:#,##0.#}";
+			this.col_exp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.col_exp.FieldName = "EXP_YEAR";
+			this.col_exp.Name = "col_exp";
+			this.col_exp.OptionsColumn.AllowEdit = false;
+			this.col_exp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.col_exp.OptionsColumn.ReadOnly = true;
+			this.col_exp.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.col_exp.Visible = true;
+			this.col_exp.VisibleIndex = 8;
+			this.col_exp.Width = 60;
 			// 
 			// col_tm_frto
 			// 
@@ -783,7 +789,7 @@
 			this.col_hpno.OptionsColumn.ReadOnly = true;
 			this.col_hpno.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.col_hpno.Visible = true;
-			this.col_hpno.VisibleIndex = 8;
+			this.col_hpno.VisibleIndex = 9;
 			this.col_hpno.Width = 98;
 			// 
 			// col_email
@@ -799,7 +805,7 @@
 			this.col_email.OptionsColumn.ReadOnly = true;
 			this.col_email.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.col_email.Visible = true;
-			this.col_email.VisibleIndex = 9;
+			this.col_email.VisibleIndex = 10;
 			this.col_email.Width = 144;
 			// 
 			// col_rns_dt
@@ -828,7 +834,7 @@
 			this.gridColumn12.OptionsColumn.ReadOnly = true;
 			this.gridColumn12.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumn12.Visible = true;
-			this.gridColumn12.VisibleIndex = 10;
+			this.gridColumn12.VisibleIndex = 11;
 			this.gridColumn12.Width = 62;
 			// 
 			// insa_jakuk
@@ -1012,6 +1018,7 @@
 			// srPanel9
 			// 
 			this.srPanel9.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.srPanel9.Controls.Add(this.txt_exp);
 			this.srPanel9.Controls.Add(this.cmb_limitoff);
 			this.srPanel9.Controls.Add(this.labelControl22);
 			this.srPanel9.Controls.Add(this.labelControl20);
@@ -1128,7 +1135,7 @@
 			this.labelControl20.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControl20.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControl20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-			this.labelControl20.Location = new System.Drawing.Point(6, 309);
+			this.labelControl20.Location = new System.Drawing.Point(6, 338);
 			this.labelControl20.Name = "labelControl20";
 			this.labelControl20.Size = new System.Drawing.Size(110, 22);
 			this.labelControl20.TabIndex = 455;
@@ -1146,7 +1153,7 @@
 			this.labelControl21.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControl21.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControl21.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-			this.labelControl21.Location = new System.Drawing.Point(6, 285);
+			this.labelControl21.Location = new System.Drawing.Point(6, 314);
 			this.labelControl21.Name = "labelControl21";
 			this.labelControl21.Size = new System.Drawing.Size(110, 22);
 			this.labelControl21.TabIndex = 454;
@@ -1156,7 +1163,7 @@
 			// 
 			this.cmb_stat.EditValue = "정    상";
 			this.cmb_stat.EnterMoveNextControl = true;
-			this.cmb_stat.Location = new System.Drawing.Point(116, 285);
+			this.cmb_stat.Location = new System.Drawing.Point(116, 314);
 			this.cmb_stat.Name = "cmb_stat";
 			this.cmb_stat.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.cmb_stat.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -1178,7 +1185,7 @@
 			this.dat_lday.EditValue = "";
 			this.dat_lday.Enabled = false;
 			this.dat_lday.EnterMoveNextControl = true;
-			this.dat_lday.Location = new System.Drawing.Point(116, 309);
+			this.dat_lday.Location = new System.Drawing.Point(116, 338);
 			this.dat_lday.Name = "dat_lday";
 			this.dat_lday.Properties.AllowMouseWheel = false;
 			this.dat_lday.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
@@ -1239,7 +1246,7 @@
 			this.labelControl16.Name = "labelControl16";
 			this.labelControl16.Size = new System.Drawing.Size(110, 22);
 			this.labelControl16.TabIndex = 448;
-			this.labelControl16.Text = "교대근무여부";
+			this.labelControl16.Text = "밤 근무여부";
 			// 
 			// labelControl4
 			// 
@@ -1531,7 +1538,7 @@
 			// 
 			this.cmb_tm_yn.EditValue = "     ";
 			this.cmb_tm_yn.EnterMoveNextControl = true;
-			this.cmb_tm_yn.Location = new System.Drawing.Point(116, 340);
+			this.cmb_tm_yn.Location = new System.Drawing.Point(262, 365);
 			this.cmb_tm_yn.Name = "cmb_tm_yn";
 			this.cmb_tm_yn.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.cmb_tm_yn.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -1567,12 +1574,11 @@
 			this.labelControl19.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.labelControl19.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControl19.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-			this.labelControl19.Location = new System.Drawing.Point(6, 340);
+			this.labelControl19.Location = new System.Drawing.Point(6, 281);
 			this.labelControl19.Name = "labelControl19";
 			this.labelControl19.Size = new System.Drawing.Size(110, 22);
 			this.labelControl19.TabIndex = 428;
-			this.labelControl19.Text = "시간선택여부";
-			this.labelControl19.Visible = false;
+			this.labelControl19.Text = "경력인정";
 			// 
 			// cmb_charge
 			// 
@@ -2097,6 +2103,26 @@
 			this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
 			this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
 			// 
+			// txt_exp
+			// 
+			this.txt_exp.EditValue = "";
+			this.txt_exp.EnterMoveNextControl = true;
+			this.txt_exp.Location = new System.Drawing.Point(116, 281);
+			this.txt_exp.Name = "txt_exp";
+			this.txt_exp.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.txt_exp.Properties.Appearance.Options.UseFont = true;
+			this.txt_exp.Properties.Appearance.Options.UseTextOptions = true;
+			this.txt_exp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.txt_exp.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.txt_exp.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.txt_exp.Properties.AutoHeight = false;
+			this.txt_exp.Properties.LookAndFeel.SkinName = "Lilian";
+			this.txt_exp.Properties.Mask.EditMask = "n1";
+			this.txt_exp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+			this.txt_exp.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.txt_exp.Size = new System.Drawing.Size(140, 22);
+			this.txt_exp.TabIndex = 512;
+			// 
 			// duty1050
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2156,6 +2182,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.cmb_rsp_yn.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_exp.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.txt_exp.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -2196,7 +2223,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn col_priceptor;
         private DevExpress.XtraGrid.Columns.GridColumn col_desig_yn;
         private DevExpress.XtraGrid.Columns.GridColumn col_desig_tp;
-        private DevExpress.XtraGrid.Columns.GridColumn col_tmslc;
+        private DevExpress.XtraGrid.Columns.GridColumn col_exp;
         private SilkRoad.UserControls.SRLabel lblName;
         private SilkRoad.UserControls.SRLabel lblPart;
         private DevExpress.XtraEditors.LabelControl labelControl8;
@@ -2270,6 +2297,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
 		private SilkRoad.UserControls.SRCombo cmb_limitoff;
 		private DevExpress.XtraEditors.LabelControl labelControl22;
+		private SilkRoad.UserControls.SRTextEdit txt_exp;
 	}
 }
 

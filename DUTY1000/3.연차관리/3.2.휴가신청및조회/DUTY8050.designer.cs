@@ -156,6 +156,7 @@
 			this.srLabel8 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel4 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel3 = new SilkRoad.UserControls.SRLabel();
+			this.chk_fix = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -213,6 +214,7 @@
 			this.xtraTabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
 			this.srPanel4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.chk_fix.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// srPanel1
@@ -1156,6 +1158,7 @@
 			// 
 			// srPanel2
 			// 
+			this.srPanel2.Controls.Add(this.chk_fix);
 			this.srPanel2.Controls.Add(this.sl_line3);
 			this.srPanel2.Controls.Add(this.sl_line2);
 			this.srPanel2.Controls.Add(this.sl_line1);
@@ -1836,6 +1839,17 @@
 			this.srLabel3.Text = "신청";
 			this.srLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// chk_fix
+			// 
+			this.chk_fix.Location = new System.Drawing.Point(317, 65);
+			this.chk_fix.MenuManager = this.barManager1;
+			this.chk_fix.Name = "chk_fix";
+			this.chk_fix.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.chk_fix.Properties.Appearance.Options.UseFont = true;
+			this.chk_fix.Properties.Caption = "고정연차";
+			this.chk_fix.Size = new System.Drawing.Size(76, 19);
+			this.chk_fix.TabIndex = 542;
+			// 
 			// duty8050
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1913,6 +1927,7 @@
 			this.xtraTabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).EndInit();
 			this.srPanel4.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.chk_fix.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2029,6 +2044,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+		private DevExpress.XtraEditors.CheckEdit chk_fix;
 	}
 }
 

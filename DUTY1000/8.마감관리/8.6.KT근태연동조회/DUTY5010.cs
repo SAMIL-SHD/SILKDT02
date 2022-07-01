@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using SilkRoad.Common;
 using System.Data.OleDb;
 using System.Collections;
+using System.Drawing;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace DUTY1000
 {
@@ -42,6 +44,18 @@ namespace DUTY1000
 				dat_end.Enabled = false;
 				btn_wage.Enabled = false;
 			}
+			else if (stat == 3)
+			{
+				if (ds.Tables["5010_SEARCH3"] != null)
+					ds.Tables["5010_SEARCH3"].Clear();
+				if (ds.Tables["3010_KT_DT1"] != null)
+					ds.Tables["3010_KT_DT1"].Clear();
+				if (ds.Tables["3010_KT_DT2"] != null)
+					ds.Tables["3010_KT_DT2"].Clear();
+				grd_gt.DataSource = null;
+			}
+			df.GetGNMU_LISTDatas(ds);
+			grd_sl_gnmu.DataSource = ds.Tables["GNMU_LIST"];
 		}
 
         #endregion
@@ -54,6 +68,8 @@ namespace DUTY1000
 			
 			dat_frdt.DateTime = clib.TextToDate(clib.DateToText(DateTime.Now.AddMonths(-1)).Substring(0, 6) + "21");
 			dat_todt.DateTime = clib.TextToDate(clib.DateToText(DateTime.Now).Substring(0, 6) + "20");
+			
+			dat_yymm3.DateTime = DateTime.Now;
         }
 		private void duty5010_Shown(object sender, EventArgs e)
 		{
@@ -70,6 +86,7 @@ namespace DUTY1000
 			if (isNoError_um(1))
 			{
 				df.GetSEARCH_KT1Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+				pv_grd1.DataSource = ds.Tables["SEARCH_KT1"];
 				grd1.DataSource = ds.Tables["SEARCH_KT1"];
 			}
 		}
@@ -188,7 +205,7 @@ namespace DUTY1000
 				int outVal = 0;
 				try
 				{
-					string end_yymm = clib.DateToText(dat_end.DateTime);					
+					string end_yymm = clib.DateToText(dat_end.DateTime).Substring(0, 6);					
 
 					DataRow nrow;
 					for (int z = 0; z < ds.Tables["C_KT2"].Rows.Count; z++)
@@ -281,6 +298,62 @@ namespace DUTY1000
 				}
 			}
 		}
+
+		
+		//근무표조회
+		private void btn_search3_Click(object sender, EventArgs e)
+		{
+			if (isNoError_um(3))
+			{
+				df.GetSEARCH_HOLIDatas(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6), ds);
+				//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정
+				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm3.DateTime))).Substring(6, 2));
+
+				for (int i = 1; i <= lastday; i++)
+				{
+					DateTime day = clib.TextToDate(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6) + "01").AddDays(i - 1);
+					grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].Caption = i.ToString() + "\r\n" + clib.WeekDay(day); //일+요일. 한칸 내려서 보이도록. 엔터마냥. 
+					if (clib.WeekDay(day) == "토")					
+						grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Blue;
+					else if (clib.WeekDay(day) == "일")					
+						grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;
+					else					
+						grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Black;
+
+					if (ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'").Length > 0)
+					{
+						grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;
+						grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.Font = new Font(FontFamily.GenericSansSerif, 9F, FontStyle.Underline);
+						grdv_gt.Columns["D" + i.ToString().PadLeft(2, '0')].ToolTip = ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'")[0]["H_NAME"].ToString();
+					}
+				}
+
+				//남은 필드 visible = false;
+				for (int k = 1; k < 32; k++)
+				{
+					if (k > lastday)					
+						grdv_gt.Columns["D" + k.ToString().PadLeft(2, '0')].Visible = false;
+					else					
+						grdv_gt.Columns["D" + k.ToString().PadLeft(2, '0')].Visible = true;
+				}
+				
+				df.Get2060_DANG_GNMUDatas(ds);
+				df.Get5010_SEARCH3_KTDatas(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6), ds);
+
+				df.Get5010_SEARCH3Datas(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6), ds);
+				grd_gt.DataSource = ds.Tables["5010_SEARCH3"];
+			}
+		}
+		//취소
+		private void btn_canc3_Click(object sender, EventArgs e)
+		{
+			SetCancel(3);
+		}
+		//엑셀변환
+		private void btn_excel3_Click(object sender, EventArgs e)
+		{
+            clib.gridToExcel(grdv_gt, "근무표조회_" + clib.DateToText(DateTime.Now), true);
+		}
         #endregion
 
         #region 3 EVENT
@@ -293,31 +366,95 @@ namespace DUTY1000
             }
         }
 		
-		private void grdv_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-		{	
-            DataRow drow = grdv1.GetFocusedDataRow();
-            if (drow != null)
-            {
-				//YC_NOW_SUM_CNT YC_REMAIN_CNT
-				drow["YC_NOW_SUM_CNT"] = clib.TextToDecimal(drow["YC_BF_SUM_CNT"].ToString()) + clib.TextToDecimal(drow["YC_THIS_YCNT"].ToString()) + clib.TextToDecimal(drow["YC_THIS_BCNT"].ToString());
-				drow["YC_REMAIN_CNT"] = clib.TextToDecimal(drow["YC_T_CNT"].ToString()) - clib.TextToDecimal(drow["YC_NOW_SUM_CNT"].ToString());
-			}
-
-		}
-		private void grdv_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-		{		
-		}
-
-		private void pv_grd_CustomFieldSort(object sender, DevExpress.XtraPivotGrid.PivotGridCustomFieldSortEventArgs e)
+		private void pv_grd1_CellClick(object sender, DevExpress.XtraPivotGrid.PivotCellEventArgs e)
 		{
-			//if (e.Field == pivotGridField1)
-   //         {
-   //             object value1 = e.GetListSourceColumnValue(e.ListSourceRowIndex1, "JONGCODE");
-   //             object value2 = e.GetListSourceColumnValue(e.ListSourceRowIndex2, "JONGCODE");
-   //             int result = Comparer.Default.Compare(value1, value2);
-   //             e.Result = result;
-   //             e.Handled = true;
-   //         }
+            string sabn = pv_grd1.GetFieldValue(pivotGridField1, pv_grd1.Cells.FocusedCell.Y).ToString().Trim();
+            string sldt = pv_grd1.GetFieldValue(pivotGridField4, pv_grd1.Cells.FocusedCell.X).ToString().Trim();
+
+			if (ds.Tables["SEARCH_KT1"].Select("SABN = '" + sabn + "' AND SLDT = '" + sldt + "'").Length > 0)
+			{
+				grdv1.FocusedRowHandle = grdv1.LocateByValue("CHK_ROW", sabn+sldt, null);
+				grdv1.SelectRows(grdv1.FocusedRowHandle, grdv1.FocusedRowHandle);
+			}
+		}
+        private void pv_grd1_FieldValueDisplayText(object sender, DevExpress.XtraPivotGrid.PivotFieldDisplayTextEventArgs e)
+        {
+            if (e.ValueType == DevExpress.XtraPivotGrid.PivotGridValueType.GrandTotal && e.DisplayText == "Grand Total")            
+                e.DisplayText = "합계";            
+            if (e.ValueType == DevExpress.XtraPivotGrid.PivotGridValueType.Total || e.ValueType == DevExpress.XtraPivotGrid.PivotGridValueType.CustomTotal)            
+                e.DisplayText = "소계";            
+        }
+
+		private void grdv_gt_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{			
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();     
+		}
+        //근무값별 색 주기 ★
+        private void grdv_gt_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.Name.StartsWith("grdcol_day"))
+            {
+				string stdt = clib.DateToText(DateTime.Now);
+				string date = clib.DateToText(dat_yymm3.DateTime).Substring(0, 6) + e.Column.Name.ToString().Substring(10, 2);
+				string sabn = grdv_gt.GetDataRow(e.RowHandle)["SAWON_NO"].ToString().Trim();
+
+				if (ds.Tables["5010_SEARCH3_KT"].Select("SABN = '" + sabn + "' AND SLDT = '" + date + "'").Length > 0)  //출근시 체크
+				{
+					if (ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'") != null && ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'").Length > 0)
+					{
+						int g_type = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_TYPE"].ToString());
+						if (g_type == 2 || g_type == 4 || g_type == 5 || g_type == 6 || g_type == 9 || g_type == 10) //근무 or 당직근무인데 출근이면 근무색상
+						{
+							int colVAlue = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_COLOR"].ToString());
+							e.Appearance.BackColor = Color.FromArgb(colVAlue);
+						}
+						else //근무가 아닌데 출근이면
+						{
+							if ((g_type == 8 || g_type == 12) && clib.TextToDecimal(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["YC_DAY"].ToString()) < 8) //반차or시간 출근이면
+							{
+								int colVAlue = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_COLOR"].ToString());
+								e.Appearance.BackColor = Color.FromArgb(colVAlue);
+							}
+							else
+								e.Appearance.BackColor = Color.Red;
+						}
+					}
+				}
+				else  //출근하지 않았을때 체크
+				{
+					if (ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'") != null && ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'").Length > 0)
+					{
+						int g_type = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_TYPE"].ToString());
+						if (g_type == 2 || g_type == 4 || g_type == 5 || g_type == 6 || g_type == 9 || g_type == 10) //근무 or 당직근무인데 출근하지 않으면 붉은색
+						{
+							if (clib.TextToDate(date) <= clib.TextToDate(stdt))  //현재일 이전일때 오류색상
+								e.Appearance.BackColor = Color.Red;
+							else  //현재일 이후는 근무색상
+							{
+								int colVAlue = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_COLOR"].ToString());
+								e.Appearance.BackColor = Color.FromArgb(colVAlue);
+							}
+						}
+						else  // 근무가 아니면서 출근하지 않았을땐 근무색상으로
+						{
+							int colVAlue = clib.TextToInt(ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + e.CellValue + "'")[0]["G_COLOR"].ToString());
+							e.Appearance.BackColor = Color.FromArgb(colVAlue);
+						}
+					}
+				}
+			}
+        }
+		
+		private void grdv_gt_RowClick(object sender, RowClickEventArgs e)
+		{
+            if (e.RowHandle < 0)
+                return;
+
+            DataRow drow = grdv_gt.GetFocusedDataRow();
+			df.Get3010_KT_DTDatas(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6), drow["SAWON_NO"].ToString().Trim(), ds);
+			grd_kt1.DataSource = ds.Tables["3010_KT_DT1"];
+			grd_kt2.DataSource = ds.Tables["3010_KT_DT2"];
 		}
 
 		#endregion
@@ -358,6 +495,19 @@ namespace DUTY1000
                 {
                     MessageBox.Show("조회일자(TO)를 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dat_todt.Focus();
+                    return false;
+				}
+                else
+                {
+                    isError = true;
+                }
+            }
+            else if (mode == 3) //조회
+            {
+                if (clib.DateToText(dat_yymm3.DateTime) == "")
+                {
+                    MessageBox.Show("조회년월을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dat_yymm3.Focus();
                     return false;
 				}
                 else

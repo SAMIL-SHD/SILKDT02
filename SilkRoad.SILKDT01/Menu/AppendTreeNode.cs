@@ -61,12 +61,15 @@ namespace SilkRoad.SILKDT01
 					//	//tl.AppendNode(new object[] { "사용자부서연결", "DUTY1000.duty1005", "", "1" }, rootNode);
 					//	tl.AppendNode(new object[] { "인사기본관리", "DUTY1000.duty1006", "", "1" }, rootNode);
 					//}
-					tl.AppendNode(new object[] { "인사기본관리", "DUTY1000.duty1006", "", "1" }, rootNode);
+					tl.AppendNode(new object[] { "인사기본관리", "WAGE1000.duty1006", "", "1" }, rootNode);
 					tl.AppendNode(new object[] { "간호사정보관리", "DUTY1000.duty1050", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "부서-직원설정", "DUTY1000.duty1011", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "근무유형정의", "DUTY1000.duty1030", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "휴일설정", "DUTY1000.duty1040", "", "" }, rootNode);
 
+					TreeListNode rootNode2 = tl.AppendNode(new object[] { "급여관리", "", "", "" }, parentForRootNodes);
+					tl.AppendNode(new object[] { "고정항목관리", "WAGE1000.wage3220", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "변동항목관리", "WAGE1000.wage3230", "", "" }, rootNode2);
 					#endregion
 					break;
                 case 1:
@@ -76,7 +79,7 @@ namespace SilkRoad.SILKDT01
                     rootNode = tl.AppendNode(new object[] { "공지사항관리", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "공지사항관리", "DUTY1000.duty4010", "" }, rootNode);
 
-					TreeListNode rootNode2 = tl.AppendNode(new object[] { "근무관리", "", "", "" }, parentForRootNodes);
+					rootNode2 = tl.AppendNode(new object[] { "근무관리", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "CALL/OT관리", "DUTY1000.duty2020", "", "" }, rootNode2); //OT조회및승인
 					//tl.AppendNode(new object[] { "SAVE&OT관리", "DUTY1000.duty2040", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
@@ -110,10 +113,10 @@ namespace SilkRoad.SILKDT01
 					
 					rootNode2 = tl.AppendNode(new object[] { "환경설정", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "시급관리", "DUTY1000.duty9010", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "수당산식설정", "DUTY1000.duty9020", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "당직시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "N수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "고정OT부서설정", "DUTY1000.duty9050", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "수당산식설정", "DUTY1000.duty9020", "", "" }, rootNode2);
 
 					#endregion
 					break;

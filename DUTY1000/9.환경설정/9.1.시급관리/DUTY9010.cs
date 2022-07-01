@@ -46,7 +46,7 @@ namespace DUTY1000
 
         private void duty9010_Load(object sender, EventArgs e)
         {
-			dat_yymm.DateTime = DateTime.Now;
+			dat_yymm.DateTime = DateTime.Now.AddMonths(-1);
 			dat_frmm.DateTime = clib.TextToDate(clib.DateToText(DateTime.Now).Substring(0, 4) + "0101");
 			dat_tomm.DateTime = DateTime.Now;
         }
@@ -268,6 +268,7 @@ namespace DUTY1000
 			}
 
 			Cursor = Cursors.WaitCursor;
+			grd.DataSource = null;
 			int outVal = 0;
 			//DataRow nrow;
 
@@ -298,114 +299,9 @@ namespace DUTY1000
 			if (outVal > 0)			
 				MessageBox.Show("엑셀업로드가 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			
+			grd.DataSource = ds.Tables["S_INFOSD01"];
 			Cursor = Cursors.Default;
 		}
-		private void buttonEdit1_Click(object sender, EventArgs e)
-		{
-			#region 엑셀 읽어오기
-			System.Data.DataTable dt = null;
-			System.Windows.Forms.OpenFileDialog fd = new System.Windows.Forms.OpenFileDialog();
-			fd.DefaultExt = "xls | xlsx";
-			fd.Filter = "Excel files (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx";
-			if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				try
-				{
-					OleDbConnection oledbCn = null;
-					OleDbDataAdapter da = null;
-
-					try
-					{
-						string type = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source={0};Extended Properties='Excel 12.0;HDR=YES'";
-						oledbCn = new OleDbConnection(string.Format(type, fd.FileName));
-						oledbCn.Open();
-
-						//첫번째 시트 무조건 가지고 오기
-						System.Data.DataTable worksheets = oledbCn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-						da = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}]", worksheets.Rows[0]["TABLE_NAME"]), oledbCn);
-
-						dt = new System.Data.DataTable();
-						da.Fill(dt);
-					}
-					catch (Exception ex)
-					{
-						System.Windows.Forms.MessageBox.Show("ReadExcel Err:" + ex.Message);
-					}
-					finally
-					{
-						if (da != null)
-							da.Dispose();
-						if (oledbCn != null)
-						{
-							if (oledbCn.State != ConnectionState.Closed)
-								oledbCn.Close();
-							oledbCn.Dispose();
-						}
-					}
-				}
-				catch (Exception ex)
-				{
-					System.Windows.Forms.MessageBox.Show("파일을 읽을 수 없습니다. " + ex.Message);
-				}
-				finally
-				{
-					fd.Dispose();
-				}
-			}
-
-			if (dt == null)
-				return;
-			if (dt.Columns[0].ToString() != "고유번호")
-			{
-				MessageBox.Show("엑셀형식이 바르지 않습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			#endregion
-
-			Cursor = Cursors.WaitCursor;
-			int outVal = 0;
-			DataRow nrow;
-
-			foreach (DataRow drow in dt.Rows)
-			{
-				if (drow[21].ToString().Trim() == "광은비지니스방역")
-				{
-					nrow = ds.Tables["TRS_MONEY"].NewRow();
-					//_MONEY_KEY = GetMaxSlno();           //배정번호
-					//nrow["MONEY_KEY"] = _MONEY_KEY;
-					//nrow["GY_GUBN"] = 4;
-					//nrow["AP_DATE"] = clib.DateToText(dat_e_apdt.DateTime);
-					//nrow["IN_DATE"] = clib.DateToText(dat_e_indt.DateTime);
-					//nrow["IN_TYPE"] = 2;
-					//nrow["GYNOCODE"] = GetCodeData(drow[2].ToString().Trim());
-					//nrow["CLNTCODE"] = GetClntCodeData(drow[2].ToString().Trim());
-					nrow["APPRSLNO"] = "";
-					nrow["INDT"] = gd.GetNow();
-					nrow["UPDT"] = gd.GetNow();
-					nrow["USID"] = SilkRoad.Config.SRConfig.USID;
-					nrow["PSTY"] = "A";
-					ds.Tables["TRS_MONEY"].Rows.Add(nrow);
-
-					string[] tableNames = new string[] { "TRS_MONEY" };
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-					outVal += cmd.setUpdate(ref ds, tableNames, null);
-				}
-			}
-			if (outVal > 0)
-			{
-				MessageBox.Show("엑셀업로드가 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				//btn_canc.PerformClick();
-				//dt_fr.DateTime = dat_e_apdt.DateTime;
-				//dt_to.DateTime = dat_e_apdt.DateTime;
-				//dt_go = clib.DateToText(dt_fr.DateTime).Replace("-", "");
-				//dt_end = clib.DateToText(dt_to.DateTime).Replace("-", "");
-
-				//GetSEARCHdatas(dt_go, dt_end);
-				//grd1.DataSource = ds.Tables["SEARCH"];
-			}
-			Cursor = Cursors.Default;			
-		}
-
 		
 		//시급조회
 		private void btn_search_Click(object sender, EventArgs e)

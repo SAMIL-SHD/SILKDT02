@@ -46,7 +46,7 @@ namespace DUTY1000
 
         private void duty9040_Load(object sender, EventArgs e)
         {
-			dat_yymm.DateTime = DateTime.Now;
+			dat_yymm.DateTime = DateTime.Now.AddMonths(-1);
 			dat_frmm.DateTime = clib.TextToDate(clib.DateToText(DateTime.Now).Substring(0, 4) + "0101");
 			dat_tomm.DateTime = DateTime.Now;
         }
@@ -95,6 +95,7 @@ namespace DUTY1000
 							DataRow nrow = ds.Tables["DUTY_INFOSD05"].Select("YYMM = '" + drow["YYMM"].ToString() + "' AND SABN = '" + drow["SABN"].ToString() + "'")[0];
 							nrow["SABN_NM"] = drow["SABN_NM"].ToString();
 							nrow["MINUS_NAMT"] = clib.TextToDecimal(drow["MINUS_NAMT"].ToString());
+							nrow["PLUS_NAMT"] = clib.TextToDecimal(drow["PLUS_NAMT"].ToString());
 							nrow["REG_DT"] = gd.GetNow();
 							nrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
 						}
@@ -268,6 +269,7 @@ namespace DUTY1000
 			}
 
 			Cursor = Cursors.WaitCursor;
+			grd.DataSource = null;
 			int outVal = 0;
 			//DataRow nrow;
 
@@ -298,6 +300,7 @@ namespace DUTY1000
 			if (outVal > 0)			
 				MessageBox.Show("엑셀업로드가 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			
+			grd.DataSource = ds.Tables["S_INFOSD05"];
 			Cursor = Cursors.Default;
 		}
 		

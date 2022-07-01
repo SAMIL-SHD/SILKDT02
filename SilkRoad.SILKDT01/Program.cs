@@ -80,17 +80,17 @@ namespace SilkRoad.SILKDT01
 					Config.SRConfig.USID = ds.Tables[0].Rows[0]["CRNTUSID"].ToString().Trim();
 
 				#endregion
-
-				////디버깅할때
-				//SilkRoad.Config.SRConfig.WorkPlaceNo = "01";
-				//SilkRoad.DAL.DataAccess.DBname = "DT01DB01";
-				//SilkRoad.DAL.DataAccess.DBhost = "125.136.91.159,9245";
-				//SilkRoad.DAL.DataAccess.DBuspw = "Samil1234";
-				//SilkRoad.Config.SRConfig.USID = "SAMIL";
-
-				//Config.SRConfig.USID = "52017"; //"10003"; //"56000"; //"10003"; //"56000"; //"52017";
-
-				//"kshosp9393"; // kshosp88 정우현 // ks9240@ 박영미 // 51032 김소영 // 21323 최경숙-중간           
+				
+#if DEBUG
+				//디버깅할때
+				SilkRoad.Config.SRConfig.WorkPlaceNo = "01";
+				SilkRoad.DAL.DataAccess.DBname = "DT01DB01";
+				SilkRoad.DAL.DataAccess.DBhost = "125.136.91.159,9245";
+				SilkRoad.DAL.DataAccess.DBuspw = "Samil1234";
+				SilkRoad.Config.SRConfig.USID = "SAMIL";
+				//Config.SRConfig.USID = "10003"; //"10003"; //"56000"; //"10003"; //"56000"; //"52017"; 52027
+				//"kshosp9393"; // kshosp88 정우현 // ks9240@ 박영미 // 51032 김소영 // 21323 최경숙-중간
+#endif      
 			}
 
 			string qry = " SELECT * FROM SYSLINES ";
@@ -127,7 +127,6 @@ namespace SilkRoad.SILKDT01
                 Application.Run(main);
             }
         }
-
     }
 }
 

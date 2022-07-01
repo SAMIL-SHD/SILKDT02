@@ -35,7 +35,7 @@ namespace DUTY1000
 
         private void duty9030_Load(object sender, EventArgs e)
         {
-			dat_yymm.DateTime = DateTime.Now;
+			dat_yymm.DateTime = DateTime.Now.AddMonths(-1);
         }
 		private void duty9030_Shown(object sender, EventArgs e)
 		{

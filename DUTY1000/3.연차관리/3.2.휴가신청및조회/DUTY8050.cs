@@ -380,14 +380,15 @@ namespace DUTY1000
 					{
 						DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
 						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;
-						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), ds);
+						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), sl_gnmu.EditValue.ToString(), ds);
 						if (sl_line3.EditValue != null)
 							hrow["LINE_CNT"] = 4;
 						else if (sl_line2.EditValue != null)
 							hrow["LINE_CNT"] = 3;
 						else if (sl_line1.EditValue != null)
 							hrow["LINE_CNT"] = 2;	
-
+						
+						hrow["AP_TAG"] = chk_fix.Checked == true ? "8" : "4";
 						hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
 						hrow["GW_DT1"] = gd.GetNow();
 						hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
@@ -411,9 +412,7 @@ namespace DUTY1000
 							hrow["GW_SABN3"] = sl_line2.EditValue.ToString();
 							hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
 							hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
-						}		
-						//hrow["SAWON_LV"] = ds.Tables["2020_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-						//hrow["EXCEPT_MID"] = chk_line.Checked == true ? "1" : "";		
+						}	
 						hrow["UPDT"] = gd.GetNow();
 						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
 						hrow["PSTY"] = "U";
@@ -426,9 +425,9 @@ namespace DUTY1000
 						hrow["REQ_DATE2"] = clib.DateToText(dat_ycdt2.DateTime);
 						hrow["REQ_TYPE"] = sl_gnmu.EditValue.ToString();
 						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;
-						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), ds);
+						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), sl_gnmu.EditValue.ToString(), ds);
 						
-						hrow["AP_TAG"] = "";
+						hrow["AP_TAG"] = chk_fix.Checked == true ? "8" : "4";
 						hrow["LINE_CNT"] = 1;
 						if (sl_line3.EditValue != null)
 							hrow["LINE_CNT"] = 4;
@@ -614,9 +613,14 @@ namespace DUTY1000
 				sl_gnmu.EditValue = hrow["REQ_TYPE"].ToString();
 				dat_ycdt.DateTime = clib.TextToDate(hrow["REQ_DATE"].ToString());
 				dat_ycdt2.DateTime = clib.TextToDate(hrow["REQ_DATE2"].ToString());
+				chk_fix.Checked = hrow["REQ_TYPE"].ToString() == "8" ? true : false;
 
-				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "4" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,4진행,9정산
+				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,9정산
 					SetButtonEnable2("0001");
+				else if (hrow["AP_TAG"].ToString() == "4" && hrow["GW_DT2"].ToString().Trim() == "") //4진행이고 다음결재가 없을때
+					SetButtonEnable2("0011");
+				else if (hrow["AP_TAG"].ToString() == "5" || hrow["AP_TAG"].ToString() == "8") //5.반려, 8.고정연차(원장단 사용)
+					SetButtonEnable2("0111");
 				else
 					SetButtonEnable2("0011");
 			}

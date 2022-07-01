@@ -302,7 +302,7 @@
 			this.col_auto.AppearanceHeader.Options.UseTextOptions = true;
 			this.col_auto.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.col_auto.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.col_auto.Caption = "연차사용일수";
+			this.col_auto.Caption = "연차휴가일수";
 			this.col_auto.DisplayFormat.FormatString = "{0:#,##0.###}";
 			this.col_auto.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
 			this.col_auto.FieldName = "YC_DAY";
@@ -810,12 +810,11 @@
 			this.labelControl2.Name = "labelControl2";
 			this.labelControl2.Size = new System.Drawing.Size(90, 23);
 			this.labelControl2.TabIndex = 407;
-			this.labelControl2.Text = "연차사용일수";
+			this.labelControl2.Text = "연차휴가일수";
 			// 
 			// txt_yc_day
 			// 
 			this.txt_yc_day.EditValue = "";
-			this.txt_yc_day.Enabled = false;
 			this.txt_yc_day.EnterMoveNextControl = true;
 			this.txt_yc_day.Location = new System.Drawing.Point(106, 186);
 			this.txt_yc_day.Name = "txt_yc_day";

@@ -309,8 +309,11 @@ namespace DUTY1000
 				sl_line1.Enabled = true;
 				sl_line2.Enabled = true;
 				sl_line3.Enabled = true;
-				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-				ADGB_STAT(adgb);
+				if (ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'").Length > 0)
+				{
+					string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
+					ADGB_STAT(adgb);
+				}
 
 				SetButtonEnable2("0101");
 				dat_ycdt.Focus();
@@ -429,7 +432,8 @@ namespace DUTY1000
 							hrow["LINE_CNT"] = 3;
 						else if (sl_line1.EditValue != null)
 							hrow["LINE_CNT"] = 2;
-
+						
+						hrow["AP_TAG"] = "4";
 						hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
 						hrow["GW_DT1"] = gd.GetNow();
 						hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
@@ -482,7 +486,7 @@ namespace DUTY1000
 						hrow["REQ_TYPE2"] = to_gnmu;
 
 						hrow["YC_DAYS"] = df.GetYC_DAYS_CALCDatas(sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
-						hrow["AP_TAG"] = "";
+						hrow["AP_TAG"] = "4";
 						hrow["LINE_CNT"] = 1;
 						if (sl_line3.EditValue != null)
 							hrow["LINE_CNT"] = 4;
@@ -673,8 +677,12 @@ namespace DUTY1000
 				dat_ycdt.DateTime = clib.TextToDate(hrow["REQ_DATE"].ToString());
 				dat_ycdt2.DateTime = clib.TextToDate(hrow["REQ_DATE2"].ToString());
 
-				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "4" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,4진행,9정산
+				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,9정산
 					SetButtonEnable2("0001");
+				else if (hrow["AP_TAG"].ToString() == "4" && hrow["GW_DT2"].ToString().Trim() == "") //4진행이고 다음결재가 없을때
+					SetButtonEnable2("0011");
+				else if (hrow["AP_TAG"].ToString() == "5") //5.반려
+					SetButtonEnable2("0111");
 				else
 					SetButtonEnable2("0011");
 				//else if (hrow["AP_TAG"].ToString() == "2")  //취소
@@ -686,9 +694,14 @@ namespace DUTY1000
 			sl_gnmu2.Enabled = false;
 			dat_ycdt.Enabled = false;
 			dat_ycdt2.Enabled = false;
-			
-			string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-			ADGB_STAT(adgb);
+			sl_line1.EditValue = null;
+			sl_line2.EditValue = null;
+
+			if (ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'").Length > 0)
+			{
+				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
+				ADGB_STAT(adgb);
+			}
 			//chk_line.Visible = adgb == "1" ? true : false;
 			//chk_line.Enabled = true;
 			//chk_line.Checked = grdv1.GetFocusedRowCellValue("EXCEPT_MID").ToString() == "1" ? true : false;
@@ -832,26 +845,30 @@ namespace DUTY1000
 				df.GetDUTY_YC_BASEDatas(sl_embs.EditValue.ToString(), clib.DateToText(dat_ycdt.DateTime), ds);
 				df.GetSEARCH_YC_YEARDatas(sl_embs.EditValue.ToString(), yc_year, ds);				
 			}
-			DataRow drow = ds.Tables["SEARCH_YC_YEAR"].Rows[0];
-            use_frdt = drow["USE_FRDT"].ToString();
-			use_todt = drow["USE_TODT"].ToString();
-			string frto_dt = drow["USE_FRDT"].ToString().Substring(0, 4) + "." + drow["USE_FRDT"].ToString().Substring(4, 2) + "." + drow["USE_FRDT"].ToString().Substring(6, 2) + " ~ " + drow["USE_TODT"].ToString().Substring(0, 4) + "." + drow["USE_TODT"].ToString().Substring(4, 2) + "." + drow["USE_TODT"].ToString().Substring(6, 2);
-			df.GetSUM_YC_USEDatas(sl_embs.EditValue.ToString(), yc_year, ds);
-			decimal yc_remain = clib.TextToDecimal(drow["YC_TOTAL"].ToString()) - clib.TextToDecimal(ds.Tables["SUM_YC_USE"].Rows[0]["YC_DAY"].ToString());
-			lb_yc_remark.Text = "[연차사용기간 : " + frto_dt +" / 잔여연차 : " + yc_remain.ToString() + " 일]";
 
-			string yymm = clib.DateToText(dat_ycdt.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_ycdt.DateTime).Substring(4, 2);
-			df.Get2020_SEARCH_ENDSDatas(clib.DateToText(dat_ycdt.DateTime).Substring(0, 6), ds);
-			if (ds.Tables["2020_SEARCH_ENDS"].Rows.Count > 0) //마감월이 저장되어 있으면
+			if (ds.Tables["SEARCH_YC_YEAR"].Rows.Count > 0)
 			{
-				DataRow irow = ds.Tables["2020_SEARCH_ENDS"].Rows[0];
-				ends_yn2 = irow["CLOSE_YN"].ToString();
-				lb_ends.Text = irow["CLOSE_YN"].ToString() == "Y" ? "[" + yymm + " 최종마감 완료]" : irow["CLOSE_YN"].ToString() == "N" ? "[" + yymm + " 최종마감 취소]" : "[ ]";
-			}
-			else
-			{
-				ends_yn2 = "";
-				lb_ends.Text = "[" + yymm + " 최종마감 작업전]";
+				DataRow drow = ds.Tables["SEARCH_YC_YEAR"].Rows[0];
+				use_frdt = drow["USE_FRDT"].ToString();
+				use_todt = drow["USE_TODT"].ToString();
+				string frto_dt = drow["USE_FRDT"].ToString().Substring(0, 4) + "." + drow["USE_FRDT"].ToString().Substring(4, 2) + "." + drow["USE_FRDT"].ToString().Substring(6, 2) + " ~ " + drow["USE_TODT"].ToString().Substring(0, 4) + "." + drow["USE_TODT"].ToString().Substring(4, 2) + "." + drow["USE_TODT"].ToString().Substring(6, 2);
+				df.GetSUM_YC_USEDatas(sl_embs.EditValue.ToString(), yc_year, ds);
+				decimal yc_remain = clib.TextToDecimal(drow["YC_TOTAL"].ToString()) - clib.TextToDecimal(ds.Tables["SUM_YC_USE"].Rows[0]["YC_DAY"].ToString());
+				lb_yc_remark.Text = "[연차사용기간 : " + frto_dt + " / 잔여연차 : " + yc_remain.ToString() + " 일]";
+
+				string yymm = clib.DateToText(dat_ycdt.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_ycdt.DateTime).Substring(4, 2);
+				df.Get2020_SEARCH_ENDSDatas(clib.DateToText(dat_ycdt.DateTime).Substring(0, 6), ds);
+				if (ds.Tables["2020_SEARCH_ENDS"].Rows.Count > 0) //마감월이 저장되어 있으면
+				{
+					DataRow irow = ds.Tables["2020_SEARCH_ENDS"].Rows[0];
+					ends_yn2 = irow["CLOSE_YN"].ToString();
+					lb_ends.Text = irow["CLOSE_YN"].ToString() == "Y" ? "[" + yymm + " 최종마감 완료]" : irow["CLOSE_YN"].ToString() == "N" ? "[" + yymm + " 최종마감 취소]" : "[ ]";
+				}
+				else
+				{
+					ends_yn2 = "";
+					lb_ends.Text = "[" + yymm + " 최종마감 작업전]";
+				}
 			}
 		}
 		

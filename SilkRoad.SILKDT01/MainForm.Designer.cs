@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
 			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule2 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
@@ -39,7 +38,7 @@
 			this.splashManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::SilkRoad.SILKDT01.WaitForm1), true, true);
 			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-			this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+			this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
 			this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
 			this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
 			this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -48,7 +47,7 @@
 			this.tlcPara = new DevExpress.XtraTreeList.Columns.TreeListColumn();
 			this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
 			this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager1 = new DevExpress.XtraBars.BarManager();
 			this.bar5 = new DevExpress.XtraBars.Bar();
 			this.Mbtn_1 = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.Mbtn_2 = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -73,14 +72,14 @@
 			this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
 			this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
 			this.lookup_MyMenu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
 			this.마이메뉴설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-			this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
 			this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-			this.xtraTabbedMdiManager1 = new SilkRoad.SILKDT01.TabbedMdiManagerX(this.components);
+			this.xtraTabbedMdiManager1 = new SilkRoad.SILKDT01.TabbedMdiManagerX();
 			this.barLargeButtonItem1 = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -365,7 +364,6 @@
 			this.barbtn_qr.Caption = "QRcode";
 			this.barbtn_qr.Id = 78;
 			this.barbtn_qr.Name = "barbtn_qr";
-			this.barbtn_qr.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
 			this.barbtn_qr.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_qr_ItemClick);
 			// 
 			// barbtn_print

@@ -54,6 +54,11 @@ namespace DUTY1000
 			if (ds.Tables["SUM_DANG_PLAN"] != null)
 				ds.Tables["SUM_DANG_PLAN"].Clear();
 			
+			if (ds.Tables["SEARCH_DYYC"] != null)
+				ds.Tables["SEARCH_DYYC"].Clear();
+			if (ds.Tables["SEARCH_TRSHREQ"] != null)
+				ds.Tables["SEARCH_TRSHREQ"].Clear();
+			
 			srTabControl2.Visible = false;
 			btn_expand.Image = DUTY1000.Properties.Resources.확대;
 			//grd2.DataSource = ds.Tables["SUM_DANG_PLAN"];
@@ -74,6 +79,7 @@ namespace DUTY1000
 			btn_yc_adp.Enabled = false;
 			btn_bf_plan.Enabled = false;
 			chk_g_adt.Checked = false;
+			cmb_day.SelectedIndex = 0;
 			
 			Refresh_Click();
 						
@@ -223,6 +229,48 @@ namespace DUTY1000
 
         #region 2 Button
 		
+		private void btn_bf_Click(object sender, EventArgs e)
+		{
+			if (clib.DateToText(dat_yymm.DateTime) == "")
+				dat_yymm.DateTime = DateTime.Now;
+			else
+				dat_yymm.DateTime = dat_yymm.DateTime.AddMonths(-1);
+		}
+		private void btn_af_Click(object sender, EventArgs e)
+		{
+			if (clib.DateToText(dat_yymm.DateTime) == "")
+				dat_yymm.DateTime = DateTime.Now;
+			else
+				dat_yymm.DateTime = dat_yymm.DateTime.AddMonths(1);
+		}
+		//근무표결재
+		private void btn_off_gw_Click(object sender, EventArgs e)
+		{
+			END_CHK();
+			if (ends_yn == "Y")
+			{
+				MessageBox.Show("최종마감되어 상신할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (sl_dept.EditValue == null)
+			{
+				MessageBox.Show("부서가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				sl_dept.Focus();
+			}
+			else
+			{
+				df.Get2060_GW_CHKDatas("5", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);
+				if (ds.Tables["2060_GW_CHK"].Rows.Count > 0)
+				{
+					MessageBox.Show("이미 결재상신된 부서입니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				else
+				{
+					duty2062 duty2062 = new duty2062(ds.Tables["SEARCH_DANG_PLAN"], clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds.Tables["2060_DANGDEPT"].Select("CODE = '" + sl_dept.EditValue.ToString() + "'")[0]["DEPT_NM"].ToString(), MousePosition.X, MousePosition.Y);
+					duty2062.ShowDialog();
+				}
+				Refresh_Click();
+			}
+		}
 		//연차휴가 가져오기
 		private void btn_yc_adp_Click(object sender, EventArgs e)
 		{
@@ -269,6 +317,8 @@ namespace DUTY1000
 			if (isNoError_um(1))
 			{
                 Cursor = Cursors.WaitCursor;
+
+				#region 처리시작
 				END_CHK();
 				grd1.Enabled = true;
 				grd2.Enabled = true;
@@ -290,6 +340,7 @@ namespace DUTY1000
 				df.GetSEARCH_HOLIDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
 				//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정
 				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
+                cmb_day.Properties.Items.Clear();
 
 				for (int i = 1; i <= lastday; i++)
 				{
@@ -321,6 +372,7 @@ namespace DUTY1000
 						grdv2.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.Font = new Font(FontFamily.GenericSansSerif, 9F, FontStyle.Underline);
 						grdv2.Columns["D" + i.ToString().PadLeft(2, '0')].ToolTip = ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'")[0]["H_NAME"].ToString();
 					}
+					cmb_day.Properties.Items.Add(i.ToString() + "일");
 				}
 
 				//남은 필드 visible = false;
@@ -342,30 +394,35 @@ namespace DUTY1000
 				df.Get2060_SEARCH_KTDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);
 				//근무유형 조회
 				df.Get2060_DANG_GNMUDatas(ds);
+				#endregion
 
 				df.GetDUTY_TRSDANGDatas(2, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);
 				if (ds.Tables["SEARCH_DANG_PLAN"].Rows.Count == 0)
 				{
-					df.GetSEARCH_DANG_PLANDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);
-					for (int i = 0; i < ds.Tables["SEARCH_DANG_PLAN"].Rows.Count; i++)
-					{
-						DataRow crow = ds.Tables["SEARCH_DANG_PLAN"].Rows[i];
-						for (int k = 1; k <= lastday; k++)
+						df.GetSEARCH_DANG_PLANDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);					
+						if (sl_dept.EditValue.ToString() != "1900") 
 						{
-							if (crow["D" + k.ToString().PadLeft(2, '0')].ToString().Trim() == "")
+							#region 원장단일경우 근무x
+							for (int i = 0; i < ds.Tables["SEARCH_DANG_PLAN"].Rows.Count; i++)
 							{
-								DateTime day = clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddDays(k - 1);
-								if (clib.WeekDay(day) == "토")
-									crow["D" + k.ToString().PadLeft(2, '0')] = "16";  //하프근무							
-								else if (clib.WeekDay(day) == "일")
-									crow["D" + k.ToString().PadLeft(2, '0')] = "11";  //오프
-								else
-									crow["D" + k.ToString().PadLeft(2, '0')] = "01";  //데이근무		
-							}					
+								DataRow crow = ds.Tables["SEARCH_DANG_PLAN"].Rows[i];
+								for (int k = 1; k <= lastday; k++)
+								{
+									if (crow["D" + k.ToString().PadLeft(2, '0')].ToString().Trim() == "")
+									{
+										DateTime day = clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddDays(k - 1);
+										if (clib.WeekDay(day) == "토")
+											crow["D" + k.ToString().PadLeft(2, '0')] = "16";  //하프근무							
+										else if (clib.WeekDay(day) == "일")
+											crow["D" + k.ToString().PadLeft(2, '0')] = "11";  //오프
+										else
+											crow["D" + k.ToString().PadLeft(2, '0')] = "01";  //데이근무		
+									}
+								}
+							}
+							#endregion
 						}
-					}
 
-					//SetButtonEnable("011011");
 					if (p_dpcd == "%" || p_dpcd == sl_dept.EditValue.ToString())
 						SetButtonEnable("011011");
 					else
@@ -380,6 +437,9 @@ namespace DUTY1000
 					if (p_dpcd == "%" || p_dpcd == sl_dept.EditValue.ToString())
 						SetButtonEnable("011111");
 					else
+						SetButtonEnable("010011");
+
+					if (grdv_dept.GetFocusedRowCellValue("GW_STAT").ToString() != "")
 						SetButtonEnable("010011");
 				}
 
@@ -612,6 +672,21 @@ namespace DUTY1000
 			else if (stat == 2)
 				rpt.Print();
 		}
+		
+		//근무적용
+		private void btn_set_gnmu_Click(object sender, EventArgs e)
+		{
+			if (ds.Tables["SEARCH_DANG_PLAN"] != null && sl_gnmu.EditValue != null)
+			{
+				string d_nm = (cmb_day.SelectedIndex + 1).ToString().PadLeft(2, '0');
+				for (int i = 0; i < ds.Tables["SEARCH_DANG_PLAN"].Rows.Count; i++)
+				{
+					DataRow drow = ds.Tables["SEARCH_DANG_PLAN"].Rows[i];
+					if (drow.RowState != DataRowState.Deleted)
+						drow["D"+d_nm] = sl_gnmu.EditValue.ToString();
+				}
+			}
+		}
 		//라인추가
 		private void btn_lineadd_Click(object sender, EventArgs e)
 		{
@@ -752,7 +827,8 @@ namespace DUTY1000
 		//조회년월 변경시 부서 다시 불러오기
 		private void dat_yymm_EditValueChanged(object sender, EventArgs e)
 		{
-			Refresh_Click();
+            SetCancel();
+			//Refresh_Click();
 		}
 		//부서 더블클릭시
 		private void grdv_dept_DoubleClick(object sender, EventArgs e)
@@ -867,18 +943,57 @@ namespace DUTY1000
 				}
 			}
         }
-		
-		private void grdv1_RowClick(object sender, RowClickEventArgs e)
-		{			
-            if (e.RowHandle < 0)
-                return;
 
-            DataRow drow = grdv1.GetFocusedDataRow();
+		private void grdv1_RowClick(object sender, RowClickEventArgs e)
+		{
+			if (e.RowHandle < 0)
+				return;
+
+			DataRow drow = grdv1.GetFocusedDataRow();
 			df.Get3010_KT_DTDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), drow["SAWON_NO"].ToString().Trim(), ds);
 			grd_kt1.DataSource = ds.Tables["3010_KT_DT1"];
 			grd_kt2.DataSource = ds.Tables["3010_KT_DT2"];
-		}
 
+			string sldt = clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime)));
+			df.GetSEARCH_DYYCDatas(sldt, drow["SAWON_NO"].ToString().Trim(), ds);
+			grd_dyyc.DataSource = ds.Tables["SEARCH_DYYC"];
+
+			DataRow drow2 = grdv_dyyc.GetFocusedDataRow();
+			if (drow2 != null)
+			{
+				string yy = drow2["YC_YEAR"].ToString();
+				string sabn = drow2["SAWON_NO"].ToString();
+
+				df.GetSEARCH_TRSHREQDatas(sabn, yy, ds);
+				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
+			}
+			else
+			{
+				grd_yc.DataSource = null;
+			}
+		}
+		
+		//그리드 클릭시 연차내역 조회
+		private void grdv_dyyc_RowClick(object sender, RowClickEventArgs e)
+		{
+            if (e.RowHandle < 0)
+                return;
+
+            DataRow drow = grdv_dyyc.GetFocusedDataRow();
+			string yy = drow["YC_YEAR"].ToString();
+			string sabn = drow["SAWON_NO"].ToString();
+
+			df.GetSEARCH_TRSHREQDatas(sabn, yy, ds);
+			grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
+		}
+		private void grdv_dyyc_DoubleClick(object sender, EventArgs e)
+		{
+			string yy = grdv_dyyc.GetFocusedRowCellValue("YC_YEAR").ToString();
+			string sabn = grdv_dyyc.GetFocusedRowCellValue("SAWON_NO").ToString();
+
+			df.GetSEARCH_TRSHREQDatas(sabn, yy, ds);
+			grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
+		}
 		#endregion
 
 		#region 4. Drag & Drop

@@ -2745,6 +2745,7 @@
 			this.dat_year.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.dat_year.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.dat_year.Properties.Appearance.Options.UseFont = true;
+			this.dat_year.Properties.AutoHeight = false;
 			this.dat_year.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dat_year.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2758,7 +2759,7 @@
 			this.dat_year.Properties.NullDate = new System.DateTime(((long)(0)));
 			this.dat_year.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView;
 			this.dat_year.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView;
-			this.dat_year.Size = new System.Drawing.Size(99, 22);
+			this.dat_year.Size = new System.Drawing.Size(99, 23);
 			this.dat_year.TabIndex = 413;
 			// 
 			// txt_first
@@ -2859,7 +2860,7 @@
 			this.txt_change.Properties.AppearanceFocused.Options.UseBackColor = true;
 			this.txt_change.Properties.AutoHeight = false;
 			this.txt_change.Properties.LookAndFeel.SkinName = "Lilian";
-			this.txt_change.Properties.Mask.EditMask = "n1";
+			this.txt_change.Properties.Mask.EditMask = "n3";
 			this.txt_change.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
 			this.txt_change.Properties.Mask.UseMaskAsDisplayFormat = true;
 			this.txt_change.Size = new System.Drawing.Size(67, 23);
@@ -2947,6 +2948,7 @@
 			this.dat_indt.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
 			this.dat_indt.Properties.AppearanceDisabled.Options.UseBackColor = true;
 			this.dat_indt.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.dat_indt.Properties.AutoHeight = false;
 			this.dat_indt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dat_indt.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2956,7 +2958,7 @@
 			this.dat_indt.Properties.Mask.SaveLiteral = false;
 			this.dat_indt.Properties.Mask.ShowPlaceHolders = false;
 			this.dat_indt.Properties.Mask.UseMaskAsDisplayFormat = true;
-			this.dat_indt.Size = new System.Drawing.Size(98, 22);
+			this.dat_indt.Size = new System.Drawing.Size(98, 23);
 			this.dat_indt.TabIndex = 518;
 			// 
 			// xtraTabPage2

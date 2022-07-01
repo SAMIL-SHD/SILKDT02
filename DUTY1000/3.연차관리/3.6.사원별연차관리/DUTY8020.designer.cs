@@ -61,10 +61,10 @@
 			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.grd1 = new DevExpress.XtraGrid.GridControl();
@@ -566,25 +566,6 @@
 			this.gridColumn5.VisibleIndex = 14;
 			this.gridColumn5.Width = 39;
 			// 
-			// gridColumn6
-			// 
-			this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
-			this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumn6.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.gridColumn6.Caption = "조정연차";
-			this.gridColumn6.DisplayFormat.FormatString = "{0:#,###.#}";
-			this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.gridColumn6.FieldName = "YC_CHANGE";
-			this.gridColumn6.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-			this.gridColumn6.Name = "gridColumn6";
-			this.gridColumn6.OptionsColumn.AllowEdit = false;
-			this.gridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumn6.OptionsColumn.ReadOnly = true;
-			this.gridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.gridColumn6.Visible = true;
-			this.gridColumn6.VisibleIndex = 18;
-			this.gridColumn6.Width = 38;
-			// 
 			// gridColumn9
 			// 
 			this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
@@ -630,7 +611,7 @@
 			this.gridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.gridColumn11.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.gridColumn11.Caption = "연차합계";
-			this.gridColumn11.DisplayFormat.FormatString = "{0:#,###.#}";
+			this.gridColumn11.DisplayFormat.FormatString = "{0:#,##0.###}";
 			this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
 			this.gridColumn11.FieldName = "YC_SUM";
 			this.gridColumn11.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
@@ -640,11 +621,30 @@
 			this.gridColumn11.OptionsColumn.ReadOnly = true;
 			this.gridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn11.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_TOTAL", "{0:#,###.#}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_TOTAL", "{0:#,##0.###}")});
 			this.gridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.String;
 			this.gridColumn11.Visible = true;
 			this.gridColumn11.VisibleIndex = 17;
 			this.gridColumn11.Width = 58;
+			// 
+			// gridColumn6
+			// 
+			this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn6.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.gridColumn6.Caption = "조정연차";
+			this.gridColumn6.DisplayFormat.FormatString = "{0:#,##0.###}";
+			this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.gridColumn6.FieldName = "YC_CHANGE";
+			this.gridColumn6.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+			this.gridColumn6.Name = "gridColumn6";
+			this.gridColumn6.OptionsColumn.AllowEdit = false;
+			this.gridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn6.OptionsColumn.ReadOnly = true;
+			this.gridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn6.Visible = true;
+			this.gridColumn6.VisibleIndex = 18;
+			this.gridColumn6.Width = 56;
 			// 
 			// gridColumn12
 			// 
@@ -1296,7 +1296,7 @@
 			this.xtraTabPage2.Controls.Add(this.grd);
 			this.xtraTabPage2.Controls.Add(this.srPanel2);
 			this.xtraTabPage2.Name = "xtraTabPage2";
-			this.xtraTabPage2.Size = new System.Drawing.Size(338, 261);
+			this.xtraTabPage2.Size = new System.Drawing.Size(338, 283);
 			this.xtraTabPage2.Text = "연차촉진전송현황";
 			// 
 			// grd
@@ -1308,7 +1308,7 @@
 			this.grd.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit1,
             this.repositoryItemMemoEdit1});
-			this.grd.Size = new System.Drawing.Size(338, 228);
+			this.grd.Size = new System.Drawing.Size(338, 250);
 			this.grd.TabIndex = 4;
 			this.grd.TabStop = false;
 			this.grd.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1522,7 +1522,7 @@
 			this.txt_tcnt.Properties.AppearanceFocused.Options.UseBackColor = true;
 			this.txt_tcnt.Properties.AutoHeight = false;
 			this.txt_tcnt.Properties.LookAndFeel.SkinName = "Lilian";
-			this.txt_tcnt.Properties.Mask.EditMask = "n1";
+			this.txt_tcnt.Properties.Mask.EditMask = "n3";
 			this.txt_tcnt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
 			this.txt_tcnt.Properties.Mask.UseMaskAsDisplayFormat = true;
 			this.txt_tcnt.Size = new System.Drawing.Size(72, 23);
@@ -1775,7 +1775,7 @@
 			this.txt_change.Properties.AppearanceFocused.Options.UseBackColor = true;
 			this.txt_change.Properties.AutoHeight = false;
 			this.txt_change.Properties.LookAndFeel.SkinName = "Lilian";
-			this.txt_change.Properties.Mask.EditMask = "n1";
+			this.txt_change.Properties.Mask.EditMask = "n3";
 			this.txt_change.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
 			this.txt_change.Properties.Mask.UseMaskAsDisplayFormat = true;
 			this.txt_change.Size = new System.Drawing.Size(57, 23);

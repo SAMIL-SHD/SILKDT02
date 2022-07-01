@@ -7,88 +7,70 @@ using System.Drawing;
 
 namespace DUTY1000
 {
-    public partial class duty5060 : SilkRoad.Form.Base.FormX
-    {
-        CommonLibrary clib = new CommonLibrary();
+	public partial class duty5060 : SilkRoad.Form.Base.FormX
+	{
+		CommonLibrary clib = new CommonLibrary();
 
-        ClearNEnableControls cec = new ClearNEnableControls();
-        public DataSet ds = new DataSet();
-        DataProcFunc df = new DataProcFunc();
-        SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
-		
-  //      private string ends_yn = "";
-  //      private string ends_yn2 = "";
-		
-		//private int admin_lv = 0;
-  //      private string msyn = "";
-  //      private string upyn = "";
-  //      private string p_dpcd = "";
-		
-  //      private string use_frdt = "";
-  //      private string use_todt = "";
-        public duty5060()
-        {
-            InitializeComponent();
-        }
+		ClearNEnableControls cec = new ClearNEnableControls();
+		public DataSet ds = new DataSet();
+		DataProcFunc df = new DataProcFunc();
+		SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 
-        #region 0. Initialization
+		public duty5060()
+		{
+			InitializeComponent();
+		}
 
-        /// <summary>
-        ///컨트롤 초기화 및 활성,비활성 설정
-        /// </summary>
-        /// <param name="enable"></param>
-        private void SetCancel(int stat)
-        {
+		#region 0. Initialization
+
+		/// <summary>
+		///컨트롤 초기화 및 활성,비활성 설정
+		/// </summary>
+		/// <param name="enable"></param>
+		private void SetCancel(int stat)
+		{
 			if (stat == 0)
 			{
 				if (ds.Tables["5060_AP_YCHG_LIST"] != null)
 					ds.Tables["5060_AP_YCHG_LIST"].Clear();
 				grd_ap.DataSource = null;
 			}
-			if (stat == 1)
+			else if (stat == 1)
 			{
+				if (ds.Tables["5060_AP_YCHG_LIST2"] != null)
+					ds.Tables["5060_AP_YCHG_LIST2"].Clear();
+				grd_ap2.DataSource = null;
 			}
-        }
-
-		private void END_CHK()
-		{
-			//string yymm = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
-			//df.Get2020_SEARCH_ENDSDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
-			//if (ds.Tables["2020_SEARCH_ENDS"].Rows.Count > 0) //마감월이 저장되어 있으면
-			//{
-			//	DataRow irow = ds.Tables["2020_SEARCH_ENDS"].Rows[0];
-			//	ends_yn = irow["CLOSE_YN"].ToString();
-			//	lb_ends.Text = irow["CLOSE_YN"].ToString() == "Y" ? "[" + yymm + " 최종마감 완료]" : irow["CLOSE_YN"].ToString() == "N" ? "[" + yymm + " 최종마감 취소]" : "[ ]";
-			//}
-			//else
-			//{
-			//	ends_yn = "";
-			//	lb_ends.Text = "[" + yymm + " 최종마감 작업전]";
-			//}
+			else if (stat == 2)
+			{
+				if (ds.Tables["5060_AP_YCHG_LIST3"] != null)
+					ds.Tables["5060_AP_YCHG_LIST3"].Clear();
+				grd_ap3.DataSource = null;
+			}
 		}
 
-        #endregion
+		#endregion
 
-        #region 1 Form
+		#region 1 Form
 
-        private void duty5060_Load(object sender, EventArgs e)
-        {
+		private void duty5060_Load(object sender, EventArgs e)
+		{
 
-        }
-		
+		}
+
 		private void duty5060_Shown(object sender, EventArgs e)
-		{			
-            SetCancel(0);
-            SetCancel(1);
-			
+		{
+			SetCancel(0);
+			//SetCancel(1);
+
 			df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
 		}
 
-        #endregion
+		#endregion
 
-        #region 2 Button	
-		
+		#region 2 Button	
+
 		//승인내역 조회
 		private void btn_ap_search_Click(object sender, EventArgs e)
 		{
@@ -97,23 +79,44 @@ namespace DUTY1000
 				df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
 				grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
 				if (ds.Tables["5060_AP_YCHG_LIST"].Rows.Count == 0)
-					MessageBox.Show("결재할 연차/휴가내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("결재할 연차/휴가 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 1)
+			{
+				df.Get5060_AP_YCHG_LIST2Datas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap2.DataSource = ds.Tables["5060_AP_YCHG_LIST2"];
+				if (ds.Tables["5060_AP_YCHG_LIST2"].Rows.Count == 0)
+					MessageBox.Show("결재할 CALL/OT 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 2)
+			{
+				df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
+				if (ds.Tables["5060_AP_YCHG_LIST3"].Rows.Count == 0)
+					MessageBox.Show("결재할 OFF/N 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 3)
+			{
+				df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
+				if (ds.Tables["5060_AP_YCHG_LIST4"].Rows.Count == 0)
+					MessageBox.Show("결재할 근무표 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 		//승인내역 조회clear
 		private void btn_ap_clear_Click(object sender, EventArgs e)
 		{
-			SetCancel(0);
+			SetCancel(srTabControl1.SelectedTabPageIndex);
 		}
-        //연차,휴가승인
+		//연차,휴가승인
 		private void btn_ap_save_Click(object sender, EventArgs e)
 		{
-			if (isNoError_um(1))
-            {
-                Cursor = Cursors.WaitCursor;
-                int outVal = 0;
-                try
-                {
+			if (isNoError_um(11))
+			{
+				Cursor = Cursors.WaitCursor;
+				int outVal = 0;
+				try
+				{
 					for (int i = 0; i < ds.Tables["5060_AP_YCHG_LIST"].Rows.Count; i++)
 					{
 						DataRow drow = ds.Tables["5060_AP_YCHG_LIST"].Rows[i];
@@ -127,21 +130,21 @@ namespace DUTY1000
 								if (hrow["AP_TAG"].ToString() != "1")
 								{
 									hrow["AP_TAG"] = "4";
-									if (hrow["GW_DT2"].ToString().Trim() == "")
+									if (hrow["GW_DT2"].ToString().Trim() == "" && hrow["GW_SABN2"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 									{
 										hrow["GW_DT2"] = gd.GetNow();
 										hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
 										if (hrow["GW_SABN3"].ToString().Trim() == "")
 											hrow["AP_TAG"] = "1";
 									}
-									else if (hrow["GW_DT3"].ToString().Trim() == "")
+									else if (hrow["GW_DT3"].ToString().Trim() == "" && hrow["GW_SABN3"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 									{
 										hrow["GW_DT3"] = gd.GetNow();
 										hrow["GW_CHKID3"] = SilkRoad.Config.SRConfig.USID;
 										if (hrow["GW_SABN4"].ToString().Trim() == "")
 											hrow["AP_TAG"] = "1";
 									}
-									else if (hrow["GW_DT4"].ToString().Trim() == "")
+									else if (hrow["GW_DT4"].ToString().Trim() == "" && hrow["GW_SABN4"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 									{
 										hrow["GW_DT4"] = gd.GetNow();
 										hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
@@ -152,57 +155,56 @@ namespace DUTY1000
 									outVal += cmd.setUpdate(ref ds, tableNames, null);
 								}
 							}
-							
+
 						}
 					}
-                }
-                catch (Exception ec)
-                {
-                    MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 승인처리 되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch (Exception ec)
+				{
+					MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				finally
+				{
+					if (outVal > 0)
+						MessageBox.Show(outVal + "건의 선택된 내역이 승인처리 되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
 					grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
-                    Cursor = Cursors.Default;
-                }
-            }
+					Cursor = Cursors.Default;
+				}
+			}
 		}
-		
-        //연차,휴가 승인취소
+		//연차,휴가 승인취소
 		private void btn_ap_canc_Click(object sender, EventArgs e)
 		{
-			if (isNoError_um(2))
-            {
-                Cursor = Cursors.WaitCursor;
-                int outVal = 0;
-                try
-                {
+			if (isNoError_um(12))
+			{
+				Cursor = Cursors.WaitCursor;
+				int outVal = 0;
+				try
+				{
 					for (int i = 0; i < ds.Tables["5060_AP_YCHG_LIST"].Rows.Count; i++)
 					{
 						DataRow drow = ds.Tables["5060_AP_YCHG_LIST"].Rows[i];
 						if (drow["C_CHK"].ToString() == "1")
 						{
 							string tb_nm = drow["GUBN"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
-							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString() , drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
 								DataRow hrow = ds.Tables[tb_nm].Rows[0];
 								if (hrow["AP_TAG"].ToString() == "4")
 								{
-									if (hrow["GW_DT4"].ToString().Trim() != "")
+									if (hrow["GW_DT4"].ToString().Trim() != "" && hrow["GW_SABN4"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 									{
 										hrow["GW_DT4"] = "";
 										hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
 									}
-									else if (hrow["GW_DT3"].ToString().Trim() != "")
+									else if (hrow["GW_DT3"].ToString().Trim() != "" && hrow["GW_SABN3"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 									{
 										hrow["GW_DT3"] = "";
 										hrow["GW_CHKID3"] = SilkRoad.Config.SRConfig.USID;
 									}
-									if (hrow["GW_DT2"].ToString().Trim() != "")
+									else if (hrow["GW_DT2"].ToString().Trim() != "" && hrow["GW_SABN2"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 									{
 										hrow["GW_DT2"] = "";
 										hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
@@ -214,33 +216,138 @@ namespace DUTY1000
 							}
 						}
 					}
-                }
-                catch (Exception ec)
-                {
-                    MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 취소처리 되었습니다.", "성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch (Exception ec)
+				{
+					MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				finally
+				{
+					if (outVal > 0)
+						MessageBox.Show(outVal + "건의 선택된 내역이 취소처리 되었습니다.", "성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
 					grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
-                    Cursor = Cursors.Default;
-                }
-            }
+					Cursor = Cursors.Default;
+				}
+			}
+		}
+		//연차,휴가 반려
+		private void btn_ap_return_Click(object sender, EventArgs e)
+		{
+			if (isNoError_um(12))
+			{
+				Cursor = Cursors.WaitCursor;
+				int outVal = 0;
+				try
+				{
+					for (int i = 0; i < ds.Tables["5060_AP_YCHG_LIST"].Rows.Count; i++)
+					{
+						DataRow drow = ds.Tables["5060_AP_YCHG_LIST"].Rows[i];
+						if (drow["C_CHK"].ToString() == "1")
+						{
+							string tb_nm = drow["GUBN"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+							if (ds.Tables[tb_nm].Rows.Count > 0)
+							{
+								DataRow hrow = ds.Tables[tb_nm].Rows[0];
+								if (hrow["AP_TAG"].ToString() == "4")
+								{
+									if (hrow["GW_DT2"].ToString().Trim() == "" && hrow["GW_SABN2"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+									{
+										hrow["GW_DT2"] = gd.GetNow();
+										hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
+										hrow["AP_TAG"] = "5";
+									}
+									else if (hrow["GW_DT3"].ToString().Trim() == "" && hrow["GW_SABN3"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+									{
+										hrow["GW_DT3"] = gd.GetNow();
+										hrow["GW_CHKID3"] = SilkRoad.Config.SRConfig.USID;
+										hrow["AP_TAG"] = "5";
+									}
+									else if (hrow["GW_DT4"].ToString().Trim() == "" && hrow["GW_SABN4"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+									{
+										hrow["GW_DT4"] = gd.GetNow();
+										hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
+										hrow["AP_TAG"] = "5";
+									}
+									string[] tableNames = new string[] { tb_nm };
+									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+									outVal += cmd.setUpdate(ref ds, tableNames, null);
+								}
+							}
+						}
+					}
+				}
+				catch (Exception ec)
+				{
+					MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				finally
+				{
+					if (outVal > 0)
+						MessageBox.Show(outVal + "건의 선택된 내역이 취소처리 되었습니다.", "성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
+					grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
+					Cursor = Cursors.Default;
+				}
+			}
 		}
 
-        #endregion
+		#endregion
 
-        #region 3 EVENT
-		
+		#region 3 EVENT
+
+		//탭 변경시 새로고침
+		private void srTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		{
+			Page_Refresh();
+		}
 		//메뉴 활성화시
 		private void duty5060_Activated(object sender, EventArgs e)
 		{
+			Page_Refresh();
+		}
 
+		private void Page_Refresh()
+		{
+			if (srTabControl1.SelectedTabPageIndex == 0)
+			{
+				df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 1)
+			{
+				df.Get5060_AP_YCHG_LIST2Datas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap2.DataSource = ds.Tables["5060_AP_YCHG_LIST2"];
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 2)
+			{
+				df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 3)
+			{
+				df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
+			}
 		}
 		
 		private void grdv_ap_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
+		}
+		private void grdv_ap2_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
+		}
+		private void grdv_ap3_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
+		}
+		private void grdv_ap4_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
 		{
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();    
@@ -263,6 +370,64 @@ namespace DUTY1000
 				}
 			}
 		}
+		
+		//타이틀 클릭시 등록화면
+		private void grd_LinkEdit1_Click(object sender, EventArgs e)
+		{			
+			DataRow frow = grdv_ap2.GetFocusedDataRow();
+			if (frow == null)
+				return;
+			
+			string _gubn = grdv_ap2.GetFocusedRowCellValue("DOC_GUBN").ToString();
+			string _doc_no = grdv_ap2.GetFocusedRowCellValue("DOC_NO").ToString();
+
+			int T_index = grdv_ap2.TopRowIndex;
+			int R_index = grdv_ap2.FocusedRowHandle;
+			
+			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
+			duty5062.ShowDialog();
+			
+			df.Get5060_AP_YCHG_LIST2Datas(SilkRoad.Config.SRConfig.USID, ds);
+			grd_ap2.DataSource = ds.Tables["5060_AP_YCHG_LIST2"];
+		}		
+		//타이틀 클릭시 등록화면
+		private void grd_LinkEdit2_Click(object sender, EventArgs e)
+		{			
+			DataRow frow = grdv_ap3.GetFocusedDataRow();
+			if (frow == null)
+				return;
+			
+			string _gubn = grdv_ap3.GetFocusedRowCellValue("DOC_GUBN").ToString();
+			string _doc_no = grdv_ap3.GetFocusedRowCellValue("DOC_NO").ToString();
+
+			int T_index = grdv_ap3.TopRowIndex;
+			int R_index = grdv_ap3.FocusedRowHandle;
+			
+			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
+			duty5062.ShowDialog();
+			
+			df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
+			grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
+		}		
+		//근무표 타이틀 클릭시 등록화면
+		private void grd_LinkEdit3_Click(object sender, EventArgs e)
+		{			
+			DataRow frow = grdv_ap4.GetFocusedDataRow();
+			if (frow == null)
+				return;
+			
+			string _gubn = grdv_ap4.GetFocusedRowCellValue("DOC_GUBN").ToString();
+			string _doc_no = grdv_ap4.GetFocusedRowCellValue("DOC_NO").ToString();
+
+			int T_index = grdv_ap4.TopRowIndex;
+			int R_index = grdv_ap4.FocusedRowHandle;
+			
+			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
+			duty5062.ShowDialog();
+			
+			df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
+			grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
+		}
 
         #endregion
 
@@ -277,7 +442,7 @@ namespace DUTY1000
         {
             bool isError = false;
 
-            if (mode == 1)  //연차,휴가승인
+            if (mode == 11)  //연차,휴가승인
             {
 				if (ds.Tables["5060_AP_YCHG_LIST"] != null)
 				{
@@ -293,14 +458,14 @@ namespace DUTY1000
 					}
 				}
             }
-			else if (mode == 2)  //승인취소
+			else if (mode == 12)  //승인취소
 			{
 				if (ds.Tables["5060_AP_YCHG_LIST"] != null)
 				{
 					ds.Tables["5060_AP_YCHG_LIST"].AcceptChanges();
 					if (ds.Tables["5060_AP_YCHG_LIST"].Select("C_CHK='1'").Length == 0)
 					{
-						MessageBox.Show("선택된 내역이 없습니다!", "취소에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show("선택된 내역이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return false;
 					}
 					else

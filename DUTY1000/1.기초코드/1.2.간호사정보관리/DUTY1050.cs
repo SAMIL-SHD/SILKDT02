@@ -249,7 +249,9 @@ namespace DUTY1000
                     hrow["ALLOWOFF"] = clib.TextToInt(cmb_allowoff.SelectedIndex.ToString());
                     hrow["LIMIT_OFF"] = clib.TextToInt(cmb_limitoff.SelectedIndex.ToString());
 					hrow["RETURN_DT"] = ""; //clib.DateToText(dat_rsn_dt.DateTime);
-                    hrow["CHARGE_YN"] = ""; //cmb_charge.EditValue.ToString();     
+                    hrow["CHARGE_YN"] = ""; //cmb_charge.EditValue.ToString();  
+					hrow["EXP_YEAR"] = clib.TextToDecimal(txt_exp.Text.ToString());
+
 					hrow["STAT"] = cmb_stat.SelectedIndex + 1;
 					hrow["LDAY"] = clib.DateToText(dat_lday.DateTime);                          
                     hrow["USID"] = SilkRoad.Config.SRConfig.USID;
@@ -412,6 +414,7 @@ namespace DUTY1000
 				//cmb_max_c.SelectedIndex = clib.TextToInt(drow["MAX_CCNT"].ToString());
 				cmb_allowoff.SelectedIndex = clib.TextToInt(drow["ALLOWOFF"].ToString());
 				cmb_limitoff.SelectedIndex = clib.TextToInt(drow["LIMIT_OFF"].ToString());
+				txt_exp.Text = drow["EXP_YEAR"].ToString();
 				//if (drow["RETURN_DT"].ToString().Trim() != "")
 				//	dat_rsn_dt.DateTime = clib.TextToDate(drow["RETURN_DT"].ToString());
 				//cmb_charge.EditValue = drow["CHARGE_YN"].ToString();
@@ -584,6 +587,7 @@ namespace DUTY1000
 							hrow["LIMIT_OFF"] = 6;
 							hrow["RETURN_DT"] = "";
 							hrow["CHARGE_YN"] = "";
+							hrow["EXP_YEAR"] = 0;
 							hrow["STAT"] = 1;
 							hrow["LDAY"] = "";
 							hrow["USID"] = SilkRoad.Config.SRConfig.USID;
