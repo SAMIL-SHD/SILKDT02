@@ -59,6 +59,7 @@ namespace DUTY1000
 			sl_line1.EditValue = null;
 			sl_line2.EditValue = null;
 
+			dat_jsmm.DateTime = clib.TextToDate(yymm + "01");
 			Proc();
         }
 
@@ -96,6 +97,8 @@ namespace DUTY1000
 
 					hrow["DOC_NO"] = doc_no;
 					hrow["DOC_GUBN"] = 1;
+					hrow["DOC_DATE"] = yymm;
+					hrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
 					hrow["GW_TITLE"] = yymm.Substring(0,4)+"년 "+yymm.Substring(4,2)+"월 "+ds.Tables["2021_SEARCH_CALL"].Rows[0]["DEPT_NM"].ToString()+" CALL 내역"; // 년월 부서 CALL 내역
 					hrow["GW_REMK"] = "";
 					hrow["AP_TAG"] = "4";
@@ -146,6 +149,7 @@ namespace DUTY1000
 							{
 								DataRow nrow = ds.Tables["GW_TRSOVTM"].NewRow();
 								nrow["DOC_NO"] = doc_no;
+								nrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
 								nrow["SABN"] = dr["SABN"].ToString();
 								nrow["OT_DATE"] = dr["OT_DATE"].ToString();
 								nrow["OT_GUBN"] = dr["OT_GUBN"].ToString();

@@ -324,8 +324,7 @@ namespace DUTY1000
             }
         }
 
-		#endregion
-		
+		#endregion		
 
         #region 7. Error Check
 

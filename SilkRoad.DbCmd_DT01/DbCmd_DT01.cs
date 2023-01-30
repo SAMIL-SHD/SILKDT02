@@ -44,6 +44,10 @@ namespace SilkRoad.DbCmd_DT01
                     {
                         insCmd[i] = (DbCommand)GetMSTUSERInCmd();
                     }
+					else if (tablenames[i] == "DUTY_PWERDEPT") //부서관리리스트
+					{
+						insCmd[i] = (DbCommand)GetDUTY_PWERDEPTInCmd();
+					}
                     else if (tablenames[i] == "MSTEMBS")
                     {
                         insCmd[i] = (DbCommand)GetMSTEMBSInCmd();
@@ -133,6 +137,32 @@ namespace SilkRoad.DbCmd_DT01
                     {
                         insCmd[i] = (DbCommand)GetGW_TRSOVTMInCmd();
                     }
+                    else if (tablenames[i] == "DUTY_TRSSVTM")
+                    {
+                        insCmd[i] = (DbCommand)GetDUTY_TRSSVTMInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_TRSSVTMUpCmd();
+                        delCmd[i] = (DbCommand)GetDUTY_TRSSVTMDelCmd();
+                    }
+                    else if (tablenames[i] == "DEL_TRSSVTM")
+                    {
+                        insCmd[i] = (DbCommand)GetDEL_TRSSVTMInCmd();
+                    }
+                    else if (tablenames[i] == "DUTY_MSTSAVE_ENDS")
+                    {
+                        insCmd[i] = (DbCommand)GetDUTY_MSTSAVE_ENDSInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_MSTSAVE_ENDSUpCmd();
+                        delCmd[i] = (DbCommand)GetDUTY_MSTSAVE_ENDSDelCmd();
+                    }
+                    else if (tablenames[i] == "DUTY_TRSOVTM_JS")
+                    {
+                        insCmd[i] = (DbCommand)GetDUTY_TRSOVTM_JSInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_TRSOVTM_JSUpCmd();
+                        delCmd[i] = (DbCommand)GetDUTY_TRSOVTM_JSDelCmd();
+                    }
+                    else if (tablenames[i] == "GW_TRSOVTM_JS")
+                    {
+                        insCmd[i] = (DbCommand)GetGW_TRSOVTM_JSInCmd();
+                    }
                     else if (tablenames[i] == "DUTY_TRSCALL")
                     {
                         insCmd[i] = (DbCommand)GetDUTY_TRSCALLInCmd();
@@ -185,9 +215,19 @@ namespace SilkRoad.DbCmd_DT01
                         uptCmd[i] = (DbCommand)GetDUTY_TRSPLANUpCmd();
                         delCmd[i] = (DbCommand)GetDUTY_TRSPLANDelCmd();
                     }
+                    else if (tablenames[i] == "DUTY_TRSPLAN_ETC")
+                    {
+                        insCmd[i] = (DbCommand)GetDUTY_TRSPLAN_ETCInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_TRSPLAN_ETCUpCmd();
+                        delCmd[i] = (DbCommand)GetDUTY_TRSPLAN_ETCDelCmd();
+                    }
                     else if (tablenames[i] == "GW_TRSOFFN")
                     {
                         insCmd[i] = (DbCommand)GetGW_TRSOFFNInCmd();
+                    }
+                    else if (tablenames[i] == "GW_TRSYAGAN")
+                    {
+                        insCmd[i] = (DbCommand)GetGW_TRSYAGANInCmd();
                     }
                     else if (tablenames[i] == "GW_TRSPLAN")
                     {
@@ -419,6 +459,28 @@ namespace SilkRoad.DbCmd_DT01
         }
 
         #endregion
+
+		#region DUTY_PWERDEPT insert command
+
+		private SqlCommand GetDUTY_PWERDEPTInCmd()
+		{
+			string queryStatements = "INSERT INTO DBO.DUTY_PWERDEPT(SABN, DEPT, REG_DT, REG_ID"
+								   + ") VALUES (@SABN, @DEPT, @REG_DT, @REG_ID"
+								   + ")";
+
+			SqlCommand ocm = new SqlCommand();
+			ocm.CommandText = queryStatements;
+			ocm.CommandType = CommandType.Text;
+
+			ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+			ocm.Parameters.Add("@DEPT", SqlDbType.Char, 4, "DEPT");
+			ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
+			ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
+
+			return ocm;
+		}
+		
+		#endregion 
 
         #region MSTEMBS insert, update,delete command
 
@@ -1068,8 +1130,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_INFOSD02InCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_INFOSD02(A01, A01_DFEE, A01_D01, A01_D02, A01_NFEE, A01_N01, A01_N02, A11, A12, A13, A14, A02, A02_INSU01, A02_INSU02, A21, A22, A03, A03_INSU01, A03_INSU02, A31, A04, A04_INSU01, A04_INSU02, A04_INSU11, A04_INSU12, A41, A05, A51, A06, A06_INSU01, A61, A07, A07_INSU01, A07_INSU02, A07_INSU11, A07_INSU12, A71, A72, A08, A08_INSU01, A81, B01, B01_FEE01, C91, A010, A010_INSU01, A010_INSU02, A011, A012, C010, C011, REG_DT, REG_ID"
-                                   + ") VALUES (@A01, @A01_DFEE, @A01_D01, @A01_D02, @A01_NFEE, @A01_N01, @A01_N02, @A11, @A12, @A13, @A14, @A02, @A02_INSU01, @A02_INSU02, @A21, @A22, @A03, @A03_INSU01, @A03_INSU02, @A31, @A04, @A04_INSU01, @A04_INSU02, @A04_INSU11, @A04_INSU12, @A41, @A05, @A51, @A06, @A06_INSU01, @A61, @A07, @A07_INSU01, @A07_INSU02, @A07_INSU11, @A07_INSU12, @A71, @A72, @A08, @A08_INSU01, @A81, @B01, @B01_FEE01, @C91, @A010, @A010_INSU01, @A010_INSU02, @A011, @A012, @C010, @C011, @REG_DT, @REG_ID"
+            string queryStatements = "INSERT INTO DBO.DUTY_INFOSD02(A01, A01_DFEE, A01_D01, A01_D02, A01_NFEE, A01_N01, A01_N02, A11, A12, A13, A14, A02, A02_INSU01, A02_INSU02, A21, A22, A03, A03_INSU01, A03_INSU02, A31, A04, A04_TYPE, A04_INSU01, A04_INSU02, A04_INSU11, A04_INSU12, A41, A05, A05_TYPE, A51, A06, A06_INSU01, A61, A07, A07_INSU01, A07_INSU02, A07_INSU11, A07_INSU12, A71, A72, A08, A08_INSU01, A81, B01, B01_FEE01, C91, A010, A010_INSU01, A010_INSU02, A011, A012, C010, C011, REG_DT, REG_ID"
+                                   + ") VALUES (@A01, @A01_DFEE, @A01_D01, @A01_D02, @A01_NFEE, @A01_N01, @A01_N02, @A11, @A12, @A13, @A14, @A02, @A02_INSU01, @A02_INSU02, @A21, @A22, @A03, @A03_INSU01, @A03_INSU02, @A31, @A04, @A04_TYPE, @A04_INSU01, @A04_INSU02, @A04_INSU11, @A04_INSU12, @A41, @A05, @A05_TYPE, @A51, @A06, @A06_INSU01, @A61, @A07, @A07_INSU01, @A07_INSU02, @A07_INSU11, @A07_INSU12, @A71, @A72, @A08, @A08_INSU01, @A81, @B01, @B01_FEE01, @C91, @A010, @A010_INSU01, @A010_INSU02, @A011, @A012, @C010, @C011, @REG_DT, @REG_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -1097,12 +1159,14 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@A03_INSU02", SqlDbType.Decimal, 5, "A03_INSU02");
             ocm.Parameters.Add("@A31", SqlDbType.Char, 4, "A31");
             ocm.Parameters.Add("@A04", SqlDbType.Char, 4, "A04");
+            ocm.Parameters.Add("@A04_TYPE", SqlDbType.Char, 1, "A04_TYPE");
             ocm.Parameters.Add("@A04_INSU01", SqlDbType.Decimal, 5, "A04_INSU01");
             ocm.Parameters.Add("@A04_INSU02", SqlDbType.Decimal, 5, "A04_INSU02");
             ocm.Parameters.Add("@A04_INSU11", SqlDbType.Decimal, 5, "A04_INSU11");
             ocm.Parameters.Add("@A04_INSU12", SqlDbType.Decimal, 5, "A04_INSU12");
             ocm.Parameters.Add("@A41", SqlDbType.Char, 4, "A41");
             ocm.Parameters.Add("@A05", SqlDbType.Char, 4, "A05");
+            ocm.Parameters.Add("@A05_TYPE", SqlDbType.Char, 1, "A05_TYPE");
             ocm.Parameters.Add("@A51", SqlDbType.Char, 4, "A51");
             ocm.Parameters.Add("@A06", SqlDbType.Char, 4, "A06");
             ocm.Parameters.Add("@A61", SqlDbType.Char, 4, "A61");
@@ -1157,12 +1221,14 @@ namespace SilkRoad.DbCmd_DT01
                                    + "   A03_INSU02 = @A03_INSU02, "
                                    + "   A31 = @A31, "
                                    + "   A04 = @A04, "
+                                   + "   A04_TYPE = @A04_TYPE, "
                                    + "   A04_INSU01 = @A04_INSU01, "
                                    + "   A04_INSU02 = @A04_INSU02, "
                                    + "   A04_INSU11 = @A04_INSU11, "
                                    + "   A04_INSU12 = @A04_INSU12, "
                                    + "   A41 = @A41, "
                                    + "   A05 = @A05, "
+                                   + "   A05_TYPE = @A05_TYPE, "
                                    + "   A51 = @A51, "
                                    + "   A06 = @A06, "
                                    + "   A06_INSU01 = @A06_INSU01, "
@@ -1216,12 +1282,14 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@A03_INSU02", SqlDbType.Decimal, 5, "A03_INSU02");
             ocm.Parameters.Add("@A31", SqlDbType.Char, 4, "A31");
             ocm.Parameters.Add("@A04", SqlDbType.Char, 4, "A04");
+            ocm.Parameters.Add("@A04_TYPE", SqlDbType.Char, 1, "A04_TYPE");
             ocm.Parameters.Add("@A04_INSU01", SqlDbType.Decimal, 5, "A04_INSU01");
             ocm.Parameters.Add("@A04_INSU02", SqlDbType.Decimal, 5, "A04_INSU02");
             ocm.Parameters.Add("@A04_INSU11", SqlDbType.Decimal, 5, "A04_INSU11");
             ocm.Parameters.Add("@A04_INSU12", SqlDbType.Decimal, 5, "A04_INSU12");
             ocm.Parameters.Add("@A41", SqlDbType.Char, 4, "A41");
             ocm.Parameters.Add("@A05", SqlDbType.Char, 4, "A05");
+            ocm.Parameters.Add("@A05_TYPE", SqlDbType.Char, 1, "A05_TYPE");
             ocm.Parameters.Add("@A51", SqlDbType.Char, 4, "A51");
             ocm.Parameters.Add("@A06", SqlDbType.Char, 4, "A06");
             ocm.Parameters.Add("@A61", SqlDbType.Char, 4, "A61");
@@ -1475,8 +1543,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSOVTMInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSOVTM(SABN, OT_DATE, OT_GUBN, CALL_CNT1, CALL_CNT2, CALL_TIME1, CALL_TIME2, OT_TIME1, OT_TIME2, AP_TAG, AP_DT, AP_USID, CANC_DT, CANC_USID, TIME_REMK, REMARK, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SABN, @OT_DATE, @OT_GUBN, @CALL_CNT1, @CALL_CNT2, @CALL_TIME1, @CALL_TIME2, @OT_TIME1, @OT_TIME2, @AP_TAG, @AP_DT, @AP_USID, @CANC_DT, @CANC_USID, @TIME_REMK, @REMARK, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSOVTM(SABN, OT_DATE, OT_GUBN, CALL_CNT1, CALL_CNT2, CALL_TIME1, CALL_TIME2, OT_TIME1, OT_TIME2, TIME_REMK, REMARK, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SABN, @OT_DATE, @OT_GUBN, @CALL_CNT1, @CALL_CNT2, @CALL_TIME1, @CALL_TIME2, @OT_TIME1, @OT_TIME2, @TIME_REMK, @REMARK, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -1492,11 +1560,11 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@CALL_TIME2", SqlDbType.Decimal, 5, "CALL_TIME2");
             ocm.Parameters.Add("@OT_TIME1", SqlDbType.Decimal, 5, "OT_TIME1");
             ocm.Parameters.Add("@OT_TIME2", SqlDbType.Decimal, 5, "OT_TIME2");
-            ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
+            //ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
+            //ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
+            //ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
+            //ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            //ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
             ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
             ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
@@ -1517,11 +1585,11 @@ namespace SilkRoad.DbCmd_DT01
                                    + "   CALL_TIME2 = @CALL_TIME2, "
                                    + "   OT_TIME1 = @OT_TIME1, "
                                    + "   OT_TIME2 = @OT_TIME2, "
-                                   + "   AP_TAG = @AP_TAG, "
-                                   + "   AP_DT = @AP_DT, "
-                                   + "   AP_USID = @AP_USID, "
-                                   + "   CANC_DT = @CANC_DT, "
-                                   + "   CANC_USID = @CANC_USID, "
+                                   //+ "   AP_TAG = @AP_TAG, "
+                                   //+ "   AP_DT = @AP_DT, "
+                                   //+ "   AP_USID = @AP_USID, "
+                                   //+ "   CANC_DT = @CANC_DT, "
+                                   //+ "   CANC_USID = @CANC_USID, "
                                    + "   TIME_REMK = @TIME_REMK, "
                                    + "   REMARK = @REMARK, "
                                    + "   INDT = @INDT, "
@@ -1546,11 +1614,11 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@CALL_TIME2", SqlDbType.Decimal, 5, "CALL_TIME2");
             ocm.Parameters.Add("@OT_TIME1", SqlDbType.Decimal, 5, "OT_TIME1");
             ocm.Parameters.Add("@OT_TIME2", SqlDbType.Decimal, 5, "OT_TIME2");
-            ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
+            //ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
+            //ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
+            //ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
+            //ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            //ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
             ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
             ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
@@ -1589,8 +1657,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDEL_TRSOVTMInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DEL_TRSOVTM(SABN, OT_DATE, OT_GUBN, CALL_CNT1, CALL_CNT2, CALL_TIME1, CALL_TIME2, OT_TIME1, OT_TIME2, AP_TAG, AP_DT, AP_USID, CANC_DT, CANC_USID, TIME_REMK, REMARK, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
-                                   + ") VALUES (@SABN, @OT_DATE, @OT_GUBN, @CALL_CNT1, @CALL_CNT2, @CALL_TIME1, @CALL_TIME2, @OT_TIME1, @OT_TIME2, @AP_TAG, @AP_DT, @AP_USID, @CANC_DT, @CANC_USID, @TIME_REMK, @REMARK, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
+            string queryStatements = "INSERT INTO DBO.DEL_TRSOVTM(SABN, OT_DATE, OT_GUBN, CALL_CNT1, CALL_CNT2, CALL_TIME1, CALL_TIME2, OT_TIME1, OT_TIME2, TIME_REMK, REMARK, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
+                                   + ") VALUES (@SABN, @OT_DATE, @OT_GUBN, @CALL_CNT1, @CALL_CNT2, @CALL_TIME1, @CALL_TIME2, @OT_TIME1, @OT_TIME2, @TIME_REMK, @REMARK, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -1606,11 +1674,11 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@CALL_TIME2", SqlDbType.Decimal, 5, "CALL_TIME2");
             ocm.Parameters.Add("@OT_TIME1", SqlDbType.Decimal, 5, "OT_TIME1");
             ocm.Parameters.Add("@OT_TIME2", SqlDbType.Decimal, 5, "OT_TIME2");
-            ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
+            //ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
+            //ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
+            //ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
+            //ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            //ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
             ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
             ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
@@ -1629,8 +1697,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetGW_TRSOVTMInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.GW_TRSOVTM(DOC_NO, SABN, OT_DATE, OT_GUBN, CALL_CNT1, CALL_CNT2, CALL_TIME1, CALL_TIME2, OT_TIME1, OT_TIME2, TIME_REMK, REMARK"
-                                   + ") VALUES (@DOC_NO, @SABN, @OT_DATE, @OT_GUBN, @CALL_CNT1, @CALL_CNT2, @CALL_TIME1, @CALL_TIME2, @OT_TIME1, @OT_TIME2, @TIME_REMK, @REMARK"
+            string queryStatements = "INSERT INTO DBO.GW_TRSOVTM(DOC_NO, DOC_JSMM, SABN, OT_DATE, OT_GUBN, CALL_CNT1, CALL_CNT2, CALL_TIME1, CALL_TIME2, OT_TIME1, OT_TIME2, TIME_REMK, REMARK"
+                                   + ") VALUES (@DOC_NO, @DOC_JSMM, @SABN, @OT_DATE, @OT_GUBN, @CALL_CNT1, @CALL_CNT2, @CALL_TIME1, @CALL_TIME2, @OT_TIME1, @OT_TIME2, @TIME_REMK, @REMARK"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -1638,6 +1706,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.CommandType = CommandType.Text;
 
             ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 18, "DOC_NO");
+            ocm.Parameters.Add("@DOC_JSMM", SqlDbType.Char, 6, "DOC_JSMM");
             ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
             ocm.Parameters.Add("@OT_DATE", SqlDbType.Char, 8, "OT_DATE");
             ocm.Parameters.Add("@OT_GUBN", SqlDbType.Char, 1, "OT_GUBN");
@@ -1647,6 +1716,291 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@CALL_TIME2", SqlDbType.Decimal, 5, "CALL_TIME2");
             ocm.Parameters.Add("@OT_TIME1", SqlDbType.Decimal, 5, "OT_TIME1");
             ocm.Parameters.Add("@OT_TIME2", SqlDbType.Decimal, 5, "OT_TIME2");
+            ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
+
+            return ocm;
+        }
+
+        #endregion
+
+		#region DUTY_TRSSVTM insert, update,delete command
+
+        private SqlCommand GetDUTY_TRSSVTMInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSSVTM(SABN, SAVE_DATE, SAVE_TIME, TIME_REMK, REMARK, DOC_NO, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SABN, @SAVE_DATE, @SAVE_TIME, @TIME_REMK, @REMARK, @DOC_NO, @INDT, @UPDT, @USID, @PSTY"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@SAVE_DATE", SqlDbType.Char, 8, "SAVE_DATE");
+            ocm.Parameters.Add("@SAVE_TIME", SqlDbType.Decimal, 5, "SAVE_TIME");
+            ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
+            ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 9, "DOC_NO");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_TRSSVTMUpCmd()
+
+        {
+            string queryStatements = "UPDATE DBO.DUTY_TRSSVTM SET "
+                                   + "   SAVE_TIME = @SAVE_TIME, "
+                                   + "   TIME_REMK = @TIME_REMK, "
+                                   + "   REMARK = @REMARK, "
+                                   + "   DOC_NO = @DOC_NO, "
+                                   + "   INDT = @INDT, "
+                                   + "   UPDT = @UPDT, "
+                                   + "   USID = @USID, "
+                                   + "   PSTY = @PSTY"
+                                   + " WHERE SABN = @SABN"
+                                   + "   AND SAVE_DATE = @SAVE_DATE"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@SAVE_DATE", SqlDbType.Char, 8, "SAVE_DATE");
+            ocm.Parameters.Add("@SAVE_TIME", SqlDbType.Decimal, 5, "SAVE_TIME");
+            ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
+            ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 9, "DOC_NO");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_TRSSVTMDelCmd()
+
+        {
+            string queryStatements = "DELETE DBO.DUTY_TRSSVTM"
+                                   + " WHERE SABN = @SABN"
+                                   + "   AND SAVE_DATE = @SAVE_DATE"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN").SourceVersion = DataRowVersion.Original;
+            ocm.Parameters.Add("@SAVE_DATE", SqlDbType.Char, 8, "SAVE_DATE").SourceVersion = DataRowVersion.Original;
+
+            ocm.UpdatedRowSource = UpdateRowSource.None;
+
+            return ocm;
+        }
+
+        #endregion
+
+		#region DEL_TRSSVTM insert command
+
+        private SqlCommand GetDEL_TRSSVTMInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DEL_TRSSVTM(SABN, SAVE_DATE, SAVE_TIME, TIME_REMK, REMARK, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
+                                   + ") VALUES (@SABN, @SAVE_DATE, @SAVE_TIME, @TIME_REMK, @REMARK, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@SAVE_DATE", SqlDbType.Char, 8, "SAVE_DATE");
+            ocm.Parameters.Add("@SAVE_TIME", SqlDbType.Decimal, 5, "SAVE_TIME");
+            ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+            ocm.Parameters.Add("@DEL_DT", SqlDbType.VarChar, 20, "DEL_DT");
+            ocm.Parameters.Add("@DEL_ID", SqlDbType.VarChar, 20, "DEL_ID");
+
+            return ocm;
+        }		
+
+        #endregion
+
+		#region DUTY_MSTSAVE_ENDS insert, update,delete command
+
+        private SqlCommand GetDUTY_MSTSAVE_ENDSInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DUTY_MSTSAVE_ENDS(END_YYMM, CLOSE_YN, END_DT, END_ID, CANC_DT, CANC_ID"
+                                   + ") VALUES (@END_YYMM, @CLOSE_YN, @END_DT, @END_ID, @CANC_DT, @CANC_ID"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@END_YYMM", SqlDbType.Char, 6, "END_YYMM");
+            ocm.Parameters.Add("@CLOSE_YN", SqlDbType.Char, 1, "CLOSE_YN");
+            ocm.Parameters.Add("@END_DT", SqlDbType.VarChar, 20, "END_DT");
+            ocm.Parameters.Add("@END_ID", SqlDbType.VarChar, 20, "END_ID");
+            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            ocm.Parameters.Add("@CANC_ID", SqlDbType.VarChar, 20, "CANC_ID");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_MSTSAVE_ENDSUpCmd()
+
+        {
+            string queryStatements = "UPDATE DBO.DUTY_MSTSAVE_ENDS SET "
+                                   + "   CLOSE_YN = @CLOSE_YN, "
+                                   + "   END_DT = @END_DT, "
+                                   + "   END_ID = @END_ID, "
+                                   + "   CANC_DT = @CANC_DT, "
+                                   + "   CANC_ID = @CANC_ID "
+                                   + " WHERE END_YYMM = @END_YYMM"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@END_YYMM", SqlDbType.Char, 6, "END_YYMM");
+            ocm.Parameters.Add("@CLOSE_YN", SqlDbType.Char, 1, "CLOSE_YN");
+            ocm.Parameters.Add("@END_DT", SqlDbType.VarChar, 20, "END_DT");
+            ocm.Parameters.Add("@END_ID", SqlDbType.VarChar, 20, "END_ID");
+            ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
+            ocm.Parameters.Add("@CANC_ID", SqlDbType.VarChar, 20, "CANC_ID");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_MSTSAVE_ENDSDelCmd()
+
+        {
+            string queryStatements = "DELETE DBO.DUTY_MSTSAVE_ENDS"
+                                   + " WHERE END_YYMM = @END_YYMM"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@END_YYMM", SqlDbType.Char, 6, "END_YYMM").SourceVersion = DataRowVersion.Original;
+
+            ocm.UpdatedRowSource = UpdateRowSource.None;
+
+            return ocm;
+        }
+
+        #endregion
+		
+		#region DUTY_TRSOVTM_JS insert, update,delete command
+
+        private SqlCommand GetDUTY_TRSOVTM_JSInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSOVTM_JS(SABN, JS_DATE, JS_TIME, CALC_TIME, TIME_REMK, REMARK, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SABN, @JS_DATE, @JS_TIME, @CALC_TIME, @TIME_REMK, @REMARK, @INDT, @UPDT, @USID, @PSTY"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@JS_DATE", SqlDbType.Char, 8, "JS_DATE");
+            ocm.Parameters.Add("@JS_TIME", SqlDbType.Decimal, 5, "JS_TIME");
+            ocm.Parameters.Add("@CALC_TIME", SqlDbType.Decimal, 5, "CALC_TIME");
+            ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_TRSOVTM_JSUpCmd()
+
+        {
+            string queryStatements = "UPDATE DBO.DUTY_TRSOVTM_JS SET "
+                                   + "   JS_TIME = @JS_TIME, "
+                                   + "   CALC_TIME = @CALC_TIME, "
+                                   + "   TIME_REMK = @TIME_REMK, "
+                                   + "   REMARK = @REMARK, "
+                                   + "   UPDT = @UPDT, "
+                                   + "   USID = @USID, "
+                                   + "   PSTY = @PSTY"
+                                   + " WHERE SABN = @SABN"
+                                   + "   AND JS_DATE = @JS_DATE"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@JS_DATE", SqlDbType.Char, 8, "JS_DATE");
+            ocm.Parameters.Add("@JS_TIME", SqlDbType.Decimal, 5, "JS_TIME");
+            ocm.Parameters.Add("@CALC_TIME", SqlDbType.Decimal, 5, "CALC_TIME");
+            ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_TRSOVTM_JSDelCmd()
+
+        {
+            string queryStatements = "DELETE DBO.DUTY_TRSOVTM_JS"
+                                   + " WHERE SABN = @SABN"
+                                   + "   AND JS_DATE = @JS_DATE"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN").SourceVersion = DataRowVersion.Original;
+            ocm.Parameters.Add("@JS_DATE", SqlDbType.Char, 8, "JS_DATE").SourceVersion = DataRowVersion.Original;
+
+            ocm.UpdatedRowSource = UpdateRowSource.None;
+
+            return ocm;
+        }
+
+        #endregion
+		
+		#region GW_TRSOVTM_JS insert command
+
+        private SqlCommand GetGW_TRSOVTM_JSInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.GW_TRSOVTM_JS(DOC_NO, DOC_JSMM, SABN, JS_DATE, JS_TIME, CALC_TIME, TIME_REMK, REMARK"
+                                   + ") VALUES (@DOC_NO, @DOC_JSMM, @SABN, @JS_DATE, @JS_TIME, @CALC_TIME, @TIME_REMK, @REMARK"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 18, "DOC_NO");
+            ocm.Parameters.Add("@DOC_JSMM", SqlDbType.Char, 6, "DOC_JSMM");
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@JS_DATE", SqlDbType.Char, 8, "JS_DATE");
+            ocm.Parameters.Add("@JS_TIME", SqlDbType.Decimal, 5, "JS_TIME");
+            ocm.Parameters.Add("@CALC_TIME", SqlDbType.Decimal, 5, "CALC_TIME");
             ocm.Parameters.Add("@TIME_REMK", SqlDbType.VarChar, 80, "TIME_REMK");
             ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
 
@@ -1878,8 +2232,8 @@ namespace SilkRoad.DbCmd_DT01
 		
         private SqlCommand GetDUTY_TRSDANGInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSDANG(SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSDANG(SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, REMARK, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @REMARK, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -1890,6 +2244,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@PLAN_SQ", SqlDbType.Int, 4, "PLAN_SQ");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@MM_CNT1", SqlDbType.Int, 4, "MM_CNT1");
             ocm.Parameters.Add("@MM_CNT2", SqlDbType.Int, 4, "MM_CNT2");
             ocm.Parameters.Add("@MM_CNT3", SqlDbType.Int, 4, "MM_CNT3");
@@ -1938,6 +2293,7 @@ namespace SilkRoad.DbCmd_DT01
         {
             string queryStatements = "UPDATE DBO.DUTY_TRSDANG SET "
                                    + "   PLAN_SQ = @PLAN_SQ, "
+                                   + "   REMARK = @REMARK, "
                                    + "   MM_CNT1 = @MM_CNT1, "
                                    + "   MM_CNT2 = @MM_CNT2, "
                                    + "   MM_CNT3 = @MM_CNT3, "
@@ -1991,6 +2347,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@PLAN_SQ", SqlDbType.Int, 4, "PLAN_SQ");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@MM_CNT1", SqlDbType.Int, 4, "MM_CNT1");
             ocm.Parameters.Add("@MM_CNT2", SqlDbType.Int, 4, "MM_CNT2");
             ocm.Parameters.Add("@MM_CNT3", SqlDbType.Int, 4, "MM_CNT3");
@@ -2062,8 +2419,8 @@ namespace SilkRoad.DbCmd_DT01
 		
         private SqlCommand GetGW_TRSDANGInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.GW_TRSDANG(DOC_NO, SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@DOC_NO, @SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.GW_TRSDANG(DOC_NO, SAWON_NO, JS_YYMM, PLANYYMM, PLAN_SQ, DEPTCODE, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@DOC_NO, @SAWON_NO, @JS_YYMM, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -2072,6 +2429,7 @@ namespace SilkRoad.DbCmd_DT01
 			
             ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 14, "DOC_NO");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@JS_YYMM", SqlDbType.Char, 6, "JS_YYMM");
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@PLAN_SQ", SqlDbType.Int, 4, "PLAN_SQ");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
@@ -2279,8 +2637,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSPLANInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSPLAN(SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, BF_NIGHT, BF_OFF, SHIFT_WORK, MAX_NCNT, ALLOW_OFF, REMAIN_NIGHT, REMAIN_OFF, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, MM_CNT6, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, EDU_CNT1, EDU_CNT2, HG_CNT1, HG_CNT2, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @BF_NIGHT, @BF_OFF, @SHIFT_WORK, @MAX_NCNT, @ALLOW_OFF, @REMAIN_NIGHT, @REMAIN_OFF, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @MM_CNT6, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @EDU_CNT1, @EDU_CNT2, @HG_CNT1, @HG_CNT2, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSPLAN(SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, REMARK, BF_NIGHT, BF_OFF, SHIFT_WORK, MAX_NCNT, ALLOW_OFF, REMAIN_NIGHT, REMAIN_OFF, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, MM_CNT6, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, EDU_CNT1, EDU_CNT2, HG_CNT1, HG_CNT2, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @REMARK, @BF_NIGHT, @BF_OFF, @SHIFT_WORK, @MAX_NCNT, @ALLOW_OFF, @REMAIN_NIGHT, @REMAIN_OFF, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @MM_CNT6, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @EDU_CNT1, @EDU_CNT2, @HG_CNT1, @HG_CNT2, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -2291,6 +2649,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@PLAN_SQ", SqlDbType.Int, 4, "PLAN_SQ");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@BF_NIGHT", SqlDbType.Int, 4, "BF_NIGHT");
             ocm.Parameters.Add("@BF_OFF", SqlDbType.Int, 4, "BF_OFF");
             ocm.Parameters.Add("@SHIFT_WORK", SqlDbType.Char, 1, "SHIFT_WORK");
@@ -2351,6 +2710,7 @@ namespace SilkRoad.DbCmd_DT01
         {
             string queryStatements = "UPDATE DBO.DUTY_TRSPLAN SET "
                                    + "   PLAN_SQ = @PLAN_SQ, "
+                                   + "   REMARK = @REMARK, "
                                    + "   BF_NIGHT = @BF_NIGHT, "
                                    + "   SHIFT_WORK = @SHIFT_WORK, "
 								   + "   BF_OFF = @BF_OFF, "
@@ -2416,6 +2776,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@PLAN_SQ", SqlDbType.Int, 4, "PLAN_SQ");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@REMARK", SqlDbType.VarChar, 200, "REMARK");
             ocm.Parameters.Add("@BF_NIGHT", SqlDbType.Int, 4, "BF_NIGHT");
             ocm.Parameters.Add("@BF_OFF", SqlDbType.Int, 4, "BF_OFF");
             ocm.Parameters.Add("@SHIFT_WORK", SqlDbType.Char, 1, "SHIFT_WORK");
@@ -2494,13 +2855,75 @@ namespace SilkRoad.DbCmd_DT01
         }
 
         #endregion
+
+		#region DUTY_TRSPLAN_ETC insert, update, delete command
+
+        private SqlCommand GetDUTY_TRSPLAN_ETCInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSPLAN_ETC(DEPTCODE, SAWON_NO, SAWON_NM, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@DEPTCODE, @SAWON_NO, @SAWON_NM, @INDT, @UPDT, @USID, @PSTY"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+			
+            ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@SAWON_NM", SqlDbType.VarChar, 40, "SAWON_NM");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+        private SqlCommand GetDUTY_TRSPLAN_ETCUpCmd()
+        {
+            string queryStatements = "UPDATE DBO.DUTY_TRSPLAN_ETC SET "
+                                   + "   UPDT = @UPDT, "
+                                   + "   USID = @USID, "
+                                   + "   PSTY = @PSTY"
+                                   + " WHERE SAWON_NO = @SAWON_NO"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_TRSPLAN_ETCDelCmd()
+        {
+            string queryStatements = "DELETE DBO.DUTY_TRSPLAN_ETC "
+                                   + " WHERE SAWON_NO = @SAWON_NO"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO").SourceVersion = DataRowVersion.Original;
+
+            ocm.UpdatedRowSource = UpdateRowSource.None;
+
+            return ocm;
+        }
+
+        #endregion
 					
 		#region GW_TRSOFFN insert command
 
         private SqlCommand GetGW_TRSOFFNInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.GW_TRSOFFN(DOC_NO, PLANYYMM, DEPTCODE, DEPT_NM, SAWON_NO, SAWON_NM, OFF_CNT, N_CNT, OFF_AMT, N_AMT, REMARK, SD_AMT, BF_OFF, ALLOW_OFF, REMAIN_OFF, MM_CNT4, BF_NIGHT, MAX_NCNT, REMAIN_NIGHT, MM_CNT3"
-                                   + ") VALUES (@DOC_NO, @PLANYYMM, @DEPTCODE, @DEPT_NM, @SAWON_NO, @SAWON_NM, @OFF_CNT, @N_CNT, @OFF_AMT, @N_AMT, @REMARK, @SD_AMT, @BF_OFF, @ALLOW_OFF, @REMAIN_OFF, @MM_CNT4, @BF_NIGHT, @MAX_NCNT, @REMAIN_NIGHT, @MM_CNT3"
+            string queryStatements = "INSERT INTO DBO.GW_TRSOFFN(DOC_NO, JS_YYMM, PLANYYMM, DEPTCODE, DEPT_NM, SAWON_NO, SAWON_NM, OFF_CNT, N_CNT, OFF_AMT, N_AMT, REMARK, SD_AMT, BF_OFF, ALLOW_OFF, REMAIN_OFF, MM_CNT4, BF_NIGHT, MAX_NCNT, REMAIN_NIGHT, MM_CNT3"
+                                   + ") VALUES (@DOC_NO, @JS_YYMM, @PLANYYMM, @DEPTCODE, @DEPT_NM, @SAWON_NO, @SAWON_NM, @OFF_CNT, @N_CNT, @OFF_AMT, @N_AMT, @REMARK, @SD_AMT, @BF_OFF, @ALLOW_OFF, @REMAIN_OFF, @MM_CNT4, @BF_NIGHT, @MAX_NCNT, @REMAIN_NIGHT, @MM_CNT3"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -2508,6 +2931,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.CommandType = CommandType.Text;
 
             ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 9, "DOC_NO");
+            ocm.Parameters.Add("@JS_YYMM", SqlDbType.Char, 6, "JS_YYMM");
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
             ocm.Parameters.Add("@DEPT_NM", SqlDbType.VarChar, 40, "DEPT_NM");
@@ -2532,13 +2956,42 @@ namespace SilkRoad.DbCmd_DT01
         }
 
         #endregion
+					
+		#region GW_TRSYAGAN insert command
+
+        private SqlCommand GetGW_TRSYAGANInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.GW_TRSYAGAN(DOC_NO, JS_YYMM, PLANYYMM, DEPTCODE, DEPT_NM, SAWON_NO, EMBSNAME, PAST_YEAR, N_CNT, IPDT, SD_AMT"
+                                   + ") VALUES (@DOC_NO, @JS_YYMM, @PLANYYMM, @DEPTCODE, @DEPT_NM, @SAWON_NO, @EMBSNAME, @PAST_YEAR, @N_CNT, @IPDT, @SD_AMT"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 9, "DOC_NO");
+            ocm.Parameters.Add("@JS_YYMM", SqlDbType.Char, 6, "JS_YYMM");
+            ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
+            ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@DEPT_NM", SqlDbType.VarChar, 40, "DEPT_NM");
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@EMBSNAME", SqlDbType.VarChar, 40, "EMBSNAME");
+            ocm.Parameters.Add("@PAST_YEAR", SqlDbType.Decimal, 9, "PAST_YEAR");
+            ocm.Parameters.Add("@N_CNT", SqlDbType.Decimal, 9, "N_CNT");
+            ocm.Parameters.Add("@IPDT", SqlDbType.VarChar, 10, "IPDT");
+            ocm.Parameters.Add("@SD_AMT", SqlDbType.Decimal, 9, "SD_AMT");
+
+            return ocm;
+        }
+
+        #endregion
 
 		#region GW_TRSPLAN insert command
 
         private SqlCommand GetGW_TRSPLANInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.GW_TRSPLAN(DOC_NO, SAWON_NO, PLANYYMM, PLAN_SQ, DEPTCODE, BF_NIGHT, BF_OFF, SHIFT_WORK, MAX_NCNT, ALLOW_OFF, REMAIN_NIGHT, REMAIN_OFF, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, MM_CNT6, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, EDU_CNT1, EDU_CNT2, HG_CNT1, HG_CNT2, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@DOC_NO, @SAWON_NO, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @BF_NIGHT, @BF_OFF, @SHIFT_WORK, @MAX_NCNT, @ALLOW_OFF, @REMAIN_NIGHT, @REMAIN_OFF, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @MM_CNT6, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @EDU_CNT1, @EDU_CNT2, @HG_CNT1, @HG_CNT2, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.GW_TRSPLAN(DOC_NO, SAWON_NO, JS_YYMM, PLANYYMM, PLAN_SQ, DEPTCODE, BF_NIGHT, BF_OFF, SHIFT_WORK, MAX_NCNT, ALLOW_OFF, REMAIN_NIGHT, REMAIN_OFF, MM_CNT1, MM_CNT2, MM_CNT3, MM_CNT4, MM_CNT5, MM_CNT6, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, EDU_CNT1, EDU_CNT2, HG_CNT1, HG_CNT2, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@DOC_NO, @SAWON_NO, @JS_YYMM, @PLANYYMM, @PLAN_SQ, @DEPTCODE, @BF_NIGHT, @BF_OFF, @SHIFT_WORK, @MAX_NCNT, @ALLOW_OFF, @REMAIN_NIGHT, @REMAIN_OFF, @MM_CNT1, @MM_CNT2, @MM_CNT3, @MM_CNT4, @MM_CNT5, @MM_CNT6, @D01, @D02, @D03, @D04, @D05, @D06, @D07, @D08, @D09, @D10, @D11, @D12, @D13, @D14, @D15, @D16, @D17, @D18, @D19, @D20, @D21, @D22, @D23, @D24, @D25, @D26, @D27, @D28, @D29, @D30, @D31, @EDU_CNT1, @EDU_CNT2, @HG_CNT1, @HG_CNT2, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -2547,6 +3000,7 @@ namespace SilkRoad.DbCmd_DT01
 			
             ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 9, "DOC_NO");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@JS_YYMM", SqlDbType.Char, 6, "JS_YYMM");
             ocm.Parameters.Add("@PLANYYMM", SqlDbType.Char, 6, "PLANYYMM");
             ocm.Parameters.Add("@PLAN_SQ", SqlDbType.Int, 4, "PLAN_SQ");
             ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
@@ -4093,8 +4547,8 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_GWDOCInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_GWDOC(DOC_NO, DOC_GUBN, GW_TITLE, GW_REMK, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, REG_DT, REG_ID"
-                                   + ") VALUES (@DOC_NO, @DOC_GUBN, @GW_TITLE, @GW_REMK, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @REG_DT, @REG_ID"
+            string queryStatements = "INSERT INTO DBO.DUTY_GWDOC(DOC_NO, DOC_GUBN, DOC_JSMM, DOC_DATE, GW_TITLE, GW_REMK, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, ETC_GUBN, REG_DT, REG_ID"
+                                   + ") VALUES (@DOC_NO, @DOC_GUBN, @DOC_JSMM, @DOC_DATE, @GW_TITLE, @GW_REMK, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @ETC_GUBN, @REG_DT, @REG_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -4103,6 +4557,8 @@ namespace SilkRoad.DbCmd_DT01
 
             ocm.Parameters.Add("@DOC_NO", SqlDbType.Decimal, 18, "DOC_NO");
             ocm.Parameters.Add("@DOC_GUBN", SqlDbType.Int, 4, "DOC_GUBN");
+            ocm.Parameters.Add("@DOC_JSMM", SqlDbType.VarChar, 8, "DOC_JSMM");
+            ocm.Parameters.Add("@DOC_DATE", SqlDbType.VarChar, 8, "DOC_DATE");
             ocm.Parameters.Add("@GW_TITLE", SqlDbType.VarChar, 200, "GW_TITLE");
             ocm.Parameters.Add("@GW_REMK", SqlDbType.VarChar, 200, "GW_REMK");
             ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
@@ -4126,6 +4582,7 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
             ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
             ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
+            ocm.Parameters.Add("@ETC_GUBN", SqlDbType.VarChar, 20, "ETC_GUBN");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
             ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
 
@@ -4372,14 +4829,16 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSHREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSHREQ(SABN, REQ_YEAR, REQ_DATE, REQ_DATE2, REQ_TYPE, REQ_TYPE2, YC_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SABN, @REQ_YEAR, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @REQ_TYPE2, @YC_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSHREQ(SEQNO, GUBN, SABN, REQ_YEAR, REQ_DATE, REQ_DATE2, REQ_TYPE, REQ_TYPE2, YC_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SEQNO, @GUBN, @SABN, @REQ_YEAR, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @REQ_TYPE2, @YC_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
             ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
             ocm.Parameters.Add("@REQ_YEAR", SqlDbType.Char, 4, "REQ_YEAR");
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
@@ -4408,14 +4867,6 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
             ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
             ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
-			//ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
-			//ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
-			//ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
-			//ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
-			//ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-			//ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-			//ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-			//ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
 			ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
@@ -4427,49 +4878,55 @@ namespace SilkRoad.DbCmd_DT01
         private SqlCommand GetDUTY_TRSHREQUpCmd()
 
         {
-            string queryStatements = "UPDATE DBO.DUTY_TRSHREQ SET "
-                                   + "   REQ_DATE2 = @REQ_DATE2, "
-                                   + "   REQ_TYPE = @REQ_TYPE, "
-                                   + "   REQ_TYPE2 = @REQ_TYPE2, "
-                                   + "   YC_DAYS = @YC_DAYS, "
-                                   + "   AP_TAG = @AP_TAG, "
-                                   + "   LINE_CNT = @LINE_CNT, "
-                                   + "   GW_SABN1 = @GW_SABN1, "
-                                   + "   GW_DT1 = @GW_DT1, "
-                                   + "   GW_NAME1 = @GW_NAME1, "
-                                   + "   GW_JICK1 = @GW_JICK1, "
-                                   + "   GW_SABN2 = @GW_SABN2, "
-                                   + "   GW_DT2 = @GW_DT2, "
-                                   + "   GW_CHKID2 = @GW_CHKID2, "
-                                   + "   GW_NAME2 = @GW_NAME2, "
-                                   + "   GW_JICK2 = @GW_JICK2, "
-                                   + "   GW_SABN3 = @GW_SABN3, "
-                                   + "   GW_DT3 = @GW_DT3, "
-                                   + "   GW_CHKID3 = @GW_CHKID3, "
-                                   + "   GW_NAME3 = @GW_NAME3, "
-                                   + "   GW_JICK3 = @GW_JICK3, "
-                                   + "   GW_SABN4 = @GW_SABN4, "
-                                   + "   GW_DT4 = @GW_DT4, "
-                                   + "   GW_CHKID4 = @GW_CHKID4, "
-                                   + "   GW_NAME4 = @GW_NAME4, "
-                                   + "   GW_JICK4 = @GW_JICK4, "
-                                   + "   INDT = @INDT, "
-                                   + "   UPDT = @UPDT, "
-                                   + "   USID = @USID, "
-                                   + "   PSTY = @PSTY"
-                                   + " WHERE SABN = @SABN"
-                                   + "   AND REQ_YEAR = @REQ_YEAR"
-                                   + "   AND REQ_DATE = @REQ_DATE"
-                                   + "";
+			string queryStatements = "UPDATE DBO.DUTY_TRSHREQ SET "
+								   + "   GUBN = @GUBN, "
+								   + "   REQ_YEAR = @REQ_YEAR, "
+								   + "   REQ_DATE = @REQ_DATE, "
+								   + "   REQ_DATE2 = @REQ_DATE2, "
+								   + "   REQ_TYPE = @REQ_TYPE, "
+								   + "   REQ_TYPE2 = @REQ_TYPE2, "
+								   + "   YC_DAYS = @YC_DAYS, "
+								   + "   AP_TAG = @AP_TAG, "
+								   + "   LINE_CNT = @LINE_CNT, "
+								   + "   GW_SABN1 = @GW_SABN1, "
+								   + "   GW_DT1 = @GW_DT1, "
+								   + "   GW_NAME1 = @GW_NAME1, "
+								   + "   GW_JICK1 = @GW_JICK1, "
+								   + "   GW_SABN2 = @GW_SABN2, "
+								   + "   GW_DT2 = @GW_DT2, "
+								   + "   GW_CHKID2 = @GW_CHKID2, "
+								   + "   GW_NAME2 = @GW_NAME2, "
+								   + "   GW_JICK2 = @GW_JICK2, "
+								   + "   GW_SABN3 = @GW_SABN3, "
+								   + "   GW_DT3 = @GW_DT3, "
+								   + "   GW_CHKID3 = @GW_CHKID3, "
+								   + "   GW_NAME3 = @GW_NAME3, "
+								   + "   GW_JICK3 = @GW_JICK3, "
+								   + "   GW_SABN4 = @GW_SABN4, "
+								   + "   GW_DT4 = @GW_DT4, "
+								   + "   GW_CHKID4 = @GW_CHKID4, "
+								   + "   GW_NAME4 = @GW_NAME4, "
+								   + "   GW_JICK4 = @GW_JICK4, "
+								   + "   INDT = @INDT, "
+								   + "   UPDT = @UPDT, "
+								   + "   USID = @USID, "
+								   + "   PSTY = @PSTY"
+								   + " WHERE SEQNO = @SEQNO";
+                                   //+ " WHERE SABN = @SABN"
+                                   //+ "   AND REQ_YEAR = @REQ_YEAR"
+                                   //+ "   AND REQ_DATE = @REQ_DATE"
+                                   //+ "";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
-            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
-            ocm.Parameters.Add("@REQ_YEAR", SqlDbType.Char, 4, "REQ_YEAR");
-            ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
-            ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
+			//ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+			ocm.Parameters.Add("@REQ_YEAR", SqlDbType.Char, 4, "REQ_YEAR");
+			ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
+			ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
             ocm.Parameters.Add("@REQ_TYPE", SqlDbType.VarChar, 10, "REQ_TYPE");
             ocm.Parameters.Add("@REQ_TYPE2", SqlDbType.VarChar, 10, "REQ_TYPE2");
             ocm.Parameters.Add("@YC_DAYS", SqlDbType.Decimal, 7, "YC_DAYS");
@@ -4494,12 +4951,6 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
             ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
             ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
-			//ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
-			//ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
-			//ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-			//ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-			//ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-			//ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
 			ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
@@ -4512,18 +4963,13 @@ namespace SilkRoad.DbCmd_DT01
 
         {
             string queryStatements = "DELETE DBO.DUTY_TRSHREQ"
-                                   + " WHERE SABN = @SABN"
-                                   + "   AND REQ_YEAR = @REQ_YEAR"
-                                   + "   AND REQ_DATE = @REQ_DATE"
-                                   + "";
+								   + " WHERE SEQNO = @SEQNO";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
-            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@REQ_YEAR", SqlDbType.Char, 4, "REQ_YEAR").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE").SourceVersion = DataRowVersion.Original;
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO").SourceVersion = DataRowVersion.Original;
 
             ocm.UpdatedRowSource = UpdateRowSource.None;
 
@@ -4536,14 +4982,16 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDEL_TRSHREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DEL_TRSHREQ(SABN, REQ_YEAR, REQ_DATE, REQ_DATE2, REQ_TYPE, REQ_TYPE2, YC_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
-                                   + ") VALUES (@SABN, @REQ_YEAR, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @REQ_TYPE2, @YC_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
+            string queryStatements = "INSERT INTO DBO.DEL_TRSHREQ(SEQNO, GUBN, SABN, REQ_YEAR, REQ_DATE, REQ_DATE2, REQ_TYPE, REQ_TYPE2, YC_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
+                                   + ") VALUES (@SEQNO, @GUBN, @SABN, @REQ_YEAR, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @REQ_TYPE2, @YC_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
             ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
             ocm.Parameters.Add("@REQ_YEAR", SqlDbType.Char, 4, "REQ_YEAR");
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
@@ -4588,14 +5036,16 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDUTY_TRSJREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSJREQ(SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, PAY_YN, HOLI_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @PAY_YN, @HOLI_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSJREQ(SEQNO, GUBN, SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, PAY_YN, HOLI_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SEQNO, @GUBN, @SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @PAY_YN, @HOLI_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
             ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
             ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
@@ -4649,6 +5099,9 @@ namespace SilkRoad.DbCmd_DT01
 
         {
             string queryStatements = "UPDATE DBO.DUTY_TRSJREQ SET "
+                                   + "   GUBN = @GUBN, "
+                                   + "   REQ_DATE = @REQ_DATE, "
+                                   + "   REQ_DATE2 = @REQ_DATE2, "
                                    + "   REQ_TYPE = @REQ_TYPE, "
                                    + "   PAY_YN = @PAY_YN, "
                                    + "   HOLI_DAYS = @HOLI_DAYS, "
@@ -4673,34 +5126,20 @@ namespace SilkRoad.DbCmd_DT01
                                    + "   GW_CHKID4 = @GW_CHKID4, "
                                    + "   GW_NAME4 = @GW_NAME4, "
                                    + "   GW_JICK4 = @GW_JICK4, "
-                                   //+ "   SAWON_LV = @SAWON_LV, "
-                                   //+ "   EXCEPT_MID = @EXCEPT_MID, "
-                                   //+ "   AP_TAG = @AP_TAG, "
-                                   //+ "   MID_DT = @MID_DT, "
-                                   //+ "   MID_USID = @MID_USID, "
-                                   //+ "   AP_DT = @AP_DT, "
-                                   //+ "   AP_USID = @AP_USID, "
-                                   //+ "   CANC_DT = @CANC_DT, "
-                                   //+ "   CANC_USID = @CANC_USID, "
-                                   //+ "   LAST_TAG = @LAST_TAG, "
-                                   //+ "   LAST_DT = @LAST_DT, "
-                                   //+ "   LAST_USID = @LAST_USID, "
-                                   //+ "   LAST_CANC_DT = @LAST_CANC_DT, "
-                                   //+ "   LAST_CANC_USID = @LAST_CANC_USID, "
                                    + "   INDT = @INDT, "
                                    + "   UPDT = @UPDT, "
                                    + "   USID = @USID, "
                                    + "   PSTY = @PSTY"
-                                   + " WHERE SABN = @SABN"
-                                   + "   AND REQ_DATE = @REQ_DATE "
-                                   + "   AND REQ_DATE2 = @REQ_DATE2 "
+                                   + " WHERE SEQNO = @SEQNO "
                                    + "";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
-            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
+            //ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
             ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
             ocm.Parameters.Add("@REQ_TYPE", SqlDbType.VarChar, 10, "REQ_TYPE");
@@ -4727,20 +5166,6 @@ namespace SilkRoad.DbCmd_DT01
             ocm.Parameters.Add("@GW_CHKID4", SqlDbType.VarChar, 20, "GW_CHKID4");
             ocm.Parameters.Add("@GW_NAME4", SqlDbType.VarChar, 20, "GW_NAME4");
             ocm.Parameters.Add("@GW_JICK4", SqlDbType.VarChar, 20, "GW_JICK4");
-            //ocm.Parameters.Add("@SAWON_LV", SqlDbType.Char, 1, "SAWON_LV");
-            //ocm.Parameters.Add("@EXCEPT_MID", SqlDbType.Char, 1, "EXCEPT_MID");
-            //ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
-            //ocm.Parameters.Add("@MID_DT", SqlDbType.VarChar, 20, "MID_DT");
-            //ocm.Parameters.Add("@MID_USID", SqlDbType.VarChar, 20, "MID_USID");
-            //ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
-            //ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
-            //ocm.Parameters.Add("@CANC_DT", SqlDbType.VarChar, 20, "CANC_DT");
-            //ocm.Parameters.Add("@CANC_USID", SqlDbType.VarChar, 20, "CANC_USID");
-            //ocm.Parameters.Add("@LAST_TAG", SqlDbType.Char, 1, "LAST_TAG");
-            //ocm.Parameters.Add("@LAST_DT", SqlDbType.VarChar, 20, "LAST_DT");
-            //ocm.Parameters.Add("@LAST_USID", SqlDbType.VarChar, 20, "LAST_USID");
-            //ocm.Parameters.Add("@LAST_CANC_DT", SqlDbType.VarChar, 20, "LAST_CANC_DT");
-            //ocm.Parameters.Add("@LAST_CANC_USID", SqlDbType.VarChar, 20, "LAST_CANC_USID");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
@@ -4753,18 +5178,14 @@ namespace SilkRoad.DbCmd_DT01
 
         {
             string queryStatements = "DELETE DBO.DUTY_TRSJREQ"
-                                   + " WHERE SABN = @SABN"
-                                   + "   AND REQ_DATE = @REQ_DATE"
-                                   + "   AND REQ_DATE2 = @REQ_DATE2 "
+                                   + " WHERE SEQNO = @SEQNO "
                                    + "";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
-            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2").SourceVersion = DataRowVersion.Original;
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO").SourceVersion = DataRowVersion.Original;
 
             ocm.UpdatedRowSource = UpdateRowSource.None;
 
@@ -4777,14 +5198,16 @@ namespace SilkRoad.DbCmd_DT01
 
         private SqlCommand GetDEL_TRSJREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DEL_TRSJREQ(SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, PAY_YN, HOLI_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
-                                   + ") VALUES (@SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @PAY_YN, @HOLI_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
+            string queryStatements = "INSERT INTO DBO.DEL_TRSJREQ(SEQNO, GUBN, SABN, REQ_DATE, REQ_DATE2, REQ_TYPE, PAY_YN, HOLI_DAYS, AP_TAG, LINE_CNT, GW_SABN1, GW_DT1, GW_NAME1, GW_JICK1, GW_SABN2, GW_DT2, GW_CHKID2, GW_NAME2, GW_JICK2, GW_SABN3, GW_DT3, GW_CHKID3, GW_NAME3, GW_JICK3, GW_SABN4, GW_DT4, GW_CHKID4, GW_NAME4, GW_JICK4, INDT, UPDT, USID, PSTY, DEL_DT, DEL_ID"
+                                   + ") VALUES (@SEQNO, @GUBN, @SABN, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @PAY_YN, @HOLI_DAYS, @AP_TAG, @LINE_CNT, @GW_SABN1, @GW_DT1, @GW_NAME1, @GW_JICK1, @GW_SABN2, @GW_DT2, @GW_CHKID2, @GW_NAME2, @GW_JICK2, @GW_SABN3, @GW_DT3, @GW_CHKID3, @GW_NAME3, @GW_JICK3, @GW_SABN4, @GW_DT4, @GW_CHKID4, @GW_NAME4, @GW_JICK4, @INDT, @UPDT, @USID, @PSTY, @DEL_DT, @DEL_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
-
+			
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 14, "SEQNO");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
             ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
             ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
             ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");

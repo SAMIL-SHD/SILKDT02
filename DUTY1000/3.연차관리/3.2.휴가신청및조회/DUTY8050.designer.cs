@@ -47,6 +47,10 @@
 			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression3 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
 			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression4 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression5 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression6 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
 			this.srPanel3 = new SilkRoad.UserControls.SRPanel();
@@ -84,6 +88,7 @@
 			this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -97,6 +102,7 @@
 			this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -110,6 +116,9 @@
 			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
 			this.srGroupBox2 = new SilkRoad.UserControls.SRGroupBox();
 			this.srPanel2 = new SilkRoad.UserControls.SRPanel();
+			this.srLabel13 = new SilkRoad.UserControls.SRLabel();
+			this.cmb_gubn = new SilkRoad.UserControls.SRCombo();
+			this.chk_fix = new DevExpress.XtraEditors.CheckEdit();
 			this.sl_line3 = new SilkRoad.UserControls.SRLookup2();
 			this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn56 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -156,7 +165,6 @@
 			this.srLabel8 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel4 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel3 = new SilkRoad.UserControls.SRLabel();
-			this.chk_fix = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -195,6 +203,8 @@
 			this.srGroupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel2)).BeginInit();
 			this.srPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.chk_fix.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_line3.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_line2.Properties)).BeginInit();
@@ -214,7 +224,6 @@
 			this.xtraTabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
 			this.srPanel4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.chk_fix.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// srPanel1
@@ -692,6 +701,7 @@
             this.gridColumn40,
             this.gridColumn41,
             this.gridColumn42,
+            this.gridColumn13,
             this.gridColumn43,
             this.gridColumn44,
             this.gridColumn45,
@@ -706,10 +716,17 @@
 			gridFormatRule2.Name = "Format2";
 			formatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			formatConditionRuleExpression2.Appearance.Options.UseBackColor = true;
-			formatConditionRuleExpression2.Expression = "[AP_TAG] = \'1\'";
+			formatConditionRuleExpression2.Expression = "[AP_TAG] IN (\'1\',\'3\')";
 			gridFormatRule2.Rule = formatConditionRuleExpression2;
+			gridFormatRule3.ApplyToRow = true;
+			gridFormatRule3.Name = "Format0";
+			formatConditionRuleExpression3.Appearance.ForeColor = System.Drawing.Color.Red;
+			formatConditionRuleExpression3.Appearance.Options.UseForeColor = true;
+			formatConditionRuleExpression3.Expression = "[GUBN]=\'D\'";
+			gridFormatRule3.Rule = formatConditionRuleExpression3;
 			this.grdv_hg.FormatRules.Add(gridFormatRule1);
 			this.grdv_hg.FormatRules.Add(gridFormatRule2);
+			this.grdv_hg.FormatRules.Add(gridFormatRule3);
 			this.grdv_hg.GridControl = this.grd_hg;
 			this.grdv_hg.IndicatorWidth = 40;
 			this.grdv_hg.Name = "grdv_hg";
@@ -787,6 +804,25 @@
 			this.gridColumn42.VisibleIndex = 3;
 			this.gridColumn42.Width = 129;
 			// 
+			// gridColumn13
+			// 
+			this.gridColumn13.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
+			this.gridColumn13.AppearanceHeader.Options.UseForeColor = true;
+			this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn13.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.gridColumn13.Caption = "신청구분";
+			this.gridColumn13.ColumnEdit = this.repositoryItemMemoEdit2;
+			this.gridColumn13.FieldName = "GUBN_NM";
+			this.gridColumn13.Name = "gridColumn13";
+			this.gridColumn13.OptionsColumn.AllowEdit = false;
+			this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn13.OptionsColumn.ReadOnly = true;
+			this.gridColumn13.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn13.Visible = true;
+			this.gridColumn13.VisibleIndex = 4;
+			this.gridColumn13.Width = 42;
+			// 
 			// gridColumn43
 			// 
 			this.gridColumn43.AppearanceHeader.Options.UseTextOptions = true;
@@ -804,7 +840,7 @@
 			this.gridColumn43.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "HOLI_DAYS", "{0:#,##0.###}")});
 			this.gridColumn43.Visible = true;
-			this.gridColumn43.VisibleIndex = 4;
+			this.gridColumn43.VisibleIndex = 5;
 			this.gridColumn43.Width = 42;
 			// 
 			// gridColumn44
@@ -822,7 +858,7 @@
 			this.gridColumn44.OptionsColumn.ReadOnly = true;
 			this.gridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn44.Visible = true;
-			this.gridColumn44.VisibleIndex = 5;
+			this.gridColumn44.VisibleIndex = 6;
 			this.gridColumn44.Width = 39;
 			// 
 			// gridColumn45
@@ -836,7 +872,7 @@
 			this.gridColumn45.OptionsColumn.ReadOnly = true;
 			this.gridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn45.Visible = true;
-			this.gridColumn45.VisibleIndex = 6;
+			this.gridColumn45.VisibleIndex = 7;
 			this.gridColumn45.Width = 186;
 			// 
 			// gridColumn59
@@ -850,7 +886,7 @@
 			this.gridColumn59.OptionsColumn.ReadOnly = true;
 			this.gridColumn59.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn59.Visible = true;
-			this.gridColumn59.VisibleIndex = 7;
+			this.gridColumn59.VisibleIndex = 8;
 			this.gridColumn59.Width = 280;
 			// 
 			// repositoryItemCheckEdit3
@@ -918,26 +954,34 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
+            this.gridColumn14,
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn12});
-			gridFormatRule3.ApplyToRow = true;
-			gridFormatRule3.Name = "Format1";
-			formatConditionRuleExpression3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			formatConditionRuleExpression3.Appearance.Options.UseBackColor = true;
-			formatConditionRuleExpression3.Expression = "[AP_TAG] == \'1\'";
-			gridFormatRule3.Rule = formatConditionRuleExpression3;
 			gridFormatRule4.ApplyToRow = true;
-			gridFormatRule4.Name = "Format0";
-			formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			gridFormatRule4.Name = "Format1";
+			formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			formatConditionRuleExpression4.Appearance.Options.UseBackColor = true;
-			formatConditionRuleExpression4.Expression = "[AP_TAG] == \'4\'";
+			formatConditionRuleExpression4.Expression = "[AP_TAG] == \'1\'";
 			gridFormatRule4.Rule = formatConditionRuleExpression4;
-			this.grdv_del.FormatRules.Add(gridFormatRule3);
+			gridFormatRule5.ApplyToRow = true;
+			gridFormatRule5.Name = "Format0";
+			formatConditionRuleExpression5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			formatConditionRuleExpression5.Appearance.Options.UseBackColor = true;
+			formatConditionRuleExpression5.Expression = "[AP_TAG] == \'4\'";
+			gridFormatRule5.Rule = formatConditionRuleExpression5;
+			gridFormatRule6.ApplyToRow = true;
+			gridFormatRule6.Name = "Format2";
+			formatConditionRuleExpression6.Appearance.ForeColor = System.Drawing.Color.Red;
+			formatConditionRuleExpression6.Appearance.Options.UseForeColor = true;
+			formatConditionRuleExpression6.Expression = "[GUBN]=\'D\'";
+			gridFormatRule6.Rule = formatConditionRuleExpression6;
 			this.grdv_del.FormatRules.Add(gridFormatRule4);
+			this.grdv_del.FormatRules.Add(gridFormatRule5);
+			this.grdv_del.FormatRules.Add(gridFormatRule6);
 			this.grdv_del.GridControl = this.grd_del;
 			this.grdv_del.IndicatorWidth = 40;
 			this.grdv_del.Name = "grdv_del";
@@ -1006,6 +1050,25 @@
 			this.gridColumn4.VisibleIndex = 3;
 			this.gridColumn4.Width = 129;
 			// 
+			// gridColumn14
+			// 
+			this.gridColumn14.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
+			this.gridColumn14.AppearanceHeader.Options.UseForeColor = true;
+			this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn14.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.gridColumn14.Caption = "신청구분";
+			this.gridColumn14.ColumnEdit = this.repositoryItemMemoEdit4;
+			this.gridColumn14.FieldName = "GUBN_NM";
+			this.gridColumn14.Name = "gridColumn14";
+			this.gridColumn14.OptionsColumn.AllowEdit = false;
+			this.gridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn14.OptionsColumn.ReadOnly = true;
+			this.gridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn14.Visible = true;
+			this.gridColumn14.VisibleIndex = 4;
+			this.gridColumn14.Width = 43;
+			// 
 			// gridColumn5
 			// 
 			this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
@@ -1023,7 +1086,7 @@
 			this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "HOLI_DAYS", "{0:#,##0.###}")});
 			this.gridColumn5.Visible = true;
-			this.gridColumn5.VisibleIndex = 4;
+			this.gridColumn5.VisibleIndex = 5;
 			this.gridColumn5.Width = 42;
 			// 
 			// gridColumn6
@@ -1035,7 +1098,7 @@
 			this.gridColumn6.FieldName = "AP_TAG_NM";
 			this.gridColumn6.Name = "gridColumn6";
 			this.gridColumn6.Visible = true;
-			this.gridColumn6.VisibleIndex = 5;
+			this.gridColumn6.VisibleIndex = 6;
 			this.gridColumn6.Width = 40;
 			// 
 			// gridColumn9
@@ -1049,7 +1112,7 @@
 			this.gridColumn9.OptionsColumn.ReadOnly = true;
 			this.gridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn9.Visible = true;
-			this.gridColumn9.VisibleIndex = 6;
+			this.gridColumn9.VisibleIndex = 7;
 			this.gridColumn9.Width = 184;
 			// 
 			// repositoryItemMemoEdit4
@@ -1070,7 +1133,7 @@
 			this.gridColumn10.OptionsColumn.ReadOnly = true;
 			this.gridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn10.Visible = true;
-			this.gridColumn10.VisibleIndex = 7;
+			this.gridColumn10.VisibleIndex = 8;
 			this.gridColumn10.Width = 277;
 			// 
 			// gridColumn11
@@ -1085,7 +1148,7 @@
 			this.gridColumn11.OptionsColumn.ReadOnly = true;
 			this.gridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn11.Visible = true;
-			this.gridColumn11.VisibleIndex = 8;
+			this.gridColumn11.VisibleIndex = 9;
 			this.gridColumn11.Width = 86;
 			// 
 			// gridColumn12
@@ -1099,7 +1162,7 @@
 			this.gridColumn12.OptionsColumn.ReadOnly = true;
 			this.gridColumn12.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn12.Visible = true;
-			this.gridColumn12.VisibleIndex = 9;
+			this.gridColumn12.VisibleIndex = 10;
 			this.gridColumn12.Width = 80;
 			// 
 			// repositoryItemCheckEdit1
@@ -1158,6 +1221,8 @@
 			// 
 			// srPanel2
 			// 
+			this.srPanel2.Controls.Add(this.srLabel13);
+			this.srPanel2.Controls.Add(this.cmb_gubn);
 			this.srPanel2.Controls.Add(this.chk_fix);
 			this.srPanel2.Controls.Add(this.sl_line3);
 			this.srPanel2.Controls.Add(this.sl_line2);
@@ -1184,6 +1249,63 @@
 			this.srPanel2.Name = "srPanel2";
 			this.srPanel2.Size = new System.Drawing.Size(1087, 181);
 			this.srPanel2.TabIndex = 0;
+			// 
+			// srLabel13
+			// 
+			this.srLabel13.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel13.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel13.ForeColor = System.Drawing.Color.Black;
+			this.srLabel13.Location = new System.Drawing.Point(317, 38);
+			this.srLabel13.Name = "srLabel13";
+			this.srLabel13.Size = new System.Drawing.Size(65, 23);
+			this.srLabel13.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel13.TabIndex = 544;
+			this.srLabel13.Text = "신청구분";
+			this.srLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// cmb_gubn
+			// 
+			this.cmb_gubn.EditValue = "결재신청";
+			this.cmb_gubn.Enabled = false;
+			this.cmb_gubn.EnterMoveNextControl = true;
+			this.cmb_gubn.Location = new System.Drawing.Point(382, 38);
+			this.cmb_gubn.Name = "cmb_gubn";
+			this.cmb_gubn.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.cmb_gubn.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.cmb_gubn.Properties.Appearance.Options.UseBackColor = true;
+			this.cmb_gubn.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn.Properties.Appearance.Options.UseForeColor = true;
+			this.cmb_gubn.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.cmb_gubn.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+			this.cmb_gubn.Properties.AppearanceDisabled.Options.UseBackColor = true;
+			this.cmb_gubn.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.cmb_gubn.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_gubn.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.cmb_gubn.Properties.AutoHeight = false;
+			this.cmb_gubn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_gubn.Properties.DropDownRows = 10;
+			this.cmb_gubn.Properties.Items.AddRange(new object[] {
+            "결재신청",
+            "취소신청"});
+			this.cmb_gubn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn.Size = new System.Drawing.Size(76, 23);
+			this.cmb_gubn.TabIndex = 543;
+			// 
+			// chk_fix
+			// 
+			this.chk_fix.Location = new System.Drawing.Point(317, 65);
+			this.chk_fix.MenuManager = this.barManager1;
+			this.chk_fix.Name = "chk_fix";
+			this.chk_fix.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.chk_fix.Properties.Appearance.Options.UseFont = true;
+			this.chk_fix.Properties.Caption = "고정연차";
+			this.chk_fix.Size = new System.Drawing.Size(76, 19);
+			this.chk_fix.TabIndex = 542;
 			// 
 			// sl_line3
 			// 
@@ -1808,7 +1930,7 @@
 			this.srLabel8.Size = new System.Drawing.Size(92, 22);
 			this.srLabel8.SRBulletColor = System.Drawing.Color.Empty;
 			this.srLabel8.TabIndex = 3;
-			this.srLabel8.Text = "취소";
+			this.srLabel8.Text = "반려";
 			this.srLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// srLabel4
@@ -1822,7 +1944,7 @@
 			this.srLabel4.Size = new System.Drawing.Size(92, 22);
 			this.srLabel4.SRBulletColor = System.Drawing.Color.Empty;
 			this.srLabel4.TabIndex = 2;
-			this.srLabel4.Text = "승인";
+			this.srLabel4.Text = "승인/완료";
 			this.srLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// srLabel3
@@ -1838,17 +1960,6 @@
 			this.srLabel3.TabIndex = 1;
 			this.srLabel3.Text = "신청";
 			this.srLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// chk_fix
-			// 
-			this.chk_fix.Location = new System.Drawing.Point(317, 65);
-			this.chk_fix.MenuManager = this.barManager1;
-			this.chk_fix.Name = "chk_fix";
-			this.chk_fix.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.chk_fix.Properties.Appearance.Options.UseFont = true;
-			this.chk_fix.Properties.Caption = "고정연차";
-			this.chk_fix.Size = new System.Drawing.Size(76, 19);
-			this.chk_fix.TabIndex = 542;
 			// 
 			// duty8050
 			// 
@@ -1908,6 +2019,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.srPanel2)).EndInit();
 			this.srPanel2.ResumeLayout(false);
 			this.srPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.chk_fix.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_line3.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_line2.Properties)).EndInit();
@@ -1927,7 +2040,6 @@
 			this.xtraTabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).EndInit();
 			this.srPanel4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.chk_fix.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2045,6 +2157,10 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
 		private DevExpress.XtraEditors.CheckEdit chk_fix;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+		private SilkRoad.UserControls.SRLabel srLabel13;
+		private SilkRoad.UserControls.SRCombo cmb_gubn;
 	}
 }
 

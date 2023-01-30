@@ -86,11 +86,14 @@ namespace SilkRoad.SILKDT01
 				SilkRoad.Config.SRConfig.WorkPlaceNo = "01";
 				SilkRoad.DAL.DataAccess.DBname = "DT01DB01";
 				SilkRoad.DAL.DataAccess.DBhost = "125.136.91.159,9245";
+                SilkRoad.DAL.DataAccess.DBusid = "sa";       // ID
 				SilkRoad.DAL.DataAccess.DBuspw = "Samil1234";
 				SilkRoad.Config.SRConfig.USID = "SAMIL";
-				//Config.SRConfig.USID = "10003"; //"10003"; //"56000"; //"10003"; //"56000"; //"52017"; 52027
-				//"kshosp9393"; // kshosp88 정우현 // ks9240@ 박영미 // 51032 김소영 // 21323 최경숙-중간
-#endif      
+				//Config.SRConfig.USID = "21273"; //한지영
+				//Config.SRConfig.USID = "21157"; //김정은
+				//Config.SRConfig.USID = "10003"; //박종철
+				//Config.SRConfig.USID = "52017"; //조수진
+#endif
 			}
 
 			string qry = " SELECT * FROM SYSLINES ";

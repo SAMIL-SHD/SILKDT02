@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty3012));
-			DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-			DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-			DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-			DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
 			this.col_remk = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.btn_exit = new SilkRoad.UserControls.SRButton();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
@@ -80,6 +80,8 @@
 			this.chk_line = new DevExpress.XtraEditors.CheckEdit();
 			this.lb_line = new SilkRoad.UserControls.SRLabel();
 			this.srLabel12 = new SilkRoad.UserControls.SRLabel();
+			this.dat_jsmm = new SilkRoad.UserControls.SRDate();
+			this.srLabel6 = new SilkRoad.UserControls.SRLabel();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -102,6 +104,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.sl_line1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.chk_line.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// col_remk
@@ -279,7 +283,7 @@
 			// grd1
 			// 
 			this.grd1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.grd1.Location = new System.Drawing.Point(2, 124);
+			this.grd1.Location = new System.Drawing.Point(2, 121);
 			this.grd1.MainView = this.grdv1;
 			this.grd1.Name = "grd1";
 			this.grd1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -287,7 +291,7 @@
             this.repositoryItemTextEdit2,
             this.repositoryItemTextEdit3,
             this.repositoryItemCheckEdit1});
-			this.grd1.Size = new System.Drawing.Size(617, 515);
+			this.grd1.Size = new System.Drawing.Size(617, 518);
 			this.grd1.TabIndex = 2;
 			this.grd1.TabStop = false;
 			this.grd1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -317,22 +321,22 @@
             this.col_remk,
             this.gridColumn3,
             this.col_chk});
-			gridFormatRule1.Column = this.col_remk;
-			gridFormatRule1.Name = "Format0";
-			formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.Red;
-			formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-			formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-			formatConditionRuleValue1.Expression = "[DDNAME] = \'일\'";
-			gridFormatRule1.Rule = formatConditionRuleValue1;
-			gridFormatRule2.Column = this.col_remk;
-			gridFormatRule2.Name = "Format1";
-			formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.Blue;
-			formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
-			formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-			formatConditionRuleValue2.Expression = "[DDNAME] = \'토\'";
-			gridFormatRule2.Rule = formatConditionRuleValue2;
-			this.grdv1.FormatRules.Add(gridFormatRule1);
-			this.grdv1.FormatRules.Add(gridFormatRule2);
+			gridFormatRule3.Column = this.col_remk;
+			gridFormatRule3.Name = "Format0";
+			formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.Red;
+			formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
+			formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+			formatConditionRuleValue3.Expression = "[DDNAME] = \'일\'";
+			gridFormatRule3.Rule = formatConditionRuleValue3;
+			gridFormatRule4.Column = this.col_remk;
+			gridFormatRule4.Name = "Format1";
+			formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.Blue;
+			formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
+			formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+			formatConditionRuleValue4.Expression = "[DDNAME] = \'토\'";
+			gridFormatRule4.Rule = formatConditionRuleValue4;
+			this.grdv1.FormatRules.Add(gridFormatRule3);
+			this.grdv1.FormatRules.Add(gridFormatRule4);
 			this.grdv1.GridControl = this.grd1;
 			this.grdv1.Name = "grdv1";
 			this.grdv1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -508,6 +512,8 @@
 			// 
 			// srPanel2
 			// 
+			this.srPanel2.Controls.Add(this.dat_jsmm);
+			this.srPanel2.Controls.Add(this.srLabel6);
 			this.srPanel2.Controls.Add(this.sl_embs);
 			this.srPanel2.Controls.Add(this.srLabel7);
 			this.srPanel2.Controls.Add(this.sl_line2);
@@ -518,14 +524,14 @@
 			this.srPanel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.srPanel2.Location = new System.Drawing.Point(2, 27);
 			this.srPanel2.Name = "srPanel2";
-			this.srPanel2.Size = new System.Drawing.Size(617, 97);
+			this.srPanel2.Size = new System.Drawing.Size(617, 94);
 			this.srPanel2.TabIndex = 3;
 			// 
 			// sl_embs
 			// 
 			this.sl_embs.EditValue = "사원선택";
 			this.sl_embs.EnterMoveNextControl = true;
-			this.sl_embs.Location = new System.Drawing.Point(78, 11);
+			this.sl_embs.Location = new System.Drawing.Point(255, 11);
 			this.sl_embs.Name = "sl_embs";
 			this.sl_embs.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_embs.Properties.Appearance.Options.UseFont = true;
@@ -595,7 +601,7 @@
 			this.srLabel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.srLabel7.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.srLabel7.ForeColor = System.Drawing.Color.Black;
-			this.srLabel7.Location = new System.Drawing.Point(13, 11);
+			this.srLabel7.Location = new System.Drawing.Point(190, 11);
 			this.srLabel7.Name = "srLabel7";
 			this.srLabel7.Size = new System.Drawing.Size(65, 23);
 			this.srLabel7.SRBulletColor = System.Drawing.Color.Empty;
@@ -607,7 +613,7 @@
 			// 
 			this.sl_line2.EditValue = "결재자선택";
 			this.sl_line2.EnterMoveNextControl = true;
-			this.sl_line2.Location = new System.Drawing.Point(78, 62);
+			this.sl_line2.Location = new System.Drawing.Point(255, 62);
 			this.sl_line2.Name = "sl_line2";
 			this.sl_line2.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_line2.Properties.Appearance.Options.UseFont = true;
@@ -674,7 +680,7 @@
 			// 
 			this.sl_line1.EditValue = "결재자1선택";
 			this.sl_line1.EnterMoveNextControl = true;
-			this.sl_line1.Location = new System.Drawing.Point(78, 37);
+			this.sl_line1.Location = new System.Drawing.Point(255, 37);
 			this.sl_line1.Name = "sl_line1";
 			this.sl_line1.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_line1.Properties.Appearance.Options.UseFont = true;
@@ -739,7 +745,7 @@
 			// 
 			// chk_line
 			// 
-			this.chk_line.Location = new System.Drawing.Point(204, 63);
+			this.chk_line.Location = new System.Drawing.Point(381, 63);
 			this.chk_line.Name = "chk_line";
 			this.chk_line.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.chk_line.Properties.Appearance.Options.UseFont = true;
@@ -754,7 +760,7 @@
 			this.lb_line.BackColor = System.Drawing.Color.Transparent;
 			this.lb_line.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
 			this.lb_line.ForeColor = System.Drawing.Color.Blue;
-			this.lb_line.Location = new System.Drawing.Point(201, 41);
+			this.lb_line.Location = new System.Drawing.Point(378, 41);
 			this.lb_line.Name = "lb_line";
 			this.lb_line.Size = new System.Drawing.Size(196, 15);
 			this.lb_line.TabIndex = 539;
@@ -766,13 +772,54 @@
 			this.srLabel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.srLabel12.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.srLabel12.ForeColor = System.Drawing.Color.Black;
-			this.srLabel12.Location = new System.Drawing.Point(13, 37);
+			this.srLabel12.Location = new System.Drawing.Point(190, 37);
 			this.srLabel12.Name = "srLabel12";
 			this.srLabel12.Size = new System.Drawing.Size(65, 23);
 			this.srLabel12.SRBulletColor = System.Drawing.Color.Empty;
 			this.srLabel12.TabIndex = 538;
 			this.srLabel12.Text = "결재라인";
 			this.srLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// dat_jsmm
+			// 
+			this.dat_jsmm.EditValue = "";
+			this.dat_jsmm.EnterMoveNextControl = true;
+			this.dat_jsmm.Location = new System.Drawing.Point(75, 11);
+			this.dat_jsmm.Name = "dat_jsmm";
+			this.dat_jsmm.Properties.AllowMouseWheel = false;
+			this.dat_jsmm.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+			this.dat_jsmm.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.dat_jsmm.Properties.Appearance.Options.UseFont = true;
+			this.dat_jsmm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_jsmm.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dat_jsmm.Properties.DisplayFormat.FormatString = "y";
+			this.dat_jsmm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_jsmm.Properties.EditFormat.FormatString = "y";
+			this.dat_jsmm.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_jsmm.Properties.Mask.EditMask = "y";
+			this.dat_jsmm.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.dat_jsmm.Properties.NullDate = new System.DateTime(((long)(0)));
+			this.dat_jsmm.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dat_jsmm.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+			this.dat_jsmm.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView)));
+			this.dat_jsmm.Size = new System.Drawing.Size(112, 22);
+			this.dat_jsmm.TabIndex = 548;
+			// 
+			// srLabel6
+			// 
+			this.srLabel6.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel6.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel6.ForeColor = System.Drawing.Color.Black;
+			this.srLabel6.Location = new System.Drawing.Point(10, 11);
+			this.srLabel6.Name = "srLabel6";
+			this.srLabel6.Size = new System.Drawing.Size(65, 22);
+			this.srLabel6.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel6.TabIndex = 547;
+			this.srLabel6.Text = "정산년월";
+			this.srLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// duty3012
 			// 
@@ -809,6 +856,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.sl_line1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.chk_line.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -862,6 +911,8 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
 		private SilkRoad.UserControls.SRButton btn_search;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+		private SilkRoad.UserControls.SRDate dat_jsmm;
+		private SilkRoad.UserControls.SRLabel srLabel6;
 	}
 }
 

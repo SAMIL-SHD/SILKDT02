@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using SilkRoad.Common;
-
+using DevExpress.XtraScheduler;
 
 namespace DUTY1000
 {
@@ -21,23 +21,14 @@ namespace DUTY1000
         }
 
         #region 0. Initialization
-
-        /// <summary>
-        ///컨트롤 초기화 및 활성,비활성 설정
-        /// </summary>
-        /// <param name="enable"></param>
-        private void SetCancel()
-        {
-			grd1.DataSource = null;
-            SetButtonEnable("100");
-        }
-
+		
         #endregion
 
         #region 1 Form
 
-        private void duty3011_Load(object sender, EventArgs e)
+        private void duty5064_Load(object sender, EventArgs e)
         {
+			dat_yymm.DateTime = DateTime.Now;
 			Proc();
         }
 
@@ -53,91 +44,64 @@ namespace DUTY1000
 
         private void Proc()
         {
-			df.GetSEARCH_NURSDEPTDatas(ds);
-			grd1.DataSource = ds.Tables["SEARCH_NURSDEPT"];
-            SetButtonEnable("011");
-        }
-
-        //저장버튼
-        private void btn_save_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-            int outVal = 0;
-            try
-            {
-				df.GetD_DUTY_INFONURSDatas(ds);  //삭제후
-				for (int i = 0; i < ds.Tables["D_DUTY_INFONURS"].Rows.Count; i++)
-				{
-					ds.Tables["D_DUTY_INFONURS"].Rows[i].Delete();
-				}
-
-				df.GetDUTY_INFONURSDatas(ds);  //등록
-				foreach (DataRow dr in ds.Tables["SEARCH_NURSDEPT"].Rows)
-                {
-					if (dr["CHK"].ToString() == "1")
-					{
-						DataRow nrow = ds.Tables["DUTY_INFONURS"].NewRow();
-						nrow["DEPTCODE"] = dr["DEPRCODE"];
-						nrow["INDT"] = gd.GetNow();
-						nrow["UPDT"] = "";
-						nrow["USID"] = SilkRoad.Config.SRConfig.USID;
-						nrow["PSTY"] = "A";
-						ds.Tables["DUTY_INFONURS"].Rows.Add(nrow);
-					}
-                }
-
-				string[] tableNames = new string[] { "D_DUTY_INFONURS", "DUTY_INFONURS" };
-				SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-				outVal = cmd.setUpdate(ref ds, tableNames, null);
-
+			df.GetS_5064_JREQ_LISTDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+			//grd_hg.DataSource = ds.Tables["SEARCH_JREQ_LIST"];
+			int start_index = 0;
+			switch (clib.WeekDay(clib.TextToDateFirst(clib.DateToText(dat_yymm.DateTime))))
+			{
+				case "일":
+				start_index = 0;
+				break;
+				case "월":
+				start_index = 1;
+				break;
+				case "화":
+				start_index = 2;
+				break;
+				case "수":
+				start_index = 3;
+				break;
+				case "목":
+				start_index = 4;
+				break;
+				case "금":
+				start_index = 5;
+				break;
+				case "토":
+				start_index = 6;
+				break;
 			}
-            catch (Exception ec)
-            {
-                MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                //SetCancel();
-                Cursor = Cursors.Default;
-				this.Dispose();
-            }
-        }
+			int row_count = start_index + clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2).ToString());
+			row_count = row_count / 7 + 1;
 
-        /// <summary>취소버튼</summary>
-        private void btn_clear_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("해당 내역을 취소하시겠습니까?", "취소", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            {
-                SetCancel();
-            }
+			schedulerControl1.Views.MonthView.WeekCount = row_count;
+			schedulerStorage1.Appointments.ResourceSharing = true;
+			schedulerControl1.GroupType = SchedulerGroupType.Resource;
+			schedulerControl1.Start = clib.TextToDateFirst(clib.DateToText(dat_yymm.DateTime));
+			schedulerStorage1.Appointments.DataSource = ds.Tables["S_5064_JREQ_LIST"];
+			
+			schedulerStorage1.Appointments.Mappings.Type = "TYPE";         //타입
+			schedulerStorage1.Appointments.Mappings.Start = "FR_DATE";     //시작날짜
+			schedulerStorage1.Appointments.Mappings.End = "TO_DATE";       //끝날짜
+			schedulerStorage1.Appointments.Mappings.AllDay = "ALLDAY";         //전일
+			schedulerStorage1.Appointments.Mappings.Subject = "G_FNM";     //주제
+			schedulerStorage1.Appointments.Mappings.Location = "SAWON_NM";     //장소
+			schedulerStorage1.Appointments.Mappings.Description = "REMARK";    //설명
+			schedulerStorage1.Appointments.Mappings.Status = "STATUS";         //상태
+			schedulerStorage1.Appointments.Mappings.Label = "LABEL";           //라벨
+			
+			//schedulerStorage1.Appointments.Mappings.Subject = "SAWON_NM";     //주제
+			//schedulerStorage1.Appointments.Mappings.Location = "REMARK";     //장소
         }
-
+		
         #endregion
 
         #region 3 EVENT
-
-        private void duty3011_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)   //취소
-            {
-                btn_clear.PerformClick();
-            }
-        }
+		
 
         #endregion
        
         #region 9 ETC
-
-        /// <summary>
-        /// 배열에따른 버튼상태설정
-        /// </summary>
-        /// <param name="mode"></param>
-        private void SetButtonEnable(string arr)
-        {
-            btn_proc.Enabled = arr.Substring(0, 1) == "1" ? true : false;
-            btn_save.Enabled = arr.Substring(1, 1) == "1" ? true : false;
-            btn_clear.Enabled = arr.Substring(2, 1) == "1" ? true : false;
-        }
 
         #endregion
     }

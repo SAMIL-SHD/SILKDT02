@@ -40,6 +40,9 @@
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
 			this.srPanel3 = new SilkRoad.UserControls.SRPanel();
+			this.cmb_yccj = new SilkRoad.UserControls.SRCombo();
+			this.dat_sldt = new DevExpress.XtraEditors.DateEdit();
+			this.srLabel19 = new SilkRoad.UserControls.SRLabel();
 			this.btn_email = new SilkRoad.UserControls.SRButton();
 			this.txt_cnt_chk = new SilkRoad.UserControls.SRTextEdit();
 			this.srLabel18 = new SilkRoad.UserControls.SRLabel();
@@ -114,11 +117,15 @@
 			this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.lb_power = new SilkRoad.UserControls.SRLabel();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
 			this.srPanel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_yccj.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_sldt.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_sldt.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txt_cnt_chk.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srSplitContainer1)).BeginInit();
 			this.srSplitContainer1.SuspendLayout();
@@ -176,7 +183,7 @@
 			this.btn_exit.Authority = false;
 			this.btn_exit.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_exit.Image = ((System.Drawing.Image)(resources.GetObject("btn_exit.Image")));
-			this.btn_exit.Location = new System.Drawing.Point(227, 9);
+			this.btn_exit.Location = new System.Drawing.Point(318, 9);
 			this.btn_exit.Name = "btn_exit";
 			this.btn_exit.Size = new System.Drawing.Size(84, 24);
 			this.btn_exit.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
@@ -218,17 +225,90 @@
 			this.srPanel3.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.srPanel3.Appearance.Options.UseBackColor = true;
 			this.srPanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.srPanel3.Controls.Add(this.cmb_yccj);
+			this.srPanel3.Controls.Add(this.dat_sldt);
+			this.srPanel3.Controls.Add(this.srLabel19);
 			this.srPanel3.Controls.Add(this.btn_email);
 			this.srPanel3.Controls.Add(this.txt_cnt_chk);
 			this.srPanel3.Controls.Add(this.srLabel18);
 			this.srPanel3.Controls.Add(this.btn_exit);
 			this.srPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-			this.srPanel3.Location = new System.Drawing.Point(922, 3);
+			this.srPanel3.Location = new System.Drawing.Point(831, 3);
 			this.srPanel3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
 			this.srPanel3.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.srPanel3.Name = "srPanel3";
-			this.srPanel3.Size = new System.Drawing.Size(319, 40);
+			this.srPanel3.Size = new System.Drawing.Size(410, 40);
 			this.srPanel3.TabIndex = 0;
+			// 
+			// cmb_yccj
+			// 
+			this.cmb_yccj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cmb_yccj.EditValue = "1차";
+			this.cmb_yccj.EnterMoveNextControl = true;
+			this.cmb_yccj.Location = new System.Drawing.Point(189, 10);
+			this.cmb_yccj.Name = "cmb_yccj";
+			this.cmb_yccj.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.cmb_yccj.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_yccj.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.cmb_yccj.Properties.Appearance.Options.UseBackColor = true;
+			this.cmb_yccj.Properties.Appearance.Options.UseFont = true;
+			this.cmb_yccj.Properties.Appearance.Options.UseForeColor = true;
+			this.cmb_yccj.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.cmb_yccj.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+			this.cmb_yccj.Properties.AppearanceDisabled.Options.UseBackColor = true;
+			this.cmb_yccj.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.cmb_yccj.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_yccj.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_yccj.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_yccj.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.cmb_yccj.Properties.AutoHeight = false;
+			this.cmb_yccj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_yccj.Properties.DropDownRows = 10;
+			this.cmb_yccj.Properties.Items.AddRange(new object[] {
+            "1차",
+            "2차"});
+			this.cmb_yccj.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_yccj.Size = new System.Drawing.Size(46, 23);
+			this.cmb_yccj.TabIndex = 529;
+			// 
+			// dat_sldt
+			// 
+			this.dat_sldt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.dat_sldt.EditValue = "GNMU_FR";
+			this.dat_sldt.EnterMoveNextControl = true;
+			this.dat_sldt.Location = new System.Drawing.Point(80, 10);
+			this.dat_sldt.Name = "dat_sldt";
+			this.dat_sldt.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.dat_sldt.Properties.Appearance.Options.UseFont = true;
+			this.dat_sldt.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+			this.dat_sldt.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.dat_sldt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_sldt.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_sldt.Properties.Mask.EditMask = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
+			this.dat_sldt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+			this.dat_sldt.Properties.Mask.SaveLiteral = false;
+			this.dat_sldt.Properties.Mask.ShowPlaceHolders = false;
+			this.dat_sldt.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.dat_sldt.Size = new System.Drawing.Size(107, 24);
+			this.dat_sldt.TabIndex = 527;
+			// 
+			// srLabel19
+			// 
+			this.srLabel19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.srLabel19.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel19.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel19.ForeColor = System.Drawing.Color.Black;
+			this.srLabel19.Location = new System.Drawing.Point(15, 10);
+			this.srLabel19.Name = "srLabel19";
+			this.srLabel19.Size = new System.Drawing.Size(65, 22);
+			this.srLabel19.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel19.TabIndex = 528;
+			this.srLabel19.Text = "기준일자";
+			this.srLabel19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// btn_email
 			// 
@@ -236,7 +316,7 @@
 			this.btn_email.Authority = false;
 			this.btn_email.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_email.Image = global::DUTY1000.Properties.Resources.email;
-			this.btn_email.Location = new System.Drawing.Point(145, 9);
+			this.btn_email.Location = new System.Drawing.Point(236, 9);
 			this.btn_email.Name = "btn_email";
 			this.btn_email.Size = new System.Drawing.Size(80, 24);
 			this.btn_email.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
@@ -245,7 +325,6 @@
 			this.btn_email.Text = "E-Mail";
 			this.btn_email.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btn_email.UseVisualStyleBackColor = true;
-			this.btn_email.Visible = false;
 			this.btn_email.Click += new System.EventHandler(this.btn_email_Click);
 			// 
 			// txt_cnt_chk
@@ -253,7 +332,7 @@
 			this.txt_cnt_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_cnt_chk.Enabled = false;
 			this.txt_cnt_chk.EnterMoveNextControl = false;
-			this.txt_cnt_chk.Location = new System.Drawing.Point(65, 10);
+			this.txt_cnt_chk.Location = new System.Drawing.Point(-64, 10);
 			this.txt_cnt_chk.Name = "txt_cnt_chk";
 			this.txt_cnt_chk.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.txt_cnt_chk.Properties.Appearance.Options.UseFont = true;
@@ -272,7 +351,7 @@
 			this.srLabel18.BackColor = System.Drawing.Color.Transparent;
 			this.srLabel18.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.srLabel18.ForeColor = System.Drawing.Color.Red;
-			this.srLabel18.Location = new System.Drawing.Point(8, 13);
+			this.srLabel18.Location = new System.Drawing.Point(-121, 13);
 			this.srLabel18.Name = "srLabel18";
 			this.srLabel18.Size = new System.Drawing.Size(55, 15);
 			this.srLabel18.TabIndex = 270;
@@ -284,14 +363,14 @@
 			this.btn_clear.Authority = false;
 			this.btn_clear.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_clear.Image = ((System.Drawing.Image)(resources.GetObject("btn_clear.Image")));
-			this.btn_clear.Location = new System.Drawing.Point(488, 9);
+			this.btn_clear.Location = new System.Drawing.Point(443, 9);
 			this.btn_clear.Name = "btn_clear";
-			this.btn_clear.Size = new System.Drawing.Size(80, 24);
+			this.btn_clear.Size = new System.Drawing.Size(60, 24);
 			this.btn_clear.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
 			this.btn_clear.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.취소;
-			this.btn_clear.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
+			this.btn_clear.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_60;
 			this.btn_clear.TabIndex = 4;
-			this.btn_clear.Text = "취  소";
+			this.btn_clear.Text = "취소";
 			this.btn_clear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btn_clear.UseVisualStyleBackColor = true;
 			this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
@@ -585,6 +664,7 @@
 			// 
 			// srPanel7
 			// 
+			this.srPanel7.Controls.Add(this.lb_power);
 			this.srPanel7.Controls.Add(this.srLabel17);
 			this.srPanel7.Controls.Add(this.btn_clear);
 			this.srPanel7.Controls.Add(this.dat_year);
@@ -604,7 +684,7 @@
 			this.srLabel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.srLabel17.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.srLabel17.ForeColor = System.Drawing.Color.Black;
-			this.srLabel17.Location = new System.Drawing.Point(187, 10);
+			this.srLabel17.Location = new System.Drawing.Point(184, 10);
 			this.srLabel17.Name = "srLabel17";
 			this.srLabel17.Size = new System.Drawing.Size(65, 22);
 			this.srLabel17.SRBulletColor = System.Drawing.Color.Empty;
@@ -654,7 +734,7 @@
 			// 
 			// sl_dept
 			// 
-			this.sl_dept.Location = new System.Drawing.Point(251, 10);
+			this.sl_dept.Location = new System.Drawing.Point(248, 10);
 			this.sl_dept.Name = "sl_dept";
 			this.sl_dept.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_dept.Properties.Appearance.Options.UseFont = true;
@@ -669,7 +749,7 @@
 			this.sl_dept.Properties.NullText = "전체조회.";
 			this.sl_dept.Properties.ValueMember = "CODE";
 			this.sl_dept.Properties.View = this.gridView5;
-			this.sl_dept.Size = new System.Drawing.Size(152, 22);
+			this.sl_dept.Size = new System.Drawing.Size(132, 22);
 			this.sl_dept.TabIndex = 442;
 			// 
 			// gridView5
@@ -711,14 +791,14 @@
 			this.btn_search.Authority = false;
 			this.btn_search.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_search.Image = ((System.Drawing.Image)(resources.GetObject("btn_search.Image")));
-			this.btn_search.Location = new System.Drawing.Point(407, 9);
+			this.btn_search.Location = new System.Drawing.Point(382, 9);
 			this.btn_search.Name = "btn_search";
-			this.btn_search.Size = new System.Drawing.Size(80, 24);
+			this.btn_search.Size = new System.Drawing.Size(60, 24);
 			this.btn_search.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
 			this.btn_search.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.조회;
-			this.btn_search.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
+			this.btn_search.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_60;
 			this.btn_search.TabIndex = 341;
-			this.btn_search.Text = "조  회";
+			this.btn_search.Text = "조회";
 			this.btn_search.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btn_search.UseVisualStyleBackColor = true;
 			this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
@@ -729,7 +809,7 @@
 			this.btn_exel.Authority = false;
 			this.btn_exel.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_exel.Image = ((System.Drawing.Image)(resources.GetObject("btn_exel.Image")));
-			this.btn_exel.Location = new System.Drawing.Point(604, 8);
+			this.btn_exel.Location = new System.Drawing.Point(604, 9);
 			this.btn_exel.Name = "btn_exel";
 			this.btn_exel.Size = new System.Drawing.Size(26, 24);
 			this.btn_exel.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
@@ -1370,6 +1450,18 @@
 			this.gridColumn8.Visible = true;
 			this.gridColumn8.VisibleIndex = 1;
 			// 
+			// lb_power
+			// 
+			this.lb_power.AutoSize = true;
+			this.lb_power.BackColor = System.Drawing.Color.Transparent;
+			this.lb_power.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.lb_power.ForeColor = System.Drawing.Color.Red;
+			this.lb_power.Location = new System.Drawing.Point(505, 13);
+			this.lb_power.Name = "lb_power";
+			this.lb_power.Size = new System.Drawing.Size(91, 15);
+			this.lb_power.TabIndex = 534;
+			this.lb_power.Text = "[부서조회 권한]";
+			// 
 			// duty8010
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1388,6 +1480,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).EndInit();
 			this.srPanel3.ResumeLayout(false);
 			this.srPanel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_yccj.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_sldt.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_sldt.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txt_cnt_chk.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.srSplitContainer1)).EndInit();
 			this.srSplitContainer1.ResumeLayout(false);
@@ -1403,6 +1498,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel7)).EndInit();
 			this.srPanel7.ResumeLayout(false);
+			this.srPanel7.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dat_year.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_year.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_dept.Properties)).EndInit();
@@ -1513,6 +1609,10 @@
 		private SilkRoad.UserControls.SRLabel srLabel18;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
+		private SilkRoad.UserControls.SRCombo cmb_yccj;
+		private DevExpress.XtraEditors.DateEdit dat_sldt;
+		private SilkRoad.UserControls.SRLabel srLabel19;
+		private SilkRoad.UserControls.SRLabel lb_power;
 	}
 }
 

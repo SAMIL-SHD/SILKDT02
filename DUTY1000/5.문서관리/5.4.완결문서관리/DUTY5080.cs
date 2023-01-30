@@ -123,66 +123,66 @@ namespace DUTY1000
         //연차승인
 		private void btn_ap_save_Click(object sender, EventArgs e)
 		{
-			if (isNoError_um(1))
-            {
-                Cursor = Cursors.WaitCursor;
-                int outVal = 0;
-                try
-                {
-					for (int i = 0; i < ds.Tables["5080_AP_YCHG_LIST"].Rows.Count; i++)
-					{
-						DataRow drow = ds.Tables["5080_AP_YCHG_LIST"].Rows[i];
-						if (drow["CHK"].ToString() == "1")
-						{
-							df.GetDUTY_TRSHREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
-							if (ds.Tables["DUTY_TRSHREQ"].Rows.Count > 0)
-							{
-								DataRow hrow = ds.Tables["DUTY_TRSHREQ"].Rows[0];
-								if (hrow["AP_TAG"].ToString() != "1")
-								{
-									hrow["AP_TAG"] = "4";
-									if (hrow["GW_DT2"].ToString().Trim() == "")
-									{
-										hrow["GW_DT2"] = gd.GetNow();
-										hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
-										if (hrow["GW_SABN3"].ToString().Trim() == "")
-											hrow["AP_TAG"] = "1";
-									}
-									else if (hrow["GW_DT3"].ToString().Trim() == "")
-									{
-										hrow["GW_DT3"] = gd.GetNow();
-										hrow["GW_CHKID3"] = SilkRoad.Config.SRConfig.USID;
-										if (hrow["GW_SABN4"].ToString().Trim() == "")
-											hrow["AP_TAG"] = "1";
-									}
-									else if (hrow["GW_DT4"].ToString().Trim() == "")
-									{
-										hrow["GW_DT4"] = gd.GetNow();
-										hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
-										hrow["AP_TAG"] = "1";
-									}
-									string[] tableNames = new string[] { "DUTY_TRSHREQ" };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-									outVal += cmd.setUpdate(ref ds, tableNames, null);
-								}
-							}
-						}
-					}
-                }
-                catch (Exception ec)
-                {
-                    MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    if (outVal > 0)
-                        MessageBox.Show(outVal + "건의 선택된 내역이 승인처리 되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					string type = cmb_type.SelectedIndex == 0 ? "%" : cmb_type.SelectedIndex.ToString();
-					df.Get5080_AP_YCHG_LISTDatas(type, SilkRoad.Config.SRConfig.USID, ds);
-					grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
-                    Cursor = Cursors.Default;
-                }
-            }
+			//if (isNoError_um(1))
+   //         {
+   //             Cursor = Cursors.WaitCursor;
+   //             int outVal = 0;
+   //             try
+   //             {
+			//		for (int i = 0; i < ds.Tables["5080_AP_YCHG_LIST"].Rows.Count; i++)
+			//		{
+			//			DataRow drow = ds.Tables["5080_AP_YCHG_LIST"].Rows[i];
+			//			if (drow["CHK"].ToString() == "1")
+			//			{
+			//				df.GetDUTY_TRSHREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+			//				if (ds.Tables["DUTY_TRSHREQ"].Rows.Count > 0)
+			//				{
+			//					DataRow hrow = ds.Tables["DUTY_TRSHREQ"].Rows[0];
+			//					if (hrow["AP_TAG"].ToString() != "1")
+			//					{
+			//						hrow["AP_TAG"] = "4";
+			//						if (hrow["GW_DT2"].ToString().Trim() == "")
+			//						{
+			//							hrow["GW_DT2"] = gd.GetNow();
+			//							hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
+			//							if (hrow["GW_SABN3"].ToString().Trim() == "")
+			//								hrow["AP_TAG"] = "1";
+			//						}
+			//						else if (hrow["GW_DT3"].ToString().Trim() == "")
+			//						{
+			//							hrow["GW_DT3"] = gd.GetNow();
+			//							hrow["GW_CHKID3"] = SilkRoad.Config.SRConfig.USID;
+			//							if (hrow["GW_SABN4"].ToString().Trim() == "")
+			//								hrow["AP_TAG"] = "1";
+			//						}
+			//						else if (hrow["GW_DT4"].ToString().Trim() == "")
+			//						{
+			//							hrow["GW_DT4"] = gd.GetNow();
+			//							hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
+			//							hrow["AP_TAG"] = "1";
+			//						}
+			//						string[] tableNames = new string[] { "DUTY_TRSHREQ" };
+			//						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+			//						outVal += cmd.setUpdate(ref ds, tableNames, null);
+			//					}
+			//				}
+			//			}
+			//		}
+   //             }
+   //             catch (Exception ec)
+   //             {
+   //                 MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+   //             }
+   //             finally
+   //             {
+   //                 if (outVal > 0)
+   //                     MessageBox.Show(outVal + "건의 선택된 내역이 승인처리 되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//		string type = cmb_type.SelectedIndex == 0 ? "%" : cmb_type.SelectedIndex.ToString();
+			//		df.Get5080_AP_YCHG_LISTDatas(type, SilkRoad.Config.SRConfig.USID, ds);
+			//		grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
+   //                 Cursor = Cursors.Default;
+   //             }
+   //         }
 		}
 		
         //연차,휴가 승인취소
@@ -200,7 +200,7 @@ namespace DUTY1000
 						if (drow["C_CHK"].ToString() == "1")
 						{
 							string tb_nm = drow["GUBN"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
-							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString() , drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SEQNO"].ToString(), ds);//drow["GUBN"].ToString() , drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
 								DataRow hrow = ds.Tables[tb_nm].Rows[0];
@@ -222,6 +222,7 @@ namespace DUTY1000
 										hrow["GW_DT2"] = "";
 										hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
 									}
+
 									string[] tableNames = new string[] { tb_nm };
 									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
 									outVal += cmd.setUpdate(ref ds, tableNames, null);
@@ -263,7 +264,7 @@ namespace DUTY1000
 
 		private void Page_Refresh()
 		{
-			if (srTabControl1.SelectedTabPageIndex == 0)
+			if (srTabControl1.SelectedTabPageIndex == 0) 
 			{
 				string type = cmb_type.SelectedIndex == 0 ? "%" : cmb_type.SelectedIndex.ToString();
 				df.Get5080_AP_YCHG_LISTDatas(type, SilkRoad.Config.SRConfig.USID, ds);
@@ -323,7 +324,7 @@ namespace DUTY1000
 				{
 					if (drow["C_CHK_STAT"].ToString() != "1")
 						e.Cancel = true;
-				}
+				}				
 			}
 		}
 		
@@ -341,7 +342,8 @@ namespace DUTY1000
 			int R_index = grdv_ap2.FocusedRowHandle;
 			
 			duty5062 duty5062 = new duty5062("2", _gubn, _doc_no);
-			duty5062.ShowDialog();
+			duty5062.Show();
+			//duty5062.ShowDialog();
 			
 			string type = cmb_type2.SelectedIndex == 0 ? "%" : cmb_type2.SelectedIndex.ToString();
 			df.Get5080_AP_YCHG_LIST2Datas(type, SilkRoad.Config.SRConfig.USID, ds);
@@ -364,7 +366,8 @@ namespace DUTY1000
 			int R_index = grdv_ap3.FocusedRowHandle;
 			
 			duty5062 duty5062 = new duty5062("2", _gubn, _doc_no);
-			duty5062.ShowDialog();
+			duty5062.Show();
+			//duty5062.ShowDialog();
 
 			string type = cmb_type3.SelectedIndex == 0 ? "%" : (cmb_type3.SelectedIndex + 2).ToString();
 			df.Get5080_AP_YCHG_LIST3Datas(type, SilkRoad.Config.SRConfig.USID, ds);
@@ -384,7 +387,8 @@ namespace DUTY1000
 			int R_index = grdv_ap4.FocusedRowHandle;
 			
 			duty5062 duty5062 = new duty5062("2", _gubn, _doc_no);
-			duty5062.ShowDialog();
+			duty5062.Show();
+			//duty5062.ShowDialog();
 
 			string type = cmb_type3.SelectedIndex == 0 ? "%" : (cmb_type3.SelectedIndex + 4).ToString();
 			df.Get5080_AP_YCHG_LIST4Datas(type, SilkRoad.Config.SRConfig.USID, ds);

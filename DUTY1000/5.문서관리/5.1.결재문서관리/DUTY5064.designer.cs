@@ -30,19 +30,21 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty5064));
-			DevExpress.XtraScheduler.Printing.DailyPrintStyle dailyPrintStyle1 = new DevExpress.XtraScheduler.Printing.DailyPrintStyle();
-			DevExpress.XtraScheduler.Printing.WeeklyPrintStyle weeklyPrintStyle1 = new DevExpress.XtraScheduler.Printing.WeeklyPrintStyle();
-			DevExpress.XtraScheduler.Printing.MonthlyPrintStyle monthlyPrintStyle1 = new DevExpress.XtraScheduler.Printing.MonthlyPrintStyle();
-			DevExpress.XtraScheduler.Printing.TriFoldPrintStyle triFoldPrintStyle1 = new DevExpress.XtraScheduler.Printing.TriFoldPrintStyle();
-			DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle calendarDetailsPrintStyle1 = new DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle();
-			DevExpress.XtraScheduler.Printing.MemoPrintStyle memoPrintStyle1 = new DevExpress.XtraScheduler.Printing.MemoPrintStyle();
-			DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
-			DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
-			DevExpress.XtraScheduler.TimeRuler timeRuler3 = new DevExpress.XtraScheduler.TimeRuler();
+			DevExpress.XtraScheduler.Printing.DailyPrintStyle dailyPrintStyle2 = new DevExpress.XtraScheduler.Printing.DailyPrintStyle();
+			DevExpress.XtraScheduler.Printing.WeeklyPrintStyle weeklyPrintStyle2 = new DevExpress.XtraScheduler.Printing.WeeklyPrintStyle();
+			DevExpress.XtraScheduler.Printing.MonthlyPrintStyle monthlyPrintStyle2 = new DevExpress.XtraScheduler.Printing.MonthlyPrintStyle();
+			DevExpress.XtraScheduler.Printing.TriFoldPrintStyle triFoldPrintStyle2 = new DevExpress.XtraScheduler.Printing.TriFoldPrintStyle();
+			DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle calendarDetailsPrintStyle2 = new DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle();
+			DevExpress.XtraScheduler.Printing.MemoPrintStyle memoPrintStyle2 = new DevExpress.XtraScheduler.Printing.MemoPrintStyle();
+			DevExpress.XtraScheduler.TimeRuler timeRuler4 = new DevExpress.XtraScheduler.TimeRuler();
+			DevExpress.XtraScheduler.TimeRuler timeRuler5 = new DevExpress.XtraScheduler.TimeRuler();
+			DevExpress.XtraScheduler.TimeRuler timeRuler6 = new DevExpress.XtraScheduler.TimeRuler();
 			this.btn_exit = new SilkRoad.UserControls.SRButton();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
 			this.srPanel3 = new SilkRoad.UserControls.SRPanel();
+			this.dat_yymm = new SilkRoad.UserControls.SRDate();
+			this.srLabel6 = new SilkRoad.UserControls.SRLabel();
 			this.btn_proc = new SilkRoad.UserControls.SRButton();
 			this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,23 +53,25 @@
 			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gr_detail = new SilkRoad.UserControls.SRGroupBox();
+			this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
+			this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
 			this.srPanel4 = new SilkRoad.UserControls.SRPanel();
 			this.srLabel9 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel8 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel4 = new SilkRoad.UserControls.SRLabel();
 			this.srLabel3 = new SilkRoad.UserControls.SRLabel();
-			this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
-			this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
 			this.srPanel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gr_detail)).BeginInit();
 			this.gr_detail.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
 			this.srPanel4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btn_exit
@@ -76,7 +80,7 @@
 			this.btn_exit.Authority = false;
 			this.btn_exit.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_exit.Image = ((System.Drawing.Image)(resources.GetObject("btn_exit.Image")));
-			this.btn_exit.Location = new System.Drawing.Point(75, 9);
+			this.btn_exit.Location = new System.Drawing.Point(268, 9);
 			this.btn_exit.Name = "btn_exit";
 			this.btn_exit.Size = new System.Drawing.Size(60, 24);
 			this.btn_exit.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
@@ -119,15 +123,61 @@
 			this.srPanel3.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.srPanel3.Appearance.Options.UseBackColor = true;
 			this.srPanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.srPanel3.Controls.Add(this.dat_yymm);
+			this.srPanel3.Controls.Add(this.srLabel6);
 			this.srPanel3.Controls.Add(this.btn_proc);
 			this.srPanel3.Controls.Add(this.btn_exit);
 			this.srPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-			this.srPanel3.Location = new System.Drawing.Point(1241, 3);
+			this.srPanel3.Location = new System.Drawing.Point(1048, 3);
 			this.srPanel3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
 			this.srPanel3.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.srPanel3.Name = "srPanel3";
-			this.srPanel3.Size = new System.Drawing.Size(142, 40);
+			this.srPanel3.Size = new System.Drawing.Size(335, 40);
 			this.srPanel3.TabIndex = 0;
+			// 
+			// dat_yymm
+			// 
+			this.dat_yymm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.dat_yymm.EditValue = "";
+			this.dat_yymm.EnterMoveNextControl = true;
+			this.dat_yymm.Location = new System.Drawing.Point(94, 10);
+			this.dat_yymm.Name = "dat_yymm";
+			this.dat_yymm.Properties.AllowMouseWheel = false;
+			this.dat_yymm.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+			this.dat_yymm.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.dat_yymm.Properties.Appearance.Options.UseFont = true;
+			this.dat_yymm.Properties.AutoHeight = false;
+			this.dat_yymm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_yymm.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dat_yymm.Properties.DisplayFormat.FormatString = "y";
+			this.dat_yymm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_yymm.Properties.EditFormat.FormatString = "y";
+			this.dat_yymm.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_yymm.Properties.Mask.EditMask = "y";
+			this.dat_yymm.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.dat_yymm.Properties.NullDate = new System.DateTime(((long)(0)));
+			this.dat_yymm.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dat_yymm.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+			this.dat_yymm.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView)));
+			this.dat_yymm.Size = new System.Drawing.Size(112, 23);
+			this.dat_yymm.TabIndex = 8;
+			// 
+			// srLabel6
+			// 
+			this.srLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.srLabel6.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel6.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel6.ForeColor = System.Drawing.Color.Black;
+			this.srLabel6.Location = new System.Drawing.Point(29, 10);
+			this.srLabel6.Name = "srLabel6";
+			this.srLabel6.Size = new System.Drawing.Size(65, 23);
+			this.srLabel6.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel6.TabIndex = 7;
+			this.srLabel6.Text = "조회년월";
+			this.srLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// btn_proc
 			// 
@@ -135,7 +185,7 @@
 			this.btn_proc.Authority = false;
 			this.btn_proc.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_proc.Image = ((System.Drawing.Image)(resources.GetObject("btn_proc.Image")));
-			this.btn_proc.Location = new System.Drawing.Point(14, 9);
+			this.btn_proc.Location = new System.Drawing.Point(207, 9);
 			this.btn_proc.Name = "btn_proc";
 			this.btn_proc.Size = new System.Drawing.Size(60, 24);
 			this.btn_proc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
@@ -204,78 +254,9 @@
 			this.gr_detail.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gr_detail.Location = new System.Drawing.Point(0, 46);
 			this.gr_detail.Name = "gr_detail";
-			this.gr_detail.Size = new System.Drawing.Size(1386, 668);
+			this.gr_detail.Size = new System.Drawing.Size(1386, 769);
 			this.gr_detail.TabIndex = 1;
 			this.gr_detail.Text = "연차및휴가내역";
-			// 
-			// srPanel4
-			// 
-			this.srPanel4.Controls.Add(this.srLabel9);
-			this.srPanel4.Controls.Add(this.srLabel8);
-			this.srPanel4.Controls.Add(this.srLabel4);
-			this.srPanel4.Controls.Add(this.srLabel3);
-			this.srPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.srPanel4.Location = new System.Drawing.Point(2, 22);
-			this.srPanel4.Name = "srPanel4";
-			this.srPanel4.Size = new System.Drawing.Size(1382, 43);
-			this.srPanel4.TabIndex = 5;
-			// 
-			// srLabel9
-			// 
-			this.srLabel9.BackColor = System.Drawing.Color.Aquamarine;
-			this.srLabel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.srLabel9.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srLabel9.ForeColor = System.Drawing.Color.Black;
-			this.srLabel9.Location = new System.Drawing.Point(305, 9);
-			this.srLabel9.Name = "srLabel9";
-			this.srLabel9.Size = new System.Drawing.Size(92, 22);
-			this.srLabel9.SRBulletColor = System.Drawing.Color.Empty;
-			this.srLabel9.TabIndex = 4;
-			this.srLabel9.Text = "관리자승인";
-			this.srLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.srLabel9.Visible = false;
-			// 
-			// srLabel8
-			// 
-			this.srLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.srLabel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.srLabel8.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srLabel8.ForeColor = System.Drawing.Color.Black;
-			this.srLabel8.Location = new System.Drawing.Point(207, 9);
-			this.srLabel8.Name = "srLabel8";
-			this.srLabel8.Size = new System.Drawing.Size(92, 22);
-			this.srLabel8.SRBulletColor = System.Drawing.Color.Empty;
-			this.srLabel8.TabIndex = 3;
-			this.srLabel8.Text = "취소";
-			this.srLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// srLabel4
-			// 
-			this.srLabel4.BackColor = System.Drawing.Color.LightSkyBlue;
-			this.srLabel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.srLabel4.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srLabel4.ForeColor = System.Drawing.Color.Black;
-			this.srLabel4.Location = new System.Drawing.Point(109, 9);
-			this.srLabel4.Name = "srLabel4";
-			this.srLabel4.Size = new System.Drawing.Size(92, 22);
-			this.srLabel4.SRBulletColor = System.Drawing.Color.Empty;
-			this.srLabel4.TabIndex = 2;
-			this.srLabel4.Text = "승인";
-			this.srLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// srLabel3
-			// 
-			this.srLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.srLabel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.srLabel3.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srLabel3.ForeColor = System.Drawing.Color.Black;
-			this.srLabel3.Location = new System.Drawing.Point(11, 9);
-			this.srLabel3.Name = "srLabel3";
-			this.srLabel3.Size = new System.Drawing.Size(92, 22);
-			this.srLabel3.SRBulletColor = System.Drawing.Color.Empty;
-			this.srLabel3.TabIndex = 1;
-			this.srLabel3.Text = "신청";
-			this.srLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// schedulerControl1
 			// 
@@ -323,56 +304,127 @@
 			this.schedulerControl1.OptionsRangeControl.AllowChangeActiveView = false;
 			this.schedulerControl1.OptionsRangeControl.AutoAdjustMode = false;
 			this.schedulerControl1.OptionsView.NavigationButtons.Visibility = DevExpress.XtraScheduler.NavigationButtonVisibility.Never;
-			monthlyPrintStyle1.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
-			monthlyPrintStyle1.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
-			calendarDetailsPrintStyle1.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
-			calendarDetailsPrintStyle1.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
-			memoPrintStyle1.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
-			memoPrintStyle1.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
-			this.schedulerControl1.PrintStyles.Add(dailyPrintStyle1);
-			this.schedulerControl1.PrintStyles.Add(weeklyPrintStyle1);
-			this.schedulerControl1.PrintStyles.Add(monthlyPrintStyle1);
-			this.schedulerControl1.PrintStyles.Add(triFoldPrintStyle1);
-			this.schedulerControl1.PrintStyles.Add(calendarDetailsPrintStyle1);
-			this.schedulerControl1.PrintStyles.Add(memoPrintStyle1);
+			monthlyPrintStyle2.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
+			monthlyPrintStyle2.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
+			calendarDetailsPrintStyle2.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
+			calendarDetailsPrintStyle2.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
+			memoPrintStyle2.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
+			memoPrintStyle2.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
+			this.schedulerControl1.PrintStyles.Add(dailyPrintStyle2);
+			this.schedulerControl1.PrintStyles.Add(weeklyPrintStyle2);
+			this.schedulerControl1.PrintStyles.Add(monthlyPrintStyle2);
+			this.schedulerControl1.PrintStyles.Add(triFoldPrintStyle2);
+			this.schedulerControl1.PrintStyles.Add(calendarDetailsPrintStyle2);
+			this.schedulerControl1.PrintStyles.Add(memoPrintStyle2);
 			this.schedulerControl1.ResourceNavigator.Visibility = DevExpress.XtraScheduler.ResourceNavigatorVisibility.Never;
-			this.schedulerControl1.Size = new System.Drawing.Size(1382, 601);
+			this.schedulerControl1.Size = new System.Drawing.Size(1382, 702);
 			this.schedulerControl1.Start = new System.DateTime(2021, 9, 26, 0, 0, 0, 0);
 			this.schedulerControl1.TabIndex = 6;
 			this.schedulerControl1.Text = "schedulerControl1";
 			this.schedulerControl1.Views.AgendaView.Enabled = false;
 			this.schedulerControl1.Views.DayView.Enabled = false;
-			this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler1);
-			this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler2);
+			this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler4);
+			this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler5);
 			this.schedulerControl1.Views.GanttView.Enabled = false;
 			this.schedulerControl1.Views.MonthView.ShowMoreButtons = false;
 			this.schedulerControl1.Views.TimelineView.Enabled = false;
 			this.schedulerControl1.Views.WeekView.Enabled = false;
 			this.schedulerControl1.Views.WorkWeekView.Enabled = false;
-			this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
+			this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler6);
+			// 
+			// srPanel4
+			// 
+			this.srPanel4.Controls.Add(this.srLabel9);
+			this.srPanel4.Controls.Add(this.srLabel8);
+			this.srPanel4.Controls.Add(this.srLabel4);
+			this.srPanel4.Controls.Add(this.srLabel3);
+			this.srPanel4.Dock = System.Windows.Forms.DockStyle.Top;
+			this.srPanel4.Location = new System.Drawing.Point(2, 22);
+			this.srPanel4.Name = "srPanel4";
+			this.srPanel4.Size = new System.Drawing.Size(1382, 43);
+			this.srPanel4.TabIndex = 5;
+			this.srPanel4.Visible = false;
+			// 
+			// srLabel9
+			// 
+			this.srLabel9.BackColor = System.Drawing.Color.Aquamarine;
+			this.srLabel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel9.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel9.ForeColor = System.Drawing.Color.Black;
+			this.srLabel9.Location = new System.Drawing.Point(305, 9);
+			this.srLabel9.Name = "srLabel9";
+			this.srLabel9.Size = new System.Drawing.Size(92, 22);
+			this.srLabel9.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel9.TabIndex = 4;
+			this.srLabel9.Text = "관리자승인";
+			this.srLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.srLabel9.Visible = false;
+			// 
+			// srLabel8
+			// 
+			this.srLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.srLabel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel8.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel8.ForeColor = System.Drawing.Color.Black;
+			this.srLabel8.Location = new System.Drawing.Point(207, 9);
+			this.srLabel8.Name = "srLabel8";
+			this.srLabel8.Size = new System.Drawing.Size(92, 22);
+			this.srLabel8.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel8.TabIndex = 3;
+			this.srLabel8.Text = "반려";
+			this.srLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// srLabel4
+			// 
+			this.srLabel4.BackColor = System.Drawing.Color.LightSkyBlue;
+			this.srLabel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel4.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel4.ForeColor = System.Drawing.Color.Black;
+			this.srLabel4.Location = new System.Drawing.Point(109, 9);
+			this.srLabel4.Name = "srLabel4";
+			this.srLabel4.Size = new System.Drawing.Size(92, 22);
+			this.srLabel4.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel4.TabIndex = 2;
+			this.srLabel4.Text = "승인/완료";
+			this.srLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// srLabel3
+			// 
+			this.srLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.srLabel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel3.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel3.ForeColor = System.Drawing.Color.Black;
+			this.srLabel3.Location = new System.Drawing.Point(11, 9);
+			this.srLabel3.Name = "srLabel3";
+			this.srLabel3.Size = new System.Drawing.Size(92, 22);
+			this.srLabel3.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel3.TabIndex = 1;
+			this.srLabel3.Text = "신청";
+			this.srLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// duty5064
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1386, 714);
+			this.ClientSize = new System.Drawing.Size(1386, 815);
 			this.Controls.Add(this.gr_detail);
 			this.Controls.Add(this.srPanel1);
 			this.Name = "duty5064";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "duty3011";
-			this.Load += new System.EventHandler(this.duty3011_Load);
-			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty3011_KeyDown);
+			this.Text = "duty5064";
+			this.Load += new System.EventHandler(this.duty5064_Load);
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
 			this.srPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).EndInit();
 			this.srPanel3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gr_detail)).EndInit();
 			this.gr_detail.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).EndInit();
 			this.srPanel4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -396,8 +448,10 @@
 		private SilkRoad.UserControls.SRLabel srLabel8;
 		private SilkRoad.UserControls.SRLabel srLabel4;
 		private SilkRoad.UserControls.SRLabel srLabel3;
-		protected DevExpress.XtraScheduler.SchedulerStorage schedulerStorage1;
 		private DevExpress.XtraScheduler.SchedulerControl schedulerControl1;
+		private SilkRoad.UserControls.SRDate dat_yymm;
+		private SilkRoad.UserControls.SRLabel srLabel6;
+		private DevExpress.XtraScheduler.SchedulerStorage schedulerStorage1;
 	}
 }
 

@@ -18,7 +18,9 @@ namespace DUTY1000
         public DataSet ds = new DataSet();
         DataProcFunc df = new DataProcFunc();
         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
-        string _Flag = "";
+        string _SABN = "";
+		private int admin_lv = 0;
+        private string p_dpcd = "";
 
         public duty8020()
         {
@@ -37,6 +39,7 @@ namespace DUTY1000
 			//cec.SetClearControls(srPanel7, new string[] { "" });
 			grd_yc.DataSource = null;
 			grd.DataSource = null;
+			_SABN = "";
 
             txt_change.Enabled = false;
             SetButtonEnable("001");
@@ -53,10 +56,50 @@ namespace DUTY1000
             SetCancel();
 			dat_sldt.DateTime = DateTime.Now;
 			lb_yccj.Text = "";
-
-			btn_search.PerformClick();
         }
 
+		private void duty8020_Shown(object sender, EventArgs e)
+		{
+			df.GetMSTUSER_CHKDatas(ds);  //부서관리여부
+			if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
+				admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
+			
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 2)
+			{
+				admin_lv = 3;
+                p_dpcd = "%";
+                lb_power.Text = "전체관리 권한";
+			}
+            else if (admin_lv == 1)
+            {
+                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
+                lb_power.Text = "부서관리 권한";
+			}
+            else if (admin_lv == 2)
+            {
+                p_dpcd = "%";
+                lb_power.Text = "부서장관리 권한";
+				df.GetCHK_DEPTDatas(SilkRoad.Config.SRConfig.USID, "%", ds);
+				string lb_nm = "";
+				for (int i = 0; i < ds.Tables["CHK_DEPT"].Rows.Count; i++)
+				{
+					if (i == 0)
+						lb_nm = "(" + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
+					else if (i == ds.Tables["CHK_DEPT"].Rows.Count - 1)
+						lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString() + ")";
+					else
+						lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
+				}
+
+				lb_power.Text += lb_nm;
+			}
+            else
+            {
+                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
+                lb_power.Text = "관리권한 없음";
+            }
+			btn_search.PerformClick();
+		}
         #endregion
 
         #region 2 Button
@@ -73,12 +116,17 @@ namespace DUTY1000
 				try
 				{
 					string c_nm = cmb_yccj.SelectedIndex == 0 ? "CHK1" : "CHK2";
+					string doc_type = cmb_yccj.SelectedIndex == 0 ? "202101" : "202102";
 
 					DataTable table = ds.Tables["SEARCH_YC"].Clone();
 					for (int i = 0; i < grdv1.RowCount; i++)
 					{
 						if (grdv1.GetDataRow(i)[c_nm].ToString() == "1")
-							table.ImportRow(grdv1.GetDataRow(i));
+						{							
+							df.GetCHK_MSTYCCJDatas(grdv1.GetDataRow(i)["YC_YEAR"].ToString(), grdv1.GetDataRow(i)["SAWON_NO"].ToString(), doc_type, ds);
+							if (ds.Tables["CHK_MSTYCCJ"].Rows.Count == 0)  //전송내역 있으면 제외 23.01.17 박상균 요청.
+								table.ImportRow(grdv1.GetDataRow(i));
+						}
 					}
 					dp.AddDatatable2Dataset("COPY_SEARCH_YC", table, ref ds);
 
@@ -93,9 +141,8 @@ namespace DUTY1000
 				}
 				finally
 				{
+					proc();
 					string sldt = clib.DateToText(dat_sldt.DateTime);
-					df.GetSEARCH_YCDatas(sldt, ds);
-					grd1.DataSource = ds.Tables["SEARCH_YC"];
 					string yc1 = ds.Tables["SEARCH_YC"].Compute("COUNT(SAWON_NO)", "CHK1=1").ToString();
 					string yc2 = ds.Tables["SEARCH_YC"].Compute("COUNT(SAWON_NO)", "CHK2=1").ToString();
 					lb_yccj.Text = "[" + sldt.Substring(0, 4) + "." + sldt.Substring(4, 2) + "." + sldt.Substring(6, 2) + " 기준 1차촉진대상 " + yc1 + "명, 2차촉진대상 " + yc2 + "명]";
@@ -108,15 +155,18 @@ namespace DUTY1000
         {
 			if (isNoError_um(1))
 			{
-				string sldt = clib.DateToText(dat_sldt.DateTime);
-				df.GetSEARCH_YCDatas(sldt, ds);
-				grd1.DataSource = ds.Tables["SEARCH_YC"];
+				proc();
 				//string.Format("{0:#,##0.##}", Convert.ToDecimal(drow["YC_TOTAL"].ToString()))
 				string yc1 = string.Format("{0:#,##0.##}", Convert.ToDecimal(ds.Tables["SEARCH_YC"].Compute("COUNT(SAWON_NO)", "CHK1=1").ToString()));
 				string yc2 = string.Format("{0:#,##0.##}", Convert.ToDecimal(ds.Tables["SEARCH_YC"].Compute("COUNT(SAWON_NO)", "CHK2=1").ToString()));
-				lb_yccj.Text = "[" + sldt.Substring(0, 4) + "." + sldt.Substring(4, 2) + "." + sldt.Substring(6, 2) + " 기준 1차촉진대상 " + yc1 + "명, 2차촉진대상 " + yc2 + "명]";
+				lb_yccj.Text = "[" + clib.DateToText(dat_sldt.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_sldt.DateTime).Substring(4, 2) + "." + clib.DateToText(dat_sldt.DateTime).Substring(6, 2) + " 기준 1차촉진대상 " + yc1 + "명, 2차촉진대상 " + yc2 + "명]";
 			}
         }
+		private void proc()
+		{
+			df.GetSEARCH_YCDatas(admin_lv, p_dpcd,  clib.DateToText(dat_sldt.DateTime), ds);
+			grd1.DataSource = ds.Tables["SEARCH_YC"];
+		}
 		//연차산정
 		private void btn_yc_Click(object sender, EventArgs e)
 		{
@@ -128,8 +178,7 @@ namespace DUTY1000
 
 				if (ds.Tables["SEARCH_YC"] != null)
 				{
-					df.GetSEARCH_YCDatas(sldt, ds);
-					grd1.DataSource = ds.Tables["SEARCH_YC"];
+					proc();
 				}
 				Cursor = Cursors.Default;
 				
@@ -166,9 +215,10 @@ namespace DUTY1000
             }
             finally
             {
-				df.GetSEARCH_YCDatas(clib.DateToText(dat_sldt.DateTime), ds);
-				grd1.DataSource = ds.Tables["SEARCH_YC"];
+				proc();
                 SetCancel();
+
+				grdv1.FocusedRowHandle = _SABN == "" ? 0 : grdv1.LocateByValue("SAWON_NO", _SABN, null);
                 Cursor = Cursors.Default;
             }
         }
@@ -197,8 +247,7 @@ namespace DUTY1000
 				}
 				finally
 				{
-					df.GetSEARCH_YCDatas(clib.DateToText(dat_sldt.DateTime), ds);
-					grd1.DataSource = ds.Tables["SEARCH_YC"];
+					proc();
 					SetCancel();
 					Cursor = Cursors.Default;
 				}
@@ -238,11 +287,17 @@ namespace DUTY1000
                 btn_clear.PerformClick();            
         }
 		
+		//조정연차 입력시 잔여연차 재계산
+		private void txt_change_EditValueChanged(object sender, EventArgs e)
+		{
+			txt_rcnt.Text = (clib.TextToDecimal(txt_base.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) + clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_add.Text.ToString())).ToString();
+		}
 		//그리드 더블클릭시 코드 조회
 		private void grdv1_DoubleClick(object sender, EventArgs e)
 		{
 			dat_year.DateTime = clib.TextToDate(grdv1.GetFocusedRowCellValue("YC_YEAR").ToString()+"0101");
 			txt_sabn.Text = grdv1.GetFocusedRowCellValue("SAWON_NO").ToString();
+			_SABN = grdv1.GetFocusedRowCellValue("SAWON_NO").ToString().Trim();
 
 			df.GetDUTY_TRSDYYCDatas(grdv1.GetFocusedRowCellValue("YC_YEAR").ToString(), grdv1.GetFocusedRowCellValue("SAWON_NO").ToString(), ds);
 			if (ds.Tables["DUTY_TRSDYYC"].Rows.Count > 0)
@@ -265,14 +320,17 @@ namespace DUTY1000
 				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
 				
 				if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
-					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", null).ToString();
+					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
 				
 				txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
 
 				df.GetSEARCH_DUTY_MSTYCCJDatas(drow["SAWON_NO"].ToString(), drow["YC_YEAR"].ToString(), "", "", ds);
 				grd.DataSource = ds.Tables["SEARCH_DUTY_MSTYCCJ"];
 
-				SetButtonEnable("111");
+				if (admin_lv > 2)
+					SetButtonEnable("111");
+				else
+					SetButtonEnable("001");
 			}
 		}		
 		//연차촉진 미리보기

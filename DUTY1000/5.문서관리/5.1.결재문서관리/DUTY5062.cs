@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using SilkRoad.Common;
 using System.Drawing;
+using DevExpress.XtraReports.UI;
 
 namespace DUTY1000
 {
@@ -26,6 +27,8 @@ namespace DUTY1000
 			doc_no = _doc_no;
 
 			this.Width = clib.TextToInt(_gubn) > 4 ? 1200 : 800;
+
+			btn_preview.Visible = clib.TextToInt(_gubn) > 3 ? false : true;
         }
 
         #region 0. Initialization
@@ -48,12 +51,33 @@ namespace DUTY1000
         {
 			if (stat == "1")
 			{
-				btn_save.Visible = true;
-				btn_return.Visible = true;
-				btn_canc.Visible = true;
+				//해당 문서가 내 결재차례인지 체크 (22.10.19 추가)
+				df.Get5062_CHK_DOC_STATDatas(doc_no, ds);
+				if (ds.Tables["5062_CHK_DOC_STAT"].Rows.Count > 0)
+				{
+					DataRow crow = ds.Tables["5062_CHK_DOC_STAT"].Rows[0];
+					if (crow["CHK_SABN1"].ToString().Trim() == SilkRoad.Config.SRConfig.USID || crow["CHK_SABN2"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+					{
+						btn_save.Visible = true;
+						btn_return.Visible = true;
+						btn_canc.Visible = true;
+					}
+					else
+					{
+						btn_save.Visible = false;
+						btn_return.Visible = false;
+						btn_canc.Visible = false;
+					}
+				}
+				else
+				{
+					btn_save.Visible = false;
+					btn_return.Visible = false;
+					btn_canc.Visible = false;
+				}
 			}
 
-			if (SilkRoad.Config.SRConfig.US_GUBN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				btn_admin_save.Visible = true;
 				btn_admin_canc.Visible = true;
@@ -69,12 +93,15 @@ namespace DUTY1000
 				xtraTabPage2.PageVisible = true;
 			else if (gubn == "3")
 				xtraTabPage3.PageVisible = true;
-			else if (gubn == "4")
+			else if (gubn == "4" || gubn == "7")
 				xtraTabPage4.PageVisible = true;
 			else if (gubn == "5")
 				xtraTabPage5.PageVisible = true;
 			else if (gubn == "6")
 				xtraTabPage6.PageVisible = true;
+
+			if (gubn == "7")
+				xtraTabPage4.Text = "간호간병비 수당내역";
 			Proc();
         }
 
@@ -91,8 +118,8 @@ namespace DUTY1000
 				grd2.DataSource = ds.Tables["5062_SEARCH"];
 			else if (gubn == "3")
 				grd3.DataSource = ds.Tables["5062_SEARCH"];
-			//else if (gubn == "4")
-			//	grd4.DataSource = ds.Tables["5062_SEARCH"];
+			else if (gubn == "4" || gubn == "7")
+				grd4.DataSource = ds.Tables["5062_SEARCH"];
 			else if (gubn == "5")
 			{
 				#region 요일에따른 헤더 설정
@@ -176,6 +203,35 @@ namespace DUTY1000
 			}
         }
 		
+		//미리보기
+		private void btn_preview_Click(object sender, EventArgs e)
+		{
+			string title = "";
+			df.GetDUTY_GWDOCDatas(doc_no, ds);
+			if (ds.Tables["DUTY_GWDOC"].Rows.Count > 0)
+				title = ds.Tables["DUTY_GWDOC"].Rows[0]["GW_TITLE"].ToString();
+			if (ds.Tables["5062_SEARCH"].Rows.Count > 0)
+			{
+				if (gubn == "1")
+				{
+					rpt_506a rpt = new rpt_506a(title);
+					rpt.DataSource = ds.Tables["5062_SEARCH"];
+					rpt.ShowPreview();
+				}
+				else if (gubn == "2")
+				{
+					rpt_506b rpt = new rpt_506b(title);
+					rpt.DataSource = ds.Tables["5062_SEARCH"];
+					rpt.ShowPreview();
+				}
+				else if (gubn == "3")
+				{
+					rpt_506c rpt = new rpt_506c(title);
+					rpt.DataSource = ds.Tables["5062_SEARCH"];
+					rpt.ShowPreview();
+				}
+			}
+		}
 		//결재
 		private void btn_save_Click(object sender, EventArgs e)
 		{
@@ -254,21 +310,21 @@ namespace DUTY1000
 					DataRow hrow = ds.Tables["DUTY_GWDOC"].Rows[0];
 					if (hrow["AP_TAG"].ToString() != "1")
 					{
-						if (hrow["GW_DT2"].ToString().Trim() == "" && hrow["GW_SABN2"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+						if (hrow["GW_DT2"].ToString().Trim() == "" && hrow["GW_SABN1"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 						{
 							stat = 1;
 							hrow["GW_DT2"] = gd.GetNow();
 							hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
 							hrow["AP_TAG"] = "2";
 						}
-						else if (hrow["GW_DT3"].ToString().Trim() == "" && hrow["GW_SABN3"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+						else if (hrow["GW_DT3"].ToString().Trim() == "" && hrow["GW_SABN2"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 						{
 							stat = 1;
 							hrow["GW_DT3"] = gd.GetNow();
 							hrow["GW_CHKID3"] = SilkRoad.Config.SRConfig.USID;
 							hrow["AP_TAG"] = "2";
 						}
-						else if (hrow["GW_DT4"].ToString().Trim() == "" && hrow["GW_SABN4"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+						else if (hrow["GW_DT4"].ToString().Trim() == "" && hrow["GW_SABN3"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
 						{
 							stat = 1;
 							hrow["GW_DT4"] = gd.GetNow();
@@ -409,15 +465,15 @@ namespace DUTY1000
 				if (ds.Tables["DUTY_GWDOC"].Rows.Count > 0)
 				{
 					DataRow hrow = ds.Tables["DUTY_GWDOC"].Rows[0];
-					if (hrow["AP_TAG"].ToString() != "1")
-					{
+					//if (hrow["AP_TAG"].ToString() != "1")  //승인후 취소 가능하게 2022.10.13 정원희 계장 요청.
+					//{
 						hrow["AP_TAG"] = "2";
 						hrow["GW_REMK"] = gd.GetNow() + " " +SilkRoad.Config.SRConfig.USID;
 
 						string[] tableNames = new string[] { "DUTY_GWDOC" };
 						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);						
-					}
+					//}
 				}
             }
             catch (Exception ec)

@@ -74,7 +74,8 @@ namespace DUTY1000
 				df.GetGW_LINE2Datas(embs, "'5','6'", ds);
 				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
 			}
-
+			
+			dat_jsmm.DateTime = clib.TextToDate(yymm + "01");
 			gr_detail.Text = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 간호부 OFF/N 추가,삭감 내역";
 			Proc();
         }
@@ -91,7 +92,7 @@ namespace DUTY1000
 
         private void Proc()
         {
-			df.Get3012_SEARCH_SDDatas(yymm, ds);
+			df.Get3012_SEARCH_SDDatas(yymm, SilkRoad.Config.SRConfig.USID, ds);
 			grd1.DataSource = ds.Tables["3012_SEARCH_SD"];
         }
 
@@ -112,6 +113,8 @@ namespace DUTY1000
 
 					hrow["DOC_NO"] = doc_no;
 					hrow["DOC_GUBN"] = 3;
+					hrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
+					hrow["DOC_DATE"] = yymm;
 					hrow["GW_TITLE"] = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 간호부 OFF/N 추가,삭감 내역";
 					hrow["GW_REMK"] = "";
 					hrow["AP_TAG"] = "4";
@@ -145,6 +148,7 @@ namespace DUTY1000
 						hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
 						hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
 					}		
+					hrow["ETC_GUBN"] = "";
 					hrow["REG_DT"] = gd.GetNow();
 					hrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
 					ds.Tables["DUTY_GWDOC"].Rows.Add(hrow);
@@ -162,6 +166,7 @@ namespace DUTY1000
 							{
 								DataRow nrow = ds.Tables["GW_TRSOFFN"].NewRow();
 								nrow["DOC_NO"] = doc_no;
+								nrow["JS_YYMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
 								nrow["PLANYYMM"] = yymm;
 								nrow["DEPTCODE"] = dr["DEPTCODE"].ToString();
 								nrow["DEPT_NM"] = dr["DEPT_NM"].ToString();

@@ -15,7 +15,7 @@ namespace DUTY1000
         SilkRoad.Common.CustomFormatter cf = new SilkRoad.Common.CustomFormatter();
         SilkRoad.Common.DrawRptSignBox dsb = new SilkRoad.Common.DrawRptSignBox();
         CommonLibrary clib = new CommonLibrary();
-        DataSet ds;
+        public DataSet ds;
         DataProcFunc df = new DataProcFunc();
 
         public rpt_3010 (string yymm, string part, DataTable ds)
@@ -587,33 +587,9 @@ namespace DUTY1000
             c_30.DataBindings.Add("Text", DataSource, "D30_NM", "");
             c_31.DataBindings.Add("Text", DataSource, "D31_NM", "");
         }
-
-        public void writeReport(DataSet ds, int print)
+        public void writeReport(DataSet ds)
         {
-        }
-
-        private void xrTableCell1_BeforePrint(string yymm, string part)
-        {
-            //if (GetCurrentColumnValue("사진").ToString().Trim() != "")
-            //{
-            //    byte[] myByte = new byte[0];
-
-            //    myByte = (byte[])GetCurrentColumnValue("사진");
-            //    MemoryStream ImgStream = new MemoryStream(myByte);
-            //    xrPictureBox1.Image = Image.FromStream(ImgStream);
-            //}
-            //else
-            //{
-            //    xrPictureBox1.Image = null;
-            //}
-        }
-
-        private void xrTable3_Draw(string yymm, string part, DrawEventArgs e)
-        {
-            InitializeComponent();
-            lb_part.Text = part;
-            lb_yymm.Text = yymm;
-           
-        }
+            this.xrSubreport1.ReportSource.DataSource = ds.Tables["SUM_PLAN"];
+		}
     }
 }

@@ -34,9 +34,9 @@ namespace DUTY1000
 				grd.DataSource = null;
 				SetButtonEnable("100");
 			}
-			else
+			else if (stat == 1)
 			{
-				df.GetS_MSTNURSDatas(dept, ds);
+				df.GetS_MSTNURSDatas(dept, cmb_gubn.SelectedIndex, ds);
 				grd2.DataSource = ds.Tables["S_MSTNURS"];
 				cec.SetClearControls(srPanel9, new string[] { "" });
 
@@ -45,6 +45,14 @@ namespace DUTY1000
 				lblSano.Text = "-";
 				lblHpno.Text = "-";
 				lblEmil.Text = "-";
+			}
+			else if (stat == 2)
+			{
+				df.GetS_BEDDatas(ds);
+				grd3.DataSource = ds.Tables["S_BED"];
+				
+				df.GetS_MSTNURS2Datas(ds);
+				sl_nurs.Properties.DataSource = ds.Tables["S_MSTNURS2"];
 			}
 		}
 
@@ -55,11 +63,12 @@ namespace DUTY1000
         private void duty3015_Load(object sender, EventArgs e)
         {
 			dat_yymm.DateTime = DateTime.Now;
+			sl_nurs.EditValue = null;
         }
 		private void duty3015_Shown(object sender, EventArgs e)
 		{
 			btn_proc.PerformClick();
-			df.GetS_MSTNURSDatas(dept, ds);
+			df.GetS_MSTNURSDatas(dept, cmb_gubn.SelectedIndex, ds);
 			grd2.DataSource = ds.Tables["S_MSTNURS"];
 		}
 
@@ -169,7 +178,7 @@ namespace DUTY1000
 				}
 				#endregion
 			}
-			else
+			else if (srTabControl1.SelectedTabPageIndex == 1)
 			{
 				#region 간호사정보저장
 				if (isNoError_um(2))
@@ -301,6 +310,102 @@ namespace DUTY1000
 			SetCancel(srTabControl1.SelectedTabPageIndex);
 		}
 
+		//간호사정보 조회
+		private void btn_search_Click(object sender, EventArgs e)
+		{			
+			df.GetS_MSTNURSDatas(dept, cmb_gubn.SelectedIndex, ds);
+			grd2.DataSource = ds.Tables["S_MSTNURS"];
+		}
+
+		private void btn_add_Click(object sender, EventArgs e)
+		{
+			if (isNoError_um(3))
+			{
+				Cursor = Cursors.WaitCursor;
+				int outVal = 0;
+				try
+				{
+					DataRow hrow;
+					df.GetDUTY_TRSPLAN_ETCDatas(sl_nurs.EditValue.ToString().Trim(), ds);
+					if (ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Count > 0)
+					{
+						hrow = ds.Tables["DUTY_TRSPLAN_ETC"].Rows[0];
+						hrow["UPDT"] = gd.GetNow();
+						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
+						hrow["PSTY"] = "U";
+					}
+					else                    
+					{
+						hrow = ds.Tables["DUTY_TRSPLAN_ETC"].NewRow();
+						hrow["DEPTCODE"] = "A001";
+						hrow["SAWON_NO"] = sl_nurs.EditValue.ToString().Trim();
+						hrow["SAWON_NM"] = ds.Tables["S_MSTNURS2"].Select("CODE = '" + sl_nurs.EditValue.ToString().Trim() + "'")[0]["NAME"].ToString();
+						hrow["INDT"] = gd.GetNow();
+						hrow["UPDT"] = "";
+						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
+						hrow["PSTY"] = "A";
+						ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Add(hrow);
+					}
+					string[] tableNames = new string[] { "DUTY_TRSPLAN_ETC" };
+					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					outVal = cmd.setUpdate(ref ds, tableNames, null);
+
+					if (outVal <= 0)                    
+						MessageBox.Show("저장된 내용이 없습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+					else                    
+						MessageBox.Show("해당직원이 추가되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+				}
+				catch (Exception ec)
+				{
+					MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				finally
+				{
+					SetCancel(srTabControl1.SelectedTabPageIndex);
+					Cursor = Cursors.Default;
+				}
+			}
+		}
+		//직원제회
+		private void btn_remove_Click(object sender, EventArgs e)
+		{
+			if (isNoError_um(3))
+			{
+				Cursor = Cursors.WaitCursor;
+				int outVal = 0;
+				try
+				{
+					DataRow hrow;
+					df.GetDUTY_TRSPLAN_ETCDatas(sl_nurs.EditValue.ToString().Trim(), ds);
+					if (ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Count > 0)
+					{
+						hrow = ds.Tables["DUTY_TRSPLAN_ETC"].Rows[0];
+						hrow["UPDT"] = gd.GetNow();
+						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
+						hrow["PSTY"] = "D";
+						string[] tableNames = new string[] { "DUTY_TRSPLAN_ETC" };
+						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						outVal = cmd.setUpdate(ref ds, tableNames, null);
+					}
+
+					if (outVal <= 0)                    
+						MessageBox.Show("제외할 직원이 없습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+					else                    
+						MessageBox.Show("해당직원이 제외되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+				}
+				catch (Exception ec)
+				{
+					MessageBox.Show(ec.Message, "제외오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				finally
+				{
+					SetCancel(srTabControl1.SelectedTabPageIndex);
+					Cursor = Cursors.Default;
+				}
+			}
+		}
         #endregion
 
         #region 3 EVENT
@@ -315,8 +420,23 @@ namespace DUTY1000
 		
 		private void srTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
-			if (srTabControl1.SelectedTabPageIndex == 1)
+			if (srTabControl1.SelectedTabPageIndex == 0)
+			{
+				btn_save.Visible = true;
+				btn_del.Visible = true;
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 1)
+			{
+				btn_save.Visible = true;
+				btn_del.Visible = true;
 				btn_del.Enabled = false;
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 2)
+			{
+				SetCancel(srTabControl1.SelectedTabPageIndex);
+				btn_save.Visible = false;
+				btn_del.Visible = false;
+			}
 		}
 		
 		//더블클릭시 등록,수정
@@ -386,6 +506,19 @@ namespace DUTY1000
                 if (lblSano.Text == null)
                 {
                     MessageBox.Show("직원을 선택하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else
+				{ 
+					isError = true;
+                }
+            }
+            else if (mode == 3)  //추가
+            {
+                if (sl_nurs.EditValue == null)
+                {
+                    MessageBox.Show("직원을 선택하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    sl_nurs.Focus();
                     return false;
                 }
                 else

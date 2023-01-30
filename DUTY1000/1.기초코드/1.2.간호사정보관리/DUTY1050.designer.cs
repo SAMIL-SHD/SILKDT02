@@ -60,13 +60,13 @@
 			this.col_priceptor = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_desig_yn = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_desig_tp = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.col_exp = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_tm_frto = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_same1st = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_msxwk_n = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_allowoff = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_limitoff = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.col_exp = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_hpno = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_email = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.col_rns_dt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -86,6 +86,7 @@
 			this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.srGroupBox5 = new SilkRoad.UserControls.SRGroupBox();
 			this.srPanel9 = new SilkRoad.UserControls.SRPanel();
+			this.txt_exp = new SilkRoad.UserControls.SRTextEdit();
 			this.cmb_limitoff = new SilkRoad.UserControls.SRCombo();
 			this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
 			this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
@@ -140,7 +141,6 @@
 			this.srLabel7 = new DevExpress.XtraEditors.LabelControl();
 			this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
 			this.bgWorker = new System.ComponentModel.BackgroundWorker();
-			this.txt_exp = new SilkRoad.UserControls.SRTextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
@@ -164,6 +164,7 @@
 			this.srGroupBox5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel9)).BeginInit();
 			this.srPanel9.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.txt_exp.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_limitoff.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_stat.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_lday.Properties.CalendarTimeProperties)).BeginInit();
@@ -186,7 +187,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.cmb_rsp_yn.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_exp.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.txt_exp.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridColumn4
@@ -658,40 +658,6 @@
 			this.col_desig_tp.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.col_desig_tp.Width = 61;
 			// 
-			// gridColumn3
-			// 
-			this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
-			this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumn3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.gridColumn3.Caption = "밤근무 여부";
-			this.gridColumn3.FieldName = "SHIFT_WORK_NM";
-			this.gridColumn3.Name = "gridColumn3";
-			this.gridColumn3.Visible = true;
-			this.gridColumn3.VisibleIndex = 4;
-			this.gridColumn3.Width = 59;
-			// 
-			// col_exp
-			// 
-			this.col_exp.AppearanceCell.Options.UseTextOptions = true;
-			this.col_exp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.col_exp.AppearanceHeader.Options.UseTextOptions = true;
-			this.col_exp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.col_exp.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.col_exp.Caption = "경력인정";
-			this.col_exp.DisplayFormat.FormatString = "{0:#,##0.#}";
-			this.col_exp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.col_exp.FieldName = "EXP_YEAR";
-			this.col_exp.Name = "col_exp";
-			this.col_exp.OptionsColumn.AllowEdit = false;
-			this.col_exp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.col_exp.OptionsColumn.ReadOnly = true;
-			this.col_exp.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.col_exp.Visible = true;
-			this.col_exp.VisibleIndex = 8;
-			this.col_exp.Width = 60;
-			// 
 			// col_tm_frto
 			// 
 			this.col_tm_frto.AppearanceHeader.Options.UseTextOptions = true;
@@ -721,6 +687,20 @@
 			this.col_same1st.OptionsColumn.ReadOnly = true;
 			this.col_same1st.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.col_same1st.Width = 59;
+			// 
+			// gridColumn3
+			// 
+			this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.gridColumn3.Caption = "밤근무 여부";
+			this.gridColumn3.FieldName = "SHIFT_WORK_NM";
+			this.gridColumn3.Name = "gridColumn3";
+			this.gridColumn3.Visible = true;
+			this.gridColumn3.VisibleIndex = 4;
+			this.gridColumn3.Width = 59;
 			// 
 			// col_msxwk_n
 			// 
@@ -775,6 +755,26 @@
 			this.col_limitoff.Visible = true;
 			this.col_limitoff.VisibleIndex = 7;
 			this.col_limitoff.Width = 51;
+			// 
+			// col_exp
+			// 
+			this.col_exp.AppearanceCell.Options.UseTextOptions = true;
+			this.col_exp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.col_exp.AppearanceHeader.Options.UseTextOptions = true;
+			this.col_exp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.col_exp.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.col_exp.Caption = "경력인정";
+			this.col_exp.DisplayFormat.FormatString = "{0:#,##0.#}";
+			this.col_exp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.col_exp.FieldName = "EXP_YEAR";
+			this.col_exp.Name = "col_exp";
+			this.col_exp.OptionsColumn.AllowEdit = false;
+			this.col_exp.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.col_exp.OptionsColumn.ReadOnly = true;
+			this.col_exp.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.col_exp.Visible = true;
+			this.col_exp.VisibleIndex = 8;
+			this.col_exp.Width = 60;
 			// 
 			// col_hpno
 			// 
@@ -944,7 +944,7 @@
 			this.btn_info.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.목록보기;
 			this.btn_info.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_120;
 			this.btn_info.TabIndex = 443;
-			this.btn_info.Text = "간호사직종설정";
+			this.btn_info.Text = "간호사부서설정";
 			this.btn_info.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btn_info.UseVisualStyleBackColor = true;
 			this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
@@ -1070,6 +1070,26 @@
 			this.srPanel9.Name = "srPanel9";
 			this.srPanel9.Size = new System.Drawing.Size(312, 623);
 			this.srPanel9.TabIndex = 1;
+			// 
+			// txt_exp
+			// 
+			this.txt_exp.EditValue = "";
+			this.txt_exp.EnterMoveNextControl = true;
+			this.txt_exp.Location = new System.Drawing.Point(116, 281);
+			this.txt_exp.Name = "txt_exp";
+			this.txt_exp.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.txt_exp.Properties.Appearance.Options.UseFont = true;
+			this.txt_exp.Properties.Appearance.Options.UseTextOptions = true;
+			this.txt_exp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.txt_exp.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.txt_exp.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.txt_exp.Properties.AutoHeight = false;
+			this.txt_exp.Properties.LookAndFeel.SkinName = "Lilian";
+			this.txt_exp.Properties.Mask.EditMask = "n1";
+			this.txt_exp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+			this.txt_exp.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.txt_exp.Size = new System.Drawing.Size(140, 22);
+			this.txt_exp.TabIndex = 512;
 			// 
 			// cmb_limitoff
 			// 
@@ -1710,7 +1730,13 @@
             "7일",
             "8일",
             "9일",
-            "10일"});
+            "10일",
+            "11일",
+            "12일",
+            "13일",
+            "14일",
+            "15일",
+            "16일"});
 			this.cmb_allowoff.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.cmb_allowoff.Size = new System.Drawing.Size(140, 22);
 			this.cmb_allowoff.TabIndex = 417;
@@ -1809,7 +1835,13 @@
             "7일",
             "8일",
             "9일",
-            "10일"});
+            "10일",
+            "11일",
+            "12일",
+            "13일",
+            "14일",
+            "15일",
+            "16일"});
 			this.cmb_max_n.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.cmb_max_n.Size = new System.Drawing.Size(140, 22);
 			this.cmb_max_n.TabIndex = 413;
@@ -2103,26 +2135,6 @@
 			this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
 			this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
 			// 
-			// txt_exp
-			// 
-			this.txt_exp.EditValue = "";
-			this.txt_exp.EnterMoveNextControl = true;
-			this.txt_exp.Location = new System.Drawing.Point(116, 281);
-			this.txt_exp.Name = "txt_exp";
-			this.txt_exp.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.txt_exp.Properties.Appearance.Options.UseFont = true;
-			this.txt_exp.Properties.Appearance.Options.UseTextOptions = true;
-			this.txt_exp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.txt_exp.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.txt_exp.Properties.AppearanceFocused.Options.UseBackColor = true;
-			this.txt_exp.Properties.AutoHeight = false;
-			this.txt_exp.Properties.LookAndFeel.SkinName = "Lilian";
-			this.txt_exp.Properties.Mask.EditMask = "n1";
-			this.txt_exp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-			this.txt_exp.Properties.Mask.UseMaskAsDisplayFormat = true;
-			this.txt_exp.Size = new System.Drawing.Size(140, 22);
-			this.txt_exp.TabIndex = 512;
-			// 
 			// duty1050
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2160,6 +2172,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.srPanel9)).EndInit();
 			this.srPanel9.ResumeLayout(false);
 			this.srPanel9.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.txt_exp.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_limitoff.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_stat.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_lday.Properties.CalendarTimeProperties)).EndInit();
@@ -2182,7 +2195,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.cmb_rsp_yn.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cmb_exp.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.txt_exp.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }

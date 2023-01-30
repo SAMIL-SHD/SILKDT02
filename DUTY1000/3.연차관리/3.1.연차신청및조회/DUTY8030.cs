@@ -26,6 +26,8 @@ namespace DUTY1000
 		
         private string use_frdt = "";
         private string use_todt = "";
+		
+        private string seqno = "";
         public duty8030()
         {
             InitializeComponent();
@@ -47,6 +49,9 @@ namespace DUTY1000
 				
 				if (ds.Tables["DUTY_TRSHREQ"] != null)
 					ds.Tables["DUTY_TRSHREQ"].Clear();
+				if (ds.Tables["SEARCH_AP_YC_LIST"] != null)
+					ds.Tables["SEARCH_AP_YC_LIST"].Clear();
+				grd1.DataSource = null;
 				if (ds.Tables["SEARCH_YC_LIST"] != null)
 					ds.Tables["SEARCH_YC_LIST"].Clear();
 				grd1.DataSource = null;
@@ -82,6 +87,7 @@ namespace DUTY1000
 				dat_ycdt2.Enabled = false;
 				sl_gnmu.Enabled = false;
 				sl_gnmu2.Enabled = false;
+				cmb_gubn.Enabled = false;
 				chk_line.Enabled = false;
 
 				sl_line1.EditValue = null;
@@ -96,6 +102,7 @@ namespace DUTY1000
 			
             use_frdt = "";
 			use_todt = "";
+			seqno = "";
 
 			df.GetSEARCH_DEPTDatas(ds);
 			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
@@ -127,8 +134,10 @@ namespace DUTY1000
         private void baseInfoSearch()
         {
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
+			df.GetSEARCH_YC_LISTDatas("A", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			grd1.DataSource = ds.Tables["SEARCH_AP_YC_LIST"];
 			df.GetSEARCH_YC_LISTDatas("C", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
-			grd1.DataSource = ds.Tables["SEARCH_YC_LIST"];
+			grd2.DataSource = ds.Tables["SEARCH_YC_LIST"];
 			df.GetSEARCH_YC_LISTDatas("D", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd_del.DataSource = ds.Tables["SEARCH_DEL_YC_LIST"];
 			
@@ -164,7 +173,7 @@ namespace DUTY1000
 			schedulerStorage1.Appointments.ResourceSharing = true;
 			schedulerControl1.GroupType = SchedulerGroupType.Resource;
 			schedulerControl1.Start = clib.TextToDateFirst(clib.DateToText(dat_yymm.DateTime));
-			schedulerStorage1.Appointments.DataSource = ds.Tables["SEARCH_YC_LIST"];
+			schedulerStorage1.Appointments.DataSource = ds.Tables["SEARCH_AP_YC_LIST"];
 
 			schedulerStorage1.Appointments.Mappings.Type = "TYPE";         //타입
 			schedulerStorage1.Appointments.Mappings.Start = "FR_DATE";     //시작날짜
@@ -232,7 +241,7 @@ namespace DUTY1000
             if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
                 admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
 
-			if (SilkRoad.Config.SRConfig.US_GUBN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
 			{
 				admin_lv = 3;
                 p_dpcd = "%";
@@ -299,6 +308,7 @@ namespace DUTY1000
 				sl_embs.Enabled = false;
 				dat_ycdt.Enabled = true;
 				dat_ycdt2.Enabled = true;
+				cmb_gubn.Enabled = true;
 				sl_gnmu.Enabled = true;
 				sl_gnmu2.Enabled = true;
 				chk_line.Enabled = true;
@@ -421,11 +431,19 @@ namespace DUTY1000
 						}
 					}
 
-					df.GetDUTY_TRSHREQDatas(sl_embs.EditValue.ToString(), sldt, ds);
+					if (seqno != "")  //수정
+						df.GetDUTY_TRSHREQDatas(seqno, ds);
+					else  //신규
+						df.GetDUTY_TRSHREQDatas(ds);
+
 					if (ds.Tables["DUTY_TRSHREQ"].Rows.Count > 0)
 					{
 						DataRow hrow = ds.Tables["DUTY_TRSHREQ"].Rows[0];
-						hrow["YC_DAYS"] = df.GetYC_DAYS_CALCDatas(sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);hrow["LINE_CNT"] = 1;
+						hrow["GUBN"] = cmb_gubn.SelectedIndex == 1 ? "D" : "C";
+						hrow["YC_DAYS"] = df.GetYC_DAYS_CALCDatas(sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
+						if (cmb_gubn.SelectedIndex == 1)
+							hrow["YC_DAYS"] = -clib.TextToDecimal(hrow["YC_DAYS"].ToString());
+						hrow["LINE_CNT"] = 1;
 						if (sl_line3.EditValue != null)
 							hrow["LINE_CNT"] = 4;
 						else if (sl_line2.EditValue != null)
@@ -464,20 +482,9 @@ namespace DUTY1000
 					}
 					else
 					{
-						////신청일자fr-to 에 대한 오류체크
-						//df.GetYC_DAYS_ECHKDatas(sl_embs.EditValue.ToString(), yc_year, sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
-						//if (ds.Tables["YC_DAYS_ECHK"].Rows.Count > 0)
-						//{
-						//	DataRow crow = ds.Tables["YC_DAYS_ECHK"].Rows[0];
-						//	if (clib.TextToInt(crow["ECHK"].ToString()) < 0)
-						//	{
-						//		MessageBox.Show(crow["PCEROR"].ToString(), "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						//		outVal = -1;
-						//		return;
-						//	}
-						//}
-
 						DataRow hrow = ds.Tables["DUTY_TRSHREQ"].NewRow();
+						hrow["SEQNO"] = df.GetHREQ_SEQNODatas();
+						hrow["GUBN"] = cmb_gubn.SelectedIndex == 1 ? "D" : "C";
 						hrow["SABN"] = sl_embs.EditValue.ToString();
 						hrow["REQ_YEAR"] = yc_year;
 						hrow["REQ_DATE"] = sldt;
@@ -486,6 +493,8 @@ namespace DUTY1000
 						hrow["REQ_TYPE2"] = to_gnmu;
 
 						hrow["YC_DAYS"] = df.GetYC_DAYS_CALCDatas(sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
+						if (cmb_gubn.SelectedIndex == 1)
+							hrow["YC_DAYS"] = -clib.TextToDecimal(hrow["YC_DAYS"].ToString());
 						hrow["AP_TAG"] = "4";
 						hrow["LINE_CNT"] = 1;
 						if (sl_line3.EditValue != null)
@@ -552,14 +561,15 @@ namespace DUTY1000
 			if (isNoError_um(6))
 			{
                 Cursor = Cursors.WaitCursor;
-				//DialogResult dr = MessageBox.Show("삭제하시겠습니까?", "삭제여부", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-				//if (dr == DialogResult.OK)
-				//{
 				int outVal = 0;
 				try
 				{
 					string sldt = clib.DateToText(dat_ycdt.DateTime);
-					df.GetDUTY_TRSHREQDatas(sl_embs.EditValue.ToString(), sldt, ds);
+					if (seqno != "")
+						df.GetDUTY_TRSHREQDatas(seqno, ds);
+					else
+						df.GetDUTY_TRSHREQDatas(sl_embs.EditValue.ToString(), sldt, ds);
+
 					if (ds.Tables["DUTY_TRSHREQ"].Rows.Count > 0)
 					{
 						DataRow drow = ds.Tables["DUTY_TRSHREQ"].Rows[0];
@@ -571,6 +581,8 @@ namespace DUTY1000
 						{
 							df.GetDEL_TRSHREQDatas(ds);								
 							DataRow hrow = ds.Tables["DEL_TRSHREQ"].NewRow();
+							hrow["SEQNO"] = drow["SEQNO"].ToString();
+							hrow["GUBN"] = drow["GUBN"].ToString();
 							hrow["SABN"] = drow["SABN"].ToString();
 							hrow["REQ_YEAR"] = drow["REQ_YEAR"].ToString();
 							hrow["REQ_DATE"] = drow["REQ_DATE"].ToString();
@@ -590,16 +602,6 @@ namespace DUTY1000
 								hrow["GW_NAME" + i.ToString()] = drow["GW_NAME" + i.ToString()].ToString();
 								hrow["GW_JICK" + i.ToString()] = drow["GW_JICK" + i.ToString()].ToString();
 							}
-							
-							//hrow["SAWON_LV"] = drow["SAWON_LV"].ToString();
-							//hrow["EXCEPT_MID"] = drow["EXCEPT_MID"].ToString();
-							//hrow["AP_TAG"] = drow["AP_TAG"].ToString();
-							//hrow["MID_DT"] = drow["MID_DT"].ToString();
-							//hrow["MID_USID"] = drow["MID_USID"].ToString();
-							//hrow["AP_DT"] = drow["AP_DT"].ToString();
-							//hrow["AP_USID"] = drow["AP_USID"].ToString();
-							//hrow["CANC_DT"] = drow["CANC_DT"].ToString();
-							//hrow["CANC_USID"] = drow["CANC_USID"].ToString();
 
 							hrow["INDT"] = drow["INDT"].ToString();
 							hrow["UPDT"] = drow["UPDT"].ToString();
@@ -632,7 +634,6 @@ namespace DUTY1000
 					baseInfoSearch();
 					Cursor = Cursors.Default;
 				}
-				//}
 			}
 		}
 
@@ -668,32 +669,60 @@ namespace DUTY1000
 			
 			sl_embs.EditValue = grdv1.GetFocusedRowCellValue("SABN").ToString().Trim();
 			btn_proc.PerformClick();
-			df.GetDUTY_TRSHREQDatas(drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+			
+			seqno = grdv1.GetFocusedRowCellValue("SEQNO").ToString();
+			DbClick(drow["SABN"].ToString(), drow["REQ_DATE"].ToString());
+		}
+		private void grdv2_DoubleClick(object sender, EventArgs e)
+		{
+			DataRow drow = grdv2.GetFocusedDataRow();
+            if (drow == null)
+                return;
+			
+			sl_embs.EditValue = grdv2.GetFocusedRowCellValue("SABN").ToString().Trim();
+			btn_proc.PerformClick();
+			
+			seqno = grdv2.GetFocusedRowCellValue("SEQNO").ToString();
+			DbClick(drow["SABN"].ToString(), drow["REQ_DATE"].ToString());
+		}
+
+		private void DbClick(string sabn, string req_dt)
+		{
+			if (seqno != "")			
+				df.GetDUTY_TRSHREQDatas(seqno, ds);			
+			else
+				df.GetDUTY_TRSHREQDatas(sabn, req_dt, ds);
+			
 			if (ds.Tables["DUTY_TRSHREQ"].Rows.Count > 0)
 			{
 				DataRow hrow = ds.Tables["DUTY_TRSHREQ"].Rows[0];
-				sl_gnmu.EditValue = hrow["REQ_TYPE"].ToString();
-				sl_gnmu2.EditValue = hrow["REQ_TYPE2"].ToString();
 				dat_ycdt.DateTime = clib.TextToDate(hrow["REQ_DATE"].ToString());
 				dat_ycdt2.DateTime = clib.TextToDate(hrow["REQ_DATE2"].ToString());
+				sl_gnmu.EditValue = hrow["REQ_TYPE"].ToString();
+				sl_gnmu2.EditValue = hrow["REQ_TYPE2"].ToString();
+				cmb_gubn.SelectedIndex = hrow["GUBN"].ToString() == "D" ? 1 : 0;
 
-				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,9정산
-					SetButtonEnable2("0001");
-				else if (hrow["AP_TAG"].ToString() == "4" && hrow["GW_DT2"].ToString().Trim() == "") //4진행이고 다음결재가 없을때
+				if (SilkRoad.Config.ACConfig.G_MSYN == "1")
+				{
 					SetButtonEnable2("0011");
-				else if (hrow["AP_TAG"].ToString() == "5") //5.반려
-					SetButtonEnable2("0111");
+				}
 				else
-					SetButtonEnable2("0011");
-				//else if (hrow["AP_TAG"].ToString() == "2")  //취소
-				//	SetButtonEnable2("0011");
-				//else
-				//	SetButtonEnable2("0111");
+				{
+					if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "9")  //1.승인,3.완료,9.정산
+						SetButtonEnable2("0001");
+					else if (hrow["AP_TAG"].ToString() == "4" && hrow["GW_DT2"].ToString().Trim() == "") //4.진행이고 다음결재가 없을때
+						SetButtonEnable2("0011");
+					else if (hrow["AP_TAG"].ToString() == "5") //5.반려
+						SetButtonEnable2("0111");
+					else
+						SetButtonEnable2("0011");
+				}
 			}
-			sl_gnmu.Enabled = false;
-			sl_gnmu2.Enabled = false;
 			dat_ycdt.Enabled = false;
 			dat_ycdt2.Enabled = false;
+			cmb_gubn.Enabled = false;
+			sl_gnmu.Enabled = false;
+			sl_gnmu2.Enabled = false;
 			sl_line1.EditValue = null;
 			sl_line2.EditValue = null;
 
@@ -702,39 +731,19 @@ namespace DUTY1000
 				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
 				ADGB_STAT(adgb);
 			}
-			//chk_line.Visible = adgb == "1" ? true : false;
-			//chk_line.Enabled = true;
-			//chk_line.Checked = grdv1.GetFocusedRowCellValue("EXCEPT_MID").ToString() == "1" ? true : false;
-
-			//string line_txt = "";
-			//if (adgb == "1")
-			//	line_txt = chk_line.Checked == false ? "[팀장 -> 부서장 -> 대표원장]" : "[팀장 -> 대표원장]";
-			//else if (adgb == "2")
-			//	line_txt = "[부서장 -> 대표원장]";
-			//else if (adgb == "3")
-			//	line_txt = "[원장단 -> 담당원장]";
-			//else if (adgb == "4")
-			//	line_txt = "[원장단 -> 대표원장]";
-			//else if (adgb == "5")
-			//	line_txt = "[담당원장]";
-			//else if (adgb == "6")
-			//	line_txt = "[대표원장]";
-			//else
-			//	line_txt = "[팀원 -> 팀장]";
-
-			//lb_line.Text = line_txt;
 		}
+
 		//그리드 클릭시 연차내역 조회
 		private void grdv1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
 		{
 			DataRow drow2 = grdv1.GetFocusedDataRow();
             if (drow2 == null)
                 return;
-
-			dat_year.DateTime = clib.TextToDate(grdv1.GetFocusedRowCellValue("REQ_YEAR").ToString()+"0101");
+			
+			dat_year.DateTime = clib.TextToDate(grdv1.GetFocusedRowCellValue("REQ_YEAR").ToString() + "0101");
 			txt_sabn.Text = grdv1.GetFocusedRowCellValue("SABN").ToString();
-
 			df.GetDUTY_TRSDYYCDatas(grdv1.GetFocusedRowCellValue("REQ_YEAR").ToString(), grdv1.GetFocusedRowCellValue("SABN").ToString(), ds);
+
 			if (ds.Tables["DUTY_TRSDYYC"].Rows.Count > 0)
 			{
 				DataRow drow = ds.Tables["DUTY_TRSDYYC"].Rows[0];
@@ -754,7 +763,7 @@ namespace DUTY1000
 				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
 
 				if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
-					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", null).ToString();
+					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
 				
 				txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
 				//df.GetSEARCH_DUTY_MSTYCCJDatas(drow["SAWON_NO"].ToString(), drow["YC_YEAR"].ToString(), "", "", ds);
@@ -764,6 +773,40 @@ namespace DUTY1000
 			}
 		}
 		private void grdv2_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+		{
+			DataRow drow2 = grdv2.GetFocusedDataRow();
+			if (drow2 == null)
+				return;
+
+			dat_year.DateTime = clib.TextToDate(grdv2.GetFocusedRowCellValue("REQ_YEAR").ToString() + "0101");
+			txt_sabn.Text = grdv2.GetFocusedRowCellValue("SABN").ToString();
+			df.GetDUTY_TRSDYYCDatas(grdv2.GetFocusedRowCellValue("REQ_YEAR").ToString(), grdv2.GetFocusedRowCellValue("SABN").ToString(), ds);
+
+			if (ds.Tables["DUTY_TRSDYYC"].Rows.Count > 0)
+			{
+				DataRow drow = ds.Tables["DUTY_TRSDYYC"].Rows[0];
+				txt_name.Text = drow["SAWON_NM"].ToString();
+				cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
+				dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
+				txt_base.Text = drow["YC_BASE"].ToString();
+				txt_first.Text = drow["YC_FIRST"].ToString();
+				txt_add.Text = drow["YC_ADD"].ToString();
+				txt_tcnt.Text = drow["YC_SUM"].ToString();
+
+				txt_change.Text = drow["YC_CHANGE"].ToString();
+				txt_use.Text = "";
+				txt_rcnt.Text = drow["YC_TOTAL"].ToString();
+
+				df.GetSEARCH_TRSHREQDatas(drow["SAWON_NO"].ToString(), drow["YC_YEAR"].ToString(), ds);
+				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
+
+				if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
+					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
+
+				txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
+			}
+		}
+		private void grdv_del_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
 		{
 			DataRow drow2 = grdv_del.GetFocusedDataRow();
             if (drow2 == null)
@@ -791,13 +834,12 @@ namespace DUTY1000
 				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
 
 				if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
-					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", null).ToString();
+					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
 				
 				txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
 			}
 		}
 				
-		
 		//연차사용일자 선택시
 		private void dat_ycdt_EditValueChanged(object sender, EventArgs e)
 		{
@@ -902,8 +944,13 @@ namespace DUTY1000
 		{			
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();     
-		}
+		}	
 		private void grdv2_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{			
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();     
+		}
+		private void grdv_del_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
 		{			
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();     
@@ -975,9 +1022,9 @@ namespace DUTY1000
 			//	MessageBox.Show("최종마감되어 승인취소 할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			//	return false;
 			//}
-			//if (ds.Tables["SEARCH_YC_LIST"] != null)
+			//if (ds.Tables["SEARCH_AP_YC_LIST"] != null)
 			//{
-			//	if (ds.Tables["SEARCH_YC_LIST"].Select("C_CHK='1'").Length == 0)
+			//	if (ds.Tables["SEARCH_AP_YC_LIST"].Select("C_CHK='1'").Length == 0)
 			//	{
 			//		MessageBox.Show("선택된 내역이 없습니다!", "취소에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			//		return false;

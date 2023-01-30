@@ -89,7 +89,7 @@ namespace DUTY1000
                 upyn = ds.Tables["MSTUSER_CHK"].Rows[0]["USERUPYN"].ToString(); //부서조회
             }
             //사용자부서연결
-            if (SilkRoad.Config.SRConfig.US_GUBN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || msyn == "1")
+            if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || msyn == "1")
             {
                 p_dpcd = "%";
                 lb_power.Text = "전체조회 권한";

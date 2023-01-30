@@ -34,12 +34,13 @@
 			DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
 			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty8020));
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression3 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression4 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
 			DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
 			DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
-			DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition4 = new DevExpress.XtraGrid.StyleFormatCondition();
-			DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition5 = new DevExpress.XtraGrid.StyleFormatCondition();
-			DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition6 = new DevExpress.XtraGrid.StyleFormatCondition();
 			this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -95,6 +96,7 @@
 			this.srSplitContainer1 = new SilkRoad.UserControls.SRSplitContainer();
 			this.srGroupBox4 = new SilkRoad.UserControls.SRGroupBox();
 			this.srPanel5 = new SilkRoad.UserControls.SRPanel();
+			this.lb_power = new SilkRoad.UserControls.SRLabel();
 			this.btn_expand = new SilkRoad.UserControls.SRButton();
 			this.lb_yccj = new SilkRoad.UserControls.SRLabel();
 			this.btn_yc = new SilkRoad.UserControls.SRButton();
@@ -695,7 +697,7 @@
 			// grd1
 			// 
 			this.grd1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.grd1.Location = new System.Drawing.Point(2, 65);
+			this.grd1.Location = new System.Drawing.Point(2, 82);
 			this.grd1.MainView = this.grdv1;
 			this.grd1.Name = "grd1";
 			this.grd1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -705,7 +707,7 @@
             this.repositoryItemColorPickEdit1,
             this.repositoryItemColorPickEdit2,
             this.repositoryItemTextEdit1});
-			this.grd1.Size = new System.Drawing.Size(782, 567);
+			this.grd1.Size = new System.Drawing.Size(782, 550);
 			this.grd1.TabIndex = 1;
 			this.grd1.TabStop = false;
 			this.grd1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1054,6 +1056,7 @@
 			// 
 			// srPanel5
 			// 
+			this.srPanel5.Controls.Add(this.lb_power);
 			this.srPanel5.Controls.Add(this.btn_expand);
 			this.srPanel5.Controls.Add(this.lb_yccj);
 			this.srPanel5.Controls.Add(this.btn_yc);
@@ -1064,8 +1067,20 @@
 			this.srPanel5.Dock = System.Windows.Forms.DockStyle.Top;
 			this.srPanel5.Location = new System.Drawing.Point(2, 22);
 			this.srPanel5.Name = "srPanel5";
-			this.srPanel5.Size = new System.Drawing.Size(782, 43);
+			this.srPanel5.Size = new System.Drawing.Size(782, 60);
 			this.srPanel5.TabIndex = 0;
+			// 
+			// lb_power
+			// 
+			this.lb_power.AutoSize = true;
+			this.lb_power.BackColor = System.Drawing.Color.Transparent;
+			this.lb_power.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.lb_power.ForeColor = System.Drawing.Color.Red;
+			this.lb_power.Location = new System.Drawing.Point(348, 13);
+			this.lb_power.Name = "lb_power";
+			this.lb_power.Size = new System.Drawing.Size(91, 15);
+			this.lb_power.TabIndex = 533;
+			this.lb_power.Text = "[부서조회 권한]";
 			// 
 			// btn_expand
 			// 
@@ -1090,7 +1105,7 @@
 			this.lb_yccj.BackColor = System.Drawing.Color.Transparent;
 			this.lb_yccj.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
 			this.lb_yccj.ForeColor = System.Drawing.Color.Blue;
-			this.lb_yccj.Location = new System.Drawing.Point(349, 13);
+			this.lb_yccj.Location = new System.Drawing.Point(10, 37);
 			this.lb_yccj.Name = "lb_yccj";
 			this.lb_yccj.Size = new System.Drawing.Size(296, 15);
 			this.lb_yccj.TabIndex = 524;
@@ -1221,24 +1236,20 @@
             this.gridColumn25,
             this.gridColumn28,
             this.gridColumn27});
-			styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			styleFormatCondition1.Appearance.Options.UseBackColor = true;
-			styleFormatCondition1.Column = this.gridColumn26;
-			styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-			styleFormatCondition1.Expression = "[APPRCNG1] == \'\'";
-			styleFormatCondition2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			styleFormatCondition2.Appearance.Options.UseBackColor = true;
-			styleFormatCondition2.Column = this.gridColumn27;
-			styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-			styleFormatCondition2.Expression = "[APPRCNG2] == \'\'";
-			styleFormatCondition3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			styleFormatCondition3.Appearance.Options.UseBackColor = true;
-			styleFormatCondition3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-			styleFormatCondition3.Expression = "[APPRCNG3] == \'\'";
-			this.grdv_yc.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1,
-            styleFormatCondition2,
-            styleFormatCondition3});
+			gridFormatRule3.Column = this.gridColumn26;
+			gridFormatRule3.Name = "Format0";
+			formatConditionRuleExpression3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			formatConditionRuleExpression3.Appearance.Options.UseBackColor = true;
+			formatConditionRuleExpression3.Expression = "[AP_TAG] = \'1\'";
+			gridFormatRule3.Rule = formatConditionRuleExpression3;
+			gridFormatRule4.Column = this.gridColumn27;
+			gridFormatRule4.Name = "Format1";
+			formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			formatConditionRuleExpression4.Appearance.Options.UseBackColor = true;
+			formatConditionRuleExpression4.Expression = "[AP_TAG] = \'4\'";
+			gridFormatRule4.Rule = formatConditionRuleExpression4;
+			this.grdv_yc.FormatRules.Add(gridFormatRule3);
+			this.grdv_yc.FormatRules.Add(gridFormatRule4);
 			this.grdv_yc.GridControl = this.grd_yc;
 			this.grdv_yc.Name = "grdv_yc";
 			this.grdv_yc.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -1335,24 +1346,24 @@
             this.gridColumn23,
             this.gridColumn24,
             this.gridColumn29});
-			styleFormatCondition4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			styleFormatCondition4.Appearance.Options.UseBackColor = true;
-			styleFormatCondition4.Column = this.gridColumn23;
-			styleFormatCondition4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-			styleFormatCondition4.Expression = "[APPRCNG1] == \'\'";
-			styleFormatCondition5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			styleFormatCondition5.Appearance.Options.UseBackColor = true;
-			styleFormatCondition5.Column = this.gridColumn24;
-			styleFormatCondition5.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-			styleFormatCondition5.Expression = "[APPRCNG2] == \'\'";
-			styleFormatCondition6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			styleFormatCondition6.Appearance.Options.UseBackColor = true;
-			styleFormatCondition6.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-			styleFormatCondition6.Expression = "[APPRCNG3] == \'\'";
+			styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			styleFormatCondition1.Appearance.Options.UseBackColor = true;
+			styleFormatCondition1.Column = this.gridColumn23;
+			styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+			styleFormatCondition1.Expression = "[APPRCNG1] == \'\'";
+			styleFormatCondition2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			styleFormatCondition2.Appearance.Options.UseBackColor = true;
+			styleFormatCondition2.Column = this.gridColumn24;
+			styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+			styleFormatCondition2.Expression = "[APPRCNG2] == \'\'";
+			styleFormatCondition3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			styleFormatCondition3.Appearance.Options.UseBackColor = true;
+			styleFormatCondition3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+			styleFormatCondition3.Expression = "[APPRCNG3] == \'\'";
 			this.grdv.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition4,
-            styleFormatCondition5,
-            styleFormatCondition6});
+            styleFormatCondition1,
+            styleFormatCondition2,
+            styleFormatCondition3});
 			this.grdv.GridControl = this.grd;
 			this.grdv.Name = "grdv";
 			this.grdv.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -1780,6 +1791,7 @@
 			this.txt_change.Properties.Mask.UseMaskAsDisplayFormat = true;
 			this.txt_change.Size = new System.Drawing.Size(57, 23);
 			this.txt_change.TabIndex = 520;
+			this.txt_change.EditValueChanged += new System.EventHandler(this.txt_change_EditValueChanged);
 			// 
 			// labelControl7
 			// 
@@ -2026,6 +2038,7 @@
 			this.Name = "duty8020";
 			this.Text = "duty8020";
 			this.Load += new System.EventHandler(this.duty8020_Load);
+			this.Shown += new System.EventHandler(this.duty8020_Shown);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty8020_KeyDown);
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv1)).EndInit();
@@ -2192,6 +2205,7 @@
 		private SilkRoad.UserControls.SRTextEdit txt_tcnt;
 		private DevExpress.XtraGrid.Columns.GridColumn col_dept;
 		private SilkRoad.UserControls.SRButton btn_expand;
+		private SilkRoad.UserControls.SRLabel lb_power;
 	}
 }
 

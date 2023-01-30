@@ -363,6 +363,18 @@ namespace DUTY1000
 					txt_nam2.Focus();
 					return false;
 				}
+				else if (Encoding.Default.GetByteCount(txt_nam2.Text.ToString().Trim()) > 8)
+				{
+					MessageBox.Show(srLabel2.Text + "의 길이가 8byte를 초과하였습니다.\r\n(현재 " + Encoding.Default.GetByteCount(txt_nam2.Text.ToString().Trim()) + "byte)", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					txt_nam2.Focus();
+					return false;
+				}
+				else if (cmb_gtype.SelectedIndex == 11 && clib.TextToDecimal(txt_yc_day.Text.ToString()) == 0)
+				{
+					MessageBox.Show("휴가일수를 0일로 등록할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					txt_yc_day.Focus();
+					return false;
+				}
 				else
 				{
 					isError = true;

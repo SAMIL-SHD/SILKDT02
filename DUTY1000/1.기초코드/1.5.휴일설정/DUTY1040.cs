@@ -309,6 +309,16 @@ namespace DUTY1000
         }
 
 		#endregion
-
+		
+		private void dateEdit1_Properties_CalendarTimeProperties_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+		{			
+			//if (dateEdit1.Properties.VistaCalendarViewStyle == DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView)
+			//{
+			//	if (dateEdit1.DateTime.Date.ToString("ddd") == "토") // || dateEdit1.DateTime.Date.ToString("ddd") == "일")
+			//	{
+			//		dateEdit1.ForeColor = System.Drawing.Color.Blue;
+			//	}
+			//}
+		}
 	}
 }

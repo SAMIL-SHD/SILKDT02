@@ -51,17 +51,13 @@ namespace SilkRoad.SILKDT01
             switch (toolbarType)
             {
                 case 0:
-                    menuName = "코드관리 ";
+                    menuName = "코드관리";
                     #region 코드관리
                     TreeListNode parentForRootNodes = null;
 					
 					TreeListNode rootNode = tl.AppendNode(new object[] { "기초코드", "", "", "" }, parentForRootNodes);
-					//if (SRConfig.US_GUBN == "1")
-					//{
-					//	//tl.AppendNode(new object[] { "사용자부서연결", "DUTY1000.duty1005", "", "1" }, rootNode);
-					//	tl.AppendNode(new object[] { "인사기본관리", "DUTY1000.duty1006", "", "1" }, rootNode);
-					//}
 					tl.AppendNode(new object[] { "인사기본관리", "WAGE1000.duty1006", "", "1" }, rootNode);
+					tl.AppendNode(new object[] { "사용자부서연결", "DUTY1000.duty1005", "", "1" }, rootNode);
 					tl.AppendNode(new object[] { "간호사정보관리", "DUTY1000.duty1050", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "부서-직원설정", "DUTY1000.duty1011", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "근무유형정의", "DUTY1000.duty1030", "", "" }, rootNode);
@@ -81,7 +77,8 @@ namespace SilkRoad.SILKDT01
 
 					rootNode2 = tl.AppendNode(new object[] { "근무관리", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "CALL/OT관리", "DUTY1000.duty2020", "", "" }, rootNode2); //OT조회및승인
-					//tl.AppendNode(new object[] { "SAVE&OT관리", "DUTY1000.duty2040", "", "" }, rootNode2);
+					if (ACConfig.G_MSYN == "1" || SRConfig.US_DPCD == "2500")
+						tl.AppendNode(new object[] { "SAVE/OT내역", "DUTY1000.duty2030", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty2010", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "간호사근무관리", "DUTY1000.duty3010", "", "" }, rootNode2);

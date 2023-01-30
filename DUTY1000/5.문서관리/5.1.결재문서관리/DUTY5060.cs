@@ -70,6 +70,13 @@ namespace DUTY1000
 		#endregion
 
 		#region 2 Button	
+		
+		//원장단 근무표
+		private void srButton1_Click(object sender, EventArgs e)
+		{
+			duty5064 duty5064 = new duty5064();
+			duty5064.Show();
+		}
 
 		//승인내역 조회
 		private void btn_ap_search_Click(object sender, EventArgs e)
@@ -93,7 +100,7 @@ namespace DUTY1000
 				df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
 				grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
 				if (ds.Tables["5060_AP_YCHG_LIST3"].Rows.Count == 0)
-					MessageBox.Show("결재할 OFF/N 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("결재할 OFF,N/밤근무 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			else if (srTabControl1.SelectedTabPageIndex == 3)
 			{
@@ -123,7 +130,7 @@ namespace DUTY1000
 						if (drow["CHK"].ToString() == "1")
 						{
 							string tb_nm = drow["GUBN"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
-							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SEQNO"].ToString(), ds);//drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
 								DataRow hrow = ds.Tables[tb_nm].Rows[0];
@@ -145,6 +152,13 @@ namespace DUTY1000
 											hrow["AP_TAG"] = "1";
 									}
 									else if (hrow["GW_DT4"].ToString().Trim() == "" && hrow["GW_SABN4"].ToString().Trim() == SilkRoad.Config.SRConfig.USID)
+									{
+										hrow["GW_DT4"] = gd.GetNow();
+										hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
+										hrow["AP_TAG"] = "1";
+									}
+																		
+									if (SilkRoad.Config.SRConfig.USID == "SAMIL")
 									{
 										hrow["GW_DT4"] = gd.GetNow();
 										hrow["GW_CHKID4"] = SilkRoad.Config.SRConfig.USID;
@@ -188,7 +202,7 @@ namespace DUTY1000
 						if (drow["C_CHK"].ToString() == "1")
 						{
 							string tb_nm = drow["GUBN"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
-							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SEQNO"].ToString(), ds);//drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
 								DataRow hrow = ds.Tables[tb_nm].Rows[0];
@@ -234,7 +248,7 @@ namespace DUTY1000
 		//연차,휴가 반려
 		private void btn_ap_return_Click(object sender, EventArgs e)
 		{
-			if (isNoError_um(12))
+			if (isNoError_um(11))
 			{
 				Cursor = Cursors.WaitCursor;
 				int outVal = 0;
@@ -243,10 +257,10 @@ namespace DUTY1000
 					for (int i = 0; i < ds.Tables["5060_AP_YCHG_LIST"].Rows.Count; i++)
 					{
 						DataRow drow = ds.Tables["5060_AP_YCHG_LIST"].Rows[i];
-						if (drow["C_CHK"].ToString() == "1")
+						if (drow["CHK"].ToString() == "1")
 						{
 							string tb_nm = drow["GUBN"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
-							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
+							df.Get5060_DUTY_TRSHREQDatas(drow["GUBN"].ToString(), drow["SEQNO"].ToString(), ds);//drow["GUBN"].ToString(), drow["SABN"].ToString(), drow["REQ_DATE"].ToString(), ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
 								DataRow hrow = ds.Tables[tb_nm].Rows[0];
@@ -285,7 +299,7 @@ namespace DUTY1000
 				finally
 				{
 					if (outVal > 0)
-						MessageBox.Show(outVal + "건의 선택된 내역이 취소처리 되었습니다.", "성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show(outVal + "건의 선택된 내역이 반려처리 되었습니다.", "성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					df.Get5060_AP_YCHG_LISTDatas(SilkRoad.Config.SRConfig.USID, ds);
 					grd_ap.DataSource = ds.Tables["5060_AP_YCHG_LIST"];
 					Cursor = Cursors.Default;
@@ -360,7 +374,7 @@ namespace DUTY1000
 			{
 				if (grdv_ap.FocusedColumn.Name.ToString() == "col_chk")
 				{
-					if (drow["CHK_STAT"].ToString() != "1")
+					if (drow["CHK_STAT"].ToString() != "1" && SilkRoad.Config.SRConfig.USID != "SAMIL")
 						e.Cancel = true;
 				}
 				else if (grdv_ap.FocusedColumn.Name.ToString() == "col_c_chk")
@@ -385,7 +399,8 @@ namespace DUTY1000
 			int R_index = grdv_ap2.FocusedRowHandle;
 			
 			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
-			duty5062.ShowDialog();
+			duty5062.Show();
+			//duty5062.ShowDialog();
 			
 			df.Get5060_AP_YCHG_LIST2Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap2.DataSource = ds.Tables["5060_AP_YCHG_LIST2"];
@@ -404,7 +419,8 @@ namespace DUTY1000
 			int R_index = grdv_ap3.FocusedRowHandle;
 			
 			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
-			duty5062.ShowDialog();
+			duty5062.Show();
+			//duty5062.ShowDialog();
 			
 			df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
@@ -423,7 +439,8 @@ namespace DUTY1000
 			int R_index = grdv_ap4.FocusedRowHandle;
 			
 			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
-			duty5062.ShowDialog();
+			duty5062.Show();
+			//duty5062.ShowDialog();
 			
 			df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
@@ -442,7 +459,7 @@ namespace DUTY1000
         {
             bool isError = false;
 
-            if (mode == 11)  //연차,휴가승인
+            if (mode == 11)  //연차,휴가승인 + 반려
             {
 				if (ds.Tables["5060_AP_YCHG_LIST"] != null)
 				{

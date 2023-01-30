@@ -62,6 +62,7 @@ namespace DUTY1000
 				sl_embs.Enabled = true;
 				dat_ycdt.Enabled = false;
 				dat_ycdt2.Enabled = false;
+				cmb_gubn.Enabled = false;
 				sl_gnmu.Enabled = false;
 				chk_line.Enabled = false;
 				
@@ -191,7 +192,7 @@ namespace DUTY1000
             if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
                 admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
 
-			if (SilkRoad.Config.SRConfig.US_GUBN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
 			{
 				admin_lv = 3;
                 p_dpcd = "%";
@@ -276,6 +277,7 @@ namespace DUTY1000
 				sl_embs.Enabled = false;
 				dat_ycdt.Enabled = true;
 				dat_ycdt2.Enabled = true;
+				cmb_gubn.Enabled = true;
 				sl_gnmu.Enabled = true;
 				chk_line.Enabled = true;
 
@@ -379,8 +381,12 @@ namespace DUTY1000
 					if (ds.Tables["DUTY_TRSJREQ"].Rows.Count > 0)
 					{
 						DataRow hrow = ds.Tables["DUTY_TRSJREQ"].Rows[0];
-						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;
+						hrow["GUBN"] = cmb_gubn.SelectedIndex == 1 ? "D" : "C";
+						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 1 : sr_pay.SelectedIndex + 1;
 						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), sl_gnmu.EditValue.ToString(), ds);
+						if (cmb_gubn.SelectedIndex == 1)
+							hrow["HOLI_DAYS"] = -clib.TextToDecimal(hrow["HOLI_DAYS"].ToString());
+
 						if (sl_line3.EditValue != null)
 							hrow["LINE_CNT"] = 4;
 						else if (sl_line2.EditValue != null)
@@ -388,7 +394,7 @@ namespace DUTY1000
 						else if (sl_line1.EditValue != null)
 							hrow["LINE_CNT"] = 2;	
 						
-						hrow["AP_TAG"] = chk_fix.Checked == true ? "8" : "4";
+						hrow["AP_TAG"] = chk_fix.Checked == true ? "3" : "4";
 						hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
 						hrow["GW_DT1"] = gd.GetNow();
 						hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
@@ -420,14 +426,18 @@ namespace DUTY1000
 					else
 					{
 						DataRow hrow = ds.Tables["DUTY_TRSJREQ"].NewRow();
+						hrow["SEQNO"] = df.GetJREQ_SEQNODatas();
+						hrow["GUBN"] = cmb_gubn.SelectedIndex == 1 ? "D" : "C";
 						hrow["SABN"] = sl_embs.EditValue.ToString();
 						hrow["REQ_DATE"] = clib.DateToText(dat_ycdt.DateTime);
 						hrow["REQ_DATE2"] = clib.DateToText(dat_ycdt2.DateTime);
 						hrow["REQ_TYPE"] = sl_gnmu.EditValue.ToString();
-						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 0 : sr_pay.SelectedIndex;
+						hrow["PAY_YN"] = sr_pay.SelectedIndex < 1 ? 1 : sr_pay.SelectedIndex + 1;
 						hrow["HOLI_DAYS"] = df.GetHOLI_DAYS_CALCDatas(clib.DateToText(dat_ycdt.DateTime), clib.DateToText(dat_ycdt2.DateTime), sl_gnmu.EditValue.ToString(), ds);
+						if (cmb_gubn.SelectedIndex == 1)
+							hrow["HOLI_DAYS"] = -clib.TextToDecimal(hrow["HOLI_DAYS"].ToString());
 						
-						hrow["AP_TAG"] = chk_fix.Checked == true ? "8" : "4";
+						hrow["AP_TAG"] = chk_fix.Checked == true ? "3" : "4";
 						hrow["LINE_CNT"] = 1;
 						if (sl_line3.EditValue != null)
 							hrow["LINE_CNT"] = 4;
@@ -510,6 +520,8 @@ namespace DUTY1000
 						{
 							df.GetDEL_TRSJREQDatas(ds);								
 							DataRow hrow = ds.Tables["DEL_TRSJREQ"].NewRow();
+							hrow["SEQNO"] = drow["SEQNO"].ToString();
+							hrow["GUBN"] = drow["GUBN"].ToString();
 							hrow["SABN"] = drow["SABN"].ToString();
 							hrow["REQ_DATE"] = drow["REQ_DATE"].ToString();
 							hrow["REQ_DATE2"] = drow["REQ_DATE2"].ToString();
@@ -528,16 +540,6 @@ namespace DUTY1000
 								hrow["GW_NAME" + i.ToString()] = drow["GW_NAME" + i.ToString()].ToString();
 								hrow["GW_JICK" + i.ToString()] = drow["GW_JICK" + i.ToString()].ToString();
 							}
-
-							//hrow["SAWON_LV"] = drow["SAWON_LV"].ToString();
-							//hrow["EXCEPT_MID"] = drow["EXCEPT_MID"].ToString();
-							//hrow["AP_TAG"] = drow["AP_TAG"].ToString();
-							//hrow["MID_DT"] = drow["MID_DT"].ToString();
-							//hrow["MID_USID"] = drow["MID_USID"].ToString();
-							//hrow["AP_DT"] = drow["AP_DT"].ToString();
-							//hrow["AP_USID"] = drow["AP_USID"].ToString();
-							//hrow["CANC_DT"] = drow["CANC_DT"].ToString();
-							//hrow["CANC_USID"] = drow["CANC_USID"].ToString();
 
 							hrow["INDT"] = drow["INDT"].ToString();
 							hrow["UPDT"] = drow["UPDT"].ToString();
@@ -615,17 +617,25 @@ namespace DUTY1000
 				dat_ycdt2.DateTime = clib.TextToDate(hrow["REQ_DATE2"].ToString());
 				chk_fix.Checked = hrow["REQ_TYPE"].ToString() == "8" ? true : false;
 
-				if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "9")  //1승인,3완료,9정산
-					SetButtonEnable2("0001");
-				else if (hrow["AP_TAG"].ToString() == "4" && hrow["GW_DT2"].ToString().Trim() == "") //4진행이고 다음결재가 없을때
+				if (SilkRoad.Config.ACConfig.G_MSYN == "1")
+				{
 					SetButtonEnable2("0011");
-				else if (hrow["AP_TAG"].ToString() == "5" || hrow["AP_TAG"].ToString() == "8") //5.반려, 8.고정연차(원장단 사용)
-					SetButtonEnable2("0111");
+				}
 				else
-					SetButtonEnable2("0011");
+				{				
+					if (hrow["AP_TAG"].ToString() == "1" || hrow["AP_TAG"].ToString() == "3" || hrow["AP_TAG"].ToString() == "9")  //1승인, 3완료, 9정산
+						SetButtonEnable2("0001");
+					else if (hrow["AP_TAG"].ToString() == "4" && hrow["GW_DT2"].ToString().Trim() == "") //4진행이고 다음결재가 없을때
+						SetButtonEnable2("0011");
+					else if (hrow["AP_TAG"].ToString() == "5") //5.반려
+						SetButtonEnable2("0111");
+					else
+						SetButtonEnable2("0011");
+				}
 			}
 			dat_ycdt.Enabled = false;
 			dat_ycdt2.Enabled = false;
+			cmb_gubn.Enabled = false;
 			sl_gnmu.Enabled = false;
 
 			string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
