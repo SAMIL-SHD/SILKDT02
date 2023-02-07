@@ -1755,20 +1755,20 @@ namespace DUTY1000
 			}
 		}
 		//직원별 리스트 조회
-		public void GetSEARCH_DEPT_OTDatas(string sabn, string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.*, '' CHK, "
-						   + "        LEFT(A.OT_DATE,4)+'-'+SUBSTRING(A.OT_DATE,5,2)+'-'+SUBSTRING(A.OT_DATE,7,2) AS DATE_NM, "
-						   + "        (CASE DATEPART(DW,A.OT_DATE) WHEN 1 THEN '일' WHEN 2 THEN '월' WHEN 3 THEN '화' "
-						   + "         WHEN 4 THEN '수' WHEN 5 THEN '목' WHEN 6 THEN '금' WHEN 7 THEN '토' ELSE '' END) DAY_NM, "
-						   + "        C2.AP_TAG AS GW_TAG "
-						   + "   FROM DUTY_TRSOVTM A "
-						   + "   LEFT OUTER JOIN DUTY_GWDOC C2 "
-						   + "     ON A.DOC_NO=C2.DOC_NO AND C2.AP_TAG NOT IN ('2','5')"
-						   + "  WHERE A.SABN = '" + sabn + "'"
-						   + "    AND LEFT(A.OT_DATE,6) = '" + yymm + "' AND A.OT_GUBN = '2'";
+		//public void GetSEARCH_DEPT_OTDatas(string sabn, string yymm, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.*, '' CHK, "
+		//				   + "        LEFT(A.OT_DATE,4)+'-'+SUBSTRING(A.OT_DATE,5,2)+'-'+SUBSTRING(A.OT_DATE,7,2) AS DATE_NM, "
+		//				   + "        (CASE DATEPART(DW,A.OT_DATE) WHEN 1 THEN '일' WHEN 2 THEN '월' WHEN 3 THEN '화' "
+		//				   + "         WHEN 4 THEN '수' WHEN 5 THEN '목' WHEN 6 THEN '금' WHEN 7 THEN '토' ELSE '' END) DAY_NM, "
+		//				   + "        C2.AP_TAG AS GW_TAG "
+		//				   + "   FROM DUTY_TRSOVTM A "
+		//				   + "   LEFT OUTER JOIN DUTY_GWDOC C2 "
+		//				   + "     ON A.DOC_NO=C2.DOC_NO AND C2.AP_TAG NOT IN ('2','5')"
+		//				   + "  WHERE A.SABN = '" + sabn + "'"
+		//				   + "    AND LEFT(A.OT_DATE,6) = '" + yymm + "' AND A.OT_GUBN = '2'";
 
 		
 		//저장내역조회
@@ -1818,208 +1818,208 @@ namespace DUTY1000
 
 		#endregion	
 		
-		#region 2030 - OT&SAVE 보고서
+		#region 2030 - OT&SAVE 보고서xxxxxx
 		//당직 캘린더 조회
-		public void GetSEARCH_SAVEDatas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " EXEC USP_DUTY2030_RPT_220809 '" + yymm + "' ";
+		//public void GetSEARCH_SAVEDatas(string yymm, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " EXEC USP_DUTY2030_RPT_220809 '" + yymm + "' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SEARCH_SAVE", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("SEARCH_SAVE", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 
 		#endregion	
 		
-		#region 2031 - OT&SAVE관리
+		#region 2031 - OT&SAVE관리xxxxx
 		
 		//저장내역조회
-		public void GetS_DUTY_TRSSVTMDatas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.*, "
-						   + "        LEFT(A.SAVE_DATE,4)+'-'+SUBSTRING(A.SAVE_DATE,5,2)+'-'+SUBSTRING(A.SAVE_DATE,7,2) AS SLDT_NM, "
-						   + "        RTRIM(X1.EMBSNAME) SAWON_NM, "
-						   + "        RTRIM(X2.DEPRNAM1) DEPT_NM "
-						   + "   FROM DUTY_TRSSVTM A "
-						   + "   LEFT OUTER JOIN MSTEMBS X1 "
-						   + "     ON A.SABN = X1.EMBSSABN "
-						   + "   LEFT OUTER JOIN MSTDEPR X2 "
-						   + "     ON X1.EMBSDPCD = X2.DEPRCODE "
-						   + "  WHERE LEFT(A.SAVE_DATE,6) = '" + yymm + "'"
-						   + "  ORDER BY A.SABN, A.SAVE_DATE" ;
+		//public void GetS_DUTY_TRSSVTMDatas(string yymm, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.*, "
+		//				   + "        LEFT(A.SAVE_DATE,4)+'-'+SUBSTRING(A.SAVE_DATE,5,2)+'-'+SUBSTRING(A.SAVE_DATE,7,2) AS SLDT_NM, "
+		//				   + "        RTRIM(X1.EMBSNAME) SAWON_NM, "
+		//				   + "        RTRIM(X2.DEPRNAM1) DEPT_NM "
+		//				   + "   FROM DUTY_TRSSVTM A "
+		//				   + "   LEFT OUTER JOIN MSTEMBS X1 "
+		//				   + "     ON A.SABN = X1.EMBSSABN "
+		//				   + "   LEFT OUTER JOIN MSTDEPR X2 "
+		//				   + "     ON X1.EMBSDPCD = X2.DEPRCODE "
+		//				   + "  WHERE LEFT(A.SAVE_DATE,6) = '" + yymm + "'"
+		//				   + "  ORDER BY A.SABN, A.SAVE_DATE" ;
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_DUTY_TRSSVTM", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//SAVE시간 테이블
-		public void GetDUTY_TRSSVTMDatas(string embs, string sldt, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_TRSSVTM "
-						   + "  WHERE SABN = '" + embs +"' AND SAVE_DATE = '" + sldt +"' ";
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("S_DUTY_TRSSVTM", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////SAVE시간 테이블
+		//public void GetDUTY_TRSSVTMDatas(string embs, string sldt, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT * "
+		//				   + "   FROM DUTY_TRSSVTM "
+		//				   + "  WHERE SABN = '" + embs +"' AND SAVE_DATE = '" + sldt +"' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_TRSSVTM", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//SAVE마감 조회
-		public void GetS_SAVE_ENDSDatas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_MSTSAVE_ENDS "
-						   + "  WHERE END_YYMM = '" + yymm +"' ";
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DUTY_TRSSVTM", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////SAVE마감 조회
+		//public void GetS_SAVE_ENDSDatas(string yymm, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT * "
+		//				   + "   FROM DUTY_MSTSAVE_ENDS "
+		//				   + "  WHERE END_YYMM = '" + yymm +"' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_SAVE_ENDS", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("S_SAVE_ENDS", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 		
-		//SAVE 삭제 테이블 구조
-		public void GetDEL_TRSSVTMDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DEL_TRSSVTM "
-						   + "  WHERE 1=2";
+		////SAVE 삭제 테이블 구조
+		//public void GetDEL_TRSSVTMDatas(DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT * "
+		//				   + "   FROM DEL_TRSSVTM "
+		//				   + "  WHERE 1=2";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DEL_TRSSVTM", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DEL_TRSSVTM", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 		
-		//년월
-		public void GetSEARCH_SAVE_ENDSDatas(string year, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.*, "
-						   + "        LEFT(A.END_YYMM,4)+'-'+SUBSTRING(A.END_YYMM,5,2) END_YYMM_NM, "
-						   + "        (CASE WHEN A.CLOSE_YN='1' THEN END_DT+'('+END_ID+')' ELSE CANC_DT+'('+CANC_ID+')' END) MOD_DT, "
-						   + "        (CASE A.CLOSE_YN WHEN '1' THEN '마감' WHEN '2' THEN '마감취소' ELSE '' END) CLOSE_NM "
-						   + "   FROM DUTY_MSTSAVE_ENDS A "
-						   + "  WHERE LEFT(A.END_YYMM,4) = '" + year +"' ";
+		////년월
+		//public void GetSEARCH_SAVE_ENDSDatas(string year, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.*, "
+		//				   + "        LEFT(A.END_YYMM,4)+'-'+SUBSTRING(A.END_YYMM,5,2) END_YYMM_NM, "
+		//				   + "        (CASE WHEN A.CLOSE_YN='1' THEN END_DT+'('+END_ID+')' ELSE CANC_DT+'('+CANC_ID+')' END) MOD_DT, "
+		//				   + "        (CASE A.CLOSE_YN WHEN '1' THEN '마감' WHEN '2' THEN '마감취소' ELSE '' END) CLOSE_NM "
+		//				   + "   FROM DUTY_MSTSAVE_ENDS A "
+		//				   + "  WHERE LEFT(A.END_YYMM,4) = '" + year +"' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SEARCH_SAVE_ENDS", dt, ref ds);
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("SEARCH_SAVE_ENDS", dt, ref ds);
 				
-                for (int i = 1; i <= 12; i++)
-                {
-                    if (ds.Tables["SEARCH_SAVE_ENDS"].Select("END_YYMM = '" + year.Substring(0, 4) + i.ToString().PadLeft(2, '0') + "'").Length == 0)
-                    {
-                        DataRow drow = ds.Tables["SEARCH_SAVE_ENDS"].NewRow();
-						drow["END_YYMM"] = year + i.ToString().PadLeft(2, '0');
-						drow["END_YYMM_NM"] = year + "-" + i.ToString().PadLeft(2, '0');
-                        drow["CLOSE_YN"] = "";
-                        ds.Tables["SEARCH_SAVE_ENDS"].Rows.Add(drow);
-                    }
-                }
-                ds.Tables["SEARCH_SAVE_ENDS"].DefaultView.Sort = "END_YYMM";
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+  //              for (int i = 1; i <= 12; i++)
+  //              {
+  //                  if (ds.Tables["SEARCH_SAVE_ENDS"].Select("END_YYMM = '" + year.Substring(0, 4) + i.ToString().PadLeft(2, '0') + "'").Length == 0)
+  //                  {
+  //                      DataRow drow = ds.Tables["SEARCH_SAVE_ENDS"].NewRow();
+		//				drow["END_YYMM"] = year + i.ToString().PadLeft(2, '0');
+		//				drow["END_YYMM_NM"] = year + "-" + i.ToString().PadLeft(2, '0');
+  //                      drow["CLOSE_YN"] = "";
+  //                      ds.Tables["SEARCH_SAVE_ENDS"].Rows.Add(drow);
+  //                  }
+  //              }
+  //              ds.Tables["SEARCH_SAVE_ENDS"].DefaultView.Sort = "END_YYMM";
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 
-		public void GetDUTY_MSTSAVE_ENDSDatas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.* "
-						   + "   FROM DUTY_MSTSAVE_ENDS A "
-						   + "  WHERE A.END_YYMM = '" + yymm +"' ";
+		//public void GetDUTY_MSTSAVE_ENDSDatas(string yymm, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.* "
+		//				   + "   FROM DUTY_MSTSAVE_ENDS A "
+		//				   + "  WHERE A.END_YYMM = '" + yymm +"' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_MSTSAVE_ENDS", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DUTY_MSTSAVE_ENDS", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 
 		
-		//저장내역조회
-		public void GetS_DUTY_TRSOVTM_JSDatas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.*, "
-						   + "        LEFT(A.JS_DATE,4)+'-'+SUBSTRING(A.JS_DATE,5,2)+'-'+SUBSTRING(A.JS_DATE,7,2) AS SLDT_NM, "
-						   + "        RTRIM(X1.EMBSNAME) SAWON_NM, "
-						   + "        RTRIM(X2.DEPRNAM1) DEPT_NM "
-						   + "   FROM DUTY_TRSOVTM_JS A "
-						   + "   LEFT OUTER JOIN MSTEMBS X1 "
-						   + "     ON A.SABN = X1.EMBSSABN "
-						   + "   LEFT OUTER JOIN MSTDEPR X2 "
-						   + "     ON X1.EMBSDPCD = X2.DEPRCODE "
-						   + "  WHERE LEFT(A.JS_DATE,6) = '" + yymm + "'"
-						   + "  ORDER BY A.SABN, A.JS_DATE" ;
+		////저장내역조회
+		//public void GetS_DUTY_TRSOVTM_JSDatas(string yymm, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.*, "
+		//				   + "        LEFT(A.JS_DATE,4)+'-'+SUBSTRING(A.JS_DATE,5,2)+'-'+SUBSTRING(A.JS_DATE,7,2) AS SLDT_NM, "
+		//				   + "        RTRIM(X1.EMBSNAME) SAWON_NM, "
+		//				   + "        RTRIM(X2.DEPRNAM1) DEPT_NM "
+		//				   + "   FROM DUTY_TRSOVTM_JS A "
+		//				   + "   LEFT OUTER JOIN MSTEMBS X1 "
+		//				   + "     ON A.SABN = X1.EMBSSABN "
+		//				   + "   LEFT OUTER JOIN MSTDEPR X2 "
+		//				   + "     ON X1.EMBSDPCD = X2.DEPRCODE "
+		//				   + "  WHERE LEFT(A.JS_DATE,6) = '" + yymm + "'"
+		//				   + "  ORDER BY A.SABN, A.JS_DATE" ;
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_DUTY_TRSOVTM_JS", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//SAVE시간 테이블
-		public void GetDUTY_TRSOVTM_JSDatas(string embs, string sldt, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_TRSOVTM_JS "
-						   + "  WHERE SABN = '" + embs +"' AND JS_DATE = '" + sldt +"' ";
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("S_DUTY_TRSOVTM_JS", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////SAVE시간 테이블
+		//public void GetDUTY_TRSOVTM_JSDatas(string embs, string sldt, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT * "
+		//				   + "   FROM DUTY_TRSOVTM_JS "
+		//				   + "  WHERE SABN = '" + embs +"' AND JS_DATE = '" + sldt +"' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_TRSOVTM_JS", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DUTY_TRSOVTM_JS", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 
 		#endregion	
 
@@ -3726,61 +3726,61 @@ namespace DUTY1000
 		}
 		#endregion
 				
-		#region 3013 - 밤근무/간호간병비 결재
+		#region 3013 - 밤근무/간호간병비 결재xxxxxxx
 				
-		//등록할 부서설정 테이블 불러오기
-		public void Get3013_SEARCH_SDDatas(int gubn, string yymm, string sabn, DataSet ds)
-		{
-			try
-			{
-				//1:밤근무수당 2:간호간병비
-				//김정은 5A/5B - 간호간병비, 6A/6B/7A/7B - 밤근무수당
-				//한지영 응급실/중환자실 - 밤근무수당
-				string qry = " SELECT '1' CHK, A.DEPTCODE, RTRIM(X2.DEPRNAM1) AS DEPT_NM, "
-						   + "        A.SAWON_NO, RTRIM(X1.EMBSNAME) AS EMBSNAME, "
-						   + "        0.0 AS PAST_YEAR, A.MM_CNT3, X1.EMBSIPDT, "
-						   + "        (CASE WHEN X1.EMBSIPDT='' THEN '' ELSE LEFT(X1.EMBSIPDT,4)+'-'+SUBSTRING(X1.EMBSIPDT,5,2)+'-'+SUBSTRING(X1.EMBSIPDT,7,2) END) AS IPDT, "
-						   + "        0 AS SD_AMT "
-						   + "   FROM DUTY_TRSPLAN A "
-						   + "   LEFT OUTER JOIN MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
-						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.DEPTCODE=X2.DEPRCODE "
-						   //+ "   INNER JOIN DUTY_PWERDEPT X3 ON A.DEPTCODE=X3.DEPT AND X3.SABN='" + sabn + "' "
-						   + "  WHERE A.PLANYYMM='" + yymm + "' AND ISNULL(A.SHIFT_WORK,0) <> 0 ";
-				if (gubn == 1 && SilkRoad.Config.SRConfig.USID == "SAMIL")
-					qry += "    AND A.DEPTCODE NOT IN ('0100','0200') ";
-				else if (gubn == 1 && SilkRoad.Config.SRConfig.USID != "SAMIL")
-					qry += "    AND A.DEPTCODE NOT IN ('0100','0200') AND A.DEPTCODE IN (SELECT DEPT FROM DUTY_PWERDEPT WHERE SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
-				else if (gubn == 2)
-					qry += "    AND A.DEPTCODE IN ('0100','0200') ";
-				qry += "  ORDER BY A.DEPTCODE, A.SAWON_NO  ";
+		////등록할 부서설정 테이블 불러오기
+		//public void Get3013_SEARCH_SDDatas(int gubn, string yymm, string sabn, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		//1:밤근무수당 2:간호간병비
+		//		//김정은 5A/5B - 간호간병비, 6A/6B/7A/7B - 밤근무수당
+		//		//한지영 응급실/중환자실 - 밤근무수당
+		//		string qry = " SELECT '1' CHK, A.DEPTCODE, RTRIM(X2.DEPRNAM1) AS DEPT_NM, "
+		//				   + "        A.SAWON_NO, RTRIM(X1.EMBSNAME) AS EMBSNAME, "
+		//				   + "        0.0 AS PAST_YEAR, A.MM_CNT3, X1.EMBSIPDT, "
+		//				   + "        (CASE WHEN X1.EMBSIPDT='' THEN '' ELSE LEFT(X1.EMBSIPDT,4)+'-'+SUBSTRING(X1.EMBSIPDT,5,2)+'-'+SUBSTRING(X1.EMBSIPDT,7,2) END) AS IPDT, "
+		//				   + "        0 AS SD_AMT "
+		//				   + "   FROM DUTY_TRSPLAN A "
+		//				   + "   LEFT OUTER JOIN MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
+		//				   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.DEPTCODE=X2.DEPRCODE "
+		//				   //+ "   INNER JOIN DUTY_PWERDEPT X3 ON A.DEPTCODE=X3.DEPT AND X3.SABN='" + sabn + "' "
+		//				   + "  WHERE A.PLANYYMM='" + yymm + "' AND ISNULL(A.SHIFT_WORK,0) <> 0 ";
+		//		if (gubn == 1 && SilkRoad.Config.SRConfig.USID == "SAMIL")
+		//			qry += "    AND A.DEPTCODE NOT IN ('0100','0200') ";
+		//		else if (gubn == 1 && SilkRoad.Config.SRConfig.USID != "SAMIL")
+		//			qry += "    AND A.DEPTCODE NOT IN ('0100','0200') AND A.DEPTCODE IN (SELECT DEPT FROM DUTY_PWERDEPT WHERE SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
+		//		else if (gubn == 2)
+		//			qry += "    AND A.DEPTCODE IN ('0100','0200') ";
+		//		qry += "  ORDER BY A.DEPTCODE, A.SAWON_NO  ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("3013_SEARCH_SD", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("3013_SEARCH_SD", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 		
-		//GW_TRSYAGAN 테이블 불러오기
-		public void GetGW_TRSYAGANDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM GW_TRSYAGAN WHERE 1=2 ";
+		////GW_TRSYAGAN 테이블 불러오기
+		//public void GetGW_TRSYAGANDatas(DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT * "
+		//				   + "   FROM GW_TRSYAGAN WHERE 1=2 ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("GW_TRSYAGAN", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("GW_TRSYAGAN", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
 		#endregion
 				
 		#region 3014 - 근무표 결재
@@ -3940,79 +3940,82 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		
-		//베드이송 직원 조회
-		public void GetS_BEDDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.*, "
-						   + "        RTRIM(ISNULL(X2.DEPRNAM1,'')) DEPT_NM "
-						   + "   FROM DUTY_TRSPLAN_ETC A "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
-						   + "  WHERE A.PSTY<>'D' "
-						   + "  ORDER BY A.SAWON_NO ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_BED", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//베드이송 직원 조회
-		public void GetS_MSTNURS2Datas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.SAWON_NO AS CODE, RTRIM(X1.EMBSNAME) NAME, "
-						   + "        A.*, "
-						   + "        (CASE WHEN A.STAT=1 THEN '정상' ELSE '사용중지' END) STAT_NM, "
-						   + "        (CASE A.SHIFT_WORK WHEN 1 THEN 'Y' WHEN 2 THEN 'N' ELSE '' END) SHIFT_WORK_NM, "  //교대여부
-						   + "        ISNULL(X1.EMBSDPCD,'') DEPTCODE, RTRIM(ISNULL(X2.DEPRNAM1,'')) DEPT_NM, "
-						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X1.EMBSPHPN) as varchar(100))) HPNO, RTRIM(X1.EMBSEMAL) AS EMAIL_ID "
-						   + "   FROM DUTY_MSTNURS A "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
-						   + "  ORDER BY X1.EMBSDPCD, X1.EMBSNAME ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_MSTNURS2", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//베드이송 직원 조회
-		public void GetDUTY_TRSPLAN_ETCDatas(string sabn, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.* "
-						   + "   FROM DUTY_TRSPLAN_ETC A "
-						   + "  WHERE A.SAWON_NO = '" + sabn + "' ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_TRSPLAN_ETC", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
 
 		#endregion
 
-		
+		#region xxxxxx
+		////베드이송 직원 조회
+		//public void GetS_BEDDatas(DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.*, "
+		//				   + "        RTRIM(ISNULL(X2.DEPRNAM1,'')) DEPT_NM "
+		//				   + "   FROM DUTY_TRSPLAN_ETC A "
+		//				   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
+		//				   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
+		//				   + "  WHERE A.PSTY<>'D' "
+		//				   + "  ORDER BY A.SAWON_NO ";
+
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("S_BED", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////베드이송 직원 조회
+		//public void GetS_MSTNURS2Datas(DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.SAWON_NO AS CODE, RTRIM(X1.EMBSNAME) NAME, "
+		//				   + "        A.*, "
+		//				   + "        (CASE WHEN A.STAT=1 THEN '정상' ELSE '사용중지' END) STAT_NM, "
+		//				   + "        (CASE A.SHIFT_WORK WHEN 1 THEN 'Y' WHEN 2 THEN 'N' ELSE '' END) SHIFT_WORK_NM, "  //교대여부
+		//				   + "        ISNULL(X1.EMBSDPCD,'') DEPTCODE, RTRIM(ISNULL(X2.DEPRNAM1,'')) DEPT_NM, "
+		//				   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X1.EMBSPHPN) as varchar(100))) HPNO, RTRIM(X1.EMBSEMAL) AS EMAIL_ID "
+		//				   + "   FROM DUTY_MSTNURS A "
+		//				   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
+		//				   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
+		//				   + "  ORDER BY X1.EMBSDPCD, X1.EMBSNAME ";
+
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("S_MSTNURS2", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////베드이송 직원 조회
+		//public void GetDUTY_TRSPLAN_ETCDatas(string sabn, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.* "
+		//				   + "   FROM DUTY_TRSPLAN_ETC A "
+		//				   + "  WHERE A.SAWON_NO = '" + sabn + "' ";
+
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DUTY_TRSPLAN_ETC", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+
+		#endregion
+
+
 
 		#region 3020 - 근무마감설정
-		
+
 		//부서리스트
 		public void GetSET_DEPTDatas(string code, DataSet ds)
 		{
@@ -5798,46 +5801,6 @@ namespace DUTY1000
 			}
 		}
 		
-		//결재라인1
-		public void GetGW_LINE1_RQSTDatas(string sabn, string adgb, DataSet ds)
-		{
-			try
-			{
-				string qry = "";
-				if (adgb == "'1'")
-				{
-					qry = " SELECT RTRIM(A.EMBSSABN) CODE, RTRIM(A.EMBSNAME) NAME, "
-						+ "        RTRIM(X1.DEPRNAM1) DEPT_NM, RTRIM(X2.GRADNAM1) GRAD_NM, ISNULL(A.EMBSADGB,'') EMBSADGB "
-						+ "   FROM " + wagedb + ".dbo.MSTEMBS A "
-						+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X1 "
-						+ "     ON A.EMBSDPCD = X1.DEPRCODE"
-						+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTGRAD X2 "
-						+ "     ON A.EMBSGRCD = X2.GRADCODE"
-						+ "  INNER JOIN (SELECT EMBSDPCD FROM MSTEMBS WHERE EMBSSABN = '" + sabn + "' ) L1 "
-						+ "     ON A.EMBSDPCD = L1.EMBSDPCD"
-						+ "  WHERE A.EMBSADGB IN (" + adgb + ") ";
-				}
-				else
-				{
-					qry = " SELECT RTRIM(A.EMBSSABN) CODE, RTRIM(A.EMBSNAME) NAME, "
-						+ "        RTRIM(X1.DEPRNAM1) DEPT_NM, RTRIM(X2.GRADNAM1) GRAD_NM, ISNULL(A.EMBSADGB,'') EMBSADGB "
-						+ "   FROM " + wagedb + ".dbo.MSTEMBS A "
-						+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X1 "
-						+ "     ON A.EMBSDPCD = X1.DEPRCODE"
-						+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTGRAD X2 "
-						+ "     ON A.EMBSGRCD = X2.GRADCODE"
-						+ "  WHERE A.EMBSADGB IN (" + adgb + ") "; //EMBSSABN IN ('10001','10004') ";
-				}
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("GW_LINE1", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
 		//결재라인2
 		public void GetGW_LINE2_RQSTDatas(string sabn, string adgb, DataSet ds)
 		{
@@ -6012,61 +5975,61 @@ namespace DUTY1000
 			return max_sq;
 		}
 		//연차내역 신규등록
-		public void GetDUTY_TRSHREQDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.* "
-						   + "   FROM DUTY_TRSHREQ A "
-						   + "  WHERE 1=2";
+		//public void GetDUTY_TRSHREQDatas(DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.* "
+		//				   + "   FROM DUTY_TRSHREQ A "
+		//				   + "  WHERE 1=2";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_TRSHREQ", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//연차내역 조회_상세NEW
-		public void GetDUTY_TRSHREQDatas(string seqno, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT A.* "
-						   + "   FROM DUTY_TRSHREQ A "
-						   + "  WHERE A.SEQNO = " + clib.TextToDecimal(seqno) + "";
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DUTY_TRSHREQ", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////연차내역 조회_상세NEW
+		//public void GetDUTY_TRSHREQDatas(string seqno, DataSet ds)
+		//{
+		//	try
+		//	{
+		//		string qry = " SELECT A.* "
+		//				   + "   FROM DUTY_TRSHREQ A "
+		//				   + "  WHERE A.SEQNO = " + clib.TextToDecimal(seqno) + "";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_TRSHREQ", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//연차내역 seq번호 가져오기
-		public decimal GetHREQ_SEQNODatas()
-		{
-			decimal max_sq = 0;
-			try
-			{
-				string qry = " SELECT ISNULL(MAX(SEQNO) + 1, 1) AS MAX_SQ "
-						   + "   FROM DUTY_TRSHREQ ";
+		//		DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+		//		dp.AddDatatable2Dataset("DUTY_TRSHREQ", dt, ref ds);
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//}
+		////연차내역 seq번호 가져오기
+		//public decimal GetHREQ_SEQNODatas()
+		//{
+		//	decimal max_sq = 0;
+		//	try
+		//	{
+		//		string qry = " SELECT ISNULL(MAX(SEQNO) + 1, 1) AS MAX_SQ "
+		//				   + "   FROM DUTY_TRSHREQ ";
 				
-                object obj = gd.GetOneData(1, dbname, qry);
-                max_sq = clib.TextToDecimal(obj.ToString());
+  //              object obj = gd.GetOneData(1, dbname, qry);
+  //              max_sq = clib.TextToDecimal(obj.ToString());
 
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			return max_sq;
-		}
+		//	}
+		//	catch (System.Exception ec)
+		//	{
+		//		System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+		//											 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//	}
+		//	return max_sq;
+		//}
 		//연차 삭제이력
 		public void GetDEL_TRSHREQDatas(DataSet ds)
 		{
@@ -7204,7 +7167,7 @@ namespace DUTY1000
 				}
 
 				qry += " ) A1 "
-					+ " WHERE A1.DOC_GUBN LIKE '" + type + "'"
+					+ " WHERE A1.DOC_GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN ";//A1.REG_DT DESC, A1.DOC_GUBN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -7253,7 +7216,7 @@ namespace DUTY1000
 				}
 				
 				qry += " ) A1 "
-					+ " WHERE A1.DOC_GUBN LIKE '" + type + "'"
+					+ " WHERE A1.DOC_GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN ";//A1.REG_DT DESC, A1.DOC_GUBN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -7302,7 +7265,7 @@ namespace DUTY1000
 				}
 				
 				qry += " ) A1 "
-					+ " WHERE A1.DOC_GUBN LIKE '" + type + "'"
+					+ " WHERE A1.DOC_GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN ";//A1.REG_DT DESC, A1.DOC_GUBN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
