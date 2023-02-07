@@ -6258,9 +6258,11 @@ namespace DUTY1000
 						   + "  WHERE A.DOC_GUBN IN (1,2) AND isnull(A.AP_TAG,'') IN ('','4') ";
 				if (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
 				{
+					// SAMIL이나 관리자는 모든 결재문서 조회가능
 				}
 				else
 				{
+					// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
 					qry += "   AND (A.GW_SABN4 = '" + usid + "' OR A.GW_SABN3 = '" + usid + "' OR A.GW_SABN2 = '" + usid + "' OR A.GW_SABN1 = '" + usid + "') ";
 					//qry += "    AND (CASE WHEN A.GW_DT2='' THEN A.GW_SABN2 WHEN A.GW_DT3='' THEN A.GW_SABN3 WHEN A.GW_DT4='' THEN A.GW_SABN4 ELSE '' END) = '" + usid + "'";
 				}
@@ -6307,9 +6309,11 @@ namespace DUTY1000
 						   + "  WHERE A.DOC_GUBN IN (3,4,7) AND isnull(A.AP_TAG,'') IN ('','4') ";
 				if (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
 				{
+					// SAMIL이나 관리자는 모든 결재문서 조회가능
 				}
 				else
 				{
+					// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
 					qry += "   AND (A.GW_SABN4 = '" + usid + "' OR A.GW_SABN3 = '" + usid + "' OR A.GW_SABN2 = '" + usid + "' OR A.GW_SABN1 = '" + usid + "') ";
 					//qry += "    AND (CASE WHEN A.GW_DT2='' THEN A.GW_SABN2 WHEN A.GW_DT3='' THEN A.GW_SABN3 WHEN A.GW_DT4='' THEN A.GW_SABN4 ELSE '' END) = '" + usid + "'";
 				}
@@ -6356,9 +6360,11 @@ namespace DUTY1000
 						   + "  WHERE A.DOC_GUBN IN (5,6) AND isnull(A.AP_TAG,'') IN ('','4') ";
 				if (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
 				{
+					// SAMIL이나 관리자는 모든 결재문서 조회가능
 				}
 				else
 				{
+					// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
 					qry += "   AND (A.GW_SABN4 = '" + usid + "' OR A.GW_SABN3 = '" + usid + "' OR A.GW_SABN2 = '" + usid + "' OR A.GW_SABN1 = '" + usid + "') ";
 					//qry += "    AND (CASE WHEN A.GW_DT2='' THEN A.GW_SABN2 WHEN A.GW_DT3='' THEN A.GW_SABN3 WHEN A.GW_DT4='' THEN A.GW_SABN4 ELSE '' END) = '" + usid + "'";
 				}
@@ -6372,12 +6378,87 @@ namespace DUTY1000
 				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}		
+		}
+
+		public void Get5060_AP_YCHG_LIST5Datas(string gubn, string usid, DataSet ds)
+		{
+			try
+			{
+				string power = (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
+								// SAMIL이나 관리자는 모든 결재문서 조회가능
+								? string.Empty
+								// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
+								: $"AND (A.GW_SABN4 = '{usid}' OR A.GW_SABN3 = '{usid}' OR A.GW_SABN2 = '{usid}' OR A.GW_SABN1 = '{usid}')";
+
+				string qry = $@"
+					SELECT	A1.*
+					FROM (
+						SELECT	ISNULL(B.GUBNNAME,'') AS GUBN_NM,
+								CASE LEN(ISNULL(A.DOC_DATE,''))
+									WHEN 6 THEN LEFT(A.DOC_DATE,4)+'-'+SUBSTRING(A.DOC_DATE,5,2)
+									WHEN 8 THEN LEFT(A.DOC_DATE,4)+'-'+SUBSTRING(A.DOC_DATE,5,2)+'-'+SUBSTRING(A.DOC_DATE,7,2)
+									ELSE ''
+								END AS DOC_DATE_NM,
+								CASE WHEN ISNULL(A.DOC_JSMM,'') = '' THEN ''
+									ELSE LEFT(A.DOC_JSMM,4)+'-'+SUBSTRING(A.DOC_JSMM,5,2) 
+								END AS DOC_JSMM_NM,
+								A.DOC_GUBN, A.DOC_NO, A.GW_TITLE, A.AP_TAG, A.REG_DT, '' CHK, '' C_CHK,
+								CASE WHEN CASE 
+											WHEN A.GW_DT2='' THEN A.GW_SABN2
+											WHEN A.GW_DT3='' THEN A.GW_SABN3
+											WHEN A.GW_DT4='' THEN A.GW_SABN4
+											ELSE '' END = '{usid}' THEN '1'
+									ELSE ''
+								END AS CHK_STAT,
+								RTRIM(X3.EMBSNAME)+'('+RTRIM(ISNULL(X4.DEPRNAM1,''))+')' AS SAWON_NM,
+								X3.EMBSDPCD,
+								RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM,
+								CASE ISNULL(A.AP_TAG,'')
+									WHEN ''  THEN '신청'
+									WHEN '1' THEN '승인'
+									WHEN '2' THEN '취소'
+									WHEN '3' THEN '완료'
+									WHEN '4' THEN '진행'
+									WHEN '5' THEN '반려'
+									ELSE '' 
+								END AS AP_TAG_NM,
+								CASE A.LINE_CNT
+									WHEN 4 THEN A.GW_NAME1+' -> '+A.GW_NAME2+' -> '+A.GW_NAME3+' -> '+A.GW_NAME4
+									WHEN 3 THEN A.GW_NAME1+' -> '+A.GW_NAME2+' -> '+A.GW_NAME3
+									WHEN 2 THEN A.GW_NAME1+' -> '+A.GW_NAME2
+									WHEN 1 THEN A.GW_NAME1 ELSE '' 
+								END AS GW_LINE,
+								A.GW_NAME1+'('+A.GW_DT1+')'
+									+ (CASE WHEN A.GW_DT2<>'' THEN ' -> '+A.GW_NAME2+'('+A.GW_DT2+')' ELSE '' END)
+									+ (CASE WHEN A.GW_DT3<>'' THEN ' -> '+A.GW_NAME3+'('+A.GW_DT3+')' ELSE '' END) 
+									+ (CASE WHEN A.GW_DT4<>'' THEN ' -> '+A.GW_NAME4+'('+A.GW_DT4+')' ELSE '' END) AS LINE_STAT 
+						FROM DUTY_GWDOC A
+						LEFT OUTER JOIN DUTY_GWDOC_GUBN B
+							ON A.DOC_GUBN = B.DOC_GUBN
+						LEFT OUTER JOIN {wagedb}.DBO.MSTEMBS X3
+							ON A.GW_SABN1=X3.EMBSSABN
+						LEFT OUTER JOIN {wagedb}.DBO.MSTDEPR X4
+							ON X3.EMBSDPCD=X4.DEPRCODE
+						WHERE A.DOC_GUBN IN ({gubn}) AND ISNULL(A.AP_TAG,'') IN ('','4')
+							{power}
+					) A1
+					ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN
+					";
+
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				dp.AddDatatable2Dataset("5060_AP_YCHG_LIST5", dt, ref ds);
+			}
+			catch (System.Exception ec)
+			{
+				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
 		#endregion
-		
+
 		#region 5062 - 진행문서 상세조회  
-		
+
 		public void Get5062_SEARCHDatas(string gubn, string doc_no, DataSet ds)
 		{
 			try
@@ -6441,8 +6522,12 @@ namespace DUTY1000
 						+ "  WHERE A.DOC_NO = " + doc_no + ""
 						+ "  ORDER BY A.PLAN_SQ ";
 				}
+				else if (gubn == "8" || gubn == "9" || gubn == "10" || gubn == "11" || gubn == "12" || gubn == "13" || gubn == "14")
+				{
+					qry = $"SELECT * FROM DUTY_GWDOC_AC04REPORT WHERE DOC_NO = {doc_no}";
+				}
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+					DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("5062_SEARCH", dt, ref ds);
 			}
 			catch (System.Exception ec)
@@ -6544,7 +6629,7 @@ namespace DUTY1000
 		#region 5080 - 완결문서관리
 		
 		//연차,휴가 결재완료조회
-		public void Get5080_AP_YCHG_LISTDatas(string type, string usid, DataSet ds)
+		public void Get5080_AP_YCHG_LISTDatas(string gubn, string usid, DataSet ds)
 		{
 			try
 			{
@@ -6610,7 +6695,7 @@ namespace DUTY1000
 					qry += "  AND (A.GW_SABN4 = '" + usid + "' OR A.GW_SABN3 = '" + usid + "' OR A.GW_SABN2 = '" + usid + "' OR A.GW_SABN1 = '" + usid + "') ";
 
 				qry += " ) A1 "
-					+ " WHERE A1.GUBN LIKE '" + type + "'"
+					+ " WHERE A1.GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.REQ_DATE DESC, A1.GUBN, A1.SABN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -6624,7 +6709,7 @@ namespace DUTY1000
 		}
 		
 		//CALL,OT 결재완료조회
-		public void Get5080_AP_YCHG_LIST2Datas(string type, string usid, DataSet ds)
+		public void Get5080_AP_YCHG_LIST2Datas(string gubn, string usid, DataSet ds)
 		{
 			try
 			{
@@ -6660,7 +6745,7 @@ namespace DUTY1000
 				}
 
 				qry += " ) A1 "
-					+ " WHERE A1.DOC_GUBN LIKE '" + type + "'"
+					+ " WHERE A1.DOC_GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN ";//A1.REG_DT DESC, A1.DOC_GUBN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -6673,7 +6758,7 @@ namespace DUTY1000
 			}
 		}
 		//OFF,N 결재완료조회
-		public void Get5080_AP_YCHG_LIST3Datas(string type, string usid, DataSet ds)
+		public void Get5080_AP_YCHG_LIST3Datas(string gubn, string usid, DataSet ds)
 		{
 			try
 			{
@@ -6709,7 +6794,7 @@ namespace DUTY1000
 				}
 				
 				qry += " ) A1 "
-					+ " WHERE A1.DOC_GUBN LIKE '" + type + "'"
+					+ " WHERE A1.DOC_GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN ";//A1.REG_DT DESC, A1.DOC_GUBN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -6722,7 +6807,7 @@ namespace DUTY1000
 			}
 		}
 		//근무표 결재완료조회
-		public void Get5080_AP_YCHG_LIST4Datas(string type, string usid, DataSet ds)
+		public void Get5080_AP_YCHG_LIST4Datas(string gubn, string usid, DataSet ds)
 		{
 			try
 			{
@@ -6758,7 +6843,7 @@ namespace DUTY1000
 				}
 				
 				qry += " ) A1 "
-					+ " WHERE A1.DOC_GUBN LIKE '" + type + "'"
+					+ " WHERE A1.DOC_GUBN LIKE '" + gubn + "'"
 					+ " ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN ";//A1.REG_DT DESC, A1.DOC_GUBN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -6771,14 +6856,82 @@ namespace DUTY1000
 			}
 		}
 
+		//근무표 결재완료조회
+		public void Get5080_AP_YCHG_LIST5Datas(string gubn, string usid, DataSet ds)
+		{
+			try
+			{
+				string power = (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
+								// SAMIL이나 관리자는 모든 결재문서 조회가능
+								? string.Empty
+								// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
+								: $"AND (A.GW_SABN4 = '{usid}' OR A.GW_SABN3 = '{usid}' OR A.GW_SABN2 = '{usid}' OR A.GW_SABN1 = '{usid}')";
+
+				string qry = $@"
+					SELECT	A1.*
+					FROM (
+						SELECT	ISNULL(B.GUBNNAME,'') AS GUBN_NM,
+								CASE LEN(ISNULL(A.DOC_DATE,''))
+									WHEN 6 THEN LEFT(A.DOC_DATE,4)+'-'+SUBSTRING(A.DOC_DATE,5,2)
+									WHEN 8 THEN LEFT(A.DOC_DATE,4)+'-'+SUBSTRING(A.DOC_DATE,5,2)+'-'+SUBSTRING(A.DOC_DATE,7,2)
+									ELSE ''
+								END AS DOC_DATE_NM,
+								CASE WHEN ISNULL(A.DOC_JSMM,'') = '' THEN ''
+									ELSE LEFT(A.DOC_JSMM,4)+'-'+SUBSTRING(A.DOC_JSMM,5,2) 
+								END AS DOC_JSMM_NM,
+								A.DOC_GUBN, A.DOC_NO, A.GW_TITLE, A.AP_TAG, A.REG_DT,
+								RTRIM(X3.EMBSNAME)+'('+RTRIM(ISNULL(X4.DEPRNAM1,''))+')' AS SAWON_NM,
+								X3.EMBSDPCD,
+								RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM,
+								CASE ISNULL(A.AP_TAG,'')
+									WHEN ''  THEN '신청'
+									WHEN '1' THEN '승인'
+									WHEN '2' THEN '취소'
+									WHEN '3' THEN '완료'
+									WHEN '4' THEN '진행'
+									WHEN '5' THEN '반려'
+									ELSE '' 
+								END AS AP_TAG_NM,
+								CASE A.LINE_CNT
+									WHEN 4 THEN A.GW_NAME1+' -> '+A.GW_NAME2+' -> '+A.GW_NAME3+' -> '+A.GW_NAME4
+									WHEN 3 THEN A.GW_NAME1+' -> '+A.GW_NAME2+' -> '+A.GW_NAME3
+									WHEN 2 THEN A.GW_NAME1+' -> '+A.GW_NAME2
+									WHEN 1 THEN A.GW_NAME1 ELSE '' 
+								END AS GW_LINE,
+								A.GW_NAME1+'('+A.GW_DT1+')'
+									+ (CASE WHEN A.GW_DT2<>'' THEN ' -> '+A.GW_NAME2+'('+A.GW_DT2+')' ELSE '' END)
+									+ (CASE WHEN A.GW_DT3<>'' THEN ' -> '+A.GW_NAME3+'('+A.GW_DT3+')' ELSE '' END) 
+									+ (CASE WHEN A.GW_DT4<>'' THEN ' -> '+A.GW_NAME4+'('+A.GW_DT4+')' ELSE '' END) AS LINE_STAT 
+						FROM DUTY_GWDOC A
+						LEFT OUTER JOIN DUTY_GWDOC_GUBN B
+							ON A.DOC_GUBN = B.DOC_GUBN
+						LEFT OUTER JOIN {wagedb}.DBO.MSTEMBS X3
+							ON A.GW_SABN1=X3.EMBSSABN
+						LEFT OUTER JOIN {wagedb}.DBO.MSTDEPR X4
+							ON X3.EMBSDPCD=X4.DEPRCODE
+						WHERE A.DOC_GUBN IN ({gubn}) AND ISNULL(A.AP_TAG,'') IN ('1','3')
+							{power}
+					) A1
+					ORDER BY A1.DOC_DATE_NM DESC, A1.EMBSDPCD, A1.DOC_JSMM_NM DESC, A1.DOC_GUBN
+					";
+
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				dp.AddDatatable2Dataset("5080_AP_YCHG_LIST5", dt, ref ds);
+			}
+			catch (System.Exception ec)
+			{
+				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
 		#endregion
 
-        #region 환경설정-결재라인관리
-        /// <summary>
-        /// 결재라인관리
-        /// </summary>
-        public void GetSIGNPath(DataSet ds)
+		#region 환경설정-결재라인관리
+		/// <summary>
+		/// 결재라인관리
+		/// </summary>
+		public void GetSIGNPath(DataSet ds)
         {
             try
             {

@@ -30,15 +30,15 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty5064));
-			DevExpress.XtraScheduler.Printing.DailyPrintStyle dailyPrintStyle2 = new DevExpress.XtraScheduler.Printing.DailyPrintStyle();
-			DevExpress.XtraScheduler.Printing.WeeklyPrintStyle weeklyPrintStyle2 = new DevExpress.XtraScheduler.Printing.WeeklyPrintStyle();
-			DevExpress.XtraScheduler.Printing.MonthlyPrintStyle monthlyPrintStyle2 = new DevExpress.XtraScheduler.Printing.MonthlyPrintStyle();
-			DevExpress.XtraScheduler.Printing.TriFoldPrintStyle triFoldPrintStyle2 = new DevExpress.XtraScheduler.Printing.TriFoldPrintStyle();
-			DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle calendarDetailsPrintStyle2 = new DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle();
-			DevExpress.XtraScheduler.Printing.MemoPrintStyle memoPrintStyle2 = new DevExpress.XtraScheduler.Printing.MemoPrintStyle();
-			DevExpress.XtraScheduler.TimeRuler timeRuler4 = new DevExpress.XtraScheduler.TimeRuler();
-			DevExpress.XtraScheduler.TimeRuler timeRuler5 = new DevExpress.XtraScheduler.TimeRuler();
-			DevExpress.XtraScheduler.TimeRuler timeRuler6 = new DevExpress.XtraScheduler.TimeRuler();
+			DevExpress.XtraScheduler.Printing.DailyPrintStyle dailyPrintStyle1 = new DevExpress.XtraScheduler.Printing.DailyPrintStyle();
+			DevExpress.XtraScheduler.Printing.WeeklyPrintStyle weeklyPrintStyle1 = new DevExpress.XtraScheduler.Printing.WeeklyPrintStyle();
+			DevExpress.XtraScheduler.Printing.MonthlyPrintStyle monthlyPrintStyle1 = new DevExpress.XtraScheduler.Printing.MonthlyPrintStyle();
+			DevExpress.XtraScheduler.Printing.TriFoldPrintStyle triFoldPrintStyle1 = new DevExpress.XtraScheduler.Printing.TriFoldPrintStyle();
+			DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle calendarDetailsPrintStyle1 = new DevExpress.XtraScheduler.Printing.CalendarDetailsPrintStyle();
+			DevExpress.XtraScheduler.Printing.MemoPrintStyle memoPrintStyle1 = new DevExpress.XtraScheduler.Printing.MemoPrintStyle();
+			DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
+			DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
+			DevExpress.XtraScheduler.TimeRuler timeRuler3 = new DevExpress.XtraScheduler.TimeRuler();
 			this.btn_exit = new SilkRoad.UserControls.SRButton();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
@@ -304,18 +304,18 @@
 			this.schedulerControl1.OptionsRangeControl.AllowChangeActiveView = false;
 			this.schedulerControl1.OptionsRangeControl.AutoAdjustMode = false;
 			this.schedulerControl1.OptionsView.NavigationButtons.Visibility = DevExpress.XtraScheduler.NavigationButtonVisibility.Never;
-			monthlyPrintStyle2.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
-			monthlyPrintStyle2.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
-			calendarDetailsPrintStyle2.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
-			calendarDetailsPrintStyle2.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
-			memoPrintStyle2.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
-			memoPrintStyle2.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
-			this.schedulerControl1.PrintStyles.Add(dailyPrintStyle2);
-			this.schedulerControl1.PrintStyles.Add(weeklyPrintStyle2);
-			this.schedulerControl1.PrintStyles.Add(monthlyPrintStyle2);
-			this.schedulerControl1.PrintStyles.Add(triFoldPrintStyle2);
-			this.schedulerControl1.PrintStyles.Add(calendarDetailsPrintStyle2);
-			this.schedulerControl1.PrintStyles.Add(memoPrintStyle2);
+			monthlyPrintStyle1.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
+			monthlyPrintStyle1.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
+			calendarDetailsPrintStyle1.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
+			calendarDetailsPrintStyle1.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
+			memoPrintStyle1.AppointmentFont = new System.Drawing.Font("맑은 고딕", 12F);
+			memoPrintStyle1.HeadingsFont = new System.Drawing.Font("맑은 고딕", 14F);
+			this.schedulerControl1.PrintStyles.Add(dailyPrintStyle1);
+			this.schedulerControl1.PrintStyles.Add(weeklyPrintStyle1);
+			this.schedulerControl1.PrintStyles.Add(monthlyPrintStyle1);
+			this.schedulerControl1.PrintStyles.Add(triFoldPrintStyle1);
+			this.schedulerControl1.PrintStyles.Add(calendarDetailsPrintStyle1);
+			this.schedulerControl1.PrintStyles.Add(memoPrintStyle1);
 			this.schedulerControl1.ResourceNavigator.Visibility = DevExpress.XtraScheduler.ResourceNavigatorVisibility.Never;
 			this.schedulerControl1.Size = new System.Drawing.Size(1382, 702);
 			this.schedulerControl1.Start = new System.DateTime(2021, 9, 26, 0, 0, 0, 0);
@@ -323,14 +323,14 @@
 			this.schedulerControl1.Text = "schedulerControl1";
 			this.schedulerControl1.Views.AgendaView.Enabled = false;
 			this.schedulerControl1.Views.DayView.Enabled = false;
-			this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler4);
-			this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler5);
+			this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler1);
+			this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler2);
 			this.schedulerControl1.Views.GanttView.Enabled = false;
 			this.schedulerControl1.Views.MonthView.ShowMoreButtons = false;
 			this.schedulerControl1.Views.TimelineView.Enabled = false;
 			this.schedulerControl1.Views.WeekView.Enabled = false;
 			this.schedulerControl1.Views.WorkWeekView.Enabled = false;
-			this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler6);
+			this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
 			// 
 			// srPanel4
 			// 
@@ -409,9 +409,10 @@
 			this.ClientSize = new System.Drawing.Size(1386, 815);
 			this.Controls.Add(this.gr_detail);
 			this.Controls.Add(this.srPanel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "duty5064";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "duty5064";
+			this.Text = "원장단근무표(duty5064)";
 			this.Load += new System.EventHandler(this.duty5064_Load);
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
 			this.srPanel1.ResumeLayout(false);

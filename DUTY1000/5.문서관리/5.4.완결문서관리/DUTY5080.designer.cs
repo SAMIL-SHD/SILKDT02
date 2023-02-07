@@ -30,8 +30,8 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty5080));
-			DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
@@ -69,7 +69,7 @@
 			this.srGroupBox3 = new SilkRoad.UserControls.SRGroupBox();
 			this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
 			this.btn_ap_canc = new SilkRoad.UserControls.SRButton();
-			this.cmb_type = new SilkRoad.UserControls.SRCombo();
+			this.cmb_gubn = new SilkRoad.UserControls.SRCombo();
 			this.srLabel2 = new SilkRoad.UserControls.SRLabel();
 			this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
 			this.grd_ap2 = new DevExpress.XtraGrid.GridControl();
@@ -91,7 +91,7 @@
 			this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.srGroupBox1 = new SilkRoad.UserControls.SRGroupBox();
 			this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-			this.cmb_type2 = new SilkRoad.UserControls.SRCombo();
+			this.cmb_gubn2 = new SilkRoad.UserControls.SRCombo();
 			this.srLabel1 = new SilkRoad.UserControls.SRLabel();
 			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
 			this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -117,7 +117,7 @@
 			this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.srGroupBox2 = new SilkRoad.UserControls.SRGroupBox();
 			this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-			this.cmb_type3 = new SilkRoad.UserControls.SRCombo();
+			this.cmb_gubn3 = new SilkRoad.UserControls.SRCombo();
 			this.srLabel3 = new SilkRoad.UserControls.SRLabel();
 			this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
 			this.grd_ap4 = new DevExpress.XtraGrid.GridControl();
@@ -139,9 +139,28 @@
 			this.repositoryItemTextEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.srGroupBox4 = new SilkRoad.UserControls.SRGroupBox();
 			this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-			this.srCombo1 = new SilkRoad.UserControls.SRCombo();
+			this.cmb_gubn4 = new SilkRoad.UserControls.SRCombo();
 			this.srLabel4 = new SilkRoad.UserControls.SRLabel();
+			this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+			this.grd_ap5 = new DevExpress.XtraGrid.GridControl();
+			this.grdv_ap5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemMemoEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+			this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.grd_LinkEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+			this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemCheckEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.repositoryItemTextEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.srGroupBox5 = new SilkRoad.UserControls.SRGroupBox();
+			this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
+			this.srLabel5 = new SilkRoad.UserControls.SRLabel();
 			this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.cmb_gubn5 = new SilkRoad.UserControls.SRCombo();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
@@ -157,7 +176,7 @@
 			this.srGroupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
 			this.panelControl1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_type.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn.Properties)).BeginInit();
 			this.xtraTabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grd_ap2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv_ap2)).BeginInit();
@@ -169,7 +188,7 @@
 			this.srGroupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
 			this.panelControl2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_type2.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn2.Properties)).BeginInit();
 			this.xtraTabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
@@ -186,7 +205,7 @@
 			this.srGroupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
 			this.panelControl3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_type3.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn3.Properties)).BeginInit();
 			this.xtraTabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grd_ap4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv_ap4)).BeginInit();
@@ -198,7 +217,19 @@
 			this.srGroupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
 			this.panelControl4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.srCombo1.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn4.Properties)).BeginInit();
+			this.xtraTabPage5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.grd_ap5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdv_ap5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grd_LinkEdit4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.srGroupBox5)).BeginInit();
+			this.srGroupBox5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
+			this.panelControl5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn5.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// repositoryItemCheckEdit3
@@ -441,13 +472,13 @@
             this.gridColumn69,
             this.gridColumn70,
             this.col_c_chk});
-			gridFormatRule1.ApplyToRow = true;
-			gridFormatRule1.Name = "Format0";
-			formatConditionRuleExpression1.Appearance.ForeColor = System.Drawing.Color.Red;
-			formatConditionRuleExpression1.Appearance.Options.UseForeColor = true;
-			formatConditionRuleExpression1.Expression = "[GUBNTYPE] = \'D\'";
-			gridFormatRule1.Rule = formatConditionRuleExpression1;
-			this.grdv_ap.FormatRules.Add(gridFormatRule1);
+			gridFormatRule2.ApplyToRow = true;
+			gridFormatRule2.Name = "Format0";
+			formatConditionRuleExpression2.Appearance.ForeColor = System.Drawing.Color.Red;
+			formatConditionRuleExpression2.Appearance.Options.UseForeColor = true;
+			formatConditionRuleExpression2.Expression = "[GUBNTYPE] = \'D\'";
+			gridFormatRule2.Rule = formatConditionRuleExpression2;
+			this.grdv_ap.FormatRules.Add(gridFormatRule2);
 			this.grdv_ap.GridControl = this.grd_ap;
 			this.grdv_ap.IndicatorWidth = 40;
 			this.grdv_ap.Name = "grdv_ap";
@@ -671,7 +702,7 @@
 			// panelControl1
 			// 
 			this.panelControl1.Controls.Add(this.btn_ap_canc);
-			this.panelControl1.Controls.Add(this.cmb_type);
+			this.panelControl1.Controls.Add(this.cmb_gubn);
 			this.panelControl1.Controls.Add(this.srLabel2);
 			this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelControl1.Location = new System.Drawing.Point(2, 22);
@@ -699,25 +730,25 @@
 			this.btn_ap_canc.Visible = false;
 			this.btn_ap_canc.Click += new System.EventHandler(this.btn_ap_canc_Click);
 			// 
-			// cmb_type
+			// cmb_gubn
 			// 
-			this.cmb_type.EditValue = "전체";
-			this.cmb_type.EnterMoveNextControl = true;
-			this.cmb_type.Location = new System.Drawing.Point(76, 9);
-			this.cmb_type.Name = "cmb_type";
-			this.cmb_type.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_type.Properties.Appearance.Options.UseFont = true;
-			this.cmb_type.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_type.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.cmb_type.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.cmb_gubn.EditValue = "전체";
+			this.cmb_gubn.EnterMoveNextControl = true;
+			this.cmb_gubn.Location = new System.Drawing.Point(76, 9);
+			this.cmb_gubn.Name = "cmb_gubn";
+			this.cmb_gubn.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.cmb_type.Properties.Items.AddRange(new object[] {
+			this.cmb_gubn.Properties.Items.AddRange(new object[] {
             "전체",
             "연차",
             "휴가"});
-			this.cmb_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.cmb_type.Size = new System.Drawing.Size(112, 22);
-			this.cmb_type.TabIndex = 538;
+			this.cmb_gubn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn.Size = new System.Drawing.Size(112, 22);
+			this.cmb_gubn.TabIndex = 538;
 			// 
 			// srLabel2
 			// 
@@ -804,7 +835,7 @@
 			this.grdv_ap2.OptionsView.ShowFooter = true;
 			this.grdv_ap2.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap2.RowHeight = 38;
-			this.grdv_ap2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap2_CustomDrawRowIndicator);
+			this.grdv_ap2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap_CustomDrawRowIndicator);
 			// 
 			// gridColumn1
 			// 
@@ -1021,7 +1052,7 @@
 			// 
 			// panelControl2
 			// 
-			this.panelControl2.Controls.Add(this.cmb_type2);
+			this.panelControl2.Controls.Add(this.cmb_gubn2);
 			this.panelControl2.Controls.Add(this.srLabel1);
 			this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelControl2.Location = new System.Drawing.Point(2, 22);
@@ -1029,25 +1060,25 @@
 			this.panelControl2.Size = new System.Drawing.Size(1270, 43);
 			this.panelControl2.TabIndex = 0;
 			// 
-			// cmb_type2
+			// cmb_gubn2
 			// 
-			this.cmb_type2.EditValue = "전체";
-			this.cmb_type2.EnterMoveNextControl = true;
-			this.cmb_type2.Location = new System.Drawing.Point(76, 9);
-			this.cmb_type2.Name = "cmb_type2";
-			this.cmb_type2.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_type2.Properties.Appearance.Options.UseFont = true;
-			this.cmb_type2.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_type2.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.cmb_type2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.cmb_gubn2.EditValue = "전체";
+			this.cmb_gubn2.EnterMoveNextControl = true;
+			this.cmb_gubn2.Location = new System.Drawing.Point(76, 9);
+			this.cmb_gubn2.Name = "cmb_gubn2";
+			this.cmb_gubn2.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn2.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn2.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn2.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.cmb_type2.Properties.Items.AddRange(new object[] {
+			this.cmb_gubn2.Properties.Items.AddRange(new object[] {
             "전체",
             "CALL",
             "OT"});
-			this.cmb_type2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.cmb_type2.Size = new System.Drawing.Size(112, 22);
-			this.cmb_type2.TabIndex = 538;
+			this.cmb_gubn2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn2.Size = new System.Drawing.Size(112, 22);
+			this.cmb_gubn2.TabIndex = 538;
 			// 
 			// srLabel1
 			// 
@@ -1095,7 +1126,8 @@
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3,
-            this.xtraTabPage4});
+            this.xtraTabPage4,
+            this.xtraTabPage5});
 			this.srTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.srTabControl1_SelectedPageChanged);
 			// 
 			// xtraTabPage3
@@ -1169,7 +1201,7 @@
 			this.grdv_ap3.OptionsView.ShowFooter = true;
 			this.grdv_ap3.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap3.RowHeight = 38;
-			this.grdv_ap3.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap3_CustomDrawRowIndicator);
+			this.grdv_ap3.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap_CustomDrawRowIndicator);
 			// 
 			// gridColumn5
 			// 
@@ -1386,7 +1418,7 @@
 			// 
 			// panelControl3
 			// 
-			this.panelControl3.Controls.Add(this.cmb_type3);
+			this.panelControl3.Controls.Add(this.cmb_gubn3);
 			this.panelControl3.Controls.Add(this.srLabel3);
 			this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelControl3.Location = new System.Drawing.Point(2, 22);
@@ -1394,25 +1426,25 @@
 			this.panelControl3.Size = new System.Drawing.Size(1270, 43);
 			this.panelControl3.TabIndex = 0;
 			// 
-			// cmb_type3
+			// cmb_gubn3
 			// 
-			this.cmb_type3.EditValue = "전체";
-			this.cmb_type3.EnterMoveNextControl = true;
-			this.cmb_type3.Location = new System.Drawing.Point(76, 9);
-			this.cmb_type3.Name = "cmb_type3";
-			this.cmb_type3.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_type3.Properties.Appearance.Options.UseFont = true;
-			this.cmb_type3.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_type3.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.cmb_type3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.cmb_gubn3.EditValue = "전체";
+			this.cmb_gubn3.EnterMoveNextControl = true;
+			this.cmb_gubn3.Location = new System.Drawing.Point(76, 9);
+			this.cmb_gubn3.Name = "cmb_gubn3";
+			this.cmb_gubn3.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn3.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn3.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn3.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.cmb_type3.Properties.Items.AddRange(new object[] {
+			this.cmb_gubn3.Properties.Items.AddRange(new object[] {
             "전체",
             "OFF,N",
             "밤근무"});
-			this.cmb_type3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.cmb_type3.Size = new System.Drawing.Size(112, 22);
-			this.cmb_type3.TabIndex = 538;
+			this.cmb_gubn3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn3.Size = new System.Drawing.Size(112, 22);
+			this.cmb_gubn3.TabIndex = 538;
 			// 
 			// srLabel3
 			// 
@@ -1499,7 +1531,7 @@
 			this.grdv_ap4.OptionsView.ShowFooter = true;
 			this.grdv_ap4.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap4.RowHeight = 38;
-			this.grdv_ap4.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap4_CustomDrawRowIndicator);
+			this.grdv_ap4.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap_CustomDrawRowIndicator);
 			// 
 			// gridColumn23
 			// 
@@ -1716,7 +1748,7 @@
 			// 
 			// panelControl4
 			// 
-			this.panelControl4.Controls.Add(this.srCombo1);
+			this.panelControl4.Controls.Add(this.cmb_gubn4);
 			this.panelControl4.Controls.Add(this.srLabel4);
 			this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelControl4.Location = new System.Drawing.Point(2, 22);
@@ -1724,25 +1756,25 @@
 			this.panelControl4.Size = new System.Drawing.Size(1270, 43);
 			this.panelControl4.TabIndex = 0;
 			// 
-			// srCombo1
+			// cmb_gubn4
 			// 
-			this.srCombo1.EditValue = "전체";
-			this.srCombo1.EnterMoveNextControl = true;
-			this.srCombo1.Location = new System.Drawing.Point(76, 9);
-			this.srCombo1.Name = "srCombo1";
-			this.srCombo1.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srCombo1.Properties.Appearance.Options.UseFont = true;
-			this.srCombo1.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srCombo1.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.srCombo1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.cmb_gubn4.EditValue = "전체";
+			this.cmb_gubn4.EnterMoveNextControl = true;
+			this.cmb_gubn4.Location = new System.Drawing.Point(76, 9);
+			this.cmb_gubn4.Name = "cmb_gubn4";
+			this.cmb_gubn4.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn4.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn4.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn4.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.srCombo1.Properties.Items.AddRange(new object[] {
+			this.cmb_gubn4.Properties.Items.AddRange(new object[] {
             "전체",
             "근무현황표",
             "간호근무표"});
-			this.srCombo1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.srCombo1.Size = new System.Drawing.Size(112, 22);
-			this.srCombo1.TabIndex = 538;
+			this.cmb_gubn4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn4.Size = new System.Drawing.Size(112, 22);
+			this.cmb_gubn4.TabIndex = 538;
 			// 
 			// srLabel4
 			// 
@@ -1758,6 +1790,260 @@
 			this.srLabel4.Text = "종류";
 			this.srLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// xtraTabPage5
+			// 
+			this.xtraTabPage5.Appearance.Header.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.xtraTabPage5.Appearance.Header.Options.UseFont = true;
+			this.xtraTabPage5.Appearance.HeaderActive.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.xtraTabPage5.Appearance.HeaderActive.Options.UseFont = true;
+			this.xtraTabPage5.Controls.Add(this.grd_ap5);
+			this.xtraTabPage5.Controls.Add(this.srGroupBox5);
+			this.xtraTabPage5.Name = "xtraTabPage5";
+			this.xtraTabPage5.Size = new System.Drawing.Size(1274, 694);
+			this.xtraTabPage5.Text = "회계결재문서";
+			// 
+			// grd_ap5
+			// 
+			this.grd_ap5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grd_ap5.Location = new System.Drawing.Point(0, 67);
+			this.grd_ap5.MainView = this.grdv_ap5;
+			this.grd_ap5.Name = "grd_ap5";
+			this.grd_ap5.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit5,
+            this.repositoryItemTextEdit5,
+            this.repositoryItemMemoEdit5,
+            this.grd_LinkEdit4});
+			this.grd_ap5.Size = new System.Drawing.Size(1274, 627);
+			this.grd_ap5.TabIndex = 16;
+			this.grd_ap5.TabStop = false;
+			this.grd_ap5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_ap5});
+			// 
+			// grdv_ap5
+			// 
+			this.grdv_ap5.Appearance.FocusedRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_ap5.Appearance.FocusedRow.Options.UseBackColor = true;
+			this.grdv_ap5.Appearance.FooterPanel.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.grdv_ap5.Appearance.FooterPanel.Options.UseFont = true;
+			this.grdv_ap5.Appearance.HeaderPanel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.grdv_ap5.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			this.grdv_ap5.Appearance.HeaderPanel.Options.UseFont = true;
+			this.grdv_ap5.Appearance.HeaderPanel.Options.UseTextOptions = true;
+			this.grdv_ap5.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.grdv_ap5.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_ap5.Appearance.HideSelectionRow.Options.UseBackColor = true;
+			this.grdv_ap5.Appearance.Row.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.grdv_ap5.Appearance.Row.Options.UseFont = true;
+			this.grdv_ap5.Appearance.SelectedRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_ap5.Appearance.SelectedRow.Options.UseBackColor = true;
+			this.grdv_ap5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+			this.grdv_ap5.ColumnPanelRowHeight = 36;
+			this.grdv_ap5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn40,
+            this.gridColumn41,
+            this.gridColumn42,
+            this.gridColumn43,
+            this.gridColumn44,
+            this.gridColumn45,
+            this.gridColumn46,
+            this.gridColumn47});
+			this.grdv_ap5.GridControl = this.grd_ap5;
+			this.grdv_ap5.IndicatorWidth = 40;
+			this.grdv_ap5.Name = "grdv_ap5";
+			this.grdv_ap5.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+			this.grdv_ap5.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
+			this.grdv_ap5.OptionsNavigation.EnterMoveNextColumn = true;
+			this.grdv_ap5.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+			this.grdv_ap5.OptionsView.ColumnAutoWidth = false;
+			this.grdv_ap5.OptionsView.ShowFooter = true;
+			this.grdv_ap5.OptionsView.ShowGroupPanel = false;
+			this.grdv_ap5.RowHeight = 38;
+			this.grdv_ap5.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap_CustomDrawRowIndicator);
+			// 
+			// gridColumn40
+			// 
+			this.gridColumn40.AppearanceHeader.ForeColor = System.Drawing.Color.Blue;
+			this.gridColumn40.AppearanceHeader.Options.UseForeColor = true;
+			this.gridColumn40.Caption = "구분";
+			this.gridColumn40.FieldName = "GUBN_NM";
+			this.gridColumn40.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridColumn40.Name = "gridColumn40";
+			this.gridColumn40.OptionsColumn.AllowEdit = false;
+			this.gridColumn40.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn40.OptionsColumn.ReadOnly = true;
+			this.gridColumn40.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn40.Visible = true;
+			this.gridColumn40.VisibleIndex = 0;
+			this.gridColumn40.Width = 103;
+			// 
+			// gridColumn41
+			// 
+			this.gridColumn41.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn41.Caption = "해당년월";
+			this.gridColumn41.FieldName = "DOC_DATE_NM";
+			this.gridColumn41.Name = "gridColumn41";
+			this.gridColumn41.OptionsColumn.AllowEdit = false;
+			this.gridColumn41.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn41.OptionsColumn.ReadOnly = true;
+			this.gridColumn41.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn41.Visible = true;
+			this.gridColumn41.VisibleIndex = 1;
+			// 
+			// gridColumn42
+			// 
+			this.gridColumn42.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn42.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumn42.Caption = "기안일자";
+			this.gridColumn42.ColumnEdit = this.repositoryItemMemoEdit5;
+			this.gridColumn42.FieldName = "REG_DT";
+			this.gridColumn42.Name = "gridColumn42";
+			this.gridColumn42.OptionsColumn.AllowEdit = false;
+			this.gridColumn42.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn42.OptionsColumn.ReadOnly = true;
+			this.gridColumn42.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn42.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CODE", "{0}건")});
+			this.gridColumn42.Visible = true;
+			this.gridColumn42.VisibleIndex = 2;
+			this.gridColumn42.Width = 130;
+			// 
+			// repositoryItemMemoEdit5
+			// 
+			this.repositoryItemMemoEdit5.Name = "repositoryItemMemoEdit5";
+			// 
+			// gridColumn43
+			// 
+			this.gridColumn43.Caption = "기안자";
+			this.gridColumn43.FieldName = "SAWON_NM";
+			this.gridColumn43.Name = "gridColumn43";
+			this.gridColumn43.OptionsColumn.AllowEdit = false;
+			this.gridColumn43.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn43.OptionsColumn.ReadOnly = true;
+			this.gridColumn43.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn43.Visible = true;
+			this.gridColumn43.VisibleIndex = 3;
+			this.gridColumn43.Width = 98;
+			// 
+			// gridColumn44
+			// 
+			this.gridColumn44.Caption = "제목";
+			this.gridColumn44.ColumnEdit = this.grd_LinkEdit4;
+			this.gridColumn44.FieldName = "GW_TITLE";
+			this.gridColumn44.Name = "gridColumn44";
+			this.gridColumn44.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn44.OptionsColumn.ReadOnly = true;
+			this.gridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn44.Visible = true;
+			this.gridColumn44.VisibleIndex = 4;
+			this.gridColumn44.Width = 320;
+			// 
+			// grd_LinkEdit4
+			// 
+			this.grd_LinkEdit4.AutoHeight = false;
+			this.grd_LinkEdit4.Name = "grd_LinkEdit4";
+			this.grd_LinkEdit4.Click += new System.EventHandler(this.grd_LinkEdit4_Click);
+			// 
+			// gridColumn45
+			// 
+			this.gridColumn45.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn45.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn45.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn45.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.gridColumn45.Caption = "승인여부";
+			this.gridColumn45.FieldName = "AP_TAG_NM";
+			this.gridColumn45.Name = "gridColumn45";
+			this.gridColumn45.OptionsColumn.AllowEdit = false;
+			this.gridColumn45.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn45.OptionsColumn.ReadOnly = true;
+			this.gridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn45.Visible = true;
+			this.gridColumn45.VisibleIndex = 5;
+			this.gridColumn45.Width = 39;
+			// 
+			// gridColumn46
+			// 
+			this.gridColumn46.Caption = "결재라인";
+			this.gridColumn46.ColumnEdit = this.repositoryItemMemoEdit5;
+			this.gridColumn46.FieldName = "GW_LINE";
+			this.gridColumn46.Name = "gridColumn46";
+			this.gridColumn46.OptionsColumn.AllowEdit = false;
+			this.gridColumn46.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn46.OptionsColumn.ReadOnly = true;
+			this.gridColumn46.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn46.Visible = true;
+			this.gridColumn46.VisibleIndex = 6;
+			this.gridColumn46.Width = 181;
+			// 
+			// gridColumn47
+			// 
+			this.gridColumn47.Caption = "결재상태";
+			this.gridColumn47.ColumnEdit = this.repositoryItemMemoEdit5;
+			this.gridColumn47.FieldName = "LINE_STAT";
+			this.gridColumn47.Name = "gridColumn47";
+			this.gridColumn47.OptionsColumn.AllowEdit = false;
+			this.gridColumn47.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn47.OptionsColumn.ReadOnly = true;
+			this.gridColumn47.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn47.Visible = true;
+			this.gridColumn47.VisibleIndex = 7;
+			this.gridColumn47.Width = 275;
+			// 
+			// repositoryItemCheckEdit5
+			// 
+			this.repositoryItemCheckEdit5.AutoHeight = false;
+			this.repositoryItemCheckEdit5.Name = "repositoryItemCheckEdit5";
+			this.repositoryItemCheckEdit5.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+			this.repositoryItemCheckEdit5.ValueChecked = "1";
+			this.repositoryItemCheckEdit5.ValueUnchecked = "0";
+			// 
+			// repositoryItemTextEdit5
+			// 
+			this.repositoryItemTextEdit5.AutoHeight = false;
+			this.repositoryItemTextEdit5.DisplayFormat.FormatString = "{0:#,##0.#}";
+			this.repositoryItemTextEdit5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.repositoryItemTextEdit5.Mask.EditMask = "n1";
+			this.repositoryItemTextEdit5.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+			this.repositoryItemTextEdit5.Mask.UseMaskAsDisplayFormat = true;
+			this.repositoryItemTextEdit5.Name = "repositoryItemTextEdit5";
+			// 
+			// srGroupBox5
+			// 
+			this.srGroupBox5.AppearanceCaption.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.srGroupBox5.AppearanceCaption.Options.UseFont = true;
+			this.srGroupBox5.Controls.Add(this.panelControl5);
+			this.srGroupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+			this.srGroupBox5.Location = new System.Drawing.Point(0, 0);
+			this.srGroupBox5.Name = "srGroupBox5";
+			this.srGroupBox5.Size = new System.Drawing.Size(1274, 67);
+			this.srGroupBox5.TabIndex = 15;
+			this.srGroupBox5.Text = "조회";
+			// 
+			// panelControl5
+			// 
+			this.panelControl5.Controls.Add(this.srLabel5);
+			this.panelControl5.Controls.Add(this.cmb_gubn5);
+			this.panelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelControl5.Location = new System.Drawing.Point(2, 22);
+			this.panelControl5.Name = "panelControl5";
+			this.panelControl5.Size = new System.Drawing.Size(1270, 43);
+			this.panelControl5.TabIndex = 0;
+			// 
+			// srLabel5
+			// 
+			this.srLabel5.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel5.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel5.ForeColor = System.Drawing.Color.Black;
+			this.srLabel5.Location = new System.Drawing.Point(11, 9);
+			this.srLabel5.Name = "srLabel5";
+			this.srLabel5.Size = new System.Drawing.Size(65, 22);
+			this.srLabel5.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel5.TabIndex = 537;
+			this.srLabel5.Text = "종류";
+			this.srLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// gridColumn32
 			// 
 			this.gridColumn32.Caption = "기안자";
@@ -1770,6 +2056,31 @@
 			this.gridColumn32.Visible = true;
 			this.gridColumn32.VisibleIndex = 2;
 			this.gridColumn32.Width = 98;
+			// 
+			// cmb_gubn5
+			// 
+			this.cmb_gubn5.EditValue = "전체";
+			this.cmb_gubn5.EnterMoveNextControl = true;
+			this.cmb_gubn5.Location = new System.Drawing.Point(76, 9);
+			this.cmb_gubn5.Name = "cmb_gubn5";
+			this.cmb_gubn5.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn5.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn5.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn5.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_gubn5.Properties.Items.AddRange(new object[] {
+            "전체",
+            "일지출예정",
+            "일지출내역",
+            "일계표",
+            "월별지출내역",
+            "월별수입내역",
+            "연지출내역",
+            "연수입내역"});
+			this.cmb_gubn5.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn5.Size = new System.Drawing.Size(112, 22);
+			this.cmb_gubn5.TabIndex = 539;
 			// 
 			// duty5080
 			// 
@@ -1803,7 +2114,7 @@
 			this.srGroupBox3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
 			this.panelControl1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.cmb_type.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn.Properties)).EndInit();
 			this.xtraTabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grd_ap2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv_ap2)).EndInit();
@@ -1815,7 +2126,7 @@
 			this.srGroupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
 			this.panelControl2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.cmb_type2.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn2.Properties)).EndInit();
 			this.xtraTabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
@@ -1832,7 +2143,7 @@
 			this.srGroupBox2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
 			this.panelControl3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.cmb_type3.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn3.Properties)).EndInit();
 			this.xtraTabPage4.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grd_ap4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv_ap4)).EndInit();
@@ -1844,7 +2155,19 @@
 			this.srGroupBox4.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
 			this.panelControl4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.srCombo1.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn4.Properties)).EndInit();
+			this.xtraTabPage5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.grd_ap5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdv_ap5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grd_LinkEdit4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.srGroupBox5)).EndInit();
+			this.srGroupBox5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
+			this.panelControl5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn5.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1893,13 +2216,13 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView9;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
-		private SilkRoad.UserControls.SRCombo cmb_type;
+		private SilkRoad.UserControls.SRCombo cmb_gubn;
 		private SilkRoad.UserControls.SRLabel srLabel2;
 		private DevExpress.XtraGrid.Columns.GridColumn col_c_chk;
 		private SilkRoad.UserControls.SRButton btn_ap_canc;
 		private SilkRoad.UserControls.SRGroupBox srGroupBox1;
 		private DevExpress.XtraEditors.PanelControl panelControl2;
-		private SilkRoad.UserControls.SRCombo cmb_type2;
+		private SilkRoad.UserControls.SRCombo cmb_gubn2;
 		private SilkRoad.UserControls.SRLabel srLabel1;
 		private DevExpress.XtraGrid.GridControl grd_ap2;
 		private DevExpress.XtraGrid.Views.Grid.GridView grdv_ap2;
@@ -1933,7 +2256,7 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
 		private SilkRoad.UserControls.SRGroupBox srGroupBox2;
 		private DevExpress.XtraEditors.PanelControl panelControl3;
-		private SilkRoad.UserControls.SRCombo cmb_type3;
+		private SilkRoad.UserControls.SRCombo cmb_gubn3;
 		private SilkRoad.UserControls.SRLabel srLabel3;
 		private DevExpress.XtraGrid.GridControl grd_ap4;
 		private DevExpress.XtraGrid.Views.Grid.GridView grdv_ap4;
@@ -1953,7 +2276,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
 		private SilkRoad.UserControls.SRGroupBox srGroupBox4;
 		private DevExpress.XtraEditors.PanelControl panelControl4;
-		private SilkRoad.UserControls.SRCombo srCombo1;
+		private SilkRoad.UserControls.SRCombo cmb_gubn4;
 		private SilkRoad.UserControls.SRLabel srLabel4;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn33;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
@@ -1962,6 +2285,25 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn37;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn38;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn39;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+		private SilkRoad.UserControls.SRGroupBox srGroupBox5;
+		private DevExpress.XtraEditors.PanelControl panelControl5;
+		private SilkRoad.UserControls.SRLabel srLabel5;
+		private DevExpress.XtraGrid.GridControl grd_ap5;
+		private DevExpress.XtraGrid.Views.Grid.GridView grdv_ap5;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
+		private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit5;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
+		private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit grd_LinkEdit4;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
+		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit5;
+		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit5;
+		private SilkRoad.UserControls.SRCombo cmb_gubn5;
 	}
 }
 
