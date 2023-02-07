@@ -243,7 +243,7 @@ namespace DUTY1000
             if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
                 admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
 
-			if (SilkRoad.Config.SRConfig.US_GUBN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
 			{
 				admin_lv = 3;
                 p_dpcd = "%";
@@ -252,7 +252,7 @@ namespace DUTY1000
                 lb_power2.Text = "전체조회 권한";
 				sl_dept2.Enabled = true;
 			}
-            else if (admin_lv == 1)
+            else //if (admin_lv == 1)
             {
                 p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서조회 권한";
@@ -262,16 +262,16 @@ namespace DUTY1000
 				sl_dept2.EditValue = p_dpcd;
 				sl_dept2.Enabled = false;
 			}
-            else
-            {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
-                lb_power.Text = "조회권한 없음";				
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
-                lb_power2.Text = "조회권한 없음";				
-				sl_dept2.EditValue = p_dpcd;
-				sl_dept2.Enabled = false;
-            }
+    //        else
+    //        {
+    //            p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
+    //            lb_power.Text = "조회권한 없음";				
+				//sl_dept.EditValue = p_dpcd;
+				//sl_dept.Enabled = false;
+    //            lb_power2.Text = "조회권한 없음";				
+				//sl_dept2.EditValue = p_dpcd;
+				//sl_dept2.Enabled = false;
+    //        }
 			
             SetCancel(1);
 			SetCancel(2);
@@ -852,12 +852,12 @@ namespace DUTY1000
             bool isError = false;
             if (mode == 1)  //조회1
             {
-                if (admin_lv == 0)
-                {
-                    MessageBox.Show("조회권한이 없습니다. 인사기본관리의 관리자구분을 확인하세요!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                else if (clib.DateToText(dat_frmm.DateTime) == "")
+                //if (admin_lv == 0)
+                //{
+                //    MessageBox.Show("조회권한이 없습니다. 인사기본관리의 관리자구분을 확인하세요!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return false;
+                //}
+                if (clib.DateToText(dat_frmm.DateTime) == "")
                 {
                     MessageBox.Show("조회년월(시작)을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dat_frmm.Focus();
@@ -876,12 +876,12 @@ namespace DUTY1000
             }
             else if (mode == 11)  //조회2
             {
-                if (admin_lv == 0)
-                {
-                    MessageBox.Show("조회권한이 없습니다. 인사기본관리의 관리자구분을 확인하세요!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                else if (clib.DateToText(dat_frmm2.DateTime) == "")
+                //if (admin_lv == 0)
+                //{
+                //    MessageBox.Show("조회권한이 없습니다. 인사기본관리의 관리자구분을 확인하세요!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return false;
+                //}
+                if (clib.DateToText(dat_frmm2.DateTime) == "")
                 {
                     MessageBox.Show("조회년월(시작)을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dat_frmm2.Focus();

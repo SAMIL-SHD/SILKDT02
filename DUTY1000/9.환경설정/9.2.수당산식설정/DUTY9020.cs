@@ -100,7 +100,9 @@ namespace DUTY1000
 				sl_sdcd2.EditValue = srow["A02"].ToString().Trim() == "" ? null : srow["A02"].ToString().Trim();
 				sl_sdcd3.EditValue = srow["A03"].ToString().Trim() == "" ? null : srow["A03"].ToString().Trim();
 				sl_sdcd4.EditValue = srow["A04"].ToString().Trim() == "" ? null : srow["A04"].ToString().Trim();
+				cmb_off_type.SelectedIndex = clib.TextToInt(srow["A04_TYPE"].ToString().Trim());
 				sl_sdcd5.EditValue = srow["A05"].ToString().Trim() == "" ? null : srow["A05"].ToString().Trim();
+				cmb_night_type.SelectedIndex = clib.TextToInt(srow["A05_TYPE"].ToString().Trim());
 				sl_sdcd6.EditValue = srow["A06"].ToString().Trim() == "" ? null : srow["A06"].ToString().Trim();
 				sl_sdcd7.EditValue = srow["A07"].ToString().Trim() == "" ? null : srow["A07"].ToString().Trim();
 				sl_sdcd8.EditValue = srow["A08"].ToString().Trim() == "" ? null : srow["A08"].ToString().Trim();
@@ -188,7 +190,10 @@ namespace DUTY1000
 				nrow["A02"] = sl_sdcd2.EditValue == null ? "" : sl_sdcd2.EditValue.ToString();
 				nrow["A03"] = sl_sdcd3.EditValue == null ? "" : sl_sdcd3.EditValue.ToString();
 				nrow["A04"] = sl_sdcd4.EditValue == null ? "" : sl_sdcd4.EditValue.ToString();
+				nrow["A04_TYPE"] = cmb_off_type.SelectedIndex.ToString();
+
 				nrow["A05"] = sl_sdcd5.EditValue == null ? "" : sl_sdcd5.EditValue.ToString();
+				nrow["A05_TYPE"] = cmb_night_type.SelectedIndex.ToString();
 				nrow["A06"] = sl_sdcd6.EditValue == null ? "" : sl_sdcd6.EditValue.ToString();
 				nrow["A07"] = sl_sdcd7.EditValue == null ? "" : sl_sdcd7.EditValue.ToString();
 				nrow["A08"] = sl_sdcd8.EditValue == null ? "" : sl_sdcd8.EditValue.ToString();

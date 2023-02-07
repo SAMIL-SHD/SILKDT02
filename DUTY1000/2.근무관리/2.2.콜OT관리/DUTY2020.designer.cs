@@ -179,6 +179,10 @@
 			this.txt_ctime2 = new SilkRoad.UserControls.SRTextEdit();
 			this.txt_cnt2 = new SilkRoad.UserControls.SRTextEdit();
 			this.srLabel10 = new SilkRoad.UserControls.SRLabel();
+			this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
@@ -810,6 +814,7 @@
 			this.grdv1_ex.ColumnPanelRowHeight = 36;
 			this.grdv1_ex.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn25,
+            this.gridColumn45,
             this.gridColumn26,
             this.gridColumn27,
             this.gridColumn39,
@@ -858,7 +863,7 @@
 			this.gridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CODE", "{0}건")});
 			this.gridColumn26.Visible = true;
-			this.gridColumn26.VisibleIndex = 1;
+			this.gridColumn26.VisibleIndex = 2;
 			this.gridColumn26.Width = 90;
 			// 
 			// gridColumn27
@@ -871,7 +876,7 @@
 			this.gridColumn27.OptionsColumn.ReadOnly = true;
 			this.gridColumn27.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn27.Visible = true;
-			this.gridColumn27.VisibleIndex = 2;
+			this.gridColumn27.VisibleIndex = 3;
 			this.gridColumn27.Width = 70;
 			// 
 			// gridColumn39
@@ -892,7 +897,7 @@
 			this.gridColumn39.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_CNT", "{0:#,###}")});
 			this.gridColumn39.Visible = true;
-			this.gridColumn39.VisibleIndex = 3;
+			this.gridColumn39.VisibleIndex = 4;
 			this.gridColumn39.Width = 64;
 			// 
 			// gridColumn40
@@ -913,7 +918,7 @@
 			this.gridColumn40.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TIME", "{0:#,###.#}")});
 			this.gridColumn40.Visible = true;
-			this.gridColumn40.VisibleIndex = 4;
+			this.gridColumn40.VisibleIndex = 5;
 			// 
 			// gridColumn37
 			// 
@@ -925,7 +930,7 @@
 			this.gridColumn37.OptionsColumn.ReadOnly = true;
 			this.gridColumn37.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn37.Visible = true;
-			this.gridColumn37.VisibleIndex = 5;
+			this.gridColumn37.VisibleIndex = 6;
 			this.gridColumn37.Width = 141;
 			// 
 			// gridColumn41
@@ -938,7 +943,7 @@
 			this.gridColumn41.OptionsColumn.ReadOnly = true;
 			this.gridColumn41.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn41.Visible = true;
-			this.gridColumn41.VisibleIndex = 6;
+			this.gridColumn41.VisibleIndex = 7;
 			this.gridColumn41.Width = 189;
 			// 
 			// repositoryItemCheckEdit3
@@ -999,6 +1004,7 @@
 			this.grdv1.ColumnPanelRowHeight = 36;
 			this.grdv1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn12,
+            this.gridColumn46,
             this.gridColumn1,
             this.gridColumn9,
             this.gridColumn2,
@@ -1066,7 +1072,7 @@
 			this.gridColumn1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SLDT_NM", "{0}건")});
 			this.gridColumn1.Visible = true;
-			this.gridColumn1.VisibleIndex = 1;
+			this.gridColumn1.VisibleIndex = 2;
 			this.gridColumn1.Width = 90;
 			// 
 			// gridColumn9
@@ -1079,7 +1085,7 @@
 			this.gridColumn9.OptionsColumn.ReadOnly = true;
 			this.gridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn9.Visible = true;
-			this.gridColumn9.VisibleIndex = 2;
+			this.gridColumn9.VisibleIndex = 3;
 			this.gridColumn9.Width = 70;
 			// 
 			// gridColumn2
@@ -1112,7 +1118,7 @@
 			this.col_ccnt1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_CNT1", "{0:#,###}")});
 			this.col_ccnt1.Visible = true;
-			this.col_ccnt1.VisibleIndex = 3;
+			this.col_ccnt1.VisibleIndex = 4;
 			this.col_ccnt1.Width = 47;
 			// 
 			// col_ctime1
@@ -1132,7 +1138,7 @@
 			this.col_ctime1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TIME1", "{0:#,###.#}")});
 			this.col_ctime1.Visible = true;
-			this.col_ctime1.VisibleIndex = 4;
+			this.col_ctime1.VisibleIndex = 5;
 			this.col_ctime1.Width = 45;
 			// 
 			// col_ccnt2
@@ -1152,7 +1158,7 @@
 			this.col_ccnt2.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_CNT2", "{0:#,###}")});
 			this.col_ccnt2.Visible = true;
-			this.col_ccnt2.VisibleIndex = 5;
+			this.col_ccnt2.VisibleIndex = 6;
 			this.col_ccnt2.Width = 46;
 			// 
 			// col_ctime2
@@ -1172,7 +1178,7 @@
 			this.col_ctime2.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TIME2", "{0:#,###.#}")});
 			this.col_ctime2.Visible = true;
-			this.col_ctime2.VisibleIndex = 6;
+			this.col_ctime2.VisibleIndex = 7;
 			this.col_ctime2.Width = 47;
 			// 
 			// gridColumn5
@@ -1193,7 +1199,7 @@
 			this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_CNT", "{0:#,###}")});
 			this.gridColumn5.Visible = true;
-			this.gridColumn5.VisibleIndex = 7;
+			this.gridColumn5.VisibleIndex = 8;
 			this.gridColumn5.Width = 58;
 			// 
 			// gridColumn6
@@ -1214,7 +1220,7 @@
 			this.gridColumn6.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TIME", "{0:#,###.#}")});
 			this.gridColumn6.Visible = true;
-			this.gridColumn6.VisibleIndex = 8;
+			this.gridColumn6.VisibleIndex = 9;
 			// 
 			// gridColumn11
 			// 
@@ -1226,7 +1232,7 @@
 			this.gridColumn11.OptionsColumn.ReadOnly = true;
 			this.gridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn11.Visible = true;
-			this.gridColumn11.VisibleIndex = 10;
+			this.gridColumn11.VisibleIndex = 11;
 			this.gridColumn11.Width = 267;
 			// 
 			// gridColumn10
@@ -1239,7 +1245,7 @@
 			this.gridColumn10.OptionsColumn.ReadOnly = true;
 			this.gridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn10.Visible = true;
-			this.gridColumn10.VisibleIndex = 9;
+			this.gridColumn10.VisibleIndex = 10;
 			this.gridColumn10.Width = 138;
 			// 
 			// gridColumn3
@@ -1257,7 +1263,7 @@
 			this.gridColumn3.OptionsColumn.ReadOnly = true;
 			this.gridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn3.Visible = true;
-			this.gridColumn3.VisibleIndex = 11;
+			this.gridColumn3.VisibleIndex = 12;
 			this.gridColumn3.Width = 41;
 			// 
 			// gridColumn4
@@ -1390,6 +1396,7 @@
 			this.grdv2_ex.ColumnPanelRowHeight = 36;
 			this.grdv2_ex.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn28,
+            this.gridColumn47,
             this.gridColumn29,
             this.gridColumn36,
             this.gridColumn43,
@@ -1436,7 +1443,7 @@
 			this.gridColumn29.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CODE", "{0}건")});
 			this.gridColumn29.Visible = true;
-			this.gridColumn29.VisibleIndex = 1;
+			this.gridColumn29.VisibleIndex = 2;
 			this.gridColumn29.Width = 90;
 			// 
 			// gridColumn36
@@ -1449,7 +1456,7 @@
 			this.gridColumn36.OptionsColumn.ReadOnly = true;
 			this.gridColumn36.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn36.Visible = true;
-			this.gridColumn36.VisibleIndex = 2;
+			this.gridColumn36.VisibleIndex = 3;
 			this.gridColumn36.Width = 70;
 			// 
 			// gridColumn43
@@ -1470,7 +1477,7 @@
 			this.gridColumn43.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TIME", "{0:#,###.#}")});
 			this.gridColumn43.Visible = true;
-			this.gridColumn43.VisibleIndex = 3;
+			this.gridColumn43.VisibleIndex = 4;
 			// 
 			// gridColumn38
 			// 
@@ -1482,7 +1489,7 @@
 			this.gridColumn38.OptionsColumn.ReadOnly = true;
 			this.gridColumn38.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn38.Visible = true;
-			this.gridColumn38.VisibleIndex = 4;
+			this.gridColumn38.VisibleIndex = 5;
 			this.gridColumn38.Width = 138;
 			// 
 			// gridColumn44
@@ -1495,7 +1502,7 @@
 			this.gridColumn44.OptionsColumn.ReadOnly = true;
 			this.gridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn44.Visible = true;
-			this.gridColumn44.VisibleIndex = 5;
+			this.gridColumn44.VisibleIndex = 6;
 			this.gridColumn44.Width = 213;
 			// 
 			// grd2
@@ -1538,6 +1545,7 @@
 			this.grdv2.ColumnPanelRowHeight = 36;
 			this.grdv2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn13,
+            this.gridColumn42,
             this.gridColumn14,
             this.gridColumn19,
             this.gridColumn23,
@@ -1599,7 +1607,7 @@
 			this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SLDT_NM", "{0}건")});
 			this.gridColumn14.Visible = true;
-			this.gridColumn14.VisibleIndex = 1;
+			this.gridColumn14.VisibleIndex = 2;
 			this.gridColumn14.Width = 90;
 			// 
 			// gridColumn19
@@ -1612,7 +1620,7 @@
 			this.gridColumn19.OptionsColumn.ReadOnly = true;
 			this.gridColumn19.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn19.Visible = true;
-			this.gridColumn19.VisibleIndex = 2;
+			this.gridColumn19.VisibleIndex = 3;
 			this.gridColumn19.Width = 70;
 			// 
 			// gridColumn23
@@ -1642,7 +1650,7 @@
 			this.gridColumn30.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TIME1", "{0:#,###.#}")});
 			this.gridColumn30.Visible = true;
-			this.gridColumn30.VisibleIndex = 3;
+			this.gridColumn30.VisibleIndex = 4;
 			this.gridColumn30.Width = 60;
 			// 
 			// gridColumn31
@@ -1659,7 +1667,7 @@
 			this.gridColumn31.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TIME2", "{0:#,###.#}")});
 			this.gridColumn31.Visible = true;
-			this.gridColumn31.VisibleIndex = 4;
+			this.gridColumn31.VisibleIndex = 5;
 			this.gridColumn31.Width = 60;
 			// 
 			// gridColumn32
@@ -1680,7 +1688,7 @@
 			this.gridColumn32.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TIME", "{0:#,###.#}")});
 			this.gridColumn32.Visible = true;
-			this.gridColumn32.VisibleIndex = 5;
+			this.gridColumn32.VisibleIndex = 6;
 			// 
 			// gridColumn24
 			// 
@@ -1692,7 +1700,7 @@
 			this.gridColumn24.OptionsColumn.ReadOnly = true;
 			this.gridColumn24.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn24.Visible = true;
-			this.gridColumn24.VisibleIndex = 7;
+			this.gridColumn24.VisibleIndex = 8;
 			this.gridColumn24.Width = 214;
 			// 
 			// gridColumn33
@@ -1705,7 +1713,7 @@
 			this.gridColumn33.OptionsColumn.ReadOnly = true;
 			this.gridColumn33.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn33.Visible = true;
-			this.gridColumn33.VisibleIndex = 6;
+			this.gridColumn33.VisibleIndex = 7;
 			this.gridColumn33.Width = 126;
 			// 
 			// gridColumn34
@@ -1723,7 +1731,7 @@
 			this.gridColumn34.OptionsColumn.ReadOnly = true;
 			this.gridColumn34.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.gridColumn34.Visible = true;
-			this.gridColumn34.VisibleIndex = 8;
+			this.gridColumn34.VisibleIndex = 9;
 			this.gridColumn34.Width = 41;
 			// 
 			// gridColumn35
@@ -2580,6 +2588,54 @@
 			this.srLabel10.Text = "콜횟수(야)";
 			this.srLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// gridColumn42
+			// 
+			this.gridColumn42.Caption = "년월";
+			this.gridColumn42.FieldName = "OT_YYMM";
+			this.gridColumn42.Name = "gridColumn42";
+			this.gridColumn42.OptionsColumn.AllowEdit = false;
+			this.gridColumn42.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn42.OptionsColumn.ReadOnly = true;
+			this.gridColumn42.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn42.Visible = true;
+			this.gridColumn42.VisibleIndex = 1;
+			// 
+			// gridColumn45
+			// 
+			this.gridColumn45.Caption = "년월";
+			this.gridColumn45.FieldName = "OT_YYMM";
+			this.gridColumn45.Name = "gridColumn45";
+			this.gridColumn45.OptionsColumn.AllowEdit = false;
+			this.gridColumn45.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn45.OptionsColumn.ReadOnly = true;
+			this.gridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn45.Visible = true;
+			this.gridColumn45.VisibleIndex = 1;
+			// 
+			// gridColumn46
+			// 
+			this.gridColumn46.Caption = "년월";
+			this.gridColumn46.FieldName = "OT_YYMM";
+			this.gridColumn46.Name = "gridColumn46";
+			this.gridColumn46.OptionsColumn.AllowEdit = false;
+			this.gridColumn46.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn46.OptionsColumn.ReadOnly = true;
+			this.gridColumn46.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn46.Visible = true;
+			this.gridColumn46.VisibleIndex = 1;
+			// 
+			// gridColumn47
+			// 
+			this.gridColumn47.Caption = "년월";
+			this.gridColumn47.FieldName = "OT_YYMM";
+			this.gridColumn47.Name = "gridColumn47";
+			this.gridColumn47.OptionsColumn.AllowEdit = false;
+			this.gridColumn47.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn47.OptionsColumn.ReadOnly = true;
+			this.gridColumn47.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn47.Visible = true;
+			this.gridColumn47.VisibleIndex = 1;
+			// 
 			// duty2020
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2813,6 +2869,10 @@
 		private SilkRoad.UserControls.SRButton btn_call_all;
 		private SilkRoad.UserControls.SRButton btn_ot_all;
 		private SilkRoad.UserControls.SRLabel srLabel15;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
 	}
 }
 

@@ -207,8 +207,10 @@ namespace DUTY1000
 		//간호사 직종설정
 		private void btn_info_Click(object sender, EventArgs e)
 		{
-			duty1051 duty1051 = new duty1051();
-			duty1051.ShowDialog();
+			duty3011 s = new duty3011();
+			s.ShowDialog();
+			//duty1051 duty1051 = new duty1051();
+			//duty1051.ShowDialog();
 		}
         //저장버튼
         private void btn_save_Click(object sender, EventArgs e)

@@ -26,6 +26,8 @@ namespace DUTY1000
         public DataSet ds = new DataSet();
         DataProcFunc df = new DataProcFunc();
         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
+		private int admin_lv = 0;
+        private string p_dpcd = "";
 		int idx = 0;
         public duty8010()
         {
@@ -61,6 +63,46 @@ namespace DUTY1000
         {
 			dat_year.DateTime = DateTime.Now.AddYears(-1);
 			sl_dept.EditValue = null;
+			
+			df.GetMSTUSER_CHKDatas(ds);  //부서관리여부
+			if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
+				admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
+			
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 2)
+			{
+				admin_lv = 3;
+                p_dpcd = "%";
+                lb_power.Text = "전체관리 권한";
+			}
+            else if (admin_lv == 1)
+            {
+                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
+                lb_power.Text = "부서관리 권한";
+			}
+            else if (admin_lv == 2)
+            {
+                p_dpcd = "%";
+                lb_power.Text = "부서장관리 권한";
+				df.GetCHK_DEPTDatas(SilkRoad.Config.SRConfig.USID, "%", ds);
+				string lb_nm = "";
+				for (int i = 0; i < ds.Tables["CHK_DEPT"].Rows.Count; i++)
+				{
+					if (i == 0)
+						lb_nm = "(" + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
+					else if (i == ds.Tables["CHK_DEPT"].Rows.Count - 1)
+						lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString() + ")";
+					else
+						lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
+				}
+
+				lb_power.Text += lb_nm;
+			}
+            else
+            {
+                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
+                lb_power.Text = "관리권한 없음";
+            }
+
             SetCancel();
         }
 
@@ -83,23 +125,25 @@ namespace DUTY1000
 			{
 				try
 				{
-					int[] rows = grdv1.GetSelectedRows();
+					string sldt = clib.DateToText(dat_sldt.DateTime);
+					df.GetSEARCH_YCDatas(admin_lv, p_dpcd, clib.DateToText(dat_sldt.DateTime), ds);
 
-					int without_group = 0;
-					for (int i = 0; i < rows.Length; i++)
+					string c_nm = cmb_yccj.SelectedIndex == 0 ? "CHK1" : "CHK2";
+					string doc_type = cmb_yccj.SelectedIndex == 0 ? "202101" : "202102";
+
+					DataTable table = ds.Tables["SEARCH_YC"].Clone();
+					for (int i = 0; i < ds.Tables["SEARCH_YC"].Rows.Count; i++)
 					{
-						if (rows[i] < 0)
+						if (ds.Tables["SEARCH_YC"].Rows[i][c_nm].ToString() == "1")
 						{
-							without_group++;
+							df.GetCHK_MSTYCCJDatas(ds.Tables["SEARCH_YC"].Rows[i]["YC_YEAR"].ToString(), ds.Tables["SEARCH_YC"].Rows[i]["SAWON_NO"].ToString(), doc_type, ds);
+							if (ds.Tables["CHK_MSTYCCJ"].Rows.Count == 0)  //전송내역 있으면 제외 23.01.17 박상균 요청.
+								table.ImportRow(ds.Tables["SEARCH_YC"].Rows[i]);
 						}
 					}
+					dp.AddDatatable2Dataset("COPY_SEARCH_YC", table, ref ds);
 
-					DataTable table = ds.Tables["SEARCH_EMBS"].Clone();
-					for (int i = 0; i < rows.Length - without_group; i++)
-						table.ImportRow(grdv1.GetDataRow(rows[i + without_group]));
-					dp.AddDatatable2Dataset("COPY_SEARCH_EMBS", table, ref ds);
-
-					sendemail sm = new sendemail(ds, 1);
+					sendemail sm = new sendemail(ds, cmb_yccj.SelectedIndex + 1);
 					sm.StartPosition = FormStartPosition.CenterScreen;
 					sm.ShowDialog();
 				}
@@ -110,14 +154,48 @@ namespace DUTY1000
 				}
 				finally
 				{
-					string yc_code = "";
-					if (ds.Tables["SEARCH_INFO"].Rows.Count > 0)
-						yc_code = ds.Tables["SEARCH_INFO"].Rows[0]["GT_CODE5"].ToString();
-					string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-					df.GetSEARCH_EMBSDatas(clib.DateToText(dat_year.DateTime).Substring(0, 4), yc_code, dept, ds);
-					grd1.DataSource = ds.Tables["SEARCH_EMBS"];
+
 				}
 			}
+			//if (isNoError_um(1))
+			//{
+			//	try
+			//	{
+			//		int[] rows = grdv1.GetSelectedRows();
+
+			//		int without_group = 0;
+			//		for (int i = 0; i < rows.Length; i++)
+			//		{
+			//			if (rows[i] < 0)
+			//			{
+			//				without_group++;
+			//			}
+			//		}
+
+			//		DataTable table = ds.Tables["SEARCH_EMBS"].Clone();
+			//		for (int i = 0; i < rows.Length - without_group; i++)
+			//			table.ImportRow(grdv1.GetDataRow(rows[i + without_group]));
+			//		dp.AddDatatable2Dataset("COPY_SEARCH_EMBS", table, ref ds);
+
+			//		sendemail sm = new sendemail(ds, 1);
+			//		sm.StartPosition = FormStartPosition.CenterScreen;
+			//		sm.ShowDialog();
+			//	}
+			//	catch (Exception ex)
+			//	{
+			//		MessageBox.Show(ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			//		return;
+			//	}
+			//	finally
+			//	{
+			//		string yc_code = "";
+			//		if (ds.Tables["SEARCH_INFO"].Rows.Count > 0)
+			//			yc_code = ds.Tables["SEARCH_INFO"].Rows[0]["GT_CODE5"].ToString();
+			//		string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
+			//		df.GetSEARCH_EMBSDatas(clib.DateToText(dat_year.DateTime).Substring(0, 4), yc_code, dept, ds);
+			//		grd1.DataSource = ds.Tables["SEARCH_EMBS"];
+			//	}
+			//}
 		}
 
         /// <summary>취소버튼</summary>
@@ -195,26 +273,36 @@ namespace DUTY1000
             bool isError = true;
             if (mode == 1)
             {				
-				int[] rows = grdv1.GetSelectedRows();
-
-				int without_group = 0;
-				for (int i = 0; i < rows.Length; i++)
+				if (clib.DateToText(dat_sldt.DateTime) == "")
 				{
-					if (rows[i] < 0)
-					{
-						without_group++;
-					}
+					MessageBox.Show("기준일자를 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					dat_sldt.Focus();
+					return false;
 				}
+				else
+				{
+					isError = true;
+				}
+				//int[] rows = grdv1.GetSelectedRows();
 
-                if (rows.Length - without_group == 0)
-                {
-                    MessageBox.Show("선택된 내역이 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-				}
-                else
-                {
-                    isError = true;
-                }
+				//int without_group = 0;
+				//for (int i = 0; i < rows.Length; i++)
+				//{
+				//	if (rows[i] < 0)
+				//	{
+				//		without_group++;
+				//	}
+				//}
+
+    //            if (rows.Length - without_group == 0)
+    //            {
+    //                MessageBox.Show("선택된 내역이 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //                return false;
+				//}
+    //            else
+    //            {
+    //                isError = true;
+    //            }
             }
 
             return isError;

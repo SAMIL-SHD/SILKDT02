@@ -52,6 +52,8 @@
 			this.sl_sdcd011 = new SilkRoad.UserControls.SRLookup2();
 			this.gridView24 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+			this.cmb_night_type = new SilkRoad.UserControls.SRCombo();
+			this.cmb_off_type = new SilkRoad.UserControls.SRCombo();
 			this.srLabel63 = new SilkRoad.UserControls.SRLabel();
 			this.sl_gtcd010 = new SilkRoad.UserControls.SRLookup2();
 			this.gridView26 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -206,6 +208,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView24)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
 			this.panelControl2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_night_type.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_off_type.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_gtcd010.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView26)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txt_a010_insu02.Properties)).BeginInit();
@@ -585,6 +589,8 @@
 			// 
 			// panelControl2
 			// 
+			this.panelControl2.Controls.Add(this.cmb_night_type);
+			this.panelControl2.Controls.Add(this.cmb_off_type);
 			this.panelControl2.Controls.Add(this.srLabel63);
 			this.panelControl2.Controls.Add(this.sl_gtcd010);
 			this.panelControl2.Controls.Add(this.srLabel64);
@@ -702,6 +708,60 @@
 			this.panelControl2.Name = "panelControl2";
 			this.panelControl2.Size = new System.Drawing.Size(987, 770);
 			this.panelControl2.TabIndex = 1;
+			// 
+			// cmb_night_type
+			// 
+			this.cmb_night_type.EditValue = "일수계산";
+			this.cmb_night_type.EnterMoveNextControl = true;
+			this.cmb_night_type.Location = new System.Drawing.Point(265, 377);
+			this.cmb_night_type.Name = "cmb_night_type";
+			this.cmb_night_type.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_night_type.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_night_type.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.cmb_night_type.Properties.Appearance.Options.UseBackColor = true;
+			this.cmb_night_type.Properties.Appearance.Options.UseFont = true;
+			this.cmb_night_type.Properties.Appearance.Options.UseForeColor = true;
+			this.cmb_night_type.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_night_type.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_night_type.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_night_type.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.cmb_night_type.Properties.AutoHeight = false;
+			this.cmb_night_type.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_night_type.Properties.Items.AddRange(new object[] {
+            "일수계산",
+            "시급계산"});
+			this.cmb_night_type.Properties.ReadOnly = true;
+			this.cmb_night_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_night_type.Size = new System.Drawing.Size(85, 23);
+			this.cmb_night_type.TabIndex = 621;
+			// 
+			// cmb_off_type
+			// 
+			this.cmb_off_type.EditValue = "일수계산";
+			this.cmb_off_type.EnterMoveNextControl = true;
+			this.cmb_off_type.Location = new System.Drawing.Point(265, 285);
+			this.cmb_off_type.Name = "cmb_off_type";
+			this.cmb_off_type.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_off_type.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_off_type.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.cmb_off_type.Properties.Appearance.Options.UseBackColor = true;
+			this.cmb_off_type.Properties.Appearance.Options.UseFont = true;
+			this.cmb_off_type.Properties.Appearance.Options.UseForeColor = true;
+			this.cmb_off_type.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_off_type.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_off_type.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_off_type.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.cmb_off_type.Properties.AutoHeight = false;
+			this.cmb_off_type.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_off_type.Properties.Items.AddRange(new object[] {
+            "일수계산",
+            "시급계산"});
+			this.cmb_off_type.Properties.ReadOnly = true;
+			this.cmb_off_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_off_type.Size = new System.Drawing.Size(85, 23);
+			this.cmb_off_type.TabIndex = 620;
 			// 
 			// srLabel63
 			// 
@@ -2961,6 +3021,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
 			this.panelControl2.ResumeLayout(false);
 			this.panelControl2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_night_type.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_off_type.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_gtcd010.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView26)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txt_a010_insu02.Properties)).EndInit();
@@ -3201,6 +3263,8 @@
 		private SilkRoad.UserControls.SRLookup2 sl_sdcd010;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView27;
 		private SilkRoad.UserControls.SRLabel srLabel67;
+		private SilkRoad.UserControls.SRCombo cmb_night_type;
+		private SilkRoad.UserControls.SRCombo cmb_off_type;
 	}
 }
 

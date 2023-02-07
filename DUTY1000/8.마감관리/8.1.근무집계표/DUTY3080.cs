@@ -70,7 +70,7 @@ namespace DUTY1000
 					if (grdv_search.Columns[i].Caption.Substring(0, 1) == "A")
 					{
 						grdv_search.Columns[i].Visible = false;
-						for (int j = 1; j <= 12; j++)
+						for (int j = 1; j <= 14; j++)
 						{
 							if (j != 9)
 							{
@@ -89,7 +89,7 @@ namespace DUTY1000
 					if (grdv_end.Columns[i].Caption.Substring(0, 1) == "A")
 					{
 						grdv_end.Columns[i].Visible = false;
-						for (int j = 1; j <= 12; j++)
+						for (int j = 1; j <= 14; j++)
 						{
 							if (j != 9)
 							{
@@ -181,36 +181,42 @@ namespace DUTY1000
 							DataRow nrow;
 							foreach (DataRow drow in ds.Tables["WORK_3080"].Rows)
 							{
-								if (drow["END_YYMM_NM"].ToString() == "")
+								if (drow["END_YYMM_NM"].ToString() == "" && clib.TextToDecimal(drow["SD_AMT"].ToString()) != 0)  //금액이 있는것만
 								{
 									#region 환경설정 수당코드 가져오기
 									string sd_code = "";
 									DataRow irow = ds.Tables["SEARCH_INFOSD02"].Rows[0];
 									string time_code = irow["A012"].ToString().Substring(2, 2);
-									switch (drow["GUBN"].ToString())
+									switch (clib.TextToInt(drow["GUBN"].ToString()))
 									{
-										case "1":
+										case 1:
 											sd_code = irow["A01"].ToString().Substring(2, 2);
 											break;
-										case "2":
+										case 2:
 											sd_code = irow["A07"].ToString().Substring(2, 2);
 											break;
-										case "3":
+										case 3:
 											sd_code = irow["A02"].ToString().Substring(2, 2);
 											break;
-										case "4":
+										case 4:
 											sd_code = irow["A03"].ToString().Substring(2, 2);
 											break;
-										case "5":
+										case 5:
 											sd_code = irow["A04"].ToString().Substring(2, 2);
 											break;
-										case "6":
+										case 6:
 											sd_code = irow["A05"].ToString().Substring(2, 2);
 											break;
-										case "7":
+										case 7:
+											sd_code = "15";
+											break;
+										case 8:
+											sd_code = "16";
+											break;
+										case 9:
 											sd_code = irow["A06"].ToString().Substring(2, 2);
 											break;
-										case "8":
+										case 10:
 											sd_code = irow["A08"].ToString().Substring(2, 2);
 											break;
 									}
@@ -425,45 +431,45 @@ namespace DUTY1000
 									{
 										if (clib.TextToDecimal(drow["WGPCSD" + j.ToString().PadLeft(2, '0')].ToString()) != 0)
 										{
-											for (int k = 1; k <= 8; k++)
+											switch (j.ToString().PadLeft(2, '0'))
 											{
-												if (irow["A0" + k].ToString().Substring(2, 2) == j.ToString().PadLeft(2, '0'))
-												{
-													switch (k.ToString().PadLeft(2, '0'))
-													{
-														case "01":
-															gubn = "1";
-															break;
-														case "07":
-															gubn = "2";
-															break;
-														case "02":
-															gubn = "3";
-															break;
-														case "03":
-															gubn = "4";
-															break;
-														case "04":
-															gubn = "5";
-															break;
-														case "05":
-															gubn = "6";
-															break;
-														case "06":
-															gubn = "7";
-															break;
-														case "08":
-															gubn = "8";
-															break;
-													}
-													df.GetDUTY_MSTWGPC_ENDDatas(drow["END_YYMM"].ToString(), drow["YYMM"].ToString(), drow["SAWON_NO"].ToString(), gubn, ds);
-													if (ds.Tables["DUTY_MSTWGPC_END"].Rows.Count > 0)
-													{
-														ds.Tables["DUTY_MSTWGPC_END"].Rows[0].Delete();
-														string[] tb_nm = new string[] { "DUTY_MSTWGPC_END" };
-														cmd.setUpdate(ref ds, tb_nm, null);
-													}
-												}
+												case "08":
+													gubn = "1";
+													break;
+												case "20":
+													gubn = "2";
+													break;
+												case "09":
+													gubn = "3";
+													break;
+												case "11":
+													gubn = "4";
+													break;
+												case "13":
+													gubn = "5";
+													break;
+												case "18":
+													gubn = "6";
+													break;
+												case "15":
+													gubn = "7";
+													break;
+												case "16":
+													gubn = "8";
+													break;
+												case "19":
+													gubn = "9";
+													break;
+												case "17":
+													gubn = "10";
+													break;
+											}
+											df.GetDUTY_MSTWGPC_ENDDatas(drow["END_YYMM"].ToString(), drow["YYMM"].ToString(), drow["SAWON_NO"].ToString(), gubn, ds);
+											if (ds.Tables["DUTY_MSTWGPC_END"].Rows.Count > 0)
+											{
+												ds.Tables["DUTY_MSTWGPC_END"].Rows[0].Delete();
+												string[] tb_nm = new string[] { "DUTY_MSTWGPC_END" };
+												cmd.setUpdate(ref ds, tb_nm, null);
 											}
 										}
 									}
@@ -471,25 +477,6 @@ namespace DUTY1000
 								}
 							}
 						}
-
-						//if (ds.Tables["SEARCH_3080"].Rows.Count < 1)
-						//{
-						//	MessageBox.Show("삭제할 데이터가 없습니다.", "삭제오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						//	return;
-						//}
-						//else
-						//{
-						//	string yymm = clib.DateToText(dat_p_yymm.DateTime).Substring(0, 6);
-						//	string sabn = sl_p_embs.EditValue == null ? "%" : sl_p_embs.EditValue.ToString();
-						//	df.GetDUTY_MSTWGPCDatas(yymm, "%", sabn, ds);						
-						//	for (int i = 0; i < ds.Tables["DUTY_MSTWGPC"].Rows.Count; i++)
-						//	{
-						//		ds.Tables["DUTY_MSTWGPC"].Rows[i].Delete();
-						//	}
-						//	string[] tableNames = new string[] { "DUTY_MSTWGPC" };
-						//	SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-						//	outVal = cmd.setUpdate(ref ds, tableNames, null);
-						//}
 					}
 					catch (Exception ec)
 					{

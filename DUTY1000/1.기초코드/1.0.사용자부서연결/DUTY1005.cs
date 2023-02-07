@@ -32,6 +32,7 @@ namespace DUTY1000
 		{
 			df.GetSL_DEPTDatas(ds);
 			grd_sl_dept.DataSource = ds.Tables["SL_DEPT"];
+			//grd_sl_dept2.DataSource = ds.Tables["SL_DEPT"];
 
 			df.GetSEARCH_USERDEPTDatas(ds);
 			grd1.DataSource = ds.Tables["SEARCH_USERDEPT"];
@@ -48,40 +49,44 @@ namespace DUTY1000
             int outVal = 0;
             try
             {
-				df.GetDUTY_MSTUSERDatas(ds);
+				df.GetMSTUSERDatas(ds);
 				DataRow drow, nrow;
 				for (int i = 0; i < ds.Tables["SEARCH_USERDEPT"].Rows.Count; i++)
 				{
 					drow = ds.Tables["SEARCH_USERDEPT"].Rows[i];
-					if (ds.Tables["DUTY_MSTUSER"].Select("USERIDEN = '" + drow["USERIDEN"].ToString().Trim() + "'").Length > 0)
+					if (ds.Tables["MSTUSER"].Select("USERIDEN = '" + drow["USERIDEN"].ToString().Trim() + "'").Length > 0)
 					{
-						nrow = ds.Tables["DUTY_MSTUSER"].Select("USERIDEN = '" + drow["USERIDEN"].ToString().Trim() + "'")[0];
+						nrow = ds.Tables["MSTUSER"].Select("USERIDEN = '" + drow["USERIDEN"].ToString().Trim() + "'")[0];
 						nrow["USERDPCD"] = drow["USERDPCD"].ToString().Trim();
 						nrow["USERMSYN"] = drow["USERMSYN"].ToString().Trim();
 						nrow["USERUPYN"] = drow["USERUPYN"].ToString().Trim();
-						nrow["USERUPDT"] = gd.GetNow();
+						nrow["USERUPDT"] = gd.GetNow().Substring(0, 8);
 						nrow["USERUSID"] = SilkRoad.Config.SRConfig.USID;
 						nrow["USERPSTY"] = "U";
 					}
 					else
 					{
-						nrow = ds.Tables["DUTY_MSTUSER"].NewRow();
+						nrow = ds.Tables["MSTUSER"].NewRow();
 						nrow["USERIDEN"] = drow["USERIDEN"].ToString().Trim();
 						nrow["USERNAME"] = drow["USERNAME"].ToString().Trim();
+						nrow["USERPSWD"] = drow["USERPSWD"].ToString().Trim();
 						nrow["USERDPCD"] = drow["USERDPCD"].ToString().Trim();
+						nrow["USERJWCD"] = "";
+						nrow["USERPRCD"] = "";
 						nrow["USERMSYN"] = drow["USERMSYN"].ToString().Trim();
 						nrow["USERUPYN"] = drow["USERUPYN"].ToString().Trim();
-						nrow["USERINDT"] = gd.GetNow();
+						nrow["USERJGYN"] = "0";
+						nrow["USERINDT"] = gd.GetNow().Substring(0, 8);
 						nrow["USERUPDT"] = "";
 						nrow["USERUSID"] = SilkRoad.Config.SRConfig.USID;
 						nrow["USERPSTY"] = "A";
-						ds.Tables["DUTY_MSTUSER"].Rows.Add(nrow);
+						ds.Tables["MSTUSER"].Rows.Add(nrow);
 					}
 				}
 
-				string[] tableNames = new string[] { "DUTY_MSTUSER" };
-				SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-				outVal = cmd.setUpdate(ref ds, tableNames, null);				
+				//string[] tableNames = new string[] { "MSTUSER" };
+				//SilkRoad.DbCmd_DUTY.DbCmd_DUTY cmd = new SilkRoad.DbCmd_DUTY.DbCmd_DUTY();
+				//outVal = cmd.setUpdate(ref ds, tableNames, null);				
             }
             catch (Exception ec)
             {
@@ -106,6 +111,54 @@ namespace DUTY1000
                 btn_exit.PerformClick();
             }
         }
+		
+		private void grdv1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+		{
+			DataRow drow = grdv1.GetFocusedDataRow();
+            if (drow == null)
+                return;
+
+			string sabn = drow["USERIDEN"].ToString().Trim();
+			df.GetUserDeptDatas(sabn, ds);
+			grd_dept.DataSource = ds.Tables["USERDEPT"];
+		}
+		
+		private void btn_dept_save_Click(object sender, EventArgs e)
+		{
+			DataRow drow = grdv1.GetFocusedDataRow();
+            if (drow == null)
+                return;
+
+			Cursor = Cursors.WaitCursor;
+            try
+            {
+                df.GetDUTY_PWERDEPTDatas(ds);
+                foreach (DataRow drow2 in ds.Tables["USERDEPT"].Select("CHK = '1'"))
+                {
+                    DataRow nrow = ds.Tables["DUTY_PWERDEPT"].NewRow();
+
+                    nrow["SABN"] = drow["USERIDEN"].ToString().Trim();
+                    nrow["DEPT"] = drow2["CODE"];
+                    nrow["REG_DT"] = gd.GetNow();
+                    nrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
+                    ds.Tables["DUTY_PWERDEPT"].Rows.Add(nrow);
+                }
+                string QRY = "DELETE FROM DUTY_PWERDEPT WHERE SABN = '" + drow["USERIDEN"].ToString().Trim() + "'";				
+
+                string[] qrys = new string[] { QRY };
+                string[] tableNames = new string[] { "DUTY_PWERDEPT" };
+                SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+                int outVal = cmd.setUpdate(ref ds, tableNames, qrys);
+            }
+            catch (Exception ec)
+            {
+                MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+		}
 
 		#endregion
 

@@ -57,7 +57,7 @@ namespace WAGE1000
         private void wage3220_Load(object sender, EventArgs e)
         {
 			sl_dept.EditValue = null;
-			dat_tsdt.DateTime = clib.TextToDateLast(clib.DateToText(DateTime.Now.AddMonths(-1)));
+			dat_tsdt.DateTime = clib.TextToDateLast(clib.DateToText(DateTime.Now.AddMonths(-2)));
         }
 		private void wage3220_Shown(object sender, EventArgs e)
 		{

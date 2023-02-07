@@ -58,7 +58,8 @@ namespace DUTY1000
 
 			sl_line1.EditValue = null;
 			sl_line2.EditValue = null;
-
+			
+			dat_jsmm.DateTime = clib.TextToDate(yymm + "01");
 			Proc();
         }
 
@@ -96,6 +97,8 @@ namespace DUTY1000
 
 					hrow["DOC_NO"] = doc_no;
 					hrow["DOC_GUBN"] = 2;
+					hrow["DOC_DATE"] = yymm;
+					hrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
 					hrow["GW_TITLE"] = yymm.Substring(0,4)+"년 "+yymm.Substring(4,2)+"월 "+ds.Tables["2022_SEARCH_CALL"].Rows[0]["DEPT_NM"].ToString()+" OT 내역"; // 년월 부서 OT 내역
 					hrow["GW_REMK"] = "";
 					hrow["AP_TAG"] = "4";
@@ -142,13 +145,14 @@ namespace DUTY1000
 						df.GetGW_TRSOVTMDatas(ds);  //등록
 						foreach (DataRow dr in ds.Tables["2022_SEARCH_CALL"].Rows)
 						{
-							if (dr["CHK"].ToString() == "1")
+							if (dr["GUBN"].ToString() == "1" && dr["CHK"].ToString() == "1")
 							{
 								DataRow nrow = ds.Tables["GW_TRSOVTM"].NewRow();
 								nrow["DOC_NO"] = doc_no;
+								nrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
 								nrow["SABN"] = dr["SABN"].ToString();
 								nrow["OT_DATE"] = dr["OT_DATE"].ToString();
-								nrow["OT_GUBN"] = dr["OT_GUBN"].ToString();
+								nrow["OT_GUBN"] = "2";
 								nrow["CALL_CNT1"] = 0;
 								nrow["CALL_CNT2"] = 0;
 								nrow["CALL_TIME1"] = 0;
@@ -160,8 +164,25 @@ namespace DUTY1000
 								ds.Tables["GW_TRSOVTM"].Rows.Add(nrow);
 							}
 						}
+						df.GetGW_TRSOVTM_JSDatas(ds);  //등록
+						foreach (DataRow dr in ds.Tables["2022_SEARCH_CALL"].Rows)
+						{
+							if (dr["GUBN"].ToString() == "2" && dr["CHK"].ToString() == "1")
+							{
+								DataRow nrow = ds.Tables["GW_TRSOVTM_JS"].NewRow();
+								nrow["DOC_NO"] = doc_no;
+								nrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
+								nrow["SABN"] = dr["SABN"].ToString();
+								nrow["JS_DATE"] = dr["OT_DATE"].ToString();
+								nrow["JS_TIME"] = clib.TextToDecimal(dr["JS_TIME"].ToString());
+								nrow["CALC_TIME"] = clib.TextToDecimal(dr["CALC_TIME"].ToString());
+								nrow["TIME_REMK"] = dr["TIME_REMK"].ToString();
+								nrow["REMARK"] = dr["REMARK"].ToString();
+								ds.Tables["GW_TRSOVTM_JS"].Rows.Add(nrow);
+							}
+						}
 
-						tableNames = new string[] { "GW_TRSOVTM" };
+						tableNames = new string[] { "GW_TRSOVTM", "GW_TRSOVTM_JS" };
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 						// OT 내역에 UPDATE
@@ -172,7 +193,15 @@ namespace DUTY1000
 									+ "     ON B.DOC_NO = '" + doc_no + "' "
 									+ "    AND A.SABN = B.SABN "
 									+ "    AND A.OT_DATE = B.OT_DATE "
-									+ "  WHERE A.OT_GUBN = '2' ";
+									+ "  WHERE A.OT_GUBN = '2' "
+									+ " "
+									+ " UPDATE A "
+									+ "    SET A.DOC_NO = '" + doc_no + "' "
+									+ "   FROM DUTY_TRSOVTM_JS A "
+									+ "  INNER JOIN GW_TRSOVTM_JS B "
+									+ "     ON B.DOC_NO = '" + doc_no + "' "
+									+ "    AND A.SABN = B.SABN "
+									+ "    AND A.JS_DATE = B.JS_DATE ";
 
 						string[] qrys = new string[] { qry1 };
 						cmd.setUpdate(ref ds, null, qrys);
@@ -289,10 +318,10 @@ namespace DUTY1000
             return isError;
         }
 
-        #endregion
+		#endregion
 
-        #region 9. ETC
+		#region 9. ETC
 
-        #endregion
-    }
+		#endregion
+	}
 }

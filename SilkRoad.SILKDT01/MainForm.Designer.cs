@@ -82,6 +82,7 @@
 			this.xtraTabbedMdiManager1 = new SilkRoad.SILKDT01.TabbedMdiManagerX();
 			this.barLargeButtonItem1 = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.printDialog1 = new System.Windows.Forms.PrintDialog();
+			this.mm_end = new DevExpress.XtraEditors.MemoEdit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -96,6 +97,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.mm_end.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tlcMode
@@ -145,9 +147,9 @@
 			this.hideContainerLeft.BackColor = System.Drawing.SystemColors.Control;
 			this.hideContainerLeft.Controls.Add(this.dockPanel1);
 			this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.hideContainerLeft.Location = new System.Drawing.Point(0, 51);
+			this.hideContainerLeft.Location = new System.Drawing.Point(0, 54);
 			this.hideContainerLeft.Name = "hideContainerLeft";
-			this.hideContainerLeft.Size = new System.Drawing.Size(20, 551);
+			this.hideContainerLeft.Size = new System.Drawing.Size(24, 541);
 			// 
 			// dockPanel1
 			// 
@@ -158,7 +160,7 @@
 			this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
 			this.dockPanel1.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.dockPanel1.ID = new System.Guid("3f08685a-e18d-4252-b635-98754165934a");
-			this.dockPanel1.Location = new System.Drawing.Point(-226, 0);
+			this.dockPanel1.Location = new System.Drawing.Point(0, 0);
 			this.dockPanel1.Name = "dockPanel1";
 			this.dockPanel1.Options.AllowDockBottom = false;
 			this.dockPanel1.Options.AllowDockFill = false;
@@ -469,31 +471,31 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.barManager1;
-			this.barDockControlTop.Size = new System.Drawing.Size(1008, 51);
+			this.barDockControlTop.Size = new System.Drawing.Size(1008, 54);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 602);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 595);
 			this.barDockControlBottom.Manager = this.barManager1;
-			this.barDockControlBottom.Size = new System.Drawing.Size(1008, 25);
+			this.barDockControlBottom.Size = new System.Drawing.Size(1008, 32);
 			// 
 			// barDockControlLeft
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
 			this.barDockControlLeft.Manager = this.barManager1;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 551);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 541);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(1008, 51);
+			this.barDockControlRight.Location = new System.Drawing.Point(1008, 54);
 			this.barDockControlRight.Manager = this.barManager1;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 551);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 541);
 			// 
 			// barStaticItem1
 			// 
@@ -599,6 +601,19 @@
 			// 
 			this.printDialog1.UseEXDialog = true;
 			// 
+			// mm_end
+			// 
+			this.mm_end.EditValue = resources.GetString("mm_end.EditValue");
+			this.mm_end.Location = new System.Drawing.Point(247, 102);
+			this.mm_end.MenuManager = this.barManager1;
+			this.mm_end.Name = "mm_end";
+			this.mm_end.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.5F);
+			this.mm_end.Properties.Appearance.Options.UseFont = true;
+			this.mm_end.Properties.ReadOnly = true;
+			this.mm_end.Size = new System.Drawing.Size(749, 408);
+			this.mm_end.TabIndex = 7;
+			this.mm_end.Visible = false;
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -606,6 +621,7 @@
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.ClientSize = new System.Drawing.Size(1008, 627);
+			this.Controls.Add(this.mm_end);
 			this.Controls.Add(this.hideContainerLeft);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
@@ -633,6 +649,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.mm_end.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -696,8 +713,9 @@
 		private DevExpress.XtraBars.BarButtonItem barbtn_print;
 		private DevExpress.XtraTreeList.Columns.TreeListColumn tlcstat;
 		private DevExpress.XtraBars.BarButtonItem barbtn_qr;
-		private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
 		private DevExpress.XtraBars.BarLargeButtonItem Mbtn_3;
+		private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
+		private DevExpress.XtraEditors.MemoEdit mm_end;
 		//private DevExpress.XtraBars.BarLargeButtonItem Mbtn_6;
 		//private DevExpress.XtraBars.BarLargeButtonItem Mbtn_7;
 		//private DevExpress.XtraBars.BarLargeButtonItem Mbtn_8;

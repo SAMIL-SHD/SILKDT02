@@ -79,6 +79,8 @@ namespace DUTY1000
 			gr_detail.Text = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 " + dept_nm + " 근무현황표";
 			df.GetGNMU_LISTDatas(ds);
 			grd_lk_gnmu.DataSource = ds.Tables["GNMU_LIST"];
+			
+			dat_jsmm.DateTime = clib.TextToDate(yymm + "01");
 			Proc();
         }
 
@@ -127,126 +129,147 @@ namespace DUTY1000
 			}
 			#endregion
 
-			df.GetDUTY_TRSPLANDatas(2, yymm, dept, ds);
-			grd1.DataSource = ds.Tables["SEARCH_PLAN"];
+			df.GetDUTY_TRSPLANDatas(3, yymm, dept, ds);
+			grd1.DataSource = ds.Tables["GW_SEARCH_PLAN"];
         }
 
         //저장버튼
         private void btn_save_Click(object sender, EventArgs e)
         {
-			int stat = 0;
-			decimal doc_no = 0;
-			if (isNoError_um(1))
+			if (clib.DateToText(dat_jsmm.DateTime) == "")
 			{
-				Cursor = Cursors.WaitCursor;
-				int outVal = 0;
-				try
+				MessageBox.Show("정산년월이 입력되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (ds.Tables["GW_SEARCH_PLAN"].Select("CHK='1'").Length == 0)
+			{
+				MessageBox.Show("선택된 직원이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				int stat = 0;
+				decimal doc_no = 0;
+				if (isNoError_um(1))
 				{
-					#region 문서 헤더
-					df.GetDUTY_GWDOCDatas(ds);
-					DataRow hrow = ds.Tables["DUTY_GWDOC"].NewRow();
-					doc_no = df.GetGWDOC_NODatas(ds);
-
-					hrow["DOC_NO"] = doc_no;
-					hrow["DOC_GUBN"] = 6;  //1.콜 2.OT 3.OFF,N 수당 4.밤근무 5.당직근무표 6.간호사근무표
-					hrow["GW_TITLE"] = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 " + dept_nm + " 근무현황표";
-					hrow["GW_REMK"] = "";
-					hrow["AP_TAG"] = "4";
-					hrow["LINE_CNT"] = 1;
-					if (sl_line2.EditValue != null)
-						hrow["LINE_CNT"] = 3;
-					else if (sl_line1.EditValue != null)
-						hrow["LINE_CNT"] = 2;
-
-					hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
-					hrow["GW_DT1"] = gd.GetNow();
-					hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
-					hrow["GW_JICK1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
-					for (int i = 2; i <= 4; i++)
+					Cursor = Cursors.WaitCursor;
+					int outVal = 0;
+					try
 					{
-						hrow["GW_SABN" + i.ToString()] = "";
-						hrow["GW_DT" + i.ToString()] = "";
-						hrow["GW_CHKID" + i.ToString()] = "";
-						hrow["GW_NAME" + i.ToString()] = "";
-						hrow["GW_JICK" + i.ToString()] = "";
-					}
-					if (sl_line1.EditValue != null)
-					{
-						hrow["GW_SABN2"] = sl_line1.EditValue.ToString();
-						hrow["GW_NAME2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["NAME"].ToString();
-						hrow["GW_JICK2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
-					}
-					if (sl_line2.EditValue != null)
-					{
-						hrow["GW_SABN3"] = sl_line2.EditValue.ToString();
-						hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
-						hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
-					}		
-					hrow["REG_DT"] = gd.GetNow();
-					hrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
-					ds.Tables["DUTY_GWDOC"].Rows.Add(hrow);
+						#region 문서 헤더
+						df.GetDUTY_GWDOCDatas(ds);
+						DataRow hrow = ds.Tables["DUTY_GWDOC"].NewRow();
+						doc_no = df.GetGWDOC_NODatas(ds);
 
-					string[] tableNames = new string[] { "DUTY_GWDOC" };
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
-					outVal = cmd.setUpdate(ref ds, tableNames, null);
-					#endregion
+						hrow["DOC_NO"] = doc_no;
+						hrow["DOC_GUBN"] = 6;  //1.콜 2.OT 3.OFF,N 수당 4.밤근무 5.당직근무표 6.간호사근무표
+						hrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
+						hrow["DOC_DATE"] = yymm;
+						hrow["GW_TITLE"] = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 " + dept_nm + " 근무현황표";
+						hrow["GW_REMK"] = "";
+						hrow["AP_TAG"] = "4";
+						hrow["LINE_CNT"] = 1;
+						if (sl_line2.EditValue != null)
+							hrow["LINE_CNT"] = 3;
+						else if (sl_line1.EditValue != null)
+							hrow["LINE_CNT"] = 2;
 
-					if (outVal > 0)
-					{
-						df.GetGW_TRSPLANDatas(ds);  //등록
-						foreach (DataRow dr in ds.Tables["SEARCH_PLAN"].Rows)
+						hrow["GW_SABN1"] = sl_embs.EditValue.ToString();
+						hrow["GW_DT1"] = gd.GetNow();
+						hrow["GW_NAME1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["NAME"].ToString();
+						hrow["GW_JICK1"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE ='" + sl_embs.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						for (int i = 2; i <= 4; i++)
 						{
-							DataRow nrow = ds.Tables["GW_TRSPLAN"].NewRow();
-							nrow["DOC_NO"] = doc_no;
-							nrow["SAWON_NO"] = dr["SAWON_NO"].ToString();
-							nrow["PLANYYMM"] = yymm;
-							nrow["PLAN_SQ"] = dr["PLAN_SQ"].ToString();
-							nrow["DEPTCODE"] = dr["DEPTCODE"].ToString();
-							nrow["BF_NIGHT"] = dr["BF_NIGHT"];
-							nrow["BF_OFF"] = dr["BF_OFF"];
-							nrow["SHIFT_WORK"] = dr["SHIFT_WORK"].ToString();
-							nrow["MAX_NCNT"] = dr["MAX_NCNT"];
-							nrow["ALLOW_OFF"] = dr["ALLOW_OFF"];
-							nrow["REMAIN_NIGHT"] = dr["REMAIN_NIGHT"];
-							nrow["REMAIN_OFF"] = dr["REMAIN_OFF"];
+							hrow["GW_SABN" + i.ToString()] = "";
+							hrow["GW_DT" + i.ToString()] = "";
+							hrow["GW_CHKID" + i.ToString()] = "";
+							hrow["GW_NAME" + i.ToString()] = "";
+							hrow["GW_JICK" + i.ToString()] = "";
+						}
+						if (sl_line1.EditValue != null)
+						{
+							hrow["GW_SABN2"] = sl_line1.EditValue.ToString();
+							hrow["GW_NAME2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["NAME"].ToString();
+							hrow["GW_JICK2"] = ds.Tables["GW_LINE1"].Select("CODE ='" + sl_line1.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						}
+						if (sl_line2.EditValue != null)
+						{
+							hrow["GW_SABN3"] = sl_line2.EditValue.ToString();
+							hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
+							hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
+						}
+						if (ds.Tables["GW_SEARCH_PLAN"].Rows.Count != ds.Tables["GW_SEARCH_PLAN"].Select("CHK = '1'").Length)
+							hrow["ETC_GUBN"] = "1";  //일부상신
+						else
+							hrow["ETC_GUBN"] = ""; //전체상신
+						hrow["REG_DT"] = gd.GetNow();
+						hrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
+						ds.Tables["DUTY_GWDOC"].Rows.Add(hrow);
 
-							for (int i = 1; i <= 31; i++)
+						string[] tableNames = new string[] { "DUTY_GWDOC" };
+						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						outVal = cmd.setUpdate(ref ds, tableNames, null);
+						#endregion
+
+						if (outVal > 0)
+						{
+							df.GetGW_TRSPLANDatas(ds);  //등록
+							foreach (DataRow dr in ds.Tables["GW_SEARCH_PLAN"].Rows)
 							{
-								if (i < 7)
-									nrow["MM_CNT"+ i.ToString()] = clib.TextToDecimal(dr["MM_CNT" + i.ToString()].ToString());
-								nrow["D" + i.ToString().PadLeft(2, '0')] = dr["D" + i.ToString().PadLeft(2, '0')].ToString();
-								if (i < 3)
-								{										
-									nrow["EDU_CNT" + i.ToString()] = clib.TextToDecimal(dr["EDU_CNT" + i.ToString()].ToString());
-									nrow["HG_CNT" + i.ToString()] = clib.TextToDecimal(dr["HG_CNT" + i.ToString()].ToString());
+								if (dr["CHK"].ToString() == "1")
+								{
+									DataRow nrow = ds.Tables["GW_TRSPLAN"].NewRow();
+									nrow["DOC_NO"] = doc_no;
+									nrow["SAWON_NO"] = dr["SAWON_NO"].ToString();
+									nrow["JS_YYMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
+									nrow["PLANYYMM"] = yymm;
+									nrow["PLAN_SQ"] = dr["PLAN_SQ"].ToString();
+									nrow["DEPTCODE"] = dr["DEPTCODE"].ToString();
+									nrow["BF_NIGHT"] = dr["BF_NIGHT"];
+									nrow["BF_OFF"] = dr["BF_OFF"];
+									nrow["SHIFT_WORK"] = dr["SHIFT_WORK"].ToString();
+									nrow["MAX_NCNT"] = dr["MAX_NCNT"];
+									nrow["ALLOW_OFF"] = dr["ALLOW_OFF"];
+									nrow["REMAIN_NIGHT"] = dr["REMAIN_NIGHT"];
+									nrow["REMAIN_OFF"] = dr["REMAIN_OFF"];
+
+									for (int i = 1; i <= 31; i++)
+									{
+										if (i < 7)
+											nrow["MM_CNT" + i.ToString()] = clib.TextToDecimal(dr["MM_CNT" + i.ToString()].ToString());
+										nrow["D" + i.ToString().PadLeft(2, '0')] = dr["D" + i.ToString().PadLeft(2, '0')].ToString();
+										if (i < 3)
+										{
+											nrow["EDU_CNT" + i.ToString()] = clib.TextToDecimal(dr["EDU_CNT" + i.ToString()].ToString());
+											nrow["HG_CNT" + i.ToString()] = clib.TextToDecimal(dr["HG_CNT" + i.ToString()].ToString());
+										}
+									}
+
+									nrow["INDT"] = dr["INDT"].ToString();
+									nrow["UPDT"] = dr["UPDT"].ToString();
+									nrow["USID"] = dr["USID"].ToString();
+									nrow["PSTY"] = dr["PSTY"].ToString();
+
+									ds.Tables["GW_TRSPLAN"].Rows.Add(nrow);
 								}
 							}
-								
-							nrow["INDT"] = dr["INDT"].ToString();
-							nrow["UPDT"] = dr["UPDT"].ToString();
-							nrow["USID"] = dr["USID"].ToString();
-							nrow["PSTY"] = dr["PSTY"].ToString();
 
-							ds.Tables["GW_TRSPLAN"].Rows.Add(nrow);							
+							tableNames = new string[] { "GW_TRSPLAN" };
+							cmd.setUpdate(ref ds, tableNames, null);
+
+							stat = 2;
 						}
-
-						tableNames = new string[] { "GW_TRSPLAN" };
-						cmd.setUpdate(ref ds, tableNames, null);
-
-						stat = 2;
 					}
-				}
-				catch (Exception ec)
-				{
-					stat = 1;
-					MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-				finally
-				{
-					//SetCancel();
-					Cursor = Cursors.Default;
-					if (stat == 2)
-						this.Dispose();
+					catch (Exception ec)
+					{
+						stat = 1;
+						MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+					finally
+					{
+						//SetCancel();
+						Cursor = Cursors.Default;
+						if (stat == 2)
+							this.Dispose();
+					}
 				}
 			}
         }
@@ -259,7 +282,27 @@ namespace DUTY1000
                 SetCancel();
             }
         }
-
+		
+		private void btn_select_all_Click(object sender, EventArgs e)
+		{
+			if (ds.Tables["GW_SEARCH_PLAN"] != null)
+			{
+				for (int i = 0; i < ds.Tables["GW_SEARCH_PLAN"].Rows.Count; i++)
+				{
+					ds.Tables["GW_SEARCH_PLAN"].Rows[i]["CHK"] = "1";
+				}
+			}
+		}
+		private void btn_select_canc_Click(object sender, EventArgs e)
+		{
+			if (ds.Tables["GW_SEARCH_PLAN"] != null)
+			{
+				for (int i = 0; i < ds.Tables["GW_SEARCH_PLAN"].Rows.Count; i++)
+				{
+					ds.Tables["GW_SEARCH_PLAN"].Rows[i]["CHK"] = "";
+				}
+			}
+		}
         #endregion
 
         #region 3 EVENT
@@ -280,11 +323,13 @@ namespace DUTY1000
 			{
 				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'2'", ds);
 				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
-				df.GetGW_LINE2Datas(sl_embs.EditValue.ToString(), "'5','6'", ds);
+				df.GetGW_LINE2_RQSTDatas(sl_embs.EditValue.ToString(), "'5','6'", ds);
 				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
 
 				sl_line2.Visible = true;
-				line_txt = "[팀장 -> 부서장 -> 대표/담당원장]";
+				//line_txt = "[팀장 -> 부서장 -> 대표/담당원장]";
+				//sl_line2.Visible = false;
+				line_txt = "[팀장 -> 부서장]";
 			}
 			else if (adgb == "2")
 			{
@@ -332,10 +377,10 @@ namespace DUTY1000
 			{
 				df.GetGW_LINE1Datas(sl_embs.EditValue.ToString(), "'1'", ds);
 				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
-				df.GetGW_LINE2Datas(sl_embs.EditValue.ToString(), "'2'", ds);
-				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
+				//df.GetGW_LINE2Datas(sl_embs.EditValue.ToString(), "'2'", ds);
+				//sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
 
-				sl_line2.Visible = true;
+				//sl_line2.Visible = true;
 				line_txt = "[팀원 -> 팀장]";
 			}
 			lb_line.Text = line_txt;
@@ -361,17 +406,18 @@ namespace DUTY1000
 				string embs = sl_embs.EditValue == null ? "%" : sl_embs.EditValue.ToString();
 				df.GetGW_LINE1Datas(embs, "'2'", ds);
 				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
-				df.GetGW_LINE2Datas(embs, "'5','6'", ds);
+				df.GetGW_LINE2_RQSTDatas(embs, "'5','6'", ds);
 				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
 
 				sl_line2.Visible = true;
-				lb_line.Text = "[팀장 -> 부서장 -> 대표/담당원장]";
+				//lb_line.Text = "[팀장 -> 부서장 -> 대표/담당원장]";
+				lb_line.Text = "[팀장 -> 부서장]";
 			}
 			else
 			{
 				sl_line1.EditValue = null;
 				string embs = sl_embs.EditValue == null ? "%" : sl_embs.EditValue.ToString();
-				df.GetGW_LINE1Datas(embs, "'5','6'", ds);
+				df.GetGW_LINE1_RQSTDatas(embs, "'5','6'", ds);
 				sl_line1.Properties.DataSource = ds.Tables["GW_LINE1"];
 
 				sl_line2.Visible = false;
@@ -393,7 +439,7 @@ namespace DUTY1000
             bool isError = false;
             if (mode == 1)  //상신
             {
-				if (ds.Tables["SEARCH_PLAN"].Rows.Count == 0)
+				if (ds.Tables["GW_SEARCH_PLAN"].Rows.Count == 0)
 				{
 					MessageBox.Show("결재상신할 내용이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return false;
@@ -410,12 +456,12 @@ namespace DUTY1000
 					sl_line1.Focus();
 					return false;
 				}
-				else if (sl_line2.Visible == true && sl_line2.EditValue == null)
-				{
-					MessageBox.Show("결재자2가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					sl_line2.Focus();
-					return false;
-				}
+				//else if (sl_line2.Visible == true && sl_line2.EditValue == null)  //결재라인2 필수제외 221005 정원희계장
+				//{
+				//	MessageBox.Show("결재자2가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//	sl_line2.Focus();
+				//	return false;
+				//}
 				else
 				{
 					isError = true;
@@ -429,6 +475,7 @@ namespace DUTY1000
 		#region 9. ETC
 
 		#endregion
+		
 
 	}
 }

@@ -3,34 +3,35 @@ using System.Data;
 using System.Windows.Forms;
 using SilkRoad.Common;
 using System.Drawing;
+using System.Data.OleDb;
 
 namespace DUTY1000
 {
-    public partial class duty2062 : SilkRoad.Form.Base.FormX
+    public partial class duty3013 : SilkRoad.Form.Base.FormX
     {
         CommonLibrary clib = new CommonLibrary();
-        static DataProcessing dp = new DataProcessing();
 
         ClearNEnableControls cec = new ClearNEnableControls();
         public DataSet ds = new DataSet();
         DataProcFunc df = new DataProcFunc();
         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
+		int gubn = 0;
 		string yymm = "";
-		string dept = "";
-		string dept_nm = "";
 
-        public duty2062(DataTable _dt, string _yymm, string _dept, string _dept_nm, int point_x, int point_y)
+        public duty3013(int _gubn, string _yymm, int point_x, int point_y)
         {
             InitializeComponent();
+			gubn = _gubn;
+			yymm = _yymm;
+
+            //this.Location = new Point(point_x - 150, point_y + 20);    //Form Start Point
 			
             if (point_x + this.Width > System.Windows.Forms.SystemInformation.VirtualScreen.Width)            
                 point_x = System.Windows.Forms.SystemInformation.VirtualScreen.Width - this.Width;
             if (point_y + this.Height + 200 > System.Windows.Forms.SystemInformation.VirtualScreen.Height)
                 point_y = System.Windows.Forms.SystemInformation.VirtualScreen.Height - this.Height - 200;
             this.Location = new Point(point_x, point_y);
-			yymm = _yymm;
-			dept = _dept;
-			dept_nm = _dept_nm;
+			//dept = _dept;
         }
 
         #region 0. Initialization
@@ -42,6 +43,7 @@ namespace DUTY1000
         private void SetCancel()
         {
 			grd1.DataSource = null;
+			grd_e.DataSource = null;
             //SetButtonEnable("100");
         }
 
@@ -49,8 +51,10 @@ namespace DUTY1000
 
         #region 1 Form
 
-        private void duty2062_Load(object sender, EventArgs e)
-        {			
+        private void duty3012_Load(object sender, EventArgs e)
+        {
+			srTitle1.SRTitleTxt = gubn == 1 ? "밤근무 수당내역" : "간호간병비 수당내역";
+
 			df.Get8030_SEARCH_EMBSDatas("%", ds);
 			sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
 
@@ -75,10 +79,9 @@ namespace DUTY1000
 				df.GetGW_LINE2Datas(embs, "'5','6'", ds);
 				sl_line2.Properties.DataSource = ds.Tables["GW_LINE2"];
 			}
-
-			gr_detail.Text = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 " + dept_nm + " 근무현황표";
-			df.Get2060_DANG_GNMUDatas(ds);
-			grd_sl_gnmu.DataSource = ds.Tables["2060_DANG_GNMU"];
+			
+			dat_jsmm.DateTime = clib.TextToDate(yymm + "01");
+			gr_detail.Text = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 간호부 " + srTitle1.SRTitleTxt;
 			Proc();
         }
 
@@ -94,43 +97,122 @@ namespace DUTY1000
 
         private void Proc()
         {
-			#region 요일에따른 헤더 설정
-			df.GetSEARCH_HOLIDatas(yymm, ds);
-			int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(yymm+"01")).Substring(6, 2));
-
-			for (int i = 1; i <= lastday; i++)
+			df.Get3013_SEARCH_SDDatas(gubn, yymm, SilkRoad.Config.SRConfig.USID, ds);
+			grd1.DataSource = ds.Tables["3013_SEARCH_SD"];
+			grd_e.DataSource = ds.Tables["3013_SEARCH_SD"];
+        }
+		
+		//엑셀변환
+		private void btn_excel_Click(object sender, EventArgs e)
+		{
+            clib.gridToExcel(grdv_e, (gubn == 1 ? "밤근무 수당내역_" : "간호간병비 수당내역_") + clib.DateToText(DateTime.Now), true);
+		}
+		//엑셀업로드
+		private void btn_e_up_Click(object sender, EventArgs e)
+		{
+			#region 엑셀 읽어오기
+			System.Data.DataTable dt = null;
+			System.Windows.Forms.OpenFileDialog fd = new System.Windows.Forms.OpenFileDialog();
+			fd.DefaultExt = "xls | xlsx";
+			fd.Filter = "Excel files (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx";
+			if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				DateTime day = clib.TextToDate(yymm + "01").AddDays(i - 1);
-				grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].Caption = i.ToString() + "\r\n" + clib.WeekDay(day); //일+요일. 한칸 내려서 보이도록. 엔터마냥. 
-				if (clib.WeekDay(day) == "토")				
-					grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Blue;				
-				else if (clib.WeekDay(day) == "일")				
-					grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;				
-				else				
-					grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Black;				
-
-				if (ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'").Length > 0)
+				try
 				{
-					grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;
-					grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.Font = new Font(FontFamily.GenericSansSerif, 9F, FontStyle.Underline);
-					grdv1.Columns["D" + i.ToString().PadLeft(2, '0')].ToolTip = ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'")[0]["H_NAME"].ToString();
+					OleDbConnection oledbCn = null;
+					OleDbDataAdapter da = null;
+
+					try
+					{
+						string type = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source={0};Extended Properties='Excel 12.0;HDR=YES'";
+						oledbCn = new OleDbConnection(string.Format(type, fd.FileName));
+						oledbCn.Open();
+
+						//첫번째 시트 무조건 가지고 오기
+						System.Data.DataTable worksheets = oledbCn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+						da = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}]", worksheets.Rows[0]["TABLE_NAME"]), oledbCn);
+
+						dt = new System.Data.DataTable();
+						da.Fill(dt);
+					}
+					catch (Exception ex)
+					{
+						System.Windows.Forms.MessageBox.Show("ReadExcel Err:" + ex.Message);
+					}
+					finally
+					{
+						if (da != null)
+							da.Dispose();
+						if (oledbCn != null)
+						{
+							if (oledbCn.State != ConnectionState.Closed)
+								oledbCn.Close();
+							oledbCn.Dispose();
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					System.Windows.Forms.MessageBox.Show("파일을 읽을 수 없습니다. " + ex.Message);
+				}
+				finally
+				{
+					fd.Dispose();
 				}
 			}
 
-			//남은 필드 visible = false;
-			for (int k = 1; k < 32; k++)
-			{
-				if (k > lastday)
-					grdv1.Columns["D" + k.ToString().PadLeft(2, '0')].Visible = false;
-				else
-					grdv1.Columns["D" + k.ToString().PadLeft(2, '0')].Visible = true;
-			}
+			if (dt == null)
+				return;
 			#endregion
 
-			df.GetDUTY_TRSDANGDatas(2, yymm, dept, ds);
-			grd1.DataSource = ds.Tables["SEARCH_DANG_PLAN"];
-        }
+			if (dt.Columns[0].ToString() != "사번")
+			{
+				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n첫번째 열의 타이틀은 [사번]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			else if (dt.Columns[2].ToString() != "년차")
+			{
+				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n세번째 열의 타이틀은 [년차]로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			else if (dt.Columns[3].ToString() != "갯수")
+			{
+				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n네번째 열의 타이틀은 [갯수]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			else if (dt.Columns[4].ToString() != "비용")
+			{
+				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n다섯번째 열의 타이틀은 [비용]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 
+			Cursor = Cursors.WaitCursor;
+			grd1.DataSource = null;
+			grd_e.DataSource = null;
+			int outVal = 0;
+
+			int t_cnt = dt.Columns.Count;
+			foreach (DataRow drow in dt.Rows)
+			{
+				if (drow[0].ToString().Trim() != "") // && clib.TextToDecimal(drow[2].ToString()) != 0)
+				{
+					if (ds.Tables["3013_SEARCH_SD"].Select("SAWON_NO = '" + drow[0].ToString() + "'").Length > 0)
+					{
+						DataRow nrow = ds.Tables["3013_SEARCH_SD"].Select("SAWON_NO = '" + drow[0].ToString() + "'")[0];
+						nrow["PAST_YEAR"] = clib.TextToDecimal(drow[2].ToString());
+						nrow["MM_CNT3"] = clib.TextToDecimal(drow[3].ToString());
+						nrow["SD_AMT"] = clib.TextToDecimal(drow[4].ToString());
+						outVal++;
+					}
+				}
+			}
+			if (outVal > 0)			
+				MessageBox.Show("엑셀업로드가 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			
+			grd1.DataSource = ds.Tables["3013_SEARCH_SD"];
+			grd_e.DataSource = ds.Tables["3013_SEARCH_SD"];
+			Cursor = Cursors.Default;
+		}
         //저장버튼
         private void btn_save_Click(object sender, EventArgs e)
         {
@@ -142,14 +224,15 @@ namespace DUTY1000
 				int outVal = 0;
 				try
 				{
-					#region 문서 헤더
 					df.GetDUTY_GWDOCDatas(ds);
 					DataRow hrow = ds.Tables["DUTY_GWDOC"].NewRow();
 					doc_no = df.GetGWDOC_NODatas(ds);
-
+					string title_nm = gubn == 1 ? "밤근무" : "간호간병비";
 					hrow["DOC_NO"] = doc_no;
-					hrow["DOC_GUBN"] = 5;  //1.콜 2.OT 3.OFF,N 수당 4.밤근무 5.당직근무표 6.간호사근무표
-					hrow["GW_TITLE"] = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 " + dept_nm + " 근무현황표";
+					hrow["DOC_GUBN"] = gubn == 1 ? 4 : 7;
+					hrow["DOC_JSMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
+					hrow["DOC_DATE"] = yymm;
+					hrow["GW_TITLE"] = yymm.Substring(2, 2) + "년 " + yymm.Substring(4, 2) + "월 간호부 " + title_nm + " 수당";
 					hrow["GW_REMK"] = "";
 					hrow["AP_TAG"] = "4";
 					hrow["LINE_CNT"] = 1;
@@ -182,6 +265,7 @@ namespace DUTY1000
 						hrow["GW_NAME3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["NAME"].ToString();
 						hrow["GW_JICK3"] = ds.Tables["GW_LINE2"].Select("CODE ='" + sl_line2.EditValue.ToString() + "'")[0]["GRAD_NM"].ToString();
 					}		
+					hrow["ETC_GUBN"] = "";
 					hrow["REG_DT"] = gd.GetNow();
 					hrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
 					ds.Tables["DUTY_GWDOC"].Rows.Add(hrow);
@@ -189,36 +273,33 @@ namespace DUTY1000
 					string[] tableNames = new string[] { "DUTY_GWDOC" };
 					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
-					#endregion
 
 					if (outVal > 0)
 					{
-						df.GetGW_TRSDANGDatas(ds);  //등록
-						foreach (DataRow dr in ds.Tables["SEARCH_DANG_PLAN"].Rows)
+						df.GetGW_TRSYAGANDatas(ds);  //등록
+						foreach (DataRow dr in ds.Tables["3013_SEARCH_SD"].Rows)
 						{
-							DataRow nrow = ds.Tables["GW_TRSDANG"].NewRow();
-							nrow["DOC_NO"] = doc_no;
-							nrow["SAWON_NO"] = dr["SAWON_NO"].ToString();
-							nrow["PLANYYMM"] = yymm;
-							nrow["PLAN_SQ"] = dr["PLAN_SQ"].ToString();
-							nrow["DEPTCODE"] = dr["DEPTCODE"].ToString();
-
-							for (int i = 1; i <= 31; i++)
+							if (dr["CHK"].ToString() == "1")
 							{
-								if (i < 6)
-									nrow["MM_CNT"+ i.ToString()] = clib.TextToDecimal(dr["MM_CNT" + i.ToString()].ToString());
-								nrow["D" + i.ToString().PadLeft(2, '0')] = dr["D" + i.ToString().PadLeft(2, '0')].ToString();
-							}
+								DataRow nrow = ds.Tables["GW_TRSYAGAN"].NewRow();
+								nrow["DOC_NO"] = doc_no;
+								nrow["JS_YYMM"] = clib.DateToText(dat_jsmm.DateTime).Substring(0, 6);
+								nrow["PLANYYMM"] = yymm;
+								nrow["DEPTCODE"] = dr["DEPTCODE"].ToString();
+								nrow["DEPT_NM"] = dr["DEPT_NM"].ToString();
+								nrow["SAWON_NO"] = dr["SAWON_NO"].ToString();
+								nrow["EMBSNAME"] = dr["EMBSNAME"].ToString();
 								
-							nrow["INDT"] = dr["INDT"].ToString();
-							nrow["UPDT"] = dr["UPDT"].ToString();
-							nrow["USID"] = dr["USID"].ToString();
-							nrow["PSTY"] = dr["PSTY"].ToString();
+								nrow["PAST_YEAR"] = clib.TextToDecimal(dr["PAST_YEAR"].ToString());
+								nrow["N_CNT"] = clib.TextToDecimal(dr["MM_CNT3"].ToString());
+								nrow["IPDT"] = dr["IPDT"].ToString();
+								nrow["SD_AMT"] = clib.TextToDecimal(dr["SD_AMT"].ToString());
 
-							ds.Tables["GW_TRSDANG"].Rows.Add(nrow);							
+								ds.Tables["GW_TRSYAGAN"].Rows.Add(nrow);
+							}
 						}
 
-						tableNames = new string[] { "GW_TRSDANG" };
+						tableNames = new string[] { "GW_TRSYAGAN" };
 						cmd.setUpdate(ref ds, tableNames, null);
 
 						stat = 2;
@@ -248,10 +329,21 @@ namespace DUTY1000
             }
         }
 
-        #endregion
+		#endregion
 
-        #region 3 EVENT
-		
+		#region 3 EVENT
+
+		private void grd1_EditorKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				if (!this.grdv1.IsLastVisibleRow)
+					this.grdv1.MoveNext();
+				else
+					this.grdv1.MoveFirst();
+			}
+		}
+
 		private void sl_embs_EditValueChanged(object sender, EventArgs e)
 		{
 			if (sl_embs.EditValue != null)
@@ -331,7 +423,7 @@ namespace DUTY1000
 			chk_line.Checked = false;
 		}
 
-        private void duty2062_KeyDown(object sender, KeyEventArgs e)
+        private void duty3012_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)   //취소
             {
@@ -381,9 +473,9 @@ namespace DUTY1000
             bool isError = false;
             if (mode == 1)  //상신
             {
-				if (ds.Tables["SEARCH_DANG_PLAN"].Rows.Count == 0)
+				if (ds.Tables["3013_SEARCH_SD"].Select("CHK='1'").Length < 1)
 				{
-					MessageBox.Show("결재상신할 내용이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("선택된 내역이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return false;
 				}
 				else if (sl_embs.EditValue == null)
@@ -398,12 +490,12 @@ namespace DUTY1000
 					sl_line1.Focus();
 					return false;
 				}
-				//else if (sl_line2.Visible == true && sl_line2.EditValue == null)
-				//{
-				//	MessageBox.Show("결재자2가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				//	sl_line2.Focus();
-				//	return false;
-				//}
+				else if (sl_line2.Visible == true && sl_line2.EditValue == null)
+				{
+					MessageBox.Show("결재자2가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sl_line2.Focus();
+					return false;
+				}
 				else
 				{
 					isError = true;

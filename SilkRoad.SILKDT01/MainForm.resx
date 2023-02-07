@@ -121,8 +121,32 @@
     <value>160, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>72</value>
+    <value>54</value>
   </metadata>
+  <data name="mm_end.EditValue" xml:space="preserve">
+    <value>
+월 마감 프로세스
+
+1. 마감년월에 해당하는 시급, 당직시간, N수당을 마감관리-환경설정 메뉴에서 입력합니다.
+
+2. 콜수당/OT수당 : 환경설정-시급관리에서 입력 되고
+                        Duty관리-근무관리-CALL/OT관리 메뉴에서 입력된 내역이 결재완료 되어야 계산됩니다.
+
+3. 당직수당 : 환경설정-당직시간관리에서 입력 되고 
+                Duty관리-근무관리-근무및당직관리 메뉴에서 입력된 당직근무 내역이 결재완료 되어야 계산됩니다.
+
+4. OFF,N수당 : 환경설정-N수당관리에서 먼저 입력 되고
+                  Duty관리-근무관리-간호사근무관리 메뉴에서 OFF,N수당 항목이 상신 후 결재완료 되어야 계산됩니다.
+
+5. 밤근무,간호간병수당 : Duty관리-근무관리-간호사근무관리 메뉴에서 밤근무,간호간병 항목이 상신 후 
+                             결재완료 되면 수당이 계산됩니다.
+
+6. 고정OT수당 : Duty관리-근무관리-근무및당직관리 메뉴에서 고정OT 시간이 입력된 근무표가 결재완료 되고 
+                   환경설정-시급관리에서 입력 되어야 계산됩니다.
+
+7. 연차수당 : 마감관리-마감관리-연차정산관리 메뉴에서 연차정산 입력된 내역이 존재하고
+                환경설정-시급관리에서 입력 되어야 계산됩니다.</value>
+  </data>
   <metadata name="barManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>464, 17</value>
   </metadata>

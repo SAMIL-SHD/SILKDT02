@@ -1206,7 +1206,7 @@
 			// 
 			// cmb_gubn
 			// 
-			this.cmb_gubn.EditValue = "전체";
+			this.cmb_gubn.EditValue = "전    체";
 			this.cmb_gubn.EnterMoveNextControl = true;
 			this.cmb_gubn.Location = new System.Drawing.Point(181, 10);
 			this.cmb_gubn.Name = "cmb_gubn";
@@ -1218,15 +1218,16 @@
 			this.cmb_gubn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.cmb_gubn.Properties.Items.AddRange(new object[] {
-            "전체",
-            "콜수당",
-            "OT수당",
-            "당직수당",
-            "OFF,N수당",
-            "고정OT수당",
-            "연차수당"});
+            "전    체",
+            "1.콜수당",
+            "2.OT수당",
+            "3.당직수당",
+            "4.OFF,N수당",
+            "5.밤근무,간호간병수당",
+            "6.고정OT수당",
+            "7.연차수당"});
 			this.cmb_gubn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.cmb_gubn.Size = new System.Drawing.Size(105, 23);
+			this.cmb_gubn.Size = new System.Drawing.Size(148, 23);
 			this.cmb_gubn.TabIndex = 539;
 			// 
 			// btn_canc
@@ -1234,7 +1235,7 @@
 			this.btn_canc.Authority = false;
 			this.btn_canc.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_canc.Image = ((System.Drawing.Image)(resources.GetObject("btn_canc.Image")));
-			this.btn_canc.Location = new System.Drawing.Point(369, 9);
+			this.btn_canc.Location = new System.Drawing.Point(413, 9);
 			this.btn_canc.Name = "btn_canc";
 			this.btn_canc.Size = new System.Drawing.Size(80, 24);
 			this.btn_canc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
@@ -1265,7 +1266,7 @@
 			this.btn_proc.Authority = false;
 			this.btn_proc.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.btn_proc.Image = ((System.Drawing.Image)(resources.GetObject("btn_proc.Image")));
-			this.btn_proc.Location = new System.Drawing.Point(288, 9);
+			this.btn_proc.Location = new System.Drawing.Point(332, 9);
 			this.btn_proc.Name = "btn_proc";
 			this.btn_proc.Size = new System.Drawing.Size(80, 24);
 			this.btn_proc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;

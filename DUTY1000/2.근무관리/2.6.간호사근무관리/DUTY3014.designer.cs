@@ -89,6 +89,12 @@
 			this.grdcol_day29 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.grdcol_day30 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.grdcol_day31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.bandedGridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.persn_d = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.persn_e = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -101,12 +107,7 @@
 			this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.bandedGridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.bandedGridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.grd_sl_gnmu = new SilkRoad.UserControls.SRgridLookup2();
 			this.sRgridLookup21View = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn60 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -114,6 +115,10 @@
 			this.gridColumn62 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
 			this.srPanel2 = new SilkRoad.UserControls.SRPanel();
+			this.dat_jsmm = new SilkRoad.UserControls.SRDate();
+			this.srLabel6 = new SilkRoad.UserControls.SRLabel();
+			this.btn_select_canc = new SilkRoad.UserControls.SRButton();
+			this.btn_select_all = new SilkRoad.UserControls.SRButton();
 			this.sl_embs = new SilkRoad.UserControls.SRLookup2();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -148,6 +153,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel2)).BeginInit();
 			this.srPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_embs.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_line2.Properties)).BeginInit();
@@ -368,7 +375,7 @@
 			// 
 			this.grd1.AllowDrop = true;
 			this.grd1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.grd1.Location = new System.Drawing.Point(2, 124);
+			this.grd1.Location = new System.Drawing.Point(2, 112);
 			this.grd1.MainView = this.grdv1;
 			this.grd1.Name = "grd1";
 			this.grd1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -376,7 +383,7 @@
             this.grd_lk_gnmu,
             this.repositoryItemCheckedComboBoxEdit1,
             this.repositoryItemCheckEdit4});
-			this.grd1.Size = new System.Drawing.Size(1230, 508);
+			this.grd1.Size = new System.Drawing.Size(1230, 520);
 			this.grd1.TabIndex = 545;
 			this.grd1.TabStop = false;
 			this.grd1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -410,11 +417,11 @@
 			this.grdv1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand23,
             this.gridBand27,
+            this.gridBand3,
+            this.gridBand2,
             this.gridBand28,
             this.gridBand12,
-            this.gridBand1,
-            this.gridBand3,
-            this.gridBand2});
+            this.gridBand1});
 			this.grdv1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
 			this.grdv1.ColumnPanelRowHeight = 36;
 			this.grdv1.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
@@ -467,7 +474,8 @@
             this.bandedGridColumn5,
             this.bandedGridColumn6,
             this.bandedGridColumn1,
-            this.bandedGridColumn2});
+            this.bandedGridColumn2,
+            this.bandedGridColumn9});
 			gridFormatRule1.Column = this.persn_n;
 			gridFormatRule1.Name = "Format0";
 			formatConditionRuleExpression1.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
@@ -489,7 +497,6 @@
 			this.grdv1.GridControl = this.grd1;
 			this.grdv1.Name = "grdv1";
 			this.grdv1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-			this.grdv1.OptionsBehavior.Editable = false;
 			this.grdv1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
 			this.grdv1.OptionsCustomization.AllowColumnMoving = false;
 			this.grdv1.OptionsNavigation.EnterMoveNextColumn = true;
@@ -590,10 +597,12 @@
 			this.bgc_bfoff.Caption = "전월OFF";
 			this.bgc_bfoff.FieldName = "BF_OFF";
 			this.bgc_bfoff.Name = "bgc_bfoff";
+			this.bgc_bfoff.OptionsColumn.AllowEdit = false;
 			this.bgc_bfoff.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.bgc_bfoff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.bgc_bfoff.OptionsColumn.AllowMove = false;
 			this.bgc_bfoff.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bgc_bfoff.OptionsColumn.ReadOnly = true;
 			this.bgc_bfoff.OptionsColumn.TabStop = false;
 			this.bgc_bfoff.OptionsFilter.AllowAutoFilter = false;
 			this.bgc_bfoff.OptionsFilter.AllowFilter = false;
@@ -610,10 +619,12 @@
 			this.bgc_bfnight.Caption = "전월N";
 			this.bgc_bfnight.FieldName = "BF_NIGHT";
 			this.bgc_bfnight.Name = "bgc_bfnight";
+			this.bgc_bfnight.OptionsColumn.AllowEdit = false;
 			this.bgc_bfnight.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.bgc_bfnight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.bgc_bfnight.OptionsColumn.AllowMove = false;
 			this.bgc_bfnight.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bgc_bfnight.OptionsColumn.ReadOnly = true;
 			this.bgc_bfnight.OptionsColumn.TabStop = false;
 			this.bgc_bfnight.OptionsFilter.AllowAutoFilter = false;
 			this.bgc_bfnight.OptionsFilter.AllowFilter = false;
@@ -673,11 +684,13 @@
 			this.grdcol_day01.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day01.FieldName = "D01";
 			this.grdcol_day01.Name = "grdcol_day01";
+			this.grdcol_day01.OptionsColumn.AllowEdit = false;
 			this.grdcol_day01.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day01.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day01.OptionsColumn.AllowMove = false;
 			this.grdcol_day01.OptionsColumn.AllowSize = false;
 			this.grdcol_day01.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day01.OptionsColumn.ReadOnly = true;
 			this.grdcol_day01.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day01.OptionsFilter.AllowFilter = false;
 			this.grdcol_day01.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -717,11 +730,13 @@
 			this.grdcol_day02.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day02.FieldName = "D02";
 			this.grdcol_day02.Name = "grdcol_day02";
+			this.grdcol_day02.OptionsColumn.AllowEdit = false;
 			this.grdcol_day02.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day02.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day02.OptionsColumn.AllowMove = false;
 			this.grdcol_day02.OptionsColumn.AllowSize = false;
 			this.grdcol_day02.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day02.OptionsColumn.ReadOnly = true;
 			this.grdcol_day02.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day02.OptionsFilter.AllowFilter = false;
 			this.grdcol_day02.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -742,11 +757,13 @@
 			this.grdcol_day03.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day03.FieldName = "D03";
 			this.grdcol_day03.Name = "grdcol_day03";
+			this.grdcol_day03.OptionsColumn.AllowEdit = false;
 			this.grdcol_day03.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day03.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day03.OptionsColumn.AllowMove = false;
 			this.grdcol_day03.OptionsColumn.AllowSize = false;
 			this.grdcol_day03.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day03.OptionsColumn.ReadOnly = true;
 			this.grdcol_day03.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day03.OptionsFilter.AllowFilter = false;
 			this.grdcol_day03.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -767,11 +784,13 @@
 			this.grdcol_day04.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day04.FieldName = "D04";
 			this.grdcol_day04.Name = "grdcol_day04";
+			this.grdcol_day04.OptionsColumn.AllowEdit = false;
 			this.grdcol_day04.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day04.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day04.OptionsColumn.AllowMove = false;
 			this.grdcol_day04.OptionsColumn.AllowSize = false;
 			this.grdcol_day04.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day04.OptionsColumn.ReadOnly = true;
 			this.grdcol_day04.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day04.OptionsFilter.AllowFilter = false;
 			this.grdcol_day04.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -792,11 +811,13 @@
 			this.grdcol_day05.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day05.FieldName = "D05";
 			this.grdcol_day05.Name = "grdcol_day05";
+			this.grdcol_day05.OptionsColumn.AllowEdit = false;
 			this.grdcol_day05.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day05.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day05.OptionsColumn.AllowMove = false;
 			this.grdcol_day05.OptionsColumn.AllowSize = false;
 			this.grdcol_day05.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day05.OptionsColumn.ReadOnly = true;
 			this.grdcol_day05.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day05.OptionsFilter.AllowFilter = false;
 			this.grdcol_day05.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -817,11 +838,13 @@
 			this.grdcol_day06.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day06.FieldName = "D06";
 			this.grdcol_day06.Name = "grdcol_day06";
+			this.grdcol_day06.OptionsColumn.AllowEdit = false;
 			this.grdcol_day06.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day06.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day06.OptionsColumn.AllowMove = false;
 			this.grdcol_day06.OptionsColumn.AllowSize = false;
 			this.grdcol_day06.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day06.OptionsColumn.ReadOnly = true;
 			this.grdcol_day06.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day06.OptionsFilter.AllowFilter = false;
 			this.grdcol_day06.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -842,11 +865,13 @@
 			this.grdcol_day07.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day07.FieldName = "D07";
 			this.grdcol_day07.Name = "grdcol_day07";
+			this.grdcol_day07.OptionsColumn.AllowEdit = false;
 			this.grdcol_day07.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day07.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day07.OptionsColumn.AllowMove = false;
 			this.grdcol_day07.OptionsColumn.AllowSize = false;
 			this.grdcol_day07.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day07.OptionsColumn.ReadOnly = true;
 			this.grdcol_day07.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day07.OptionsFilter.AllowFilter = false;
 			this.grdcol_day07.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -867,11 +892,13 @@
 			this.grdcol_day08.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day08.FieldName = "D08";
 			this.grdcol_day08.Name = "grdcol_day08";
+			this.grdcol_day08.OptionsColumn.AllowEdit = false;
 			this.grdcol_day08.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day08.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day08.OptionsColumn.AllowMove = false;
 			this.grdcol_day08.OptionsColumn.AllowSize = false;
 			this.grdcol_day08.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day08.OptionsColumn.ReadOnly = true;
 			this.grdcol_day08.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day08.OptionsFilter.AllowFilter = false;
 			this.grdcol_day08.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -892,11 +919,13 @@
 			this.grdcol_day09.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day09.FieldName = "D09";
 			this.grdcol_day09.Name = "grdcol_day09";
+			this.grdcol_day09.OptionsColumn.AllowEdit = false;
 			this.grdcol_day09.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day09.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day09.OptionsColumn.AllowMove = false;
 			this.grdcol_day09.OptionsColumn.AllowSize = false;
 			this.grdcol_day09.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day09.OptionsColumn.ReadOnly = true;
 			this.grdcol_day09.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day09.OptionsFilter.AllowFilter = false;
 			this.grdcol_day09.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -917,11 +946,13 @@
 			this.grdcol_day10.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day10.FieldName = "D10";
 			this.grdcol_day10.Name = "grdcol_day10";
+			this.grdcol_day10.OptionsColumn.AllowEdit = false;
 			this.grdcol_day10.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day10.OptionsColumn.AllowMove = false;
 			this.grdcol_day10.OptionsColumn.AllowSize = false;
 			this.grdcol_day10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day10.OptionsColumn.ReadOnly = true;
 			this.grdcol_day10.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day10.OptionsFilter.AllowFilter = false;
 			this.grdcol_day10.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -942,11 +973,13 @@
 			this.grdcol_day11.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day11.FieldName = "D11";
 			this.grdcol_day11.Name = "grdcol_day11";
+			this.grdcol_day11.OptionsColumn.AllowEdit = false;
 			this.grdcol_day11.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day11.OptionsColumn.AllowMove = false;
 			this.grdcol_day11.OptionsColumn.AllowSize = false;
 			this.grdcol_day11.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day11.OptionsColumn.ReadOnly = true;
 			this.grdcol_day11.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day11.OptionsFilter.AllowFilter = false;
 			this.grdcol_day11.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -967,11 +1000,13 @@
 			this.grdcol_day12.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day12.FieldName = "D12";
 			this.grdcol_day12.Name = "grdcol_day12";
+			this.grdcol_day12.OptionsColumn.AllowEdit = false;
 			this.grdcol_day12.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day12.OptionsColumn.AllowMove = false;
 			this.grdcol_day12.OptionsColumn.AllowSize = false;
 			this.grdcol_day12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day12.OptionsColumn.ReadOnly = true;
 			this.grdcol_day12.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day12.OptionsFilter.AllowFilter = false;
 			this.grdcol_day12.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -992,11 +1027,13 @@
 			this.grdcol_day13.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day13.FieldName = "D13";
 			this.grdcol_day13.Name = "grdcol_day13";
+			this.grdcol_day13.OptionsColumn.AllowEdit = false;
 			this.grdcol_day13.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day13.OptionsColumn.AllowMove = false;
 			this.grdcol_day13.OptionsColumn.AllowSize = false;
 			this.grdcol_day13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day13.OptionsColumn.ReadOnly = true;
 			this.grdcol_day13.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day13.OptionsFilter.AllowFilter = false;
 			this.grdcol_day13.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1017,11 +1054,13 @@
 			this.grdcol_day14.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day14.FieldName = "D14";
 			this.grdcol_day14.Name = "grdcol_day14";
+			this.grdcol_day14.OptionsColumn.AllowEdit = false;
 			this.grdcol_day14.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day14.OptionsColumn.AllowMove = false;
 			this.grdcol_day14.OptionsColumn.AllowSize = false;
 			this.grdcol_day14.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day14.OptionsColumn.ReadOnly = true;
 			this.grdcol_day14.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day14.OptionsFilter.AllowFilter = false;
 			this.grdcol_day14.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1042,11 +1081,13 @@
 			this.grdcol_day15.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day15.FieldName = "D15";
 			this.grdcol_day15.Name = "grdcol_day15";
+			this.grdcol_day15.OptionsColumn.AllowEdit = false;
 			this.grdcol_day15.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day15.OptionsColumn.AllowMove = false;
 			this.grdcol_day15.OptionsColumn.AllowSize = false;
 			this.grdcol_day15.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day15.OptionsColumn.ReadOnly = true;
 			this.grdcol_day15.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day15.OptionsFilter.AllowFilter = false;
 			this.grdcol_day15.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1067,11 +1108,13 @@
 			this.grdcol_day16.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day16.FieldName = "D16";
 			this.grdcol_day16.Name = "grdcol_day16";
+			this.grdcol_day16.OptionsColumn.AllowEdit = false;
 			this.grdcol_day16.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day16.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day16.OptionsColumn.AllowMove = false;
 			this.grdcol_day16.OptionsColumn.AllowSize = false;
 			this.grdcol_day16.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day16.OptionsColumn.ReadOnly = true;
 			this.grdcol_day16.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day16.OptionsFilter.AllowFilter = false;
 			this.grdcol_day16.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1092,11 +1135,13 @@
 			this.grdcol_day17.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day17.FieldName = "D17";
 			this.grdcol_day17.Name = "grdcol_day17";
+			this.grdcol_day17.OptionsColumn.AllowEdit = false;
 			this.grdcol_day17.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day17.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day17.OptionsColumn.AllowMove = false;
 			this.grdcol_day17.OptionsColumn.AllowSize = false;
 			this.grdcol_day17.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day17.OptionsColumn.ReadOnly = true;
 			this.grdcol_day17.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day17.OptionsFilter.AllowFilter = false;
 			this.grdcol_day17.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1117,11 +1162,13 @@
 			this.grdcol_day18.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day18.FieldName = "D18";
 			this.grdcol_day18.Name = "grdcol_day18";
+			this.grdcol_day18.OptionsColumn.AllowEdit = false;
 			this.grdcol_day18.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day18.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day18.OptionsColumn.AllowMove = false;
 			this.grdcol_day18.OptionsColumn.AllowSize = false;
 			this.grdcol_day18.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day18.OptionsColumn.ReadOnly = true;
 			this.grdcol_day18.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day18.OptionsFilter.AllowFilter = false;
 			this.grdcol_day18.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1142,11 +1189,13 @@
 			this.grdcol_day19.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day19.FieldName = "D19";
 			this.grdcol_day19.Name = "grdcol_day19";
+			this.grdcol_day19.OptionsColumn.AllowEdit = false;
 			this.grdcol_day19.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day19.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day19.OptionsColumn.AllowMove = false;
 			this.grdcol_day19.OptionsColumn.AllowSize = false;
 			this.grdcol_day19.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day19.OptionsColumn.ReadOnly = true;
 			this.grdcol_day19.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day19.OptionsFilter.AllowFilter = false;
 			this.grdcol_day19.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1167,11 +1216,13 @@
 			this.grdcol_day20.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day20.FieldName = "D20";
 			this.grdcol_day20.Name = "grdcol_day20";
+			this.grdcol_day20.OptionsColumn.AllowEdit = false;
 			this.grdcol_day20.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day20.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day20.OptionsColumn.AllowMove = false;
 			this.grdcol_day20.OptionsColumn.AllowSize = false;
 			this.grdcol_day20.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day20.OptionsColumn.ReadOnly = true;
 			this.grdcol_day20.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day20.OptionsFilter.AllowFilter = false;
 			this.grdcol_day20.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1192,11 +1243,13 @@
 			this.grdcol_day21.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day21.FieldName = "D21";
 			this.grdcol_day21.Name = "grdcol_day21";
+			this.grdcol_day21.OptionsColumn.AllowEdit = false;
 			this.grdcol_day21.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day21.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day21.OptionsColumn.AllowMove = false;
 			this.grdcol_day21.OptionsColumn.AllowSize = false;
 			this.grdcol_day21.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day21.OptionsColumn.ReadOnly = true;
 			this.grdcol_day21.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day21.OptionsFilter.AllowFilter = false;
 			this.grdcol_day21.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1217,11 +1270,13 @@
 			this.grdcol_day22.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day22.FieldName = "D22";
 			this.grdcol_day22.Name = "grdcol_day22";
+			this.grdcol_day22.OptionsColumn.AllowEdit = false;
 			this.grdcol_day22.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day22.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day22.OptionsColumn.AllowMove = false;
 			this.grdcol_day22.OptionsColumn.AllowSize = false;
 			this.grdcol_day22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day22.OptionsColumn.ReadOnly = true;
 			this.grdcol_day22.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day22.OptionsFilter.AllowFilter = false;
 			this.grdcol_day22.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1242,11 +1297,13 @@
 			this.grdcol_day23.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day23.FieldName = "D23";
 			this.grdcol_day23.Name = "grdcol_day23";
+			this.grdcol_day23.OptionsColumn.AllowEdit = false;
 			this.grdcol_day23.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day23.OptionsColumn.AllowMove = false;
 			this.grdcol_day23.OptionsColumn.AllowSize = false;
 			this.grdcol_day23.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day23.OptionsColumn.ReadOnly = true;
 			this.grdcol_day23.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day23.OptionsFilter.AllowFilter = false;
 			this.grdcol_day23.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1267,11 +1324,13 @@
 			this.grdcol_day24.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day24.FieldName = "D24";
 			this.grdcol_day24.Name = "grdcol_day24";
+			this.grdcol_day24.OptionsColumn.AllowEdit = false;
 			this.grdcol_day24.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day24.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day24.OptionsColumn.AllowMove = false;
 			this.grdcol_day24.OptionsColumn.AllowSize = false;
 			this.grdcol_day24.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day24.OptionsColumn.ReadOnly = true;
 			this.grdcol_day24.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day24.OptionsFilter.AllowFilter = false;
 			this.grdcol_day24.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1292,11 +1351,13 @@
 			this.grdcol_day25.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day25.FieldName = "D25";
 			this.grdcol_day25.Name = "grdcol_day25";
+			this.grdcol_day25.OptionsColumn.AllowEdit = false;
 			this.grdcol_day25.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day25.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day25.OptionsColumn.AllowMove = false;
 			this.grdcol_day25.OptionsColumn.AllowSize = false;
 			this.grdcol_day25.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day25.OptionsColumn.ReadOnly = true;
 			this.grdcol_day25.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day25.OptionsFilter.AllowFilter = false;
 			this.grdcol_day25.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1317,11 +1378,13 @@
 			this.grdcol_day26.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day26.FieldName = "D26";
 			this.grdcol_day26.Name = "grdcol_day26";
+			this.grdcol_day26.OptionsColumn.AllowEdit = false;
 			this.grdcol_day26.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day26.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day26.OptionsColumn.AllowMove = false;
 			this.grdcol_day26.OptionsColumn.AllowSize = false;
 			this.grdcol_day26.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day26.OptionsColumn.ReadOnly = true;
 			this.grdcol_day26.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day26.OptionsFilter.AllowFilter = false;
 			this.grdcol_day26.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1342,11 +1405,13 @@
 			this.grdcol_day27.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day27.FieldName = "D27";
 			this.grdcol_day27.Name = "grdcol_day27";
+			this.grdcol_day27.OptionsColumn.AllowEdit = false;
 			this.grdcol_day27.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day27.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day27.OptionsColumn.AllowMove = false;
 			this.grdcol_day27.OptionsColumn.AllowSize = false;
 			this.grdcol_day27.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day27.OptionsColumn.ReadOnly = true;
 			this.grdcol_day27.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day27.OptionsFilter.AllowFilter = false;
 			this.grdcol_day27.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1367,11 +1432,13 @@
 			this.grdcol_day28.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day28.FieldName = "D28";
 			this.grdcol_day28.Name = "grdcol_day28";
+			this.grdcol_day28.OptionsColumn.AllowEdit = false;
 			this.grdcol_day28.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day28.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day28.OptionsColumn.AllowMove = false;
 			this.grdcol_day28.OptionsColumn.AllowSize = false;
 			this.grdcol_day28.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day28.OptionsColumn.ReadOnly = true;
 			this.grdcol_day28.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day28.OptionsFilter.AllowFilter = false;
 			this.grdcol_day28.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1392,11 +1459,13 @@
 			this.grdcol_day29.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day29.FieldName = "D29";
 			this.grdcol_day29.Name = "grdcol_day29";
+			this.grdcol_day29.OptionsColumn.AllowEdit = false;
 			this.grdcol_day29.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day29.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day29.OptionsColumn.AllowMove = false;
 			this.grdcol_day29.OptionsColumn.AllowSize = false;
 			this.grdcol_day29.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day29.OptionsColumn.ReadOnly = true;
 			this.grdcol_day29.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day29.OptionsFilter.AllowFilter = false;
 			this.grdcol_day29.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1417,11 +1486,13 @@
 			this.grdcol_day30.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day30.FieldName = "D30";
 			this.grdcol_day30.Name = "grdcol_day30";
+			this.grdcol_day30.OptionsColumn.AllowEdit = false;
 			this.grdcol_day30.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day30.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day30.OptionsColumn.AllowMove = false;
 			this.grdcol_day30.OptionsColumn.AllowSize = false;
 			this.grdcol_day30.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day30.OptionsColumn.ReadOnly = true;
 			this.grdcol_day30.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day30.OptionsFilter.AllowFilter = false;
 			this.grdcol_day30.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
@@ -1442,17 +1513,125 @@
 			this.grdcol_day31.ColumnEdit = this.grd_lk_gnmu;
 			this.grdcol_day31.FieldName = "D31";
 			this.grdcol_day31.Name = "grdcol_day31";
+			this.grdcol_day31.OptionsColumn.AllowEdit = false;
 			this.grdcol_day31.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day31.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day31.OptionsColumn.AllowMove = false;
 			this.grdcol_day31.OptionsColumn.AllowSize = false;
 			this.grdcol_day31.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_day31.OptionsColumn.ReadOnly = true;
 			this.grdcol_day31.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_day31.OptionsFilter.AllowFilter = false;
 			this.grdcol_day31.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_day31.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
 			this.grdcol_day31.Visible = true;
 			this.grdcol_day31.Width = 35;
+			// 
+			// gridBand3
+			// 
+			this.gridBand3.Caption = "휴가";
+			this.gridBand3.Columns.Add(this.bandedGridColumn5);
+			this.gridBand3.Columns.Add(this.bandedGridColumn6);
+			this.gridBand3.Name = "gridBand3";
+			this.gridBand3.VisibleIndex = 2;
+			this.gridBand3.Width = 72;
+			// 
+			// bandedGridColumn5
+			// 
+			this.bandedGridColumn5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.bandedGridColumn5.AppearanceCell.Options.UseBackColor = true;
+			this.bandedGridColumn5.Caption = "유급";
+			this.bandedGridColumn5.DisplayFormat.FormatString = "{0:#,###.#}";
+			this.bandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.bandedGridColumn5.FieldName = "HG_CNT1";
+			this.bandedGridColumn5.Name = "bandedGridColumn5";
+			this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn5.OptionsColumn.AllowMove = false;
+			this.bandedGridColumn5.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn5.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumn5.OptionsColumn.TabStop = false;
+			this.bandedGridColumn5.OptionsFilter.AllowAutoFilter = false;
+			this.bandedGridColumn5.OptionsFilter.AllowFilter = false;
+			this.bandedGridColumn5.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.bandedGridColumn5.Visible = true;
+			this.bandedGridColumn5.Width = 36;
+			// 
+			// bandedGridColumn6
+			// 
+			this.bandedGridColumn6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.bandedGridColumn6.AppearanceCell.Options.UseBackColor = true;
+			this.bandedGridColumn6.Caption = "무급";
+			this.bandedGridColumn6.DisplayFormat.FormatString = "{0:#,###.#}";
+			this.bandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.bandedGridColumn6.FieldName = "HG_CNT2";
+			this.bandedGridColumn6.Name = "bandedGridColumn6";
+			this.bandedGridColumn6.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn6.OptionsColumn.AllowMove = false;
+			this.bandedGridColumn6.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn6.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumn6.OptionsColumn.TabStop = false;
+			this.bandedGridColumn6.OptionsFilter.AllowAutoFilter = false;
+			this.bandedGridColumn6.OptionsFilter.AllowFilter = false;
+			this.bandedGridColumn6.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.bandedGridColumn6.Visible = true;
+			this.bandedGridColumn6.Width = 36;
+			// 
+			// gridBand2
+			// 
+			this.gridBand2.Caption = "교육";
+			this.gridBand2.Columns.Add(this.bandedGridColumn3);
+			this.gridBand2.Columns.Add(this.bandedGridColumn4);
+			this.gridBand2.Name = "gridBand2";
+			this.gridBand2.VisibleIndex = 3;
+			this.gridBand2.Width = 72;
+			// 
+			// bandedGridColumn3
+			// 
+			this.bandedGridColumn3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.bandedGridColumn3.AppearanceCell.Options.UseBackColor = true;
+			this.bandedGridColumn3.Caption = "유급";
+			this.bandedGridColumn3.DisplayFormat.FormatString = "{0:#,###.#}";
+			this.bandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.bandedGridColumn3.FieldName = "EDU_CNT1";
+			this.bandedGridColumn3.Name = "bandedGridColumn3";
+			this.bandedGridColumn3.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn3.OptionsColumn.AllowMove = false;
+			this.bandedGridColumn3.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn3.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumn3.OptionsColumn.TabStop = false;
+			this.bandedGridColumn3.OptionsFilter.AllowAutoFilter = false;
+			this.bandedGridColumn3.OptionsFilter.AllowFilter = false;
+			this.bandedGridColumn3.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.bandedGridColumn3.Visible = true;
+			this.bandedGridColumn3.Width = 36;
+			// 
+			// bandedGridColumn4
+			// 
+			this.bandedGridColumn4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.bandedGridColumn4.AppearanceCell.Options.UseBackColor = true;
+			this.bandedGridColumn4.Caption = "무급";
+			this.bandedGridColumn4.DisplayFormat.FormatString = "{0:#,###.#}";
+			this.bandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.bandedGridColumn4.FieldName = "EDU_CNT2";
+			this.bandedGridColumn4.Name = "bandedGridColumn4";
+			this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn4.OptionsColumn.AllowMove = false;
+			this.bandedGridColumn4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn4.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumn4.OptionsColumn.TabStop = false;
+			this.bandedGridColumn4.OptionsFilter.AllowAutoFilter = false;
+			this.bandedGridColumn4.OptionsFilter.AllowFilter = false;
+			this.bandedGridColumn4.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.bandedGridColumn4.Visible = true;
+			this.bandedGridColumn4.Width = 36;
 			// 
 			// gridBand28
 			// 
@@ -1464,7 +1643,7 @@
 			this.gridBand28.Columns.Add(this.persn_y);
 			this.gridBand28.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
 			this.gridBand28.Name = "gridBand28";
-			this.gridBand28.VisibleIndex = 2;
+			this.gridBand28.VisibleIndex = 4;
 			this.gridBand28.Width = 120;
 			// 
 			// persn_d
@@ -1547,7 +1726,7 @@
 			this.gridBand12.Columns.Add(this.grdcol_maxn);
 			this.gridBand12.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
 			this.gridBand12.Name = "gridBand12";
-			this.gridBand12.VisibleIndex = 3;
+			this.gridBand12.VisibleIndex = 5;
 			this.gridBand12.Width = 75;
 			// 
 			// bandedGridColumn7
@@ -1565,11 +1744,13 @@
 			this.bandedGridColumn7.ColumnEdit = this.repositoryItemCheckEdit4;
 			this.bandedGridColumn7.FieldName = "SHIFT_WORK";
 			this.bandedGridColumn7.Name = "bandedGridColumn7";
+			this.bandedGridColumn7.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumn7.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridColumn7.OptionsColumn.AllowMove = false;
 			this.bandedGridColumn7.OptionsColumn.AllowSize = false;
 			this.bandedGridColumn7.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn7.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumn7.OptionsColumn.TabStop = false;
 			this.bandedGridColumn7.OptionsFilter.AllowAutoFilter = false;
 			this.bandedGridColumn7.OptionsFilter.AllowFilter = false;
@@ -1599,11 +1780,13 @@
 			this.grdcol_off.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
 			this.grdcol_off.FieldName = "ALLOW_OFF";
 			this.grdcol_off.Name = "grdcol_off";
+			this.grdcol_off.OptionsColumn.AllowEdit = false;
 			this.grdcol_off.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_off.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_off.OptionsColumn.AllowMove = false;
 			this.grdcol_off.OptionsColumn.AllowSize = false;
 			this.grdcol_off.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_off.OptionsColumn.ReadOnly = true;
 			this.grdcol_off.OptionsColumn.TabStop = false;
 			this.grdcol_off.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_off.OptionsFilter.AllowFilter = false;
@@ -1626,11 +1809,13 @@
 			this.grdcol_maxn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
 			this.grdcol_maxn.FieldName = "MAX_NCNT";
 			this.grdcol_maxn.Name = "grdcol_maxn";
+			this.grdcol_maxn.OptionsColumn.AllowEdit = false;
 			this.grdcol_maxn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_maxn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.grdcol_maxn.OptionsColumn.AllowMove = false;
 			this.grdcol_maxn.OptionsColumn.AllowSize = false;
 			this.grdcol_maxn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.grdcol_maxn.OptionsColumn.ReadOnly = true;
 			this.grdcol_maxn.OptionsColumn.TabStop = false;
 			this.grdcol_maxn.OptionsFilter.AllowAutoFilter = false;
 			this.grdcol_maxn.OptionsFilter.AllowFilter = false;
@@ -1644,10 +1829,11 @@
 			this.gridBand1.Caption = " ";
 			this.gridBand1.Columns.Add(this.bandedGridColumn1);
 			this.gridBand1.Columns.Add(this.bandedGridColumn2);
+			this.gridBand1.Columns.Add(this.bandedGridColumn9);
 			this.gridBand1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
 			this.gridBand1.Name = "gridBand1";
-			this.gridBand1.VisibleIndex = 4;
-			this.gridBand1.Width = 80;
+			this.gridBand1.VisibleIndex = 6;
+			this.gridBand1.Width = 134;
 			// 
 			// bandedGridColumn1
 			// 
@@ -1657,11 +1843,13 @@
 			this.bandedGridColumn1.Caption = "이월N";
 			this.bandedGridColumn1.FieldName = "REMAIN_NIGHT";
 			this.bandedGridColumn1.Name = "bandedGridColumn1";
+			this.bandedGridColumn1.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridColumn1.OptionsColumn.AllowMove = false;
 			this.bandedGridColumn1.OptionsColumn.AllowSize = false;
 			this.bandedGridColumn1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn1.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumn1.OptionsColumn.TabStop = false;
 			this.bandedGridColumn1.OptionsFilter.AllowAutoFilter = false;
 			this.bandedGridColumn1.OptionsFilter.AllowFilter = false;
@@ -1678,11 +1866,13 @@
 			this.bandedGridColumn2.Caption = "이월OFF";
 			this.bandedGridColumn2.FieldName = "REMAIN_OFF";
 			this.bandedGridColumn2.Name = "bandedGridColumn2";
+			this.bandedGridColumn2.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumn2.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridColumn2.OptionsColumn.AllowMove = false;
 			this.bandedGridColumn2.OptionsColumn.AllowSize = false;
 			this.bandedGridColumn2.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn2.OptionsColumn.ReadOnly = true;
 			this.bandedGridColumn2.OptionsColumn.TabStop = false;
 			this.bandedGridColumn2.OptionsFilter.AllowAutoFilter = false;
 			this.bandedGridColumn2.OptionsFilter.AllowFilter = false;
@@ -1691,113 +1881,23 @@
 			this.bandedGridColumn2.Visible = true;
 			this.bandedGridColumn2.Width = 40;
 			// 
-			// gridBand3
+			// bandedGridColumn9
 			// 
-			this.gridBand3.Caption = "휴가";
-			this.gridBand3.Columns.Add(this.bandedGridColumn5);
-			this.gridBand3.Columns.Add(this.bandedGridColumn6);
-			this.gridBand3.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-			this.gridBand3.Name = "gridBand3";
-			this.gridBand3.VisibleIndex = 5;
-			this.gridBand3.Width = 72;
-			// 
-			// bandedGridColumn5
-			// 
-			this.bandedGridColumn5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			this.bandedGridColumn5.AppearanceCell.Options.UseBackColor = true;
-			this.bandedGridColumn5.Caption = "유급";
-			this.bandedGridColumn5.DisplayFormat.FormatString = "{0:#,###.#}";
-			this.bandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.bandedGridColumn5.FieldName = "HG_CNT1";
-			this.bandedGridColumn5.Name = "bandedGridColumn5";
-			this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
-			this.bandedGridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn5.OptionsColumn.AllowMove = false;
-			this.bandedGridColumn5.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn5.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumn5.OptionsColumn.TabStop = false;
-			this.bandedGridColumn5.OptionsFilter.AllowAutoFilter = false;
-			this.bandedGridColumn5.OptionsFilter.AllowFilter = false;
-			this.bandedGridColumn5.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.bandedGridColumn5.Visible = true;
-			this.bandedGridColumn5.Width = 36;
-			// 
-			// bandedGridColumn6
-			// 
-			this.bandedGridColumn6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			this.bandedGridColumn6.AppearanceCell.Options.UseBackColor = true;
-			this.bandedGridColumn6.Caption = "무급";
-			this.bandedGridColumn6.DisplayFormat.FormatString = "{0:#,###.#}";
-			this.bandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.bandedGridColumn6.FieldName = "HG_CNT2";
-			this.bandedGridColumn6.Name = "bandedGridColumn6";
-			this.bandedGridColumn6.OptionsColumn.AllowEdit = false;
-			this.bandedGridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn6.OptionsColumn.AllowMove = false;
-			this.bandedGridColumn6.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn6.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumn6.OptionsColumn.TabStop = false;
-			this.bandedGridColumn6.OptionsFilter.AllowAutoFilter = false;
-			this.bandedGridColumn6.OptionsFilter.AllowFilter = false;
-			this.bandedGridColumn6.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.bandedGridColumn6.Visible = true;
-			this.bandedGridColumn6.Width = 36;
-			// 
-			// gridBand2
-			// 
-			this.gridBand2.Caption = "교육";
-			this.gridBand2.Columns.Add(this.bandedGridColumn3);
-			this.gridBand2.Columns.Add(this.bandedGridColumn4);
-			this.gridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-			this.gridBand2.Name = "gridBand2";
-			this.gridBand2.VisibleIndex = 6;
-			this.gridBand2.Width = 72;
-			// 
-			// bandedGridColumn3
-			// 
-			this.bandedGridColumn3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			this.bandedGridColumn3.AppearanceCell.Options.UseBackColor = true;
-			this.bandedGridColumn3.Caption = "유급";
-			this.bandedGridColumn3.DisplayFormat.FormatString = "{0:#,###.#}";
-			this.bandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.bandedGridColumn3.FieldName = "EDU_CNT1";
-			this.bandedGridColumn3.Name = "bandedGridColumn3";
-			this.bandedGridColumn3.OptionsColumn.AllowEdit = false;
-			this.bandedGridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn3.OptionsColumn.AllowMove = false;
-			this.bandedGridColumn3.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn3.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumn3.OptionsColumn.TabStop = false;
-			this.bandedGridColumn3.OptionsFilter.AllowAutoFilter = false;
-			this.bandedGridColumn3.OptionsFilter.AllowFilter = false;
-			this.bandedGridColumn3.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.bandedGridColumn3.Visible = true;
-			this.bandedGridColumn3.Width = 36;
-			// 
-			// bandedGridColumn4
-			// 
-			this.bandedGridColumn4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-			this.bandedGridColumn4.AppearanceCell.Options.UseBackColor = true;
-			this.bandedGridColumn4.Caption = "무급";
-			this.bandedGridColumn4.DisplayFormat.FormatString = "{0:#,###.#}";
-			this.bandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-			this.bandedGridColumn4.FieldName = "EDU_CNT2";
-			this.bandedGridColumn4.Name = "bandedGridColumn4";
-			this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
-			this.bandedGridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn4.OptionsColumn.AllowMove = false;
-			this.bandedGridColumn4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn4.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumn4.OptionsColumn.TabStop = false;
-			this.bandedGridColumn4.OptionsFilter.AllowAutoFilter = false;
-			this.bandedGridColumn4.OptionsFilter.AllowFilter = false;
-			this.bandedGridColumn4.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-			this.bandedGridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-			this.bandedGridColumn4.Visible = true;
-			this.bandedGridColumn4.Width = 36;
+			this.bandedGridColumn9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.bandedGridColumn9.AppearanceCell.Options.UseBackColor = true;
+			this.bandedGridColumn9.AppearanceHeader.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.bandedGridColumn9.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
+			this.bandedGridColumn9.AppearanceHeader.Options.UseFont = true;
+			this.bandedGridColumn9.AppearanceHeader.Options.UseForeColor = true;
+			this.bandedGridColumn9.Caption = "선택";
+			this.bandedGridColumn9.ColumnEdit = this.repositoryItemCheckEdit4;
+			this.bandedGridColumn9.FieldName = "CHK";
+			this.bandedGridColumn9.Name = "bandedGridColumn9";
+			this.bandedGridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn9.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+			this.bandedGridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.bandedGridColumn9.Visible = true;
+			this.bandedGridColumn9.Width = 54;
 			// 
 			// grd_sl_gnmu
 			// 
@@ -1864,6 +1964,10 @@
 			// 
 			// srPanel2
 			// 
+			this.srPanel2.Controls.Add(this.dat_jsmm);
+			this.srPanel2.Controls.Add(this.srLabel6);
+			this.srPanel2.Controls.Add(this.btn_select_canc);
+			this.srPanel2.Controls.Add(this.btn_select_all);
 			this.srPanel2.Controls.Add(this.sl_embs);
 			this.srPanel2.Controls.Add(this.srLabel7);
 			this.srPanel2.Controls.Add(this.sl_line2);
@@ -1874,14 +1978,85 @@
 			this.srPanel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.srPanel2.Location = new System.Drawing.Point(2, 27);
 			this.srPanel2.Name = "srPanel2";
-			this.srPanel2.Size = new System.Drawing.Size(1230, 97);
+			this.srPanel2.Size = new System.Drawing.Size(1230, 85);
 			this.srPanel2.TabIndex = 3;
+			// 
+			// dat_jsmm
+			// 
+			this.dat_jsmm.EditValue = "";
+			this.dat_jsmm.EnterMoveNextControl = true;
+			this.dat_jsmm.Location = new System.Drawing.Point(74, 6);
+			this.dat_jsmm.Name = "dat_jsmm";
+			this.dat_jsmm.Properties.AllowMouseWheel = false;
+			this.dat_jsmm.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+			this.dat_jsmm.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.dat_jsmm.Properties.Appearance.Options.UseFont = true;
+			this.dat_jsmm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_jsmm.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.dat_jsmm.Properties.DisplayFormat.FormatString = "y";
+			this.dat_jsmm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_jsmm.Properties.EditFormat.FormatString = "y";
+			this.dat_jsmm.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_jsmm.Properties.Mask.EditMask = "y";
+			this.dat_jsmm.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.dat_jsmm.Properties.NullDate = new System.DateTime(((long)(0)));
+			this.dat_jsmm.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dat_jsmm.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+			this.dat_jsmm.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView)));
+			this.dat_jsmm.Size = new System.Drawing.Size(112, 22);
+			this.dat_jsmm.TabIndex = 552;
+			// 
+			// srLabel6
+			// 
+			this.srLabel6.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel6.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel6.ForeColor = System.Drawing.Color.Black;
+			this.srLabel6.Location = new System.Drawing.Point(9, 6);
+			this.srLabel6.Name = "srLabel6";
+			this.srLabel6.Size = new System.Drawing.Size(65, 22);
+			this.srLabel6.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel6.TabIndex = 551;
+			this.srLabel6.Text = "정산년월";
+			this.srLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// btn_select_canc
+			// 
+			this.btn_select_canc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_select_canc.Authority = false;
+			this.btn_select_canc.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_select_canc.Location = new System.Drawing.Point(1155, 54);
+			this.btn_select_canc.Name = "btn_select_canc";
+			this.btn_select_canc.Size = new System.Drawing.Size(70, 24);
+			this.btn_select_canc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
+			this.btn_select_canc.TabIndex = 546;
+			this.btn_select_canc.Text = "선택해지";
+			this.btn_select_canc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_select_canc.UseVisualStyleBackColor = true;
+			this.btn_select_canc.Click += new System.EventHandler(this.btn_select_canc_Click);
+			// 
+			// btn_select_all
+			// 
+			this.btn_select_all.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_select_all.Authority = false;
+			this.btn_select_all.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_select_all.Location = new System.Drawing.Point(1084, 54);
+			this.btn_select_all.Name = "btn_select_all";
+			this.btn_select_all.Size = new System.Drawing.Size(70, 24);
+			this.btn_select_all.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
+			this.btn_select_all.TabIndex = 545;
+			this.btn_select_all.Text = "전체선택";
+			this.btn_select_all.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_select_all.UseVisualStyleBackColor = true;
+			this.btn_select_all.Click += new System.EventHandler(this.btn_select_all_Click);
 			// 
 			// sl_embs
 			// 
 			this.sl_embs.EditValue = "사원선택";
 			this.sl_embs.EnterMoveNextControl = true;
-			this.sl_embs.Location = new System.Drawing.Point(78, 11);
+			this.sl_embs.Location = new System.Drawing.Point(254, 6);
 			this.sl_embs.Name = "sl_embs";
 			this.sl_embs.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_embs.Properties.Appearance.Options.UseFont = true;
@@ -1951,7 +2126,7 @@
 			this.srLabel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.srLabel7.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.srLabel7.ForeColor = System.Drawing.Color.Black;
-			this.srLabel7.Location = new System.Drawing.Point(13, 11);
+			this.srLabel7.Location = new System.Drawing.Point(189, 6);
 			this.srLabel7.Name = "srLabel7";
 			this.srLabel7.Size = new System.Drawing.Size(65, 23);
 			this.srLabel7.SRBulletColor = System.Drawing.Color.Empty;
@@ -1963,7 +2138,7 @@
 			// 
 			this.sl_line2.EditValue = "결재자선택";
 			this.sl_line2.EnterMoveNextControl = true;
-			this.sl_line2.Location = new System.Drawing.Point(78, 62);
+			this.sl_line2.Location = new System.Drawing.Point(254, 57);
 			this.sl_line2.Name = "sl_line2";
 			this.sl_line2.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_line2.Properties.Appearance.Options.UseFont = true;
@@ -2030,7 +2205,7 @@
 			// 
 			this.sl_line1.EditValue = "결재자1선택";
 			this.sl_line1.EnterMoveNextControl = true;
-			this.sl_line1.Location = new System.Drawing.Point(78, 37);
+			this.sl_line1.Location = new System.Drawing.Point(254, 32);
 			this.sl_line1.Name = "sl_line1";
 			this.sl_line1.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sl_line1.Properties.Appearance.Options.UseFont = true;
@@ -2095,7 +2270,7 @@
 			// 
 			// chk_line
 			// 
-			this.chk_line.Location = new System.Drawing.Point(204, 63);
+			this.chk_line.Location = new System.Drawing.Point(380, 58);
 			this.chk_line.Name = "chk_line";
 			this.chk_line.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.chk_line.Properties.Appearance.Options.UseFont = true;
@@ -2110,11 +2285,11 @@
 			this.lb_line.BackColor = System.Drawing.Color.Transparent;
 			this.lb_line.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
 			this.lb_line.ForeColor = System.Drawing.Color.Blue;
-			this.lb_line.Location = new System.Drawing.Point(201, 41);
+			this.lb_line.Location = new System.Drawing.Point(377, 36);
 			this.lb_line.Name = "lb_line";
-			this.lb_line.Size = new System.Drawing.Size(196, 15);
+			this.lb_line.Size = new System.Drawing.Size(97, 15);
 			this.lb_line.TabIndex = 539;
-			this.lb_line.Text = "[팀장 -> 부서장 -> 대표/담당원장]";
+			this.lb_line.Text = "[팀장 -> 부서장]";
 			// 
 			// srLabel12
 			// 
@@ -2122,7 +2297,7 @@
 			this.srLabel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.srLabel12.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.srLabel12.ForeColor = System.Drawing.Color.Black;
-			this.srLabel12.Location = new System.Drawing.Point(13, 37);
+			this.srLabel12.Location = new System.Drawing.Point(189, 32);
 			this.srLabel12.Name = "srLabel12";
 			this.srLabel12.Size = new System.Drawing.Size(65, 23);
 			this.srLabel12.SRBulletColor = System.Drawing.Color.Empty;
@@ -2158,6 +2333,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.srPanel2)).EndInit();
 			this.srPanel2.ResumeLayout(false);
 			this.srPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_jsmm.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_embs.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_line2.Properties)).EndInit();
@@ -2206,13 +2383,11 @@
 		private SilkRoad.UserControls.SRButton btn_search;
 		private DevExpress.XtraGrid.GridControl grd1;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView grdv1;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn8;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn18;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bgc_name;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bgc_bfoff;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bgc_bfnight;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day01;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit grd_lk_gnmu;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day02;
@@ -2245,24 +2420,19 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day29;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day30;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day31;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_d;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_e;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_o;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_n;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_y;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn7;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit4;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_off;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_maxn;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn1;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn2;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn5;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn6;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn3;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn4;
 		private SilkRoad.UserControls.SRgridLookup2 grd_sl_gnmu;
@@ -2271,6 +2441,18 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn61;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn62;
 		private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn9;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+		private SilkRoad.UserControls.SRButton btn_select_canc;
+		private SilkRoad.UserControls.SRButton btn_select_all;
+		private SilkRoad.UserControls.SRDate dat_jsmm;
+		private SilkRoad.UserControls.SRLabel srLabel6;
 	}
 }
 

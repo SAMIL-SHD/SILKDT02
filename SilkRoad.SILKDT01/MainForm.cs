@@ -40,6 +40,9 @@ namespace SilkRoad.SILKDT01
 
             getMainUserInfo();  //로그인한사람 부서랑, 사원코드 얻기
             //getDATAMODI();      //DataModi 실행
+						
+			if (ACConfig.G_MSYN == "1")
+				mm_end.Visible = true;
 
             bar_path.Caption = Application.StartupPath; //시작경로
             bar_Comp.Caption = "Comp No : " + Config.SRConfig.WorkPlaceNo;
@@ -59,12 +62,12 @@ namespace SilkRoad.SILKDT01
                 System.Data.DataRow drow = gd.GetOneRowInQuery(Convert.ToInt32(DataAccess.DBtype.ToString()), "SILKDBCM", qry);
 				
 				if (drow != null)
-					SRConfig.US_GUBN = drow["USERMSYN"].ToString().Trim();
+					ACConfig.G_MSYN = drow["USERMSYN"].ToString().Trim();
 				if (SRConfig.USID == "SAMIL")
-					SRConfig.US_GUBN = "1";
+					ACConfig.G_MSYN = "1";
 
-				Mbtn_1.Visibility = SRConfig.US_GUBN == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;
-				Mbtn_3.Visibility = SRConfig.US_GUBN == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;
+				Mbtn_1.Visibility = ACConfig.G_MSYN == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;
+				Mbtn_3.Visibility = ACConfig.G_MSYN == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;	
 
                 user_name = drow != null ? drow["USERNAME"].ToString().Trim()  : user_name ;
                 bar_user.Caption = Config.SRConfig.USID + "(" + user_name + ")";
@@ -289,9 +292,10 @@ namespace SilkRoad.SILKDT01
             bool res = false;
             SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 
-            //res = true;
+			//res = true;
 			//SAMIL ID면 pass...
-			if (SRConfig.USID == "SAMIL" || dllName.ToUpper().Substring(0, 7) == "DUTY100" || dllName.ToUpper().Substring(0, 7) == "DUTY506"  || dllName.ToUpper().Substring(0, 7) == "DUTY508")
+			if (SRConfig.USID == "SAMIL" || dllName.ToUpper().Substring(0, 7) == "DUTY100" || dllName.ToUpper().Substring(0, 7) == "DUTY506" 
+				|| dllName.ToUpper().Substring(0, 7) == "DUTY508" || dllName.ToUpper().Substring(0, 8) == "duty2030")
 				return true;
 
 			//메뉴 권한 검사     
@@ -356,10 +360,18 @@ namespace SilkRoad.SILKDT01
         //((SilkRoad.UserControls.SRTitle)xtraTabbedMdiManager1.SelectedPage.MdiChild.Controls.Find("srTitle1", true)[0]).SRTitleTxt = xtraTabbedMdiManager1.SelectedPage.MdiChild.Text;
         private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)
         {
-            if (xtraTabbedMdiManager1.SelectedPage != null)            
-                bar_title.Caption = xtraTabbedMdiManager1.SelectedPage.MdiChild.Text + "(" + xtraTabbedMdiManager1.SelectedPage.MdiChild.GetType().Name + ")";            
-            else            
-                bar_title.Caption = "-"; //폼 없는경우는 빈칸으로      
+			if (xtraTabbedMdiManager1.SelectedPage != null)
+			{
+				bar_title.Caption = xtraTabbedMdiManager1.SelectedPage.MdiChild.Text + "(" + xtraTabbedMdiManager1.SelectedPage.MdiChild.GetType().Name + ")";
+				if (ACConfig.G_MSYN == "1")
+					mm_end.Visible = false;
+			}
+			else
+			{
+				bar_title.Caption = "-"; //폼 없는경우는 빈칸으로
+				if (ACConfig.G_MSYN == "1")
+					mm_end.Visible = true;
+			}
         }
 
 

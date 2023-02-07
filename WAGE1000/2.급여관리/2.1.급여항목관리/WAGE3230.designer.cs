@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wage3230));
-			DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+			DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+			DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
 			this.btn_exit = new SilkRoad.UserControls.SRButton();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.srTitle1 = new SilkRoad.UserControls.SRTitle();
@@ -38,6 +38,9 @@
 			this.btn_save = new SilkRoad.UserControls.SRButton();
 			this.btn_del = new SilkRoad.UserControls.SRButton();
 			this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+			this.cmb_sq = new SilkRoad.UserControls.SRCombo();
+			this.srLabel1 = new SilkRoad.UserControls.SRLabel();
+			this.dat_yymm = new SilkRoad.UserControls.SRDate();
 			this.dat_tsdt = new DevExpress.XtraEditors.DateEdit();
 			this.srLabel17 = new SilkRoad.UserControls.SRLabel();
 			this.sl_dept = new SilkRoad.UserControls.SRLookup2();
@@ -133,15 +136,15 @@
 			this.gridColumn78 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn79 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn80 = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.srLabel1 = new SilkRoad.UserControls.SRLabel();
-			this.dat_yymm = new SilkRoad.UserControls.SRDate();
-			this.cmb_sq = new SilkRoad.UserControls.SRCombo();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
 			this.srPanel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
 			this.panelControl3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tsdt.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tsdt.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_dept.Properties)).BeginInit();
@@ -149,9 +152,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.grd1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btn_exit
@@ -266,6 +266,78 @@
 			this.panelControl3.Name = "panelControl3";
 			this.panelControl3.Size = new System.Drawing.Size(1132, 94);
 			this.panelControl3.TabIndex = 452;
+			// 
+			// cmb_sq
+			// 
+			this.cmb_sq.EditValue = "(1)";
+			this.cmb_sq.EnterMoveNextControl = true;
+			this.cmb_sq.Location = new System.Drawing.Point(180, 12);
+			this.cmb_sq.Name = "cmb_sq";
+			this.cmb_sq.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_sq.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.cmb_sq.Properties.Appearance.Options.UseFont = true;
+			this.cmb_sq.Properties.Appearance.Options.UseForeColor = true;
+			this.cmb_sq.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_sq.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_sq.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.cmb_sq.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.cmb_sq.Properties.AutoHeight = false;
+			this.cmb_sq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_sq.Properties.Items.AddRange(new object[] {
+            "(1)",
+            "(2)",
+            "(3)",
+            "(4)",
+            "(5)",
+            "(6)",
+            "(7)",
+            "(8)",
+            "(9)"});
+			this.cmb_sq.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_sq.Size = new System.Drawing.Size(41, 23);
+			this.cmb_sq.TabIndex = 543;
+			// 
+			// srLabel1
+			// 
+			this.srLabel1.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel1.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel1.ForeColor = System.Drawing.Color.Black;
+			this.srLabel1.Location = new System.Drawing.Point(10, 12);
+			this.srLabel1.Name = "srLabel1";
+			this.srLabel1.Size = new System.Drawing.Size(65, 23);
+			this.srLabel1.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel1.TabIndex = 525;
+			this.srLabel1.Text = "근무년월";
+			this.srLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// dat_yymm
+			// 
+			this.dat_yymm.EditValue = "";
+			this.dat_yymm.EnterMoveNextControl = true;
+			this.dat_yymm.Location = new System.Drawing.Point(75, 12);
+			this.dat_yymm.Name = "dat_yymm";
+			this.dat_yymm.Properties.AllowMouseWheel = false;
+			this.dat_yymm.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.dat_yymm.Properties.Appearance.Options.UseFont = true;
+			this.dat_yymm.Properties.AutoHeight = false;
+			this.dat_yymm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_yymm.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.dat_yymm.Properties.DisplayFormat.FormatString = "y";
+			this.dat_yymm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_yymm.Properties.EditFormat.FormatString = "y";
+			this.dat_yymm.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.dat_yymm.Properties.Mask.EditMask = "y";
+			this.dat_yymm.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.dat_yymm.Properties.NullDate = new System.DateTime(((long)(0)));
+			this.dat_yymm.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.dat_yymm.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+			this.dat_yymm.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView)));
+			this.dat_yymm.Size = new System.Drawing.Size(106, 23);
+			this.dat_yymm.TabIndex = 524;
 			// 
 			// dat_tsdt
 			// 
@@ -420,7 +492,7 @@
 			this.srLabel16.Size = new System.Drawing.Size(65, 22);
 			this.srLabel16.SRBulletColor = System.Drawing.Color.Empty;
 			this.srLabel16.TabIndex = 501;
-			this.srLabel16.Text = "부서";
+			this.srLabel16.Text = "부    서";
 			this.srLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// grd1
@@ -541,13 +613,13 @@
             this.gridColumn78,
             this.gridColumn79,
             this.gridColumn80});
-			gridFormatRule2.ApplyToRow = true;
-			gridFormatRule2.Name = "Format0";
-			formatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-			formatConditionRuleExpression2.Appearance.Options.UseBackColor = true;
-			formatConditionRuleExpression2.Expression = "[GUBN] <> \'1\'";
-			gridFormatRule2.Rule = formatConditionRuleExpression2;
-			this.grdv1.FormatRules.Add(gridFormatRule2);
+			gridFormatRule1.ApplyToRow = true;
+			gridFormatRule1.Name = "Format0";
+			formatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			formatConditionRuleExpression1.Appearance.Options.UseBackColor = true;
+			formatConditionRuleExpression1.Expression = "[GUBN] <> \'1\'";
+			gridFormatRule1.Rule = formatConditionRuleExpression1;
+			this.grdv1.FormatRules.Add(gridFormatRule1);
 			this.grdv1.GridControl = this.grd1;
 			this.grdv1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "SABN_NM", this.col_name, "{0:#,##0} 명")});
@@ -1748,78 +1820,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGJ30", "{0:#,###}")});
 			this.gridColumn80.Width = 120;
 			// 
-			// srLabel1
-			// 
-			this.srLabel1.BackColor = System.Drawing.Color.LightCyan;
-			this.srLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.srLabel1.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srLabel1.ForeColor = System.Drawing.Color.Black;
-			this.srLabel1.Location = new System.Drawing.Point(10, 12);
-			this.srLabel1.Name = "srLabel1";
-			this.srLabel1.Size = new System.Drawing.Size(65, 23);
-			this.srLabel1.SRBulletColor = System.Drawing.Color.Empty;
-			this.srLabel1.TabIndex = 525;
-			this.srLabel1.Text = "근무년월";
-			this.srLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// dat_yymm
-			// 
-			this.dat_yymm.EditValue = "";
-			this.dat_yymm.EnterMoveNextControl = true;
-			this.dat_yymm.Location = new System.Drawing.Point(75, 12);
-			this.dat_yymm.Name = "dat_yymm";
-			this.dat_yymm.Properties.AllowMouseWheel = false;
-			this.dat_yymm.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.dat_yymm.Properties.Appearance.Options.UseFont = true;
-			this.dat_yymm.Properties.AutoHeight = false;
-			this.dat_yymm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.dat_yymm.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.dat_yymm.Properties.DisplayFormat.FormatString = "y";
-			this.dat_yymm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-			this.dat_yymm.Properties.EditFormat.FormatString = "y";
-			this.dat_yymm.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-			this.dat_yymm.Properties.Mask.EditMask = "y";
-			this.dat_yymm.Properties.Mask.UseMaskAsDisplayFormat = true;
-			this.dat_yymm.Properties.NullDate = new System.DateTime(((long)(0)));
-			this.dat_yymm.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dat_yymm.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
-			this.dat_yymm.Properties.VistaCalendarViewStyle = ((DevExpress.XtraEditors.VistaCalendarViewStyle)((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView | DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView)));
-			this.dat_yymm.Size = new System.Drawing.Size(106, 23);
-			this.dat_yymm.TabIndex = 524;
-			// 
-			// cmb_sq
-			// 
-			this.cmb_sq.EditValue = "(1)";
-			this.cmb_sq.EnterMoveNextControl = true;
-			this.cmb_sq.Location = new System.Drawing.Point(180, 12);
-			this.cmb_sq.Name = "cmb_sq";
-			this.cmb_sq.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_sq.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.cmb_sq.Properties.Appearance.Options.UseFont = true;
-			this.cmb_sq.Properties.Appearance.Options.UseForeColor = true;
-			this.cmb_sq.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.cmb_sq.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.cmb_sq.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.cmb_sq.Properties.AppearanceFocused.Options.UseBackColor = true;
-			this.cmb_sq.Properties.AutoHeight = false;
-			this.cmb_sq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.cmb_sq.Properties.Items.AddRange(new object[] {
-            "(1)",
-            "(2)",
-            "(3)",
-            "(4)",
-            "(5)",
-            "(6)",
-            "(7)",
-            "(8)",
-            "(9)"});
-			this.cmb_sq.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.cmb_sq.Size = new System.Drawing.Size(41, 23);
-			this.cmb_sq.TabIndex = 543;
-			// 
 			// wage3230
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1840,6 +1840,9 @@
 			this.srPanel3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
 			this.panelControl3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tsdt.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_tsdt.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.sl_dept.Properties)).EndInit();
@@ -1847,9 +1850,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.grd1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdv1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
