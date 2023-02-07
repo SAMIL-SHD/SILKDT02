@@ -145,7 +145,7 @@ namespace DUTY1000
 			else if (srTabControl1.SelectedTabPageIndex == 4)
 			{
 				string gubn = get_doc_gubn(4);
-				df.Get5080_AP_YCHG_LIST5Datas(SilkRoad.Config.SRConfig.USID, gubn, ds);
+				df.Get5080_AP_YCHG_LIST5Datas(gubn, SilkRoad.Config.SRConfig.USID, ds);
 				grd_ap5.DataSource = ds.Tables["5080_AP_YCHG_LIST5"];
 				if (ds.Tables["5080_AP_YCHG_LIST5"].Rows.Count == 0)
 					MessageBox.Show("완결된 회계결재문서 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
