@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
 using SilkRoad.Common;
 using System.Drawing;
@@ -99,6 +100,11 @@ namespace DUTY1000
 				xtraTabPage5.PageVisible = true;
 			else if (gubn == "6")
 				xtraTabPage6.PageVisible = true;
+			else if (gubn == "8" || gubn == "9" || gubn == "10" || gubn == "11" || gubn == "12" || gubn == "13" || gubn == "14")
+			{
+				xtraTabPage7.PageVisible = true;
+				btn_preview.Visible = true;
+			}
 
 			if (gubn == "7")
 				xtraTabPage4.Text = "간호간병비 수당내역";
@@ -125,18 +131,18 @@ namespace DUTY1000
 				#region 요일에따른 헤더 설정
 				string yymm = ds.Tables["5062_SEARCH"].Rows[0]["PLANYYMM"].ToString();
 				df.GetSEARCH_HOLIDatas(yymm, ds);
-				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(yymm+"01")).Substring(6, 2));
+				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(yymm + "01")).Substring(6, 2));
 
 				for (int i = 1; i <= lastday; i++)
 				{
 					DateTime day = clib.TextToDate(yymm + "01").AddDays(i - 1);
 					grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].Caption = i.ToString() + "\r\n" + clib.WeekDay(day); //일+요일. 한칸 내려서 보이도록. 엔터마냥. 
-					if (clib.WeekDay(day) == "토")				
-						grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Blue;				
-					else if (clib.WeekDay(day) == "일")				
-						grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;				
-					else				
-						grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Black;				
+					if (clib.WeekDay(day) == "토")
+						grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Blue;
+					else if (clib.WeekDay(day) == "일")
+						grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;
+					else
+						grdv5.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Black;
 
 					if (ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'").Length > 0)
 					{
@@ -166,18 +172,18 @@ namespace DUTY1000
 				#region 요일에따른 헤더 설정
 				string yymm = ds.Tables["5062_SEARCH"].Rows[0]["PLANYYMM"].ToString();
 				df.GetSEARCH_HOLIDatas(yymm, ds);
-				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(yymm+"01")).Substring(6, 2));
+				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(yymm + "01")).Substring(6, 2));
 
 				for (int i = 1; i <= lastday; i++)
 				{
 					DateTime day = clib.TextToDate(yymm + "01").AddDays(i - 1);
 					grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].Caption = i.ToString() + "\r\n" + clib.WeekDay(day); //일+요일. 한칸 내려서 보이도록. 엔터마냥. 
-					if (clib.WeekDay(day) == "토")				
-						grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Blue;				
-					else if (clib.WeekDay(day) == "일")				
-						grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;				
-					else				
-						grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Black;				
+					if (clib.WeekDay(day) == "토")
+						grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Blue;
+					else if (clib.WeekDay(day) == "일")
+						grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Red;
+					else
+						grdv6.Columns["D" + i.ToString().PadLeft(2, '0')].AppearanceHeader.ForeColor = Color.Black;
 
 					if (ds.Tables["SEARCH_HOLI"].Select("H_DATE = '" + clib.DateToText(day) + "'").Length > 0)
 					{
@@ -201,7 +207,21 @@ namespace DUTY1000
 				grd_lk_gnmu.DataSource = ds.Tables["GNMU_LIST"];
 				grd6.DataSource = ds.Tables["5062_SEARCH"];
 			}
-        }
+			else if (gubn == "8" || gubn == "9" || gubn == "10" || gubn == "11" || gubn == "12" || gubn == "13" || gubn == "14")
+			{
+				df.Get5062_SEARCHDatas(gubn, doc_no, ds);
+
+				byte[] file = (byte[])ds.Tables["5062_SEARCH"].Rows[0]["PDF_FILE"];
+
+				MemoryStream ms = new MemoryStream(file);
+
+				//File.WriteAllBytes(Application.StartupPath + "\\downloaded_" + (next_doc_no.ToString()) + ".pdf", file);
+				//System.IO.FileStream fsBLOBFile = new System.IO.FileStream(Application.StartupPath + "\\downloaded_" + (next_doc_no.ToString()) + ".pdf", System.IO.FileMode.Open, System.IO.FileAccess.Read);
+				pdfViewer1.DetachStreamAfterLoadComplete = true;
+				//pdfViewer1.LoadDocument(fsBLOBFile);
+				pdfViewer1.LoadDocument(ms);
+			}
+		}
 		
 		//미리보기
 		private void btn_preview_Click(object sender, EventArgs e)
@@ -229,6 +249,10 @@ namespace DUTY1000
 					rpt_506c rpt = new rpt_506c(title);
 					rpt.DataSource = ds.Tables["5062_SEARCH"];
 					rpt.ShowPreview();
+				}
+				else if (gubn == "8" || gubn == "9" || gubn == "10" || gubn == "11" || gubn == "12" || gubn == "13" || gubn == "14")
+				{
+					pdfViewer1.Print();
 				}
 			}
 		}

@@ -409,9 +409,10 @@
 			this.ClientSize = new System.Drawing.Size(1386, 815);
 			this.Controls.Add(this.gr_detail);
 			this.Controls.Add(this.srPanel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "duty5064";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "duty5064";
+			this.Text = "원장단근무표(duty5064)";
 			this.Load += new System.EventHandler(this.duty5064_Load);
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
 			this.srPanel1.ResumeLayout(false);

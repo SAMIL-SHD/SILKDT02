@@ -47,6 +47,18 @@ namespace DUTY1000
 					ds.Tables["5060_AP_YCHG_LIST3"].Clear();
 				grd_ap3.DataSource = null;
 			}
+			else if (stat == 3)
+			{
+				if (ds.Tables["5060_AP_YCHG_LIST4"] != null)
+					ds.Tables["5060_AP_YCHG_LIST4"].Clear();
+				grd_ap4.DataSource = null;
+			}
+			else if (stat == 4)
+			{
+				if (ds.Tables["5060_AP_YCHG_LIST5"] != null)
+					ds.Tables["5060_AP_YCHG_LIST5"].Clear();
+				grd_ap5.DataSource = null;
+			}
 		}
 
 		#endregion
@@ -72,7 +84,7 @@ namespace DUTY1000
 		#region 2 Button	
 		
 		//원장단 근무표
-		private void srButton1_Click(object sender, EventArgs e)
+		private void btn_doctor_calendar_Click(object sender, EventArgs e)
 		{
 			duty5064 duty5064 = new duty5064();
 			duty5064.Show();
@@ -108,6 +120,14 @@ namespace DUTY1000
 				grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
 				if (ds.Tables["5060_AP_YCHG_LIST4"].Rows.Count == 0)
 					MessageBox.Show("결재할 근무표 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (srTabControl1.SelectedTabPageIndex == 4)
+			{
+				string gubn = get_doc_gubn(4);
+				df.Get5060_AP_YCHG_LIST5Datas(gubn, SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap5.DataSource = ds.Tables["5060_AP_YCHG_LIST5"];
+				if (ds.Tables["5060_AP_YCHG_LIST5"].Rows.Count == 0)
+					MessageBox.Show("결재할 회계문서 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 		//승인내역 조회clear
@@ -169,7 +189,6 @@ namespace DUTY1000
 									outVal += cmd.setUpdate(ref ds, tableNames, null);
 								}
 							}
-
 						}
 					}
 				}
@@ -344,27 +363,12 @@ namespace DUTY1000
 				df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
 				grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
 			}
-		}
-		
-		private void grdv_ap_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-		{
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
-		}
-		private void grdv_ap2_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-		{
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
-		}
-		private void grdv_ap3_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-		{
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
-		}
-		private void grdv_ap4_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-		{
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();    
+			else if (srTabControl1.SelectedTabPageIndex == 4)
+			{
+				string gubn = get_doc_gubn(4);
+				df.Get5060_AP_YCHG_LIST5Datas(gubn, SilkRoad.Config.SRConfig.USID, ds);
+				grd_ap5.DataSource = ds.Tables["5060_AP_YCHG_LIST5"];
+			}
 		}
 		
 		private void grdv_ap_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
@@ -384,8 +388,13 @@ namespace DUTY1000
 				}
 			}
 		}
-		
-		//타이틀 클릭시 등록화면
+		private void grdv_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+		{
+			if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+				e.Info.DisplayText = (e.RowHandle + 1).ToString();
+		}
+
+		// CALL/OT 타이틀 클릭시 등록화면
 		private void grd_LinkEdit1_Click(object sender, EventArgs e)
 		{			
 			DataRow frow = grdv_ap2.GetFocusedDataRow();
@@ -405,7 +414,7 @@ namespace DUTY1000
 			df.Get5060_AP_YCHG_LIST2Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap2.DataSource = ds.Tables["5060_AP_YCHG_LIST2"];
 		}		
-		//타이틀 클릭시 등록화면
+		// OFF,N/밤근무 타이틀 클릭시 등록화면
 		private void grd_LinkEdit2_Click(object sender, EventArgs e)
 		{			
 			DataRow frow = grdv_ap3.GetFocusedDataRow();
@@ -425,7 +434,7 @@ namespace DUTY1000
 			df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
 		}		
-		//근무표 타이틀 클릭시 등록화면
+		// 근무표 타이틀 클릭시 등록화면
 		private void grd_LinkEdit3_Click(object sender, EventArgs e)
 		{			
 			DataRow frow = grdv_ap4.GetFocusedDataRow();
@@ -445,17 +454,37 @@ namespace DUTY1000
 			df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
 		}
+		// 회계 타이틀 클릭시 등록화면
+		private void grd_LinkEdit4_Click(object sender, EventArgs e)
+		{
+			DataRow frow = grdv_ap5.GetFocusedDataRow();
+			if (frow == null)
+				return;
 
-        #endregion
+			string _gubn = grdv_ap5.GetFocusedRowCellValue("DOC_GUBN").ToString();
+			string _doc_no = grdv_ap5.GetFocusedRowCellValue("DOC_NO").ToString();
 
-        #region 7. Error Check
+			int T_index = grdv_ap5.TopRowIndex;
+			int R_index = grdv_ap5.FocusedRowHandle;
 
-        /// <summary>
-        /// 모드에 따른 컨트롤 유효성체크
-        /// </summary>
-        /// <param name="mode">1:처리모드(키값검사), 2:입력,수정모드 </param>
-        /// <returns></returns>
-        private bool isNoError_um(int mode)
+			duty5062 duty5062 = new duty5062("1", _gubn, _doc_no);
+			duty5062.Show();
+			//duty5062.ShowDialog();
+
+			string gubn = get_doc_gubn(4);
+			df.Get5060_AP_YCHG_LIST5Datas(gubn, SilkRoad.Config.SRConfig.USID, ds);
+			grd_ap5.DataSource = ds.Tables["5060_AP_YCHG_LIST5"];
+		}
+		#endregion
+
+		#region 7. Error Check
+
+		/// <summary>
+		/// 모드에 따른 컨트롤 유효성체크
+		/// </summary>
+		/// <param name="mode">1:처리모드(키값검사), 2:입력,수정모드 </param>
+		/// <returns></returns>
+		private bool isNoError_um(int mode)
         {
             bool isError = false;
 
@@ -498,7 +527,28 @@ namespace DUTY1000
 
 		#region 9. ETC
 
-		#endregion
+		private string get_doc_gubn(int seleceted_page_index)
+		{
+			string doc_gubn = string.Empty;
+			switch (seleceted_page_index)
+			{
+				case 4:
+					{
+						doc_gubn = cmb_gubn5.SelectedIndex == 0 ? "8,9,10,11,12,13,14"  //전체
+								: cmb_gubn5.SelectedIndex == 1 ? "8"    //일지출예정
+								: cmb_gubn5.SelectedIndex == 2 ? "9"    //일지출내역
+								: cmb_gubn5.SelectedIndex == 3 ? "10"   //일계표
+								: cmb_gubn5.SelectedIndex == 4 ? "11"   //월별지출내역
+								: cmb_gubn5.SelectedIndex == 5 ? "12"   //월별수입내역
+								: cmb_gubn5.SelectedIndex == 6 ? "13"   //연지출내역
+								: cmb_gubn5.SelectedIndex == 7 ? "14"   //연수입내역
+								: "-1";
+						break;
+					}
+			}
+			return doc_gubn;
+		}
 
+		#endregion
 	}
 }

@@ -71,7 +71,7 @@
 			this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.srGroupBox3 = new SilkRoad.UserControls.SRGroupBox();
 			this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-			this.srButton1 = new SilkRoad.UserControls.SRButton();
+			this.btn_doctor_calendar = new SilkRoad.UserControls.SRButton();
 			this.btn_ap_return = new SilkRoad.UserControls.SRButton();
 			this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
 			this.grd_ap2 = new DevExpress.XtraGrid.GridControl();
@@ -131,6 +131,25 @@
 			this.repositoryItemCheckEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemTextEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+			this.grd_ap5 = new DevExpress.XtraGrid.GridControl();
+			this.grdv_ap5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumn39 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemMemoEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+			this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.grd_LinkEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+			this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemCheckEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.repositoryItemTextEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.srGroupBox4 = new SilkRoad.UserControls.SRGroupBox();
+			this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+			this.cmb_gubn5 = new SilkRoad.UserControls.SRCombo();
+			this.srLabel4 = new SilkRoad.UserControls.SRLabel();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
@@ -172,6 +191,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.grd_LinkEdit3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).BeginInit();
+			this.xtraTabPage5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.grd_ap5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdv_ap5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grd_LinkEdit4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.srGroupBox4)).BeginInit();
+			this.srGroupBox4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
+			this.panelControl4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn5.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// col_chk
@@ -513,7 +544,7 @@
 			this.grdv_ap.OptionsView.ShowFooter = true;
 			this.grdv_ap.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap.RowHeight = 38;
-			this.grdv_ap.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap_CustomDrawRowIndicator);
+			this.grdv_ap.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_CustomDrawRowIndicator);
 			this.grdv_ap.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grdv_ap_ShowingEditor);
 			// 
 			// gridColumn71
@@ -705,7 +736,7 @@
 			// 
 			// panelControl1
 			// 
-			this.panelControl1.Controls.Add(this.srButton1);
+			this.panelControl1.Controls.Add(this.btn_doctor_calendar);
 			this.panelControl1.Controls.Add(this.btn_ap_return);
 			this.panelControl1.Controls.Add(this.btn_ap_save);
 			this.panelControl1.Controls.Add(this.btn_ap_canc);
@@ -715,22 +746,22 @@
 			this.panelControl1.Size = new System.Drawing.Size(1270, 43);
 			this.panelControl1.TabIndex = 0;
 			// 
-			// srButton1
+			// btn_doctor_calendar
 			// 
-			this.srButton1.Authority = false;
-			this.srButton1.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.srButton1.Image = ((System.Drawing.Image)(resources.GetObject("srButton1.Image")));
-			this.srButton1.Location = new System.Drawing.Point(9, 10);
-			this.srButton1.Name = "srButton1";
-			this.srButton1.Size = new System.Drawing.Size(120, 24);
-			this.srButton1.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
-			this.srButton1.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.조회;
-			this.srButton1.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_120;
-			this.srButton1.TabIndex = 10;
-			this.srButton1.Text = "원장단 근무표";
-			this.srButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.srButton1.UseVisualStyleBackColor = true;
-			this.srButton1.Click += new System.EventHandler(this.srButton1_Click);
+			this.btn_doctor_calendar.Authority = false;
+			this.btn_doctor_calendar.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_doctor_calendar.Image = ((System.Drawing.Image)(resources.GetObject("btn_doctor_calendar.Image")));
+			this.btn_doctor_calendar.Location = new System.Drawing.Point(9, 10);
+			this.btn_doctor_calendar.Name = "btn_doctor_calendar";
+			this.btn_doctor_calendar.Size = new System.Drawing.Size(120, 24);
+			this.btn_doctor_calendar.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
+			this.btn_doctor_calendar.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.조회;
+			this.btn_doctor_calendar.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_120;
+			this.btn_doctor_calendar.TabIndex = 10;
+			this.btn_doctor_calendar.Text = "원장단 근무표";
+			this.btn_doctor_calendar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_doctor_calendar.UseVisualStyleBackColor = true;
+			this.btn_doctor_calendar.Click += new System.EventHandler(this.btn_doctor_calendar_Click);
 			// 
 			// btn_ap_return
 			// 
@@ -821,7 +852,7 @@
 			this.grdv_ap2.OptionsView.ShowFooter = true;
 			this.grdv_ap2.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap2.RowHeight = 38;
-			this.grdv_ap2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap2_CustomDrawRowIndicator);
+			this.grdv_ap2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_CustomDrawRowIndicator);
 			// 
 			// gridColumn1
 			// 
@@ -1056,7 +1087,8 @@
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3,
-            this.xtraTabPage4});
+            this.xtraTabPage4,
+            this.xtraTabPage5});
 			this.srTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.srTabControl1_SelectedPageChanged);
 			// 
 			// xtraTabPage3
@@ -1123,7 +1155,7 @@
 			this.grdv_ap3.OptionsView.ShowFooter = true;
 			this.grdv_ap3.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap3.RowHeight = 38;
-			this.grdv_ap3.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap3_CustomDrawRowIndicator);
+			this.grdv_ap3.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_CustomDrawRowIndicator);
 			// 
 			// gridColumn5
 			// 
@@ -1390,7 +1422,7 @@
 			this.grdv_ap4.OptionsView.ShowFooter = true;
 			this.grdv_ap4.OptionsView.ShowGroupPanel = false;
 			this.grdv_ap4.RowHeight = 38;
-			this.grdv_ap4.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_ap4_CustomDrawRowIndicator);
+			this.grdv_ap4.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_CustomDrawRowIndicator);
 			// 
 			// gridColumn23
 			// 
@@ -1593,6 +1625,285 @@
 			this.repositoryItemTextEdit4.Mask.UseMaskAsDisplayFormat = true;
 			this.repositoryItemTextEdit4.Name = "repositoryItemTextEdit4";
 			// 
+			// xtraTabPage5
+			// 
+			this.xtraTabPage5.Appearance.Header.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.xtraTabPage5.Appearance.Header.Options.UseFont = true;
+			this.xtraTabPage5.Appearance.HeaderActive.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.xtraTabPage5.Appearance.HeaderActive.Options.UseFont = true;
+			this.xtraTabPage5.Controls.Add(this.grd_ap5);
+			this.xtraTabPage5.Controls.Add(this.srGroupBox4);
+			this.xtraTabPage5.Name = "xtraTabPage5";
+			this.xtraTabPage5.Size = new System.Drawing.Size(1274, 694);
+			this.xtraTabPage5.Text = "회계결재문서";
+			// 
+			// grd_ap5
+			// 
+			this.grd_ap5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grd_ap5.Location = new System.Drawing.Point(0, 67);
+			this.grd_ap5.MainView = this.grdv_ap5;
+			this.grd_ap5.Name = "grd_ap5";
+			this.grd_ap5.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit5,
+            this.repositoryItemTextEdit5,
+            this.repositoryItemMemoEdit5,
+            this.grd_LinkEdit4});
+			this.grd_ap5.Size = new System.Drawing.Size(1274, 627);
+			this.grd_ap5.TabIndex = 15;
+			this.grd_ap5.TabStop = false;
+			this.grd_ap5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_ap5});
+			// 
+			// grdv_ap5
+			// 
+			this.grdv_ap5.Appearance.FocusedRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_ap5.Appearance.FocusedRow.Options.UseBackColor = true;
+			this.grdv_ap5.Appearance.FooterPanel.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.grdv_ap5.Appearance.FooterPanel.Options.UseFont = true;
+			this.grdv_ap5.Appearance.HeaderPanel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.grdv_ap5.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			this.grdv_ap5.Appearance.HeaderPanel.Options.UseFont = true;
+			this.grdv_ap5.Appearance.HeaderPanel.Options.UseTextOptions = true;
+			this.grdv_ap5.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.grdv_ap5.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_ap5.Appearance.HideSelectionRow.Options.UseBackColor = true;
+			this.grdv_ap5.Appearance.Row.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.grdv_ap5.Appearance.Row.Options.UseFont = true;
+			this.grdv_ap5.Appearance.SelectedRow.BackColor = System.Drawing.Color.Transparent;
+			this.grdv_ap5.Appearance.SelectedRow.Options.UseBackColor = true;
+			this.grdv_ap5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+			this.grdv_ap5.ColumnPanelRowHeight = 36;
+			this.grdv_ap5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn39,
+            this.gridColumn41,
+            this.gridColumn42,
+            this.gridColumn43,
+            this.gridColumn44,
+            this.gridColumn45,
+            this.gridColumn46,
+            this.gridColumn47});
+			this.grdv_ap5.GridControl = this.grd_ap5;
+			this.grdv_ap5.IndicatorWidth = 40;
+			this.grdv_ap5.Name = "grdv_ap5";
+			this.grdv_ap5.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+			this.grdv_ap5.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.False;
+			this.grdv_ap5.OptionsNavigation.EnterMoveNextColumn = true;
+			this.grdv_ap5.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+			this.grdv_ap5.OptionsView.ColumnAutoWidth = false;
+			this.grdv_ap5.OptionsView.ShowFooter = true;
+			this.grdv_ap5.OptionsView.ShowGroupPanel = false;
+			this.grdv_ap5.RowHeight = 38;
+			this.grdv_ap5.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv_CustomDrawRowIndicator);
+			// 
+			// gridColumn39
+			// 
+			this.gridColumn39.AppearanceHeader.ForeColor = System.Drawing.Color.Blue;
+			this.gridColumn39.AppearanceHeader.Options.UseForeColor = true;
+			this.gridColumn39.Caption = "구분";
+			this.gridColumn39.FieldName = "GUBN_NM";
+			this.gridColumn39.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+			this.gridColumn39.Name = "gridColumn39";
+			this.gridColumn39.OptionsColumn.AllowEdit = false;
+			this.gridColumn39.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn39.OptionsColumn.ReadOnly = true;
+			this.gridColumn39.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn39.Visible = true;
+			this.gridColumn39.VisibleIndex = 0;
+			this.gridColumn39.Width = 103;
+			// 
+			// gridColumn41
+			// 
+			this.gridColumn41.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn41.Caption = "해당년월";
+			this.gridColumn41.FieldName = "DOC_DATE_NM";
+			this.gridColumn41.Name = "gridColumn41";
+			this.gridColumn41.OptionsColumn.AllowEdit = false;
+			this.gridColumn41.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn41.OptionsColumn.ReadOnly = true;
+			this.gridColumn41.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn41.Visible = true;
+			this.gridColumn41.VisibleIndex = 1;
+			// 
+			// gridColumn42
+			// 
+			this.gridColumn42.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn42.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumn42.Caption = "기안일자";
+			this.gridColumn42.ColumnEdit = this.repositoryItemMemoEdit5;
+			this.gridColumn42.FieldName = "REG_DT";
+			this.gridColumn42.Name = "gridColumn42";
+			this.gridColumn42.OptionsColumn.AllowEdit = false;
+			this.gridColumn42.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn42.OptionsColumn.ReadOnly = true;
+			this.gridColumn42.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn42.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CODE", "{0}건")});
+			this.gridColumn42.Visible = true;
+			this.gridColumn42.VisibleIndex = 2;
+			this.gridColumn42.Width = 130;
+			// 
+			// repositoryItemMemoEdit5
+			// 
+			this.repositoryItemMemoEdit5.Name = "repositoryItemMemoEdit5";
+			// 
+			// gridColumn43
+			// 
+			this.gridColumn43.Caption = "기안자";
+			this.gridColumn43.FieldName = "SAWON_NM";
+			this.gridColumn43.Name = "gridColumn43";
+			this.gridColumn43.OptionsColumn.AllowEdit = false;
+			this.gridColumn43.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn43.OptionsColumn.ReadOnly = true;
+			this.gridColumn43.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn43.Visible = true;
+			this.gridColumn43.VisibleIndex = 3;
+			this.gridColumn43.Width = 98;
+			// 
+			// gridColumn44
+			// 
+			this.gridColumn44.Caption = "제목";
+			this.gridColumn44.ColumnEdit = this.grd_LinkEdit4;
+			this.gridColumn44.FieldName = "GW_TITLE";
+			this.gridColumn44.Name = "gridColumn44";
+			this.gridColumn44.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn44.OptionsColumn.ReadOnly = true;
+			this.gridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn44.Visible = true;
+			this.gridColumn44.VisibleIndex = 4;
+			this.gridColumn44.Width = 320;
+			// 
+			// grd_LinkEdit4
+			// 
+			this.grd_LinkEdit4.AutoHeight = false;
+			this.grd_LinkEdit4.Name = "grd_LinkEdit4";
+			this.grd_LinkEdit4.Click += new System.EventHandler(this.grd_LinkEdit4_Click);
+			// 
+			// gridColumn45
+			// 
+			this.gridColumn45.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumn45.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn45.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumn45.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.gridColumn45.Caption = "승인여부";
+			this.gridColumn45.FieldName = "AP_TAG_NM";
+			this.gridColumn45.Name = "gridColumn45";
+			this.gridColumn45.OptionsColumn.AllowEdit = false;
+			this.gridColumn45.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn45.OptionsColumn.ReadOnly = true;
+			this.gridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn45.Visible = true;
+			this.gridColumn45.VisibleIndex = 5;
+			this.gridColumn45.Width = 39;
+			// 
+			// gridColumn46
+			// 
+			this.gridColumn46.Caption = "결재라인";
+			this.gridColumn46.ColumnEdit = this.repositoryItemMemoEdit5;
+			this.gridColumn46.FieldName = "GW_LINE";
+			this.gridColumn46.Name = "gridColumn46";
+			this.gridColumn46.OptionsColumn.AllowEdit = false;
+			this.gridColumn46.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn46.OptionsColumn.ReadOnly = true;
+			this.gridColumn46.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn46.Visible = true;
+			this.gridColumn46.VisibleIndex = 6;
+			this.gridColumn46.Width = 181;
+			// 
+			// gridColumn47
+			// 
+			this.gridColumn47.Caption = "결재상태";
+			this.gridColumn47.ColumnEdit = this.repositoryItemMemoEdit5;
+			this.gridColumn47.FieldName = "LINE_STAT";
+			this.gridColumn47.Name = "gridColumn47";
+			this.gridColumn47.OptionsColumn.AllowEdit = false;
+			this.gridColumn47.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+			this.gridColumn47.OptionsColumn.ReadOnly = true;
+			this.gridColumn47.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+			this.gridColumn47.Visible = true;
+			this.gridColumn47.VisibleIndex = 7;
+			this.gridColumn47.Width = 275;
+			// 
+			// repositoryItemCheckEdit5
+			// 
+			this.repositoryItemCheckEdit5.AutoHeight = false;
+			this.repositoryItemCheckEdit5.Name = "repositoryItemCheckEdit5";
+			this.repositoryItemCheckEdit5.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+			this.repositoryItemCheckEdit5.ValueChecked = "1";
+			this.repositoryItemCheckEdit5.ValueUnchecked = "0";
+			// 
+			// repositoryItemTextEdit5
+			// 
+			this.repositoryItemTextEdit5.AutoHeight = false;
+			this.repositoryItemTextEdit5.DisplayFormat.FormatString = "{0:#,##0.#}";
+			this.repositoryItemTextEdit5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+			this.repositoryItemTextEdit5.Mask.EditMask = "n1";
+			this.repositoryItemTextEdit5.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+			this.repositoryItemTextEdit5.Mask.UseMaskAsDisplayFormat = true;
+			this.repositoryItemTextEdit5.Name = "repositoryItemTextEdit5";
+			// 
+			// srGroupBox4
+			// 
+			this.srGroupBox4.AppearanceCaption.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.srGroupBox4.AppearanceCaption.Options.UseFont = true;
+			this.srGroupBox4.Controls.Add(this.panelControl4);
+			this.srGroupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+			this.srGroupBox4.Location = new System.Drawing.Point(0, 0);
+			this.srGroupBox4.Name = "srGroupBox4";
+			this.srGroupBox4.Size = new System.Drawing.Size(1274, 67);
+			this.srGroupBox4.TabIndex = 14;
+			this.srGroupBox4.Text = "조회";
+			// 
+			// panelControl4
+			// 
+			this.panelControl4.Controls.Add(this.cmb_gubn5);
+			this.panelControl4.Controls.Add(this.srLabel4);
+			this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelControl4.Location = new System.Drawing.Point(2, 22);
+			this.panelControl4.Name = "panelControl4";
+			this.panelControl4.Size = new System.Drawing.Size(1270, 43);
+			this.panelControl4.TabIndex = 0;
+			// 
+			// cmb_gubn5
+			// 
+			this.cmb_gubn5.EditValue = "전체";
+			this.cmb_gubn5.EnterMoveNextControl = true;
+			this.cmb_gubn5.Location = new System.Drawing.Point(76, 9);
+			this.cmb_gubn5.Name = "cmb_gubn5";
+			this.cmb_gubn5.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn5.Properties.Appearance.Options.UseFont = true;
+			this.cmb_gubn5.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_gubn5.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_gubn5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_gubn5.Properties.Items.AddRange(new object[] {
+            "전체",
+            "일지출예정",
+            "일지출내역",
+            "일계표",
+            "월별지출내역",
+            "월별수입내역",
+            "연지출내역",
+            "연수입내역"});
+			this.cmb_gubn5.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_gubn5.Size = new System.Drawing.Size(112, 22);
+			this.cmb_gubn5.TabIndex = 538;
+			// 
+			// srLabel4
+			// 
+			this.srLabel4.BackColor = System.Drawing.Color.LightCyan;
+			this.srLabel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.srLabel4.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.srLabel4.ForeColor = System.Drawing.Color.Black;
+			this.srLabel4.Location = new System.Drawing.Point(11, 9);
+			this.srLabel4.Name = "srLabel4";
+			this.srLabel4.Size = new System.Drawing.Size(65, 22);
+			this.srLabel4.SRBulletColor = System.Drawing.Color.Empty;
+			this.srLabel4.TabIndex = 537;
+			this.srLabel4.Text = "종류";
+			this.srLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// duty5060
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1651,6 +1962,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.grd_LinkEdit3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).EndInit();
+			this.xtraTabPage5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.grd_ap5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdv_ap5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grd_LinkEdit4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.srGroupBox4)).EndInit();
+			this.srGroupBox4.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+			this.panelControl4.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.cmb_gubn5.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1749,7 +2072,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn31;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit4;
 		private SilkRoad.UserControls.SRButton btn_ap_return;
-		private SilkRoad.UserControls.SRButton srButton1;
+		private SilkRoad.UserControls.SRButton btn_doctor_calendar;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn33;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
@@ -1757,6 +2080,25 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn36;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn37;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn38;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+		private SilkRoad.UserControls.SRGroupBox srGroupBox4;
+		private DevExpress.XtraEditors.PanelControl panelControl4;
+		private SilkRoad.UserControls.SRCombo cmb_gubn5;
+		private SilkRoad.UserControls.SRLabel srLabel4;
+		private DevExpress.XtraGrid.GridControl grd_ap5;
+		private DevExpress.XtraGrid.Views.Grid.GridView grdv_ap5;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn39;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
+		private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit5;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
+		private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit grd_LinkEdit4;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
+		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit5;
+		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit5;
 	}
 }
 
