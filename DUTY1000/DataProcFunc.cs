@@ -7288,8 +7288,8 @@ namespace DUTY1000
 		{
 			try
 			{
-				string power = (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
-								// SAMIL이나 관리자는 모든 결재문서 조회가능
+				string power = (usid == "SAMIL")
+								// SAMIL은 결재문서 조회가능
 								? string.Empty
 								// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
 								: $@"AND 
