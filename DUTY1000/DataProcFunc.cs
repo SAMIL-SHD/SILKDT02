@@ -6803,11 +6803,16 @@ namespace DUTY1000
 		{
 			try
 			{
-				string power = (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
-								// SAMIL이나 관리자는 모든 결재문서 조회가능
+				string power = (usid == "SAMIL")
+								// SAMIL은 모든 결재문서 조회가능
 								? string.Empty
 								// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
-								: $"AND (A.GW_SABN4 = '{usid}' OR A.GW_SABN3 = '{usid}' OR A.GW_SABN2 = '{usid}' OR A.GW_SABN1 = '{usid}')";
+								: $@"AND 
+							(
+								A.GW_SABN4 = '{usid}' OR A.GW_SABN3 = '{usid}' OR A.GW_SABN2 = '{usid}' OR A.GW_SABN1 = '{usid}'
+								OR '{usid}' IN (SELECT EMBSSABN FROM MSTEMBS WHERE EMBSADGB > '4')	-- 대표원장과 담당원장은 모든문서 조회가능
+								OR '{usid}' IN (SELECT EMBSSABN FROM MSTEMBS WHERE EMBSDPCD = '3000' AND EMBSADGB = '2')	-- 총무팀 부서장은 모든문서 조회가능
+							)";
 
 				string qry = $@"
 					SELECT	A1.*
@@ -7287,7 +7292,12 @@ namespace DUTY1000
 								// SAMIL이나 관리자는 모든 결재문서 조회가능
 								? string.Empty
 								// 그 외의 이용자는 자신과 관련있는 결재문서만 조회가능
-								: $"AND (A.GW_SABN4 = '{usid}' OR A.GW_SABN3 = '{usid}' OR A.GW_SABN2 = '{usid}' OR A.GW_SABN1 = '{usid}')";
+								: $@"AND 
+							(
+								A.GW_SABN4 = '{usid}' OR A.GW_SABN3 = '{usid}' OR A.GW_SABN2 = '{usid}' OR A.GW_SABN1 = '{usid}'
+								OR '{usid}' IN (SELECT EMBSSABN FROM MSTEMBS WHERE EMBSADGB > '4')	-- 대표원장과 담당원장은 모든문서 조회가능
+								OR '{usid}' IN (SELECT EMBSSABN FROM MSTEMBS WHERE EMBSDPCD = '3000' AND EMBSADGB = '2')	-- 총무팀 부서장은 모든문서 조회가능
+							)";
 
 				string qry = $@"
 					SELECT	A1.*

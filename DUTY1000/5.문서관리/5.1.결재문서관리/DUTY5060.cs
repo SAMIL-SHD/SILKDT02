@@ -413,7 +413,8 @@ namespace DUTY1000
 			
 			df.Get5060_AP_YCHG_LIST2Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap2.DataSource = ds.Tables["5060_AP_YCHG_LIST2"];
-		}		
+		}
+
 		// OFF,N/밤근무 타이틀 클릭시 등록화면
 		private void grd_LinkEdit2_Click(object sender, EventArgs e)
 		{			
@@ -433,7 +434,8 @@ namespace DUTY1000
 			
 			df.Get5060_AP_YCHG_LIST3Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap3.DataSource = ds.Tables["5060_AP_YCHG_LIST3"];
-		}		
+		}
+
 		// 근무표 타이틀 클릭시 등록화면
 		private void grd_LinkEdit3_Click(object sender, EventArgs e)
 		{			
@@ -454,6 +456,7 @@ namespace DUTY1000
 			df.Get5060_AP_YCHG_LIST4Datas(SilkRoad.Config.SRConfig.USID, ds);
 			grd_ap4.DataSource = ds.Tables["5060_AP_YCHG_LIST4"];
 		}
+
 		// 회계 타이틀 클릭시 등록화면
 		private void grd_LinkEdit4_Click(object sender, EventArgs e)
 		{

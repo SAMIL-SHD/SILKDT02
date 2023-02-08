@@ -93,6 +93,7 @@ namespace SilkRoad.SILKDT01
 				//Config.SRConfig.USID = "21157"; //김정은
 				//Config.SRConfig.USID = "10003"; //박종철
 				//Config.SRConfig.USID = "52017"; //조수진
+				//Config.SRConfig.USID = "52020"; //문해미
 #endif
 			}
 
