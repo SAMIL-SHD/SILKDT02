@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("(주)삼일정보시스템")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Samil Info. System")]
-[assembly: AssemblyProduct("SILKDUTY")]
+[assembly: AssemblyProduct("SILKDT01")]
 [assembly: AssemblyCopyright("Copyright © Samil Info. System 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

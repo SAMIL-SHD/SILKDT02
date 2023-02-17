@@ -3,7 +3,8 @@ using System.Data;
 using System.Windows.Forms;
 using SilkRoad.Common;
 using System.Drawing;
-using System.Data.OleDb;
+using System.IO;
+using ExcelDataReader;
 
 namespace DUTY1000
 {
@@ -26,7 +27,7 @@ namespace DUTY1000
 
             //this.Location = new Point(point_x - 150, point_y + 20);    //Form Start Point
 			
-            if (point_x + this.Width > System.Windows.Forms.SystemInformation.VirtualScreen.Width)            
+            if (point_x + this.Width > SystemInformation.VirtualScreen.Width)            
                 point_x = System.Windows.Forms.SystemInformation.VirtualScreen.Width - this.Width;
             if (point_y + this.Height + 200 > System.Windows.Forms.SystemInformation.VirtualScreen.Height)
                 point_y = System.Windows.Forms.SystemInformation.VirtualScreen.Height - this.Height - 200;
@@ -111,76 +112,103 @@ namespace DUTY1000
 		private void btn_e_up_Click(object sender, EventArgs e)
 		{
 			#region 엑셀 읽어오기
+			//System.Data.DataTable dt = null;
+			//System.Windows.Forms.OpenFileDialog fd = new System.Windows.Forms.OpenFileDialog();
+			//fd.DefaultExt = "xls | xlsx";
+			//fd.Filter = "Excel files (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx";
+			//if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			//{
+			//	try
+			//	{
+			//		OleDbConnection oledbCn = null;
+			//		OleDbDataAdapter da = null;
+
+			//		try
+			//		{
+			//			string type = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source={0};Extended Properties='Excel 12.0;HDR=YES'";
+			//			oledbCn = new OleDbConnection(string.Format(type, fd.FileName));
+			//			oledbCn.Open();
+
+			//			//첫번째 시트 무조건 가지고 오기
+			//			System.Data.DataTable worksheets = oledbCn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+			//			da = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}]", worksheets.Rows[0]["TABLE_NAME"]), oledbCn);
+
+			//			dt = new System.Data.DataTable();
+			//			da.Fill(dt);
+			//		}
+			//		catch (Exception ex)
+			//		{
+			//			System.Windows.Forms.MessageBox.Show("ReadExcel Err:" + ex.Message);
+			//		}
+			//		finally
+			//		{
+			//			if (da != null)
+			//				da.Dispose();
+			//			if (oledbCn != null)
+			//			{
+			//				if (oledbCn.State != ConnectionState.Closed)
+			//					oledbCn.Close();
+			//				oledbCn.Dispose();
+			//			}
+			//		}
+			//	}
+			//	catch (Exception ex)
+			//	{
+			//		System.Windows.Forms.MessageBox.Show("파일을 읽을 수 없습니다. " + ex.Message);
+			//	}
+			//	finally
+			//	{
+			//		fd.Dispose();
+			//	}
+			//}
+
+			//if (dt == null)
+			//	return;
+			#endregion
+			
+			#region 엑셀 읽어오기
 			System.Data.DataTable dt = null;
 			System.Windows.Forms.OpenFileDialog fd = new System.Windows.Forms.OpenFileDialog();
 			fd.DefaultExt = "xls | xlsx";
 			fd.Filter = "Excel files (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx";
+
 			if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				try
+                string fileName = fd.FileName;
+				FileInfo fi = new FileInfo(fileName);
+				if ((fi.Extension == ".xls" | fi.Extension == ".xlsx") == false)
 				{
-					OleDbConnection oledbCn = null;
-					OleDbDataAdapter da = null;
-
-					try
-					{
-						string type = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source={0};Extended Properties='Excel 12.0;HDR=YES'";
-						oledbCn = new OleDbConnection(string.Format(type, fd.FileName));
-						oledbCn.Open();
-
-						//첫번째 시트 무조건 가지고 오기
-						System.Data.DataTable worksheets = oledbCn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-						da = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}]", worksheets.Rows[0]["TABLE_NAME"]), oledbCn);
-
-						dt = new System.Data.DataTable();
-						da.Fill(dt);
-					}
-					catch (Exception ex)
-					{
-						System.Windows.Forms.MessageBox.Show("ReadExcel Err:" + ex.Message);
-					}
-					finally
-					{
-						if (da != null)
-							da.Dispose();
-						if (oledbCn != null)
-						{
-							if (oledbCn.State != ConnectionState.Closed)
-								oledbCn.Close();
-							oledbCn.Dispose();
-						}
-					}
+					return;
 				}
-				catch (Exception ex)
+				FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+				IExcelDataReader reader = ExcelReaderFactory.CreateReader(fs);
+				DataSet result = reader.AsDataSet();
+				reader.Close();
+				if (result == null)
 				{
-					System.Windows.Forms.MessageBox.Show("파일을 읽을 수 없습니다. " + ex.Message);
+					return;
 				}
-				finally
-				{
-					fd.Dispose();
-				}
+				dt = result.Tables[0];
 			}
 
-			if (dt == null)
-				return;
 			#endregion
 
-			if (dt.Columns[0].ToString() != "사번")
+			if (dt.Rows[0][0].ToString().ToString() != "사번")  // dt.Columns[0]
 			{
 				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n첫번째 열의 타이틀은 [사번]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			else if (dt.Columns[2].ToString() != "년차")
+			else if (dt.Rows[0][2].ToString() != "년차")
 			{
 				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n세번째 열의 타이틀은 [년차]로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			else if (dt.Columns[3].ToString() != "갯수")
+			else if (dt.Rows[0][3].ToString() != "갯수")
 			{
 				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n네번째 열의 타이틀은 [갯수]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			else if (dt.Columns[4].ToString() != "비용")
+			else if (dt.Rows[0][4].ToString() != "비용")
 			{
 				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n다섯번째 열의 타이틀은 [비용]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
