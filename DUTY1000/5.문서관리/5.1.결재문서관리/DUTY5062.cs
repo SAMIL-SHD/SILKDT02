@@ -27,9 +27,18 @@ namespace DUTY1000
 			gubn = _gubn;
 			doc_no = _doc_no;
 
-			this.Width = clib.TextToInt(_gubn) > 4 ? 1200 : 800;
-
-			btn_preview.Visible = clib.TextToInt(_gubn) > 3 ? false : true;
+			if (_gubn == "1" || _gubn == "2" || _gubn == "3" || _gubn == "4" || _gubn == "7")
+			{
+				this.Width = 800;
+				btn_preview.Visible = true;
+			}
+			else
+			{
+				this.Width = 1200;
+				btn_preview.Visible = false;
+			}
+			//this.Width = clib.TextToInt(_gubn) > 4 ? 1200 : 800;
+			//btn_preview.Visible = clib.TextToInt(_gubn) > 3 ? false : true;
         }
 
         #region 0. Initialization
@@ -244,9 +253,21 @@ namespace DUTY1000
 					rpt.DataSource = ds.Tables["5062_SEARCH"];
 					rpt.ShowPreview();
 				}
-				else if (gubn == "3")
+				else if (gubn == "3")  //간호 OFF/N 추가,삭감내역
 				{
 					rpt_506c rpt = new rpt_506c(title);
+					rpt.DataSource = ds.Tables["5062_SEARCH"];
+					rpt.ShowPreview();
+				}
+				else if (gubn == "4")  //밤근무 수당
+				{
+					rpt_506d rpt = new rpt_506d(1, title);
+					rpt.DataSource = ds.Tables["5062_SEARCH"];
+					rpt.ShowPreview();
+				}
+				else if (gubn == "7")  //간호간병비 수당
+				{
+					rpt_506d rpt = new rpt_506d(2, title);
 					rpt.DataSource = ds.Tables["5062_SEARCH"];
 					rpt.ShowPreview();
 				}

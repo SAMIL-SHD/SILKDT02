@@ -409,6 +409,12 @@
     <Compile Include="5.문서관리\5.1.결재문서관리\DUTY5060.designer.cs">
       <DependentUpon>DUTY5060.cs</DependentUpon>
     </Compile>
+    <Compile Include="5.문서관리\5.1.결재문서관리\rpt_506d.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="5.문서관리\5.1.결재문서관리\rpt_506d.designer.cs">
+      <DependentUpon>rpt_506d.cs</DependentUpon>
+    </Compile>
     <Compile Include="5.문서관리\5.1.결재문서관리\rpt_506c.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -743,6 +749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\DUTY5060.resx">
       <DependentUpon>DUTY5060.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\rpt_506d.resx">
+      <DependentUpon>rpt_506d.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\rpt_506c.resx">
       <DependentUpon>rpt_506c.cs</DependentUpon>

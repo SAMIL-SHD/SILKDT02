@@ -77,7 +77,7 @@ namespace SilkRoad.SILKDT01
 
 					rootNode2 = tl.AppendNode(new object[] { "근무관리", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "CALL/OT관리", "DUTY1000.duty2020", "", "" }, rootNode2); //OT조회및승인
-					if (ACConfig.G_MSYN == "1" || SRConfig.US_DPCD == "2500")
+					if (ACConfig.G_MSYN == "1" || SRConfig.US_DPCD == "2500")  //1000 내시경실 || SRConfig.US_DPCD == "1000", 2500 종합검진실
 						tl.AppendNode(new object[] { "SAVE/OT내역", "DUTY1000.duty2030", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty2010", "", "" }, rootNode2);

@@ -1604,6 +1604,7 @@ namespace DUTY1000
 		{
 			try
 			{
+				//string qry = " EXEC USP_DUTY2030_RPT_230301 '" + yymm + "', '" + dept + "' ";
 				string qry = " EXEC USP_DUTY2030_RPT_220809 '" + yymm + "' ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);

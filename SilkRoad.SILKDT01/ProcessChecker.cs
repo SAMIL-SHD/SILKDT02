@@ -134,22 +134,6 @@ namespace SISMonitor
         /// 처음 실행하는 것이라면 True를 반환한다.</returns>
         static public bool IsOnlyProcess(string forceTitle)
         {
-            //_requiredString = forceTitle;
-            ////먼저 실행파일의 이름으로 이름이 같은 프로세스를 검색해본다.
-            //foreach (Process proc in Process.GetProcessesByName(Application.ProductName))
-            //{
-            //    if (proc.Id != Process.GetCurrentProcess().Id)
-            //    {
-            //        NativeMethods.EnumWindows(new EnumWindowsProcDel(EnumWindowsProc), proc.Id);
-            //        return false;
-            //    }
-            //    else
-            //    {
-            //        return true;
-            //    }
-            //}
-            //return true;
-
             foreach (Process proc in Process.GetProcessesByName(Application.ProductName))
             {
                 if (proc.MainWindowTitle.Length >= forceTitle.Length)

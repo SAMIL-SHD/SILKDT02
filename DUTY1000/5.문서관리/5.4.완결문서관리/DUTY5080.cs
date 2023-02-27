@@ -517,6 +517,13 @@ namespace DUTY1000
 			switch (seleceted_page_index)
 			{
 				case 0:
+					{
+						doc_gubn = cmb_gubn.SelectedIndex == 0 ? "%" //전체
+								: cmb_gubn.SelectedIndex == 1 ? "1"	 //연차
+								: cmb_gubn.SelectedIndex == 2 ? "2"	 //휴가
+								: "-1";
+						break;
+					}
 				case 1:
 					{
 						doc_gubn = cmb_gubn2.SelectedIndex == 0 ? "%"	//전체

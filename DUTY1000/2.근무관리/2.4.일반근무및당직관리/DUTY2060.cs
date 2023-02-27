@@ -1275,27 +1275,30 @@ namespace DUTY1000
 			//근무유형 조회
 			df.Get2060_DANG_GNMUDatas(ds);
 
-			DataRow srow = ds.Tables["SEARCH_DANG_PLAN"].Select("SAWON_NO = '" + sabn + "'")[0];
-			//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정
-			int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
-			//남은 필드 visible = false;
-			int Dang = 0, Bojo = 0;
-			for (int k = 1; k <= lastday; k++)
+			if (ds.Tables["SEARCH_DANG_PLAN"].Select("SAWON_NO = '" + sabn + "'").Length > 0)
 			{
-				if (ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + srow["D" + k.ToString().PadLeft(2, '0')].ToString() + "'").Length > 0)
+				DataRow srow = ds.Tables["SEARCH_DANG_PLAN"].Select("SAWON_NO = '" + sabn + "'")[0];
+				//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정
+				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
+				//남은 필드 visible = false;
+				int Dang = 0, Bojo = 0;
+				for (int k = 1; k <= lastday; k++)
 				{
-					string g_type = ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + srow["D" + k.ToString().PadLeft(2, '0')].ToString() + "'")[0]["G_TYPE"].ToString();
-					
-					if (g_type == "9")
-						Dang += 1;
-					else if (g_type == "10")
-						Bojo += 1;
-				}
-			}
-			srow["MM_CNT1"] = Dang;
-			srow["MM_CNT2"] = Bojo;
+					if (ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + srow["D" + k.ToString().PadLeft(2, '0')].ToString() + "'").Length > 0)
+					{
+						string g_type = ds.Tables["2060_DANG_GNMU"].Select("G_CODE = '" + srow["D" + k.ToString().PadLeft(2, '0')].ToString() + "'")[0]["G_TYPE"].ToString();
 
-			sum_month_calc();
+						if (g_type == "9")
+							Dang += 1;
+						else if (g_type == "10")
+							Bojo += 1;
+					}
+				}
+				srow["MM_CNT1"] = Dang;
+				srow["MM_CNT2"] = Bojo;
+
+				sum_month_calc();
+			}
 		}
 		private void sum_month_calc()
 		{
