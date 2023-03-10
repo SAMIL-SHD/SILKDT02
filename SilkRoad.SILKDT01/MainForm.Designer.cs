@@ -147,9 +147,9 @@
 			this.hideContainerLeft.BackColor = System.Drawing.SystemColors.Control;
 			this.hideContainerLeft.Controls.Add(this.dockPanel1);
 			this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.hideContainerLeft.Location = new System.Drawing.Point(0, 54);
+			this.hideContainerLeft.Location = new System.Drawing.Point(0, 51);
 			this.hideContainerLeft.Name = "hideContainerLeft";
-			this.hideContainerLeft.Size = new System.Drawing.Size(24, 541);
+			this.hideContainerLeft.Size = new System.Drawing.Size(20, 551);
 			// 
 			// dockPanel1
 			// 
@@ -471,31 +471,31 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.barManager1;
-			this.barDockControlTop.Size = new System.Drawing.Size(1008, 54);
+			this.barDockControlTop.Size = new System.Drawing.Size(1008, 51);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 595);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 602);
 			this.barDockControlBottom.Manager = this.barManager1;
-			this.barDockControlBottom.Size = new System.Drawing.Size(1008, 32);
+			this.barDockControlBottom.Size = new System.Drawing.Size(1008, 25);
 			// 
 			// barDockControlLeft
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
 			this.barDockControlLeft.Manager = this.barManager1;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 541);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 551);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(1008, 54);
+			this.barDockControlRight.Location = new System.Drawing.Point(1008, 51);
 			this.barDockControlRight.Manager = this.barManager1;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 541);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 551);
 			// 
 			// barStaticItem1
 			// 
@@ -610,7 +610,7 @@
 			this.mm_end.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.5F);
 			this.mm_end.Properties.Appearance.Options.UseFont = true;
 			this.mm_end.Properties.ReadOnly = true;
-			this.mm_end.Size = new System.Drawing.Size(749, 408);
+			this.mm_end.Size = new System.Drawing.Size(749, 455);
 			this.mm_end.TabIndex = 7;
 			this.mm_end.Visible = false;
 			// 

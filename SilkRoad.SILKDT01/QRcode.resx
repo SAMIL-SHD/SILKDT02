@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="mm_end.EditValue" xml:space="preserve">
+    <value>
+월 마감 프로세스
+
+1. 마감년월에 해당하는 시급, 당직시간, N수당을 마감관리-환경설정 메뉴에서 입력합니다.
+
+2. 콜수당/OT수당 : 환경설정-시급관리에서 입력 되고
+                        Duty관리-근무관리-CALL/OT관리 메뉴에서 입력된 내역이 결재완료 되어야 계산됩니다.
+
+3. 당직수당 : 환경설정-당직시간관리에서 입력 되고 
+                Duty관리-근무관리-근무및당직관리 메뉴에서 입력된 당직근무 내역이 결재완료 되어야 계산됩니다.
+
+4. OFF,N수당 : 환경설정-N수당관리에서 먼저 입력 되고
+                  Duty관리-근무관리-간호사근무관리 메뉴에서 OFF,N수당 항목이 상신 후 결재완료 되어야 계산됩니다.
+
+5. 밤근무,간호간병수당 : Duty관리-근무관리-간호사근무관리 메뉴에서 밤근무,간호간병 항목이 상신 후 
+                             결재완료 되면 수당이 계산됩니다.
+
+6. 고정OT수당 : Duty관리-근무관리-근무및당직관리 메뉴에서 고정OT 시간이 입력된 근무표가 결재완료 되고 
+                   환경설정-시급관리에서 입력 되어야 계산됩니다.
+
+7. 연차수당 : 마감관리-마감관리-연차정산관리 메뉴에서 연차정산 입력된 내역이 존재하고
+                환경설정-시급관리에서 입력 되어야 계산됩니다.
+
+8. 마감처리 : 마감관리-근무집계표 메뉴에서 근무년월을 처리 후 급여지급년월을 마감년월에 입력하여 저장한다.
+                  급여처리탭으로 이동 후 급여년월을 조회하고 전송버튼(급여로 전송)을 클릭하면 완료!</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

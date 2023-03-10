@@ -3613,30 +3613,40 @@ namespace DUTY1000
 		{
 			try
 			{
-				string qry = " SELECT '1' CHK, A.DEPTCODE, RTRIM(X2.DEPRNAM1) AS DEPT_NM, "
-						   + "        A.SAWON_NO, RTRIM(X1.EMBSNAME) AS EMBSNAME, "
-						   + "        A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4 AS OFF_CNT, "
-						   + "        A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT AS N_CNT, "
-						   + "        (A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4) * ISNULL(X9.T_AMT,0) * (SELECT A04_INSU11*A04_INSU12 FROM DUTY_INFOSD02) AS OFF_AMT, "
-						   + "        (CASE WHEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) < 0 "
-						   + "              THEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.MINUS_NAMT,0) "
-						   + "              ELSE (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.PLUS_NAMT,0) END) AS N_AMT, "
-						   + "        (A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4) * ISNULL(X9.T_AMT,0) * (SELECT A04_INSU11*A04_INSU12 FROM DUTY_INFOSD02) + "
-						   + "        (CASE WHEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) < 0 "
-						   + "              THEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.MINUS_NAMT,0) "
-						   + "              ELSE (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.PLUS_NAMT,0) END) AS SD_AMT, "
-						   + "        '' REMARK, "
-						   + "        A.BF_OFF, A.MM_CNT4, A.ALLOW_OFF, A.REMAIN_OFF, "
-						   + "        A.BF_NIGHT, A.MM_CNT3, A.MAX_NCNT, A.REMAIN_NIGHT "
-						   + "   FROM DUTY_TRSPLAN A "
-						   + "   LEFT OUTER JOIN MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
-						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.DEPTCODE=X2.DEPRCODE "
-						   + "   LEFT OUTER JOIN DUTY_INFOSD01 X9 ON A.SAWON_NO=X9.SABN AND A.PLANYYMM=X9.YYMM "  //시급
-						   + "   LEFT OUTER JOIN DUTY_INFOSD05 X8 ON A.SAWON_NO=X8.SABN AND A.PLANYYMM=X8.YYMM ";  //N수당
+				string qry = " IF OBJECT_ID('tempdb..#DUTY_TRSPLAN') IS NOT NULL "
+						   + "  	DROP TABLE #DUTY_TRSPLAN ";
+				qry += " SELECT A1.* INTO #DUTY_TRSPLAN "
+					+ "    FROM ( SELECT A.* FROM DUTY_TRSPLAN A WHERE A.PLANYYMM='" + yymm + "' AND A.DEPTCODE IN ('0100','0200') " // 5A,5B 간호조무사 포함 23.03.08 조수진
+					+ "         UNION ALL "
+					+ "           SELECT A.* FROM DUTY_TRSPLAN A "
+					+ "             LEFT OUTER JOIN MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
+					+ "            WHERE A.PLANYYMM='" + yymm + "' AND A.DEPTCODE NOT IN ('0100','0200') AND X1.EMBSGRCD NOT IN ('0200') "
+					+ "         ) A1 ";
+
+				qry += " SELECT '1' CHK, A.DEPTCODE, RTRIM(X2.DEPRNAM1) AS DEPT_NM, "
+					+ "        A.SAWON_NO, RTRIM(X1.EMBSNAME) AS EMBSNAME, "
+					+ "        A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4 AS OFF_CNT, "
+					+ "        A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT AS N_CNT, "
+					+ "        (A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4) * ISNULL(X9.T_AMT,0) * (SELECT A04_INSU11*A04_INSU12 FROM DUTY_INFOSD02) AS OFF_AMT, "
+					+ "        (CASE WHEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) < 0 "
+					+ "              THEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.MINUS_NAMT,0) "
+					+ "              ELSE (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.PLUS_NAMT,0) END) AS N_AMT, "
+					+ "        (A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4) * ISNULL(X9.T_AMT,0) * (SELECT A04_INSU11*A04_INSU12 FROM DUTY_INFOSD02) + "
+					+ "        (CASE WHEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) < 0 "
+					+ "              THEN (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.MINUS_NAMT,0) "
+					+ "              ELSE (A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT) * ISNULL(X8.PLUS_NAMT,0) END) AS SD_AMT, "
+					+ "        '' REMARK, "
+					+ "        A.BF_OFF, A.MM_CNT4, A.ALLOW_OFF, A.REMAIN_OFF, "
+					+ "        A.BF_NIGHT, A.MM_CNT3, A.MAX_NCNT, A.REMAIN_NIGHT "
+					+ "   FROM #DUTY_TRSPLAN A "
+					+ "   LEFT OUTER JOIN MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
+					+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.DEPTCODE=X2.DEPRCODE "
+					+ "   LEFT OUTER JOIN DUTY_INFOSD01 X9 ON A.SAWON_NO=X9.SABN AND A.PLANYYMM=X9.YYMM "  //시급
+					+ "   LEFT OUTER JOIN DUTY_INFOSD05 X8 ON A.SAWON_NO=X8.SABN AND A.PLANYYMM=X8.YYMM ";  //N수당
 				if (SilkRoad.Config.SRConfig.USID != "SAMIL")
 					qry += "    INNER JOIN DUTY_PWERDEPT X3 ON A.DEPTCODE=X3.DEPT AND X3.SABN='" + sabn + "' ";
-				qry += " WHERE A.PLANYYMM='" + yymm +"' AND X1.EMBSGRCD NOT IN ('0200')"  //간호조무사 제외 23.01.12
-					+ "    AND (X1.EMBSSTAT=1 OR (X1.EMBSSTAT=2 AND LEFT(X1.EMBSTSDT,6)>= '" + yymm + "') ) "  // 퇴직제외 23.01.12
+				//qry += " WHERE A.PLANYYMM='" + yymm +"' " //AND X1.EMBSGRCD NOT IN ('0200')"  //간호조무사 제외 23.01.12  
+				qry += "  WHERE (X1.EMBSSTAT=1 OR (X1.EMBSSTAT=2 AND LEFT(X1.EMBSTSDT,6)>= '" + yymm + "') ) "  // 퇴직제외 23.01.12
 					+ "    AND (A.BF_OFF+A.ALLOW_OFF-A.REMAIN_OFF-A.MM_CNT4 <> 0 OR A.MM_CNT3-A.MAX_NCNT-A.BF_NIGHT+A.REMAIN_NIGHT <> 0 ) "
 					+ "  ORDER BY A.DEPTCODE, A.SAWON_NO  ";
 
@@ -5229,7 +5239,7 @@ namespace DUTY1000
 						   + "    AND X2.YYMM = '" + yymm.Substring(0, 6) + "' "
 						   + "   INNER JOIN DUTY_INFONURS X3 ON A.EMBSDPCD=X3.DEPTCODE "
 						   + "  WHERE A.EMBSSTAT='1' OR (A.EMBSSTAT='2' AND LEFT(A.EMBSTSDT,6)>='" + yymm.Substring(0, 6) + "')"
-						   + "  ORDER BY A.EMBSJOCD, A.EMBSDPCD, A.EMBSSABN ";
+						   + "  ORDER BY A.EMBSDPCD, A.EMBSJOCD, A.EMBSSABN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("S_INFOSD05", dt, ref ds);
@@ -5663,7 +5673,8 @@ namespace DUTY1000
 			try
 			{
 				string qry = " SELECT RTRIM(A.EMBSSABN) CODE, RTRIM(A.EMBSNAME) NAME, "
-						   + "        RTRIM(X1.DEPRNAM1) DEPT_NM, RTRIM(X2.GRADNAM1) GRAD_NM, ISNULL(A.EMBSADGB,'') EMBSADGB "
+						   + "        A.EMBSDPCD, RTRIM(X1.DEPRNAM1) DEPT_NM, "
+						   + "        RTRIM(X2.GRADNAM1) GRAD_NM, ISNULL(A.EMBSADGB,'') EMBSADGB "
 						   + "   FROM " + wagedb + ".dbo.MSTEMBS A "
 						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X1 "
 						   + "     ON A.EMBSDPCD = X1.DEPRCODE"
@@ -5793,7 +5804,7 @@ namespace DUTY1000
 				}
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("GW_LINE2", dt, ref ds);
+				dp.AddDatatable2Dataset("GW_LINE1", dt, ref ds);
 			}
 			catch (System.Exception ec)
 			{
@@ -5880,8 +5891,10 @@ namespace DUTY1000
 						   + "     ON A.SABN=X3.EMBSSABN "
 						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
 						   + "     ON X3.EMBSDPCD=X4.DEPRCODE "
-						   + "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
-						   + "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
+						   + "  WHERE ( (LEFT(REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR "
+						   + "         (LEFT(REQ_DATE2,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR ('" + fr_yymm + "' <= LEFT(REQ_DATE,6) AND LEFT(REQ_DATE2,6) <= '" + to_yymm + "') )"
+						   //+ "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
+						   //+ "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
 						   + "    AND X3.EMBSDPCD LIKE '" + dept + "'";				
 				if (FLAG == "A")
 					qry +="  AND ISNULL(A.AP_TAG,'') IN ('','2','4','5')";
@@ -6197,8 +6210,10 @@ namespace DUTY1000
 						   + "     ON A.SABN=X3.EMBSSABN "
 						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
 						   + "     ON X3.EMBSDPCD=X4.DEPRCODE "
-						   + "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
-						   + "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
+						   + "  WHERE ( (LEFT(REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR "
+						   + "         (LEFT(REQ_DATE2,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR ('" + fr_yymm + "' <= LEFT(REQ_DATE,6) AND LEFT(REQ_DATE2,6) <= '" + to_yymm + "') )"
+						   //+ "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
+						   //+ "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
 						   + "    AND X3.EMBSDPCD LIKE '" + dept + "'"
 						   + "  ORDER BY A.REQ_DATE DESC, X3.EMBSDPCD, A.SABN ";
 
@@ -7054,10 +7069,13 @@ namespace DUTY1000
 		#region 5080 - 완결문서관리
 		
 		//연차,휴가 결재완료조회
-		public void Get5080_AP_YCHG_LISTDatas(string gubn, string usid, DataSet ds)
+		public void Get5080_AP_YCHG_LISTDatas(string _gubn, string usid, DataSet ds)
 		{
 			try
 			{
+				string gubn = _gubn.Substring(0, 1);
+				string fr_yy = _gubn.Substring(1, 4);
+				string to_yy = _gubn.Substring(5, 4);
 				string qry = " SELECT A1.* FROM ( "
 						   + " SELECT A.SEQNO, '1' AS GUBN, '연차' AS GUBN_NM, A.AP_TAG, A.REQ_DATE, A.SABN, '' CHK, '' C_CHK, "
 						   + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
@@ -7084,7 +7102,9 @@ namespace DUTY1000
 						   + "     ON A.SABN=X3.EMBSSABN "
 						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
 						   + "     ON X3.EMBSDPCD=X4.DEPRCODE "
-						   + "  WHERE isnull(A.AP_TAG,'') IN ('1','3','8') ";
+						   + "  WHERE isnull(A.AP_TAG,'') IN ('1','3','8') "
+						   + "    AND ( (LEFT(REQ_DATE,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR "
+						   + "         (LEFT(REQ_DATE2,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR ('" + fr_yy + "' <= LEFT(REQ_DATE,4) AND LEFT(REQ_DATE2,4) <= '" + to_yy + "') )";
 				if (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
 				{
 				}
@@ -7115,7 +7135,9 @@ namespace DUTY1000
 					+ "      ON A.SABN=X3.EMBSSABN "
 					+ "    LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
 					+ "      ON X3.EMBSDPCD=X4.DEPRCODE "
-					+ "   WHERE isnull(A.AP_TAG,'') IN ('1','3') ";
+					+ "   WHERE isnull(A.AP_TAG,'') IN ('1','3') "
+					+ "     AND ( (LEFT(REQ_DATE,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR "
+					+ "         (LEFT(REQ_DATE2,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR ('" + fr_yy + "' <= LEFT(REQ_DATE,4) AND LEFT(REQ_DATE2,4) <= '" + to_yy + "') )";
 				if (usid == "SAMIL" || SilkRoad.Config.ACConfig.G_MSYN == "1")
 				{
 				}

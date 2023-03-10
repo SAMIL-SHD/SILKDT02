@@ -66,6 +66,14 @@ namespace DUTY1000
 			{
 				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
 				ADGB_STAT(adgb);
+
+				//종검실일때만 23.03.10
+				if (ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSDPCD"].ToString() == "2500")
+				{
+					chk_line.Checked = true;
+					if (ds.Tables["GW_LINE1"].Select("CODE= '10001'").Length > 0)
+						sl_line1.EditValue = "10001"; //이영철 고정
+				}
 			}
 			else
 			{

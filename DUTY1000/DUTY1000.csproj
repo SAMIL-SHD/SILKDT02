@@ -439,6 +439,12 @@
     <Compile Include="5.문서관리\5.4.완결문서관리\DUTY5080.designer.cs">
       <DependentUpon>DUTY5080.cs</DependentUpon>
     </Compile>
+    <Compile Include="5.문서관리\5.4.완결문서관리\rpt_508a.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="5.문서관리\5.4.완결문서관리\rpt_508a.designer.cs">
+      <DependentUpon>rpt_508a.cs</DependentUpon>
+    </Compile>
     <Compile Include="8.마감관리\8.6.KT근태연동조회\DUTY5010.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -764,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="5.문서관리\5.4.완결문서관리\DUTY5080.resx">
       <DependentUpon>DUTY5080.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5.문서관리\5.4.완결문서관리\rpt_508a.resx">
+      <DependentUpon>rpt_508a.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="8.마감관리\8.6.KT근태연동조회\DUTY5010.resx">
       <DependentUpon>DUTY5010.cs</DependentUpon>

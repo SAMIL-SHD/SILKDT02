@@ -39,11 +39,20 @@
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.srPanel1 = new SilkRoad.UserControls.SRPanel();
 			this.txt_url = new DevExpress.XtraEditors.MemoEdit();
+			this.srTabControl1 = new SilkRoad.UserControls.SRTabControl();
+			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+			this.mm_end = new DevExpress.XtraEditors.MemoEdit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.txt_url.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.srTabControl1)).BeginInit();
+			this.srTabControl1.SuspendLayout();
+			this.xtraTabPage1.SuspendLayout();
+			this.xtraTabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.mm_end.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridColumn15
@@ -100,17 +109,16 @@
 			this.pictureBox1.InitialImage = null;
 			this.pictureBox1.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(363, 348);
+			this.pictureBox1.Size = new System.Drawing.Size(436, 450);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
 			// pictureBox2
 			// 
-			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox2.Image = global::SilkRoad.SILKDT01.Properties.Resources.kshp_qr;
 			this.pictureBox2.InitialImage = null;
-			this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+			this.pictureBox2.Location = new System.Drawing.Point(34, 13);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(363, 261);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -120,8 +128,7 @@
 			// srPanel1
 			// 
 			this.srPanel1.Controls.Add(this.txt_url);
-			this.srPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.srPanel1.Location = new System.Drawing.Point(0, 261);
+			this.srPanel1.Location = new System.Drawing.Point(34, 280);
 			this.srPanel1.Name = "srPanel1";
 			this.srPanel1.Size = new System.Drawing.Size(363, 87);
 			this.srPanel1.TabIndex = 3;
@@ -139,13 +146,59 @@
 			this.txt_url.Size = new System.Drawing.Size(343, 66);
 			this.txt_url.TabIndex = 0;
 			// 
+			// srTabControl1
+			// 
+			this.srTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.srTabControl1.Location = new System.Drawing.Point(0, 0);
+			this.srTabControl1.Name = "srTabControl1";
+			this.srTabControl1.SelectedTabPage = this.xtraTabPage1;
+			this.srTabControl1.Size = new System.Drawing.Size(436, 450);
+			this.srTabControl1.TabIndex = 4;
+			this.srTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1,
+            this.xtraTabPage2});
+			// 
+			// xtraTabPage1
+			// 
+			this.xtraTabPage1.Appearance.Header.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.xtraTabPage1.Appearance.Header.Options.UseFont = true;
+			this.xtraTabPage1.Appearance.HeaderActive.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.xtraTabPage1.Appearance.HeaderActive.Options.UseFont = true;
+			this.xtraTabPage1.Controls.Add(this.pictureBox2);
+			this.xtraTabPage1.Controls.Add(this.srPanel1);
+			this.xtraTabPage1.Name = "xtraTabPage1";
+			this.xtraTabPage1.Size = new System.Drawing.Size(430, 420);
+			this.xtraTabPage1.Text = "QR코드 및 주소";
+			// 
+			// xtraTabPage2
+			// 
+			this.xtraTabPage2.Appearance.Header.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.xtraTabPage2.Appearance.Header.Options.UseFont = true;
+			this.xtraTabPage2.Appearance.HeaderActive.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+			this.xtraTabPage2.Appearance.HeaderActive.Options.UseFont = true;
+			this.xtraTabPage2.AutoScroll = true;
+			this.xtraTabPage2.Controls.Add(this.mm_end);
+			this.xtraTabPage2.Name = "xtraTabPage2";
+			this.xtraTabPage2.Size = new System.Drawing.Size(430, 420);
+			this.xtraTabPage2.Text = "월마감프로세스";
+			// 
+			// mm_end
+			// 
+			this.mm_end.EditValue = resources.GetString("mm_end.EditValue");
+			this.mm_end.Location = new System.Drawing.Point(3, 3);
+			this.mm_end.Name = "mm_end";
+			this.mm_end.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.5F);
+			this.mm_end.Properties.Appearance.Options.UseFont = true;
+			this.mm_end.Properties.ReadOnly = true;
+			this.mm_end.Size = new System.Drawing.Size(749, 455);
+			this.mm_end.TabIndex = 8;
+			// 
 			// QRcode
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(363, 348);
-			this.Controls.Add(this.pictureBox2);
-			this.Controls.Add(this.srPanel1);
+			this.ClientSize = new System.Drawing.Size(436, 450);
+			this.Controls.Add(this.srTabControl1);
 			this.Controls.Add(this.pictureBox1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "QRcode";
@@ -157,6 +210,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
 			this.srPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.txt_url.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.srTabControl1)).EndInit();
+			this.srTabControl1.ResumeLayout(false);
+			this.xtraTabPage1.ResumeLayout(false);
+			this.xtraTabPage2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.mm_end.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -173,6 +231,10 @@
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private UserControls.SRPanel srPanel1;
 		private DevExpress.XtraEditors.MemoEdit txt_url;
+		private UserControls.SRTabControl srTabControl1;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+		private DevExpress.XtraEditors.MemoEdit mm_end;
 	}
 }
 

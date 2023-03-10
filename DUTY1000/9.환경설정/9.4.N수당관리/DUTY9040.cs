@@ -197,7 +197,24 @@ namespace DUTY1000
 			else
 				MessageBox.Show("전월 데이터가 없습니다.", "실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
-
+		//금액적용
+		private void btn_adp_Click(object sender, EventArgs e)
+		{
+			if (ds.Tables["S_INFOSD05"] != null)
+			{
+				for (int i = 0; i < grdv.RowCount; i++)
+				{
+					if (grdv.GetVisibleRowHandle(i) > -1)
+					{
+						if (cmb_btype.SelectedIndex == 0)
+							grdv.GetDataRow(grdv.GetVisibleRowHandle(i))["MINUS_NAMT"] = clib.TextToDecimal(txt_slam.Text.ToString());
+						else
+							grdv.GetDataRow(grdv.GetVisibleRowHandle(i))["PLUS_NAMT"] = clib.TextToDecimal(txt_slam.Text.ToString());
+					}
+				}
+			}
+			//MINUS_NAMT
+		}
 		//엑셀변환
 		private void btn_excel_Click(object sender, EventArgs e)
 		{
@@ -277,20 +294,20 @@ namespace DUTY1000
 			{
 				if (drow[0].ToString().Trim() != "" && drow[2].ToString().Trim() != "")
 				{
-					if (ds.Tables["S_INFOSD05"].Select("YYMM = '" + drow[0].ToString().Replace("-", "") + "' AND SABN = '" + drow[2].ToString() + "'").Length > 0)
+					if (ds.Tables["S_INFOSD05"].Select("SABN = '" + drow[2].ToString() + "'").Length > 0)
 					{
-						DataRow nrow = ds.Tables["S_INFOSD05"].Select("YYMM = '" + drow[0].ToString().Replace("-", "") + "' AND SABN = '" + drow[2].ToString() + "'")[0];						
+						DataRow nrow = ds.Tables["S_INFOSD05"].Select("SABN = '" + drow[2].ToString() + "'")[0];						
 						nrow["MINUS_NAMT"] = clib.TextToDecimal(drow[4].ToString());
 						nrow["PLUS_NAMT"] = clib.TextToDecimal(drow[5].ToString());
 					}
 					else
 					{
 						DataRow nrow = ds.Tables["S_INFOSD05"].NewRow();
-						nrow["YYMM"] = drow[0].ToString().Replace("-", "");
-						nrow["YYMM_NM"] = drow[0].ToString();
+						nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
+						nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
 						nrow["DEPT_NM"] = df.GetDept_nmData(drow[2].ToString().Trim());
 						nrow["SABN"] = drow[2].ToString();
-						nrow["SABN_NM"] = drow[3].ToString();
+						nrow["SABN_NM"] = df.GetSawon_nmData(drow[2].ToString().Trim()); //drow[3].ToString();
 						nrow["MINUS_NAMT"] = clib.TextToDecimal(drow[4].ToString());
 						nrow["PLUS_NAMT"] = clib.TextToDecimal(drow[5].ToString());
 						ds.Tables["S_INFOSD05"].Rows.Add(nrow);

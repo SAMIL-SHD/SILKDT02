@@ -239,7 +239,13 @@ namespace DUTY1000
 		//근무표결재
 		private void btn_off_gw_Click(object sender, EventArgs e)
 		{
-			if (sl_dept.EditValue.ToString().Substring(0, 1) == "A")
+			if (sl_dept.EditValue == null)
+			{
+				MessageBox.Show("부서가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				sl_dept.Focus();
+				return;
+			}
+			else if (sl_dept.EditValue.ToString().Substring(0, 1) == "A")
 			{
 				MessageBox.Show("해당부서는 상신할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -250,12 +256,7 @@ namespace DUTY1000
 			{
 				MessageBox.Show("최종마감되어 상신할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-			else if (sl_dept.EditValue == null)
-			{
-				MessageBox.Show("부서가 선택되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				sl_dept.Focus();
-			}
-			else
+			else 
 			{
 				df.Get2060_GW_CHKDatas("5", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), sl_dept.EditValue.ToString(), ds);
 				if (ds.Tables["2060_GW_CHK"].Rows.Count > 0)

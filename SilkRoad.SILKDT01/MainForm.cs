@@ -378,8 +378,10 @@ namespace SilkRoad.SILKDT01
 		//QR코드열기
 		private void barbtn_qr_ItemClick(object sender, ItemClickEventArgs e)
 		{
+            if (Application.OpenForms["QRcode"] != null)
+                Application.OpenForms["QRcode"].Close();
             QRcode QRcode = new QRcode();
-            QRcode.ShowDialog();
+            QRcode.Show();
 		}
 		//프린터설정 열기
 		private void barbtn_print_ItemClick(object sender, ItemClickEventArgs e)

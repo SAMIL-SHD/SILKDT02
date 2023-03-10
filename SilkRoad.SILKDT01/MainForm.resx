@@ -145,7 +145,10 @@
                    환경설정-시급관리에서 입력 되어야 계산됩니다.
 
 7. 연차수당 : 마감관리-마감관리-연차정산관리 메뉴에서 연차정산 입력된 내역이 존재하고
-                환경설정-시급관리에서 입력 되어야 계산됩니다.</value>
+                환경설정-시급관리에서 입력 되어야 계산됩니다.
+
+8. 마감처리 : 마감관리-근무집계표 메뉴에서 근무년월을 처리 후 급여지급년월을 마감년월에 입력하여 저장한다.
+                  급여처리탭으로 이동 후 급여년월을 조회하고 전송버튼(급여로 전송)을 클릭하면 완료!</value>
   </data>
   <metadata name="barManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>464, 17</value>

@@ -44,6 +44,7 @@
 			this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+			this.btn_bring = new SilkRoad.UserControls.SRButton();
 			this.btn_excel = new SilkRoad.UserControls.SRButton();
 			this.btn_e_up = new SilkRoad.UserControls.SRButton();
 			this.btn_canc = new SilkRoad.UserControls.SRButton();
@@ -77,7 +78,9 @@
 			this.dat_tomm = new SilkRoad.UserControls.SRDate();
 			this.dat_frmm = new SilkRoad.UserControls.SRDate();
 			this.srLabel17 = new SilkRoad.UserControls.SRLabel();
-			this.btn_bring = new SilkRoad.UserControls.SRButton();
+			this.cmb_btype = new SilkRoad.UserControls.SRCombo();
+			this.btn_adp = new SilkRoad.UserControls.SRButton();
+			this.txt_slam = new SilkRoad.UserControls.SRTextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
 			this.srPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -100,6 +103,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.dat_tomm.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_frmm.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_frmm.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_btype.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.txt_slam.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridColumn4
@@ -244,6 +249,9 @@
 			// 
 			// panelControl3
 			// 
+			this.panelControl3.Controls.Add(this.txt_slam);
+			this.panelControl3.Controls.Add(this.cmb_btype);
+			this.panelControl3.Controls.Add(this.btn_adp);
 			this.panelControl3.Controls.Add(this.btn_bring);
 			this.panelControl3.Controls.Add(this.btn_excel);
 			this.panelControl3.Controls.Add(this.btn_e_up);
@@ -258,6 +266,23 @@
 			this.panelControl3.Name = "panelControl3";
 			this.panelControl3.Size = new System.Drawing.Size(1126, 46);
 			this.panelControl3.TabIndex = 452;
+			// 
+			// btn_bring
+			// 
+			this.btn_bring.Authority = false;
+			this.btn_bring.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_bring.Image = ((System.Drawing.Image)(resources.GetObject("btn_bring.Image")));
+			this.btn_bring.Location = new System.Drawing.Point(474, 11);
+			this.btn_bring.Name = "btn_bring";
+			this.btn_bring.Size = new System.Drawing.Size(110, 24);
+			this.btn_bring.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
+			this.btn_bring.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.라인삽입;
+			this.btn_bring.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_110;
+			this.btn_bring.TabIndex = 511;
+			this.btn_bring.Text = "전월가져오기";
+			this.btn_bring.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_bring.UseVisualStyleBackColor = true;
+			this.btn_bring.Click += new System.EventHandler(this.btn_bring_Click);
 			// 
 			// btn_excel
 			// 
@@ -864,22 +889,61 @@
 			this.srLabel17.Text = "조회년월";
 			this.srLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// btn_bring
+			// cmb_btype
 			// 
-			this.btn_bring.Authority = false;
-			this.btn_bring.Font = new System.Drawing.Font("맑은 고딕", 9F);
-			this.btn_bring.Image = ((System.Drawing.Image)(resources.GetObject("btn_bring.Image")));
-			this.btn_bring.Location = new System.Drawing.Point(474, 11);
-			this.btn_bring.Name = "btn_bring";
-			this.btn_bring.Size = new System.Drawing.Size(110, 24);
-			this.btn_bring.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
-			this.btn_bring.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.라인삽입;
-			this.btn_bring.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_110;
-			this.btn_bring.TabIndex = 511;
-			this.btn_bring.Text = "전월가져오기";
-			this.btn_bring.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btn_bring.UseVisualStyleBackColor = true;
-			this.btn_bring.Click += new System.EventHandler(this.btn_bring_Click);
+			this.cmb_btype.EditValue = "차감";
+			this.cmb_btype.EnterMoveNextControl = true;
+			this.cmb_btype.Location = new System.Drawing.Point(587, 12);
+			this.cmb_btype.Name = "cmb_btype";
+			this.cmb_btype.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_btype.Properties.Appearance.Options.UseFont = true;
+			this.cmb_btype.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.cmb_btype.Properties.AppearanceDropDown.Options.UseFont = true;
+			this.cmb_btype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.cmb_btype.Properties.Items.AddRange(new object[] {
+            "차감",
+            "지급"});
+			this.cmb_btype.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.cmb_btype.Size = new System.Drawing.Size(48, 22);
+			this.cmb_btype.TabIndex = 546;
+			// 
+			// btn_adp
+			// 
+			this.btn_adp.Authority = false;
+			this.btn_adp.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.btn_adp.Image = ((System.Drawing.Image)(resources.GetObject("btn_adp.Image")));
+			this.btn_adp.Location = new System.Drawing.Point(703, 11);
+			this.btn_adp.Name = "btn_adp";
+			this.btn_adp.Size = new System.Drawing.Size(79, 24);
+			this.btn_adp.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
+			this.btn_adp.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.양식적용;
+			this.btn_adp.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.Custom;
+			this.btn_adp.TabIndex = 545;
+			this.btn_adp.Text = "금액적용";
+			this.btn_adp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_adp.UseVisualStyleBackColor = true;
+			this.btn_adp.Click += new System.EventHandler(this.btn_adp_Click);
+			// 
+			// txt_slam
+			// 
+			this.txt_slam.EditValue = "50,000";
+			this.txt_slam.EnterMoveNextControl = true;
+			this.txt_slam.Location = new System.Drawing.Point(636, 12);
+			this.txt_slam.Name = "txt_slam";
+			this.txt_slam.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+			this.txt_slam.Properties.Appearance.Options.UseFont = true;
+			this.txt_slam.Properties.Appearance.Options.UseTextOptions = true;
+			this.txt_slam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.txt_slam.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.txt_slam.Properties.AppearanceFocused.Options.UseBackColor = true;
+			this.txt_slam.Properties.AutoHeight = false;
+			this.txt_slam.Properties.LookAndFeel.SkinName = "Lilian";
+			this.txt_slam.Properties.Mask.EditMask = "n0";
+			this.txt_slam.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+			this.txt_slam.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.txt_slam.Size = new System.Drawing.Size(68, 23);
+			this.txt_slam.TabIndex = 547;
 			// 
 			// duty9040
 			// 
@@ -917,6 +981,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.dat_tomm.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_frmm.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dat_frmm.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cmb_btype.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.txt_slam.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -970,6 +1036,9 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
 		private DevExpress.XtraPivotGrid.PivotGridField pivotGridField6;
 		private SilkRoad.UserControls.SRButton btn_bring;
+		private SilkRoad.UserControls.SRCombo cmb_btype;
+		private SilkRoad.UserControls.SRButton btn_adp;
+		private SilkRoad.UserControls.SRTextEdit txt_slam;
 	}
 }
 

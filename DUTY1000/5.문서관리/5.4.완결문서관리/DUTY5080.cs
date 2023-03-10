@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SilkRoad.Common;
 using DevExpress.XtraScheduler;
 using System.Drawing;
+using DevExpress.XtraReports.UI;
 
 namespace DUTY1000
 {
@@ -83,6 +84,9 @@ namespace DUTY1000
 
         private void duty5080_Load(object sender, EventArgs e)
         {			
+			dat_year.DateTime = DateTime.Now;
+			dat_year2.DateTime = DateTime.Now;
+
 			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				btn_ap_canc.Visible = true;
@@ -91,16 +95,18 @@ namespace DUTY1000
         }
 		
 		private void duty5080_Shown(object sender, EventArgs e)
-		{			
-            SetCancel(0);
-            SetCancel(1);
-			SetCancel(2);
-			SetCancel(3);
-			SetCancel(4);
+		{
+   //         SetCancel(0);
+   //         SetCancel(1);
+			//SetCancel(2);
+			//SetCancel(3);
+			//SetCancel(4);
 
-			string gubn = cmb_gubn.SelectedIndex == 0 ? "%" : cmb_gubn.SelectedIndex.ToString();
-			df.Get5080_AP_YCHG_LISTDatas(gubn, SilkRoad.Config.SRConfig.USID, ds);
-			grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
+			//string gubn = cmb_gubn.SelectedIndex == 0 ? "%" : cmb_gubn.SelectedIndex.ToString();
+			//string fr_yy = clib.DateToText(dat_year.DateTime).Substring(0, 4);
+			//string to_yy = clib.DateToText(dat_year2.DateTime).Substring(0, 4);
+			//df.Get5080_AP_YCHG_LISTDatas(gubn + fr_yy + to_yy, SilkRoad.Config.SRConfig.USID, ds);
+			//grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
 		}
 
         #endregion
@@ -112,11 +118,16 @@ namespace DUTY1000
 		{
 			if (srTabControl1.SelectedTabPageIndex == 0)
 			{
-				string gubn = get_doc_gubn(0);
-				df.Get5080_AP_YCHG_LISTDatas(gubn, SilkRoad.Config.SRConfig.USID, ds);
-				grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
-				if (ds.Tables["5080_AP_YCHG_LIST"].Rows.Count == 0)
-					MessageBox.Show("완결된 연차/휴가 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (isNoError_um(11))
+				{
+					string gubn = get_doc_gubn(0);
+					string fr_yy = clib.DateToText(dat_year.DateTime).Substring(0, 4);
+					string to_yy = clib.DateToText(dat_year2.DateTime).Substring(0, 4);
+					df.Get5080_AP_YCHG_LISTDatas(gubn+fr_yy+to_yy, SilkRoad.Config.SRConfig.USID, ds);
+					grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
+					if (ds.Tables["5080_AP_YCHG_LIST"].Rows.Count == 0)
+						MessageBox.Show("완결된 연차/휴가 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
 			else if (srTabControl1.SelectedTabPageIndex == 1)
 			{
@@ -221,10 +232,44 @@ namespace DUTY1000
    //         }
 		}
 		
+		private void btn_preview_Click(object sender, EventArgs e)
+		{
+			print(1);
+		}
+
+		private void btn_print_Click(object sender, EventArgs e)
+		{			
+			print(2);
+		}
+
+		private void print(int stat)
+		{
+			if (ds.Tables["5080_AP_YCHG_LIST"] == null)
+			{
+				MessageBox.Show("조회된 내역이 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				DataTable table = ds.Tables["5080_AP_YCHG_LIST"].Clone();
+				for (int i = 0; i < grdv_ap.RowCount; i++)
+				{
+					if (grdv_ap.GetVisibleRowHandle(i) > -1)
+						table.ImportRow(grdv_ap.GetDataRow(grdv_ap.GetVisibleRowHandle(i)));
+				}
+				//string sldt = clib.DateToText(dat_sldt3.DateTime);
+				//string to_mm = clib.DateToText(dat_tomm3.DateTime).Substring(0, 6);
+				rpt_508a rpt = new rpt_508a("");
+				rpt.DataSource = table;
+				if (stat == 1)
+					rpt.ShowPreview();
+				else
+					rpt.Print();
+			}
+		}
         //연차,휴가 승인삭제
 		private void btn_ap_canc_Click(object sender, EventArgs e)
 		{
-			if (isNoError_um(2))
+			if (isNoError_um(1))
             {
                 Cursor = Cursors.WaitCursor;
                 int outVal = 0;
@@ -244,12 +289,21 @@ namespace DUTY1000
 							DataRow hrow = ds.Tables[del_tb_nm].NewRow();
 							hrow["SEQNO"] = drow["SEQNO"].ToString();
 							hrow["GUBN"] = drow["GUBN"].ToString();
+							if (crow["GUBN"].ToString() == "1")
+							{
+								hrow["REQ_YEAR"] = drow["REQ_YEAR"].ToString();
+								hrow["REQ_TYPE2"] = drow["REQ_TYPE2"].ToString();
+								hrow["YC_DAYS"] = clib.TextToDecimal(drow["YC_DAYS"].ToString());
+							}
 							hrow["SABN"] = drow["SABN"].ToString();
 							hrow["REQ_DATE"] = drow["REQ_DATE"].ToString();
 							hrow["REQ_DATE2"] = drow["REQ_DATE2"].ToString();
 							hrow["REQ_TYPE"] = drow["REQ_TYPE"].ToString();
-							hrow["PAY_YN"] = drow["PAY_YN"].ToString();
-							hrow["HOLI_DAYS"] = clib.TextToDecimal(drow["HOLI_DAYS"].ToString());
+							if (crow["GUBN"].ToString() == "2")
+							{
+								hrow["PAY_YN"] = drow["PAY_YN"].ToString();
+								hrow["HOLI_DAYS"] = clib.TextToDecimal(drow["HOLI_DAYS"].ToString());
+							}
 							
 							hrow["AP_TAG"] = drow["AP_TAG"].ToString();
 							hrow["LINE_CNT"] = clib.TextToInt(drow["LINE_CNT"].ToString());
@@ -316,7 +370,9 @@ namespace DUTY1000
 			if (srTabControl1.SelectedTabPageIndex == 0) 
 			{
 				string gubn = get_doc_gubn(0);
-				df.Get5080_AP_YCHG_LISTDatas(gubn, SilkRoad.Config.SRConfig.USID, ds);
+				string fr_yy = clib.DateToText(dat_year.DateTime).Substring(0, 4);
+				string to_yy = clib.DateToText(dat_year2.DateTime).Substring(0, 4);
+				df.Get5080_AP_YCHG_LISTDatas(gubn+fr_yy+to_yy, SilkRoad.Config.SRConfig.USID, ds);
 				grd_ap.DataSource = ds.Tables["5080_AP_YCHG_LIST"];
 			}
 			else if (srTabControl1.SelectedTabPageIndex == 1)
@@ -472,23 +528,7 @@ namespace DUTY1000
         {
             bool isError = false;
 
-            if (mode == 1)  //연차,휴가승인
-            {
-				if (ds.Tables["5080_AP_YCHG_LIST"] != null)
-				{
-					ds.Tables["5080_AP_YCHG_LIST"].AcceptChanges();
-					if (ds.Tables["5080_AP_YCHG_LIST"].Select("CHK='1'").Length == 0)
-					{
-						MessageBox.Show("선택된 내역이 없습니다!", "승인에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return false;
-					}
-					else
-					{
-						isError = true;
-					}
-				}
-            }
-			else if (mode == 2)  //승인취소
+            if (mode == 1)  //승인취소
 			{
 				if (ds.Tables["5080_AP_YCHG_LIST"] != null)
 				{
@@ -502,6 +542,25 @@ namespace DUTY1000
 					{
 						isError = true;
 					}
+				}
+            }
+			else if (mode == 11)  //연차,휴가조회
+			{
+				if (clib.DateToText(dat_year.DateTime) == "")
+				{
+					MessageBox.Show("조회년월(시작)이 입력되지 않았습니다!", "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					dat_year.Focus();
+					return false;
+				}
+				else if (clib.DateToText(dat_year2.DateTime) == "")
+				{
+					MessageBox.Show("조회년월(종료)가 입력되지 않았습니다!", "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					dat_year2.Focus();
+					return false;
+				}
+				else
+				{
+					isError = true;
 				}
 			}
             return isError;
@@ -567,5 +626,6 @@ namespace DUTY1000
 
 
 		#endregion
+
 	}
 }
