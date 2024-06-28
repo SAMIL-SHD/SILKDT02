@@ -95,9 +95,6 @@ namespace SilkRoad.SILKDT02
                 //SilkRoad.DAL.DataAccess.DBuspw = "samil25";
 
                 SilkRoad.Config.SRConfig.USID = "SAMIL";
-                //Config.SRConfig.USID = "21273"; //한지영
-                //Config.SRConfig.USID = "21157"; //김정은
-                //Config.SRConfig.USID = "24018"; //김정숙
 #endif
             }
 
