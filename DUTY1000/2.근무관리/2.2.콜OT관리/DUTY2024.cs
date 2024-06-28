@@ -214,7 +214,7 @@ namespace DUTY1000
 							if (hrow["GW_TAG"].ToString().Trim() == "")  //그룹웨어 상신 없을때
 							{
 								string[] tableNames = new string[] { "DUTY_TRSOVTM" };
-								SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+								SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 								outVal += cmd.setUpdate(ref ds, tableNames, null);
 							}
 						}
@@ -300,7 +300,7 @@ namespace DUTY1000
 							if (hrow["GW_TAG"].ToString().Trim() == "")  //그룹웨어 상신 없을때
 							{
 								string[] tableNames = new string[] { "DUTY_TRSOVTM" };
-								SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+								SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 								outVal += cmd.setUpdate(ref ds, tableNames, null);
 							}
 						}

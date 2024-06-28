@@ -16,8 +16,8 @@ namespace WAGE1000
         static GetData gd = new GetData();
         static SetData sd = new SetData();
         static CommonLibrary clib = new CommonLibrary();
-        static string dbname = DataAccess.DBname;
-        static string wagedb = "WAGEDB" + SilkRoad.Config.SRConfig.WorkPlaceNo;
+        static string dbname = DataAccess.DBname + SilkRoad.Config.SRConfig.WorkPlaceNo;
+        static string wagedb = "WG06DB" + SilkRoad.Config.SRConfig.WorkPlaceNo;
         static string comm_db = "COMMDB" + SilkRoad.Config.SRConfig.WorkPlaceNo;
 				
 		#region 1006 - 인사기본관리
@@ -134,10 +134,7 @@ namespace WAGE1000
 						   + "        (CASE A.EMBSIPDT WHEN '' THEN '' ELSE LEFT(A.EMBSIPDT,4)+'-'+SUBSTRING(A.EMBSIPDT,5,2)+'-'+SUBSTRING(A.EMBSIPDT,7,2) END) IPDT_NM, "
 						   + "        (CASE A.EMBSTSDT WHEN '' THEN '' ELSE LEFT(A.EMBSTSDT,4)+'-'+SUBSTRING(A.EMBSTSDT,5,2)+'-'+SUBSTRING(A.EMBSTSDT,7,2) END) TSDT_NM, "
 						   + "        (CASE A.EMBSSTAT WHEN 1 THEN '재직' WHEN 2 THEN '퇴직' ELSE '' END) STAT_NM, "
-						   + "        (CASE A.EMBSADGB WHEN '1' THEN '팀장' WHEN '2' THEN '부서장' "
-						   + "              WHEN '3' THEN '원장단->담당원장' WHEN '4' THEN '원장단->대표원장' "
-						   + "              WHEN '5' THEN '담당원장' WHEN '6' THEN '대표원장' ELSE '' END) ADGB_NM "
-						   //+ "        (CASE A.EMBSADGB WHEN '1' THEN 'Y' ELSE '' END) ADGB_NM "
+						   + "        (CASE A.EMBSADGB WHEN '1' THEN 'Y' ELSE '' END) ADGB_NM "
 						   + "   FROM MSTEMBS A "
 						   + "   LEFT OUTER JOIN MSTGLOV X1 "
 						   + "     ON A.EMBSGLCD=X1.GLOVCODE "
@@ -219,21 +216,160 @@ namespace WAGE1000
 			}
 		}
 
-		#endregion
-		
-		#region wage3220 - 고정항목관리
-		
-		public void GetFIX_SDDatas(DataSet ds)
+        #endregion
+        
+        #region 1005 - 사용자부서설정
+
+        //팀장/부서장/전체관리자 체크
+        public void GetMSTUSER_CHKDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM " + wagedb + ".DBO.MSTEMBS "
+                           + "  WHERE EMBSSABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("MSTUSER_CHK", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                        "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //전체관리/부서관리 여부 체크
+        public void GetMSTUSER_CHK2Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                            + "   FROM DUTY_MSTUSER "
+                            + "  WHERE USERIDEN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("MSTUSER_CHK", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                        "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void GetSEARCH_USERDEPTDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT RTRIM(A.USERIDEN) USERIDEN, RTRIM(A.USERNAME) USERNAME, X1.EMBSDPCD AS USERDPCD, '' USERUPYN, '' USERMSYN "
+                           + "   FROM SILKDBCM..MSTUSER A "
+                           + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.USERIDEN=X1.EMBSSABN "
+                           + "  WHERE X1.EMBSADGB IN ('2') " //X1.EMBSDPCD IS NOT NULL "
+                           + "  ORDER BY A.USERIDEN ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SEARCH_USERDEPT", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void GetUserDeptDatas(string useid, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.DEPRCODE AS CODE, A.DEPRCODE+' '+RTRIM(A.DEPRNAM1) AS NAME, "
+                           + "        (CASE WHEN B.SABN IS NULL THEN '0' ELSE '1' END) AS CHK "
+                           + "   FROM MSTDEPR A "
+                           + "   LEFT OUTER JOIN DUTY_PWERDEPT B ON A.DEPRCODE = B.DEPT AND B.SABN = '" + useid + "'"
+                           + "  WHERE A.DEPRSTAT = 1 ORDER BY A.DEPRCODE ";
+
+                DataTable dt = gd.GetDataInQuery(1, dbname, qry);
+                dp.AddDatatable2Dataset("USERDEPT", dt, ref ds);
+
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void GetDUTY_PWERDEPTDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_PWERDEPT"
+                           + "  WHERE 1=2 ";
+
+                DataTable dt = gd.GetDataInQuery(1, dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_PWERDEPT", dt, ref ds);
+
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //저장시
+        public void GetDUTY_MSTUSERDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_MSTUSER ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_MSTUSER", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //부서 LOOKUP
+        public void GetSL_DEPTDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT DEPRCODE CODE, RTRIM(DEPRNAM1) NAME "
+                           + "   FROM " + wagedb + ".DBO.MSTDEPR "
+                           + "  WHERE DEPRSTAT=1 "
+                           + "  ORDER BY DEPRCODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_DEPT", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+
+        #region wage3220 - 고정항목관리
+
+        public void GetFIX_SDDatas(DataSet ds)
 		{
 			try
 			{
 				string qry = " SELECT A.* "
-						   + "   FROM " + wagedb + ".dbo.INFOWAGE A "
+						   + "   FROM INFOWAGE A "
 						   + "   LEFT OUTER JOIN (SELECT DISTINCT IFJWCODE, IFJWJYGB FROM INFOJOWG WHERE IFJWJYGB='11') X1 "
-						   + "     ON A.IFWGCODE=X1.IFJWCODE "
+                           + "     ON A.IFWGCODE=X1.IFJWCODE "
 						   + "  WHERE (A.IFWGCRGB='1' AND A.IFWGJYGB='11') OR (A.IFWGCRGB='2' AND X1.IFJWJYGB='11') "
 						   + "  ORDER BY A.IFWGCODE ";
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("FIX_SD", dt, ref ds);
 			}
 			catch (System.Exception ec)
@@ -251,25 +387,25 @@ namespace WAGE1000
 				string qry = " SELECT RTRIM(A.WGFXSABN) AS SABN, "
 					       + "        RTRIM(X1.EMBSNAME) AS EMBSNAME, "
 					       + "        RTRIM(ISNULL(X2.DEPRNAM1,'')) AS DEPT_NM, A.* "
-						   + "   FROM " + wagedb + ".dbo.MSTWGFX A "
+						   + "   FROM MSTWGFX A "
 						   + "   LEFT OUTER JOIN MSTEMBS X1 ON A.WGFXSABN=X1.EMBSSABN "
 						   + "   LEFT OUTER JOIN MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
 						   + "  WHERE X1.EMBSDPCD LIKE '" + dept + "'"
 						   + "    AND (X1.EMBSSTAT='1' OR X1.EMBSTSDT > '" + tsdt + "')"
 						   + "  ORDER BY A.WGFXSABN ";
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("WGFX_LIST", dt, ref ds);
 
 				qry = " SELECT RTRIM(A.EMBSSABN) AS SABN, "
 					+ "        RTRIM(A.EMBSNAME) AS SABN_NM, "
 					+ "        RTRIM(ISNULL(X1.DEPRNAM1,'')) AS DEPT_NM "
-					+ "   FROM " + wagedb + ".dbo.MSTEMBS A "
+					+ "   FROM MSTEMBS A "
 					+ "   LEFT OUTER JOIN MSTDEPR X1 ON A.EMBSDPCD=X1.DEPRCODE "
 					+ "  WHERE A.EMBSDPCD LIKE '" + dept + "'"
 					+ "    AND (A.EMBSSTAT='1' OR A.EMBSTSDT > '" + tsdt + "')"
 					+ "  ORDER BY A.EMBSJOCD, A.EMBSDPCD, A.EMBSSABN ";
 
-				dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("EMBS_LIST", dt, ref ds);
 
 				for (int i = 0; i < ds.Tables["EMBS_LIST"].Rows.Count; i++)
@@ -298,10 +434,10 @@ namespace WAGE1000
 			try
 			{
 				string qry = " SELECT A.* "
-						   + "   FROM " + wagedb + ".dbo.MSTWGFX A "
-						   + "  WHERE A.WGFXSABN LIKE '" + sabn + "'"
+						   + "   FROM wagedbMSTWGFX A "
+                           + "  WHERE A.WGFXSABN LIKE '" + sabn + "'"
 						   + "  ORDER BY A.WGFXSABN ";
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("MSTWGFX", dt, ref ds);
 			}
 			catch (System.Exception ec)
@@ -320,14 +456,14 @@ namespace WAGE1000
 			try
 			{
 				string qry = " SELECT A.* "
-						   + "   FROM " + wagedb + ".dbo.INFOWAGE A "
+						   + "   FROM INFOWAGE A "
 						   + "   LEFT OUTER JOIN (SELECT DISTINCT IFJWCODE, IFJWJYGB FROM INFOJOWG WHERE IFJWJYGB='12') X1 "
-						   + "     ON A.IFWGCODE=X1.IFJWCODE "
+                           + "     ON A.IFWGCODE=X1.IFJWCODE "
 						   + "  WHERE ((A.IFWGCRGB='1' AND A.IFWGJYGB IN ('12','39','40','41','43')) "
 						   + "        OR (A.IFWGCRGB='2' AND X1.IFJWJYGB='12')) "
 						   + "    AND A.IFWGPUSE='1' "
 						   + "  ORDER BY A.IFWGCODE ";
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("WGPC_SD", dt, ref ds);
 			}
 			catch (System.Exception ec)
@@ -345,7 +481,7 @@ namespace WAGE1000
 				string qry = " SELECT RTRIM(A.WGPCSABN) AS SABN, "
 					       + "        RTRIM(X1.EMBSNAME) AS EMBSNAME, "
 					       + "        RTRIM(ISNULL(X2.DEPRNAM1,'')) AS DEPT_NM, A.* "
-						   + "   FROM " + wagedb + ".dbo.MSTWGPC A "
+						   + "   FROM MSTWGPC A "
 						   + "   LEFT OUTER JOIN MSTEMBS X1 ON A.WGPCSABN=X1.EMBSSABN "
 						   + "   LEFT OUTER JOIN MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
 						   + "  WHERE A.WGPCYYMM = '" + yymm + "'"
@@ -353,19 +489,19 @@ namespace WAGE1000
 						   + "    AND X1.EMBSDPCD LIKE '" + dept + "'"
 						   + "    AND (X1.EMBSSTAT='1' OR X1.EMBSTSDT > '" + tsdt + "')"
 						   + "  ORDER BY A.WGPCSABN ";
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("WGPC_LIST", dt, ref ds);
 
 				qry = " SELECT RTRIM(A.EMBSSABN) AS SABN, "
 					+ "        RTRIM(A.EMBSNAME) AS SABN_NM, "
 					+ "        RTRIM(ISNULL(X1.DEPRNAM1,'')) AS DEPT_NM "
-					+ "   FROM " + wagedb + ".dbo.MSTEMBS A "
+					+ "   FROM MSTEMBS A "
 					+ "   LEFT OUTER JOIN MSTDEPR X1 ON A.EMBSDPCD=X1.DEPRCODE "
 					+ "  WHERE A.EMBSDPCD LIKE '" + dept + "'"
 					+ "    AND (A.EMBSSTAT='1' OR A.EMBSTSDT > '" + tsdt + "')"
 					+ "  ORDER BY A.EMBSJOCD, A.EMBSDPCD, A.EMBSSABN ";
 
-				dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("EMBS_LIST", dt, ref ds);
 
 				for (int i = 0; i < ds.Tables["EMBS_LIST"].Rows.Count; i++)
@@ -396,12 +532,12 @@ namespace WAGE1000
 			try
 			{
 				string qry = " SELECT A.* "
-						   + "   FROM " + wagedb + ".dbo.MSTWGPC A "
+						   + "   FROM MSTWGPC A "
 						   + "  WHERE A.WGPCYYMM = '" + yymm + "'"
 						   + "    AND A.WGPCSQNO = '" + sqno + "'"
 						   + "    AND A.WGPCSABN = '" + sabn + "'"
 						   + "  ORDER BY A.WGPCSABN ";
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("MSTWGPC", dt, ref ds);
 			}
 			catch (System.Exception ec)

@@ -160,7 +160,7 @@ namespace DUTY1000
 						}
 
 						string[] tableNames = new string[] { "DUTY_TRSLOFF", };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 					}
 					catch (Exception ec)
@@ -219,7 +219,11 @@ namespace DUTY1000
 						hrow["LIMIT_OFF"] = clib.TextToInt(cmb_limitoff.SelectedIndex.ToString());
 						hrow["RETURN_DT"] = ""; //clib.DateToText(dat_rsn_dt.DateTime);
 						hrow["CHARGE_YN"] = ""; //cmb_charge.EditValue.ToString();  
-						//hrow["EXP_YEAR"] = clib.TextToDecimal(txt_exp.Text.ToString());
+
+						hrow["EXP_YEAR"] = clib.TextToDecimal(txt_exp.Text.ToString());
+						hrow["EXP_Y2"] = clib.TextToDecimal(txt_exp2.Text.ToString());
+						hrow["EXP_Y3"] = clib.TextToDecimal(txt_exp3.Text.ToString());
+						hrow["EXP_Y4"] = clib.TextToDecimal(txt_exp4.Text.ToString());
 
 						hrow["STAT"] = cmb_stat.SelectedIndex + 1;
 						hrow["LDAY"] = clib.DateToText(dat_lday.DateTime);                          
@@ -240,7 +244,7 @@ namespace DUTY1000
 							hrow["PSTY"] = "U";
 						}
 						string[] tableNames = new string[] { "DUTY_MSTNURS" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 						if (outVal <= 0)                    
@@ -282,7 +286,7 @@ namespace DUTY1000
 						}
 
 						string[] tableNames = new string[] { "DUTY_TRSLOFF" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 					}
 					catch (Exception ec)
@@ -347,7 +351,7 @@ namespace DUTY1000
 						ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Add(hrow);
 					}
 					string[] tableNames = new string[] { "DUTY_TRSPLAN_ETC" };
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 					if (outVal <= 0)                    
@@ -385,7 +389,7 @@ namespace DUTY1000
 						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
 						hrow["PSTY"] = "D";
 						string[] tableNames = new string[] { "DUTY_TRSPLAN_ETC" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 					}
 
@@ -461,6 +465,9 @@ namespace DUTY1000
 				cmb_allowoff.SelectedIndex = clib.TextToInt(drow["ALLOWOFF"].ToString());
 				cmb_limitoff.SelectedIndex = clib.TextToInt(drow["LIMIT_OFF"].ToString());
 				txt_exp.Text = drow["EXP_YEAR"].ToString();
+				txt_exp2.Text = drow["EXP_Y2"].ToString();
+				txt_exp3.Text = drow["EXP_Y3"].ToString();
+				txt_exp4.Text = drow["EXP_Y4"].ToString();
 
 				cmb_stat.SelectedIndex = clib.TextToInt(drow["STAT"].ToString()) < 1 ? 0 : clib.TextToInt(drow["STAT"].ToString()) - 1;
 				if (drow["LDAY"].ToString() != "")

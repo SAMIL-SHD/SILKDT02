@@ -185,7 +185,7 @@ namespace DUTY1000
 										hrow["AP_TAG"] = "1";
 									}
 									string[] tableNames = new string[] { tb_nm };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+									SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 									outVal += cmd.setUpdate(ref ds, tableNames, null);
 								}
 							}
@@ -243,7 +243,7 @@ namespace DUTY1000
 										hrow["GW_CHKID2"] = SilkRoad.Config.SRConfig.USID;
 									}
 									string[] tableNames = new string[] { tb_nm };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+									SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 									outVal += cmd.setUpdate(ref ds, tableNames, null);
 								}
 							}
@@ -304,7 +304,7 @@ namespace DUTY1000
 										hrow["AP_TAG"] = "5";
 									}
 									string[] tableNames = new string[] { tb_nm };
-									SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+									SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 									outVal += cmd.setUpdate(ref ds, tableNames, null);
 								}
 							}
@@ -394,7 +394,7 @@ namespace DUTY1000
 				e.Info.DisplayText = (e.RowHandle + 1).ToString();
 		}
 
-		// CALL/OT 타이틀 클릭시 등록화면
+		// CALL/OT/출장 타이틀 클릭시 등록화면
 		private void grd_LinkEdit1_Click(object sender, EventArgs e)
 		{			
 			DataRow frow = grdv_ap2.GetFocusedDataRow();

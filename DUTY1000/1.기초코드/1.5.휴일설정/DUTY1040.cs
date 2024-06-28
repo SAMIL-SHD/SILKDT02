@@ -137,7 +137,9 @@ namespace DUTY1000
 				nrow["STAT_NM"] = "대기";
 				ds.Tables["SEARCH_HOLIDAY"].Rows.Add(nrow);
 				ds.Tables["SEARCH_HOLIDAY"].DefaultView.Sort = "DD";
-			}
+
+                dat_h_dt.Focus();
+            }
 		}
 
         //저장
@@ -171,7 +173,7 @@ namespace DUTY1000
 				}
 
 				string[] tableNames = new string[] { "D_DUTY_MSTHOLI", "DUTY_MSTHOLI" };
-				SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+				SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 				outVal = cmd.setUpdate(ref ds, tableNames, null);
             }
             catch (Exception ec)
@@ -309,16 +311,6 @@ namespace DUTY1000
         }
 
 		#endregion
-		
-		private void dateEdit1_Properties_CalendarTimeProperties_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
-		{			
-			//if (dateEdit1.Properties.VistaCalendarViewStyle == DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView)
-			//{
-			//	if (dateEdit1.DateTime.Date.ToString("ddd") == "토") // || dateEdit1.DateTime.Date.ToString("ddd") == "일")
-			//	{
-			//		dateEdit1.ForeColor = System.Drawing.Color.Blue;
-			//	}
-			//}
-		}
-	}
+
+    }
 }

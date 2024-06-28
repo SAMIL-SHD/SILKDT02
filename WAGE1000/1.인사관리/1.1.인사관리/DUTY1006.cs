@@ -118,7 +118,7 @@ namespace WAGE1000
 					sl_grcd.EditValue = crow["EMBSGRCD"].ToString().Trim() == "" ? null : crow["EMBSGRCD"].ToString().Trim(); //직급 
 
 					txt_hobo.Text = crow["EMBSHOBO"].ToString().Trim(); //호봉
-					mm_remk.Text = crow["EMBSREMK"].ToString().Trim();
+					mm_remk.Text = crow["EMBSDESC"].ToString().Trim();
 
 					//dat_shdt.DateTime = clib.TextToDate(crow["SH_DATE"].ToString().Trim()); //차기승호일
 																							//귀속일자
@@ -241,17 +241,16 @@ namespace WAGE1000
 					hrow["EMBSEMAL"] = txt_emal.Text.Trim();
 					hrow["EMBSADGB"] = cmb_adgb.SelectedIndex.ToString();
 					//hrow["EMBSADGB"] = chk_adgb.Checked == true ? "1" : "";
-					hrow["EMBSREMK"] = mm_remk.Text.Trim();
+					hrow["EMBSDESC"] = mm_remk.Text.Trim();
 
 					byte[] photo = ImageToByteArray(pic_photo.Image); //이미지를 byte로 반환
 					hrow["PHOTO"] = photo.Length == 0 ? null : photo;
 					hrow["EMBSUSID"] = SilkRoad.Config.SRConfig.USID;
 
 					string[] tableNames = new string[] { "MSTEMBS" };
-
-					int adgb = cmb_adgb.SelectedIndex;
-					if (adgb == 1 || adgb == 2 || adgb == 5 || adgb == 6)  //팀장,부서장,담당원장,대표원장
-					{
+                    
+					if (cmb_adgb.SelectedIndex > 0)
+                    {
 						df.GetCHK_MSTUSERDatas(txt_code.Text.ToString().Trim(), ds);
 						if (ds.Tables["CHK_MSTUSER"].Rows.Count == 0)
 						{
@@ -276,7 +275,7 @@ namespace WAGE1000
 						}
 					}
 
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 					if (outVal <= 0)
@@ -325,7 +324,7 @@ namespace WAGE1000
 							ds.Tables["MSTEMBS"].Select("EMBSSABN = '" + txt_code.Text.ToString().Trim() + "'")[0].Delete();
 
 							string[] tableNames = new string[] { "MSTEMBS" };
-							SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							outVal = cmd.setUpdate(ref ds, tableNames, null);
 						}
 
@@ -435,12 +434,12 @@ namespace WAGE1000
 					txt_code.Focus();
 					return false;
 				}
-				else if (txt_code.Text.ToString().Trim().Length < 5)
-				{
-					MessageBox.Show("5자리 사번을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					txt_code.Focus();
-					return false;
-				}
+				//else if (txt_code.Text.ToString().Trim().Length < 5)
+				//{
+				//	MessageBox.Show("5자리 사번을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//	txt_code.Focus();
+				//	return false;
+				//}
 				else
 				{
 					isError = true;
@@ -478,13 +477,13 @@ namespace WAGE1000
 					sl_dpcd.Focus();
 					return false;
 				}
-				else if (sl_jocd.EditValue == null)
-				{
-					MessageBox.Show(labelControl9.Text + "를 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					sl_jocd.Focus();
-					return false;
-				}
-				else if (Encoding.Default.GetByteCount(txt_iden.Text.ToString().Trim()) > 20)
+                else if (sl_jocd.EditValue == null)
+                {
+                    MessageBox.Show(labelControl9.Text + "를 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    sl_jocd.Focus();
+                    return false;
+                }
+                else if (Encoding.Default.GetByteCount(txt_iden.Text.ToString().Trim()) > 20)
 				{
 					MessageBox.Show(labelControl26.Text + "의 길이가 20byte를 초과하였습니다.\r\n(현재 " + Encoding.Default.GetByteCount(txt_iden.Text.ToString().Trim()) + "byte)", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					txt_iden.Focus();

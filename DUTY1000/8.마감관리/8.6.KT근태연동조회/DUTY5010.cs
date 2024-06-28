@@ -278,7 +278,7 @@ namespace DUTY1000
 								nrow2["GTMMGT" + grow["C91"].ToString().Trim().Substring(2, 2)] = clib.TextToDecimal(drow["T_CNT"].ToString());
 
 							string[] tableNames = new string[] { "MSTWGPC", "MSTGTMM" };
-							SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							outVal += cmd.setUpdate(ref ds, tableNames, null);
 						}
 					}					

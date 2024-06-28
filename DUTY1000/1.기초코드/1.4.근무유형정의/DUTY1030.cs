@@ -33,15 +33,6 @@ namespace DUTY1000
         {
             _Flag = "";
 
-            //if (ds.Tables["MSTBCOD"] != null)
-            //{
-            //    ds.Tables["MSTBCOD"].Clear();
-            //}
-
-            //grdv.ActiveFilter.Clear();
-            //grdv.SortInfo.Clear();
-            //selectedStat = false;
-
             grdv1.FocusedRowHandle = -1;
             sr_bgcolor.EditValue = null;
             cec.SetClearControls(srGroupBox5, new string[] { "" });
@@ -51,10 +42,6 @@ namespace DUTY1000
 			cmb_gtype.Enabled = true;		
             srPanel7.Enabled = false;
             SetButtonEnable("1000");
-            //SetButtonEnable("1111");    
-
-            //df.GetMSTDUTYDatas(ref ds);
-            //grd.DataSource = ds.Tables["MSTDUTY"];
 
             txt_gcode.Focus();
         }
@@ -68,70 +55,34 @@ namespace DUTY1000
             SetCancel();
 			df.GetSEARCH_MSTGNMUDatas(ds);
 			grd1.DataSource = ds.Tables["SEARCH_MSTGNMU"];
-            //btn_refresh_CK(ds.Tables["MSTDUTY"].ToString());
         }
 
         #endregion
 
         #region 2 Button
-
-        //조회
-        private void srButton1_Click(object sender, EventArgs e)
-        {
-            //df.GetMSTDUTYDatas(ref ds);
-            //grd.DataSource = ds.Tables["MSTDUTY"];
-        }
-
+        
         //처리
         private void btn_proc_Click(object sender, EventArgs e)
         {
             if (isNoError_um(1))
             {
-				//코드 자리수 0채우기.      2021-07-12. 10:40 근무유형코드가 그리 많지 않아서 Char(4)에서 (2)로 바꿈. 사장님께서도 확인. KHS.
 				txt_gcode.Text = txt_gcode.Text.PadLeft(2, '0');
-
-				//if (txt_gcode.Text.Length < txt_gcode.Properties.MaxLength)
-				//{
-				//    //txt_gcode.Text = txt_gcode.Text.PadRight(txt_gcode.Properties.MaxLength, '0');
-				//    txt_gcode.Text = txt_gcode.Text.PadRight(txt_gcode.Properties.MaxLength, '2');  // 여기숫자도 4에서 2로. 
-				//}
-
-				//cec.SetEnabledStateinEachControls(srGroupBox5, true, new string[] { "txt_code" }, new string[] { "dat_lday" });
-
-				// ★ 근무유형 약칭 한 글자만 들어가도록 할 건데, 이 부분도 이미 사용 중인지 확인이 필요함!! 
 				
 				srPanel7.Enabled = true;
-
-				//왼쪽그리드에 이미 코드 있으면 정보 뿌리기
+                
 				df.GetDUTY_MSTGNMUDatas(txt_gcode.Text.ToString(), ds);
 				if (ds.Tables["DUTY_MSTGNMU"].Select("G_CODE = '" + txt_gcode.Text.ToString().Trim() + "' ").Length > 0)
 				{
-					DataRow drow = ds.Tables["DUTY_MSTGNMU"].Select("G_CODE = '" + txt_gcode.Text.ToString().Trim() + "'")[0];
-
-					if (drow["NS_CHK"].ToString() == "1")
-					{
-						cmb_gtype.Enabled = false;
-						SetButtonEnable("1101");
-					}
-					else
-					{
-						cmb_gtype.Enabled = true;
-						SetButtonEnable("1111");
-					}
+					DataRow drow = ds.Tables["DUTY_MSTGNMU"].Select("G_CODE = '" + txt_gcode.Text.ToString().Trim() + "'")[0];                    
 					txt_gcode.Text = drow["G_CODE"].ToString().Trim();
 					txt_nam1.Text = drow["G_FNM"].ToString().Trim();
 					txt_nam2.Text = drow["G_SNM"].ToString().Trim();
-					txt_tmfr.Text = drow["G_FRTM"].ToString().Trim();
-					txt_tmto.Text = drow["G_TOTM"].ToString().Trim();
-					txt_holtm.Text = drow["G_WORK"].ToString();
-					cmb_gtype.SelectedIndex = clib.TextToInt(drow["G_TYPE"].ToString()) - 1;
+					cmb_gtype.SelectedIndex = clib.TextToInt(drow["G_TYPE"].ToString());
+                    txt_yc_day.Text = drow["YC_DAY"].ToString();
                     sr_bgcolor.Text = drow["G_COLOR"].ToString().Trim();	
-					cmb_autoYN.EditValue = drow["AUTO_YN"].ToString();
-					cmb_limit.EditValue = drow["REQ_YN"].ToString();
-					cmb_dang.EditValue = drow["DANG_YN"].ToString();
-					txt_yc_day.Text = drow["YC_DAY"].ToString();
 					_Flag = "";
-				}
+                    SetButtonEnable("1101");
+                }
 				else
 				{
 					_Flag = "C"; //신규
@@ -166,10 +117,11 @@ namespace DUTY1000
                     //hrow["G_CODE"] = txt_gcode.Text.ToString().Trim();
 					hrow["G_FNM"] = txt_nam1.Text.ToString().Trim();
                     hrow["G_SNM"] = txt_nam2.Text.ToString().Trim();
-					hrow["G_FRTM"] = txt_tmfr.Text.ToString().Replace(":", "");
-                    hrow["G_TOTM"] = txt_tmto.Text.ToString().Replace(":", "");
-					hrow["G_WORK"] = clib.TextToDecimal(txt_holtm.Text.ToString());
-                    hrow["G_TYPE"] = cmb_gtype.SelectedIndex + 1;
+					//hrow["G_FRTM"] = txt_tmfr.Text.ToString().Replace(":", "");
+     //               hrow["G_TOTM"] = txt_tmto.Text.ToString().Replace(":", "");
+					//hrow["G_WORK"] = clib.TextToDecimal(txt_holtm.Text.ToString());
+                    hrow["G_TYPE"] = cmb_gtype.SelectedIndex;
+                    hrow["YC_DAY"] = clib.TextToDecimal(txt_yc_day.Text.ToString());
                     hrow["G_COLOR"] = sr_bgcolor.EditValue.ToString() == "0" ? -1 : sr_bgcolor.EditValue;
 					//Color myColor = Color.FromArgb(clib.TextToInt(hrow["G_COLOR"].ToString()));
 					//int R = myColor.R;
@@ -178,10 +130,9 @@ namespace DUTY1000
 					//string hex = myColor.R.ToString("X2") + myColor.G.ToString("X2") + myColor.B.ToString("X2");
 					hrow["G_RGB"] = sr_bgcolor.EditValue.ToString() == "0" ? "rgb(255,255,255)" : "rgb(" + sr_bgcolor.Color.R.ToString() + "," + sr_bgcolor.Color.G.ToString() + "," + sr_bgcolor.Color.B.ToString() + ")";
 					hrow["G_HEXA"] = sr_bgcolor.Color.Name.Length < 8 ? "#ffffff" : ("#" + sr_bgcolor.Color.Name.Substring(2, 6));
-                    hrow["AUTO_YN"] = cmb_autoYN.EditValue;
-                    hrow["REQ_YN"] = cmb_limit.EditValue;        //신청제한여부
-                    hrow["DANG_YN"] = cmb_dang.EditValue;
-					hrow["YC_DAY"] = clib.TextToDecimal(txt_yc_day.Text.ToString());
+                    //hrow["AUTO_YN"] = cmb_autoYN.EditValue;
+                    //hrow["REQ_YN"] = cmb_limit.EditValue;        //신청제한여부
+                    //hrow["DANG_YN"] = cmb_dang.EditValue;
                     hrow["USID"] = SilkRoad.Config.SRConfig.USID;
 
                     if (_Flag == "C")  //신규
@@ -199,7 +150,7 @@ namespace DUTY1000
                     }
 
 					string[] tableNames = new string[] { "DUTY_MSTGNMU" };
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 					if (outVal <= 0)
@@ -234,7 +185,7 @@ namespace DUTY1000
 						ds.Tables["DUTY_MSTGNMU"].Select("G_CODE = '" + txt_gcode.Text.ToString().Trim() + "'")[0].Delete();
 
 						string[] tableNames = new string[] { "DUTY_MSTGNMU" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 						if (outVal > 0)
@@ -300,8 +251,8 @@ namespace DUTY1000
 		
 		private void cmb_gtype_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			txt_yc_day.Enabled = cmb_gtype.SelectedIndex == 7 || cmb_gtype.SelectedIndex == 11 ? true : false;
-			if (cmb_gtype.SelectedIndex != 7 || cmb_gtype.SelectedIndex != 11)
+			txt_yc_day.Enabled = cmb_gtype.SelectedIndex > 10 ? true : false;
+			if (cmb_gtype.SelectedIndex < 11)
 				txt_yc_day.Text = "0";
 		}
 
@@ -345,12 +296,6 @@ namespace DUTY1000
 					txt_nam2.Focus();
 					return false;
 				}
-				//else if (ds.Tables["SEARCH_MSTGNMU"].Select("G_CODE <> '" + txt_gcode.Text.Trim() + "' and G_SNM = '" + txt_nam2.Text.ToString().Trim() + "'").Length > 0)
-				//{
-				//	MessageBox.Show(txt_nam2.Text.ToString().Trim() + " 약칭은 이미 사용중입니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				//	txt_nam2.Focus();
-				//	return false;
-				//}
 				else if (Encoding.Default.GetByteCount(txt_nam1.Text.ToString().Trim()) > 40)
 				{
 					MessageBox.Show(srLabel7.Text + "의 길이가 40byte를 초과하였습니다.\r\n(현재 " + Encoding.Default.GetByteCount(txt_nam1.Text.ToString().Trim()) + "byte)", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -363,15 +308,9 @@ namespace DUTY1000
 					txt_nam2.Focus();
 					return false;
 				}
-				else if (Encoding.Default.GetByteCount(txt_nam2.Text.ToString().Trim()) > 8)
+				else if ((cmb_gtype.SelectedIndex == 12 || cmb_gtype.SelectedIndex == 13) && clib.TextToDecimal(txt_yc_day.Text.ToString()) == 0)
 				{
-					MessageBox.Show(srLabel2.Text + "의 길이가 8byte를 초과하였습니다.\r\n(현재 " + Encoding.Default.GetByteCount(txt_nam2.Text.ToString().Trim()) + "byte)", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					txt_nam2.Focus();
-					return false;
-				}
-				else if (cmb_gtype.SelectedIndex == 11 && clib.TextToDecimal(txt_yc_day.Text.ToString()) == 0)
-				{
-					MessageBox.Show("휴가일수를 0일로 등록할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("연차/휴가일수를 0일로 등록할 수 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					txt_yc_day.Focus();
 					return false;
 				}

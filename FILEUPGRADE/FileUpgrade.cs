@@ -25,18 +25,18 @@ namespace FILEUPGRADE
         /// 디버그모드일때 사용하는 startup path 
         /// 소스상에 3번정도 사용되니..여기서 선언해버리고..
         /// </summary>
-        string Debug_StartPath = @"D:\SILKROAD\PROGDT01";
+        string Debug_StartPath = @"D:\SILKROAD\PROGDT02";
        
         /// <summary>소스상 사용할 실행파일명 </summary>
-        string ExeFileName = "SILKDT01.EXE";
+        string ExeFileName = "SILKDT02.EXE";
 
         /// <summary> 압축파일명 </summary>
-        string ZipFileName = "Silkdt01Upgrade.zip";
+        string ZipFileName = "Silkdt02Upgrade.zip";
 		string ZipFileName2 = "Dev16.zip";
 
         /// <summary> 부모폴더 찾기위한 실행파일의 폴더 소문자여야함  </summary>
-        string FolderName = "progdt01";
-        string VersiontxtName = "dt01chk.txt";
+        string FolderName = "progdt02";
+        string VersiontxtName = "dt02chk.txt";
         string VersiontxtName2 = "dev16chk.txt";
 
         DataSet ds = new DataSet();
@@ -106,7 +106,7 @@ namespace FILEUPGRADE
                 SqlCommand comm = conn.CreateCommand();
                 comm.CommandTimeout = 600;
                 comm.CommandText = " SELECT * FROM LIST_UPGRADE "
-                                 + "  WHERE FILENAME NOT IN ('FILEUPGRADE.EXE','Ionic.Zip.dll') AND STAT = '1' AND PROG_NO = 'DT01' ";
+                                 + "  WHERE FILENAME NOT IN ('FILEUPGRADE.EXE','Ionic.Zip.dll') AND STAT = '1' AND PROG_NO = 'DT02' ";
                 SqlDataAdapter Adap = new SqlDataAdapter(comm);
                 Adap.Fill(ds, "FtpDown");
                 conn.Close();
@@ -583,7 +583,7 @@ namespace FILEUPGRADE
 			if (bar_condition == "1")
 				labelControl2.Text = "Ftp서버에서 다운로드중입니다.";
 			else if (bar_condition == "2")
-				labelControl2.Text = "SilkDt01.Zip 압축을 해제중입니다.";
+				labelControl2.Text = "SilkDt02.Zip 압축을 해제중입니다.";
 			else if (bar_condition == "3")
 				labelControl2.Text = "Dev16.Zip 압축을 해제중입니다.";
 			else

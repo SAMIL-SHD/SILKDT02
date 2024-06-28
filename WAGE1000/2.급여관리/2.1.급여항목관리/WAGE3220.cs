@@ -25,10 +25,6 @@ namespace WAGE1000
 
         private void SetCancel(int stat)
 		{
-			//df.GetSEARCH_DEPTDatas(ds);
-			//sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-
-			
 			df.GetWAGE_DEPRDatas(ds);
 			sl_dept.Properties.DataSource = ds.Tables["WAGE_DEPR"];
 
@@ -128,12 +124,12 @@ namespace WAGE1000
 							ds.Tables["MSTWGFX"].Rows.Add(nrow);
 						}
 						string[] tableNames = new string[] { "MSTWGFX", };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal += cmd.setUpdate(ref ds, tableNames, null);
 					}
 
 					//string[] tableNames = new string[] { "MSTWGFX", };
-					//SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					//SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					//outVal = cmd.setUpdate(ref ds, tableNames, null);
 				}
 				catch (Exception ec)
@@ -168,7 +164,7 @@ namespace WAGE1000
 								ds.Tables["MSTWGFX"].Rows[0].Delete();
 
 								string[] tableNames = new string[] { "MSTWGFX" };
-								SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+								SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 								outVal += cmd.setUpdate(ref ds, tableNames, null);
 							}
 						}

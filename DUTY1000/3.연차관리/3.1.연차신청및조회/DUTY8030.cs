@@ -440,7 +440,7 @@ namespace DUTY1000
 					{
 						DataRow hrow = ds.Tables["DUTY_TRSHREQ"].Rows[0];
 						hrow["GUBN"] = cmb_gubn.SelectedIndex == 1 ? "D" : "C";
-						hrow["YC_DAYS"] = df.GetYC_DAYS_CALCDatas(sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
+						hrow["YC_DAYS"] = df.GetYC_DAYS_CALC_SABNDatas(sl_embs.EditValue.ToString(), sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
 						if (cmb_gubn.SelectedIndex == 1)
 							hrow["YC_DAYS"] = -clib.TextToDecimal(hrow["YC_DAYS"].ToString());
 						hrow["LINE_CNT"] = 1;
@@ -492,7 +492,7 @@ namespace DUTY1000
 						hrow["REQ_TYPE"] = sl_gnmu.EditValue.ToString();
 						hrow["REQ_TYPE2"] = to_gnmu;
 
-						hrow["YC_DAYS"] = df.GetYC_DAYS_CALCDatas(sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
+						hrow["YC_DAYS"] = df.GetYC_DAYS_CALC_SABNDatas(sl_embs.EditValue.ToString(), sldt, sldt2, sl_gnmu.EditValue.ToString(), to_gnmu, ds);
 						if (cmb_gubn.SelectedIndex == 1)
 							hrow["YC_DAYS"] = -clib.TextToDecimal(hrow["YC_DAYS"].ToString());
 						hrow["AP_TAG"] = "4";
@@ -537,7 +537,7 @@ namespace DUTY1000
 					}
                     
                     string[] tableNames = new string[] { "DUTY_TRSHREQ" };
-                    SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+                    SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                     outVal = cmd.setUpdate(ref ds, tableNames, null);
                 }
                 catch (Exception ec)
@@ -613,7 +613,7 @@ namespace DUTY1000
 
 							ds.Tables["DUTY_TRSHREQ"].Rows[0].Delete();
 							string[] tableNames = new string[] { "DUTY_TRSHREQ", "DEL_TRSHREQ" };
-							SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							outVal = cmd.setUpdate(ref ds, tableNames, null);
 						}
 					}

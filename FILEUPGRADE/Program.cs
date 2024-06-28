@@ -58,10 +58,10 @@ namespace FILEUPGRADE
         /// <summary>
         /// 디버그모드일때 사용하는 startup path 
         /// </summary>
-        string Debug_StartPath = @"D:\SILKROAD\PROGDT01";
+        string Debug_StartPath = @"D:\SILKROAD\PROGDT02";
 
         /// <summary> 부모폴더 찾기위한 실행파일의 폴더 *소문자여야함* </summary>
-        string FolderName = "progdt01"; //소문자여야함
+        string FolderName = "progdt02"; //소문자여야함
 
         //*******************************************************************
 

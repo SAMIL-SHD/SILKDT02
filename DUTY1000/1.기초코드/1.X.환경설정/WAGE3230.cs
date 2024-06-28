@@ -128,12 +128,12 @@ namespace DUTY1000
 							ds.Tables["MSTWGPC"].Rows.Add(nrow);
 						}
 						string[] tableNames = new string[] { "MSTWGPC", };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal += cmd.setUpdate(ref ds, tableNames, null);
 					}
 
 					//string[] tableNames = new string[] { "MSTWGPC", };
-					//SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					//SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					//outVal = cmd.setUpdate(ref ds, tableNames, null);
 				}
 				catch (Exception ec)
@@ -165,7 +165,7 @@ namespace DUTY1000
 							ds.Tables["MSTWGPC"].Rows[i].Delete();
 
 							string[] tableNames = new string[] { "MSTWGPC" };
-							SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							outVal += cmd.setUpdate(ref ds, tableNames, null);
 						}
 					}

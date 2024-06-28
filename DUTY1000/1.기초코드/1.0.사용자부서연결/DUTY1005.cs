@@ -147,7 +147,7 @@ namespace DUTY1000
 
                 string[] qrys = new string[] { QRY };
                 string[] tableNames = new string[] { "DUTY_PWERDEPT" };
-                SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+                SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                 int outVal = cmd.setUpdate(ref ds, tableNames, qrys);
             }
             catch (Exception ec)

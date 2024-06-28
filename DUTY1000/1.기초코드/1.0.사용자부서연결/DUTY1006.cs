@@ -276,7 +276,7 @@ namespace DUTY1000
 						}
 					}
 
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
 
 					if (outVal <= 0)
@@ -325,7 +325,7 @@ namespace DUTY1000
 							ds.Tables["MSTEMBS"].Select("EMBSSABN = '" + txt_code.Text.ToString().Trim() + "'")[0].Delete();
 
 							string[] tableNames = new string[] { "MSTEMBS" };
-							SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							outVal = cmd.setUpdate(ref ds, tableNames, null);
 						}
 

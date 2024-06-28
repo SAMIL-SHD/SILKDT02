@@ -297,7 +297,7 @@ namespace DUTY1000
 						ds.Tables["DUTY_MSTYCCJ"].Rows.Add(nrow);
 						
 						string[] tableNames = new string[] { "DUTY_MSTYCCJ" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						cmd.setUpdate(ref ds, tableNames, null);
 
 						iSendCnt++;
@@ -612,7 +612,7 @@ namespace DUTY1000
 						ds.Tables["DUTY_MSTYCCJ"].Rows.Add(nrow);
 						
 						string[] tableNames = new string[] { "DUTY_MSTYCCJ" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						int outval = cmd.setUpdate(ref ds, tableNames, null);
 						if (outval > 0)
 							AppendMessage(iSendCnt.ToString() + "." + sano + "_" + sanm + " 전송성공");

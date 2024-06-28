@@ -10,7 +10,7 @@ namespace DUTY1000
     public partial class duty1011 : SilkRoad.Form.Base.FormX
     {
         CommonLibrary clib = new CommonLibrary();
-        static string wagedb = "WAGEDB" + SilkRoad.Config.SRConfig.WorkPlaceNo;
+        static string wagedb = "WG06DB" + SilkRoad.Config.SRConfig.WorkPlaceNo;
 
         ClearNEnableControls cec = new ClearNEnableControls();
         public DataSet ds = new DataSet();
@@ -129,7 +129,7 @@ namespace DUTY1000
 
 					string[] tableNames = new string[] { "DUTY_TRSDEPT" };
 					//string[] tableNames = new string[] { null };
-					SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, UpQry);
                     
                 }

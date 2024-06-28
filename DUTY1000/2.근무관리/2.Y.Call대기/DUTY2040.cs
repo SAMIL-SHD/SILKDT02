@@ -298,7 +298,7 @@ namespace DUTY1000
 					}
 
                     string[] tableNames = new string[] { "DUTY_TRSCALL" };
-                    SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+                    SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                     outVal = cmd.setUpdate(ref ds, tableNames, null);
                 }
                 catch (Exception ec)
@@ -333,7 +333,7 @@ namespace DUTY1000
 						}
 
 						string[] tableNames = new string[] { "DUTY_TRSCALL" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 					}
 					catch (Exception ec)

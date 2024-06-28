@@ -63,9 +63,12 @@ namespace DUTY1000
 			sl_line2.EditValue = null;
 
 			if (sl_embs.EditValue != null)
-			{
-				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
-				ADGB_STAT(adgb);
+            {
+                DataRow drow = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0];
+                string adgb = drow["EMBSADGB"].ToString();
+                if ("1200,2600".Contains(drow["EMBSDPCD"].ToString()))
+                    adgb = "1";
+                ADGB_STAT(adgb);
 
 				//종검실일때만 23.03.10
 				if (ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSDPCD"].ToString() == "2500")
@@ -212,7 +215,7 @@ namespace DUTY1000
 						ds.Tables["DUTY_GWDOC"].Rows.Add(hrow);
 
 						string[] tableNames = new string[] { "DUTY_GWDOC" };
-						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 						#endregion
 
@@ -307,7 +310,11 @@ namespace DUTY1000
 		{
 			if (sl_embs.EditValue != null)
 			{
-				string adgb = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSADGB"].ToString();
+                DataRow drow = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0];
+
+                string adgb = drow["EMBSADGB"].ToString();
+                if ("1200,2600".Contains(drow["EMBSDPCD"].ToString()))
+                    adgb = "1";
 				ADGB_STAT(adgb);
 			}
 		}

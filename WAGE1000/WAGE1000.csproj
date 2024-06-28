@@ -205,6 +205,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1.인사관리\1.1.인사관리\DUTY1005.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1.인사관리\1.1.인사관리\DUTY1005.designer.cs">
+      <DependentUpon>DUTY1005.cs</DependentUpon>
+    </Compile>
     <Compile Include="1.인사관리\1.1.인사관리\DUTY1006.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </Compile>
     <Compile Include="DataProcFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="1.인사관리\1.1.인사관리\DUTY1005.resx">
+      <DependentUpon>DUTY1005.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="1.인사관리\1.1.인사관리\DUTY1006.resx">
       <DependentUpon>DUTY1006.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,16 +305,14 @@
     <None Include="Resources\email.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SilkRoad.DbCmd_DT01\SilkRoad.DbCmd_DT01.csproj">
-      <Project>{097c1a73-49b0-4bc2-8e5d-26fb67d14a65}</Project>
-      <Name>SilkRoad.DbCmd_DT01</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\확대.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SilkRoad.DbCmd_DT02\SilkRoad.DbCmd_DT02.csproj">
+      <Project>{097c1a73-49b0-4bc2-8e5d-26fb67d14a65}</Project>
+      <Name>SilkRoad.DbCmd_DT02</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

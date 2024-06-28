@@ -131,7 +131,7 @@ namespace DUTY1000
 				ds.Tables["DUTY_MSTENDS_LOG"].Rows.Add(nrow2);
 
 				string[] tableNames = new string[] { "DUTY_MSTENDS", "DUTY_MSTENDS_LOG" };
-				SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+				SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 				int outVal = cmd.setUpdate(ref ds, tableNames, null);
 				
 				if (outVal > 0)							

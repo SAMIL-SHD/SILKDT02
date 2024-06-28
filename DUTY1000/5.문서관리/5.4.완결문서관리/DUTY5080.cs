@@ -209,7 +209,7 @@ namespace DUTY1000
 			//							hrow["AP_TAG"] = "1";
 			//						}
 			//						string[] tableNames = new string[] { "DUTY_TRSHREQ" };
-			//						SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+			//						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 			//						outVal += cmd.setUpdate(ref ds, tableNames, null);
 			//					}
 			//				}
@@ -328,7 +328,7 @@ namespace DUTY1000
 							ds.Tables[tb_nm].Rows[0].Delete();
 
 							string[] tableNames = new string[] { tb_nm, del_tb_nm };
-							SilkRoad.DbCmd_DT01.DbCmd_DT01 cmd = new SilkRoad.DbCmd_DT01.DbCmd_DT01();
+							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							cmd.setUpdate(ref ds, tableNames, null);
 							outVal++;						
 						}
@@ -587,16 +587,18 @@ namespace DUTY1000
 					{
 						doc_gubn = cmb_gubn2.SelectedIndex == 0 ? "%"	//전체
 								: cmb_gubn2.SelectedIndex == 1 ? "1"	//CALL
-								: cmb_gubn2.SelectedIndex == 2 ? "2"	//OT
-								: "-1";
+								: cmb_gubn2.SelectedIndex == 2 ? "2"    //OT
+                                : cmb_gubn2.SelectedIndex == 3 ? "21"   //출장
+                                : "-1";
 						break;
 					}
 				case 2:
 					{
 						doc_gubn = cmb_gubn3.SelectedIndex == 0 ? "%"	//전체
 								: cmb_gubn3.SelectedIndex == 1 ? "3"	//OFF,N
-								: cmb_gubn3.SelectedIndex == 2 ? "4"	//밤근무
-								: "-1";
+								: cmb_gubn3.SelectedIndex == 2 ? "4"    //밤근무
+                                : cmb_gubn3.SelectedIndex == 3 ? "7"    //간호간병
+                                : "-1";
 						break;
 					}
 				case 3:
