@@ -218,22 +218,20 @@ namespace DUTY1000
 			try
 			{
 				string qry = " SELECT A1.*, "
-						   + "        A1.EXP_YEAR+A1.EXP_Y2+A1.EXP_Y3+A1.EXP_Y4 AS EXP_T, "
 						   + "		  (CASE WHEN A1.GUBN='1' THEN '등록' ELSE '미등록' END) GUBN_NM, "
 						   + "        (CASE WHEN A1.STAT=1 THEN '정상' ELSE '사용중지' END) STAT_NM, "
-						   + "        (CASE A1.SHIFT_WORK WHEN 1 THEN 'Y' WHEN 2 THEN 'N' ELSE '' END) SHIFT_WORK_NM, "  //교대여부
 						   + "        RTRIM(ISNULL(X3.DEPRNAM1,'')) DEPT_NM, "
 						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X2.EMBSPHPN) as varchar(100))) HPNO, RTRIM(X2.EMBSEMAL) AS EMAIL_ID "
 						   + "  FROM ( "
-						   + "		SELECT '1' GUBN, A.SAWON_NO, A.SAWON_NM, ISNULL(X1.EMBSDPCD,'') DEPTCODE, ISNULL(A.SHIFT_WORK,0) SHIFT_WORK, "
-						   + "             A.MAX_NCNT, A.ALLOWOFF, A.LIMIT_OFF, " 
-						   + "			   A.RETURN_DT, A.CHARGE_YN, A.EXP_YEAR, A.EXP_Y2, A.EXP_Y3, A.EXP_Y4, A.STAT, A.LDAY, A.INDT, A.UPDT, A.USID, A.PSTY "
+						   + "		SELECT '1' GUBN, A.SAWON_NO, A.SAWON_NM, ISNULL(X1.EMBSDPCD,'') DEPTCODE, "
+						   + "             A.ALLOWOFF, A.LIMIT_OFF, " 
+						   + "			   A.STAT, A.LDAY, A.INDT, A.UPDT, A.USID, A.PSTY "
 						   + "		  FROM DUTY_MSTNURS A "
 						   + "        LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SAWON_NO=X1.EMBSSABN "
 						   + "     UNION ALL "
-						   + "		SELECT '2' GUBN, RTRIM(A.EMBSSABN) AS SAWON_NO, RTRIM(A.EMBSNAME) AS SAWON_NM, A.EMBSDPCD AS DEPTCODE, 0 SHIFT_WORK, "
-						   + "             0 MAX_NCNT, 0 ALLOWOFF, 0 LIMIT_OFF, "
-						   + "			   '' RETURN_DT, '' CHARGE_YN, 0 EXP_YEAR, 0 EXP_Y2, 0 EXP_Y3, 0 EXP_Y4, 1 STAT, '' LDAY, '' INDT, '' UPDT, '' USID, '' PSTY "
+						   + "		SELECT '2' GUBN, RTRIM(A.EMBSSABN) AS SAWON_NO, RTRIM(A.EMBSNAME) AS SAWON_NM, A.EMBSDPCD AS DEPTCODE, "
+						   + "             0 ALLOWOFF, 0 LIMIT_OFF, "
+						   + "			   1 STAT, '' LDAY, '' INDT, '' UPDT, '' USID, '' PSTY "
 						   + "		  FROM " + wagedb + ".DBO.MSTEMBS A "
 						   + "        LEFT OUTER JOIN DUTY_MSTNURS X1 ON A.EMBSSABN=X1.SAWON_NO "
 						   + "		 WHERE A.EMBSSTAT=1 AND A.EMBSDPCD IN (SELECT DEPTCODE FROM DUTY_INFONURS) AND X1.SAWON_NO IS NULL ) A1 "
@@ -357,7 +355,7 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		//해당부서의 간호사 불러오기
+		//해당부서의 직원 불러오기
 		public void GetSEARCH_DEPT_NURSDatas(string dept, DataSet ds)
 		{
 			try
@@ -367,7 +365,7 @@ namespace DUTY1000
 						   + "   FROM " + wagedb + ".DBO.MSTEMBS A "
                            + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X1 "
 						   + "     ON A.EMBSDPCD = X1.DEPRCODE "
-						   + "  WHERE A.EMBSDPCD LIKE '" + dept + "'";
+						   + "  WHERE A.EMBSSTAT='1' AND A.EMBSDPCD LIKE '" + dept + "'";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("SEARCH_NURS", dt, ref ds);
@@ -2156,7 +2154,7 @@ namespace DUTY1000
 						   + "         SELECT A.YC_YEAR, A.SAWON_NO SAWON_NO, RTRIM(A.SAWON_NM) SAWON_NM, RTRIM(X3.EMBSEMAL) GW_EMAIL, RTRIM(ISNULL(X4.DEPRNAM1,'')) DEPT_NM, "
 						   + "                A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
 						   + "                A.YC_BASE, A.YC_CHANGE, A.YC_FIRST, A.YC_ADD, A.YC_TOTAL, "
-						   + "				  (CASE WHEN A.YC_TYPE=0 THEN '회계년도기준' ELSE '입사일기준' END) YC_TYPE_NM, "
+						   + "				  (CASE WHEN A.YC_TYPE IN (0,2) THEN '회계년도기준' ELSE '입사일기준' END) YC_TYPE_NM, "
 						   + "      		  LEFT(A.IN_DATE,4)+'-'+SUBSTRING(A.IN_DATE,5,2)+'-'+SUBSTRING(A.IN_DATE,7,2) AS IN_DATE_NM, "
 						   + "                LEFT(A.CALC_FRDT,4)+'-'+SUBSTRING(A.CALC_FRDT,5,2)+'-'+SUBSTRING(A.CALC_FRDT,7,2)+' ~ '+ "
 						   + "                LEFT(A.CALC_TODT,4)+'-'+SUBSTRING(A.CALC_TODT,5,2)+'-'+SUBSTRING(A.CALC_TODT,7,2) AS CALC_DT_NM, "
@@ -2172,7 +2170,7 @@ namespace DUTY1000
                            + "             ON A.SAWON_NO=X3.EMBSSABN "
 						   + "			 LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X4 "
                            + "			   ON X3.EMBSDPCD=X4.DEPRCODE "
-						   + "          WHERE ((A.YC_TYPE=0 AND A.YC_YEAR='" + sldt.Substring(0, 4) + "' ) "
+						   + "          WHERE ((A.YC_TYPE IN (0,2) AND A.YC_YEAR='" + sldt.Substring(0, 4) + "' ) "
 						   + "                OR (A.YC_TYPE IN (1,3) AND A.USE_FRDT<='" + sldt + "' AND A.USE_TODT>='" + sldt + "')) "
 						   + "            AND A.SAWON_NO='" + sabn + "'"
 						   + "          GROUP BY A.YC_YEAR, A.SAWON_NO, A.SAWON_NM, X3.EMBSEMAL, X4.DEPRNAM1, A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
@@ -5206,99 +5204,23 @@ namespace DUTY1000
 
         #endregion
 
-
-        #region 9015 - 밤근무수당관리
-
-        //밤근무수당 처리
-        public void GetS_INFO_NSDDatas(string yymm, DataSet ds)
-        {
-            try
-            {
-                string qry = " SELECT '" + yymm.Substring(0, 6) + "' AS YYMM, "
-                           + "        '" + yymm.Substring(0, 4) + "-" + yymm.Substring(4, 2) + "' AS YYMM_NM, "
-                           + "        A.SQ, "
-                           + "        ISNULL(A.SD_AMT,0) AS SD_AMT, "
-                           + "        ISNULL(A.T_AMT,0) AS T_AMT "
-                           + "   FROM DUTY_INFO_NSD A "
-                           + "  INNER JOIN (SELECT MAX(YYMM) YYMM FROM DUTY_INFO_NSD WHERE YYMM <= '" + yymm.Substring(0, 6) + "') X1 "
-                           + "     ON A.YYMM=X1.YYMM "
-                           + "  ORDER BY A.SQ ";
-
-                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-                dp.AddDatatable2Dataset("S_INFO_NSD", dt, ref ds);
-
-                for (int i = 1; i <= 10; i++)
-                {
-                    if (ds.Tables["S_INFO_NSD"].Select("SQ = " + i + "").Length == 0)
-                    {
-                        DataRow drow = ds.Tables["S_INFO_NSD"].NewRow();
-                        drow["YYMM"] = yymm.Substring(0, 6);
-                        drow["YYMM_NM"] = yymm.Substring(0, 4) + "-" + yymm.Substring(4, 2);
-                        drow["SQ"] = i;
-                        drow["SD_AMT"] = 0;
-                        drow["T_AMT"] = 0;
-                        ds.Tables["S_INFO_NSD"].Rows.Add(drow);
-                    }
-                }
-                ds.Tables["S_INFO_NSD"].DefaultView.Sort = "SQ";
-            }
-            catch (System.Exception ec)
-            {
-                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        //밤근무수당 불러오기
-        public void GetDUTY_INFO_NSDDatas(string yymm, DataSet ds)
-        {
-            try
-            {
-                string qry = " SELECT * "
-                           + "   FROM DUTY_INFO_NSD WHERE YYMM = '" + yymm + "' ";
-
-                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-                dp.AddDatatable2Dataset("DUTY_INFO_NSD", dt, ref ds);
-            }
-            catch (System.Exception ec)
-            {
-                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        //밤근무수당 조회
-        public void GetSEARCH_INFO_NSDDatas(string yymm, DataSet ds)
-        {
-            try
-            {
-                string qry = " SELECT A.* "
-                           + "   FROM DUTY_INFO_NSD A "
-                           + "  INNER JOIN (SELECT MAX(YYMM) YYMM FROM DUTY_INFO_NSD WHERE YYMM <= '" + yymm + "') X1 "
-                           + "     ON A.YYMM=X1.YYMM "
-                           + "  ORDER BY A.SQ ";
-
-                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-                dp.AddDatatable2Dataset("SEARCH_INFO_NSD", dt, ref ds);
-            }
-            catch (System.Exception ec)
-            {
-                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        #endregion
-
-        #region 9020 - 수당산식설정
-
-        public void GetSEARCH_INFO1Datas(DataSet ds)
+		#region 9020 - 당직시간관리
+				
+		//당직시간 조회
+		public void GetS_INFOSD02Datas(string yymm, DataSet ds)
 		{
 			try
 			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD01 ";
+				string qry = " SELECT *, "
+						   + "        LEFT(DANG_DT,4)+'-'+SUBSTRING(DANG_DT,5,2)+'-'+SUBSTRING(DANG_DT,7,2) AS SLDT_NM, "
+						   + "        (CASE DATEPART(DW,DANG_DT) WHEN 1 THEN '일' WHEN 2 THEN '월' WHEN 3 THEN '화' "
+						   + "         WHEN 4 THEN '수' WHEN 5 THEN '목' WHEN 6 THEN '금' WHEN 7 THEN '토' ELSE '' END) DAY_NM "
+						   + "   FROM DUTY_INFOSD02 "
+						   + "  WHERE LEFT(DANG_DT,6)= '" + yymm + "' "
+						   + "  ORDER BY DANG_DT ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_INFOSD01", dt, ref ds);
+				dp.AddDatatable2Dataset("S_INFOSD02", dt, ref ds);
 			}
 			catch (System.Exception ec)
 			{
@@ -5306,47 +5228,15 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		
-		public void GetSEARCH_INFO2Datas(DataSet ds)
+		//일자별 당직시간 저장
+		public void GetDUTY_INFOSD02Datas(string yymm, DataSet ds)
 		{
 			try
 			{
 				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD02 ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SEARCH_INFO2", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//삭제
-		public void GetD_DUTY_INFOSD02Datas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD02 ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("D_DUTY_INFOSD02", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//저장시 필요한 테이블구조
-		public void GetDUTY_INFOSD02Datas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD02";
+						   + "   FROM DUTY_INFOSD02 "
+						   + "  WHERE LEFT(DANG_DT,6)= '" + yymm + "' "
+						   + "  ORDER BY DANG_DT ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("DUTY_INFOSD02", dt, ref ds);
@@ -5357,141 +5247,17 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		
-		//근태종류 LOOKUP
-		public void GetSL_GTDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT IFWGCODE GT_CODE, RTRIM(IFWGNAME) GT_NAME "
-						   + "   FROM " + wagedb +".DBO.INFOWAGE "
-						   + "  WHERE LEFT(IFWGCODE,1)='C' "
-						   + "  ORDER BY IFWGCODE ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SL_GT", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//근무유형 LOOKUP
-		public void GetSL_GNMUDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT G_CODE, G_FNM "
-						   + "   FROM DUTY_MSTGNMU "
-						   + "  ORDER BY G_CODE "; // WHERE DANG_YN='Y' ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SL_GNMU", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		//수당종류 LOOKUP
-		public void GetSL_SDDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT IFWGCODE SD_CODE, RTRIM(IFWGNAME) SD_NAME "
-						   + "   FROM " + wagedb +".DBO.INFOWAGE "
-						   + "  WHERE LEFT(IFWGCODE,1)='A' "
-						   + "  ORDER BY IFWGCODE ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SL_SD", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		
-		//공제종류 LOOKUP
-		public void GetSL_GJDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT IFWGCODE GJ_CODE, RTRIM(IFWGNAME) GJ_NAME "
-						   + "   FROM " + wagedb +".DBO.INFOWAGE "
-						   + "  WHERE LEFT(IFWGCODE,1)='B' "
-						   + "  ORDER BY IFWGCODE ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SL_GJ", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		#endregion
-
-		#region 9030 - 당직시간관리
-				
-		//당직시간 조회
-		public void GetS_INFOSD04Datas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT *, "
-						   + "        LEFT(DANG_DT,4)+'-'+SUBSTRING(DANG_DT,5,2)+'-'+SUBSTRING(DANG_DT,7,2) AS SLDT_NM, "
-						   + "        (CASE DATEPART(DW,DANG_DT) WHEN 1 THEN '일' WHEN 2 THEN '월' WHEN 3 THEN '화' "
-						   + "         WHEN 4 THEN '수' WHEN 5 THEN '목' WHEN 6 THEN '금' WHEN 7 THEN '토' ELSE '' END) DAY_NM "
-						   + "   FROM DUTY_INFOSD04 "
-						   + "  WHERE LEFT(DANG_DT,6)= '" + yymm + "' "
-						   + "  ORDER BY DANG_DT ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_INFOSD04", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//일자별 당직시간 저장
-		public void GetDUTY_INFOSD04Datas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD04 "
-						   + "  WHERE LEFT(DANG_DT,6)= '" + yymm + "' "
-						   + "  ORDER BY DANG_DT ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_INFOSD04", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
 
 		//요일별설정
-		public void GetDUTY_INFOSD03Datas(DataSet ds)
+		public void GetDUTY_INFOSD02_DTDatas(DataSet ds)
 		{
 			try
 			{
 				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD03";
+						   + "   FROM DUTY_INFOSD02_DT";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_INFOSD03", dt, ref ds);
+				dp.AddDatatable2Dataset("DUTY_INFOSD02_DT", dt, ref ds);
 			}
 			catch (System.Exception ec)
 			{
@@ -5499,60 +5265,226 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		
-		#endregion		
-		
-		#region 9040 - N수당관리
-		
-		//시급처리
-		public void GetS_INFOSD05Datas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT '" + yymm.Substring(0, 6) + "' AS YYMM, "
-						   + "        '" + yymm.Substring(0, 4) + "-" + yymm.Substring(4, 2) +"' AS YYMM_NM, "
-						   + "        RTRIM(A.EMBSSABN) AS SABN, "
-						   + "        RTRIM(A.EMBSNAME) AS SABN_NM, "
-						   + "        RTRIM(ISNULL(X1.DEPRNAM1,'')) AS DEPT_NM, "
-						   + "        ISNULL(X2.MINUS_NAMT,0) AS MINUS_NAMT, "
-						   + "        ISNULL(X2.PLUS_NAMT,0) AS PLUS_NAMT "
-						   + "   FROM " + wagedb + ".dbo.MSTEMBS A "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X1 ON A.EMBSDPCD=X1.DEPRCODE "
-                           + "   LEFT OUTER JOIN DUTY_INFOSD05 X2 ON A.EMBSSABN=X2.SABN "
-						   + "    AND X2.YYMM = '" + yymm.Substring(0, 6) + "' "
-						   + "   INNER JOIN DUTY_INFONURS X3 ON A.EMBSDPCD=X3.DEPTCODE "
-						   + "  WHERE A.EMBSSTAT='1' OR (A.EMBSSTAT='2' AND LEFT(A.EMBSTSDT,6)>='" + yymm.Substring(0, 6) + "')"
-						   + "  ORDER BY A.EMBSDPCD, A.EMBSJOCD, A.EMBSSABN ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("S_INFOSD05", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//전월N수당조회
-		public void GetBF_INFOSD05Datas(string bfmm, DataSet ds)
+        #endregion
+
+        #region 9030 - 근로시간관리
+
+        //근로시간 처리
+        public void GetS_INFOSD03Datas(string sldt, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT RTRIM(X2.DEPRNAM2) AS DEPT_NM, "
+                           + "        RTRIM(A.EMBSSABN) AS SABN, RTRIM(A.EMBSNAME) AS SABN_NM, "
+                           + "        ISNULL(X1.WT_DAY,0) AS WT_DAY, "
+                           + "        ISNULL(X1.WT_WEEK,0) AS WT_WEEK, "
+                           + "        ISNULL(X1.WT_MON,0) AS WT_MON, "
+                           + "        A.* "
+                           + "   FROM " + wagedb + ".dbo.MSTEMBS A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD03 X1 "
+                           + "     ON A.EMBSSABN=X1.SABN "
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.EMBSDPCD=X2.DEPRCODE "
+                           + "  WHERE A.EMBSSTAT='1' OR (A.EMBSSTAT='2' AND A.EMBSTSDT>= '" + sldt + "')"
+                           + "  ORDER BY A.EMBSDPCD, A.EMBSSABN ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("S_INFOSD03", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //근로시간 불러오기
+        public void GetDUTY_INFOSD03Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_INFOSD03 ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_INFOSD03", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //근로시간 조회
+        public void GetSEARCH_INFOSD03Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT RTRIM(X2.DEPRNAM2) AS DEPT_NM, X1.EMBSNAME, A.* "
+                           + "   FROM DUTY_INFOSD03 A "
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X1 ON A.SABN=X1.EMBSSABN "
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
+                           + "  ORDER BY X1.EMBSDPCD, A.SABN ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SEARCH_INFOSD03", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+        
+        #region 9040 - 건별수당관리
+
+        //수당종류1 LOOKUP
+        public void GetSL_SD1Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.IFWGCODE SD_CODE, RTRIM(A.IFWGNAME) SD_NAME, "
+                           + "        ISNULL(X1.CHK,'0') AS CHK "
+                           + "   FROM " + wagedb + ".DBO.INFOWAGE A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD04_SET X1 ON A.IFWGCODE=X1.SD_CODE "
+                           + "  WHERE LEFT(A.IFWGCODE,1)='A' AND A.IFWGCODE<='A020'"
+                           + "    AND A.IFWGCRGB = '1' AND A.IFWGJYGB IN ('12') "
+                           + "  ORDER BY A.IFWGCODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_SD1", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //수당종류2 LOOKUP
+        public void GetSL_SD2Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.IFWGCODE SD_CODE, RTRIM(A.IFWGNAME) SD_NAME, "
+                           + "        ISNULL(X1.CHK,'0') AS CHK "
+                           + "   FROM " + wagedb + ".DBO.INFOWAGE A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD04_SET X1 ON A.IFWGCODE=X1.SD_CODE "
+                           + "  WHERE LEFT(A.IFWGCODE,1)='A' AND A.IFWGCODE>'A020'"
+                           + "    AND A.IFWGCRGB = '1' AND A.IFWGJYGB IN ('12') "
+                           + "  ORDER BY A.IFWGCODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_SD2", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //건별수당설정 내역 불러오기
+        public void GetDUTY_INFOSD04_SETDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_INFOSD04_SET WHERE 1=2 ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_INFOSD04_SET", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //수당종류 LOOKUP
+        public void GetSL_SD_LISTDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.SD_CODE, RTRIM(X1.IFWGNAME) SD_NAME "
+                           + "   FROM DUTY_INFOSD04_SET A"
+                           + "   LEFT OUTER JOIN " + wagedb + ".DBO.INFOWAGE X1 "
+                           + "     ON A.SD_CODE = X1.IFWGCODE "
+                           + "  ORDER BY A.SD_CODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_SD_LIST", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //건별수당 불러오기
+        public void GetS_INFOSD04Datas(string sldt, string sd_code, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT RTRIM(X2.DEPRNAM2) AS DEPT_NM, "
+                           + "        RTRIM(A.EMBSSABN) AS SABN, RTRIM(A.EMBSNAME) AS SABN_NM, "
+                           + "        ISNULL(X1.SD_FIX,0) AS SD_FIX, "
+                           + "        ISNULL(X1.SD_CNT,0) AS SD_CNT, "
+                           + "        ISNULL(X1.SD_NIGHT_SPV,0) AS SD_NIGHT_SPV, "
+                           + "        A.* "
+                           + "   FROM " + wagedb + ".dbo.MSTEMBS A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD04 X1 "
+                           + "     ON A.EMBSSABN=X1.SABN AND X1.SD_CODE ='" + sd_code + "'"
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.EMBSDPCD=X2.DEPRCODE "
+                           + "  WHERE A.EMBSSTAT='1' OR (A.EMBSSTAT='2' AND A.EMBSTSDT>= '" + sldt + "')"
+                           + "  ORDER BY A.EMBSDPCD, A.EMBSSABN ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("S_INFOSD04", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void GetDUTY_INFOSD04Datas(string sd_code, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_INFOSD04 WHERE SD_CODE = '" + sd_code + "' ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_INFOSD04", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+		
+        //건별수당 조회
+		public void GetSEARCH_INFOSD04Datas(string stdt, DataSet ds)
 		{
 			try
 			{
-				string qry = " SELECT '" + bfmm.Substring(0, 6) + "' AS YYMM, "
-						   + "        '" + bfmm.Substring(0, 4) + "-" + bfmm.Substring(4, 2) +"' AS YYMM_NM, "
-						   + "        RTRIM(X1.EMBSSABN) AS SABN, "
-						   + "        RTRIM(X1.EMBSNAME) AS SABN_NM, "
-						   + "        RTRIM(ISNULL(X2.DEPRNAM1,'')) AS DEPT_NM, "
-						   + "        ISNULL(A.MINUS_NAMT,0) AS MINUS_NAMT, "
-						   + "        ISNULL(A.PLUS_NAMT,0) AS PLUS_NAMT "
-						   + "   FROM DUTY_INFOSD05 A "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SABN=X1.EMBSSABN "
+				string qry = " SELECT RTRIM(ISNULL(X1.EMBSNAME,'')) AS EMBSNAME, "
+                           + "        RTRIM(ISNULL(X2.DEPRNAM2,'')) AS DEPT_NM, "
+                           + "        RTRIM(ISNULL(X3.IFWGNAME,'')) AS SD_NAME, "
+                           + "        A.* "
+						   + "   FROM DUTY_INFOSD04 A "
+						   + "  INNER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SABN=X1.EMBSSABN "
                            + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
-                           + "  WHERE A.YYMM = '" + bfmm.Substring(0, 6) + "' "
-						   + "  ORDER BY X1.EMBSJOCD, X1.EMBSDPCD, X1.EMBSSABN ";
+                           + "   LEFT OUTER JOIN " + wagedb + ".DBO.INFOWAGE X3 ON A.SD_CODE=X3.IFWGCODE "
+                           + "  WHERE A.SD_FIX <> 0 OR A.SD_CNT <> 0 OR A.SD_NIGHT_SPV <> 0 "
+                           //+ "  WHERE X1.EMBSSTAT='1' OR (X1.EMBSSTAT='2' AND X1.EMBSTSDT>= '" + stdt + "')"
+                           + "  ORDER BY A.SD_CODE, X1.EMBSDPCD, A.SABN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("BF_INFOSD05", dt, ref ds);
+				dp.AddDatatable2Dataset("SEARCH_INFOSD04", dt, ref ds);
 			}
 			catch (System.Exception ec)
 			{
@@ -5560,115 +5492,169 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		//시급 불러오기
-		public void GetDUTY_INFOSD05Datas(string yymm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOSD05 WHERE YYMM = '" + yymm + "' ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_INFOSD05", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-		//N수당 조회
-		public void GetSEARCH_INFOSD05Datas(string frmm, string tomm, DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT RTRIM(ISNULL(X2.DEPRNAM1,'')) AS DEPT_NM, "
-						   + "        LEFT(A.YYMM,4)+'-'+SUBSTRING(A.YYMM,5,2) AS YYMM_NM, "
-						   + "        A.* "
-						   + "   FROM DUTY_INFOSD05 A "
-						   + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SABN=X1.EMBSSABN "
+        #endregion
+
+        #region 9050 - 만근수당관리
+
+        //수당종류1 LOOKUP
+        public void GetSL_SD21Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.IFWGCODE SD_CODE, RTRIM(A.IFWGNAME) SD_NAME, "
+                           + "        ISNULL(X1.CHK,'0') AS CHK "
+                           + "   FROM " + wagedb + ".DBO.INFOWAGE A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD05_SET X1 ON A.IFWGCODE=X1.SD_CODE "
+                           + "  WHERE LEFT(A.IFWGCODE,1)='A' AND A.IFWGCODE<='A020'"
+                           + "    AND A.IFWGCRGB = '1' AND A.IFWGJYGB IN ('12') "
+                           + "  ORDER BY A.IFWGCODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_SD21", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //수당종류2 LOOKUP
+        public void GetSL_SD22Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.IFWGCODE SD_CODE, RTRIM(A.IFWGNAME) SD_NAME, "
+                           + "        ISNULL(X1.CHK,'0') AS CHK "
+                           + "   FROM " + wagedb + ".DBO.INFOWAGE A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD05_SET X1 ON A.IFWGCODE=X1.SD_CODE "
+                           + "  WHERE LEFT(A.IFWGCODE,1)='A' AND A.IFWGCODE>'A020'"
+                           + "    AND A.IFWGCRGB = '1' AND A.IFWGJYGB IN ('12') "
+                           + "  ORDER BY A.IFWGCODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_SD22", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //수당종류 LOOKUP
+        public void GetSL_SD_LIST2Datas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.SD_CODE, RTRIM(X1.IFWGNAME) SD_NAME "
+                           + "   FROM DUTY_INFOSD05_SET A"
+                           + "   LEFT OUTER JOIN " + wagedb + ".DBO.INFOWAGE X1 "
+                           + "     ON A.SD_CODE = X1.IFWGCODE "
+                           + "  ORDER BY A.SD_CODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SL_SD_LIST2", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //만근수당설정 내역 불러오기
+        public void GetDUTY_INFOSD05_SETDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_INFOSD05_SET WHERE 1=2 ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_INFOSD05_SET", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //만근수당 불러오기
+        public void GetS_INFOSD05Datas(string sldt, string sd_code, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT RTRIM(X2.DEPRNAM2) AS DEPT_NM, "
+                           + "        RTRIM(A.EMBSSABN) AS SABN, RTRIM(A.EMBSNAME) AS SABN_NM, "
+                           + "        ISNULL(X1.SD_BASE,0) AS SD_BASE, "
+                           + "        ISNULL(X1.SD_ADD,0) AS SD_ADD, "
+                           + "        A.* "
+                           + "   FROM " + wagedb + ".dbo.MSTEMBS A "
+                           + "   LEFT OUTER JOIN DUTY_INFOSD05 X1 "
+                           + "     ON A.EMBSSABN=X1.SABN AND X1.SD_CODE ='" + sd_code + "'"
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 ON A.EMBSDPCD=X2.DEPRCODE "
+                           + "  WHERE A.EMBSSTAT='1' OR (A.EMBSSTAT='2' AND A.EMBSTSDT>= '" + sldt + "')"
+                           + "  ORDER BY A.EMBSDPCD, A.EMBSSABN ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("S_INFOSD05", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void GetDUTY_INFOSD05Datas(string sd_code, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM DUTY_INFOSD05 WHERE SD_CODE = '" + sd_code + "' ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("DUTY_INFOSD05", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //만근수당 조회
+        public void GetSEARCH_INFOSD05Datas(string stdt, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT RTRIM(ISNULL(X1.EMBSNAME,'')) AS EMBSNAME, "
+                           + "        RTRIM(ISNULL(X2.DEPRNAM2,'')) AS DEPT_NM, "
+                           + "        RTRIM(ISNULL(X3.IFWGNAME,'')) AS SD_NAME, "
+                           + "        A.* "
+                           + "   FROM DUTY_INFOSD05 A "
+                           + "  INNER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SABN=X1.EMBSSABN "
                            + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
-                           + "  WHERE A.YYMM BETWEEN '" + frmm + "' AND '" + tomm + "' "
-						   + "  ORDER BY X1.EMBSJOCD, X1.EMBSDPCD ";
+                           + "   LEFT OUTER JOIN " + wagedb + ".DBO.INFOWAGE X3 ON A.SD_CODE=X3.IFWGCODE "
+                           + "  WHERE A.SD_BASE <> 0 OR A.SD_ADD <> 0 "
+                           //+ "  WHERE X1.EMBSSTAT='1' OR (X1.EMBSSTAT='2' AND X1.EMBSTSDT>= '" + stdt + "')"
+                           + "  ORDER BY A.SD_CODE, X1.EMBSDPCD, A.SABN ";
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SEARCH_INFOSD05", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SEARCH_INFOSD05", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        #endregion
 
-		#endregion
-				
-		#region 9050 - 고정OT사용부서설정
 
-		//부서코드 불러오기
-		public void GetSEARCH_FXOTDEPTDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT (CASE WHEN X1.DEPTCODE IS NOT NULL THEN '1' ELSE '0' END) CHK, "
-						   + "        RTRIM(A.DEPRNAM1) DEPT_NM, A.*  "
-						   + "   FROM " + wagedb + ".DBO.MSTDEPR A "
-						   + "   LEFT OUTER JOIN DUTY_INFOFXOT X1 ON A.DEPRCODE=X1.DEPTCODE "
-						   + "  WHERE A.DEPRSTAT=1 ";
+        #region 4010 - 공지사항관리
 
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("SEARCH_FXOTDEPT", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		//삭제할 부서설정 테이블 불러오기
-		public void GetD_DUTY_INFOFXOTDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOFXOT A ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("D_DUTY_INFOFXOT", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		//등록할 부서설정 테이블 불러오기
-		public void GetDUTY_INFOFXOTDatas(DataSet ds)
-		{
-			try
-			{
-				string qry = " SELECT * "
-						   + "   FROM DUTY_INFOFXOT A ";
-
-				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				dp.AddDatatable2Dataset("DUTY_INFOFXOT", dt, ref ds);
-			}
-			catch (System.Exception ec)
-			{
-				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		#endregion
-						
-
-		#region 4010 - 공지사항관리
-		
-		//공지사항 전체조회
-		public void GetSEARCH_TRSNOTIDatas(DataSet ds)
+        //공지사항 전체조회
+        public void GetSEARCH_TRSNOTIDatas(DataSet ds)
 		{
 			try
 			{
@@ -5708,16 +5694,16 @@ namespace DUTY1000
 			}
 		}
 		//IDX 키값 불러오기
-		public int GetIDX_DUTY_TRSNOTIDatas(DataSet ds)
+		public decimal GetIDX_DUTY_TRSNOTIDatas(DataSet ds)
 		{
-			int idx = 0;
+            decimal idx = 0;
 			try
 			{
 				string qry = " SELECT ISNULL(MAX(IDX),0) + 1 "
 						   + "   FROM DUTY_TRSNOTI ";
 				
                 object obj = gd.GetOneData(1, dbname, qry);
-                idx = clib.TextToInt(obj.ToString());
+                idx = clib.TextToDecimal(obj.ToString());
 			}
 			catch (System.Exception ec)
 			{
@@ -5749,17 +5735,17 @@ namespace DUTY1000
 						   + "        (SELECT ISNULL(MAX(YC_SQ),0) YC_SQ FROM DUTY_MSTYCCJ "
 						   + "          WHERE YC_YEAR=A1.YC_YEAR AND SAWON_NO=A1.SAWON_NO) AS YCCJ_SQ"
 						   + "   FROM ( "
-						   + "         SELECT A.YC_YEAR, A.SAWON_NO SAWON_NO, RTRIM(A.SAWON_NM) SAWON_NM, RTRIM(X3.EMBSEMAL) GW_EMAIL, RTRIM(ISNULL(X4.DEPRNAM1,'')) DEPT_NM, "
-						   + "                A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
-						   + "                A.YC_BASE, A.YC_CHANGE, A.YC_FIRST, A.YC_ADD, A.YC_TOTAL, "
-						   + "				  (CASE WHEN A.YC_TYPE=0 THEN '회계년도기준' ELSE '입사일기준' END) YC_TYPE_NM, "
-						   + "      		  LEFT(A.IN_DATE,4)+'-'+SUBSTRING(A.IN_DATE,5,2)+'-'+SUBSTRING(A.IN_DATE,7,2) AS IN_DATE_NM, "
+						   + "         SELECT A.YC_YEAR, A.SAWON_NO SAWON_NO, RTRIM(A.SAWON_NM) SAWON_NM, RTRIM(X3.EMBSEMAL) GW_EMAIL, X3.EMBSDPCD, RTRIM(ISNULL(X4.DEPRNAM2,'')) DEPT_NM, "
+                           + "                A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
+						   + "                A.YC_FIRST, A.YC_BF_CNT, A.YC_NOW_CNT, A.YC_BASE, A.YC_ADD, A.YC_CHANGE, A.YC_TOTAL, "
+                           //+ "				  (CASE WHEN A.YC_TYPE IN (0,2) THEN '회계년도기준' ELSE '입사일기준' END) YC_TYPE_NM, "
+                           + "      		  LEFT(A.IN_DATE,4)+'-'+SUBSTRING(A.IN_DATE,5,2)+'-'+SUBSTRING(A.IN_DATE,7,2) AS IN_DATE_NM, "
 						   + "                LEFT(A.CALC_FRDT,4)+'-'+SUBSTRING(A.CALC_FRDT,5,2)+'-'+SUBSTRING(A.CALC_FRDT,7,2)+' ~ '+ "
 						   + "                LEFT(A.CALC_TODT,4)+'-'+SUBSTRING(A.CALC_TODT,5,2)+'-'+SUBSTRING(A.CALC_TODT,7,2) AS CALC_DT_NM, "
 						   + "                LEFT(A.USE_FRDT,4)+'-'+SUBSTRING(A.USE_FRDT,5,2)+'-'+SUBSTRING(A.USE_FRDT,7,2) AS USE_FRDT_NM, "
 						   + "                LEFT(A.USE_TODT,4)+'-'+SUBSTRING(A.USE_TODT,5,2)+'-'+SUBSTRING(A.USE_TODT,7,2) AS USE_TODT_NM, "
-						   + "                A.YC_BASE+A.YC_FIRST+A.YC_ADD as YC_SUM,"
-						   + "                SUM(ISNULL(X1.YC_DAYS,0)) AS YC_USE, A.YC_TOTAL - SUM(ISNULL(X1.YC_DAYS,0)) AS YC_REMAIN, "
+						   + "                A.YC_FIRST+A.YC_BF_CNT+A.YC_NOW_CNT as YC_SUM,"
+                           + "                SUM(ISNULL(X1.YC_DAYS,0)) AS YC_USE, A.YC_TOTAL - SUM(ISNULL(X1.YC_DAYS,0)) AS YC_REMAIN, "
 						   + "                (CASE WHEN A.YC_TYPE IN (1,3) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(M,-3,DATEADD(YEAR,1,A.USE_FRDT)),112) "
 						   + "                      ELSE CONVERT(CHAR,DATEADD(DAY,1,DATEADD(M,-6,A.USE_TODT)),112) END) AS FR_H1, "
 						   + "                (CASE WHEN A.YC_TYPE IN (1,3) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,9,DATEADD(M,-3,DATEADD(YEAR,1,A.USE_FRDT))),112) "
@@ -5770,20 +5756,19 @@ namespace DUTY1000
 						   + "                      ELSE CONVERT(CHAR,DATEADD(DAY,9,DATEADD(M,-2,A.USE_TODT)),112) END) AS TO_H2 "
 						   + "           FROM DUTY_TRSDYYC A "
 						   + "           LEFT OUTER JOIN DUTY_TRSHREQ X1 "
-						   + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN AND X1.AP_TAG NOT IN ('5') "  //23.01.13 반려는 카운트 제외
+						   + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN AND X1.AP_TAG NOT IN ('2','5') "  //취소,반려는 카운트 제외
 						   + "           INNER JOIN " + wagedb + ".DBO.MSTEMBS X3 "
-                           + "             ON A.SAWON_NO=X3.EMBSSABN AND (X3.EMBSSTAT='1' OR X3.EMBSSTAT='2' AND X3.EMBSTSDT>='" + sldt + "' ) AND X3.EMBSIPDT <> ''"
+                           + "             ON A.SAWON_NO=X3.EMBSSABN AND (X3.EMBSSTAT='1' OR (X3.EMBSSTAT='2' AND X3.EMBSTSDT>='" + sldt + "')) AND X3.EMBSIPDT <> ''"
                            + "			 LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X4 "
                            + "			   ON X3.EMBSDPCD=X4.DEPRCODE ";
-				if (lv == 2)  //부서장일경우
+				if (lv == 1)  //부서장일경우
 					qry += " WHERE X3.EMBSDPCD IN (SELECT DEPT FROM DUTY_PWERDEPT WHERE SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
 				else
 					qry += " WHERE X3.EMBSDPCD LIKE '" + dpcd + "'";
-				qry += "           AND ( (A.YC_TYPE=0 AND A.YC_YEAR='" + sldt.Substring(0, 4) + "' ) "
-					+ "                  OR (A.YC_TYPE IN (1,3) AND A.USE_FRDT<='" + sldt + "' AND A.USE_TODT>='" + sldt + "') ) "
-					+ "          GROUP BY A.YC_YEAR, A.SAWON_NO, A.SAWON_NM, X3.EMBSEMAL, X4.DEPRNAM1, A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
-					+ "                   A.YC_BASE, A.YC_CHANGE, A.YC_FIRST, A.YC_ADD, A.YC_TOTAL  ) A1 "
-					+ "  ORDER BY A1.SAWON_NO ";
+				//qry += "           AND ( (A.YC_TYPE IN (0,2) AND A.YC_YEAR='" + sldt.Substring(0, 4) + "' ) OR (A.YC_TYPE IN (1,3) AND A.USE_FRDT<='" + sldt + "' AND A.USE_TODT>='" + sldt + "') ) "
+                qry += "          GROUP BY A.YC_YEAR, A.SAWON_NO, A.SAWON_NM, X3.EMBSEMAL, X3.EMBSDPCD, X4.DEPRNAM2, A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
+                    + "                   A.YC_FIRST, A.YC_BF_CNT, A.YC_NOW_CNT, A.YC_BASE, A.YC_ADD, A.YC_CHANGE  ) A1 "
+                    + "  ORDER BY A1.EMBSDPCD, A1.SAWON_NO ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("SEARCH_YC", dt, ref ds);
@@ -5861,9 +5846,6 @@ namespace DUTY1000
 			{
 				string qry = " EXEC USP_DUTY8010_BASE '%', '%', '" + sldt + "', '" + SilkRoad.Config.SRConfig.USID + "' ";
 				object obj = gd.GetOneData(1, dbname, qry);
-
-				//DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-				//dp.AddDatatable2Dataset("USP_MAKE_YC", dt, ref ds);
 			}
 			catch (System.Exception ec)
 			{

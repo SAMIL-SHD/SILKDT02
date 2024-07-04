@@ -65,9 +65,9 @@ namespace DUTY1000
             if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
                 admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
 
-            if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 2)
+            if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
             {
-                admin_lv = 3;
+                admin_lv = 2;
                 p_dpcd = "%";
                 lb_power.Text = "전체관리 권한";
             }
@@ -75,24 +75,6 @@ namespace DUTY1000
             {
                 p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서관리 권한";
-            }
-            else if (admin_lv == 2)
-            {
-                p_dpcd = "%";
-                lb_power.Text = "부서장관리 권한";
-                df.GetCHK_DEPTDatas(SilkRoad.Config.SRConfig.USID, "%", ds);
-                string lb_nm = "";
-                for (int i = 0; i < ds.Tables["CHK_DEPT"].Rows.Count; i++)
-                {
-                    if (i == 0)
-                        lb_nm = "(" + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
-                    else if (i == ds.Tables["CHK_DEPT"].Rows.Count - 1)
-                        lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString() + ")";
-                    else
-                        lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
-                }
-
-                lb_power.Text += lb_nm;
             }
             else
             {
@@ -197,7 +179,7 @@ namespace DUTY1000
                 DataRow hrow = ds.Tables["DUTY_TRSDYYC"].Select("YC_YEAR = '" + clib.DateToText(dat_year.DateTime).Substring(0, 4) + "' AND SAWON_NO = '" + txt_sabn.Text.ToString().Trim() + "'")[0];
 
                 hrow["YC_CHANGE"] = clib.TextToDecimal(txt_change.Text.ToString());
-                hrow["YC_TOTAL"] = clib.TextToDecimal(txt_base.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) + clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_add.Text.ToString());
+                hrow["YC_TOTAL"] = clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_bf_cnt.Text.ToString()) + clib.TextToDecimal(txt_now_cnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString());
                 hrow["MOD_DT"] = gd.GetNow();
                 hrow["MOD_ID"] = SilkRoad.Config.SRConfig.USID;
 
@@ -392,7 +374,7 @@ namespace DUTY1000
 		//조정연차 입력시 잔여연차 재계산
 		private void txt_change_EditValueChanged(object sender, EventArgs e)
 		{
-			txt_rcnt.Text = (clib.TextToDecimal(txt_base.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) + clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_add.Text.ToString())).ToString();
+			txt_rcnt.Text = clib.TextToDecimal(txt_first.Text.ToString()) + (clib.TextToDecimal(txt_bf_cnt.Text.ToString()) + clib.TextToDecimal(txt_now_cnt.Text.ToString())).ToString() + clib.TextToDecimal(txt_change.Text.ToString());
 		}
 		//그리드 더블클릭시 코드 조회
 		private void grdv1_DoubleClick(object sender, EventArgs e)
@@ -431,9 +413,9 @@ namespace DUTY1000
                 txt_name.Text = drow["SAWON_NM"].ToString();
                 cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
                 dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
-                txt_base.Text = drow["YC_BASE"].ToString();
                 txt_first.Text = drow["YC_FIRST"].ToString();
-                txt_add.Text = drow["YC_ADD"].ToString();
+                txt_bf_cnt.Text = drow["YC_BF_CNT"].ToString();
+                txt_now_cnt.Text = drow["YC_NOW_CNT"].ToString();
                 txt_tcnt.Text = drow["YC_SUM"].ToString();
 
                 txt_change.Text = drow["YC_CHANGE"].ToString();

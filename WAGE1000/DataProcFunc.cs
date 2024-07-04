@@ -238,24 +238,6 @@ namespace WAGE1000
                                                         "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //전체관리/부서관리 여부 체크
-        public void GetMSTUSER_CHK2Datas(DataSet ds)
-        {
-            try
-            {
-                string qry = " SELECT * "
-                            + "   FROM DUTY_MSTUSER "
-                            + "  WHERE USERIDEN = '" + SilkRoad.Config.SRConfig.USID + "' ";
-
-                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-                dp.AddDatatable2Dataset("MSTUSER_CHK", dt, ref ds);
-            }
-            catch (System.Exception ec)
-            {
-                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-                                                        "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         public void GetSEARCH_USERDEPTDatas(DataSet ds)
         {
@@ -264,7 +246,7 @@ namespace WAGE1000
                 string qry = " SELECT RTRIM(A.USERIDEN) USERIDEN, RTRIM(A.USERNAME) USERNAME, X1.EMBSDPCD AS USERDPCD, '' USERUPYN, '' USERMSYN "
                            + "   FROM SILKDBCM..MSTUSER A "
                            + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.USERIDEN=X1.EMBSSABN "
-                           + "  WHERE X1.EMBSADGB IN ('2') " //X1.EMBSDPCD IS NOT NULL "
+                           + "  WHERE X1.EMBSADGB IN ('1') "
                            + "  ORDER BY A.USERIDEN ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -283,7 +265,7 @@ namespace WAGE1000
             {
                 string qry = " SELECT A.DEPRCODE AS CODE, A.DEPRCODE+' '+RTRIM(A.DEPRNAM1) AS NAME, "
                            + "        (CASE WHEN B.SABN IS NULL THEN '0' ELSE '1' END) AS CHK "
-                           + "   FROM MSTDEPR A "
+                           + "   FROM " + wagedb + ".DBO.MSTDEPR A "
                            + "   LEFT OUTER JOIN DUTY_PWERDEPT B ON A.DEPRCODE = B.DEPT AND B.SABN = '" + useid + "'"
                            + "  WHERE A.DEPRSTAT = 1 ORDER BY A.DEPRCODE ";
 
@@ -308,24 +290,6 @@ namespace WAGE1000
                 DataTable dt = gd.GetDataInQuery(1, dbname, qry);
                 dp.AddDatatable2Dataset("DUTY_PWERDEPT", dt, ref ds);
 
-            }
-            catch (System.Exception ec)
-            {
-                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
-                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        //저장시
-        public void GetDUTY_MSTUSERDatas(DataSet ds)
-        {
-            try
-            {
-                string qry = " SELECT * "
-                           + "   FROM DUTY_MSTUSER ";
-
-                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-                dp.AddDatatable2Dataset("DUTY_MSTUSER", dt, ref ds);
             }
             catch (System.Exception ec)
             {

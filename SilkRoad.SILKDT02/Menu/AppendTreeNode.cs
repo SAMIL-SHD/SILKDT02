@@ -77,7 +77,7 @@ namespace SilkRoad.SILKDT02
 					
 					TreeListNode rootNode = tl.AppendNode(new object[] { "기초코드", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "인사기본관리", "WAGE1000.duty1006", "", "1" }, rootNode);
-					tl.AppendNode(new object[] { "사용자부서연결", "WAGE1000.duty1005", "", "1" }, rootNode);
+					tl.AppendNode(new object[] { "사용자부서관리", "WAGE1000.duty1005", "", "1" }, rootNode);
 					tl.AppendNode(new object[] { "간호사정보관리", "DUTY1000.duty1050", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "부서-직원설정", "DUTY1000.duty1011", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "근무유형정의", "DUTY1000.duty1030", "", "" }, rootNode);
@@ -96,13 +96,12 @@ namespace SilkRoad.SILKDT02
 					tl.AppendNode(new object[] { "공지사항관리", "DUTY1000.duty4010", "" }, rootNode);
 
 					rootNode2 = tl.AppendNode(new object[] { "근무관리", "", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "CALL/OT/출장관리", "DUTY1000.duty2020", "", "" }, rootNode2); //OT조회및승인
-					//if (ACConfig.G_MSYN == "1" || admin_lv > 1 || SRConfig.US_DPCD.Contains("1000") || SRConfig.US_DPCD.Contains("1700") || SRConfig.US_DPCD.Contains("2500") || SRConfig.US_DPCD.Contains("2900"))  // 1000 내시경실, 1700 외래, 2500 종합검진실, 2900 진료협력실
-     //                   tl.AppendNode(new object[] { "SAVE/OT내역", "DUTY1000.duty2030", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "콜근무관리", "DUTY1000.duty2020", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "연장근무관리", "DUTY1000.duty2020", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty2010", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "간호사근무관리", "DUTY1000.duty3010", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "간호사근무마감설정", "DUTY1000.duty3020", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "근무표마감관리", "DUTY1000.duty3020", "", "" }, rootNode2);
 
 					TreeListNode rootNode3 = tl.AppendNode(new object[] { "연차및휴가관리", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "연차신청및조회", "DUTY1000.duty8030", "", "" }, rootNode3);
@@ -112,7 +111,7 @@ namespace SilkRoad.SILKDT02
 					tl.AppendNode(new object[] { "연차휴가사용촉구현황", "DUTY1000.duty8010", "", "" }, rootNode3);
 					
 					TreeListNode rootNode4 = tl.AppendNode(new object[] { "문서관리", "", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4);
+					tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4); //결재,진행,완료
 					//tl.AppendNode(new object[] { "진행문서관리", "DUTY1000.duty5070", "", "" }, rootNode4);
 					tl.AppendNode(new object[] { "완결문서관리", "DUTY1000.duty5080", "", "" }, rootNode4);
 
@@ -123,18 +122,18 @@ namespace SilkRoad.SILKDT02
                     #region 마감관리
                     parentForRootNodes = null;
                     rootNode = tl.AppendNode(new object[] { "마감관리", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "근무집계표", "DUTY1000.duty3080", "", "" }, rootNode);
-					tl.AppendNode(new object[] { "최종마감관리", "DUTY1000.duty3090", "", "" }, rootNode);
 					//tl.AppendNode(new object[] { "KT근태연동조회", "DUTY1000.duty5010", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "연차정산관리", "DUTY1000.duty3030", "", "" }, rootNode);
-					
-					rootNode2 = tl.AppendNode(new object[] { "환경설정", "", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "시급관리", "DUTY1000.duty9010", "", "" }, rootNode2);
-                    tl.AppendNode(new object[] { "밤근무수당관리", "DUTY1000.duty9015", "", "" }, rootNode2);
-                    tl.AppendNode(new object[] { "당직시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "N수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "고정OT부서설정", "DUTY1000.duty9050", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "수당산식설정", "DUTY1000.duty9020", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "최종마감관리", "DUTY1000.duty3090", "", "" }, rootNode);
+                    tl.AppendNode(new object[] { "근무집계표", "DUTY1000.duty3080", "", "" }, rootNode);
+
+                    rootNode2 = tl.AppendNode(new object[] { "환경설정", "", "", "" }, parentForRootNodes);
+					tl.AppendNode(new object[] { "월별시급관리", "DUTY1000.duty9010", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "당직시간관리", "DUTY1000.duty9020", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "건별수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2);
+					//tl.AppendNode(new object[] { "고정OT부서설정", "DUTY1000.duty9050", "", "" }, rootNode2);
 
 					#endregion
 					break;

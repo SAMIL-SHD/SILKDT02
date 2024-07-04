@@ -92,12 +92,6 @@ namespace DUTY1000
         {
             df.GetSEARCH_DEPTDatas(ds); // 부서 리스트 룩업
             sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-            //df.GetSEARCH_PARTDatas(ds); // 파트 리스트 룩업
-            //sl_dept.Properties.DataSource = ds.Tables["SEARCH_PART"];
-            df.GetSEARCH_NURSDatas(ds); // 간호사 리스트 룩업
-            sl_nurs.Properties.DataSource = ds.Tables["SEARCH_NURS"];
-            df.GetSEARCH_GNMUDatas(ds); // 근무 리스트 룩업
-            sl_gnmu.Properties.DataSource = ds.Tables["SEARCH_GNMU"];
         }
 
         #region 2 Button
@@ -120,49 +114,6 @@ namespace DUTY1000
 				DialogResult dr = MessageBox.Show("Duty관리에 미등록된 간호사 " + t_cnt + "명을 등록하시겠습니까?", "등록여부", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 				if (dr == DialogResult.OK)
 				{
-					//int outVal = 0;
-					//for (int i = 0; i < ds.Tables["SEARCH_MSTNURS"].Rows.Count; i++)
-					//{
-					//	DataRow drow = ds.Tables["SEARCH_MSTNURS"].Rows[i];
-					//	df.GetDUTY_MSTNURSDatas(lblSano.Text.ToString().Trim(), ds);
-					//	if (ds.Tables["DUTY_MSTNURS"].Rows.Count == 0)
-					//	{
-					//		_Flag = "C";
-					//		DataRow hrow = ds.Tables["DUTY_MSTNURS"].NewRow();
-					//		hrow["PARTCODE"] = "";
-					//		hrow["SAWON_NO"] = drow["SAWON_NO"].ToString().Trim();
-					//		hrow["SAWON_NM"] = drow["SAWON_NM"].ToString().Trim();
-					//		hrow["EXP_LV"] = 0;
-					//		hrow["PRE_RN"] = "";
-					//		hrow["RSP_YN"] = "";
-					//		hrow["RSP_GNMU"] = "";
-					//		hrow["TM_YN"] = "";
-					//		hrow["TM_FR"] = "";
-					//		hrow["TM_TO"] = "";
-					//		hrow["FIRST_GNMU"] = "";
-					//		hrow["MAX_NCNT"] = 0;
-					//		hrow["MAX_CCNT"] = 0;
-					//		hrow["ALLOWOFF"] = 9;
-					//		hrow["RETURN_DT"] = "";
-					//		hrow["CHARGE_YN"] = "";
-					//		hrow["USID"] = SilkRoad.Config.SRConfig.USID;
-					//		hrow["INDT"] = gd.GetNow();
-					//		hrow["UPDT"] = "";
-					//		hrow["PSTY"] = "A";
-
-					//		ds.Tables["DUTY_MSTNURS"].Rows.Add(hrow);
-
-					//		string[] tableNames = new string[] { "DUTY_MSTNURS" };
-					//		SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
-					//		outVal += cmd.setUpdate(ref ds, tableNames, null);
-					//	}
-					//}
-
-					//if (outVal <= 0)
-					//	MessageBox.Show("저장된 내용이 없습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					//else
-					//	MessageBox.Show("Duty관리에 미등록된 간호사 " + outVal + "명이 모두 등록되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 					try
 					{
 						btn_all_save.Enabled = false;
@@ -172,9 +123,6 @@ namespace DUTY1000
 						srPanel4.Enabled = false;
 
 						this.Cursor = Cursors.WaitCursor;
-
-						//progressBarControl1.Visible = true;
-						//this.progressBarControl1.Position = 0;
 
 						marqueeProgressBarControl1.Visible = true;
 						marqueeProgressBarControl1.Properties.Stopped = false;
@@ -206,173 +154,12 @@ namespace DUTY1000
 				btn_search_CK();
 			}
 		}
-		
-		private void btn_e_up_Click(object sender, EventArgs e)
-		{			
-			#region 엑셀 읽어오기
-			//System.Data.DataTable dt = null;
-			//System.Windows.Forms.OpenFileDialog fd = new System.Windows.Forms.OpenFileDialog();
-			//fd.DefaultExt = "xls | xlsx";
-			//fd.Filter = "Excel files (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx";
-			//if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			//{
-			//	try
-			//	{
-			//		OleDbConnection oledbCn = null;
-			//		OleDbDataAdapter da = null;
-
-			//		try
-			//		{
-			//			string type = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source={0};Extended Properties='Excel 12.0;HDR=YES'";
-			//			oledbCn = new OleDbConnection(string.Format(type, fd.FileName));
-			//			oledbCn.Open();
-
-			//			//첫번째 시트 무조건 가지고 오기
-			//			System.Data.DataTable worksheets = oledbCn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-			//			da = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}]", worksheets.Rows[0]["TABLE_NAME"]), oledbCn);
-
-			//			dt = new System.Data.DataTable();
-			//			da.Fill(dt);
-			//		}
-			//		catch (Exception ex)
-			//		{
-			//			System.Windows.Forms.MessageBox.Show("ReadExcel Err:" + ex.Message);
-			//		}
-			//		finally
-			//		{
-			//			if (da != null)
-			//				da.Dispose();
-			//			if (oledbCn != null)
-			//			{
-			//				if (oledbCn.State != ConnectionState.Closed)
-			//					oledbCn.Close();
-			//				oledbCn.Dispose();
-			//			}
-			//		}
-			//	}
-			//	catch (Exception ex)
-			//	{
-			//		System.Windows.Forms.MessageBox.Show("파일을 읽을 수 없습니다. " + ex.Message);
-			//	}
-			//	finally
-			//	{
-			//		fd.Dispose();
-			//	}
-			//}
-
-			//if (dt == null)
-			//	return;
-			#endregion
-			
-			#region 엑셀 읽어오기
-			System.Data.DataTable dt = null;
-			System.Windows.Forms.OpenFileDialog fd = new System.Windows.Forms.OpenFileDialog();
-			fd.DefaultExt = "xls | xlsx";
-			fd.Filter = "Excel files (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx";
-
-			if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-                string fileName = fd.FileName;
-				FileInfo fi = new FileInfo(fileName);
-				if ((fi.Extension == ".xls" | fi.Extension == ".xlsx") == false)
-				{
-					return;
-				}
-				FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-				IExcelDataReader reader = ExcelReaderFactory.CreateReader(fs);
-				DataSet result = reader.AsDataSet();
-				reader.Close();
-				if (result == null)
-				{
-					return;
-				}
-				dt = result.Tables[0];
-			}
-
-			#endregion
-
-			if (dt.Rows[0][0].ToString().ToString() != "사번")  // dt.Columns[0]
-			{
-				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n첫번째 열의 타이틀은 [사번]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			else if (dt.Rows[0][2].ToString() != "실경력")
-			{
-				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n세번째 열의 타이틀은 [실경력]로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			else if (dt.Rows[0][3].ToString() != "학사경력")
-			{
-				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n네번째 열의 타이틀은 [학사경력]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			else if (dt.Rows[0][4].ToString() != "군경력")
-			{
-				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n다섯번째 열의 타이틀은 [군경력]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			else if (dt.Rows[0][5].ToString() != "기타경력")
-			{
-				MessageBox.Show("엑셀형식이 바르지 않습니다.\r\n여섯번째 열의 타이틀은 [기타경력]으로 작성해야합니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			Cursor = Cursors.WaitCursor;
-			grd.DataSource = null;
-			grd_ex.DataSource = null;
-			int outVal = 0;
-
-			int t_cnt = dt.Columns.Count;
-			foreach (DataRow drow in dt.Rows)
-			{
-				if (drow[0].ToString().Trim() != "") // && clib.TextToDecimal(drow[2].ToString()) != 0)
-				{
-					if (ds.Tables["SEARCH_MSTNURS"].Select("SAWON_NO = '" + drow[0].ToString() + "'").Length > 0)
-					{
-						DataRow nrow = ds.Tables["SEARCH_MSTNURS"].Select("SAWON_NO = '" + drow[0].ToString() + "'")[0];
-						if (clib.TextToDecimal(drow[2].ToString()) > 0 || clib.TextToDecimal(drow[3].ToString()) > 0 || clib.TextToDecimal(drow[4].ToString()) > 0 || clib.TextToDecimal(drow[5].ToString()) > 0)
-						{
-							nrow["EXP_YEAR"] = clib.TextToDecimal(drow[2].ToString());
-							nrow["EXP_Y2"] = clib.TextToDecimal(drow[3].ToString());
-							nrow["EXP_Y3"] = clib.TextToDecimal(drow[4].ToString());
-							nrow["EXP_Y4"] = clib.TextToDecimal(drow[5].ToString());
-							nrow["EXP_T"] = clib.TextToDecimal(drow[2].ToString()) + clib.TextToDecimal(drow[3].ToString()) + clib.TextToDecimal(drow[4].ToString()) + clib.TextToDecimal(drow[5].ToString());
-							nrow["UPDT"] = gd.GetNow();
-							nrow["USID"] = SilkRoad.Config.SRConfig.USID;
-							nrow["PSTY"] = "E";
-							outVal++;
-						}
-					}
-				}
-			}
-
-			if (outVal > 0)
-			{
-				DataTable dt2 = ds.Tables["SEARCH_MSTNURS"].Clone();
-				foreach (DataRow drow in ds.Tables["SEARCH_MSTNURS"].Select("PSTY='E'"))
-				{
-					dt2.ImportRow(drow);
-				}
-				dp.AddDatatable2Dataset("EXCEL_MSTNURS", dt2, ref ds);
-
-                string[] tableNames = new string[] { "EXCEL_MSTNURS" };
-                SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
-                cmd.setUpdate(ref ds, tableNames, null);
-				MessageBox.Show("엑셀업로드가 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}		
-			
-			grd.DataSource = ds.Tables["SEARCH_MSTNURS"];
-			grd_ex.DataSource = ds.Tables["SEARCH_MSTNURS"];
-			Cursor = Cursors.Default;
-		}
 
 		//간호사 직종설정
 		private void btn_info_Click(object sender, EventArgs e)
 		{
 			duty3011 s = new duty3011();
 			s.ShowDialog();
-			//duty1051 duty1051 = new duty1051();
-			//duty1051.ShowDialog();
 		}
         //저장버튼
         private void btn_save_Click(object sender, EventArgs e)
@@ -394,30 +181,12 @@ namespace DUTY1000
 					{
 						_Flag = "C";
 						hrow = ds.Tables["DUTY_MSTNURS"].NewRow();
-						hrow["PARTCODE"] = "";
 					}
                     
                     hrow["SAWON_NO"] = lblSano.Text.ToString().Trim();
 					hrow["SAWON_NM"] = lblName.Text.ToString().Trim();
-					hrow["EXP_LV"] = 0; //cmb_exp.SelectedIndex.ToString();
-					hrow["PRE_RN"] = ""; //sl_nurs.EditValue == null ? "" : sl_nurs.EditValue.ToString();
-                    hrow["RSP_YN"] = ""; //cmb_rsp_yn.EditValue.ToString();
-                    hrow["RSP_GNMU"] = ""; //sl_gnmu.EditValue == null ? "" : sl_gnmu.EditValue.ToString();
-                    hrow["SHIFT_WORK"] = cmb_shift_work.SelectedIndex;
-                    hrow["TM_YN"] = ""; //cmb_tm_yn.EditValue.ToString();
-					hrow["TM_FR"] = ""; //txt_tmfr.Text.ToString().Replace(":", "");
-                    hrow["TM_TO"] = ""; //txt_tmto.Text.ToString().Replace(":", "");
-                    hrow["FIRST_GNMU"] = ""; //cmb_same1st.EditValue.ToString();
-                    hrow["MAX_NCNT"]  = clib.TextToInt(cmb_max_n.SelectedIndex.ToString()); 
-                    hrow["MAX_CCNT"]  = 0; //cmb_max_c.SelectedIndex.ToString(); 
                     hrow["ALLOWOFF"] = clib.TextToInt(cmb_allowoff.SelectedIndex.ToString());
                     hrow["LIMIT_OFF"] = clib.TextToInt(cmb_limitoff.SelectedIndex.ToString());
-					hrow["RETURN_DT"] = ""; //clib.DateToText(dat_rsn_dt.DateTime);
-                    hrow["CHARGE_YN"] = ""; //cmb_charge.EditValue.ToString();  
-					hrow["EXP_YEAR"] = clib.TextToDecimal(txt_exp.Text.ToString());
-					hrow["EXP_Y2"] = clib.TextToDecimal(txt_exp2.Text.ToString());
-					hrow["EXP_Y3"] = clib.TextToDecimal(txt_exp3.Text.ToString());
-					hrow["EXP_Y4"] = clib.TextToDecimal(txt_exp4.Text.ToString());
 
 					hrow["STAT"] = cmb_stat.SelectedIndex + 1;
 					hrow["LDAY"] = clib.DateToText(dat_lday.DateTime);                          
@@ -437,7 +206,6 @@ namespace DUTY1000
                         hrow["PSTY"] = "U";
                     }
 
-                    //string[] UpQry = { "update TRSPART set partcode = '" + hrow["PARTCODE"]  + "' where sawon_no  = '" + hrow["SAWON_NO"] + "'" };
 					string[] tableNames = new string[] { "DUTY_MSTNURS" };
 					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
@@ -454,7 +222,6 @@ namespace DUTY1000
                 }
                 finally
                 {
-                    //btn_refresh.PerformClick();
                     SetCancel();
                     Cursor = Cursors.Default;
                     btn_search_CK();
@@ -514,10 +281,7 @@ namespace DUTY1000
         /// <summary>엑셀버튼</summary>
         private void btn_exel_Click(object sender, EventArgs e)
         {
-			if (cmb_exgb.SelectedIndex == 0)
-				clib.gridToExcel(grdv, this.Text + "(" + this.Name + ")_" + clib.DateToText(DateTime.Now), true);
-			else
-				clib.gridToExcel(grdv_ex, "경력업로드엑셀_" + clib.DateToText(DateTime.Now), true);
+			clib.gridToExcel(grdv, this.Text + "(" + this.Name + ")_" + clib.DateToText(DateTime.Now), true);
         }
 
         #endregion
@@ -536,7 +300,6 @@ namespace DUTY1000
 			this.Invoke(new Action(delegate ()
 			{
 				grd.DataSource = ds.Tables["SEARCH_MSTNURS"];
-				grd_ex.DataSource = ds.Tables["SEARCH_MSTNURS"];
 			}));
         }
 		
@@ -573,15 +336,8 @@ namespace DUTY1000
 			if (ds.Tables["DUTY_MSTNURS"].Rows.Count > 0)
 			{
 				DataRow drow = ds.Tables["DUTY_MSTNURS"].Rows[0];
-				cmb_shift_work.SelectedIndex = clib.TextToInt(drow["SHIFT_WORK"].ToString());
-				
-				cmb_max_n.SelectedIndex = clib.TextToInt(drow["MAX_NCNT"].ToString());
 				cmb_allowoff.SelectedIndex = clib.TextToInt(drow["ALLOWOFF"].ToString());
 				cmb_limitoff.SelectedIndex = clib.TextToInt(drow["LIMIT_OFF"].ToString());
-				txt_exp.Text = drow["EXP_YEAR"].ToString();
-				txt_exp2.Text = drow["EXP_Y2"].ToString();
-				txt_exp3.Text = drow["EXP_Y3"].ToString();
-				txt_exp4.Text = drow["EXP_Y4"].ToString();
 
 				cmb_stat.SelectedIndex = clib.TextToInt(drow["STAT"].ToString()) < 1 ? 0 : clib.TextToInt(drow["STAT"].ToString()) - 1;
 				if (drow["LDAY"].ToString() != "")
@@ -589,36 +345,11 @@ namespace DUTY1000
 			}
 			else
 			{
-				cmb_shift_work.SelectedIndex = 1;
-				cmb_max_n.SelectedIndex = 6;
 				cmb_allowoff.SelectedIndex = 9;
 				cmb_limitoff.SelectedIndex = 3;
 				cmb_stat.SelectedIndex = 0;
 			}
 		}
-		
-        //전담여부 선택 따라 관련 항목 Enabled 
-        private void cmb_desig_yn_EditValueChanged(object sender, EventArgs e)
-        {
-            if(cmb_rsp_yn.EditValue!=null && cmb_rsp_yn.EditValue.ToString().Equals("Y"))            
-                sl_gnmu.Enabled = true;            
-            else            
-                sl_gnmu.Enabled = false;            
-        }
-        //시간선택여부 선택 따라 관련 항목 Enabled 
-        private void cmb_tmslc_yn_EditValueChanged(object sender, EventArgs e)
-        {
-            if (cmb_tm_yn.EditValue != null && cmb_tm_yn.EditValue.ToString().Equals("Y"))
-            {
-                txt_tmfr.Enabled = true;
-                txt_tmto.Enabled   = true;
-            }
-            else
-            {
-                txt_tmfr.Enabled = false;
-                txt_tmto.Enabled   = false;
-            }
-        }
 
         #endregion
 
@@ -734,28 +465,10 @@ namespace DUTY1000
 							_Flag = "C";
 							string sawon = drow["SAWON_NO"].ToString().Trim();
 							DataRow hrow = ds.Tables["DUTY_MSTNURS"].NewRow();
-							hrow["PARTCODE"] = "";
 							hrow["SAWON_NO"] = drow["SAWON_NO"].ToString().Trim();
 							hrow["SAWON_NM"] = drow["SAWON_NM"].ToString().Trim();
-							hrow["EXP_LV"] = 0;
-							hrow["PRE_RN"] = "";
-							hrow["RSP_YN"] = "";
-							hrow["RSP_GNMU"] = "";
-							hrow["SHIFT_WORK"] = 1;
-							hrow["TM_YN"] = "";
-							hrow["TM_FR"] = "";
-							hrow["TM_TO"] = "";
-							hrow["FIRST_GNMU"] = "";
-							hrow["MAX_NCNT"] = 6;
-							hrow["MAX_CCNT"] = 0;
 							hrow["ALLOWOFF"] = 9;
 							hrow["LIMIT_OFF"] = 3;
-							hrow["RETURN_DT"] = "";
-							hrow["CHARGE_YN"] = "";
-							hrow["EXP_YEAR"] = 0;
-                            hrow["EXP_Y2"] = 0;
-                            hrow["EXP_Y3"] = 0;
-                            hrow["EXP_Y4"] = 0;
                             hrow["STAT"] = 1;
 							hrow["LDAY"] = "";
 							hrow["USID"] = SilkRoad.Config.SRConfig.USID;

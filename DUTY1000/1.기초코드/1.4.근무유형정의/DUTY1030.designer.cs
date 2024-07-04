@@ -866,6 +866,7 @@
             this.Name = "duty1030";
             this.Text = "duty1030";
             this.Load += new System.EventHandler(this.duty1030_Load);
+            this.Shown += new System.EventHandler(this.duty1030_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty1030_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();

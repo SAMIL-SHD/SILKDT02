@@ -43,7 +43,38 @@ namespace DUTY1000
             srPanel7.Enabled = false;
             SetButtonEnable("1000");
 
+            Cursor = Cursors.WaitCursor;
+            if (txt_gcode.Text.ToString() == "" || txt_gcode.Text.Length < 2)
+            {
+                for (int i = 1; i < 100; i++)
+                {
+                    string code = i.ToString().PadLeft(2, '0');
+                    if (ds.Tables["SEARCH_MSTGNMU"].Select("G_CODE = '" + code + "'").Length == 0)
+                    {
+                        txt_gcode.Text = code;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                int j = clib.TextToInt(txt_gcode.Text.ToString()) + 1;
+                for (int i = j; i < 100; i++)
+                {
+                    string code = i.ToString().PadLeft(6, '0');
+                    if (ds.Tables["SEARCH_MSTGNMU"].Select("G_CODE = '" + code + "'").Length == 0)
+                    {
+                        txt_gcode.Text = code;
+                        break;
+                    }
+                }
+            }
             txt_gcode.Focus();
+            txt_gcode.SelectAll();
+
+            Cursor = Cursors.Default;
+
+            //txt_gcode.Focus();
         }
 
         #endregion
@@ -52,15 +83,19 @@ namespace DUTY1000
 
         private void duty1030_Load(object sender, EventArgs e)
         {
+            df.GetSEARCH_MSTGNMUDatas(ds);
+            grd1.DataSource = ds.Tables["SEARCH_MSTGNMU"];
+        }
+
+        private void duty1030_Shown(object sender, EventArgs e)
+        {
             SetCancel();
-			df.GetSEARCH_MSTGNMUDatas(ds);
-			grd1.DataSource = ds.Tables["SEARCH_MSTGNMU"];
         }
 
         #endregion
 
         #region 2 Button
-        
+
         //처리
         private void btn_proc_Click(object sender, EventArgs e)
         {
@@ -357,6 +392,6 @@ namespace DUTY1000
         {
             
         }
-		#endregion
-	}
+        #endregion
+    }
 }

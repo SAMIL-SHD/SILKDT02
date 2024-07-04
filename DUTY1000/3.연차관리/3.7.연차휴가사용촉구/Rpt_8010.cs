@@ -25,10 +25,10 @@ namespace DUTY1000
 			string use_frdt = drow["USE_FRDT"].ToString().Substring(0, 4) + "." + drow["USE_FRDT"].ToString().Substring(4, 2) + "." + drow["USE_FRDT"].ToString().Substring(6, 2);
 			string use_todt = drow["USE_TODT"].ToString().Substring(0, 4) + "." + drow["USE_TODT"].ToString().Substring(4, 2) + "." + drow["USE_TODT"].ToString().Substring(6, 2);
 			xrTableCell14.Text = use_frdt + " ~ " + use_todt; //사용기간
-			xrTableCell66.Text = string.Format("{0:#,##0.##}", Convert.ToDecimal(drow["YC_USE_DAY"].ToString())); //사용연차 일수
-			xrTableCell72.Text = string.Format("{0:#,##0.##}", Convert.ToDecimal(drow["YC_REMAIN_DAY"].ToString())); //남은연차 일수
+			xrTableCell66.Text = string.Format("{0:#,##0.###}", Convert.ToDecimal(drow["YC_USE_DAY"].ToString())); //사용연차 일수
+			xrTableCell72.Text = string.Format("{0:#,##0.###}", Convert.ToDecimal(drow["YC_REMAIN_DAY"].ToString())); //남은연차 일수
 
-			xrTableCell24.Text = "상기인은 현재 일의 연차휴가 중 " + string.Format("{0:#,##0.##}", Convert.ToDecimal(drow["YC_USE_DAY"].ToString())) + "일의 연차휴가를 사용하여 " + use_todt + "까지 " + string.Format("{0:#,##0.##}", Convert.ToDecimal(drow["YC_REMAIN_DAY"].ToString())) + "일의";
+			xrTableCell24.Text = "상기인은 현재 일의 연차휴가 중 " + string.Format("{0:#,##0.###}", Convert.ToDecimal(drow["YC_USE_DAY"].ToString())) + "일의 연차휴가를 사용하여 " + use_todt + "까지 " + string.Format("{0:#,##0.###}", Convert.ToDecimal(drow["YC_REMAIN_DAY"].ToString())) + "일의";
 			xrTableCell1.Text = "확인자 " + drow["SAWON_NM"].ToString();
 			xrTableCell2.Text = comp_nm + " 대표";
 

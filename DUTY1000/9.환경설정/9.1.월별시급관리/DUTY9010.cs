@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace DUTY1000
 {
-    public partial class duty9015 : SilkRoad.Form.Base.FormX
+    public partial class duty9010 : SilkRoad.Form.Base.FormX
     {
         CommonLibrary clib = new CommonLibrary();
 
@@ -16,7 +16,7 @@ namespace DUTY1000
         DataProcFunc df = new DataProcFunc();
         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 
-        public duty9015()
+        public duty9010()
         {
             InitializeComponent();
         }
@@ -37,19 +37,24 @@ namespace DUTY1000
 				if (ds.Tables["SEARCH_INFOSD01"] != null)
 					ds.Tables["SEARCH_INFOSD01"].Clear();
 				pv_grd.DataSource = null;
-			}
-		}
+            }
+
+            dat_yymm.Enabled = true;
+            btn_save.Text = "저 장";
+            btn_save.Image = Properties.Resources.저장;
+        }
 
         #endregion
 
         #region 1 Form
 
-        private void duty9015_Load(object sender, EventArgs e)
+        private void duty9010_Load(object sender, EventArgs e)
         {
 			dat_yymm.DateTime = DateTime.Now.AddMonths(-1);
-            dat_stmm.DateTime = DateTime.Now;
+			dat_frmm.DateTime = clib.TextToDate(clib.DateToText(DateTime.Now).Substring(0, 4) + "0101");
+			dat_tomm.DateTime = DateTime.Now;
         }
-		private void duty9015_Shown(object sender, EventArgs e)
+		private void duty9010_Shown(object sender, EventArgs e)
 		{
 			SetCancel(1);
 			//df.GetSEARCH_INFO2Datas(ds);
@@ -69,49 +74,65 @@ namespace DUTY1000
 		{
 			if (isNoError_um(1))
 			{
-				df.GetS_INFO_NSDDatas(clib.DateToText(dat_yymm.DateTime), ds);
-				grd.DataSource = ds.Tables["S_INFO_NSD"];
-				
-				SetButtonEnable("111111");
-			}
+				df.GetS_INFOSD01Datas(clib.DateToText(dat_yymm.DateTime), ds);
+				grd.DataSource = ds.Tables["S_INFOSD01"];
+
+                df.GetDUTY_INFOSD01Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+                if (ds.Tables["DUTY_INFOSD01"].Rows.Count > 0)
+                {
+                    btn_save.Text = "수 정";
+                    btn_save.Image = Properties.Resources.수정;
+                    SetButtonEnable("011111");
+                }
+                else
+                {
+                    df.GetDUTY_INFOSD01Datas(clib.DateToText(dat_yymm.DateTime.AddMonths(-1)).Substring(0, 6), ds);
+                    if (ds.Tables["DUTY_INFOSD01"].Rows.Count > 0)
+                        SetButtonEnable("010111");
+                    else
+                        SetButtonEnable("010101");
+                }
+                dat_yymm.Enabled = false;
+            }
 		}
         //저장
 		private void btn_save_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show("해당 밤근무수당을 저장하시겠습니까?", "저장", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+			if (MessageBox.Show("해당 시급내역을 저장하시겠습니까?", "저장", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
 							== DialogResult.OK)
 			{
 				Cursor = Cursors.WaitCursor;
 				int outVal = 0;
 				try
 				{
-					df.GetDUTY_INFO_NSDDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
-					for (int i = 0; i < 10; i++)
+					df.GetDUTY_INFOSD01Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+					for (int i = 0; i < ds.Tables["S_INFOSD01"].Rows.Count; i++)
 					{
-						DataRow drow = ds.Tables["S_INFO_NSD"].Rows[i];
-						if (ds.Tables["DUTY_INFO_NSD"].Select("YYMM = '" + drow["YYMM"].ToString() + "' AND SQ = " + (i + 1) + "").Length > 0)
+						DataRow drow = ds.Tables["S_INFOSD01"].Rows[i];
+						if (ds.Tables["DUTY_INFOSD01"].Select("YYMM = '" + drow["YYMM"].ToString() + "' AND SABN = '" + drow["SABN"].ToString() + "'").Length > 0)
 						{
-							DataRow nrow = ds.Tables["DUTY_INFO_NSD"].Select("YYMM = '" + drow["YYMM"].ToString() + "' AND SQ = " + (i + 1) + "")[0];
-							//nrow["SABN_NM"] = drow["SABN_NM"].ToString();
-							nrow["SD_AMT"] = clib.TextToDecimal(drow["SD_AMT"].ToString());
+							DataRow nrow = ds.Tables["DUTY_INFOSD01"].Select("YYMM = '" + drow["YYMM"].ToString() + "' AND SABN = '" + drow["SABN"].ToString() + "'")[0];
+							nrow["SABN_NM"] = drow["SABN_NM"].ToString();
+							nrow["YY_AMT"] = clib.TextToDecimal(drow["YY_AMT"].ToString());
 							nrow["T_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
 							nrow["REG_DT"] = gd.GetNow();
 							nrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
 						}
 						else
 						{
-							DataRow nrow = ds.Tables["DUTY_INFO_NSD"].NewRow();
+							DataRow nrow = ds.Tables["DUTY_INFOSD01"].NewRow();
 							nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime);
-							nrow["SQ"] = (i + 1);
-							nrow["SD_AMT"] = clib.TextToDecimal(drow["SD_AMT"].ToString());
+							nrow["SABN"] = drow["SABN"].ToString();
+							nrow["SABN_NM"] = drow["SABN_NM"].ToString();
+							nrow["YY_AMT"] = clib.TextToDecimal(drow["YY_AMT"].ToString());
 							nrow["T_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
 							nrow["REG_DT"] = gd.GetNow();
 							nrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
-							ds.Tables["DUTY_INFO_NSD"].Rows.Add(nrow);
+							ds.Tables["DUTY_INFOSD01"].Rows.Add(nrow);
 						}
 					}
 
-					string[] tableNames = new string[] { "DUTY_INFO_NSD", };
+					string[] tableNames = new string[] { "DUTY_INFOSD01", };
 					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 					outVal = cmd.setUpdate(ref ds, tableNames, null);
 				}
@@ -131,21 +152,21 @@ namespace DUTY1000
 		private void btn_del_Click(object sender, EventArgs e)
 		{
 			string yymm = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
-			df.GetDUTY_INFO_NSDDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
-			if (ds.Tables["DUTY_INFO_NSD"].Rows.Count > 0)
+			df.GetDUTY_INFOSD01Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+			if (ds.Tables["DUTY_INFOSD01"].Rows.Count > 0)
 			{
-				DialogResult dr = MessageBox.Show(yymm + "월의 밤근무수당을 모두 삭제하시겠습니까?", "삭제여부", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+				DialogResult dr = MessageBox.Show(yymm + "월의 시급내역을 모두 삭제하시겠습니까?", "삭제여부", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 				if (dr == DialogResult.OK)
 				{
 					int outVal = 0;
 					try
 					{
-						for (int i = 0; i < ds.Tables["DUTY_INFO_NSD"].Rows.Count; i++)
+						for (int i = 0; i < ds.Tables["DUTY_INFOSD01"].Rows.Count; i++)
 						{
-							ds.Tables["DUTY_INFO_NSD"].Rows[i].Delete();
+							ds.Tables["DUTY_INFOSD01"].Rows[i].Delete();
 						}
 
-						string[] tableNames = new string[] { "DUTY_INFO_NSD" };
+						string[] tableNames = new string[] { "DUTY_INFOSD01" };
 						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 						outVal = cmd.setUpdate(ref ds, tableNames, null);
 					}
@@ -156,7 +177,7 @@ namespace DUTY1000
 					finally
 					{
 						if (outVal > 0)
-							MessageBox.Show(yymm + "월의 밤근무수당이 삭제되었습니다.", "삭제", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							MessageBox.Show(yymm + "월의 시급이 삭제되었습니다.", "삭제", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 						SetCancel(1);
 						Cursor = Cursors.Default;
@@ -184,8 +205,9 @@ namespace DUTY1000
 				{
 					DataRow drow = ds.Tables["BF_INFOSD01"].Rows[i];
 					if (ds.Tables["S_INFOSD01"].Select("SABN = '" + drow["SABN"].ToString() + "'").Length > 0)
-					{
-						ds.Tables["S_INFOSD01"].Select("SABN = '" + drow["SABN"].ToString() + "'")[0]["T_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
+                    {
+                        ds.Tables["S_INFOSD01"].Select("SABN = '" + drow["SABN"].ToString() + "'")[0]["YY_AMT"] = clib.TextToDecimal(drow["YY_AMT"].ToString());
+                        ds.Tables["S_INFOSD01"].Select("SABN = '" + drow["SABN"].ToString() + "'")[0]["T_AMT"] = clib.TextToDecimal(drow["T_AMT"].ToString());
 					}
 				}
 				Cursor = Cursors.Default;
@@ -272,30 +294,32 @@ namespace DUTY1000
 
 			foreach (DataRow drow in dt.Rows)
 			{
-				if (drow[0].ToString().Trim() != "" && drow[1].ToString().Trim() != "")
+				if (drow[0].ToString().Trim() != "" && drow[2].ToString().Trim() != "")
 				{
-					if (ds.Tables["S_INFO_NSD"].Select("SQ = " + clib.TextToInt(drow[1].ToString()) + "").Length > 0)
+					if (ds.Tables["S_INFOSD01"].Select("SABN = '" + drow[2].ToString() + "'").Length > 0)
 					{
-						DataRow nrow = ds.Tables["S_INFO_NSD"].Select("SQ = " + clib.TextToInt(drow[1].ToString()) + "")[0];
-						nrow["YY_AMT"] = clib.TextToDecimal(drow[2].ToString());
-						nrow["T_AMT"] = clib.TextToDecimal(drow[3].ToString());
+						DataRow nrow = ds.Tables["S_INFOSD01"].Select("SABN = '" + drow[2].ToString() + "'")[0];
+						nrow["YY_AMT"] = clib.TextToDecimal(drow[4].ToString());
+						nrow["T_AMT"] = clib.TextToDecimal(drow[5].ToString());
 					}
 					else
 					{
-						DataRow nrow = ds.Tables["S_INFO_NSD"].NewRow();
+						DataRow nrow = ds.Tables["S_INFOSD01"].NewRow();
 						nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime);
 						nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
-						nrow["SQ"] = clib.TextToInt(drow[1].ToString());
-						nrow["SD_AMT"] = clib.TextToDecimal(drow[2].ToString());
-						nrow["T_AMT"] = clib.TextToDecimal(drow[3].ToString());
-						ds.Tables["S_INFO_NSD"].Rows.Add(nrow);
+						nrow["DEPT_NM"] = df.GetDept_nmData(drow[2].ToString().Trim());
+						nrow["SABN"] = drow[2].ToString();
+						nrow["SABN_NM"] = df.GetSawon_nmData(drow[2].ToString().Trim()); // drow[3].ToString();
+						nrow["YY_AMT"] = clib.TextToDecimal(drow[4].ToString());
+						nrow["T_AMT"] = clib.TextToDecimal(drow[5].ToString());
+						ds.Tables["S_INFOSD01"].Rows.Add(nrow);
 					}
 				}
 			}
 			if (outVal > 0)			
 				MessageBox.Show("엑셀업로드가 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			
-			grd.DataSource = ds.Tables["S_INFO_NSD"];
+			grd.DataSource = ds.Tables["S_INFOSD01"];
 			Cursor = Cursors.Default;
 		}
 		
@@ -304,7 +328,7 @@ namespace DUTY1000
 		{
 			if (isNoError_um(2))
 			{
-				df.GetSEARCH_INFO_NSDDatas(clib.DateToText(dat_stmm.DateTime).Substring(0, 6), ds);
+				df.GetSEARCH_INFOSD01Datas(clib.DateToText(dat_frmm.DateTime).Substring(0, 6), clib.DateToText(dat_tomm.DateTime).Substring(0, 6), ds);
 				pv_grd.DataSource = ds.Tables["SEARCH_INFOSD01"];
 			}
 		}
@@ -370,10 +394,16 @@ namespace DUTY1000
             }
             else if (mode == 2) //조회
             {
-                if (clib.DateToText(dat_stmm.DateTime) == "")
+                if (clib.DateToText(dat_frmm.DateTime) == "")
                 {
-                    MessageBox.Show("기준년월을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dat_stmm.Focus();
+                    MessageBox.Show("조회년월(fr)을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dat_frmm.Focus();
+                    return false;
+				}
+                else if (clib.DateToText(dat_tomm.DateTime) == "")
+                {
+                    MessageBox.Show("조회년월(to)을 입력하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dat_tomm.Focus();
                     return false;
 				}
                 else
@@ -394,8 +424,8 @@ namespace DUTY1000
 			btn_proc.Enabled = arr.Substring(0, 1) == "1" ? true : false;
 			btn_save.Enabled = arr.Substring(1, 1) == "1" ? true : false;
 			btn_del.Enabled = arr.Substring(2, 1) == "1" ? true : false;
-			btn_bring.Enabled = arr.Substring(3, 1) == "1" ? true : false;
-			btn_excel.Enabled = arr.Substring(4, 1) == "1" ? true : false;
+			btn_canc.Enabled = arr.Substring(3, 1) == "1" ? true : false;
+            btn_bring.Enabled = arr.Substring(4, 1) == "1" ? true : false;
 			btn_e_up.Enabled = arr.Substring(5, 1) == "1" ? true : false;
 		}
 

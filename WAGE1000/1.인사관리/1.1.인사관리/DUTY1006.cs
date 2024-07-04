@@ -100,15 +100,12 @@ namespace WAGE1000
 					txt_post.Text = crow["EMBSPOST"].ToString().Trim();
 
 					cmb_stat.SelectedIndex = clib.TextToInt(crow["EMBSSTAT"].ToString()) - 1; //근무구분(1:재직.2:퇴직) 
-					cmb_adgb.SelectedIndex = clib.TextToInt(crow["EMBSADGB"].ToString()); //관리자구분(1:계장,2:팀장,3:부서장,4,원장단,5.담당원장,6.대표원장) 
-					//chk_adgb.Checked = crow["EMBSADGB"].ToString().Trim() == "1" ? true : false;
+					cmb_adgb.SelectedIndex = clib.TextToInt(crow["EMBSADGB"].ToString()); //관리자구분 
 					dat_ipdt.DateTime = clib.TextToDate(crow["EMBSIPDT"].ToString().Trim()); //입사일
-					//dat_grdt.DateTime = clib.TextToDate(crow["GIN_DATE"].ToString().Trim()); //그룹입사일
 					dat_tsdt.DateTime = clib.TextToDate(crow["EMBSTSDT"].ToString().Trim()); //퇴사일
-					//dat_gsdt.DateTime = clib.TextToDate(crow["TSG_DATE"].ToString().Trim()); //퇴직기산일
 
 					//인트라넷
-					txt_iden.Text = crow["EMBSIDEN"].ToString().Trim();
+					//txt_iden.Text = crow["EMBSIDEN"].ToString().Trim();
 					txt_pswd.Text = crow["EMBSPSWD"].ToString().Trim();
 					txt_emal.Text = crow["EMBSEMAL"].ToString().Trim();
 
@@ -119,11 +116,6 @@ namespace WAGE1000
 
 					txt_hobo.Text = crow["EMBSHOBO"].ToString().Trim(); //호봉
 					mm_remk.Text = crow["EMBSDESC"].ToString().Trim();
-
-					//dat_shdt.DateTime = clib.TextToDate(crow["SH_DATE"].ToString().Trim()); //차기승호일
-																							//귀속일자
-					//dat_frd3.DateTime = clib.TextToDate(crow["EMBSFRD3"].ToString().Trim()); //퇴직정산귀속일자
-					//dat_tod3.DateTime = clib.TextToDate(crow["EMBSTOD3"].ToString().Trim());
 
 					//PHOTO 컬럼 신규 생성!!(BLOB)
 					//사진
@@ -172,34 +164,7 @@ namespace WAGE1000
                 int outVal = 0;
                 try
                 {
-                    DataRow hrow;
-
-                    //if (_Flag == "C")  //신규
-                    //{
-                    //    hrow = ds.Tables["MSTEMBS"].NewRow();
-                    //    hrow["G_CODE"] = txt_code.Text.ToString().Trim();
-                    //}
-                    //else //수정       //GNTECODE ,GNTE_SNM ,GNTE_FNM ,DP_COLOR ,GNMUTMFR ,GNMUTMTO ,GN_HOLTM ,GNMUTYPE ,AUTO_YN ,REQ_LIMT
-                    //{
-                    //    hrow = ds.Tables["DUTY_MSTGNMU"].Select("G_CODE = '" + txt_code.Text.ToString().Trim() + "'")[0];
-                    //}
-					
-                    //hrow["USID"] = SilkRoad.Config.SRConfig.USID;
-
-                    //if (_Flag == "C")  //신규
-                    //{
-                    //    hrow["INDT"] = gd.GetNow();
-                    //    hrow["UPDT"] = "";
-                    //    hrow["PSTY"] = "A";
-
-                    //    ds.Tables["DUTY_MSTGNMU"].Rows.Add(hrow);
-                    //}
-                    //else //수정
-                    //{
-                    //    hrow["UPDT"] = gd.GetNow();
-                    //    hrow["PSTY"] = "U";
-                    //}
-					
+                    DataRow hrow;					
 					if (_Flag == "C")  //신규
 					{
 						hrow = ds.Tables["MSTEMBS"].NewRow();
@@ -236,7 +201,7 @@ namespace WAGE1000
 					hrow["EMBSHOBO"] = txt_hobo.Text.Trim() == "" ? "" : txt_hobo.Text.Trim().PadLeft(3, '0');     //호봉
 					
 					//인트라넷
-					hrow["EMBSIDEN"] = txt_iden.Text.Trim();
+					//hrow["EMBSIDEN"] = txt_iden.Text.Trim();
 					hrow["EMBSPSWD"] = txt_pswd.Text.Trim();
 					hrow["EMBSEMAL"] = txt_emal.Text.Trim();
 					hrow["EMBSADGB"] = cmb_adgb.SelectedIndex.ToString();
@@ -329,7 +294,7 @@ namespace WAGE1000
 						}
 
 						if (outVal > 0)
-							MessageBox.Show("해당 근무유형이 삭제되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							MessageBox.Show("해당 사원정보가 삭제되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
 					catch (Exception ec)
 					{
