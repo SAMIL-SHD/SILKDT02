@@ -673,7 +673,8 @@
             "Call대기",
             "월차",
             "연차",
-            "휴가"});
+            "휴가(유급)",
+            "휴가(무급)"});
             this.cmb_gtype.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmb_gtype.Size = new System.Drawing.Size(140, 23);
             this.cmb_gtype.TabIndex = 5;

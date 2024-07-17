@@ -36,6 +36,7 @@
             this.srPanel1 = new SilkRoad.UserControls.SRPanel();
             this.srTitle1 = new SilkRoad.UserControls.SRTitle();
             this.srPanel3 = new SilkRoad.UserControls.SRPanel();
+            this.btn_dept_save = new SilkRoad.UserControls.SRButton();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,6 +44,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gr_detail = new SilkRoad.UserControls.SRGroupBox();
+            this.srPanel2 = new SilkRoad.UserControls.SRPanel();
             this.grd_dept = new DevExpress.XtraGrid.GridControl();
             this.grdv_dept = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,7 +52,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.grd_sl_dept2 = new SilkRoad.UserControls.SRgridLookup2();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btn_dept_save = new SilkRoad.UserControls.SRButton();
+            this.srPanel4 = new SilkRoad.UserControls.SRPanel();
             this.grd1 = new DevExpress.XtraGrid.GridControl();
             this.grdv1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,8 +60,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_chk1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.srPanel2 = new SilkRoad.UserControls.SRPanel();
-            this.srPanel4 = new SilkRoad.UserControls.SRPanel();
+            this.lb_msg = new SilkRoad.UserControls.SRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.grd_sl_dept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sRgridLookup21View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
@@ -68,18 +69,18 @@
             this.srPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gr_detail)).BeginInit();
             this.gr_detail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.srPanel2)).BeginInit();
+            this.srPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd_dept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_dept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_sl_dept2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
+            this.srPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_chk1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.srPanel2)).BeginInit();
-            this.srPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.srPanel4)).BeginInit();
-            this.srPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // col_idnm
@@ -129,7 +130,7 @@
             this.btn_exit.Authority = false;
             this.btn_exit.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.btn_exit.Image = ((System.Drawing.Image)(resources.GetObject("btn_exit.Image")));
-            this.btn_exit.Location = new System.Drawing.Point(114, 9);
+            this.btn_exit.Location = new System.Drawing.Point(214, 9);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(80, 24);
             this.btn_exit.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
@@ -172,15 +173,34 @@
             this.srPanel3.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.srPanel3.Appearance.Options.UseBackColor = true;
             this.srPanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.srPanel3.Controls.Add(this.lb_msg);
             this.srPanel3.Controls.Add(this.btn_dept_save);
             this.srPanel3.Controls.Add(this.btn_exit);
             this.srPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.srPanel3.Location = new System.Drawing.Point(754, 3);
+            this.srPanel3.Location = new System.Drawing.Point(654, 3);
             this.srPanel3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.srPanel3.LookAndFeel.UseDefaultLookAndFeel = false;
             this.srPanel3.Name = "srPanel3";
-            this.srPanel3.Size = new System.Drawing.Size(204, 40);
+            this.srPanel3.Size = new System.Drawing.Size(304, 40);
             this.srPanel3.TabIndex = 1;
+            // 
+            // btn_dept_save
+            // 
+            this.btn_dept_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_dept_save.Authority = false;
+            this.btn_dept_save.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.btn_dept_save.Image = ((System.Drawing.Image)(resources.GetObject("btn_dept_save.Image")));
+            this.btn_dept_save.Location = new System.Drawing.Point(133, 9);
+            this.btn_dept_save.Name = "btn_dept_save";
+            this.btn_dept_save.Size = new System.Drawing.Size(80, 24);
+            this.btn_dept_save.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.U;
+            this.btn_dept_save.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.수정;
+            this.btn_dept_save.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
+            this.btn_dept_save.TabIndex = 1;
+            this.btn_dept_save.Text = "부서저장";
+            this.btn_dept_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_dept_save.UseVisualStyleBackColor = true;
+            this.btn_dept_save.Click += new System.EventHandler(this.btn_dept_save_Click);
             // 
             // gridColumn15
             // 
@@ -241,6 +261,15 @@
             this.gr_detail.Name = "gr_detail";
             this.gr_detail.Size = new System.Drawing.Size(961, 588);
             this.gr_detail.TabIndex = 1;
+            // 
+            // srPanel2
+            // 
+            this.srPanel2.Controls.Add(this.grd_dept);
+            this.srPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.srPanel2.Location = new System.Drawing.Point(504, 22);
+            this.srPanel2.Name = "srPanel2";
+            this.srPanel2.Size = new System.Drawing.Size(455, 564);
+            this.srPanel2.TabIndex = 2;
             // 
             // grd_dept
             // 
@@ -344,23 +373,14 @@
             this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView3.OptionsView.ShowGroupPanel = false;
             // 
-            // btn_dept_save
+            // srPanel4
             // 
-            this.btn_dept_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_dept_save.Authority = false;
-            this.btn_dept_save.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.btn_dept_save.Image = ((System.Drawing.Image)(resources.GetObject("btn_dept_save.Image")));
-            this.btn_dept_save.Location = new System.Drawing.Point(33, 9);
-            this.btn_dept_save.Name = "btn_dept_save";
-            this.btn_dept_save.Size = new System.Drawing.Size(80, 24);
-            this.btn_dept_save.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.U;
-            this.btn_dept_save.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.수정;
-            this.btn_dept_save.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_80;
-            this.btn_dept_save.TabIndex = 1;
-            this.btn_dept_save.Text = "부서저장";
-            this.btn_dept_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_dept_save.UseVisualStyleBackColor = true;
-            this.btn_dept_save.Click += new System.EventHandler(this.btn_dept_save_Click);
+            this.srPanel4.Controls.Add(this.grd1);
+            this.srPanel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.srPanel4.Location = new System.Drawing.Point(2, 22);
+            this.srPanel4.Name = "srPanel4";
+            this.srPanel4.Size = new System.Drawing.Size(502, 564);
+            this.srPanel4.TabIndex = 3;
             // 
             // grd1
             // 
@@ -469,23 +489,18 @@
             this.gridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn2.Width = 96;
             // 
-            // srPanel2
+            // lb_msg
             // 
-            this.srPanel2.Controls.Add(this.grd_dept);
-            this.srPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.srPanel2.Location = new System.Drawing.Point(504, 22);
-            this.srPanel2.Name = "srPanel2";
-            this.srPanel2.Size = new System.Drawing.Size(455, 564);
-            this.srPanel2.TabIndex = 2;
-            // 
-            // srPanel4
-            // 
-            this.srPanel4.Controls.Add(this.grd1);
-            this.srPanel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.srPanel4.Location = new System.Drawing.Point(2, 22);
-            this.srPanel4.Name = "srPanel4";
-            this.srPanel4.Size = new System.Drawing.Size(502, 564);
-            this.srPanel4.TabIndex = 3;
+            this.lb_msg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_msg.AutoSize = true;
+            this.lb_msg.BackColor = System.Drawing.Color.Transparent;
+            this.lb_msg.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.lb_msg.ForeColor = System.Drawing.Color.Red;
+            this.lb_msg.Location = new System.Drawing.Point(37, 14);
+            this.lb_msg.Name = "lb_msg";
+            this.lb_msg.Size = new System.Drawing.Size(95, 15);
+            this.lb_msg.TabIndex = 524;
+            this.lb_msg.Text = "저장되었습니다!";
             // 
             // duty1005
             // 
@@ -505,20 +520,21 @@
             this.srPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).EndInit();
             this.srPanel3.ResumeLayout(false);
+            this.srPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gr_detail)).EndInit();
             this.gr_detail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.srPanel2)).EndInit();
+            this.srPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grd_dept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_dept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_sl_dept2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srPanel4)).EndInit();
+            this.srPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grd1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_chk1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.srPanel2)).EndInit();
-            this.srPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.srPanel4)).EndInit();
-            this.srPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -556,6 +572,7 @@
 		private SilkRoad.UserControls.SRButton btn_dept_save;
         private SilkRoad.UserControls.SRPanel srPanel2;
         private SilkRoad.UserControls.SRPanel srPanel4;
+        private SilkRoad.UserControls.SRLabel lb_msg;
     }
 }
 

@@ -223,12 +223,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1.기초코드\1.3.부서-직원설정\DUTY1012.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="1.기초코드\1.3.부서-직원설정\DUTY1012.designer.cs">
-      <DependentUpon>DUTY1012.cs</DependentUpon>
-    </Compile>
     <Compile Include="1.기초코드\1.3.부서-직원설정\DUTY1011.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,47 +253,17 @@
     <Compile Include="2.근무관리\2.1.공지사항\DUTY4010.designer.cs">
       <DependentUpon>DUTY4010.cs</DependentUpon>
     </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2022.cs">
+    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2020.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2022.designer.cs">
-      <DependentUpon>DUTY2022.cs</DependentUpon>
+    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2020.designer.cs">
+      <DependentUpon>DUTY2020.cs</DependentUpon>
     </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2021.cs">
+    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2010.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2021.designer.cs">
-      <DependentUpon>DUTY2021.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2024.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2024.designer.cs">
-      <DependentUpon>DUTY2024.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2023.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2023.designer.cs">
-      <DependentUpon>DUTY2023.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.3.OT,SAVE표\DUTY2030.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.3.OT,SAVE표\DUTY2030.designer.cs">
-      <DependentUpon>DUTY2030.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.3.OT,SAVE표\DUTY2031.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.3.OT,SAVE표\DUTY2031.designer.cs">
-      <DependentUpon>DUTY2031.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY2062.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY2062.designer.cs">
-      <DependentUpon>DUTY2062.cs</DependentUpon>
+    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2010.designer.cs">
+      <DependentUpon>DUTY2010.cs</DependentUpon>
     </Compile>
     <Compile Include="2.근무관리\2.5.OFF신청조회\CustomAppointmentForm.cs">
       <SubType>Form</SubType>
@@ -307,35 +271,11 @@
     <Compile Include="2.근무관리\2.5.OFF신청조회\CustomAppointmentForm.designer.cs">
       <DependentUpon>CustomAppointmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="2.근무관리\2.5.OFF신청조회\DUTY2010.cs">
+    <Compile Include="2.근무관리\2.5.OFF신청조회\DUTY3030.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2.근무관리\2.5.OFF신청조회\DUTY2010.designer.cs">
-      <DependentUpon>DUTY2010.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2020.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.2.콜OT관리\DUTY2020.designer.cs">
-      <DependentUpon>DUTY2020.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3013.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3013.designer.cs">
-      <DependentUpon>DUTY3013.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3014.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3014.designer.cs">
-      <DependentUpon>DUTY3014.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3012.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3012.designer.cs">
-      <DependentUpon>DUTY3012.cs</DependentUpon>
+    <Compile Include="2.근무관리\2.5.OFF신청조회\DUTY3030.designer.cs">
+      <DependentUpon>DUTY3030.cs</DependentUpon>
     </Compile>
     <Compile Include="2.근무관리\2.6.간호사근무관리\DUTY3015.cs">
       <SubType>Form</SubType>
@@ -457,29 +397,11 @@
     <Compile Include="2.근무관리\2.8.인사카드\rpt_2210_9.designer.cs">
       <DependentUpon>rpt_2210_9.cs</DependentUpon>
     </Compile>
-    <Compile Include="2.근무관리\2.X.연차정산관리\DUTY303X.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\DUTY8021.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2.근무관리\2.X.연차정산관리\DUTY303X.designer.cs">
-      <DependentUpon>DUTY303X.cs</DependentUpon>
-    </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\DUTY8021.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\DUTY8021.designer.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\DUTY8021.designer.cs">
       <DependentUpon>DUTY8021.cs</DependentUpon>
-    </Compile>
-    <Compile Include="5.문서관리\5.1.결재문서관리\DUTY5064.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="5.문서관리\5.1.결재문서관리\DUTY5064.designer.cs">
-      <DependentUpon>DUTY5064.cs</DependentUpon>
-    </Compile>
-    <Compile Include="5.문서관리\5.1.결재문서관리\DUTY5062.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="5.문서관리\5.1.결재문서관리\DUTY5062.designer.cs">
-      <DependentUpon>DUTY5062.cs</DependentUpon>
     </Compile>
     <Compile Include="5.문서관리\5.1.결재문서관리\DUTY5060.cs">
       <SubType>Form</SubType>
@@ -523,53 +445,35 @@
     <Compile Include="5.문서관리\5.1.결재문서관리\rpt_506a.designer.cs">
       <DependentUpon>rpt_506a.cs</DependentUpon>
     </Compile>
-    <Compile Include="5.문서관리\5.4.완결문서관리\DUTY5080.cs">
+    <Compile Include="5.문서관리\5.2.완결문서관리\DUTY5080.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="5.문서관리\5.4.완결문서관리\DUTY5080.designer.cs">
+    <Compile Include="5.문서관리\5.2.완결문서관리\DUTY5080.designer.cs">
       <DependentUpon>DUTY5080.cs</DependentUpon>
     </Compile>
-    <Compile Include="5.문서관리\5.4.완결문서관리\rpt_508a.cs">
+    <Compile Include="5.문서관리\5.2.완결문서관리\rpt_5082.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="5.문서관리\5.4.완결문서관리\rpt_508a.designer.cs">
+    <Compile Include="5.문서관리\5.2.완결문서관리\rpt_5082.designer.cs">
+      <DependentUpon>rpt_5082.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5.문서관리\5.2.완결문서관리\rpt_5081.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="5.문서관리\5.2.완결문서관리\rpt_5081.designer.cs">
+      <DependentUpon>rpt_5081.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5.문서관리\5.2.완결문서관리\rpt_508a.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="5.문서관리\5.2.완결문서관리\rpt_508a.designer.cs">
       <DependentUpon>rpt_508a.cs</DependentUpon>
     </Compile>
-    <Compile Include="8.마감관리\8.6.KT근태연동조회\DUTY5010.cs">
+    <Compile Include="8.마감관리\8.1.근무표전체조회\DUTY3060.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="8.마감관리\8.6.KT근태연동조회\DUTY5010.designer.cs">
-      <DependentUpon>DUTY5010.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY2041.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY2041.designer.cs">
-      <DependentUpon>DUTY2041.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY204X.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY204X.designer.cs">
-      <DependentUpon>DUTY204X.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY204Y.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY204Y.designer.cs">
-      <DependentUpon>DUTY204Y.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY2040.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\DUTY2040.designer.cs">
-      <DependentUpon>DUTY2040.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\rpt_2040.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.Y.Call대기\rpt_2040.Designer.cs">
-      <DependentUpon>rpt_2040.cs</DependentUpon>
+    <Compile Include="8.마감관리\8.1.근무표전체조회\DUTY3060.designer.cs">
+      <DependentUpon>DUTY3060.cs</DependentUpon>
     </Compile>
     <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY2060.cs">
       <SubType>Form</SubType>
@@ -582,18 +486,6 @@
     </Compile>
     <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY2061.designer.cs">
       <DependentUpon>DUTY2061.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY206Y.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY206Y.designer.cs">
-      <DependentUpon>DUTY206Y.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY206X.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2.근무관리\2.4.일반근무및당직관리\DUTY206X.designer.cs">
-      <DependentUpon>DUTY206X.cs</DependentUpon>
     </Compile>
     <Compile Include="2.근무관리\2.4.일반근무및당직관리\rpt_2060.cs">
       <SubType>Component</SubType>
@@ -625,23 +517,23 @@
     <Compile Include="2.근무관리\2.7.근무마감설정\DUTY3020.designer.cs">
       <DependentUpon>DUTY3020.cs</DependentUpon>
     </Compile>
-    <Compile Include="8.마감관리\8.1.근무집계표\DUTY3080.cs">
+    <Compile Include="8.마감관리\8.4.근무집계표\DUTY3080.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="8.마감관리\8.1.근무집계표\DUTY3080.designer.cs">
+    <Compile Include="8.마감관리\8.4.근무집계표\DUTY3080.designer.cs">
       <DependentUpon>DUTY3080.cs</DependentUpon>
     </Compile>
-    <Compile Include="8.마감관리\8.2.전체마감관리\DUTY3090.cs">
+    <Compile Include="8.마감관리\8.3.전체마감관리\DUTY3090.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="8.마감관리\8.2.전체마감관리\DUTY3090.designer.cs">
+    <Compile Include="8.마감관리\8.3.전체마감관리\DUTY3090.designer.cs">
       <DependentUpon>DUTY3090.cs</DependentUpon>
     </Compile>
-    <Compile Include="8.마감관리\8.7.연차정산관리\DUTY3030.cs">
+    <Compile Include="8.마감관리\8.2.연차정산관리\DUTY3070.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="8.마감관리\8.7.연차정산관리\DUTY3030.designer.cs">
-      <DependentUpon>DUTY3030.cs</DependentUpon>
+    <Compile Include="8.마감관리\8.2.연차정산관리\DUTY3070.designer.cs">
+      <DependentUpon>DUTY3070.cs</DependentUpon>
     </Compile>
     <Compile Include="9.환경설정\9.1.월별시급관리\DUTY9010.cs">
       <SubType>Form</SubType>
@@ -675,34 +567,34 @@
     </Compile>
     <Compile Include="DataProcFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="3.연차관리\3.6.사원별연차관리\DUTY8020.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\DUTY8020.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\DUTY8020.designer.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\DUTY8020.designer.cs">
       <DependentUpon>DUTY8020.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\Rpt_8020.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\Rpt_8020.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\Rpt_8020.designer.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\Rpt_8020.designer.cs">
       <DependentUpon>Rpt_8020.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\Rpt_8021.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\Rpt_8021.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\Rpt_8021.designer.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\Rpt_8021.designer.cs">
       <DependentUpon>Rpt_8021.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\Rpt_8022.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\Rpt_8022.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\Rpt_8022.designer.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\Rpt_8022.designer.cs">
       <DependentUpon>Rpt_8022.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\SendEmail.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\SendEmail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.6.사원별연차관리\SendEmail.designer.cs">
+    <Compile Include="3.연차관리\3.4.사원별연차관리\SendEmail.designer.cs">
       <DependentUpon>SendEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="3.연차관리\3.1.연차신청및조회\DUTY8030.cs">
@@ -711,22 +603,22 @@
     <Compile Include="3.연차관리\3.1.연차신청및조회\DUTY8030.designer.cs">
       <DependentUpon>DUTY8030.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.7.연차휴가사용촉구\DUTY8010.cs">
+    <Compile Include="3.연차관리\3.5.연차휴가사용촉구\DUTY8010.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.7.연차휴가사용촉구\DUTY8010.designer.cs">
+    <Compile Include="3.연차관리\3.5.연차휴가사용촉구\DUTY8010.designer.cs">
       <DependentUpon>DUTY8010.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.7.연차휴가사용촉구\DUTY8010x.cs">
+    <Compile Include="3.연차관리\3.5.연차휴가사용촉구\DUTY8010x.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.7.연차휴가사용촉구\DUTY8010x.designer.cs">
+    <Compile Include="3.연차관리\3.5.연차휴가사용촉구\DUTY8010x.designer.cs">
       <DependentUpon>DUTY8010x.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.7.연차휴가사용촉구\Rpt_8010.cs">
+    <Compile Include="3.연차관리\3.5.연차휴가사용촉구\Rpt_8010.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.7.연차휴가사용촉구\Rpt_8010.designer.cs">
+    <Compile Include="3.연차관리\3.5.연차휴가사용촉구\Rpt_8010.designer.cs">
       <DependentUpon>Rpt_8010.cs</DependentUpon>
     </Compile>
     <Compile Include="3.연차관리\3.2.휴가신청및조회\DUTY8050.cs">
@@ -741,9 +633,6 @@
     <Compile Include="3.연차관리\3.3.연차및휴가현황\DUTY8090.designer.cs">
       <DependentUpon>DUTY8090.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="1.기초코드\1.3.부서-직원설정\DUTY1012.resx">
-      <DependentUpon>DUTY1012.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="1.기초코드\1.3.부서-직원설정\DUTY1011.resx">
       <DependentUpon>DUTY1011.cs</DependentUpon>
     </EmbeddedResource>
@@ -759,26 +648,11 @@
     <EmbeddedResource Include="2.근무관리\2.1.공지사항\DUTY4010.resx">
       <DependentUpon>DUTY4010.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2022.resx">
-      <DependentUpon>DUTY2022.cs</DependentUpon>
+    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2020.resx">
+      <DependentUpon>DUTY2020.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2021.resx">
-      <DependentUpon>DUTY2021.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2024.resx">
-      <DependentUpon>DUTY2024.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2023.resx">
-      <DependentUpon>DUTY2023.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.3.OT,SAVE표\DUTY2030.resx">
-      <DependentUpon>DUTY2030.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.3.OT,SAVE표\DUTY2031.resx">
-      <DependentUpon>DUTY2031.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.4.일반근무및당직관리\DUTY2062.resx">
-      <DependentUpon>DUTY2062.cs</DependentUpon>
+    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2010.resx">
+      <DependentUpon>DUTY2010.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2.근무관리\2.5.OFF신청조회\CustomAppointmentForm.de.resx">
       <DependentUpon>CustomAppointmentForm.cs</DependentUpon>
@@ -795,20 +669,8 @@
     <EmbeddedResource Include="2.근무관리\2.5.OFF신청조회\CustomAppointmentForm.ru.resx">
       <DependentUpon>CustomAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.5.OFF신청조회\DUTY2010.resx">
-      <DependentUpon>DUTY2010.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.2.콜OT관리\DUTY2020.resx">
-      <DependentUpon>DUTY2020.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.6.간호사근무관리\DUTY3013.resx">
-      <DependentUpon>DUTY3013.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.6.간호사근무관리\DUTY3014.resx">
-      <DependentUpon>DUTY3014.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.6.간호사근무관리\DUTY3012.resx">
-      <DependentUpon>DUTY3012.cs</DependentUpon>
+    <EmbeddedResource Include="2.근무관리\2.5.OFF신청조회\DUTY3030.resx">
+      <DependentUpon>DUTY3030.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2.근무관리\2.6.간호사근무관리\DUTY3015.resx">
       <DependentUpon>DUTY3015.cs</DependentUpon>
@@ -870,17 +732,8 @@
     <EmbeddedResource Include="2.근무관리\2.8.인사카드\rpt_2210_9.resx">
       <DependentUpon>rpt_2210_9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.X.연차정산관리\DUTY303X.resx">
-      <DependentUpon>DUTY303X.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.6.사원별연차관리\DUTY8021.resx">
+    <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\DUTY8021.resx">
       <DependentUpon>DUTY8021.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\DUTY5064.resx">
-      <DependentUpon>DUTY5064.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\DUTY5062.resx">
-      <DependentUpon>DUTY5062.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\DUTY5060.resx">
       <DependentUpon>DUTY5060.cs</DependentUpon>
@@ -903,41 +756,26 @@
     <EmbeddedResource Include="5.문서관리\5.1.결재문서관리\rpt_506a.resx">
       <DependentUpon>rpt_506a.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="5.문서관리\5.4.완결문서관리\DUTY5080.resx">
+    <EmbeddedResource Include="5.문서관리\5.2.완결문서관리\DUTY5080.resx">
       <DependentUpon>DUTY5080.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="5.문서관리\5.4.완결문서관리\rpt_508a.resx">
+    <EmbeddedResource Include="5.문서관리\5.2.완결문서관리\rpt_5082.resx">
+      <DependentUpon>rpt_5082.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5.문서관리\5.2.완결문서관리\rpt_5081.resx">
+      <DependentUpon>rpt_5081.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5.문서관리\5.2.완결문서관리\rpt_508a.resx">
       <DependentUpon>rpt_508a.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="8.마감관리\8.6.KT근태연동조회\DUTY5010.resx">
-      <DependentUpon>DUTY5010.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.Y.Call대기\DUTY2041.resx">
-      <DependentUpon>DUTY2041.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.Y.Call대기\DUTY204X.resx">
-      <DependentUpon>DUTY204X.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.Y.Call대기\DUTY204Y.resx">
-      <DependentUpon>DUTY204Y.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.Y.Call대기\DUTY2040.resx">
-      <DependentUpon>DUTY2040.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.Y.Call대기\rpt_2040.resx">
-      <DependentUpon>rpt_2040.cs</DependentUpon>
+    <EmbeddedResource Include="8.마감관리\8.1.근무표전체조회\DUTY3060.resx">
+      <DependentUpon>DUTY3060.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2.근무관리\2.4.일반근무및당직관리\DUTY2060.resx">
       <DependentUpon>DUTY2060.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2.근무관리\2.4.일반근무및당직관리\DUTY2061.resx">
       <DependentUpon>DUTY2061.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.4.일반근무및당직관리\DUTY206Y.resx">
-      <DependentUpon>DUTY206Y.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.4.일반근무및당직관리\DUTY206X.resx">
-      <DependentUpon>DUTY206X.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2.근무관리\2.4.일반근무및당직관리\rpt_2060.resx">
       <DependentUpon>rpt_2060.cs</DependentUpon>
@@ -954,14 +792,14 @@
     <EmbeddedResource Include="2.근무관리\2.7.근무마감설정\DUTY3020.resx">
       <DependentUpon>DUTY3020.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="8.마감관리\8.1.근무집계표\DUTY3080.resx">
+    <EmbeddedResource Include="8.마감관리\8.4.근무집계표\DUTY3080.resx">
       <DependentUpon>DUTY3080.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="8.마감관리\8.2.전체마감관리\DUTY3090.resx">
+    <EmbeddedResource Include="8.마감관리\8.3.전체마감관리\DUTY3090.resx">
       <DependentUpon>DUTY3090.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="8.마감관리\8.7.연차정산관리\DUTY3030.resx">
-      <DependentUpon>DUTY3030.cs</DependentUpon>
+    <EmbeddedResource Include="8.마감관리\8.2.연차정산관리\DUTY3070.resx">
+      <DependentUpon>DUTY3070.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9.환경설정\9.1.월별시급관리\DUTY9010.resx">
       <DependentUpon>DUTY9010.cs</DependentUpon>
@@ -989,31 +827,31 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="3.연차관리\3.6.사원별연차관리\DUTY8020.resx">
+    <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\DUTY8020.resx">
       <DependentUpon>DUTY8020.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.6.사원별연차관리\Rpt_8020.resx">
+    <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\Rpt_8020.resx">
       <DependentUpon>Rpt_8020.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.6.사원별연차관리\Rpt_8021.resx">
+    <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\Rpt_8021.resx">
       <DependentUpon>Rpt_8021.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.6.사원별연차관리\Rpt_8022.resx">
+    <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\Rpt_8022.resx">
       <DependentUpon>Rpt_8022.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.6.사원별연차관리\SendEmail.resx">
+    <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\SendEmail.resx">
       <DependentUpon>SendEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3.연차관리\3.1.연차신청및조회\DUTY8030.resx">
       <DependentUpon>DUTY8030.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.7.연차휴가사용촉구\DUTY8010.resx">
+    <EmbeddedResource Include="3.연차관리\3.5.연차휴가사용촉구\DUTY8010.resx">
       <DependentUpon>DUTY8010.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.7.연차휴가사용촉구\DUTY8010x.resx">
+    <EmbeddedResource Include="3.연차관리\3.5.연차휴가사용촉구\DUTY8010x.resx">
       <DependentUpon>DUTY8010x.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.7.연차휴가사용촉구\Rpt_8010.resx">
+    <EmbeddedResource Include="3.연차관리\3.5.연차휴가사용촉구\Rpt_8010.resx">
       <DependentUpon>Rpt_8010.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3.연차관리\3.2.휴가신청및조회\DUTY8050.resx">
@@ -1088,7 +926,15 @@
       <Name>SilkRoad.DbCmd_DT02</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\취소.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\미리보기.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\인쇄.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -292,10 +292,11 @@ namespace SilkRoad.SILKDT02
             bool res = false;
             SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 
-			//res = true;
-			//SAMIL ID면 pass...
-			if (SRConfig.USID == "SAMIL" || dllName.ToUpper().Substring(0, 7) == "DUTY100" || dllName.ToUpper().Substring(0, 7) == "DUTY506" 
-				|| dllName.ToUpper().Substring(0, 7) == "DUTY508" || dllName.ToUpper().Substring(0, 8) == "duty2030")
+            if ("3030014,3030450,1030001".Contains(SRConfig.USID)) //테스트
+                return true;
+
+            if (SRConfig.USID == "SAMIL" || dllName.ToUpper().Substring(0, 1) == "W" || ("DUTY1,DUTY5,DUTY9").Contains(dllName.ToUpper().Substring(0, 5))
+                || ("DUTY3070,DUTY3080,DUTY3090").Contains(dllName.ToUpper().Substring(0, 8)))
 				return true;
 
 			//메뉴 권한 검사     

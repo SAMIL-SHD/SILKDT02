@@ -95,9 +95,27 @@ namespace WAGE1000
 				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
-		//직위코드 lookup
-		public void GetWAGE_GRADDatas(DataSet ds)
+        }
+        //직위코드 lookup
+        public void GetWAGE_POSIDatas(DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT POSICODE CODE, RTRIM(POSINAM1) NAME, (CASE POSISTAT WHEN 1 THEN '정상' ELSE '사용중지' END) STAT_NM "
+                           + "   FROM " + wagedb + ".dbo.MSTPOSI "
+                           + "  ORDER BY POSICODE ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("WAGE_POSI", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //직급코드 lookup
+        public void GetWAGE_GRADDatas(DataSet ds)
 		{
 			try
 			{
@@ -121,8 +139,8 @@ namespace WAGE1000
 			{
 				string qry = " SELECT A.*, "
 						   + "        RTRIM(X1.GLOVNAM1) AS GLOV_NM, RTRIM(X2.DEPRNAM1) AS DEPR_NM, "
-						   + "        RTRIM(X3.JONGNAM1) AS JONG_NM, RTRIM(X4.GRADNAM1) AS GRAD_NM, "
-						   + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))),6)+'-'+"
+						   + "        RTRIM(X3.JONGNAM1) AS JONG_NM, RTRIM(X4.POSINAM1) AS POSI_NM, RTRIM(X5.GRADNAM1) AS GRAD_NM, "
+                           + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))),6)+'-'+"
 						   + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))),7,7) AS JMNO_NM, "
 						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))) AS D_JMNO, "
 						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPHPN) as varchar(20))) AS D_HPNO, "
@@ -142,8 +160,10 @@ namespace WAGE1000
 						   + "     ON A.EMBSDPCD=X2.DEPRCODE "
 						   + "   LEFT OUTER JOIN MSTJONG X3 "
 						   + "     ON A.EMBSJOCD=X3.JONGCODE "
-						   + "   LEFT OUTER JOIN MSTGRAD X4 "
-						   + "     ON A.EMBSGRCD=X4.GRADCODE "
+                           + "   LEFT OUTER JOIN MSTPOSI X4 "
+                           + "     ON A.EMBSPSCD=X4.POSICODE "
+                           + "   LEFT OUTER JOIN MSTGRAD X5 "
+						   + "     ON A.EMBSGRCD=X5.GRADCODE "
 						   + "  ORDER BY A.EMBSSABN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);

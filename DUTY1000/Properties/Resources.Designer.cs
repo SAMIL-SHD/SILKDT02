@@ -133,6 +133,16 @@ namespace DUTY1000.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap 미리보기 {
+            get {
+                object obj = ResourceManager.GetObject("미리보기", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap 삭제 {
             get {
                 object obj = ResourceManager.GetObject("삭제", resourceCulture);
@@ -153,6 +163,16 @@ namespace DUTY1000.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap 인쇄 {
+            get {
+                object obj = ResourceManager.GetObject("인쇄", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap 저장 {
             get {
                 object obj = ResourceManager.GetObject("저장", resourceCulture);
@@ -166,6 +186,16 @@ namespace DUTY1000.Properties {
         internal static System.Drawing.Bitmap 축소 {
             get {
                 object obj = ResourceManager.GetObject("축소", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 취소 {
+            get {
+                object obj = ResourceManager.GetObject("취소", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

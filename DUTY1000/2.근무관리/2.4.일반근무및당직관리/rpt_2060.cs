@@ -18,18 +18,18 @@ namespace DUTY1000
         DataSet ds;
         DataProcFunc df = new DataProcFunc();
 
-        public rpt_2060 (string yymm, string part, string fxot_gubn, DataTable ds)
+        public rpt_2060 (string yymm, string part, DataTable ds)
         {
             InitializeComponent();
             xrLabel4.Text = yymm.Substring(0, 4) + "." + yymm.Substring(4, 2) + "월 근무및당직";
             lb_part.Text = part;
 
-			if (fxot_gubn == "1")
-			{
-				xrTableCell3.Visible = true;
-				xrTableCell6.Visible = true;
-				xrTableCell8.Visible = true;
-			}
+			//if (fxot_gubn == "1")
+			//{
+			//	xrTableCell3.Visible = true;
+			//	xrTableCell6.Visible = true;
+			//	xrTableCell8.Visible = true;
+			//}
 
 			#region 요일표기
 			//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정

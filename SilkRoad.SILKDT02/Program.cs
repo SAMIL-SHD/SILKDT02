@@ -93,8 +93,11 @@ namespace SilkRoad.SILKDT02
                 //SilkRoad.DAL.DataAccess.DBhost = "115.68.15.121,1433";
                 //SilkRoad.DAL.DataAccess.DBusid = "sa";
                 //SilkRoad.DAL.DataAccess.DBuspw = "samil25";
+                SilkRoad.Config.SRConfig.USID = "SAMIL";  //개발자
 
-                SilkRoad.Config.SRConfig.USID = "SAMIL";
+                SilkRoad.Config.SRConfig.USID = "3030450";  //한수정_전체관리
+                //SilkRoad.Config.SRConfig.USID = "3030014";  //박성호_부서관리
+                //SilkRoad.Config.SRConfig.USID = "1030001";  //이준영
 #endif
             }
 

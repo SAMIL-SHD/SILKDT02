@@ -1,6 +1,6 @@
 ﻿namespace DUTY1000
 {
-    partial class duty2020
+    partial class duty2010
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty2020));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty2010));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.srPanel1 = new SilkRoad.UserControls.SRPanel();
@@ -170,7 +170,7 @@
             this.srTitle1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.srTitle1.Name = "srTitle1";
             this.srTitle1.Size = new System.Drawing.Size(193, 39);
-            this.srTitle1.SRTitleTxt = "연장근무관리";
+            this.srTitle1.SRTitleTxt = "콜근무관리";
             this.srTitle1.TabIndex = 26;
             this.srTitle1.TabStop = false;
             // 
@@ -645,7 +645,7 @@
             this.grdv1.GroupCount = 1;
             this.grdv1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "SLDT_NM", this.gridColumn1, "{0}건"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TIME", this.gridColumn5, "{0:#,###.#}")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_CNT", this.gridColumn5, "{0:#,###}")});
             this.grdv1.Name = "grdv1";
             this.grdv1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.grdv1.OptionsBehavior.AutoExpandAllGroups = true;
@@ -736,20 +736,20 @@
             this.gridColumn5.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
             this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn5.Caption = "근무시간";
-            this.gridColumn5.DisplayFormat.FormatString = "{0:#,###.#}";
+            this.gridColumn5.Caption = "건수";
+            this.gridColumn5.DisplayFormat.FormatString = "{0:#,###}";
             this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn5.FieldName = "OT_TIME";
+            this.gridColumn5.FieldName = "CALL_CNT";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TIME", "{0:#,###.#}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_CNT", "{0:#,###}")});
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
-            this.gridColumn5.Width = 88;
+            this.gridColumn5.Width = 58;
             // 
             // gridColumn11
             // 
@@ -788,19 +788,20 @@
             this.srLabel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.srLabel12.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.srLabel12.ForeColor = System.Drawing.Color.Black;
-            this.srLabel12.Location = new System.Drawing.Point(16, 132);
+            this.srLabel12.Location = new System.Drawing.Point(215, 134);
             this.srLabel12.Name = "srLabel12";
             this.srLabel12.Size = new System.Drawing.Size(65, 23);
             this.srLabel12.SRBulletColor = System.Drawing.Color.Empty;
             this.srLabel12.TabIndex = 541;
             this.srLabel12.Text = "근무시간";
             this.srLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.srLabel12.Visible = false;
             // 
             // txt_time
             // 
             this.txt_time.EditValue = "";
             this.txt_time.EnterMoveNextControl = true;
-            this.txt_time.Location = new System.Drawing.Point(81, 132);
+            this.txt_time.Location = new System.Drawing.Point(280, 134);
             this.txt_time.Name = "txt_time";
             this.txt_time.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.txt_time.Properties.Appearance.Options.UseFont = true;
@@ -813,8 +814,9 @@
             this.txt_time.Properties.Mask.EditMask = "n1";
             this.txt_time.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txt_time.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txt_time.Size = new System.Drawing.Size(127, 23);
-            this.txt_time.TabIndex = 1;
+            this.txt_time.Size = new System.Drawing.Size(43, 23);
+            this.txt_time.TabIndex = 540;
+            this.txt_time.Visible = false;
             // 
             // srLabel14
             // 
@@ -842,7 +844,7 @@
             this.mm_remk.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.mm_remk.Properties.LookAndFeel.SkinName = "Lilian";
             this.mm_remk.Size = new System.Drawing.Size(285, 82);
-            this.mm_remk.TabIndex = 2;
+            this.mm_remk.TabIndex = 1;
             this.mm_remk.Leave += new System.EventHandler(this.mm_remk_Leave);
             // 
             // srPanel2
@@ -882,8 +884,8 @@
             this.sr_gubn.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.sr_gubn.Properties.Appearance.Options.UseFont = true;
             this.sr_gubn.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(0, "연장"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "휴일")});
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(0, "콜"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "콜 대기")});
             this.sr_gubn.Size = new System.Drawing.Size(127, 23);
             this.sr_gubn.TabIndex = 2;
             // 
@@ -948,15 +950,15 @@
             this.gridColumn18,
             this.gridColumn48});
             this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Name = "Format0";
-            formatConditionRuleExpression2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Strikeout);
-            formatConditionRuleExpression2.Appearance.ForeColor = System.Drawing.Color.Gray;
-            formatConditionRuleExpression2.Appearance.Options.UseFont = true;
-            formatConditionRuleExpression2.Appearance.Options.UseForeColor = true;
-            formatConditionRuleExpression2.Expression = "[EMBSSTAT] = 2";
-            gridFormatRule2.Rule = formatConditionRuleExpression2;
-            this.gridView2.FormatRules.Add(gridFormatRule2);
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Name = "Format0";
+            formatConditionRuleExpression1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Strikeout);
+            formatConditionRuleExpression1.Appearance.ForeColor = System.Drawing.Color.Gray;
+            formatConditionRuleExpression1.Appearance.Options.UseFont = true;
+            formatConditionRuleExpression1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression1.Expression = "[EMBSSTAT] = 2";
+            gridFormatRule1.Rule = formatConditionRuleExpression1;
+            this.gridView2.FormatRules.Add(gridFormatRule1);
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
@@ -1031,20 +1033,19 @@
             this.srLabel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.srLabel4.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.srLabel4.ForeColor = System.Drawing.Color.Black;
-            this.srLabel4.Location = new System.Drawing.Point(232, 131);
+            this.srLabel4.Location = new System.Drawing.Point(16, 134);
             this.srLabel4.Name = "srLabel4";
             this.srLabel4.Size = new System.Drawing.Size(65, 23);
             this.srLabel4.SRBulletColor = System.Drawing.Color.Empty;
             this.srLabel4.TabIndex = 525;
             this.srLabel4.Text = "건  수";
             this.srLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.srLabel4.Visible = false;
             // 
             // txt_cnt
             // 
             this.txt_cnt.EditValue = "";
             this.txt_cnt.EnterMoveNextControl = true;
-            this.txt_cnt.Location = new System.Drawing.Point(297, 131);
+            this.txt_cnt.Location = new System.Drawing.Point(81, 134);
             this.txt_cnt.Name = "txt_cnt";
             this.txt_cnt.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.txt_cnt.Properties.Appearance.Options.UseFont = true;
@@ -1057,11 +1058,10 @@
             this.txt_cnt.Properties.Mask.EditMask = "n0";
             this.txt_cnt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txt_cnt.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txt_cnt.Size = new System.Drawing.Size(49, 23);
+            this.txt_cnt.Size = new System.Drawing.Size(107, 23);
             this.txt_cnt.TabIndex = 0;
-            this.txt_cnt.Visible = false;
             // 
-            // duty2020
+            // duty2010
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1073,11 +1073,11 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "duty2020";
-            this.Text = "duty2020";
-            this.Load += new System.EventHandler(this.duty2020_Load);
-            this.Shown += new System.EventHandler(this.duty2020_Shown);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty2020_KeyDown);
+            this.Name = "duty2010";
+            this.Text = "duty2010";
+            this.Load += new System.EventHandler(this.duty2010_Load);
+            this.Shown += new System.EventHandler(this.duty2010_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty2010_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();

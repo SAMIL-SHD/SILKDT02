@@ -60,7 +60,7 @@ namespace SilkRoad.SILKDT02
             //           + "   FROM MSTEMBS "
             //           + "  WHERE EMBSSABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
 
-            //DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), DataAccess.DBname, qry);
+            //DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), DataAccess.DBname, qry)0;
             //dp.AddDatatable2Dataset("MSTUSER_CHK", dt, ref ds);
             //if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
             //    admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
@@ -96,10 +96,10 @@ namespace SilkRoad.SILKDT02
 					tl.AppendNode(new object[] { "공지사항관리", "DUTY1000.duty4010", "" }, rootNode);
 
 					rootNode2 = tl.AppendNode(new object[] { "근무관리", "", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "콜근무관리", "DUTY1000.duty2020", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "콜근무관리", "DUTY1000.duty2010", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "연장근무관리", "DUTY1000.duty2020", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty2010", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty3030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "간호사근무관리", "DUTY1000.duty3010", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "근무표마감관리", "DUTY1000.duty3020", "", "" }, rootNode2);
 
@@ -112,7 +112,6 @@ namespace SilkRoad.SILKDT02
 					
 					TreeListNode rootNode4 = tl.AppendNode(new object[] { "문서관리", "", "", "" }, parentForRootNodes);
 					tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4); //결재,진행,완료
-					//tl.AppendNode(new object[] { "진행문서관리", "DUTY1000.duty5070", "", "" }, rootNode4);
 					tl.AppendNode(new object[] { "완결문서관리", "DUTY1000.duty5080", "", "" }, rootNode4);
 
 					#endregion
@@ -122,8 +121,8 @@ namespace SilkRoad.SILKDT02
                     #region 마감관리
                     parentForRootNodes = null;
                     rootNode = tl.AppendNode(new object[] { "마감관리", "", "" }, parentForRootNodes);
-					//tl.AppendNode(new object[] { "KT근태연동조회", "DUTY1000.duty5010", "", "" }, rootNode);
-					tl.AppendNode(new object[] { "연차정산관리", "DUTY1000.duty3030", "", "" }, rootNode);
+					//tl.AppendNode(new object[] { "근무표전체조회", "DUTY1000.duty3060", "", "" }, rootNode);
+					tl.AppendNode(new object[] { "연차정산관리", "DUTY1000.duty3070", "", "" }, rootNode);
                     tl.AppendNode(new object[] { "최종마감관리", "DUTY1000.duty3090", "", "" }, rootNode);
                     tl.AppendNode(new object[] { "근무집계표", "DUTY1000.duty3080", "", "" }, rootNode);
 
@@ -133,7 +132,6 @@ namespace SilkRoad.SILKDT02
                     tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "건별수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2);
-					//tl.AppendNode(new object[] { "고정OT부서설정", "DUTY1000.duty9050", "", "" }, rootNode2);
 
 					#endregion
 					break;

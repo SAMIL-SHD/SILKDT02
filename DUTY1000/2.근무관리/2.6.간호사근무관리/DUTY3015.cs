@@ -46,14 +46,6 @@ namespace DUTY1000
 				lblHpno.Text = "-";
 				lblEmil.Text = "-";
 			}
-			else if (stat == 2)
-			{
-				df.GetS_BEDDatas(ds);
-				grd3.DataSource = ds.Tables["S_BED"];
-				
-				df.GetS_MSTNURS2Datas(ds);
-				sl_nurs.Properties.DataSource = ds.Tables["S_MSTNURS2"];
-			}
 		}
 
         #endregion
@@ -63,7 +55,6 @@ namespace DUTY1000
         private void duty3015_Load(object sender, EventArgs e)
         {
 			dat_yymm.DateTime = DateTime.Now;
-			sl_nurs.EditValue = null;
         }
 		private void duty3015_Shown(object sender, EventArgs e)
 		{
@@ -204,26 +195,8 @@ namespace DUTY1000
                     
 						hrow["SAWON_NO"] = lblSano.Text.ToString().Trim();
 						hrow["SAWON_NM"] = lblName.Text.ToString().Trim();
-						hrow["EXP_LV"] = 0; //cmb_exp.SelectedIndex.ToString();
-						hrow["PRE_RN"] = ""; //sl_nurs.EditValue == null ? "" : sl_nurs.EditValue.ToString();
-						hrow["RSP_YN"] = ""; //cmb_rsp_yn.EditValue.ToString();
-						hrow["RSP_GNMU"] = ""; //sl_gnmu.EditValue == null ? "" : sl_gnmu.EditValue.ToString();
-						hrow["SHIFT_WORK"] = cmb_shift_work.SelectedIndex;
-						hrow["TM_YN"] = ""; //cmb_tm_yn.EditValue.ToString();
-						hrow["TM_FR"] = ""; //txt_tmfr.Text.ToString().Replace(":", "");
-						hrow["TM_TO"] = ""; //txt_tmto.Text.ToString().Replace(":", "");
-						hrow["FIRST_GNMU"] = ""; //cmb_same1st.EditValue.ToString();
-						hrow["MAX_NCNT"]  = clib.TextToInt(cmb_max_n.SelectedIndex.ToString()); 
-						hrow["MAX_CCNT"]  = 0; //cmb_max_c.SelectedIndex.ToString(); 
 						hrow["ALLOWOFF"] = clib.TextToInt(cmb_allowoff.SelectedIndex.ToString());
 						hrow["LIMIT_OFF"] = clib.TextToInt(cmb_limitoff.SelectedIndex.ToString());
-						hrow["RETURN_DT"] = ""; //clib.DateToText(dat_rsn_dt.DateTime);
-						hrow["CHARGE_YN"] = ""; //cmb_charge.EditValue.ToString();  
-
-						hrow["EXP_YEAR"] = clib.TextToDecimal(txt_exp.Text.ToString());
-						hrow["EXP_Y2"] = clib.TextToDecimal(txt_exp2.Text.ToString());
-						hrow["EXP_Y3"] = clib.TextToDecimal(txt_exp3.Text.ToString());
-						hrow["EXP_Y4"] = clib.TextToDecimal(txt_exp4.Text.ToString());
 
 						hrow["STAT"] = cmb_stat.SelectedIndex + 1;
 						hrow["LDAY"] = clib.DateToText(dat_lday.DateTime);                          
@@ -231,7 +204,6 @@ namespace DUTY1000
 
 						if (_Flag == "C")  //신규
 						{
-							hrow["EXP_YEAR"] = 0;
 							hrow["INDT"] = gd.GetNow();
 							hrow["UPDT"] = " ";
 							hrow["PSTY"] = "A";
@@ -321,95 +293,6 @@ namespace DUTY1000
 			grd2.DataSource = ds.Tables["S_MSTNURS"];
 		}
 
-		private void btn_add_Click(object sender, EventArgs e)
-		{
-			if (isNoError_um(3))
-			{
-				Cursor = Cursors.WaitCursor;
-				int outVal = 0;
-				try
-				{
-					DataRow hrow;
-					df.GetDUTY_TRSPLAN_ETCDatas(sl_nurs.EditValue.ToString().Trim(), ds);
-					if (ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Count > 0)
-					{
-						hrow = ds.Tables["DUTY_TRSPLAN_ETC"].Rows[0];
-						hrow["UPDT"] = gd.GetNow();
-						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
-						hrow["PSTY"] = "U";
-					}
-					else                    
-					{
-						hrow = ds.Tables["DUTY_TRSPLAN_ETC"].NewRow();
-						hrow["DEPTCODE"] = "A001";
-						hrow["SAWON_NO"] = sl_nurs.EditValue.ToString().Trim();
-						hrow["SAWON_NM"] = ds.Tables["S_MSTNURS2"].Select("CODE = '" + sl_nurs.EditValue.ToString().Trim() + "'")[0]["NAME"].ToString();
-						hrow["INDT"] = gd.GetNow();
-						hrow["UPDT"] = "";
-						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
-						hrow["PSTY"] = "A";
-						ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Add(hrow);
-					}
-					string[] tableNames = new string[] { "DUTY_TRSPLAN_ETC" };
-					SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
-					outVal = cmd.setUpdate(ref ds, tableNames, null);
-
-					if (outVal <= 0)                    
-						MessageBox.Show("저장된 내용이 없습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
-					else                    
-						MessageBox.Show("해당직원이 추가되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
-				}
-				catch (Exception ec)
-				{
-					MessageBox.Show(ec.Message, "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
-				finally
-				{
-					SetCancel(srTabControl1.SelectedTabPageIndex);
-					Cursor = Cursors.Default;
-				}
-			}
-		}
-		//직원제회
-		private void btn_remove_Click(object sender, EventArgs e)
-		{
-			if (isNoError_um(3))
-			{
-				Cursor = Cursors.WaitCursor;
-				int outVal = 0;
-				try
-				{
-					DataRow hrow;
-					df.GetDUTY_TRSPLAN_ETCDatas(sl_nurs.EditValue.ToString().Trim(), ds);
-					if (ds.Tables["DUTY_TRSPLAN_ETC"].Rows.Count > 0)
-					{
-						hrow = ds.Tables["DUTY_TRSPLAN_ETC"].Rows[0];
-						hrow["UPDT"] = gd.GetNow();
-						hrow["USID"] = SilkRoad.Config.SRConfig.USID;
-						hrow["PSTY"] = "D";
-						string[] tableNames = new string[] { "DUTY_TRSPLAN_ETC" };
-						SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
-						outVal = cmd.setUpdate(ref ds, tableNames, null);
-					}
-
-					if (outVal <= 0)                    
-						MessageBox.Show("제외할 직원이 없습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
-					else                    
-						MessageBox.Show("해당직원이 제외되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
-				}
-				catch (Exception ec)
-				{
-					MessageBox.Show(ec.Message, "제외오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
-				finally
-				{
-					SetCancel(srTabControl1.SelectedTabPageIndex);
-					Cursor = Cursors.Default;
-				}
-			}
-		}
         #endregion
 
         #region 3 EVENT
@@ -460,14 +343,8 @@ namespace DUTY1000
 			if (ds.Tables["DUTY_MSTNURS"].Rows.Count > 0)
 			{
 				DataRow drow = ds.Tables["DUTY_MSTNURS"].Rows[0];
-				cmb_shift_work.SelectedIndex = clib.TextToInt(drow["SHIFT_WORK"].ToString());
-				cmb_max_n.SelectedIndex = clib.TextToInt(drow["MAX_NCNT"].ToString());
 				cmb_allowoff.SelectedIndex = clib.TextToInt(drow["ALLOWOFF"].ToString());
 				cmb_limitoff.SelectedIndex = clib.TextToInt(drow["LIMIT_OFF"].ToString());
-				txt_exp.Text = drow["EXP_YEAR"].ToString();
-				txt_exp2.Text = drow["EXP_Y2"].ToString();
-				txt_exp3.Text = drow["EXP_Y3"].ToString();
-				txt_exp4.Text = drow["EXP_Y4"].ToString();
 
 				cmb_stat.SelectedIndex = clib.TextToInt(drow["STAT"].ToString()) < 1 ? 0 : clib.TextToInt(drow["STAT"].ToString()) - 1;
 				if (drow["LDAY"].ToString() != "")
@@ -475,8 +352,6 @@ namespace DUTY1000
 			}
 			else
 			{
-				cmb_shift_work.SelectedIndex = 1;
-				cmb_max_n.SelectedIndex = 6;
 				cmb_allowoff.SelectedIndex = 9;
 				cmb_limitoff.SelectedIndex = 3;
 				cmb_stat.SelectedIndex = 0;
@@ -513,19 +388,6 @@ namespace DUTY1000
                 if (lblSano.Text == null)
                 {
                     MessageBox.Show("직원을 선택하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                else
-				{ 
-					isError = true;
-                }
-            }
-            else if (mode == 3)  //추가
-            {
-                if (sl_nurs.EditValue == null)
-                {
-                    MessageBox.Show("직원을 선택하세요.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    sl_nurs.Focus();
                     return false;
                 }
                 else

@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace DUTY1000
 {
-    public partial class duty2020 : SilkRoad.Form.Base.FormX
+    public partial class duty2010 : SilkRoad.Form.Base.FormX
     {
         CommonLibrary clib = new CommonLibrary();
 
@@ -19,7 +19,7 @@ namespace DUTY1000
         private string ends_yn = "";		
         private int admin_lv = 0;
 
-        public duty2020()
+        public duty2010()
         {
             InitializeComponent();
         }
@@ -39,10 +39,10 @@ namespace DUTY1000
 				df.GetSEARCH_EMBS_POWERDatas(admin_lv, ds);
 				sl_embs.Properties.DataSource = ds.Tables["SEARCH_EMBS_POWER"];
 
-				if (ds.Tables["DUTY_TRSOVTM"] != null)
-					ds.Tables["DUTY_TRSOVTM"].Clear();
-				if (ds.Tables["SEARCH_OVTM"] != null)
-					ds.Tables["SEARCH_OVTM"].Clear();
+				if (ds.Tables["DUTY_TRSCALL"] != null)
+					ds.Tables["DUTY_TRSCALL"].Clear();
+				if (ds.Tables["SEARCH_CALL"] != null)
+					ds.Tables["SEARCH_CALL"].Clear();
 				grd1.DataSource = null;
 			}
             if (stat == 9)
@@ -53,9 +53,9 @@ namespace DUTY1000
 				dat_ovdt.Enabled = true;
 				sr_gubn.ReadOnly = false;
 
-				txt_time.Enabled = false;
+				txt_cnt.Enabled = false;
 				mm_remk.Enabled = false;
-				txt_time.Text = "";
+				txt_cnt.Text = "";
 				mm_remk.Text = "";
 
 				SetButtonEnable("1000");
@@ -84,9 +84,9 @@ namespace DUTY1000
             string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
             int t_index = grdv1.TopRowIndex;
             int r_index = grdv1.FocusedRowHandle;
-            df.GetSEARCH_OVTMDatas(admin_lv, clib.DateToText(dat_frmm.DateTime).Substring(0, 6), clib.DateToText(dat_tomm.DateTime).Substring(0, 6), dept, ds);
-            grd1.DataSource = ds.Tables["SEARCH_OVTM"];
-            if (ds.Tables["SEARCH_OVTM"].Rows.Count == 0)
+            df.GetSEARCH_CALLDatas(admin_lv, clib.DateToText(dat_frmm.DateTime).Substring(0, 6), clib.DateToText(dat_tomm.DateTime).Substring(0, 6), dept, ds);
+            grd1.DataSource = ds.Tables["SEARCH_CALL"];
+            if (ds.Tables["SEARCH_CALL"].Rows.Count == 0)
                 MessageBox.Show("조회된 내역이 없습니다!", "조회", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             grdv1.TopRowIndex = t_index;
@@ -97,7 +97,7 @@ namespace DUTY1000
 
         #region 1 Form
 
-        private void duty2020_Load(object sender, EventArgs e)
+        private void duty2010_Load(object sender, EventArgs e)
         {
 			dat_frmm.DateTime = DateTime.Today;
 			dat_tomm.DateTime = DateTime.Today;
@@ -107,7 +107,7 @@ namespace DUTY1000
 			sl_embs.EditValue = null;
         }
 		
-		private void duty2020_Shown(object sender, EventArgs e)
+		private void duty2010_Shown(object sender, EventArgs e)
 		{
             df.GetMSTUSER_CHKDatas(ds);  //부서관리여부
             if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
@@ -156,14 +156,14 @@ namespace DUTY1000
 				sr_gubn.ReadOnly = true;
 
 				mm_remk.Enabled = true;
-                txt_time.Enabled = true;
+                txt_cnt.Enabled = true;
 
                 string sldt = clib.DateToText(dat_ovdt.DateTime);
-				df.GetDUTY_TRSOVTMDatas(sl_embs.EditValue.ToString(), sldt, (sr_gubn.SelectedIndex + 1).ToString(), ds);
-				if (ds.Tables["DUTY_TRSOVTM"].Rows.Count > 0)
+				df.GetDUTY_TRSCALLDatas(sl_embs.EditValue.ToString(), sldt, (sr_gubn.SelectedIndex + 1).ToString(), ds);
+				if (ds.Tables["DUTY_TRSCALL"].Rows.Count > 0)
 				{
-					DataRow drow = ds.Tables["DUTY_TRSOVTM"].Rows[0];
-					txt_time.Text = drow["OT_TIME"].ToString();
+					DataRow drow = ds.Tables["DUTY_TRSCALL"].Rows[0];
+					txt_cnt.Text = drow["CALL_CNT"].ToString();
 					mm_remk.Text = drow["REMARK"].ToString();
 					btn_save.Text = "수  정";
 					btn_save.Image = DUTY1000.Properties.Resources.수정;
@@ -176,7 +176,7 @@ namespace DUTY1000
 					SetButtonEnable("0101");
                 }
 
-                txt_time.Focus();
+                txt_cnt.Focus();
             }
 		}
 		//저장
@@ -190,29 +190,29 @@ namespace DUTY1000
 					Cursor = Cursors.WaitCursor;
 					DataRow hrow;
 					string sldt = clib.DateToText(dat_ovdt.DateTime);
-					df.GetDUTY_TRSOVTMDatas(sl_embs.EditValue.ToString(), sldt, (sr_gubn.SelectedIndex + 1).ToString(), ds);
-					if (ds.Tables["DUTY_TRSOVTM"].Rows.Count > 0)
+					df.GetDUTY_TRSCALLDatas(sl_embs.EditValue.ToString(), sldt, (sr_gubn.SelectedIndex + 1).ToString(), ds);
+					if (ds.Tables["DUTY_TRSCALL"].Rows.Count > 0)
 					{
-						hrow = ds.Tables["DUTY_TRSOVTM"].Rows[0];
+						hrow = ds.Tables["DUTY_TRSCALL"].Rows[0];
 						hrow["UPDT"] = gd.GetNow(); //수정
 						hrow["PSTY"] = "U";
 					}
 					else
 					{
-						hrow = ds.Tables["DUTY_TRSOVTM"].NewRow();
+						hrow = ds.Tables["DUTY_TRSCALL"].NewRow();
 						hrow["SABN"] = sl_embs.EditValue.ToString();
-						hrow["OT_DATE"] = clib.DateToText(dat_ovdt.DateTime);
-						hrow["OT_GUBN"] = (sr_gubn.SelectedIndex + 1).ToString();
+						hrow["CALL_DATE"] = clib.DateToText(dat_ovdt.DateTime);
+						hrow["CALL_GUBN"] = (sr_gubn.SelectedIndex + 1).ToString();
 						hrow["INDT"] = gd.GetNow();
 						hrow["UPDT"] = "";
 						hrow["PSTY"] = "A";
-						ds.Tables["DUTY_TRSOVTM"].Rows.Add(hrow);
+						ds.Tables["DUTY_TRSCALL"].Rows.Add(hrow);
 					}
-					hrow["OT_TIME"] = clib.TextToDecimal(txt_time.Text.ToString());
-                    hrow["REMARK"] = mm_remk.Text.ToString();
+					hrow["CALL_CNT"] = clib.TextToInt(txt_cnt.Text.ToString());
+					hrow["REMARK"] = mm_remk.Text.ToString();
 					hrow["USID"] = SilkRoad.Config.SRConfig.USID;
                     
-                    string[] tableNames = new string[] { "DUTY_TRSOVTM" };
+                    string[] tableNames = new string[] { "DUTY_TRSCALL" };
                     SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                     outVal = cmd.setUpdate(ref ds, tableNames, null);
                 }
@@ -246,19 +246,19 @@ namespace DUTY1000
 					{
 						Cursor = Cursors.WaitCursor;
 						string sldt = clib.DateToText(dat_ovdt.DateTime);
-						df.GetDUTY_TRSOVTMDatas(sl_embs.EditValue.ToString(), sldt, (sr_gubn.SelectedIndex + 1).ToString(), ds);
-						if (ds.Tables["DUTY_TRSOVTM"].Rows.Count > 0)
+						df.GetDUTY_TRSCALLDatas(sl_embs.EditValue.ToString(), sldt, (sr_gubn.SelectedIndex + 1).ToString(), ds);
+						if (ds.Tables["DUTY_TRSCALL"].Rows.Count > 0)
 						{							
-							DataRow drow = ds.Tables["DUTY_TRSOVTM"].Rows[0];
+							DataRow drow = ds.Tables["DUTY_TRSCALL"].Rows[0];
 
-							df.GetDEL_TRSOVTMDatas(ds);
-							DataRow hrow = ds.Tables["DEL_TRSOVTM"].NewRow();
+							df.GetDEL_TRSCALLDatas(ds);
+							DataRow hrow = ds.Tables["DEL_TRSCALL"].NewRow();
 							hrow["SABN"] = drow["SABN"].ToString();
-							hrow["OT_DATE"] = drow["OT_DATE"].ToString();
-							hrow["OT_GUBN"] = drow["OT_GUBN"].ToString();
+							hrow["CALL_DATE"] = drow["CALL_DATE"].ToString();
+							hrow["CALL_GUBN"] = drow["CALL_GUBN"].ToString();
 						
-							hrow["OT_TIME"] = clib.TextToDecimal(drow["OT_TIME"].ToString());
-                            hrow["REMARK"] = drow["REMARK"].ToString();
+							hrow["CALL_CNT"] = clib.TextToInt(drow["CALL_CNT"].ToString());
+							hrow["REMARK"] = drow["REMARK"].ToString();
 							hrow["INDT"] = drow["INDT"].ToString();
 							hrow["UPDT"] = drow["UPDT"].ToString();
 							hrow["USID"] = drow["USID"].ToString();
@@ -266,11 +266,11 @@ namespace DUTY1000
 							
 							hrow["DEL_DT"] = gd.GetNow();
 							hrow["DEL_ID"] = SilkRoad.Config.SRConfig.USID;
-							ds.Tables["DEL_TRSOVTM"].Rows.Add(hrow);
+							ds.Tables["DEL_TRSCALL"].Rows.Add(hrow);
 
-							ds.Tables["DUTY_TRSOVTM"].Rows[0].Delete();
+							ds.Tables["DUTY_TRSCALL"].Rows[0].Delete();
 
-							string[] tableNames = new string[] { "DEL_TRSOVTM", "DUTY_TRSOVTM" };
+							string[] tableNames = new string[] { "DEL_TRSCALL", "DUTY_TRSCALL" };
 							SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
 							outVal = cmd.setUpdate(ref ds, tableNames, null);
 						}
@@ -305,7 +305,7 @@ namespace DUTY1000
         /// <summary>엑셀버튼</summary>
         private void btn_exel_Click(object sender, EventArgs e)
         {
-            clib.gridToExcel(grdv1, "연장근무관리_" + clib.DateToText(DateTime.Now), false);
+            clib.gridToExcel(grdv1, "콜근무관리_" + clib.DateToText(DateTime.Now), false);
         }
         #endregion
 
@@ -320,13 +320,13 @@ namespace DUTY1000
 
 			SetCancel(9);
             sl_embs.EditValue = drow["SABN"].ToString().Trim();
-			dat_ovdt.DateTime = clib.TextToDate(drow["OT_DATE"].ToString());
-			sr_gubn.SelectedIndex = clib.TextToInt(drow["OT_GUBN"].ToString()) - 1;
+			dat_ovdt.DateTime = clib.TextToDate(drow["CALL_DATE"].ToString());
+			sr_gubn.SelectedIndex = clib.TextToInt(drow["CALL_GUBN"].ToString()) - 1;
 			btn_proc.PerformClick();
 		}
 		
 
-        private void duty2020_KeyDown(object sender, KeyEventArgs e)
+        private void duty2010_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)   //취소
             {
@@ -403,10 +403,10 @@ namespace DUTY1000
 					dat_ovdt.Focus();
 					return false;
                 }
-                else if (clib.TextToDecimal(txt_time.Text.ToString()) == 0)
+                else if (clib.TextToDecimal(txt_cnt.Text.ToString()) == 0)
                 {
-                    MessageBox.Show("근무시간이 입력되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_time.Focus();
+                    MessageBox.Show("건수가 입력되지 않았습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_cnt.Focus();
                     return false;
                 }
                 else

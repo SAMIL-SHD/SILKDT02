@@ -153,7 +153,7 @@
 </value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>330, 17</value>
+    <value>17, 12</value>
   </metadata>
   <data name="btn_save.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -182,6 +182,24 @@
         pCML1ZBu5EkzvfE4BptuO4c/79WXm7kX2aUAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btn_preview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAQJJREFUOE/F
+        kq0OwjAUhfdIPAISuUeYRFYiKycrJyuRk8hKZCWyEjmJu5zTn6VAs4SEhJucZG12vnNv2+4nZS9eouYi
+        96nzq7I1md9reTS0JIWs3WFIkALQ1os2XpRxokYvA6Wd9CcnewUds05ewr0GoGUWjT6I+JuIg7g9X0Ws
+        SzIXhMwCQNgG1G3WZgOzsksL4OKMBDDZleScHpPPSzSrCQC1BYA5puMHylMcK482mBAB3G8COM2ajJaZ
+        rHMyzYPOAADbAJhbyWW0HjewCUjJSK1mLsk096oFwKviyesJ78CG1HJtHmFm6xRugN9NQLm6coDNg6y0
+        AlhcfKts/Xt13RM3yVJiFDVKKwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btn_linedel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAJ1JREFUOE/F
+        kCEOwzAMRX2EHiGwMHCwsDCwMHAwcDCwMLCwcLBH6BFyhB4hN/iLrYFUygaTJz0pimx/y9QK/JDoWh3Y
+        6C3iy+J0Bqc1OJZJlKJ/cDPeOxAC4PP7aZAWjTQrHI/hNsA6j1L55GRsuTmnsmnWuLJxUtjH+4AqvDYn
+        iXqQJjYoEr9lQnWDVnBazcZ0vYHQdYPy8qXdIfoANDOEiE+8n1wAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btn_exel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -194,16 +212,6 @@
         7VGmf3tPkEgkwKaTE9jYjUL56YOse/BFncWi5sfOTQLfDn1YVhdAmVarxQebzaYQxONxMMf2ON8yrCjT
         v70niEQiYLbYGEah0+nwwXa7LQShUOj/Px0IBPhj/5ZhUJZmhMDv91sHeGMUqGhGCBRFMS3wMRTzBTQM
         90odfMZxAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btn_preview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAQJJREFUOE/F
-        kq0OwjAUhfdIPAISuUeYRFYiKycrJyuRk8hKZCWyEjmJu5zTn6VAs4SEhJucZG12vnNv2+4nZS9eouYi
-        96nzq7I1md9reTS0JIWs3WFIkALQ1os2XpRxokYvA6Wd9CcnewUds05ewr0GoGUWjT6I+JuIg7g9X0Ws
-        SzIXhMwCQNgG1G3WZgOzsksL4OKMBDDZleScHpPPSzSrCQC1BYA5puMHylMcK482mBAB3G8COM2ajJaZ
-        rHMyzYPOAADbAJhbyWW0HjewCUjJSK1mLsk096oFwKviyesJ78CG1HJtHmFm6xRugN9NQLm6coDNg6y0
-        AlhcfKts/Xt13RM3yVJiFDVKKwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btn_refresh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -267,14 +275,6 @@
         +MK2h3lAU4W5KqYNo0T/AA80QQhPHgw8AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btn_linedel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAJ1JREFUOE/F
-        kCEOwzAMRX2EHiGwMHCwsDCwMHAwcDCwMLCwcLBH6BFyhB4hN/iLrYFUygaTJz0pimx/y9QK/JDoWh3Y
-        6C3iy+J0Bqc1OJZJlKJ/cDPeOxAC4PP7aZAWjTQrHI/hNsA6j1L55GRsuTmnsmnWuLJxUtjH+4AqvDYn
-        iXqQJjYoEr9lQnWDVnBazcZ0vYHQdYPy8qXdIfoANDOEiE+8n1wAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="btn_clear.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArpJREFUOE+N
@@ -310,7 +310,7 @@
 </value>
   </data>
   <metadata name="schedulerStorage1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>175, 17</value>
+    <value>106, 12</value>
   </metadata>
   <data name="btn_set_gnmu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -320,19 +320,6 @@
         oCMEBBU9TCBwoGRJBSgZQPgoMIMFkx1idlDAoKYEgRheluwAIEKHB0AZ3PSQE2bPn0GHFmBwQCYAADIN
         MEggcKmCCzyfAmhwwQABqh4CDEjZIUKEBg4MeKUgUCzKBw4aoDUgQIAGtmHHAoWbtq5dDm0tKNirlm5d
         B4A9IFjAgCMBDZA1OJiwoS2CyxIkJEhAgQIHDhuGFhxNMCAAOw==
-</value>
-  </data>
-  <data name="btn_off_gw.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAF3SURBVDhPnZJNS0JBFIbnH0kQtIo7bdq1atu6oESh
-        DEXsYxMErVpEGdqmKIOCKLgQ0iKhsNDoy4oSClMzv8vSpMXpnJmrlXbj1uJlmMv7PPfMMAwAmDKyzZRR
-        P1PGdn5KF8b09Rt3bjI+MMu42c2MCHq1fEqoiwy3+YwJEmUAWjFSogkUl9okoEJfY84fy6BJaG/SE7Rg
-        zCuBKIRiJTiKv8BJ8hUIDidKsH9XkBLsiG6DoBUzSIV59RTU4xT4I2nYvcnB3m1ewMFYEQ7ui1KCXcHU
-        BHxoeXFiKQC16MGH8ScIJZ+lxKU6MG1yAufWOI39259rcPgBj5cqSQlyUuDYmKQz/wlGBtMuBfa1abow
-        wzD2Fft6Bwq0O7D5FqKFd4ikKxDJVOAiW4HL7Btc5TD5KpxlynWYunx4tRMlNLkmsHqnuMXj18t1oSph
-        2lu93fQCvwssHvGumzPHeP9MSMC4YnpE15hAwEJQh2lvWCBhirsO6wn+H2AfgkxlCLVzAboAAAAASUVO
-        RK5CYII=
 </value>
   </data>
   <data name="btn_yc_adp.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -386,10 +373,7 @@
         BptwnmlA/J8MDMzO/xkAHlgeIsag7G0AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>58</value>
+    <value>44</value>
   </metadata>
 </root>

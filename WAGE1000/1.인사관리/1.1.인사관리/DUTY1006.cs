@@ -112,7 +112,8 @@ namespace WAGE1000
 					sl_glcd.EditValue = crow["EMBSGLCD"].ToString().Trim() == "" ? null : crow["EMBSGLCD"].ToString().Trim(); //사업부코드
 					sl_dpcd.EditValue = crow["EMBSDPCD"].ToString().Trim() == "" ? null : crow["EMBSDPCD"].ToString().Trim(); //부서코드
 					sl_jocd.EditValue = crow["EMBSJOCD"].ToString().Trim() == "" ? null : crow["EMBSJOCD"].ToString().Trim(); //직종코드
-					sl_grcd.EditValue = crow["EMBSGRCD"].ToString().Trim() == "" ? null : crow["EMBSGRCD"].ToString().Trim(); //직급 
+                    sl_pscd.EditValue = crow["EMBSPSCD"].ToString().Trim() == "" ? null : crow["EMBSPSCD"].ToString().Trim(); //직위
+                    sl_grcd.EditValue = crow["EMBSGRCD"].ToString().Trim() == "" ? null : crow["EMBSGRCD"].ToString().Trim(); //직급 
 
 					txt_hobo.Text = crow["EMBSHOBO"].ToString().Trim(); //호봉
 					mm_remk.Text = crow["EMBSDESC"].ToString().Trim();
@@ -197,7 +198,8 @@ namespace WAGE1000
 					hrow["EMBSGLCD"] = sl_glcd.EditValue == null ? " " : sl_glcd.EditValue.ToString(); //사업부코드
 					hrow["EMBSDPCD"] = sl_dpcd.EditValue == null ? " " : sl_dpcd.EditValue.ToString(); //부서코드
 					hrow["EMBSJOCD"] = sl_jocd.EditValue == null ? " " : sl_jocd.EditValue.ToString(); //직종코드
-					hrow["EMBSGRCD"] = sl_grcd.EditValue == null ? " " : sl_grcd.EditValue.ToString(); //직급 
+                    hrow["EMBSPSCD"] = sl_pscd.EditValue == null ? " " : sl_pscd.EditValue.ToString(); //직위 
+                    hrow["EMBSGRCD"] = sl_grcd.EditValue == null ? " " : sl_grcd.EditValue.ToString(); //직급 
 					hrow["EMBSHOBO"] = txt_hobo.Text.Trim() == "" ? "" : txt_hobo.Text.Trim().PadLeft(3, '0');     //호봉
 					
 					//인트라넷
@@ -514,7 +516,9 @@ namespace WAGE1000
 			sl_dpcd.Properties.DataSource = ds.Tables["WAGE_DEPR"];
 			df.GetWAGE_JONGDatas(ds);
 			sl_jocd.Properties.DataSource = ds.Tables["WAGE_JONG"];
-			df.GetWAGE_GRADDatas(ds);
+            df.GetWAGE_POSIDatas(ds);
+            sl_pscd.Properties.DataSource = ds.Tables["WAGE_POSI"];
+            df.GetWAGE_GRADDatas(ds);
 			sl_grcd.Properties.DataSource = ds.Tables["WAGE_GRAD"];
         }
 		#endregion

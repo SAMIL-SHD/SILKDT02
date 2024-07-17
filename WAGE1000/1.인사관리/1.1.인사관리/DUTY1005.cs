@@ -75,6 +75,7 @@ namespace WAGE1000
             }
             finally
             {
+                lb_msg.Text = "저장되었습니다!";
                 Cursor = Cursors.Default;
             }
         }
@@ -102,7 +103,9 @@ namespace WAGE1000
             if (drow == null)
                 return;
 
-			string sabn = drow["USERIDEN"].ToString().Trim();
+            lb_msg.Text = "";
+
+            string sabn = drow["USERIDEN"].ToString().Trim();
 			df.GetUserDeptDatas(sabn, ds);
 			grd_dept.DataSource = ds.Tables["USERDEPT"];
 		}
