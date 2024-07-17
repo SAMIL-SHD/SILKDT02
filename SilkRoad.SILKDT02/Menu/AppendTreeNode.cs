@@ -121,7 +121,7 @@ namespace SilkRoad.SILKDT02
                     #region 마감관리
                     parentForRootNodes = null;
                     rootNode = tl.AppendNode(new object[] { "마감관리", "", "" }, parentForRootNodes);
-					//tl.AppendNode(new object[] { "근무표전체조회", "DUTY1000.duty3060", "", "" }, rootNode);
+					tl.AppendNode(new object[] { "근무표전체조회", "DUTY1000.duty3060", "", "" }, rootNode);
 					tl.AppendNode(new object[] { "연차정산관리", "DUTY1000.duty3070", "", "" }, rootNode);
                     tl.AppendNode(new object[] { "최종마감관리", "DUTY1000.duty3090", "", "" }, rootNode);
                     tl.AppendNode(new object[] { "근무집계표", "DUTY1000.duty3080", "", "" }, rootNode);
@@ -132,9 +132,10 @@ namespace SilkRoad.SILKDT02
                     tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "건별수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2);
+                    //tl.AppendNode(new object[] { "수당근태코드연결", "DUTY1000.duty9060", "", "" }, rootNode2);
 
-					#endregion
-					break;
+                    #endregion
+                    break;
             }
             tl.EndUnboundLoad();
             string menuCaption = menuName + "항목";

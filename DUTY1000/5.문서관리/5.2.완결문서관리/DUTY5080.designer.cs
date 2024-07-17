@@ -456,6 +456,8 @@
             // 
             // gridColumn33
             // 
+            this.gridColumn33.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn33.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn33.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
             this.gridColumn33.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn33.AppearanceHeader.Options.UseTextOptions = true;
@@ -463,7 +465,6 @@
             this.gridColumn33.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn33.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn33.Caption = "신청구분";
-            this.gridColumn33.ColumnEdit = this.repositoryItemMemoEdit3;
             this.gridColumn33.FieldName = "GUBN_NM";
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.OptionsColumn.AllowEdit = false;

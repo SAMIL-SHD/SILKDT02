@@ -615,7 +615,7 @@ namespace DUTY1000
 				int max_sq = clib.TextToInt(ds.Tables["SEARCH_PLAN"].Compute("MAX(PLAN_SQ)", null).ToString());
 				DataRow trow = ds.Tables["3010_SEARCH_NURS"].Select("CODE = '" + sl_nurs.EditValue.ToString() + "'")[0];
 				DataRow nrow = ds.Tables["SEARCH_PLAN"].NewRow();
-                nrow["YYMM_SQ"] = cmb_sq.SelectedIndex + 1;
+                //nrow["YYMM_SQ"] = cmb_sq.SelectedIndex + 1;
                 nrow["SAWON_NO"] = sl_nurs.EditValue.ToString();
 				nrow["SAWON_NM"] = trow["NAME"].ToString();
 				nrow["PLAN_SQ"] = max_sq + 1;

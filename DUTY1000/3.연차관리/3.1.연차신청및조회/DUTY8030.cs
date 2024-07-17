@@ -472,7 +472,7 @@ namespace DUTY1000
                     grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
 
                     if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
-                        txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
+                        txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", null).ToString();
 
                     txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
                     //df.GetSEARCH_DUTY_MSTYCCJDatas(drow["SAWON_NO"].ToString(), drow["YC_YEAR"].ToString(), "", "", ds);
@@ -531,7 +531,7 @@ namespace DUTY1000
 				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
 
 				if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
-					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
+					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", null).ToString();
 
 				txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
 			}
@@ -564,7 +564,7 @@ namespace DUTY1000
 				grd_yc.DataSource = ds.Tables["SEARCH_TRSHREQ"];
 
 				if (ds.Tables["SEARCH_TRSHREQ"].Rows.Count > 0)
-					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", "AP_TAG<>'5'").ToString();
+					txt_use.Text = ds.Tables["SEARCH_TRSHREQ"].Compute("SUM(YC_DAYS)", null).ToString();
 				
 				txt_rcnt.Text = (clib.TextToDecimal(txt_tcnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
 			}

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty8030));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
@@ -46,6 +45,8 @@
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression7 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule8 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression8 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule9 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression9 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
@@ -62,7 +63,7 @@
             this.btn_exit = new SilkRoad.UserControls.SRButton();
             this.lb_ends = new SilkRoad.UserControls.SRLabel();
             this.btn_clear = new SilkRoad.UserControls.SRButton();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -122,10 +123,10 @@
             this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn38 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn74 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn39 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn53 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn48 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -223,7 +224,7 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cmb_type = new SilkRoad.UserControls.SRCombo();
             this.dat_indt = new DevExpress.XtraEditors.DateEdit();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.연차삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -896,6 +897,8 @@
             // 
             // gridColumn31
             // 
+            this.gridColumn31.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn31.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
             this.gridColumn31.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn31.AppearanceHeader.Options.UseTextOptions = true;
@@ -903,7 +906,6 @@
             this.gridColumn31.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn31.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn31.Caption = "신청구분";
-            this.gridColumn31.ColumnEdit = this.repositoryItemMemoEdit2;
             this.gridColumn31.FieldName = "GUBN_NM";
             this.gridColumn31.Name = "gridColumn31";
             this.gridColumn31.OptionsColumn.AllowEdit = false;
@@ -1151,13 +1153,14 @@
             // 
             // gridColumn47
             // 
+            this.gridColumn47.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn47.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
             this.gridColumn47.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn47.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn47.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn47.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn47.Caption = "신청구분";
-            this.gridColumn47.ColumnEdit = this.repositoryItemMemoEdit3;
             this.gridColumn47.FieldName = "GUBN_NM";
             this.gridColumn47.Name = "gridColumn47";
             this.gridColumn47.OptionsColumn.AllowEdit = false;
@@ -1414,13 +1417,14 @@
             // 
             // gridColumn74
             // 
+            this.gridColumn74.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn74.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn74.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
             this.gridColumn74.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn74.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn74.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn74.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.gridColumn74.Caption = "신청구분";
-            this.gridColumn74.ColumnEdit = this.repositoryItemMemoEdit4;
             this.gridColumn74.FieldName = "GUBN_NM";
             this.gridColumn74.Name = "gridColumn74";
             this.gridColumn74.OptionsColumn.AllowEdit = false;
@@ -1430,10 +1434,6 @@
             this.gridColumn74.Visible = true;
             this.gridColumn74.VisibleIndex = 4;
             this.gridColumn74.Width = 41;
-            // 
-            // repositoryItemMemoEdit4
-            // 
-            this.repositoryItemMemoEdit4.Name = "repositoryItemMemoEdit4";
             // 
             // gridColumn39
             // 
@@ -1480,6 +1480,10 @@
             this.gridColumn40.Visible = true;
             this.gridColumn40.VisibleIndex = 7;
             this.gridColumn40.Width = 184;
+            // 
+            // repositoryItemMemoEdit4
+            // 
+            this.repositoryItemMemoEdit4.Name = "repositoryItemMemoEdit4";
             // 
             // gridColumn53
             // 
@@ -1795,7 +1799,7 @@
             // 
             // cmb_yc_type
             // 
-            this.cmb_yc_type.EditValue = "결재신청";
+            this.cmb_yc_type.EditValue = "신청";
             this.cmb_yc_type.Enabled = false;
             this.cmb_yc_type.EnterMoveNextControl = true;
             this.cmb_yc_type.Location = new System.Drawing.Point(115, 91);
@@ -1819,8 +1823,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmb_yc_type.Properties.DropDownRows = 10;
             this.cmb_yc_type.Properties.Items.AddRange(new object[] {
-            "결재신청",
-            "취소신청"});
+            "신청",
+            "철회"});
             this.cmb_yc_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmb_yc_type.Size = new System.Drawing.Size(107, 23);
             this.cmb_yc_type.TabIndex = 6;
@@ -2372,16 +2376,23 @@
             gridFormatRule7.Name = "Format0";
             formatConditionRuleExpression7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             formatConditionRuleExpression7.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression7.Expression = "[AP_TAG] IN ( \'5\',\'8\')";
+            formatConditionRuleExpression7.Expression = "[AP_TAG] IN ( \'5\',\'8\') AND [GUBN] <> \'D\'";
             gridFormatRule7.Rule = formatConditionRuleExpression7;
             gridFormatRule8.ApplyToRow = true;
             gridFormatRule8.Name = "Format1";
             formatConditionRuleExpression8.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             formatConditionRuleExpression8.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression8.Expression = "[AP_TAG] IN (\'1\',\'3\')";
+            formatConditionRuleExpression8.Expression = "[AP_TAG] IN (\'1\',\'3\') AND [GUBN] <> \'D\'";
             gridFormatRule8.Rule = formatConditionRuleExpression8;
+            gridFormatRule9.ApplyToRow = true;
+            gridFormatRule9.Name = "Format2";
+            formatConditionRuleExpression9.Appearance.ForeColor = System.Drawing.Color.Red;
+            formatConditionRuleExpression9.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression9.Expression = "[GUBN] = \'D\'";
+            gridFormatRule9.Rule = formatConditionRuleExpression9;
             this.grdv_yc.FormatRules.Add(gridFormatRule7);
             this.grdv_yc.FormatRules.Add(gridFormatRule8);
+            this.grdv_yc.FormatRules.Add(gridFormatRule9);
             this.grdv_yc.GridControl = this.grd_yc;
             this.grdv_yc.Name = "grdv_yc";
             this.grdv_yc.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;

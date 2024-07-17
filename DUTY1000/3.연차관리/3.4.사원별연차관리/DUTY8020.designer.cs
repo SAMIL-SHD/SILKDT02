@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
@@ -38,6 +37,8 @@
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression3 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression4 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression5 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
@@ -148,7 +149,7 @@
             this.srLabel52 = new DevExpress.XtraEditors.LabelControl();
             this.txt_sabn = new SilkRoad.UserControls.SRTextEdit();
             this.dat_year = new SilkRoad.UserControls.SRDate();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd1)).BeginInit();
@@ -1282,6 +1283,8 @@
             this.grdv_yc.Appearance.HeaderPanel.Options.UseFont = true;
             this.grdv_yc.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.grdv_yc.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdv_yc.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.Transparent;
+            this.grdv_yc.Appearance.HideSelectionRow.Options.UseBackColor = true;
             this.grdv_yc.Appearance.Row.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.grdv_yc.Appearance.Row.Options.UseFont = true;
             this.grdv_yc.Appearance.SelectedRow.BackColor = System.Drawing.Color.Transparent;
@@ -1293,20 +1296,27 @@
             this.gridColumn25,
             this.gridColumn28,
             this.gridColumn27});
-            gridFormatRule3.Column = this.gridColumn26;
+            gridFormatRule3.ApplyToRow = true;
             gridFormatRule3.Name = "Format0";
             formatConditionRuleExpression3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             formatConditionRuleExpression3.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression3.Expression = "[AP_TAG] IN (\'5\',\'8\')";
+            formatConditionRuleExpression3.Expression = "[AP_TAG] IN (\'5\',\'8\') AND [GUBN] <> \'D\'";
             gridFormatRule3.Rule = formatConditionRuleExpression3;
-            gridFormatRule4.Column = this.gridColumn27;
+            gridFormatRule4.ApplyToRow = true;
             gridFormatRule4.Name = "Format1";
             formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             formatConditionRuleExpression4.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression4.Expression = "[AP_TAG] IN (\'1\',\'3\')";
+            formatConditionRuleExpression4.Expression = "[AP_TAG] IN (\'1\',\'3\') AND [GUBN] <> \'D\'";
             gridFormatRule4.Rule = formatConditionRuleExpression4;
+            gridFormatRule5.ApplyToRow = true;
+            gridFormatRule5.Name = "Format2";
+            formatConditionRuleExpression5.Appearance.ForeColor = System.Drawing.Color.Red;
+            formatConditionRuleExpression5.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression5.Expression = "[GUBN] = \'D\'";
+            gridFormatRule5.Rule = formatConditionRuleExpression5;
             this.grdv_yc.FormatRules.Add(gridFormatRule3);
             this.grdv_yc.FormatRules.Add(gridFormatRule4);
+            this.grdv_yc.FormatRules.Add(gridFormatRule5);
             this.grdv_yc.GridControl = this.grd_yc;
             this.grdv_yc.Name = "grdv_yc";
             this.grdv_yc.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;

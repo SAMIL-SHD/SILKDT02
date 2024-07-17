@@ -3115,8 +3115,8 @@ namespace DUTY1000
                            + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, "
-                           + "        (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' WHEN 'D' THEN '취소신청' ELSE '' END) GUBN_NM, "
-                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                           + "        (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' WHEN 'D' THEN '철회' ELSE '' END) GUBN_NM, "
+                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                            + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                            + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS REMARK "
@@ -3301,8 +3301,8 @@ namespace DUTY1000
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                            + "        X1.G_FNM AS GNMU_NM, "
                            //+ "        X1.G_FNM+'('+(CASE X1.G_TYPE WHEN 13 THEN '유급' ELSE '무급' END)+')' AS GNMU_NM, "
-                           + "        (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                           + "        (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                            + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                            + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, "
                            + "        X1.G_FNM AS REMARK "
@@ -3426,8 +3426,8 @@ namespace DUTY1000
                         + "		   RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, RTRIM(X3.EMBSNAME) SAWON_NM , "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, "
                         + "        A.YC_DAYS AS USE_DAYS, "
-                        + "        ISNULL(A.GUBN,'C') AS GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                        + "        ISNULL(A.GUBN,'C') AS GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                         + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                         + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, "
                         + "        A.REMARK1, A.REMARK2 "
@@ -3459,8 +3459,8 @@ namespace DUTY1000
                         + "		   RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, RTRIM(X3.EMBSNAME) SAWON_NM, "
                         + "        X1.G_FNM AS GNMU_NM, "
                         + "        A.HOLI_DAYS AS USE_DAYS, "
-                        + "        ISNULL(A.GUBN,'C') AS GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                        + "        ISNULL(A.GUBN,'C') AS GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                         + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                         + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, "
                         + "        A.REMARK1, A.REMARK2 "
@@ -3610,7 +3610,7 @@ namespace DUTY1000
 						   + "                      ELSE CONVERT(CHAR,DATEADD(DAY,9,DATEADD(M,-2,A.USE_TODT)),112) END) AS TO_H2 "
 						   + "           FROM DUTY_TRSDYYC A "
 						   + "           LEFT OUTER JOIN DUTY_TRSHREQ X1 "
-						   + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN AND X1.AP_TAG NOT IN ('2','5') "  //취소,반려는 카운트 제외
+						   + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN AND X1.AP_TAG NOT IN ('2','4') AND X1.PSTY<>'D' "  //취소,반려는 카운트 제외
 						   + "           INNER JOIN " + wagedb + ".DBO.MSTEMBS X3 "
                            + "             ON A.SAWON_NO=X3.EMBSSABN AND (X3.EMBSSTAT='1' OR (X3.EMBSSTAT='2' AND X3.EMBSTSDT>='" + sldt + "')) AND X3.EMBSIPDT <> ''"
                            + "			 LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X4 "
@@ -3642,7 +3642,7 @@ namespace DUTY1000
 						   + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
 						   + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
 						   + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
-                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                            + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
 						   + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM " //, ISNULL(X1.YC_DAY,0) YC_USE "
 						   + "   FROM DUTY_TRSHREQ A "
@@ -3651,7 +3651,7 @@ namespace DUTY1000
 						   + "   LEFT OUTER JOIN DUTY_MSTGNMU X2 "
 						   + "     ON A.REQ_TYPE2=X2.G_CODE "
 						   + "  WHERE A.SABN= '" + sabn + "' AND A.REQ_YEAR = '" + yc_year + "' "
-                           + "    AND A.PSTY<>'D' "
+                           + "    AND A.PSTY<>'D' AND A.AP_TAG IN ('1','3','5','8','9')"
 						   + "  ORDER BY A.REQ_DATE ";
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("SEARCH_TRSHREQ", dt, ref ds);
@@ -3903,8 +3903,8 @@ namespace DUTY1000
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                            + "		  X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, X5.LINE_SABN, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, A.YC_DAYS, "
-                           + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                           + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                           + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                            + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                            + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, REMARK1, REMARK2 "
                            + "   FROM DUTY_TRSHREQ A "
@@ -3930,8 +3930,8 @@ namespace DUTY1000
 					+ "					  SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
 					+ "		    X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, X5.LINE_SABN, "
                     + "         X1.G_FNM+(CASE X1.G_TYPE WHEN 13 THEN '_유급' ELSE '_무급' END) AS GNMU_NM, A.HOLI_DAYS AS YC_DAYS, "
-					+ "         A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                    + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+					+ "         A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                    + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                     + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                     + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, REMARK1, REMARK2 "
                     + "    FROM DUTY_TRSJREQ A "
@@ -4074,8 +4074,8 @@ namespace DUTY1000
                         + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                         + "		  X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, A.YC_DAYS, "
-                        + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                        + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                         + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                         + "        A.LINE_REMK, A.AP_DT, A.AP_USID+(CASE A.AP_USID WHEN 'SAMIL' THEN '(SilkRoader)' ELSE '('+RTRIM(X3A.EMBSNAME)+')' END) AS AP_USID, "
                         + "        LEFT(A.INDT,4)+' 년  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,5,2)))+' 월  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,7,2)))+' 일' AS INDT_NM, "
@@ -4116,8 +4116,8 @@ namespace DUTY1000
                         + "				      SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                         + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
                         + "        X1.G_FNM+(CASE X1.G_TYPE WHEN 13 THEN '_유급' ELSE '_무급' END) AS GNMU_NM, A.HOLI_DAYS AS YC_DAYS, "
-                        + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '결재신청' ELSE '취소신청' END) AS GUBN_NM, "
-                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '신청' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                        + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                         + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                         + "        A.LINE_REMK, A.AP_DT, A.AP_USID+(CASE A.AP_USID WHEN 'SAMIL' THEN '(SilkRoader)' ELSE '('+RTRIM(X3A.EMBSNAME)+')' END) AS AP_USID, "
                         + "        LEFT(A.INDT,4)+' 년  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,5,2)))+' 월  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,7,2)))+' 일' AS INDT_NM, "
@@ -4329,7 +4329,7 @@ namespace DUTY1000
         }
 
         //근무신청내역조회
-        public void Get3060_SEARCH3Datas(string yymm, int sq, DataSet ds)
+        public void Get3060_SEARCHDatas(string yymm, int sq, DataSet ds)
         {
             try
             {
@@ -4367,7 +4367,7 @@ namespace DUTY1000
                            + "  ORDER BY A1.DEPTCODE, A1.PLAN_SQ ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
-                dp.AddDatatable2Dataset("3060_SEARCH3", dt, ref ds);
+                dp.AddDatatable2Dataset("3060_SEARCH", dt, ref ds);
             }
             catch (System.Exception ec)
             {
@@ -4484,8 +4484,8 @@ namespace DUTY1000
                            + "   FROM DUTY_TRSHREQ A "
                            + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X1 ON A.SABN=X1.EMBSSABN "
                            + "   LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X2 ON X1.EMBSDPCD=X2.DEPRCODE "
-                           + "  WHERE LEFT(A.REQ_DATE,6) = '" + yymm + "' AND AP_TAG='9' "
-                           + "  ORDER BY X2.DEPRNAM1, A.SABN ";
+                           + "  WHERE A.PSTY<>'D' AND LEFT(A.REQ_DATE,6) = '" + yymm + "' AND AP_TAG='9' "
+                           + "  ORDER BY X1.EMBSDPCD, X2.DEPRNAM1, A.SABN ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset("DEL_DUTY_TRSHREQ", dt, ref ds);

@@ -31,7 +31,7 @@ namespace DUTY1000
 				if (ds.Tables["DUTY_TRSHREQ"] != null)
 					ds.Tables["DUTY_TRSHREQ"].Clear();
 				grd_search.DataSource = null;
-				SetButtonEnable("100");
+				SetButtonEnable("10");
 				dat_s_yymm.Enabled = true;
 			}
 			else if (stat == 2)
@@ -39,7 +39,7 @@ namespace DUTY1000
 				if (ds.Tables["SEARCH_LAST_YC"] != null)
 					ds.Tables["SEARCH_LAST_YC"].Clear();
 				grd1.DataSource = null;
-				SetButtonEnable2("100");
+				SetButtonEnable2("100000");
 				dat_yymm.Enabled = true;
 			}
 			else if (stat == 3)
@@ -78,7 +78,7 @@ namespace DUTY1000
 			{
 				df.GetDEL_DUTY_TRSHREQDatas(clib.DateToText(dat_s_yymm.DateTime).Substring(0, 6), ds);
 				grd_search.DataSource = ds.Tables["DEL_DUTY_TRSHREQ"];				
-				SetButtonEnable("011");
+				SetButtonEnable("01");
 				dat_s_yymm.Enabled = false;
 			}
 		}
@@ -166,29 +166,30 @@ namespace DUTY1000
 						nrow["YC_USE"] = clib.TextToDecimal(drow["YC_USE"].ToString());
 						nrow["YC_REMAIN"] = clib.TextToDecimal(drow["YC_REMAIN"].ToString());
 						nrow["YC_MI_CNT"] = clib.TextToDecimal(drow["YC_MI_CNT"].ToString());
-					}
+                        SetButtonEnable2("011111");
+                    }
 					else
 					{
-						DataRow nrow = ds.Tables["SEARCH_LAST_YC"].NewRow();
-						nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
-						nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
-						nrow["SABN"] = drow["SABN"].ToString();
-						nrow["YC_YEAR"] = drow["YC_YEAR"].ToString();
-						nrow["USE_TODT"] = drow["USE_TODT"].ToString();
-						nrow["SABN_NM"] = drow["SABN_NM"].ToString();
-						nrow["DEPT_NM"] = drow["DEPT_NM"].ToString();
-						nrow["YC_SUM"] = clib.TextToDecimal(drow["YC_SUM"].ToString());
-						nrow["YC_CHANGE"] = clib.TextToDecimal(drow["YC_CHANGE"].ToString());
-						nrow["YC_TOTAL"] = clib.TextToDecimal(drow["YC_TOTAL"].ToString());
-						nrow["YC_USE"] = clib.TextToDecimal(drow["YC_USE"].ToString());
-						nrow["YC_REMAIN"] = clib.TextToDecimal(drow["YC_REMAIN"].ToString());
-						nrow["YC_MI_CNT"] = clib.TextToDecimal(drow["YC_MI_CNT"].ToString());
-						ds.Tables["SEARCH_LAST_YC"].Rows.Add(nrow);
-					}
+						//DataRow nrow = ds.Tables["SEARCH_LAST_YC"].NewRow();
+						//nrow["YYMM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
+						//nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
+						//nrow["SABN"] = drow["SABN"].ToString();
+						//nrow["YC_YEAR"] = drow["YC_YEAR"].ToString();
+						//nrow["USE_TODT"] = drow["USE_TODT"].ToString();
+						//nrow["SABN_NM"] = drow["SABN_NM"].ToString();
+						//nrow["DEPT_NM"] = drow["DEPT_NM"].ToString();
+						//nrow["YC_SUM"] = clib.TextToDecimal(drow["YC_SUM"].ToString());
+						//nrow["YC_CHANGE"] = clib.TextToDecimal(drow["YC_CHANGE"].ToString());
+						//nrow["YC_TOTAL"] = clib.TextToDecimal(drow["YC_TOTAL"].ToString());
+						//nrow["YC_USE"] = clib.TextToDecimal(drow["YC_USE"].ToString());
+						//nrow["YC_REMAIN"] = clib.TextToDecimal(drow["YC_REMAIN"].ToString());
+						//nrow["YC_MI_CNT"] = clib.TextToDecimal(drow["YC_MI_CNT"].ToString());
+						//ds.Tables["SEARCH_LAST_YC"].Rows.Add(nrow);
+                        SetButtonEnable2("010011");
+                    }
 				}
 
-				grd1.DataSource = ds.Tables["SEARCH_LAST_YC"];				
-				SetButtonEnable2("011");
+				grd1.DataSource = ds.Tables["SEARCH_LAST_YC"];	
 				dat_yymm.Enabled = false;
 			}
 		}
@@ -300,8 +301,13 @@ namespace DUTY1000
                 btn_exit.PerformClick();
             }
         }
-		
-		private void END_CHK(string yymm)
+
+        private void grdv_search_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void END_CHK(string yymm)
 		{
 			df.Get2020_SEARCH_ENDSDatas(yymm, ds);
 			if (ds.Tables["2020_SEARCH_ENDS"].Rows.Count > 0) //마감월이 저장되어 있으면
@@ -384,19 +390,21 @@ namespace DUTY1000
 		private void SetButtonEnable(string arr)
 		{
 			btn_s_search.Enabled = arr.Substring(0, 1) == "1" ? true : false;
-			btn_del.Enabled = arr.Substring(1, 1) == "1" ? true : false;
-			btn_s_canc.Enabled = arr.Substring(2, 1) == "1" ? true : false;
+			btn_s_canc.Enabled = arr.Substring(1, 1) == "1" ? true : false;
 		}
 
 		private void SetButtonEnable2(string arr)
 		{
 			btn_proc.Enabled = arr.Substring(0, 1) == "1" ? true : false;
 			btn_save.Enabled = arr.Substring(1, 1) == "1" ? true : false;
-			btn_canc.Enabled = arr.Substring(2, 1) == "1" ? true : false;
-		}
+            btn_del.Enabled = arr.Substring(2, 1) == "1" ? true : false;
+            btn_linedel.Enabled = arr.Substring(3, 1) == "1" ? true : false;
+            btn_canc.Enabled = arr.Substring(4, 1) == "1" ? true : false;
+            btn_lineadd.Enabled = arr.Substring(5, 1) == "1" ? true : false;
+        }
 
 
-		#endregion
+        #endregion
 
-	}
+    }
 }
