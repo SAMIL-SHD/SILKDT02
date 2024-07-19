@@ -131,8 +131,8 @@ namespace SilkRoad.SILKDT02
                     tl.AppendNode(new object[] { "당직시간관리", "DUTY1000.duty9020", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "건별수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2);
-                    //tl.AppendNode(new object[] { "수당근태코드연결", "DUTY1000.duty9060", "", "" }, rootNode2);
+					//tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2);
+                    tl.AppendNode(new object[] { "수당근태코드연결", "DUTY1000.duty9060", "", "" }, rootNode2);
 
                     #endregion
                     break;

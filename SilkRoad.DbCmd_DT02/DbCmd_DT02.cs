@@ -177,6 +177,12 @@ namespace SilkRoad.DbCmd_DT02
                         insCmd[i] = (DbCommand)GetDUTY_MSTWGPC_ENDInCmd();
                         delCmd[i] = (DbCommand)GetDUTY_MSTWGPC_ENDDelCmd();
                     }
+                    else if (tablenames[i] == "DUTY_MSTGTMM")
+                    {
+                        insCmd[i] = (DbCommand)GetDUTY_MSTGTMMInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_MSTGTMMUpCmd();
+                        delCmd[i] = (DbCommand)GetDUTY_MSTGTMMDelCmd();
+                    }
                     else if (tablenames[i] == "MSTWGFX")
                     {
                         insCmd[i] = (DbCommand)GetMSTWGFXInCmd();
@@ -233,11 +239,12 @@ namespace SilkRoad.DbCmd_DT02
                     {
                         insCmd[i] = (DbCommand)GetDUTY_MSTYCCJInCmd();
                     }
-                    else if (tablenames[i] == "DUTY_MSTGTMM")
+                    //연차정산
+                    else if (tablenames[i] == "SEARCH_HREQ")
                     {
-                        insCmd[i] = (DbCommand)GetDUTY_MSTGTMMInCmd();
-                        uptCmd[i] = (DbCommand)GetDUTY_MSTGTMMUpCmd();
-                        delCmd[i] = (DbCommand)GetDUTY_MSTGTMMDelCmd();
+                        insCmd[i] = (DbCommand)GetSEARCH_HREQInCmd();
+                        uptCmd[i] = (DbCommand)GetSEARCH_HREQUpCmd();
+                        delCmd[i] = (DbCommand)GetSEARCH_HREQDelCmd();
                     }
                     #endregion
 
@@ -284,6 +291,11 @@ namespace SilkRoad.DbCmd_DT02
                         insCmd[i] = (DbCommand)GetDUTY_INFOSD05InCmd();
                         uptCmd[i] = (DbCommand)GetDUTY_INFOSD05UpCmd();
                         delCmd[i] = (DbCommand)GetDUTY_INFOSD05DelCmd();
+                    }
+                    else if (tablenames[i] == "DUTY_INFOSD06") //수당근태코드연결
+                    {
+                        insCmd[i] = (DbCommand)GetDUTY_INFOSD06InCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_INFOSD06UpCmd();
                     }
                     #endregion
                 }
@@ -1850,13 +1862,14 @@ namespace SilkRoad.DbCmd_DT02
 
         #endregion
 
+
 		#region DUTY_MSTWGPC insert, update, delete command
 
         private SqlCommand GetDUTY_MSTWGPCInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_MSTWGPC(END_YYMM, SAWON_NO, YYMM, TIME_AMT, NIGHT_AMT, WGPCSD01, WGPCSD02, WGPCSD03, WGPCSD04, WGPCSD05, WGPCSD06, WGPCSD07, WGPCSD08, WGPCSD09, WGPCSD10, WGPCSD11, WGPCSD12, WGPCSD13, WGPCSD14, WGPCSD15, WGPCSD16, WGPCSD17, WGPCSD18, WGPCSD19, WGPCSD20, WGPCSD21, WGPCSD22, WGPCSD23, WGPCSD24, WGPCSD25, WGPCSD26, WGPCSD27, WGPCSD28, WGPCSD29, WGPCSD30, WGPCSD31, WGPCSD32, WGPCSD33, WGPCSD34, WGPCSD35, WGPCSD36, WGPCSD37, WGPCSD38, WGPCSD39, WGPCSD40, WGPCSD41, WGPCSD42, WGPCSD43, WGPCSD44, WGPCSD45, WGPCSD46, WGPCSD47, WGPCSD48, WGPCSD49, WGPCSD50, "
+            string queryStatements = "INSERT INTO DBO.DUTY_MSTWGPC(END_YYMM, SAWON_NO, WGPCSD01, WGPCSD02, WGPCSD03, WGPCSD04, WGPCSD05, WGPCSD06, WGPCSD07, WGPCSD08, WGPCSD09, WGPCSD10, WGPCSD11, WGPCSD12, WGPCSD13, WGPCSD14, WGPCSD15, WGPCSD16, WGPCSD17, WGPCSD18, WGPCSD19, WGPCSD20, WGPCSD21, WGPCSD22, WGPCSD23, WGPCSD24, WGPCSD25, WGPCSD26, WGPCSD27, WGPCSD28, WGPCSD29, WGPCSD30, WGPCSD31, WGPCSD32, WGPCSD33, WGPCSD34, WGPCSD35, WGPCSD36, WGPCSD37, WGPCSD38, WGPCSD39, WGPCSD40, WGPCSD41, WGPCSD42, WGPCSD43, WGPCSD44, WGPCSD45, WGPCSD46, WGPCSD47, WGPCSD48, WGPCSD49, WGPCSD50, "
 								   + "                             WGPCGT01, WGPCGT02, WGPCGT03, WGPCGT04, WGPCGT05, WGPCGT06, WGPCGT07, WGPCGT08, WGPCGT09, WGPCGT10, WGPCGT11, WGPCGT12, WGPCGT13, WGPCGT14, WGPCGT15, WGPCGT16, WGPCGT17, WGPCGT18, WGPCGT19, WGPCGT20, WGPCGT21, WGPCGT22, WGPCGT23, WGPCGT24, WGPCGT25, WGPCGT26, WGPCGT27, WGPCGT28, WGPCGT29, WGPCGT30, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@END_YYMM, @SAWON_NO, @YYMM, @TIME_AMT, @NIGHT_AMT, @WGPCSD01, @WGPCSD02, @WGPCSD03, @WGPCSD04, @WGPCSD05, @WGPCSD06, @WGPCSD07, @WGPCSD08, @WGPCSD09, @WGPCSD10, @WGPCSD11, @WGPCSD12, @WGPCSD13, @WGPCSD14, @WGPCSD15, @WGPCSD16, @WGPCSD17, @WGPCSD18, @WGPCSD19, @WGPCSD20, @WGPCSD21, @WGPCSD22, @WGPCSD23, @WGPCSD24, @WGPCSD25, @WGPCSD26, @WGPCSD27, @WGPCSD28, @WGPCSD29, @WGPCSD30, @WGPCSD31, @WGPCSD32, @WGPCSD33, @WGPCSD34, @WGPCSD35, @WGPCSD36, @WGPCSD37, @WGPCSD38, @WGPCSD39, @WGPCSD40, @WGPCSD41, @WGPCSD42, @WGPCSD43, @WGPCSD44, @WGPCSD45, @WGPCSD46, @WGPCSD47, @WGPCSD48, @WGPCSD49, @WGPCSD50, "
+                                   + ") VALUES (@END_YYMM, @SAWON_NO, @WGPCSD01, @WGPCSD02, @WGPCSD03, @WGPCSD04, @WGPCSD05, @WGPCSD06, @WGPCSD07, @WGPCSD08, @WGPCSD09, @WGPCSD10, @WGPCSD11, @WGPCSD12, @WGPCSD13, @WGPCSD14, @WGPCSD15, @WGPCSD16, @WGPCSD17, @WGPCSD18, @WGPCSD19, @WGPCSD20, @WGPCSD21, @WGPCSD22, @WGPCSD23, @WGPCSD24, @WGPCSD25, @WGPCSD26, @WGPCSD27, @WGPCSD28, @WGPCSD29, @WGPCSD30, @WGPCSD31, @WGPCSD32, @WGPCSD33, @WGPCSD34, @WGPCSD35, @WGPCSD36, @WGPCSD37, @WGPCSD38, @WGPCSD39, @WGPCSD40, @WGPCSD41, @WGPCSD42, @WGPCSD43, @WGPCSD44, @WGPCSD45, @WGPCSD46, @WGPCSD47, @WGPCSD48, @WGPCSD49, @WGPCSD50, "
 								   + "          @WGPCGT01, @WGPCGT02, @WGPCGT03, @WGPCGT04, @WGPCGT05, @WGPCGT06, @WGPCGT07, @WGPCGT08, @WGPCGT09, @WGPCGT10, @WGPCGT11, @WGPCGT12, @WGPCGT13, @WGPCGT14, @WGPCGT15, @WGPCGT16, @WGPCGT17, @WGPCGT18, @WGPCGT19, @WGPCGT20, @WGPCGT21, @WGPCGT22, @WGPCGT23, @WGPCGT24, @WGPCGT25, @WGPCGT26, @WGPCGT27, @WGPCGT28, @WGPCGT29, @WGPCGT30, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
@@ -1866,9 +1879,6 @@ namespace SilkRoad.DbCmd_DT02
 			
             ocm.Parameters.Add("@END_YYMM", SqlDbType.VarChar, 6, "END_YYMM");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            ocm.Parameters.Add("@YYMM", SqlDbType.VarChar, 6, "YYMM");
-            ocm.Parameters.Add("@TIME_AMT", SqlDbType.Decimal, 9, "TIME_AMT");
-            ocm.Parameters.Add("@NIGHT_AMT", SqlDbType.Decimal, 9, "NIGHT_AMT");
             ocm.Parameters.Add("@WGPCSD01", SqlDbType.Decimal, 9, "WGPCSD01");
             ocm.Parameters.Add("@WGPCSD02", SqlDbType.Decimal, 9, "WGPCSD02");
             ocm.Parameters.Add("@WGPCSD03", SqlDbType.Decimal, 9, "WGPCSD03");
@@ -1958,11 +1968,8 @@ namespace SilkRoad.DbCmd_DT02
         }
 
         private SqlCommand GetDUTY_MSTWGPCUpCmd()
-
         {
             string queryStatements = "UPDATE DBO.DUTY_MSTWGPC SET "
-                                   + "   TIME_AMT = @TIME_AMT, "
-                                   + "   NIGHT_AMT = @NIGHT_AMT, "
                                    + "   WGPCSD01 = @WGPCSD01, "
                                    + "   WGPCSD02 = @WGPCSD02, "
                                    + "   WGPCSD03 = @WGPCSD03, "
@@ -2049,7 +2056,6 @@ namespace SilkRoad.DbCmd_DT02
                                    + "   PSTY = @PSTY"
                                    + " WHERE END_YYMM = @END_YYMM "
                                    + "   AND SAWON_NO = @SAWON_NO "
-                                   + "   AND YYMM = @YYMM "
                                    + "";
 
             SqlCommand ocm = new SqlCommand();
@@ -2058,9 +2064,6 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@END_YYMM", SqlDbType.VarChar, 6, "END_YYMM");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            ocm.Parameters.Add("@YYMM", SqlDbType.VarChar, 6, "YYMM");
-            ocm.Parameters.Add("@TIME_AMT", SqlDbType.Decimal, 9, "TIME_AMT");
-            ocm.Parameters.Add("@NIGHT_AMT", SqlDbType.Decimal, 9, "NIGHT_AMT");
             ocm.Parameters.Add("@WGPCSD01", SqlDbType.Decimal, 9, "WGPCSD01");
             ocm.Parameters.Add("@WGPCSD02", SqlDbType.Decimal, 9, "WGPCSD02");
             ocm.Parameters.Add("@WGPCSD03", SqlDbType.Decimal, 9, "WGPCSD03");
@@ -2150,12 +2153,10 @@ namespace SilkRoad.DbCmd_DT02
         }
 
         private SqlCommand GetDUTY_MSTWGPCDelCmd()
-
         {
             string queryStatements = "DELETE DBO.DUTY_MSTWGPC"
                                    + " WHERE END_YYMM = @END_YYMM"
                                    + "   AND SAWON_NO = @SAWON_NO "
-                                   + "   AND YYMM = @YYMM"
                                    + "";
 
             SqlCommand ocm = new SqlCommand();
@@ -2164,7 +2165,6 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@END_YYMM", SqlDbType.VarChar, 6, "END_YYMM").SourceVersion = DataRowVersion.Original;
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@YYMM", SqlDbType.VarChar, 6, "YYMM").SourceVersion = DataRowVersion.Original;
 
             ocm.UpdatedRowSource = UpdateRowSource.None;
 
@@ -2177,8 +2177,8 @@ namespace SilkRoad.DbCmd_DT02
 
         private SqlCommand GetDUTY_MSTWGPC_ENDInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_MSTWGPC_END(END_YYMM, SAWON_NO, YYMM, GUBN, REG_DT, REG_ID"
-                                   + ") VALUES (@END_YYMM, @SAWON_NO, @YYMM, @GUBN, @REG_DT, @REG_ID"
+            string queryStatements = "INSERT INTO DBO.DUTY_MSTWGPC_END(END_YYMM, SAWON_NO, GUBN, REG_DT, REG_ID"
+                                   + ") VALUES (@END_YYMM, @SAWON_NO, @GUBN, @REG_DT, @REG_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -2187,7 +2187,6 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@END_YYMM", SqlDbType.VarChar, 6, "END_YYMM");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            ocm.Parameters.Add("@YYMM", SqlDbType.VarChar, 6, "YYMM");
             ocm.Parameters.Add("@GUBN", SqlDbType.Int, 4, "GUBN");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
             ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
@@ -2196,14 +2195,12 @@ namespace SilkRoad.DbCmd_DT02
         }
 
         private SqlCommand GetDUTY_MSTWGPC_ENDUpCmd()
-
         {
             string queryStatements = "UPDATE DBO.DUTY_MSTWGPC_END SET "
                                    + "   REG_DT = @REG_DT, "
                                    + "   REG_ID = @REG_ID, "
                                    + " WHERE END_YYMM = @END_YYMM"
                                    + "   AND SAWON_NO = @SAWON_NO"
-                                   + "   AND YYMM = @YYMM"
                                    + "   AND GUBN = @GUBN"
                                    + "";
 
@@ -2213,7 +2210,6 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@END_YYMM", SqlDbType.VarChar, 6, "END_YYMM");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            ocm.Parameters.Add("@YYMM", SqlDbType.VarChar, 6, "YYMM");
             ocm.Parameters.Add("@GUBN", SqlDbType.Int, 4, "GUBN");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
             ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
@@ -2222,12 +2218,10 @@ namespace SilkRoad.DbCmd_DT02
         }
 
         private SqlCommand GetDUTY_MSTWGPC_ENDDelCmd()
-
         {
             string queryStatements = "DELETE DBO.DUTY_MSTWGPC_END"
                                    + " WHERE END_YYMM = @END_YYMM"
                                    + "   AND SAWON_NO = @SAWON_NO"
-                                   + "   AND YYMM = @YYMM"
                                    + "   AND GUBN = @GUBN"
                                    + "";
 
@@ -2237,7 +2231,6 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@END_YYMM", SqlDbType.VarChar, 6, "END_YYMM").SourceVersion = DataRowVersion.Original;
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@YYMM", SqlDbType.VarChar, 6, "YYMM").SourceVersion = DataRowVersion.Original;
             ocm.Parameters.Add("@GUBN", SqlDbType.Int, 4, "GUBN").SourceVersion = DataRowVersion.Original;
 
             ocm.UpdatedRowSource = UpdateRowSource.None;
@@ -2246,8 +2239,170 @@ namespace SilkRoad.DbCmd_DT02
         }
 
         #endregion
+        
 
-		#region MSTWGFX insert, update,delete command
+        #region DUTY_MSTGTMM insert, update,delete command
+
+        private SqlCommand GetDUTY_MSTGTMMInCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DUTY_MSTGTMM(GT_YYMM, SAWON_NO, DEPTCODE, GTMMGT01, GTMMGT02, GTMMGT03, GTMMGT04, GTMMGT05, GTMMGT06, GTMMGT07, GTMMGT08, GTMMGT09, GTMMGT10, GTMMGT11, GTMMGT12, GTMMGT13, GTMMGT14, GTMMGT15, GTMMGT16, GTMMGT17, GTMMGT18, GTMMGT19, GTMMGT20, GTMMGT21, GTMMGT22, GTMMGT23, GTMMGT24, GTMMGT25, GTMMGT26, GTMMGT27, GTMMGT28, GTMMGT29, GTMMGT30, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@GT_YYMM, @SAWON_NO, @DEPTCODE, @GTMMGT01, @GTMMGT02, @GTMMGT03, @GTMMGT04, @GTMMGT05, @GTMMGT06, @GTMMGT07, @GTMMGT08, @GTMMGT09, @GTMMGT10, @GTMMGT11, @GTMMGT12, @GTMMGT13, @GTMMGT14, @GTMMGT15, @GTMMGT16, @GTMMGT17, @GTMMGT18, @GTMMGT19, @GTMMGT20, @GTMMGT21, @GTMMGT22, @GTMMGT23, @GTMMGT24, @GTMMGT25, @GTMMGT26, @GTMMGT27, @GTMMGT28, @GTMMGT29, @GTMMGT30, @INDT, @UPDT, @USID, @PSTY"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@GT_YYMM", SqlDbType.Char, 6, "GT_YYMM");
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 9, "GTMMGT01");
+            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 9, "GTMMGT02");
+            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 9, "GTMMGT03");
+            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 9, "GTMMGT04");
+            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 9, "GTMMGT05");
+            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 9, "GTMMGT06");
+            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 9, "GTMMGT07");
+            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 9, "GTMMGT08");
+            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 9, "GTMMGT09");
+            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 9, "GTMMGT10");
+            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 9, "GTMMGT11");
+            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 9, "GTMMGT12");
+            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 9, "GTMMGT13");
+            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 9, "GTMMGT14");
+            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 9, "GTMMGT15");
+            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 9, "GTMMGT16");
+            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 9, "GTMMGT17");
+            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 9, "GTMMGT18");
+            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 9, "GTMMGT19");
+            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 9, "GTMMGT20");
+            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 9, "GTMMGT21");
+            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 9, "GTMMGT22");
+            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 9, "GTMMGT23");
+            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 9, "GTMMGT24");
+            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 9, "GTMMGT25");
+            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 9, "GTMMGT26");
+            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 9, "GTMMGT27");
+            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 9, "GTMMGT28");
+            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 9, "GTMMGT29");
+            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 9, "GTMMGT30");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_MSTGTMMUpCmd()
+        {
+            string queryStatements = "UPDATE DBO.DUTY_MSTGTMM SET "
+                                   + "   DEPTCODE = @DEPTCODE, "
+                                   + "   GTMMGT01 = @GTMMGT01, "
+                                   + "   GTMMGT02 = @GTMMGT02, "
+                                   + "   GTMMGT03 = @GTMMGT03, "
+                                   + "   GTMMGT04 = @GTMMGT04, "
+                                   + "   GTMMGT05 = @GTMMGT05, "
+                                   + "   GTMMGT06 = @GTMMGT06, "
+                                   + "   GTMMGT07 = @GTMMGT07, "
+                                   + "   GTMMGT08 = @GTMMGT08, "
+                                   + "   GTMMGT09 = @GTMMGT09, "
+                                   + "   GTMMGT10 = @GTMMGT10, "
+                                   + "   GTMMGT11 = @GTMMGT11, "
+                                   + "   GTMMGT12 = @GTMMGT12, "
+                                   + "   GTMMGT13 = @GTMMGT13, "
+                                   + "   GTMMGT14 = @GTMMGT14, "
+                                   + "   GTMMGT15 = @GTMMGT15, "
+                                   + "   GTMMGT16 = @GTMMGT16, "
+                                   + "   GTMMGT17 = @GTMMGT17, "
+                                   + "   GTMMGT18 = @GTMMGT18, "
+                                   + "   GTMMGT19 = @GTMMGT19, "
+                                   + "   GTMMGT20 = @GTMMGT20, "
+                                   + "   GTMMGT21 = @GTMMGT21, "
+                                   + "   GTMMGT22 = @GTMMGT22, "
+                                   + "   GTMMGT23 = @GTMMGT23, "
+                                   + "   GTMMGT24 = @GTMMGT24, "
+                                   + "   GTMMGT25 = @GTMMGT25, "
+                                   + "   GTMMGT26 = @GTMMGT26, "
+                                   + "   GTMMGT27 = @GTMMGT27, "
+                                   + "   GTMMGT28 = @GTMMGT28, "
+                                   + "   GTMMGT29 = @GTMMGT29, "
+                                   + "   GTMMGT30 = @GTMMGT30, "
+                                   + "   INDT = @INDT, "
+                                   + "   UPDT = @UPDT, "
+                                   + "   USID = @USID, "
+                                   + "   PSTY = @PSTY"
+                                   + " WHERE GT_YYMM = @GT_YYMM"
+                                   + "   AND SAWON_NO = @SAWON_NO"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@GT_YYMM", SqlDbType.Char, 6, "GT_YYMM");
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
+            ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
+            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 9, "GTMMGT01");
+            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 9, "GTMMGT02");
+            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 9, "GTMMGT03");
+            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 9, "GTMMGT04");
+            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 9, "GTMMGT05");
+            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 9, "GTMMGT06");
+            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 9, "GTMMGT07");
+            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 9, "GTMMGT08");
+            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 9, "GTMMGT09");
+            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 9, "GTMMGT10");
+            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 9, "GTMMGT11");
+            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 9, "GTMMGT12");
+            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 9, "GTMMGT13");
+            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 9, "GTMMGT14");
+            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 9, "GTMMGT15");
+            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 9, "GTMMGT16");
+            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 9, "GTMMGT17");
+            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 9, "GTMMGT18");
+            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 9, "GTMMGT19");
+            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 9, "GTMMGT20");
+            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 9, "GTMMGT21");
+            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 9, "GTMMGT22");
+            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 9, "GTMMGT23");
+            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 9, "GTMMGT24");
+            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 9, "GTMMGT25");
+            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 9, "GTMMGT26");
+            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 9, "GTMMGT27");
+            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 9, "GTMMGT28");
+            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 9, "GTMMGT29");
+            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 9, "GTMMGT30");
+            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
+            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_MSTGTMMDelCmd()
+        {
+            string queryStatements = "DELETE DBO.DUTY_MSTGTMM"
+                                   + " WHERE GT_YYMM = @GT_YYMM"
+                                   + "   AND SAWON_NO = @SAWON_NO"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@GT_YYMM", SqlDbType.Char, 6, "GT_YYMM").SourceVersion = DataRowVersion.Original;
+            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO").SourceVersion = DataRowVersion.Original;
+
+            ocm.UpdatedRowSource = UpdateRowSource.None;
+
+            return ocm;
+        }
+
+        #endregion
+
+        #region MSTWGFX insert, update,delete command
 
         private SqlCommand GetMSTWGFXInCmd()
         {
@@ -2881,36 +3036,36 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@GTMMYYMM", SqlDbType.Char, 6, "GTMMYYMM");
             ocm.Parameters.Add("@GTMMSABN", SqlDbType.VarChar, 15, "GTMMSABN");
-            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 5, "GTMMGT01");
-            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 5, "GTMMGT02");
-            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 5, "GTMMGT03");
-            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 5, "GTMMGT04");
-            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 5, "GTMMGT05");
-            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 5, "GTMMGT06");
-            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 5, "GTMMGT07");
-            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 5, "GTMMGT08");
-            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 5, "GTMMGT09");
-            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 5, "GTMMGT10");
-            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 5, "GTMMGT11");
-            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 5, "GTMMGT12");
-            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 5, "GTMMGT13");
-            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 5, "GTMMGT14");
-            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 5, "GTMMGT15");
-            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 5, "GTMMGT16");
-            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 5, "GTMMGT17");
-            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 5, "GTMMGT18");
-            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 5, "GTMMGT19");
-            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 5, "GTMMGT20");
-            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 5, "GTMMGT21");
-            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 5, "GTMMGT22");
-            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 5, "GTMMGT23");
-            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 5, "GTMMGT24");
-            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 5, "GTMMGT25");
-            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 5, "GTMMGT26");
-            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 5, "GTMMGT27");
-            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 5, "GTMMGT28");
-            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 5, "GTMMGT29");
-            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 5, "GTMMGT30");
+            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 9, "GTMMGT01");
+            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 9, "GTMMGT02");
+            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 9, "GTMMGT03");
+            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 9, "GTMMGT04");
+            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 9, "GTMMGT05");
+            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 9, "GTMMGT06");
+            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 9, "GTMMGT07");
+            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 9, "GTMMGT08");
+            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 9, "GTMMGT09");
+            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 9, "GTMMGT10");
+            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 9, "GTMMGT11");
+            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 9, "GTMMGT12");
+            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 9, "GTMMGT13");
+            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 9, "GTMMGT14");
+            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 9, "GTMMGT15");
+            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 9, "GTMMGT16");
+            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 9, "GTMMGT17");
+            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 9, "GTMMGT18");
+            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 9, "GTMMGT19");
+            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 9, "GTMMGT20");
+            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 9, "GTMMGT21");
+            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 9, "GTMMGT22");
+            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 9, "GTMMGT23");
+            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 9, "GTMMGT24");
+            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 9, "GTMMGT25");
+            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 9, "GTMMGT26");
+            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 9, "GTMMGT27");
+            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 9, "GTMMGT28");
+            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 9, "GTMMGT29");
+            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 9, "GTMMGT30");
             ocm.Parameters.Add("@GTMMINDT", SqlDbType.Char, 8, "GTMMINDT");
             ocm.Parameters.Add("@GTMMUPDT", SqlDbType.Char, 8, "GTMMUPDT");
             ocm.Parameters.Add("@GTMMUSID", SqlDbType.Char, 20, "GTMMUSID");
@@ -2966,36 +3121,36 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@GTMMYYMM", SqlDbType.Char, 6, "GTMMYYMM");
             ocm.Parameters.Add("@GTMMSABN", SqlDbType.VarChar, 15, "GTMMSABN");
-            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 5, "GTMMGT01");
-            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 5, "GTMMGT02");
-            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 5, "GTMMGT03");
-            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 5, "GTMMGT04");
-            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 5, "GTMMGT05");
-            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 5, "GTMMGT06");
-            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 5, "GTMMGT07");
-            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 5, "GTMMGT08");
-            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 5, "GTMMGT09");
-            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 5, "GTMMGT10");
-            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 5, "GTMMGT11");
-            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 5, "GTMMGT12");
-            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 5, "GTMMGT13");
-            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 5, "GTMMGT14");
-            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 5, "GTMMGT15");
-            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 5, "GTMMGT16");
-            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 5, "GTMMGT17");
-            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 5, "GTMMGT18");
-            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 5, "GTMMGT19");
-            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 5, "GTMMGT20");
-            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 5, "GTMMGT21");
-            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 5, "GTMMGT22");
-            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 5, "GTMMGT23");
-            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 5, "GTMMGT24");
-            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 5, "GTMMGT25");
-            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 5, "GTMMGT26");
-            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 5, "GTMMGT27");
-            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 5, "GTMMGT28");
-            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 5, "GTMMGT29");
-            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 5, "GTMMGT30");
+            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 9, "GTMMGT01");
+            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 9, "GTMMGT02");
+            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 9, "GTMMGT03");
+            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 9, "GTMMGT04");
+            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 9, "GTMMGT05");
+            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 9, "GTMMGT06");
+            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 9, "GTMMGT07");
+            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 9, "GTMMGT08");
+            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 9, "GTMMGT09");
+            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 9, "GTMMGT10");
+            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 9, "GTMMGT11");
+            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 9, "GTMMGT12");
+            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 9, "GTMMGT13");
+            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 9, "GTMMGT14");
+            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 9, "GTMMGT15");
+            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 9, "GTMMGT16");
+            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 9, "GTMMGT17");
+            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 9, "GTMMGT18");
+            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 9, "GTMMGT19");
+            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 9, "GTMMGT20");
+            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 9, "GTMMGT21");
+            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 9, "GTMMGT22");
+            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 9, "GTMMGT23");
+            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 9, "GTMMGT24");
+            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 9, "GTMMGT25");
+            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 9, "GTMMGT26");
+            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 9, "GTMMGT27");
+            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 9, "GTMMGT28");
+            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 9, "GTMMGT29");
+            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 9, "GTMMGT30");
             ocm.Parameters.Add("@GTMMINDT", SqlDbType.Char, 8, "GTMMINDT");
             ocm.Parameters.Add("@GTMMUPDT", SqlDbType.Char, 8, "GTMMUPDT");
             ocm.Parameters.Add("@GTMMUSID", SqlDbType.Char, 20, "GTMMUSID");
@@ -3413,73 +3568,38 @@ namespace SilkRoad.DbCmd_DT02
         }
 
         #endregion
-		
 
-		#region DUTY_MSTGTMM insert, update,delete command
+        #region SEARCH_HREQ insert, update, delete command
 
-        private SqlCommand GetDUTY_MSTGTMMInCmd()
+        private SqlCommand GetSEARCH_HREQInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_MSTGTMM(GT_YYMM, SAWON_NO, DEPTCODE, GTMMGT01, GTMMGT02, GTMMGT03, GTMMGT04, GTMMGT05, GTMMGT06, GTMMGT07, GTMMGT08, GTMMGT09, GTMMGT10, GTMMGT11, GTMMGT12, GTMMGT13, GTMMGT14, GTMMGT15, GTMMGT16, GTMMGT17, GTMMGT18, GTMMGT19, GTMMGT20, GTMMGT21, GTMMGT22, GTMMGT23, GTMMGT24, GTMMGT25, GTMMGT26, GTMMGT27, GTMMGT28, GTMMGT29, GTMMGT30, GTMMGT31, GTMMGT32, GTMMGT33, GTMMGT34, GTMMGT35, GTMMGT36, GTMMGT37, GTMMGT38, GTMMGT39, GTMMGT40, GTMMGT41, GTMMGT42, GTMMGT43, GTMMGT44, GTMMGT45, GTMMGT46, GTMMGT47, GTMMGT48, GTMMGT49, GTMMGT50, INDT, UPDT, USID, PSTY"
-                                   + ") VALUES (@GT_YYMM, @SAWON_NO, @DEPTCODE, @GTMMGT01, @GTMMGT02, @GTMMGT03, @GTMMGT04, @GTMMGT05, @GTMMGT06, @GTMMGT07, @GTMMGT08, @GTMMGT09, @GTMMGT10, @GTMMGT11, @GTMMGT12, @GTMMGT13, @GTMMGT14, @GTMMGT15, @GTMMGT16, @GTMMGT17, @GTMMGT18, @GTMMGT19, @GTMMGT20, @GTMMGT21, @GTMMGT22, @GTMMGT23, @GTMMGT24, @GTMMGT25, @GTMMGT26, @GTMMGT27, @GTMMGT28, @GTMMGT29, @GTMMGT30, @GTMMGT31, @GTMMGT32, @GTMMGT33, @GTMMGT34, @GTMMGT35, @GTMMGT36, @GTMMGT37, @GTMMGT38, @GTMMGT39, @GTMMGT40, @GTMMGT41, @GTMMGT42, @GTMMGT43, @GTMMGT44, @GTMMGT45, @GTMMGT46, @GTMMGT47, @GTMMGT48, @GTMMGT49, @GTMMGT50, @INDT, @UPDT, @USID, @PSTY"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSHREQ(SEQNO, SABN, GUBN, REQ_YEAR, REQ_DATE, REQ_DATE2, REQ_TYPE, REQ_TYPE2, YC_DAYS, AP_TAG, AP_DT, AP_USID, RT_DT, RT_USID, LINE_CNT, LINE_MAX, LINE_REMK, REMARK1, REMARK2, INDT, UPDT, USID, PSTY"
+                                   + ") VALUES (@SEQNO, @SABN, @GUBN, @REQ_YEAR, @REQ_DATE, @REQ_DATE2, @REQ_TYPE, @REQ_TYPE2, @YC_DAYS, @AP_TAG, @AP_DT, @AP_USID, @RT_DT, @RT_USID, @LINE_CNT, @LINE_MAX, @LINE_REMK, @REMARK1, @REMARK2, @INDT, @UPDT, @USID, @PSTY"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
 
-            ocm.Parameters.Add("@GT_YYMM", SqlDbType.Char, 6, "GT_YYMM");
-            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
-            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 5, "GTMMGT01");
-            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 5, "GTMMGT02");
-            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 5, "GTMMGT03");
-            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 5, "GTMMGT04");
-            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 5, "GTMMGT05");
-            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 5, "GTMMGT06");
-            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 5, "GTMMGT07");
-            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 5, "GTMMGT08");
-            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 5, "GTMMGT09");
-            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 5, "GTMMGT10");
-            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 5, "GTMMGT11");
-            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 5, "GTMMGT12");
-            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 5, "GTMMGT13");
-            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 5, "GTMMGT14");
-            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 5, "GTMMGT15");
-            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 5, "GTMMGT16");
-            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 5, "GTMMGT17");
-            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 5, "GTMMGT18");
-            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 5, "GTMMGT19");
-            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 5, "GTMMGT20");
-            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 5, "GTMMGT21");
-            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 5, "GTMMGT22");
-            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 5, "GTMMGT23");
-            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 5, "GTMMGT24");
-            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 5, "GTMMGT25");
-            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 5, "GTMMGT26");
-            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 5, "GTMMGT27");
-            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 5, "GTMMGT28");
-            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 5, "GTMMGT29");
-            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 5, "GTMMGT30");
-            ocm.Parameters.Add("@GTMMGT31", SqlDbType.Decimal, 5, "GTMMGT31");
-            ocm.Parameters.Add("@GTMMGT32", SqlDbType.Decimal, 5, "GTMMGT32");
-            ocm.Parameters.Add("@GTMMGT33", SqlDbType.Decimal, 5, "GTMMGT33");
-            ocm.Parameters.Add("@GTMMGT34", SqlDbType.Decimal, 5, "GTMMGT34");
-            ocm.Parameters.Add("@GTMMGT35", SqlDbType.Decimal, 5, "GTMMGT35");
-            ocm.Parameters.Add("@GTMMGT36", SqlDbType.Decimal, 5, "GTMMGT36");
-            ocm.Parameters.Add("@GTMMGT37", SqlDbType.Decimal, 5, "GTMMGT37");
-            ocm.Parameters.Add("@GTMMGT38", SqlDbType.Decimal, 5, "GTMMGT38");
-            ocm.Parameters.Add("@GTMMGT39", SqlDbType.Decimal, 5, "GTMMGT39");
-            ocm.Parameters.Add("@GTMMGT40", SqlDbType.Decimal, 5, "GTMMGT40");
-            ocm.Parameters.Add("@GTMMGT41", SqlDbType.Decimal, 5, "GTMMGT41");
-            ocm.Parameters.Add("@GTMMGT42", SqlDbType.Decimal, 5, "GTMMGT42");
-            ocm.Parameters.Add("@GTMMGT43", SqlDbType.Decimal, 5, "GTMMGT43");
-            ocm.Parameters.Add("@GTMMGT44", SqlDbType.Decimal, 5, "GTMMGT44");
-            ocm.Parameters.Add("@GTMMGT45", SqlDbType.Decimal, 5, "GTMMGT45");
-            ocm.Parameters.Add("@GTMMGT46", SqlDbType.Decimal, 5, "GTMMGT46");
-            ocm.Parameters.Add("@GTMMGT47", SqlDbType.Decimal, 5, "GTMMGT47");
-            ocm.Parameters.Add("@GTMMGT48", SqlDbType.Decimal, 5, "GTMMGT48");
-            ocm.Parameters.Add("@GTMMGT49", SqlDbType.Decimal, 5, "GTMMGT49");
-            ocm.Parameters.Add("@GTMMGT50", SqlDbType.Decimal, 5, "GTMMGT50");
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 9, "SEQNO");
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@GUBN", SqlDbType.Char, 1, "GUBN");
+            ocm.Parameters.Add("@REQ_YEAR", SqlDbType.Char, 4, "REQ_YEAR");
+            ocm.Parameters.Add("@REQ_DATE", SqlDbType.Char, 8, "REQ_DATE");
+            ocm.Parameters.Add("@REQ_DATE2", SqlDbType.Char, 8, "REQ_DATE2");
+            ocm.Parameters.Add("@REQ_TYPE", SqlDbType.VarChar, 10, "REQ_TYPE");
+            ocm.Parameters.Add("@REQ_TYPE2", SqlDbType.VarChar, 10, "REQ_TYPE2");
+            ocm.Parameters.Add("@YC_DAYS", SqlDbType.Decimal, 5, "YC_DAYS");
+            ocm.Parameters.Add("@AP_TAG", SqlDbType.Char, 1, "AP_TAG");
+            ocm.Parameters.Add("@AP_DT", SqlDbType.VarChar, 20, "AP_DT");
+            ocm.Parameters.Add("@AP_USID", SqlDbType.VarChar, 20, "AP_USID");
+            ocm.Parameters.Add("@RT_DT", SqlDbType.VarChar, 20, "RT_DT");
+            ocm.Parameters.Add("@RT_USID", SqlDbType.VarChar, 20, "RT_USID");
+            ocm.Parameters.Add("@LINE_CNT", SqlDbType.Int, 4, "LINE_CNT");
+            ocm.Parameters.Add("@LINE_MAX", SqlDbType.Int, 4, "LINE_MAX");
+            ocm.Parameters.Add("@LINE_REMK", SqlDbType.VarChar, 200, "LINE_REMK");
+            ocm.Parameters.Add("@REMARK1", SqlDbType.VarChar, 200, "REMARK1");
+            ocm.Parameters.Add("@REMARK2", SqlDbType.VarChar, 200, "REMARK2");
             ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
@@ -3488,148 +3608,43 @@ namespace SilkRoad.DbCmd_DT02
             return ocm;
         }
 
-        private SqlCommand GetDUTY_MSTGTMMUpCmd()
-
+        private SqlCommand GetSEARCH_HREQUpCmd()
         {
-            string queryStatements = "UPDATE DBO.DUTY_MSTGTMM SET "
-                                   + "   DEPTCODE = @DEPTCODE, "
-                                   + "   GTMMGT01 = @GTMMGT01, "
-                                   + "   GTMMGT02 = @GTMMGT02, "
-                                   + "   GTMMGT03 = @GTMMGT03, "
-                                   + "   GTMMGT04 = @GTMMGT04, "
-                                   + "   GTMMGT05 = @GTMMGT05, "
-                                   + "   GTMMGT06 = @GTMMGT06, "
-                                   + "   GTMMGT07 = @GTMMGT07, "
-                                   + "   GTMMGT08 = @GTMMGT08, "
-                                   + "   GTMMGT09 = @GTMMGT09, "
-                                   + "   GTMMGT10 = @GTMMGT10, "
-                                   + "   GTMMGT11 = @GTMMGT11, "
-                                   + "   GTMMGT12 = @GTMMGT12, "
-                                   + "   GTMMGT13 = @GTMMGT13, "
-                                   + "   GTMMGT14 = @GTMMGT14, "
-                                   + "   GTMMGT15 = @GTMMGT15, "
-                                   + "   GTMMGT16 = @GTMMGT16, "
-                                   + "   GTMMGT17 = @GTMMGT17, "
-                                   + "   GTMMGT18 = @GTMMGT18, "
-                                   + "   GTMMGT19 = @GTMMGT19, "
-                                   + "   GTMMGT20 = @GTMMGT20, "
-                                   + "   GTMMGT21 = @GTMMGT21, "
-                                   + "   GTMMGT22 = @GTMMGT22, "
-                                   + "   GTMMGT23 = @GTMMGT23, "
-                                   + "   GTMMGT24 = @GTMMGT24, "
-                                   + "   GTMMGT25 = @GTMMGT25, "
-                                   + "   GTMMGT26 = @GTMMGT26, "
-                                   + "   GTMMGT27 = @GTMMGT27, "
-                                   + "   GTMMGT28 = @GTMMGT28, "
-                                   + "   GTMMGT29 = @GTMMGT29, "
-                                   + "   GTMMGT30 = @GTMMGT30, "
-                                   + "   GTMMGT31 = @GTMMGT31, "
-                                   + "   GTMMGT32 = @GTMMGT32, "
-                                   + "   GTMMGT33 = @GTMMGT33, "
-                                   + "   GTMMGT34 = @GTMMGT34, "
-                                   + "   GTMMGT35 = @GTMMGT35, "
-                                   + "   GTMMGT36 = @GTMMGT36, "
-                                   + "   GTMMGT37 = @GTMMGT37, "
-                                   + "   GTMMGT38 = @GTMMGT38, "
-                                   + "   GTMMGT39 = @GTMMGT39, "
-                                   + "   GTMMGT40 = @GTMMGT40, "
-                                   + "   GTMMGT41 = @GTMMGT41, "
-                                   + "   GTMMGT42 = @GTMMGT42, "
-                                   + "   GTMMGT43 = @GTMMGT43, "
-                                   + "   GTMMGT44 = @GTMMGT44, "
-                                   + "   GTMMGT45 = @GTMMGT45, "
-                                   + "   GTMMGT46 = @GTMMGT46, "
-                                   + "   GTMMGT47 = @GTMMGT47, "
-                                   + "   GTMMGT48 = @GTMMGT48, "
-                                   + "   GTMMGT49 = @GTMMGT49, "
-                                   + "   GTMMGT50 = @GTMMGT50, "
-                                   + "   INDT = @INDT, "
+            string queryStatements = "UPDATE DBO.DUTY_TRSHREQ SET "
+                                   + "   YC_DAYS = @YC_DAYS, "
                                    + "   UPDT = @UPDT, "
                                    + "   USID = @USID, "
-                                   + "   PSTY = @PSTY"
-                                   + " WHERE GT_YYMM = @GT_YYMM"
-                                   + "   AND SAWON_NO = @SAWON_NO"
+                                   + "   PSTY = 'U'"
+                                   + " WHERE SEQNO = @SEQNO"
                                    + "";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
 
-            ocm.Parameters.Add("@GT_YYMM", SqlDbType.Char, 6, "GT_YYMM");
-            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            ocm.Parameters.Add("@DEPTCODE", SqlDbType.Char, 4, "DEPTCODE");
-            ocm.Parameters.Add("@GTMMGT01", SqlDbType.Decimal, 5, "GTMMGT01");
-            ocm.Parameters.Add("@GTMMGT02", SqlDbType.Decimal, 5, "GTMMGT02");
-            ocm.Parameters.Add("@GTMMGT03", SqlDbType.Decimal, 5, "GTMMGT03");
-            ocm.Parameters.Add("@GTMMGT04", SqlDbType.Decimal, 5, "GTMMGT04");
-            ocm.Parameters.Add("@GTMMGT05", SqlDbType.Decimal, 5, "GTMMGT05");
-            ocm.Parameters.Add("@GTMMGT06", SqlDbType.Decimal, 5, "GTMMGT06");
-            ocm.Parameters.Add("@GTMMGT07", SqlDbType.Decimal, 5, "GTMMGT07");
-            ocm.Parameters.Add("@GTMMGT08", SqlDbType.Decimal, 5, "GTMMGT08");
-            ocm.Parameters.Add("@GTMMGT09", SqlDbType.Decimal, 5, "GTMMGT09");
-            ocm.Parameters.Add("@GTMMGT10", SqlDbType.Decimal, 5, "GTMMGT10");
-            ocm.Parameters.Add("@GTMMGT11", SqlDbType.Decimal, 5, "GTMMGT11");
-            ocm.Parameters.Add("@GTMMGT12", SqlDbType.Decimal, 5, "GTMMGT12");
-            ocm.Parameters.Add("@GTMMGT13", SqlDbType.Decimal, 5, "GTMMGT13");
-            ocm.Parameters.Add("@GTMMGT14", SqlDbType.Decimal, 5, "GTMMGT14");
-            ocm.Parameters.Add("@GTMMGT15", SqlDbType.Decimal, 5, "GTMMGT15");
-            ocm.Parameters.Add("@GTMMGT16", SqlDbType.Decimal, 5, "GTMMGT16");
-            ocm.Parameters.Add("@GTMMGT17", SqlDbType.Decimal, 5, "GTMMGT17");
-            ocm.Parameters.Add("@GTMMGT18", SqlDbType.Decimal, 5, "GTMMGT18");
-            ocm.Parameters.Add("@GTMMGT19", SqlDbType.Decimal, 5, "GTMMGT19");
-            ocm.Parameters.Add("@GTMMGT20", SqlDbType.Decimal, 5, "GTMMGT20");
-            ocm.Parameters.Add("@GTMMGT21", SqlDbType.Decimal, 5, "GTMMGT21");
-            ocm.Parameters.Add("@GTMMGT22", SqlDbType.Decimal, 5, "GTMMGT22");
-            ocm.Parameters.Add("@GTMMGT23", SqlDbType.Decimal, 5, "GTMMGT23");
-            ocm.Parameters.Add("@GTMMGT24", SqlDbType.Decimal, 5, "GTMMGT24");
-            ocm.Parameters.Add("@GTMMGT25", SqlDbType.Decimal, 5, "GTMMGT25");
-            ocm.Parameters.Add("@GTMMGT26", SqlDbType.Decimal, 5, "GTMMGT26");
-            ocm.Parameters.Add("@GTMMGT27", SqlDbType.Decimal, 5, "GTMMGT27");
-            ocm.Parameters.Add("@GTMMGT28", SqlDbType.Decimal, 5, "GTMMGT28");
-            ocm.Parameters.Add("@GTMMGT29", SqlDbType.Decimal, 5, "GTMMGT29");
-            ocm.Parameters.Add("@GTMMGT30", SqlDbType.Decimal, 5, "GTMMGT30");
-            ocm.Parameters.Add("@GTMMGT31", SqlDbType.Decimal, 5, "GTMMGT31");
-            ocm.Parameters.Add("@GTMMGT32", SqlDbType.Decimal, 5, "GTMMGT32");
-            ocm.Parameters.Add("@GTMMGT33", SqlDbType.Decimal, 5, "GTMMGT33");
-            ocm.Parameters.Add("@GTMMGT34", SqlDbType.Decimal, 5, "GTMMGT34");
-            ocm.Parameters.Add("@GTMMGT35", SqlDbType.Decimal, 5, "GTMMGT35");
-            ocm.Parameters.Add("@GTMMGT36", SqlDbType.Decimal, 5, "GTMMGT36");
-            ocm.Parameters.Add("@GTMMGT37", SqlDbType.Decimal, 5, "GTMMGT37");
-            ocm.Parameters.Add("@GTMMGT38", SqlDbType.Decimal, 5, "GTMMGT38");
-            ocm.Parameters.Add("@GTMMGT39", SqlDbType.Decimal, 5, "GTMMGT39");
-            ocm.Parameters.Add("@GTMMGT40", SqlDbType.Decimal, 5, "GTMMGT40");
-            ocm.Parameters.Add("@GTMMGT41", SqlDbType.Decimal, 5, "GTMMGT41");
-            ocm.Parameters.Add("@GTMMGT42", SqlDbType.Decimal, 5, "GTMMGT42");
-            ocm.Parameters.Add("@GTMMGT43", SqlDbType.Decimal, 5, "GTMMGT43");
-            ocm.Parameters.Add("@GTMMGT44", SqlDbType.Decimal, 5, "GTMMGT44");
-            ocm.Parameters.Add("@GTMMGT45", SqlDbType.Decimal, 5, "GTMMGT45");
-            ocm.Parameters.Add("@GTMMGT46", SqlDbType.Decimal, 5, "GTMMGT46");
-            ocm.Parameters.Add("@GTMMGT47", SqlDbType.Decimal, 5, "GTMMGT47");
-            ocm.Parameters.Add("@GTMMGT48", SqlDbType.Decimal, 5, "GTMMGT48");
-            ocm.Parameters.Add("@GTMMGT49", SqlDbType.Decimal, 5, "GTMMGT49");
-            ocm.Parameters.Add("@GTMMGT50", SqlDbType.Decimal, 5, "GTMMGT50");
-            ocm.Parameters.Add("@INDT", SqlDbType.VarChar, 20, "INDT");
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 9, "SEQNO");
+            ocm.Parameters.Add("@YC_DAYS", SqlDbType.Decimal, 5, "YC_DAYS");
             ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT");
             ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID");
-            ocm.Parameters.Add("@PSTY", SqlDbType.Char, 1, "PSTY");
 
             return ocm;
         }
-
-        private SqlCommand GetDUTY_MSTGTMMDelCmd()
-
+        private SqlCommand GetSEARCH_HREQDelCmd()
         {
-            string queryStatements = "DELETE DBO.DUTY_MSTGTMM"
-                                   + " WHERE GT_YYMM = @GT_YYMM"
-                                   + "   AND SAWON_NO = @SAWON_NO"
+            string queryStatements = "UPDATE DBO.DUTY_TRSHREQ SET "
+                                   + "   UPDT = @UPDT, "
+                                   + "   USID = @USID, "
+                                   + "   PSTY = 'D'"
+                                   + " WHERE SEQNO = @SEQNO"
                                    + "";
 
             SqlCommand ocm = new SqlCommand();
             ocm.CommandText = queryStatements;
             ocm.CommandType = CommandType.Text;
 
-            ocm.Parameters.Add("@GT_YYMM", SqlDbType.Char, 6, "GT_YYMM").SourceVersion = DataRowVersion.Original;
-            ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO").SourceVersion = DataRowVersion.Original;
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 9, "SEQNO").SourceVersion = DataRowVersion.Original;
+            ocm.Parameters.Add("@UPDT", SqlDbType.VarChar, 20, "UPDT").SourceVersion = DataRowVersion.Original;
+            ocm.Parameters.Add("@USID", SqlDbType.VarChar, 20, "USID").SourceVersion = DataRowVersion.Original;
 
             ocm.UpdatedRowSource = UpdateRowSource.None;
 
@@ -4072,6 +4087,58 @@ namespace SilkRoad.DbCmd_DT02
             ocm.Parameters.Add("@SD_CODE", SqlDbType.Char, 4, "SD_CODE").SourceVersion = DataRowVersion.Original;
             ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN").SourceVersion = DataRowVersion.Original;
             ocm.UpdatedRowSource = UpdateRowSource.None;
+
+            return ocm;
+        }
+
+        #endregion
+
+        #region DUTY_INFOSD06 insert, update command
+
+        private SqlCommand GetDUTY_INFOSD06InCmd()
+        {
+            string queryStatements = "INSERT INTO DBO.DUTY_INFOSD06(SQ, SD_CODE, SD_NAME, GT_CODE, SD_SLAM, REG_DT, REG_ID"
+                                   + ") VALUES (@SQ, @SD_CODE, @SD_NAME, @GT_CODE, @SD_SLAM, @REG_DT, @REG_ID"
+                                   + ")";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SQ", SqlDbType.Int, 9, "SQ");
+            ocm.Parameters.Add("@SD_CODE", SqlDbType.VarChar, 4, "SD_CODE");
+            ocm.Parameters.Add("@SD_NAME", SqlDbType.VarChar, 40, "SD_NAME");
+            ocm.Parameters.Add("@GT_CODE", SqlDbType.VarChar, 4, "GT_CODE");
+            ocm.Parameters.Add("@SD_SLAM", SqlDbType.Decimal, 14, "SD_SLAM");
+            ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
+            ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
+
+            return ocm;
+        }
+
+        private SqlCommand GetDUTY_INFOSD06UpCmd()
+        {
+            string queryStatements = "UPDATE DBO.DUTY_INFOSD06 SET "
+                                   + "   SD_CODE = @SD_CODE, "
+                                   + "   SD_NAME = @SD_NAME, "
+                                   + "   GT_CODE = @GT_CODE, "
+                                   + "   SD_SLAM = @SD_SLAM, "
+                                   + "   REG_DT = @REG_DT, "
+                                   + "   REG_ID = @REG_ID "
+                                   + " WHERE SQ = @SQ "
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SQ", SqlDbType.Int, 9, "SQ");
+            ocm.Parameters.Add("@SD_CODE", SqlDbType.VarChar, 4, "SD_CODE");
+            ocm.Parameters.Add("@SD_NAME", SqlDbType.VarChar, 40, "SD_NAME");
+            ocm.Parameters.Add("@GT_CODE", SqlDbType.VarChar, 4, "GT_CODE");
+            ocm.Parameters.Add("@SD_SLAM", SqlDbType.Decimal, 14, "SD_SLAM");
+            ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
+            ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
 
             return ocm;
         }

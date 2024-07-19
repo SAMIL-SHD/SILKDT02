@@ -72,6 +72,7 @@
             this.pivotGridField6 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField5 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField4 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.lb_ends = new SilkRoad.UserControls.SRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -293,6 +294,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.lb_ends);
             this.panelControl3.Controls.Add(this.dat_sldt);
             this.panelControl3.Controls.Add(this.btn_excel);
             this.panelControl3.Controls.Add(this.btn_e_up);
@@ -762,6 +764,18 @@
             this.pivotGridField4.Options.ShowTotals = false;
             this.pivotGridField4.Width = 89;
             // 
+            // lb_ends
+            // 
+            this.lb_ends.AutoSize = true;
+            this.lb_ends.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ends.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.lb_ends.ForeColor = System.Drawing.Color.Red;
+            this.lb_ends.Location = new System.Drawing.Point(477, 15);
+            this.lb_ends.Name = "lb_ends";
+            this.lb_ends.Size = new System.Drawing.Size(246, 15);
+            this.lb_ends.TabIndex = 519;
+            this.lb_ends.Text = "[기준일자는 퇴사일 조회조건에 해당합니다.]";
+            // 
             // duty9030
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -781,6 +795,7 @@
             this.srPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dat_sldt.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_sldt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srTabControl1)).EndInit();
@@ -838,6 +853,7 @@
         private DevExpress.XtraEditors.DateEdit dat_sldt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private SilkRoad.UserControls.SRLabel lb_ends;
     }
 }
 

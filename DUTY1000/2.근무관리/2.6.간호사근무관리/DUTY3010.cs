@@ -769,35 +769,35 @@ namespace DUTY1000
 			btn_proc.PerformClick();			
 		}
 
-        //내역 더블클릭시 인사카드
+        //내역 더블클릭시 인사카드->사용안함
         private void grdv1_DoubleClick(object sender, EventArgs e)
         {
-            DataRow drow = grdv1.GetFocusedDataRow();
-            if (drow != null)
-            {
-                if (admin_lv == 1)  //부서장일때 관리부서인지 체크
-                {
-                    df.GetCHK_DEPTDatas(SilkRoad.Config.SRConfig.USID, sl_dept.EditValue.ToString(), ds);
-                    if (ds.Tables["CHK_DEPT"].Rows.Count == 0)
-                    {
-                        MessageBox.Show("해당부서에 관리권한이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                else if (admin_lv == 0)
-                {
-                    MessageBox.Show("해당부서에 관리권한이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            //DataRow drow = grdv1.GetFocusedDataRow();
+            //if (drow != null)
+            //{
+            //    if (admin_lv == 1)  //부서장일때 관리부서인지 체크
+            //    {
+            //        df.GetCHK_DEPTDatas(SilkRoad.Config.SRConfig.USID, sl_dept.EditValue.ToString(), ds);
+            //        if (ds.Tables["CHK_DEPT"].Rows.Count == 0)
+            //        {
+            //            MessageBox.Show("해당부서에 관리권한이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            return;
+            //        }
+            //    }
+            //    else if (admin_lv == 0)
+            //    {
+            //        MessageBox.Show("해당부서에 관리권한이 없습니다!", "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+            //    }
 
-                df.GetINFOBASEDatas(ref ds);
-                df.GetSabnSubInfo(drow["SAWON_NO"].ToString(), ds);  //사원기본정보
-                rpt_2210 main_rpt = new rpt_2210(ds);
+            //    df.GetINFOBASEDatas(ref ds);
+            //    df.GetSabnSubInfo(drow["SAWON_NO"].ToString(), ds);  //사원기본정보
+            //    rpt_2210 main_rpt = new rpt_2210(ds);
 
-                main_rpt.DataSource = ds.Tables["INSA_PIC"];
-                main_rpt.writeReport(ds, 0);
-                main_rpt.ShowPreview();                
-            }
+            //    main_rpt.DataSource = ds.Tables["INSA_PIC"];
+            //    main_rpt.writeReport(ds, 0);
+            //    main_rpt.ShowPreview();                
+            //}
         }
 
         private void grd_lk_gnmu_KeyDown(object sender, KeyEventArgs e)

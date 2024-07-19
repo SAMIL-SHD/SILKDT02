@@ -96,7 +96,6 @@
             this.pivotGridField2 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField3 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField4 = new DevExpress.XtraPivotGrid.PivotGridField();
-            this.pivotGridField5 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField6 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField7 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.srPanel2 = new SilkRoad.UserControls.SRPanel();
@@ -105,6 +104,7 @@
             this.btn_s_excel = new SilkRoad.UserControls.SRButton();
             this.btn_s_canc = new SilkRoad.UserControls.SRButton();
             this.btn_search = new SilkRoad.UserControls.SRButton();
+            this.lb_ends = new SilkRoad.UserControls.SRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -229,6 +229,7 @@
             // 
             this.srPanel1.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.srPanel1.Appearance.Options.UseBackColor = true;
+            this.srPanel1.Controls.Add(this.lb_ends);
             this.srPanel1.Controls.Add(this.srTitle1);
             this.srPanel1.Controls.Add(this.srPanel3);
             this.srPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -941,7 +942,7 @@
             this.gridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 0;
-            this.gridColumn11.Width = 113;
+            this.gridColumn11.Width = 144;
             // 
             // gridColumn13
             // 
@@ -959,7 +960,7 @@
             this.gridColumn13.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 2;
-            this.gridColumn13.Width = 79;
+            this.gridColumn13.Width = 104;
             // 
             // gridColumn14
             // 
@@ -969,9 +970,7 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 3;
-            this.gridColumn14.Width = 94;
+            this.gridColumn14.Width = 110;
             // 
             // repositoryItemTextEdit2
             // 
@@ -991,8 +990,8 @@
             this.gridColumn16.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn16.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 4;
-            this.gridColumn16.Width = 94;
+            this.gridColumn16.VisibleIndex = 3;
+            this.gridColumn16.Width = 110;
             // 
             // col_night
             // 
@@ -1003,8 +1002,8 @@
             this.col_night.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.col_night.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_night.Visible = true;
-            this.col_night.VisibleIndex = 5;
-            this.col_night.Width = 104;
+            this.col_night.VisibleIndex = 4;
+            this.col_night.Width = 110;
             // 
             // srPanel4
             // 
@@ -1125,7 +1124,6 @@
             this.pivotGridField2,
             this.pivotGridField3,
             this.pivotGridField4,
-            this.pivotGridField5,
             this.pivotGridField6,
             this.pivotGridField7});
             this.pv_grd.Location = new System.Drawing.Point(0, 46);
@@ -1221,30 +1219,6 @@
             this.pivotGridField4.Options.ShowGrandTotal = false;
             this.pivotGridField4.Options.ShowTotals = false;
             // 
-            // pivotGridField5
-            // 
-            this.pivotGridField5.Appearance.Cell.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.pivotGridField5.Appearance.Cell.Options.UseFont = true;
-            this.pivotGridField5.Appearance.Header.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField5.Appearance.Header.Options.UseFont = true;
-            this.pivotGridField5.Appearance.Header.Options.UseTextOptions = true;
-            this.pivotGridField5.Appearance.Header.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField5.Appearance.Value.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.pivotGridField5.Appearance.Value.Options.UseFont = true;
-            this.pivotGridField5.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.pivotGridField5.AreaIndex = 0;
-            this.pivotGridField5.Caption = "고정수당";
-            this.pivotGridField5.CellFormat.FormatString = "{0:#,###}";
-            this.pivotGridField5.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.pivotGridField5.FieldName = "SD_FIX";
-            this.pivotGridField5.Name = "pivotGridField5";
-            this.pivotGridField5.Options.AllowEdit = false;
-            this.pivotGridField5.Options.ReadOnly = true;
-            this.pivotGridField5.Options.ShowCustomTotals = false;
-            this.pivotGridField5.Options.ShowGrandTotal = false;
-            this.pivotGridField5.Options.ShowTotals = false;
-            this.pivotGridField5.Width = 75;
-            // 
             // pivotGridField6
             // 
             this.pivotGridField6.Appearance.Cell.Font = new System.Drawing.Font("맑은 고딕", 9F);
@@ -1254,7 +1228,7 @@
             this.pivotGridField6.Appearance.Value.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.pivotGridField6.Appearance.Value.Options.UseFont = true;
             this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.pivotGridField6.AreaIndex = 1;
+            this.pivotGridField6.AreaIndex = 0;
             this.pivotGridField6.Caption = "건별수당";
             this.pivotGridField6.CellFormat.FormatString = "{0:#,###}";
             this.pivotGridField6.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1276,7 +1250,7 @@
             this.pivotGridField7.Appearance.Value.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.pivotGridField7.Appearance.Value.Options.UseFont = true;
             this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.pivotGridField7.AreaIndex = 2;
+            this.pivotGridField7.AreaIndex = 1;
             this.pivotGridField7.Caption = "N감독수당";
             this.pivotGridField7.CellFormat.FormatString = "{0:#,###}";
             this.pivotGridField7.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1383,6 +1357,19 @@
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
+            // lb_ends
+            // 
+            this.lb_ends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_ends.AutoSize = true;
+            this.lb_ends.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ends.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.lb_ends.ForeColor = System.Drawing.Color.Red;
+            this.lb_ends.Location = new System.Drawing.Point(960, 17);
+            this.lb_ends.Name = "lb_ends";
+            this.lb_ends.Size = new System.Drawing.Size(246, 15);
+            this.lb_ends.TabIndex = 520;
+            this.lb_ends.Text = "[기준일자는 퇴사일 조회조건에 해당합니다.]";
+            // 
             // duty9040
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1398,6 +1385,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty9040_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
             this.srPanel1.ResumeLayout(false);
+            this.srPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).EndInit();
             this.srPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
@@ -1477,7 +1465,6 @@
 		private DevExpress.XtraPivotGrid.PivotGridField pivotGridField2;
 		private DevExpress.XtraPivotGrid.PivotGridField pivotGridField3;
 		private DevExpress.XtraPivotGrid.PivotGridField pivotGridField4;
-		private DevExpress.XtraPivotGrid.PivotGridField pivotGridField5;
 		private DevExpress.XtraPivotGrid.PivotGridField pivotGridField6;
 		private SilkRoad.UserControls.SRButton btn_adp;
 		private SilkRoad.UserControls.SRTextEdit txt_slam;
@@ -1517,6 +1504,7 @@
         private SilkRoad.UserControls.SRLabel srLabel1;
         private DevExpress.XtraEditors.DateEdit dat_stdt;
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField7;
+        private SilkRoad.UserControls.SRLabel lb_ends;
     }
 }
 

@@ -834,7 +834,6 @@
             this.grdv1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdv_CellValueChanging);
             this.grdv1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdv_MouseDown);
             this.grdv1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.grdv_MouseMove);
-            this.grdv1.DoubleClick += new System.EventHandler(this.grdv1_DoubleClick);
             // 
             // gridBand23
             // 

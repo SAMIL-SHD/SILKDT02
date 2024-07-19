@@ -213,8 +213,8 @@ namespace DUTY1000
         /// </summary>
         private void btn_refresh_CK()
         {
-			df.GetSEARCH_DEPRDatas(ds);
-			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPR"];
+			//df.GetSEARCH_DEPRDatas(ds);
+			//sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPR"];
         }
 
 		/// <summary>
