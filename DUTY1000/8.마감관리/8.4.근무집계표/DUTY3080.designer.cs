@@ -1288,6 +1288,7 @@
             this.cmb_gubn.Properties.AutoHeight = false;
             this.cmb_gubn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_gubn.Properties.DropDownRows = 9;
             this.cmb_gubn.Properties.Items.AddRange(new object[] {
             "전    체",
             "1.당직수당",

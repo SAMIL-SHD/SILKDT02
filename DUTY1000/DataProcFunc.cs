@@ -3806,7 +3806,7 @@ namespace DUTY1000
 			try
 			{
                 string qry = " SELECT A1.* FROM ( "
-                           + " SELECT A.SEQNO, '1' AS TYPE, '연차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, '' ADD_PHOTO, '' CHK, "
+                           + " SELECT A.SEQNO, '1' AS TYPE, '연차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, '' PHOTO_REMARK, '' ADD_PHOTO, '' CHK, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                            + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
@@ -3833,7 +3833,8 @@ namespace DUTY1000
                     qry += "  AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
 
                 qry += " UNION ALL "
-					+ "  SELECT A.SEQNO, '2' AS TYPE, '휴가' AS _NM, A.AP_TAG, A.REQ_DATE, A.SABN, ISNULL(ADD_PHOTO,'') ADD_PHOTO, '' CHK, "
+					+ "  SELECT A.SEQNO, '2' AS TYPE, '휴가' AS _NM, A.AP_TAG, A.REQ_DATE, A.SABN, "
+                    + "         (CASE WHEN ISNULL(A.ADD_PHOTO,'')='' THEN '' ELSE '문서보기' END) AS PHOTO_REMARK, ISNULL(A.ADD_PHOTO,'') AS ADD_PHOTO, '' CHK, "
                     + "         (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
 					+ "			     ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
 					+ "					  SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
@@ -3977,7 +3978,7 @@ namespace DUTY1000
                            + "   FROM ( ";
                 if (gubn == 0 || gubn == 1)
                 {
-                    qry += " SELECT A.SEQNO, '1' AS TYPE, '연차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, X1.G_TYPE, '' ADD_PHOTO, '' CHK, "
+                    qry += " SELECT A.SEQNO, '1' AS TYPE, '연차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, X1.G_TYPE, '' PHOTO_REMARK, '' ADD_PHOTO, '' CHK, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                         + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                         + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
@@ -4019,7 +4020,8 @@ namespace DUTY1000
 
                 if (gubn == 0 || gubn == 2)
                 {
-                    qry += " SELECT A.SEQNO, '2' AS TYPE, '휴가' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, X1.G_TYPE, ISNULL(ADD_PHOTO,'') ADD_PHOTO, '' CHK, "
+                    qry += " SELECT A.SEQNO, '2' AS TYPE, '휴가' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, X1.G_TYPE, "
+                        + "         (CASE WHEN ISNULL(A.ADD_PHOTO,'')='' THEN '' ELSE '문서보기' END) AS PHOTO_REMARK, '' ADD_PHOTO, '' CHK, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                         + "			     ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                         + "				      SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "

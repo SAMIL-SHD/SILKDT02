@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty5080));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
@@ -38,7 +39,7 @@
             this.btn_ap_search = new SilkRoad.UserControls.SRButton();
             this.btn_ap_clear = new SilkRoad.UserControls.SRButton();
             this.btn_exit = new SilkRoad.UserControls.SRButton();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -83,9 +84,10 @@
             this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView9 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.미리보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.인쇄ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
@@ -109,6 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // repositoryItemCheckEdit3
@@ -313,7 +316,8 @@
             this.grd_ap.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit3,
             this.repositoryItemTextEdit3,
-            this.repositoryItemMemoEdit3});
+            this.repositoryItemMemoEdit3,
+            this.repositoryItemHyperLinkEdit1});
             this.grd_ap.Size = new System.Drawing.Size(1276, 657);
             this.grd_ap.TabIndex = 6;
             this.grd_ap.TabStop = false;
@@ -556,7 +560,8 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "첨부문서";
-            this.gridColumn4.FieldName = "ADD_PHOTO";
+            this.gridColumn4.ColumnEdit = this.repositoryItemHyperLinkEdit1;
+            this.gridColumn4.FieldName = "PHOTO_REMARK";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 11;
@@ -876,6 +881,12 @@
             this.인쇄ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.인쇄ToolStripMenuItem.Text = "인쇄";
             // 
+            // repositoryItemHyperLinkEdit1
+            // 
+            this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+            this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+            this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+            // 
             // duty5080
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -917,6 +928,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -979,6 +991,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private SilkRoad.UserControls.SRCombo cmb_ap;
         private SilkRoad.UserControls.SRLabel srLabel1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
     }
 }
 

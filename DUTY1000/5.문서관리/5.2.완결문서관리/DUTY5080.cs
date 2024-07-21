@@ -256,6 +256,58 @@ namespace DUTY1000
             //	}
             //}
         }
+
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            DataRow srow = grdv_ap.GetFocusedDataRow();
+
+            string photo_nm = srow["ADD_PHOTO"].ToString();
+            string dn_Path = Application.StartupPath + "\\DN_FILE\\" + photo_nm;
+
+            DialogResult dr = MessageBox.Show("해당 첨부파일을 다운로드 하시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                if (!Directory.Exists(Application.StartupPath + "\\DN_FILE"))
+                    Directory.CreateDirectory(Application.StartupPath + "\\DN_FILE");
+
+                FileInfo fd = new FileInfo(dn_Path);
+
+                if (!fd.Exists)  //파일이 존재하지 않으면 다운로드
+                {
+                    string uri = "http://" + SilkRoad.DAL.DataAccess.DBhost.Replace(",9245", ":8080") + "/image/" + photo_nm;
+                    HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(uri);
+                    HttpWebResponse ws = (HttpWebResponse)wr.GetResponse();
+                    Stream str = ws.GetResponseStream();
+                    byte[] inBuf = new byte[100000];
+                    int bytesToRead = (int)inBuf.Length;
+                    int bytesRead = 0;
+                    while (bytesToRead > 0)
+                    {
+                        int n = str.Read(inBuf, bytesRead, bytesToRead);
+                        if (n == 0)
+                            break;
+                        bytesRead += n;
+                        bytesToRead -= n;
+                    }
+
+                    FileStream fstr = new FileStream(dn_Path, FileMode.OpenOrCreate, FileAccess.Write);
+                    fstr.Write(inBuf, 0, bytesRead); //다운로드완료.
+                    str.Close();
+                    fstr.Close();
+                }
+                dr = MessageBox.Show("다운로드된 파일 위치에서 여시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dr == DialogResult.OK)
+                    Process.Start(Application.StartupPath + "\\DN_FILE\\");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("오류가 발생했습니다", ex);
+            }
+        }
+
         private void grdv_ap_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
 		{			
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
@@ -318,10 +370,10 @@ namespace DUTY1000
             return isError;
         }
 
-		#endregion
+        #endregion
 
-		#region 9. ETC
-        
+        #region 9. ETC
+
         #endregion
 
     }

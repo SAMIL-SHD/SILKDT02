@@ -111,11 +111,11 @@ namespace SilkRoad.SILKDT02
 					tl.AppendNode(new object[] { "연차휴가사용촉구현황", "DUTY1000.duty8010", "", "" }, rootNode3);
 					
 					TreeListNode rootNode4 = tl.AppendNode(new object[] { "문서관리", "", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4); //결재,진행,완료
-					tl.AppendNode(new object[] { "완결문서관리", "DUTY1000.duty5080", "", "" }, rootNode4);
+					tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4); //1신청,3진행,
+					tl.AppendNode(new object[] { "완결문서관리", "DUTY1000.duty5080", "", "" }, rootNode4); //2취소,4반려,5승인,8완료
 
-					#endregion
-					break;
+                    #endregion
+                    break;
                 case 2:
                     menuName = "마감관리";
                     #region 마감관리
@@ -131,7 +131,7 @@ namespace SilkRoad.SILKDT02
                     tl.AppendNode(new object[] { "당직시간관리", "DUTY1000.duty9020", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "건별수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
-					//tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2);
+					//tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2); //인사급여에서 처리.
                     tl.AppendNode(new object[] { "수당근태코드연결", "DUTY1000.duty9060", "", "" }, rootNode2);
 
                     #endregion
