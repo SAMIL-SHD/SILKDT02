@@ -216,6 +216,7 @@ namespace SilkRoad.DbCmd_DT02
                     else if (tablenames[i] == "DUTY_TRSHREQ_DT")
                     {
                         insCmd[i] = (DbCommand)GetDUTY_TRSHREQ_DTInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_TRSHREQ_DTUpCmd();
                     }
                     else if (tablenames[i] == "DEL_GW_LINE")
                     {
@@ -233,6 +234,7 @@ namespace SilkRoad.DbCmd_DT02
                     else if (tablenames[i] == "DUTY_TRSJREQ_DT")
                     {
                         insCmd[i] = (DbCommand)GetDUTY_TRSJREQ_DTInCmd();
+                        uptCmd[i] = (DbCommand)GetDUTY_TRSJREQ_DTUpCmd();
                     }
 
                     else if (tablenames[i] == "DUTY_MSTYCCJ") //연차촉진 메일전송
@@ -3254,7 +3256,7 @@ namespace SilkRoad.DbCmd_DT02
 
         #endregion
 
-        #region DUTY_TRSHREQ_DT insert command
+        #region DUTY_TRSHREQ_DT insert, update command
 
         private SqlCommand GetDUTY_TRSHREQ_DTInCmd()
         {
@@ -3276,6 +3278,30 @@ namespace SilkRoad.DbCmd_DT02
 
             return ocm;
         }
+
+        private SqlCommand GetDUTY_TRSHREQ_DTUpCmd()
+        {
+            string queryStatements = "UPDATE DBO.DUTY_TRSHREQ_DT SET "
+                                   + "   LINE_JIWK = @LINE_JIWK "
+                                   + " WHERE SEQNO = @SEQNO"
+                                   + "   AND SABN = @SABN"
+                                   + "   AND LINE_SQ = @LINE_SQ"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 9, "SEQNO");
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@LINE_SQ", SqlDbType.Int, 4, "LINE_SQ");
+            ocm.Parameters.Add("@LINE_JIWK", SqlDbType.VarChar, 40, "LINE_JIWK");
+
+            return ocm;
+        }
+        #endregion
+
+        #region DUTY_GW_LINE insert, delete command
 
         private SqlCommand GetDEL_GW_LINEDelCmd()
         {
@@ -3389,7 +3415,7 @@ namespace SilkRoad.DbCmd_DT02
 
         #endregion
 
-        #region DUTY_TRSJREQ_DT insert command
+        #region DUTY_TRSJREQ_DT insert, update command
 
         private SqlCommand GetDUTY_TRSJREQ_DTInCmd()
         {
@@ -3408,6 +3434,26 @@ namespace SilkRoad.DbCmd_DT02
             ocm.Parameters.Add("@LINE_SANM", SqlDbType.VarChar, 40, "LINE_SANM");
             ocm.Parameters.Add("@LINE_JIWK", SqlDbType.VarChar, 40, "LINE_JIWK");
             ocm.Parameters.Add("@LINE_AP_DT", SqlDbType.VarChar, 20, "LINE_AP_DT");
+
+            return ocm;
+        }
+        private SqlCommand GetDUTY_TRSJREQ_DTUpCmd()
+        {
+            string queryStatements = "UPDATE DBO.DUTY_TRSJREQ_DT SET "
+                                   + "   LINE_JIWK = @LINE_JIWK "
+                                   + " WHERE SEQNO = @SEQNO"
+                                   + "   AND SABN = @SABN"
+                                   + "   AND LINE_SQ = @LINE_SQ"
+                                   + "";
+
+            SqlCommand ocm = new SqlCommand();
+            ocm.CommandText = queryStatements;
+            ocm.CommandType = CommandType.Text;
+
+            ocm.Parameters.Add("@SEQNO", SqlDbType.Decimal, 9, "SEQNO");
+            ocm.Parameters.Add("@SABN", SqlDbType.VarChar, 20, "SABN");
+            ocm.Parameters.Add("@LINE_SQ", SqlDbType.Int, 4, "LINE_SQ");
+            ocm.Parameters.Add("@LINE_JIWK", SqlDbType.VarChar, 40, "LINE_JIWK");
 
             return ocm;
         }

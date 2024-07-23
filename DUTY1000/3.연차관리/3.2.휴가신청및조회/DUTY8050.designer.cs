@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty8050));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
@@ -46,7 +47,7 @@
             this.srPanel3 = new SilkRoad.UserControls.SRPanel();
             this.btn_exit = new SilkRoad.UserControls.SRButton();
             this.btn_clear = new SilkRoad.UserControls.SRButton();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -92,10 +93,10 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemMemoEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -153,7 +154,7 @@
             this.srLabel8 = new SilkRoad.UserControls.SRLabel();
             this.srLabel4 = new SilkRoad.UserControls.SRLabel();
             this.srLabel3 = new SilkRoad.UserControls.SRLabel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.휴가삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
@@ -998,10 +999,6 @@
             this.gridColumn14.VisibleIndex = 4;
             this.gridColumn14.Width = 43;
             // 
-            // repositoryItemMemoEdit4
-            // 
-            this.repositoryItemMemoEdit4.Name = "repositoryItemMemoEdit4";
-            // 
             // gridColumn5
             // 
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
@@ -1047,6 +1044,10 @@
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 162;
+            // 
+            // repositoryItemMemoEdit4
+            // 
+            this.repositoryItemMemoEdit4.Name = "repositoryItemMemoEdit4";
             // 
             // gridColumn25
             // 
@@ -1581,7 +1582,6 @@
             this.btn_proc.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.처리;
             this.btn_proc.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_60;
             this.btn_proc.TabIndex = 1;
-            this.btn_proc.TabStop = false;
             this.btn_proc.Text = "처리";
             this.btn_proc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_proc.UseVisualStyleBackColor = true;
@@ -1786,7 +1786,6 @@
             this.btn_save.SRKindOf = SilkRoad.UserControls.SRButton.ButtonKindOfType.저장;
             this.btn_save.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.WIDTH_60;
             this.btn_save.TabIndex = 12;
-            this.btn_save.TabStop = false;
             this.btn_save.Text = "저장";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;

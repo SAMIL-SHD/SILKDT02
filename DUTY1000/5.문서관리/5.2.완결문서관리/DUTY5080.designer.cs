@@ -65,6 +65,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn69 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
             this.gridColumn70 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_c_chk = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -87,7 +88,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.미리보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.인쇄ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
+            this.결재라인수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
@@ -97,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grd_ap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_ap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srGroupBox3)).BeginInit();
             this.srGroupBox3.SuspendLayout();
@@ -111,7 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // repositoryItemCheckEdit3
@@ -567,6 +568,12 @@
             this.gridColumn4.VisibleIndex = 11;
             this.gridColumn4.Width = 65;
             // 
+            // repositoryItemHyperLinkEdit1
+            // 
+            this.repositoryItemHyperLinkEdit1.AutoHeight = false;
+            this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
+            this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+            // 
             // gridColumn70
             // 
             this.gridColumn70.Caption = "행선지 및 연락처";
@@ -862,30 +869,31 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.미리보기ToolStripMenuItem,
-            this.인쇄ToolStripMenuItem});
+            this.인쇄ToolStripMenuItem,
+            this.결재라인수정ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(147, 70);
             this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // 미리보기ToolStripMenuItem
             // 
             this.미리보기ToolStripMenuItem.Image = global::DUTY1000.Properties.Resources.미리보기;
             this.미리보기ToolStripMenuItem.Name = "미리보기ToolStripMenuItem";
-            this.미리보기ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.미리보기ToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.미리보기ToolStripMenuItem.Text = "미리보기";
             // 
             // 인쇄ToolStripMenuItem
             // 
             this.인쇄ToolStripMenuItem.Image = global::DUTY1000.Properties.Resources.인쇄;
             this.인쇄ToolStripMenuItem.Name = "인쇄ToolStripMenuItem";
-            this.인쇄ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.인쇄ToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.인쇄ToolStripMenuItem.Text = "인쇄";
             // 
-            // repositoryItemHyperLinkEdit1
+            // 결재라인수정ToolStripMenuItem
             // 
-            this.repositoryItemHyperLinkEdit1.AutoHeight = false;
-            this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
-            this.repositoryItemHyperLinkEdit1.Click += new System.EventHandler(this.repositoryItemHyperLinkEdit1_Click);
+            this.결재라인수정ToolStripMenuItem.Name = "결재라인수정ToolStripMenuItem";
+            this.결재라인수정ToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.결재라인수정ToolStripMenuItem.Text = "결재라인수정";
             // 
             // duty5080
             // 
@@ -913,6 +921,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grd_ap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_ap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srGroupBox3)).EndInit();
             this.srGroupBox3.ResumeLayout(false);
@@ -928,7 +937,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -992,6 +1000,7 @@
         private SilkRoad.UserControls.SRCombo cmb_ap;
         private SilkRoad.UserControls.SRLabel srLabel1;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
+        private System.Windows.Forms.ToolStripMenuItem 결재라인수정ToolStripMenuItem;
     }
 }
 

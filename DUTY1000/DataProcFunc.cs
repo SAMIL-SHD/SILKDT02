@@ -4140,6 +4140,26 @@ namespace DUTY1000
             }
         }
 
+        //연차,휴가내역 결재라인조회_상세
+        public void Get5080_LINE_DTDatas(string tb_nm, string seqno, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT * "
+                           + "   FROM " + tb_nm
+                           + "  WHERE SEQNO = " + clib.TextToDecimal(seqno)
+                           + "    AND LINE_SQ>1 "
+                           + "  ORDER BY LINE_SQ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset(tb_nm, dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
 

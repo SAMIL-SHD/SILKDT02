@@ -5,6 +5,9 @@ using SilkRoad.Common;
 using DevExpress.XtraScheduler;
 using System.Drawing;
 using DevExpress.XtraReports.UI;
+using System.IO;
+using System.Net;
+using System.Diagnostics;
 
 namespace DUTY1000
 {
@@ -214,6 +217,12 @@ namespace DUTY1000
             {
                 print(2, drow["GUBN"].ToString(), seqno, tb_nm);
             }
+            else if (e.ClickedItem.ToString() == "결재라인수정")
+            {
+                string tb_nm2 = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ_DT" : "DUTY_TRSJREQ_DT";
+                duty5081 s = new duty5081(tb_nm2, seqno);
+                s.ShowDialog();
+            }
         }
 
         private void print(int stat, string gubn, string seqno, string tb_nm)
@@ -263,6 +272,8 @@ namespace DUTY1000
 
             string photo_nm = srow["ADD_PHOTO"].ToString();
             string dn_Path = Application.StartupPath + "\\DN_FILE\\" + photo_nm;
+            string type = srow["ADD_PHOTO"].ToString() == "1" ? "HREQ" : "JREQ";
+            string year = srow["REQ_DATE"].ToString().Substring(0, 4);
 
             DialogResult dr = MessageBox.Show("해당 첨부파일을 다운로드 하시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.Cancel)
@@ -277,7 +288,7 @@ namespace DUTY1000
 
                 if (!fd.Exists)  //파일이 존재하지 않으면 다운로드
                 {
-                    string uri = "http://" + SilkRoad.DAL.DataAccess.DBhost.Replace(",9245", ":8080") + "/image/" + photo_nm;
+                    string uri = "http://" + SilkRoad.DAL.DataAccess.DBhost.Replace(",9245", "") + ":8080/image/" + type +"/" + year + "/" + photo_nm;
                     HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(uri);
                     HttpWebResponse ws = (HttpWebResponse)wr.GetResponse();
                     Stream str = ws.GetResponseStream();
@@ -304,7 +315,7 @@ namespace DUTY1000
             }
             catch (Exception ex)
             {
-                throw new Exception("오류가 발생했습니다", ex);
+                MessageBox.Show(ex.ToString(), "에러", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
 

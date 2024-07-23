@@ -183,6 +183,8 @@ namespace DUTY1000
                 sl_line.EditValue = null;
                 sl_line.Enabled = true;
                 btn_add.Enabled = true;
+                dat_ycdt.DateTime = DateTime.Today;
+                dat_ycdt2.DateTime = DateTime.Today;
 
                 GW_LINE();
 

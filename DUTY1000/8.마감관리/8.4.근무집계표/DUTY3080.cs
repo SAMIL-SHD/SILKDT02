@@ -231,7 +231,6 @@ namespace DUTY1000
 						}
 						else
 						{
-							df.GetDUTY_INFOSD06Datas(ds);
 							df.GetS_DUTY_MSTWGPCDatas(ds);
 
                             #region 사원별 집계
@@ -239,25 +238,14 @@ namespace DUTY1000
 							{
 								if (drow["END_YN"].ToString() == "" && clib.TextToDecimal(drow["SD_AMT"].ToString()) != 0)  //금액이 있는것만
 								{
-									#region 환경설정 수당코드 가져오기
-									string sd_code = "", gt_code = "";
+                                    string sd_code = drow["GUBN"].ToString().PadLeft(2, '0');
 
-                                    if (ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(drow["GUBN"].ToString())).Length > 0)
-                                    {
-                                        DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(drow["GUBN"].ToString()))[0];
-                                        sd_code = irow["SD_CODE"].ToString().Trim() == "" ? "" : irow["SD_CODE"].ToString().Substring(2, 2);
-                                        gt_code = irow["GT_CODE"].ToString().Trim() == "" ? "" : irow["GT_CODE"].ToString().Substring(2, 2);
-                                    }
-									#endregion
-
-									if (ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["SLDT"].ToString().Substring(0, 6) + "'").Length > 0)
+                                    if (ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["SLDT"].ToString().Substring(0, 6) + "'").Length > 0)
 									{
                                         DataRow nrow = ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["SLDT"].ToString().Substring(0, 6) + "' ")[0];
 
-										if (sd_code != "")
-										    nrow["WGPCSD" + sd_code] = clib.TextToDecimal(nrow["WGPCSD" + sd_code].ToString()) + clib.TextToDecimal(drow["SD" + drow["GUBN"].ToString().PadLeft(2, '0')].ToString());
-                                        if (gt_code != "")
-                                            nrow["WGPCGT" + gt_code] = clib.TextToDecimal(nrow["WGPCGT" + gt_code].ToString()) + clib.TextToDecimal(drow["GT" + drow["GUBN"].ToString().PadLeft(2, '0')].ToString());
+										nrow["WGPCSD" + sd_code] = clib.TextToDecimal(nrow["WGPCSD" + sd_code].ToString()) + clib.TextToDecimal(drow["SD" + sd_code].ToString());
+                                        nrow["WGPCGT" + sd_code] = clib.TextToDecimal(nrow["WGPCGT" + sd_code].ToString()) + clib.TextToDecimal(drow["GT" + sd_code].ToString());
 									}
 									else
 									{
@@ -271,11 +259,9 @@ namespace DUTY1000
                                             if (i <= 30)
                                                 nrow["WGPCGT" + i.ToString().PadLeft(2, '0')] = 0;
                                         }
-
-                                        if (sd_code != "")
-                                            nrow["WGPCSD" + sd_code] = clib.TextToDecimal(drow["SD" + drow["GUBN"].ToString().PadLeft(2, '0')].ToString());
-                                        if (gt_code != "")
-                                            nrow["WGPCGT" + gt_code] = clib.TextToDecimal(drow["GT" + drow["GUBN"].ToString().PadLeft(2, '0')].ToString());
+                                        
+                                        nrow["WGPCSD" + sd_code] = clib.TextToDecimal(drow["SD" + sd_code].ToString());
+                                        nrow["WGPCGT" + sd_code] = clib.TextToDecimal(drow["GT" + sd_code].ToString());
 
                                         ds.Tables["S_DUTY_MSTWGPC"].Rows.Add(nrow);
 									}
@@ -366,7 +352,7 @@ namespace DUTY1000
 		{
 			if (isNoError_um(3))
             {
-                info_Search(2);
+                //info_Search(2);
 
                 string yymm = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
 				string sabn = sl_embs.EditValue == null ? "%" : sl_embs.EditValue.ToString();
@@ -411,29 +397,20 @@ namespace DUTY1000
 								{
 									DataRow drow = grdv_end.GetDataRow(grdv_end.GetVisibleRowHandle(i));
                                     SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
-
-                                    #region 환경설정 수당코드 가져오기
-                                    int gubn = 0;
-                                    //DataRow irow = ds.Tables["SEARCH_INFOSD06"].Rows[0];
-                                    for (int j = 1; j <= 50; j++)
+                                    
+                                    for (int j = 1; j <= 9; j++)
                                     {
                                         if (clib.TextToDecimal(drow["WGPCSD" + j.ToString().PadLeft(2, '0')].ToString()) != 0)
                                         {
-                                            if (ds.Tables["DUTY_INFOSD06"].Select("SD_CODE = 'A0" + j.ToString().PadLeft(2, '0') + "'").Length > 0)
+                                            df.GetDUTY_MSTWGPC_ENDDatas(drow["END_YYMM"].ToString(), drow["SAWON_NO"].ToString(), j, ds);
+                                            if (ds.Tables["DUTY_MSTWGPC_END"].Rows.Count > 0)
                                             {
-                                                gubn = clib.TextToInt(ds.Tables["DUTY_INFOSD06"].Select("SD_CODE = 'A0" + j.ToString().PadLeft(2, '0') + "'")[0]["SQ"].ToString());
-
-                                                df.GetDUTY_MSTWGPC_ENDDatas(drow["END_YYMM"].ToString(), drow["SAWON_NO"].ToString(), gubn, ds);
-                                                if (ds.Tables["DUTY_MSTWGPC_END"].Rows.Count > 0)
-                                                {
-                                                    ds.Tables["DUTY_MSTWGPC_END"].Rows[0].Delete();
-                                                    string[] tb_nm = new string[] { "DUTY_MSTWGPC_END" };
-                                                    cmd.setUpdate(ref ds, tb_nm, null);
-                                                }
+                                                ds.Tables["DUTY_MSTWGPC_END"].Rows[0].Delete();
+                                                string[] tb_nm = new string[] { "DUTY_MSTWGPC_END" };
+                                                cmd.setUpdate(ref ds, tb_nm, null);
                                             }
                                         }
                                     }
-                                    #endregion
 
                                     df.GetDUTY_MSTWGPCDatas(drow["END_YYMM"].ToString(), drow["SAWON_NO"].ToString(), ds);
 									if (ds.Tables["DUTY_MSTWGPC"].Rows.Count != 0)
@@ -485,42 +462,45 @@ namespace DUTY1000
 							return;
 						}
 						else
-						{
-							DataRow srow;
-							DataTable dt = ds.Tables["SEARCH_3080"].Clone();
-							dp.AddDatatable2Dataset("C_3080", dt, ref ds);
+                        {
+       //                     DataRow srow;
+							//DataTable dt = ds.Tables["SEARCH_3080"].Clone();
+							//dp.AddDatatable2Dataset("C_3080", dt, ref ds);
 
-							foreach (DataRow drow in ds.Tables["SEARCH_3080"].Rows)
-							{
-								if (ds.Tables["C_3080"].Select("END_YYMM = '" + drow["END_YYMM"].ToString() + "' AND SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "'").Length > 0)
-								{
-									srow = ds.Tables["C_3080"].Select("END_YYMM = '" + drow["END_YYMM"].ToString() + "' AND SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "'")[0];
-									for (int i = 1; i <= 30; i++)
-									{
-										if (i <= 13)
-											srow["WGPCGT" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(srow["WGPCGT" + i.ToString().PadLeft(2, '0')].ToString()) + clib.TextToDecimal(drow["WGPCGT" + i.ToString().PadLeft(2, '0')].ToString());
-										srow["WGPCSD" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(srow["WGPCSD" + i.ToString().PadLeft(2, '0')].ToString()) + clib.TextToDecimal(drow["WGPCSD" + i.ToString().PadLeft(2, '0')].ToString());
-									}
-								}
-								else
-								{
-									srow = ds.Tables["C_3080"].NewRow();
-									srow["END_YYMM"] = drow["END_YYMM"].ToString();
-									srow["SAWON_NO"] = drow["SAWON_NO"].ToString().Trim();
-									for (int i = 1; i <= 30; i++)
-									{
-										if (i <= 13)
-											srow["WGPCGT" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(drow["WGPCGT" + i.ToString().PadLeft(2, '0')].ToString());
-										srow["WGPCSD" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(drow["WGPCSD" + i.ToString().PadLeft(2, '0')].ToString());
-									}
-									ds.Tables["C_3080"].Rows.Add(srow);
-								}
-							}
+							//foreach (DataRow drow in ds.Tables["SEARCH_3080"].Rows)
+							//{
+							//	if (ds.Tables["C_3080"].Select("END_YYMM = '" + drow["END_YYMM"].ToString() + "' AND SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "'").Length > 0)
+							//	{
+							//		srow = ds.Tables["C_3080"].Select("END_YYMM = '" + drow["END_YYMM"].ToString() + "' AND SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "'")[0];
+							//		for (int i = 1; i <= 30; i++)
+							//		{
+							//			if (i <= 13)
+							//				srow["WGPCGT" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(srow["WGPCGT" + i.ToString().PadLeft(2, '0')].ToString()) + clib.TextToDecimal(drow["WGPCGT" + i.ToString().PadLeft(2, '0')].ToString());
+							//			srow["WGPCSD" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(srow["WGPCSD" + i.ToString().PadLeft(2, '0')].ToString()) + clib.TextToDecimal(drow["WGPCSD" + i.ToString().PadLeft(2, '0')].ToString());
+							//		}
+							//	}
+							//	else
+							//	{
+							//		srow = ds.Tables["C_3080"].NewRow();
+							//		srow["END_YYMM"] = drow["END_YYMM"].ToString();
+							//		srow["SAWON_NO"] = drow["SAWON_NO"].ToString().Trim();
+							//		for (int i = 1; i <= 30; i++)
+							//		{
+							//			if (i <= 13)
+							//				srow["WGPCGT" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(drow["WGPCGT" + i.ToString().PadLeft(2, '0')].ToString());
+							//			srow["WGPCSD" + i.ToString().PadLeft(2, '0')] = clib.TextToDecimal(drow["WGPCSD" + i.ToString().PadLeft(2, '0')].ToString());
+							//		}
+							//		ds.Tables["C_3080"].Rows.Add(srow);
+							//	}
+							//}
+
+                            df.GetDUTY_INFOSD06Datas(ds); //환경설정 수당코드 가져오기
+                            string sd_code = "", gt_code = "";
 
                             DataRow nrow;
-							for (int z = 0; z < ds.Tables["C_3080"].Rows.Count; z++)
+							for (int z = 0; z < ds.Tables["SEARCH_3080"].Rows.Count; z++)
 							{
-								DataRow drow = ds.Tables["C_3080"].Rows[z];
+								DataRow drow = ds.Tables["SEARCH_3080"].Rows[z];
 								df.GetMSTWGPCDatas(drow["END_YYMM"].ToString(), drow["SAWON_NO"].ToString().Trim(), ds);
 								if (ds.Tables["MSTWGPC"].Select("WGPCYYMM = '" + drow["END_YYMM"].ToString() + "' AND WGPCSABN = '" + drow["SAWON_NO"].ToString().Trim() + "'").Length > 0)
 								{
@@ -551,8 +531,16 @@ namespace DUTY1000
 								nrow["WGPCUSID"] = SilkRoad.Config.SRConfig.USID;
 								for (int i = 0; i < grdv_end.Columns.Count; i++)
 								{
-									if (grdv_end.Columns[i].FieldName.Substring(4, 2) == "SD")
-										nrow[grdv_end.Columns[i].FieldName.ToString()] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                    if (grdv_end.Columns[i].FieldName.Substring(4, 2) == "SD")
+                                    {
+                                        if (ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2))).Length > 0)
+                                        {
+                                            DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2)))[0];
+                                            sd_code = irow["SD_CODE"].ToString().Trim() == "" ? "" : irow["SD_CODE"].ToString().Substring(2, 2);
+                                            if (sd_code != "" && clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString()) != 0)
+                                                nrow["WGPCSD" + sd_code] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                        }
+                                    }
 								}
 
 								//근태 넘기기
@@ -585,7 +573,16 @@ namespace DUTY1000
                                 for (int i = 0; i < grdv_end.Columns.Count; i++)
                                 {
                                     if (grdv_end.Columns[i].FieldName.Substring(4, 2) == "GT")
-                                        nrow2["GTMM" + grdv_end.Columns[i].FieldName.Substring(4, 4)] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                    {
+                                        if (ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2))).Length > 0)
+                                        {
+                                            DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2)))[0];
+                                            gt_code = irow["GT_CODE"].ToString().Trim() == "" ? "" : irow["GT_CODE"].ToString().Substring(2, 2);
+                                            if (gt_code != "" && clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString()) != 0)
+                                                nrow2["GTMMGT" + gt_code] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                        }
+                                        //nrow2["GTMM" + grdv_end.Columns[i].FieldName.Substring(4, 4)] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                    }
                                 }
 
 								string[] tableNames = new string[] { "MSTWGPC", "MSTGTMM" };
@@ -628,7 +625,7 @@ namespace DUTY1000
 		{
 			if (isNoError_um(5))
             {
-                info_Search(3);
+                //info_Search(3);
 
                 string frmm = clib.DateToText(dat_s_frmm.DateTime).Substring(0, 6);
 				string tomm = clib.DateToText(dat_s_tomm.DateTime).Substring(0, 6);
