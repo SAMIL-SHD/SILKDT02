@@ -24,7 +24,6 @@ namespace DUTY1000
         private string ends_yn2 = "";
 		
 		private int admin_lv = 0;
-        private string p_dpcd = "";
 		
         private string use_frdt = "";
         private string use_todt = "";
@@ -42,9 +41,7 @@ namespace DUTY1000
         private void SetCancel(int stat)
         {
 			if (stat == 0)
-			{
-				sl_dept.Enabled = p_dpcd == "%" ? true : false;
-				
+			{				
 				if (ds.Tables["DUTY_TRSHREQ"] != null)
 					ds.Tables["DUTY_TRSHREQ"].Clear();
 				if (ds.Tables["SEARCH_AP_YC_LIST"] != null)
@@ -108,10 +105,11 @@ namespace DUTY1000
             use_frdt = "";
 			use_todt = "";
 
-			df.GetSEARCH_DEPTDatas(ds);
-			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-			df.Get8030_SEARCH_EMBSDatas(p_dpcd, ds);
-			sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
+			df.GetSEARCH_DEPT_POWERDatas(admin_lv, ds);
+			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT_POWER"];
+			df.GetSEARCH_EMBS_POWERDatas(admin_lv, ds);
+			sl_embs.Properties.DataSource = ds.Tables["SEARCH_EMBS_POWER"];
+
 			df.Get8030_SEARCH_GNMUDatas(ds);
 			sl_gnmu.Properties.DataSource = ds.Tables["8030_SEARCH_GNMU"];
 			sl_gnmu2.Properties.DataSource = ds.Tables["8030_SEARCH_GNMU"];
@@ -121,13 +119,16 @@ namespace DUTY1000
         private void baseInfoSearch()
         {
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-			df.GetSEARCH_YC_LISTDatas("A", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_YC_LISTDatas("A", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd1.DataSource = ds.Tables["SEARCH_AP_YC_LIST"];
-			df.GetSEARCH_YC_LISTDatas("C", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_YC_LISTDatas("C", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd2.DataSource = ds.Tables["SEARCH_YC_LIST"];
-			df.GetSEARCH_YC_LISTDatas("D", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_YC_LISTDatas("D", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd_del.DataSource = ds.Tables["SEARCH_DEL_YC_LIST"];
-		}
+
+            if (ds.Tables["SEARCH_AP_YC_LIST"].Rows.Count == 0)
+                MessageBox.Show("조회된 연차신청내역이 없습니다!", "조회", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         #endregion
 
@@ -154,23 +155,15 @@ namespace DUTY1000
 			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				admin_lv = 3;
-                p_dpcd = "%";
                 lb_power.Text = "전체관리 권한";
-				sl_dept.Enabled = true;
 			}
             else if (admin_lv == 1)
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서조회 권한";
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
 			}
             else
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
-                lb_power.Text = "조회권한 없음";				
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
+                lb_power.Text = "조회권한 없음";	
             }
 			
             SetCancel(0);

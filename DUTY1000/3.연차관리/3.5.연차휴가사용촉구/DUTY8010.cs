@@ -27,8 +27,6 @@ namespace DUTY1000
         DataProcFunc df = new DataProcFunc();
         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 		private int admin_lv = 0;
-        private string p_dpcd = "";
-		int idx = 0;
         public duty8010()
         {
             InitializeComponent();
@@ -47,9 +45,6 @@ namespace DUTY1000
 			txt_sawon_nm.Text = "";
 
 			btn_refresh_CK();
-
-			//mm_Contents.Text = "";
-            //SetButtonEnable("10");
         }
 		
         private void baseInfoSearch()
@@ -68,34 +63,17 @@ namespace DUTY1000
 			if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
 				admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
 			
-			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 2)
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				admin_lv = 3;
-                p_dpcd = "%";
                 lb_power.Text = "전체관리 권한";
 			}
             else if (admin_lv == 1)
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서관리 권한";
-
-				df.GetCHK_DEPTDatas(SilkRoad.Config.SRConfig.USID, "%", ds);
-				string lb_nm = "";
-				for (int i = 0; i < ds.Tables["CHK_DEPT"].Rows.Count; i++)
-				{
-					if (i == 0)
-						lb_nm = "(" + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
-					else if (i == ds.Tables["CHK_DEPT"].Rows.Count - 1)
-						lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString() + ")";
-					else
-						lb_nm += "," + ds.Tables["CHK_DEPT"].Rows[i]["DEPT_NM"].ToString();
-				}
-
-				lb_power.Text += lb_nm;
 			}
             else
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "관리권한 없음";
             }
 
@@ -110,9 +88,11 @@ namespace DUTY1000
 		private void btn_search_Click(object sender, EventArgs e)
 		{
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-			df.GetSEARCH_8010Datas(clib.DateToText(dat_year.DateTime).Substring(0, 4), dept, ds);
+			df.GetSEARCH_8010Datas(admin_lv, clib.DateToText(dat_year.DateTime).Substring(0, 4), dept, ds);
 			grd1.DataSource = ds.Tables["SEARCH_8010"];
-		}
+            if (ds.Tables["SEARCH_8010"].Rows.Count == 0)
+                MessageBox.Show("조회된 연차휴가사용촉구현황이 없습니다!", "조회", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 		
 		//이메일 전송화면으로 이동
 		private void btn_email_Click(object sender, EventArgs e)
@@ -122,7 +102,7 @@ namespace DUTY1000
 				try
 				{
 					string sldt = clib.DateToText(dat_sldt.DateTime);
-					df.GetSEARCH_YCDatas(admin_lv, p_dpcd, clib.DateToText(dat_sldt.DateTime), ds);
+					df.GetSEARCH_YCDatas(admin_lv, "%", clib.DateToText(dat_sldt.DateTime), ds);
 
 					string c_nm = cmb_yccj.SelectedIndex == 0 ? "CHK1" : "CHK2";
 					string doc_type = cmb_yccj.SelectedIndex == 0 ? "202101" : "202102";
@@ -330,16 +310,8 @@ namespace DUTY1000
         /// </summary>
         private void btn_refresh_CK()
         {
-			df.GetSEARCH_DEPTDatas(ds);
-			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-        }
-
-		/// <summary>
-		/// 배열에따른 버튼상태설정
-		/// </summary>
-		/// <param name="mode"></param>
-		private void SetButtonEnable(string arr)
-		{
+			df.GetSEARCH_DEPT_POWERDatas(admin_lv, ds);
+			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT_POWER"];
         }
 
 		#endregion

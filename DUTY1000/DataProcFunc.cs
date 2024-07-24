@@ -3011,7 +3011,7 @@ namespace DUTY1000
         }
 
         //연차조회
-        public void GetSEARCH_YC_LISTDatas(string FLAG, string fr_yymm, string to_yymm, string dept, DataSet ds)
+        public void GetSEARCH_YC_LISTDatas(string FLAG, int admin_lv, string fr_yymm, string to_yymm, string dept, DataSet ds)
         {
             try
             {
@@ -3039,10 +3039,14 @@ namespace DUTY1000
                            + "     ON X3.EMBSDPCD=X4.DEPRCODE "
                            + "   LEFT OUTER JOIN DUTY_TRSHREQ_DT X5 "
                            + "     ON A.SEQNO=X5.SEQNO "
-                           + "    AND A.LINE_CNT+1=X5.LINE_SQ "
-                           + "  WHERE ( (LEFT(REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR "
-                           + "         (LEFT(REQ_DATE2,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR ('" + fr_yymm + "' <= LEFT(REQ_DATE,6) AND LEFT(REQ_DATE2,6) <= '" + to_yymm + "') )"
-                           + "    AND X3.EMBSDPCD LIKE '" + dept + "' AND " + w_dt;
+                           + "    AND A.LINE_CNT+1=X5.LINE_SQ ";
+                if (admin_lv == 1)
+                    qry += " INNER JOIN DUTY_PWERDEPT X9 "
+                        + "     ON X3.EMBSDPCD = X9.DEPT "
+                        + "    AND X9.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                qry += "  WHERE ( (LEFT(REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR "
+                    + "         (LEFT(REQ_DATE2,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR ('" + fr_yymm + "' <= LEFT(REQ_DATE,6) AND LEFT(REQ_DATE2,6) <= '" + to_yymm + "') )"
+                    + "    AND X3.EMBSDPCD LIKE '" + dept + "' AND " + w_dt;
                 if (FLAG == "A")
                     qry += "  AND ISNULL(A.AP_TAG,'') IN ('1','3')";
                 else if (FLAG == "C")
@@ -3196,7 +3200,7 @@ namespace DUTY1000
             }
         }
         //휴가조회
-        public void GetSEARCH_JREQ_LISTDatas(string FLAG, string fr_yymm, string to_yymm, string dept, DataSet ds)
+        public void GetSEARCH_JREQ_LISTDatas(string FLAG, int admin_lv, string fr_yymm, string to_yymm, string dept, DataSet ds)
         {
             try
             {
@@ -3223,13 +3227,17 @@ namespace DUTY1000
                            + "     ON X3.EMBSDPCD=X4.DEPRCODE "
                            + "   LEFT OUTER JOIN DUTY_TRSJREQ_DT X5 "
                            + "     ON A.SEQNO=X5.SEQNO "
-                           + "    AND A.LINE_CNT+1=X5.LINE_SQ "
-                           + "  WHERE ( (LEFT(REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR "
-                           + "         (LEFT(REQ_DATE2,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR ('" + fr_yymm + "' <= LEFT(REQ_DATE,6) AND LEFT(REQ_DATE2,6) <= '" + to_yymm + "') )"
-                           //+ "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
-                           //+ "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
-                           + "    AND X3.EMBSDPCD LIKE '" + dept + "' AND " + w_dt
-                           + "  ORDER BY A.REQ_DATE DESC, X3.EMBSDPCD, A.SABN ";
+                           + "    AND A.LINE_CNT+1=X5.LINE_SQ ";
+                if (admin_lv == 1)
+                    qry += " INNER JOIN DUTY_PWERDEPT X9 "
+                        + "     ON X3.EMBSDPCD = X9.DEPT "
+                        + "    AND X9.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                qry += "  WHERE ( (LEFT(REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR "
+                    + "         (LEFT(REQ_DATE2,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "') OR ('" + fr_yymm + "' <= LEFT(REQ_DATE,6) AND LEFT(REQ_DATE2,6) <= '" + to_yymm + "') )"
+                    //+ "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
+                    //+ "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
+                    + "    AND X3.EMBSDPCD LIKE '" + dept + "' AND " + w_dt
+                    + "  ORDER BY A.REQ_DATE DESC, X3.EMBSDPCD, A.SABN ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset(dt_nm, dt, ref ds);
@@ -3319,7 +3327,7 @@ namespace DUTY1000
         #region 8090 - 연차및휴가조회
 
         //연차휴가조회
-        public void GetSEARCH_8090_LISTDatas(string fr_yymm, string to_yymm, string dept, int type, DataSet ds)
+        public void GetSEARCH_8090_LISTDatas(int admin_lv, string fr_yymm, string to_yymm, string dept, int type, DataSet ds)
         {
             try
             {
@@ -3350,8 +3358,12 @@ namespace DUTY1000
                         + "     ON X3.EMBSDPCD=X4.DEPRCODE "
                         + "   LEFT OUTER JOIN DUTY_TRSHREQ_DT X5 "
                         + "     ON A.SEQNO=X5.SEQNO "
-                        + "    AND A.LINE_CNT+1=X5.LINE_SQ "
-                        + "  WHERE LEFT(A.REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "'"
+                        + "    AND A.LINE_CNT+1=X5.LINE_SQ ";
+                    if (admin_lv == 1)
+                        qry += " INNER JOIN DUTY_PWERDEPT X9 "
+                            + "     ON X3.EMBSDPCD = X9.DEPT "
+                            + "    AND X9.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                    qry += "  WHERE LEFT(A.REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "'"
                         + "    AND X3.EMBSDPCD LIKE '" + dept + "'";
                 }
                 if (type == 0)
@@ -3381,8 +3393,12 @@ namespace DUTY1000
                         + "     ON X3.EMBSDPCD=X4.DEPRCODE "
                         + "   LEFT OUTER JOIN DUTY_TRSJREQ_DT X5 "
                         + "     ON A.SEQNO=X5.SEQNO "
-                        + "    AND A.LINE_CNT+1=X5.LINE_SQ "
-                        + "  WHERE LEFT(A.REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "'"
+                        + "    AND A.LINE_CNT+1=X5.LINE_SQ ";
+                    if (admin_lv == 1)
+                        qry += " INNER JOIN DUTY_PWERDEPT X9 "
+                            + "     ON X3.EMBSDPCD = X9.DEPT "
+                            + "    AND X9.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                    qry += "  WHERE LEFT(A.REQ_DATE,6) BETWEEN '" + fr_yymm + "' AND '" + to_yymm + "'"
                         + "    AND X3.EMBSDPCD LIKE '" + dept + "'";
                 }
 
@@ -3661,24 +3677,28 @@ namespace DUTY1000
 		#region 8010 - 연차휴가사용촉구
 				
 		//연차휴가사용촉구조회 
-		public void GetSEARCH_8010Datas(string year, string dept, DataSet ds)
+		public void GetSEARCH_8010Datas(int admin_lv, string year, string dept, DataSet ds)
 		{
 			try
 			{
-				string qry = "  SELECT X1.*, "
+                string qry = "  SELECT X1.*, "
                            + "         X1.YC_TDAY AS YC_TOTAL, X1.YC_USE_DAY AS YC_USE, X1.YC_REMAIN_DAY AS YC_REMAIN, "
                            + "         X2.EMBSDPCD AS DEPTCODE, RTRIM(ISNULL(X3.DEPRNAM1,'')) DEPT_NM, RTRIM(X2.EMBSEMAL) GW_EMAIL,  "
                            + "         (CASE WHEN X1.DOC_TYPE='202101' THEN '1차' ELSE '2차' END) TYPE_NM "
-						   + "    FROM (SELECT YC_YEAR, SAWON_NO, DOC_TYPE, MAX(YC_SQ) YC_SQ FROM DUTY_MSTYCCJ "
-						   + "           WHERE YC_YEAR='" + year + "' GROUP BY YC_YEAR, SAWON_NO, DOC_TYPE ) A "
-						   + "    LEFT OUTER JOIN DUTY_MSTYCCJ X1 "
-						   + "      ON A.YC_YEAR=X1.YC_YEAR AND A.SAWON_NO=X1.SAWON_NO AND A.DOC_TYPE=X1.DOC_TYPE "
-						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X2 "
-						   + "     ON X1.SAWON_NO=X2.EMBSSABN "
-						   + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X3 "
-						   + "     ON X2.EMBSDPCD=X3.DEPRCODE "
-						   + "  WHERE (X2.EMBSSTAT='1' OR (X2.EMBSSTAT='2' AND X2.EMBSTSDT <= '" + year + "1231') ) "
-						   + "    AND X2.EMBSDPCD LIKE '" + dept + "'";
+                           + "    FROM (SELECT YC_YEAR, SAWON_NO, DOC_TYPE, MAX(YC_SQ) YC_SQ FROM DUTY_MSTYCCJ "
+                           + "           WHERE YC_YEAR='" + year + "' GROUP BY YC_YEAR, SAWON_NO, DOC_TYPE ) A "
+                           + "    LEFT OUTER JOIN DUTY_MSTYCCJ X1 "
+                           + "      ON A.YC_YEAR=X1.YC_YEAR AND A.SAWON_NO=X1.SAWON_NO AND A.DOC_TYPE=X1.DOC_TYPE "
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X2 "
+                           + "     ON X1.SAWON_NO=X2.EMBSSABN "
+                           + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X3 "
+                           + "     ON X2.EMBSDPCD=X3.DEPRCODE ";
+                if (admin_lv == 1)
+                    qry += " INNER JOIN DUTY_PWERDEPT X5 "
+                        + "     ON X2.EMBSDPCD = X5.DEPT "
+                        + "    AND X5.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                qry += "  WHERE (X2.EMBSSTAT='1' OR (X2.EMBSSTAT='2' AND X2.EMBSTSDT <= '" + year + "1231') ) "
+					+ "    AND X2.EMBSDPCD LIKE '" + dept + "'";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("SEARCH_8010", dt, ref ds);
@@ -3830,7 +3850,7 @@ namespace DUTY1000
                            + "     ON A.SEQNO=X5.SEQNO "
                            + "    AND A.LINE_CNT+1=X5.LINE_SQ "
                            + "  WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN ('1','3') ";
-                if (admin_lv != 3)
+                if (admin_lv < 3)
                     qry += "  AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
 
                 qry += " UNION ALL "
@@ -3856,7 +3876,7 @@ namespace DUTY1000
                     + "     ON A.SEQNO=X5.SEQNO "
                     + "    AND A.LINE_CNT+1=X5.LINE_SQ "
                     + "  WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN ('1','3') ";
-                if (admin_lv != 3)
+                if (admin_lv < 3)
                     qry += "  AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
 
                 qry += " ) A1 ORDER BY A1.EMBSDPCD, A1.REQ_DATE DESC, A1.TYPE, A1.SABN ";
@@ -4005,15 +4025,15 @@ namespace DUTY1000
                         + "   LEFT OUTER JOIN DUTY_TRSHREQ_DT X5 "
                         + "     ON A.SEQNO=X5.SEQNO "
                         + "    AND A.LINE_MAX=X5.LINE_SQ ";
-                    if (admin_lv == 1)
-                        qry += " INNER JOIN DUTY_PWERDEPT P1 "
-                            + "     ON X3.EMBSDPCD = P1.DEPT "
-                            + "    AND P1.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                    //if (admin_lv == 1)
+                    //    qry += " INNER JOIN DUTY_PWERDEPT P1 "
+                    //        + "     ON X3.EMBSDPCD = P1.DEPT "
+                    //        + "    AND P1.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
                     qry += "  WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN " + ap_tag
                                + "    AND ( (LEFT(REQ_DATE,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR "
                                + "         (LEFT(REQ_DATE2,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR ('" + fr_yy + "' <= LEFT(REQ_DATE,4) AND LEFT(REQ_DATE2,4) <= '" + to_yy + "') )";
 
-                    if (admin_lv == 0)
+                    if (admin_lv < 3)
                         qry += " AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
                 }
                 if (gubn == 0)
@@ -4046,15 +4066,15 @@ namespace DUTY1000
                         + "   LEFT OUTER JOIN DUTY_TRSJREQ_DT X5 "
                         + "     ON A.SEQNO=X5.SEQNO "
                         + "    AND A.LINE_MAX=X5.LINE_SQ ";
-                    if (admin_lv == 1)
-                        qry += " INNER JOIN DUTY_PWERDEPT P1 "
-                            + "     ON X3.EMBSDPCD = P1.DEPT "
-                            + "    AND P1.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                    //if (admin_lv == 1)
+                    //    qry += " INNER JOIN DUTY_PWERDEPT P1 "
+                    //        + "     ON X3.EMBSDPCD = P1.DEPT "
+                    //        + "    AND P1.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
                     qry += "   WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN " + ap_tag
                         + "     AND ( (LEFT(REQ_DATE,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR "
                         + "         (LEFT(REQ_DATE2,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR ('" + fr_yy + "' <= LEFT(REQ_DATE,4) AND LEFT(REQ_DATE2,4) <= '" + to_yy + "') )";
 
-                    if (admin_lv == 0)
+                    if (admin_lv < 3)
                         qry += " AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
                 }
 

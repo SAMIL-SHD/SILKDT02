@@ -24,7 +24,6 @@ namespace DUTY1000
         private string ends_yn2 = "";
 		
 		private int admin_lv = 0;
-        private string p_dpcd = "";
         public duty8050()
         {
             InitializeComponent();
@@ -39,9 +38,7 @@ namespace DUTY1000
         private void SetCancel(int stat)
         {
 			if (stat == 0)
-			{
-				sl_dept.Enabled = p_dpcd == "%" ? true : false;
-				
+			{				
 				if (ds.Tables["DUTY_TRSJREQ"] != null)
 					ds.Tables["DUTY_TRSJREQ"].Clear();
 				grd_hg.DataSource = null;
@@ -82,24 +79,27 @@ namespace DUTY1000
                 SetButtonEnable2("100");
 			}
 
-			df.GetSEARCH_DEPTDatas(ds);
-			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-			df.Get8030_SEARCH_EMBSDatas(p_dpcd, ds);
-			sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
-			df.Get8050_SEARCH_GNMUDatas(ds);
+            df.GetSEARCH_DEPT_POWERDatas(admin_lv, ds);
+            sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT_POWER"];
+            df.GetSEARCH_EMBS_POWERDatas(admin_lv, ds);
+            sl_embs.Properties.DataSource = ds.Tables["SEARCH_EMBS_POWER"];
+
+            df.Get8050_SEARCH_GNMUDatas(ds);
 			sl_gnmu.Properties.DataSource = ds.Tables["8050_SEARCH_GNMU"];
         }
 		
         //휴가신청내역 조회
         private void baseInfoSearch()
         {
-			//END_CHK();
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-			df.GetSEARCH_JREQ_LISTDatas("C", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_JREQ_LISTDatas("C", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd_hg.DataSource = ds.Tables["SEARCH_JREQ_LIST"];
-			df.GetSEARCH_JREQ_LISTDatas("D", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_JREQ_LISTDatas("D", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd_del.DataSource = ds.Tables["SEARCH_DEL_JREQ_LIST"];
-		}
+
+            if (ds.Tables["SEARCH_JREQ_LIST"].Rows.Count == 0)
+                MessageBox.Show("조회된 휴가내역이 없습니다!", "조회", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         #endregion
 
@@ -125,23 +125,15 @@ namespace DUTY1000
 			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				admin_lv = 3;
-                p_dpcd = "%";
                 lb_power.Text = "전체관리 권한";
-				sl_dept.Enabled = true;
 			}
             else if (admin_lv == 1)
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서조회 권한";
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
 			}
             else
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
-                lb_power.Text = "조회권한 없음";				
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
+                lb_power.Text = "조회권한 없음";
             }
 			
             SetCancel(0);

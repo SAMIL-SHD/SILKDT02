@@ -138,7 +138,7 @@
 8. 연차수당 : 연차정산개수 x 수당(개인별근무시간 x 시급)
 
 9. 마감처리 : 1)마감관리-근무집계표 메뉴에서 근무년월을 처리 후 내역을 확인하고 저장한다.
-                  2)급여처리탭으로 이동 후 급여년월을 조회하고 전송버튼(급여로 전송)을 클릭하면 완료!</value>
+                2)급여처리탭으로 이동 후 급여년월을 조회하고 전송버튼(급여로 전송)을 클릭하면 완료!</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

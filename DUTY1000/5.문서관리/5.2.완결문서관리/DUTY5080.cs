@@ -84,14 +84,18 @@ namespace DUTY1000
                 admin_lv = 3;
                 lb_power.Text = "전체관리 권한";
             }
-            else if (admin_lv == 1)
-            {
-                lb_power.Text = "부서조회 권한";
-            }
             else
             {
-                lb_power.Text = "조회권한 없음";
+                lb_power.Text = "";
             }
+            //else if (admin_lv == 1)
+            //{
+            //    lb_power.Text = "부서조회 권한";
+            //}
+            //else
+            //{
+            //    lb_power.Text = "조회권한 없음";
+            //}
 
             proc();
 		}
