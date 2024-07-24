@@ -84,13 +84,13 @@
             this.grdcol_day30 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.grdcol_day31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cmb_sq = new SilkRoad.UserControls.SRCombo();
             this.btn_excel = new SilkRoad.UserControls.SRButton();
             this.btn_search = new SilkRoad.UserControls.SRButton();
             this.btn_canc = new SilkRoad.UserControls.SRButton();
             this.dat_yymm = new SilkRoad.UserControls.SRDate();
             this.srLabel1 = new SilkRoad.UserControls.SRLabel();
             this.srGroupBox1 = new SilkRoad.UserControls.SRGroupBox();
-            this.cmb_sq = new SilkRoad.UserControls.SRCombo();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -102,11 +102,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.sRgridLookup21View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srGroupBox1)).BeginInit();
             this.srGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_exit
@@ -318,7 +318,7 @@
             this.gridBand23.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.gridBand23.Name = "gridBand23";
             this.gridBand23.VisibleIndex = 0;
-            this.gridBand23.Width = 207;
+            this.gridBand23.Width = 249;
             // 
             // bandedGridColumn8
             // 
@@ -331,17 +331,18 @@
             this.bandedGridColumn8.FieldName = "DEPT_NM";
             this.bandedGridColumn8.Name = "bandedGridColumn8";
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn8.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridColumn8.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn8.OptionsColumn.AllowSize = false;
             this.bandedGridColumn8.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridColumn8.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn8.OptionsColumn.TabStop = false;
             this.bandedGridColumn8.OptionsFilter.AllowAutoFilter = false;
             this.bandedGridColumn8.OptionsFilter.AllowFilter = false;
             this.bandedGridColumn8.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn8.Visible = true;
-            this.bandedGridColumn8.Width = 62;
+            this.bandedGridColumn8.Width = 104;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -1212,6 +1213,25 @@
             this.panelControl1.Size = new System.Drawing.Size(1337, 47);
             this.panelControl1.TabIndex = 453;
             // 
+            // cmb_sq
+            // 
+            this.cmb_sq.EditValue = "(1)";
+            this.cmb_sq.EnterMoveNextControl = true;
+            this.cmb_sq.Location = new System.Drawing.Point(186, 12);
+            this.cmb_sq.Name = "cmb_sq";
+            this.cmb_sq.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.cmb_sq.Properties.Appearance.Options.UseFont = true;
+            this.cmb_sq.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.cmb_sq.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cmb_sq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_sq.Properties.Items.AddRange(new object[] {
+            "(1)",
+            "(2)"});
+            this.cmb_sq.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cmb_sq.Size = new System.Drawing.Size(60, 22);
+            this.cmb_sq.TabIndex = 545;
+            // 
             // btn_excel
             // 
             this.btn_excel.Authority = false;
@@ -1315,25 +1335,6 @@
             this.srGroupBox1.TabIndex = 481;
             this.srGroupBox1.Text = "조회";
             // 
-            // cmb_sq
-            // 
-            this.cmb_sq.EditValue = "(1)";
-            this.cmb_sq.EnterMoveNextControl = true;
-            this.cmb_sq.Location = new System.Drawing.Point(186, 12);
-            this.cmb_sq.Name = "cmb_sq";
-            this.cmb_sq.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.cmb_sq.Properties.Appearance.Options.UseFont = true;
-            this.cmb_sq.Properties.AppearanceDropDown.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.cmb_sq.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cmb_sq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_sq.Properties.Items.AddRange(new object[] {
-            "(1)",
-            "(2)"});
-            this.cmb_sq.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmb_sq.Size = new System.Drawing.Size(60, 22);
-            this.cmb_sq.TabIndex = 545;
-            // 
             // duty3060
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1357,11 +1358,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.sRgridLookup21View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_yymm.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srGroupBox1)).EndInit();
             this.srGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_sq.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

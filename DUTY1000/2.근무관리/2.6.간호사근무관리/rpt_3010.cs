@@ -21,8 +21,7 @@ namespace DUTY1000
         public rpt_3010 (string yymm, string part, DataTable ds)
         {
             InitializeComponent();
-            lb_yymm.Text = yymm.Substring(0, 4) + "-" + yymm.Substring(4, 2);
-            lb_part.Text = part;
+            xrLabel4.Text = yymm.Substring(0, 4) + "년 " + yymm.Substring(4, 2) + "월 간호부 근무표(부서 : " + part + ")";
 
 			#region 요일표기
 			//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정
@@ -553,8 +552,7 @@ namespace DUTY1000
 			}
 
 			#endregion
-
-			//c_name.DataBindings.Add("Text", DataSource, "SAWON_NM", "");
+            
 			c_01.DataBindings.Add("Text", DataSource, "D01_NM", "");
             c_02.DataBindings.Add("Text", DataSource, "D02_NM", "");
             c_03.DataBindings.Add("Text", DataSource, "D03_NM", "");
