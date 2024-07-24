@@ -1244,29 +1244,28 @@ namespace DUTY1000
 						   + "          WHERE YC_YEAR=A1.YC_YEAR AND SAWON_NO=A1.SAWON_NO) AS YCCJ_SQ"
 						   + "   FROM ( "
 						   + "         SELECT A.YC_YEAR, A.SAWON_NO SAWON_NO, RTRIM(A.SAWON_NM) SAWON_NM, RTRIM(X3.EMBSEMAL) GW_EMAIL, RTRIM(ISNULL(X4.DEPRNAM1,'')) DEPT_NM, "
-						   + "                A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
-						   + "                A.YC_BASE, A.YC_CHANGE, A.YC_FIRST, A.YC_ADD, A.YC_TOTAL, "
-						   //+ "				  (CASE WHEN A.YC_TYPE IN (0,2) THEN '회계년도기준' ELSE '입사일기준' END) YC_TYPE_NM, "
-						   + "      		  LEFT(A.IN_DATE,4)+'-'+SUBSTRING(A.IN_DATE,5,2)+'-'+SUBSTRING(A.IN_DATE,7,2) AS IN_DATE_NM, "
-						   + "                LEFT(A.CALC_FRDT,4)+'-'+SUBSTRING(A.CALC_FRDT,5,2)+'-'+SUBSTRING(A.CALC_FRDT,7,2)+' ~ '+ "
-						   + "                LEFT(A.CALC_TODT,4)+'-'+SUBSTRING(A.CALC_TODT,5,2)+'-'+SUBSTRING(A.CALC_TODT,7,2) AS CALC_DT_NM, "
+						   + "                A.YC_TYPE, A.IN_DATE, A.EMBSTSDT, A.CALC_DATE, A.USE_FRDT, A.USE_TODT,"
+						   + "                A.YC_FIRST, A.YC_BF, A.YC_NOW, A.YC_CHANGE, A.YC_TOTAL, "
+                           + "				  (CASE A.YC_TYPE WHEN 0 THEN '회계년도' WHEN 1 THEN '입사일' "
+                           + "				        WHEN 2 THEN '의사' WHEN 3 THEN '오너' ELSE '' END) YC_TYPE_NM, "
+                           + "      		  LEFT(A.IN_DATE,4)+'-'+SUBSTRING(A.IN_DATE,5,2)+'-'+SUBSTRING(A.IN_DATE,7,2) AS IN_DATE_NM, "
+						   //+ "                LEFT(A.CALC_FRDT,4)+'-'+SUBSTRING(A.CALC_FRDT,5,2)+'-'+SUBSTRING(A.CALC_FRDT,7,2)+' ~ '+ "
+						   //+ "                LEFT(A.CALC_TODT,4)+'-'+SUBSTRING(A.CALC_TODT,5,2)+'-'+SUBSTRING(A.CALC_TODT,7,2) AS CALC_DT_NM, "
 						   + "                LEFT(A.USE_FRDT,4)+'-'+SUBSTRING(A.USE_FRDT,5,2)+'-'+SUBSTRING(A.USE_FRDT,7,2) AS USE_FRDT_NM, "
 						   + "                LEFT(A.USE_TODT,4)+'-'+SUBSTRING(A.USE_TODT,5,2)+'-'+SUBSTRING(A.USE_TODT,7,2) AS USE_TODT_NM, "
-						   + "                A.YC_BASE+A.YC_FIRST+A.YC_ADD as YC_SUM,"
-						   + "                SUM(ISNULL(X1.YC_DAYS,0)) AS YC_USE, "
-						   + "                A.YC_TOTAL - SUM(ISNULL(X1.YC_DAYS,0)) AS YC_REMAIN "
+						   + "                A.YC_FIRST+A.YC_BF+A.YC_NOW as YC_SUM,"
+                           + "                ISNULL(X1.YC_DAYS,0) AS YC_USE, "
+						   + "                A.YC_TOTAL - ISNULL(X1.YC_DAYS,0) AS YC_REMAIN "
 						   + "           FROM DUTY_TRSDYYC A "
-						   + "           LEFT OUTER JOIN DUTY_TRSHREQ X1 "
-						   + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN "
-                           + "            AND X1.PSTY<>'D' AND X1.AP_TAG NOT IN ('2','4') "  //D:삭제 2:취소,4:반려는 카운트 제외
+						   + "           LEFT OUTER JOIN (SELECT REQ_YEAR, SABN, SUM(YC_DAYS) YC_DAYS FROM DUTY_TRSHREQ "
+                           + "                             WHERE PSTY<>'D' AND AP_TAG NOT IN ('2','4') AND REQ_YEAR = '" + sldt.Substring(0, 4) + "' GROUP BY REQ_YEAR, SABN ) X1 " //D:삭제 2:취소,4:반려는 카운트 제외
+                           + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN "
 						   + "           LEFT OUTER JOIN " + wagedb + ".DBO.MSTEMBS X3 "
                            + "             ON A.SAWON_NO=X3.EMBSSABN "
 						   + "			 LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X4 "
                            + "			   ON X3.EMBSDPCD=X4.DEPRCODE "
 						   + "          WHERE A.YC_YEAR='" + sldt.Substring(0, 4) + "' "
-                           + "            AND A.SAWON_NO='" + sabn + "'"
-						   + "          GROUP BY A.YC_YEAR, A.SAWON_NO, A.SAWON_NM, X3.EMBSEMAL, X4.DEPRNAM1, A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
-						   + "                   A.YC_BASE, A.YC_CHANGE, A.YC_FIRST, A.YC_ADD, A.YC_TOTAL ) A1 "
+                           + "            AND A.SAWON_NO='" + sabn + "') A1 " 
 						   + "  ORDER BY A1.YC_YEAR ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -3499,39 +3498,41 @@ namespace DUTY1000
 						   + "          WHERE YC_YEAR=A1.YC_YEAR AND SAWON_NO=A1.SAWON_NO) AS YCCJ_SQ"
 						   + "   FROM ( "
 						   + "         SELECT A.YC_YEAR, A.SAWON_NO SAWON_NO, RTRIM(A.SAWON_NM) SAWON_NM, RTRIM(X3.EMBSEMAL) GW_EMAIL, X3.EMBSDPCD, RTRIM(ISNULL(X4.DEPRNAM2,'')) DEPT_NM, "
-                           + "                A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
-						   + "                A.YC_FIRST, A.YC_BF_CNT, A.YC_NOW_CNT, A.YC_BASE, A.YC_ADD, A.YC_CHANGE, A.YC_TOTAL, "
-                           //+ "				  (CASE WHEN A.YC_TYPE IN (0,2) THEN '회계년도기준' ELSE '입사일기준' END) YC_TYPE_NM, "
+                           + "                A.YC_TYPE, A.IN_DATE, A.EMBSTSDT, A.CALC_DATE, A.USE_FRDT, A.USE_TODT,"
+						   + "                A.YC_FIRST, A.YC_BF, A.YC_NOW, A.YC_CHANGE, A.YC_TOTAL, "
+                           + "				  (CASE A.YC_TYPE WHEN 0 THEN '회계년도' WHEN 1 THEN '입사일' "
+                           + "				        WHEN 2 THEN '의사' WHEN 3 THEN '오너' ELSE '' END) YC_TYPE_NM, "
                            + "      		  LEFT(A.IN_DATE,4)+'-'+SUBSTRING(A.IN_DATE,5,2)+'-'+SUBSTRING(A.IN_DATE,7,2) AS IN_DATE_NM, "
-						   + "                LEFT(A.CALC_FRDT,4)+'-'+SUBSTRING(A.CALC_FRDT,5,2)+'-'+SUBSTRING(A.CALC_FRDT,7,2)+' ~ '+ "
-						   + "                LEFT(A.CALC_TODT,4)+'-'+SUBSTRING(A.CALC_TODT,5,2)+'-'+SUBSTRING(A.CALC_TODT,7,2) AS CALC_DT_NM, "
+						   //+ "                LEFT(A.CALC_FRDT,4)+'-'+SUBSTRING(A.CALC_FRDT,5,2)+'-'+SUBSTRING(A.CALC_FRDT,7,2)+' ~ '+ "
+						   //+ "                LEFT(A.CALC_TODT,4)+'-'+SUBSTRING(A.CALC_TODT,5,2)+'-'+SUBSTRING(A.CALC_TODT,7,2) AS CALC_DT_NM, "
 						   + "                LEFT(A.USE_FRDT,4)+'-'+SUBSTRING(A.USE_FRDT,5,2)+'-'+SUBSTRING(A.USE_FRDT,7,2) AS USE_FRDT_NM, "
 						   + "                LEFT(A.USE_TODT,4)+'-'+SUBSTRING(A.USE_TODT,5,2)+'-'+SUBSTRING(A.USE_TODT,7,2) AS USE_TODT_NM, "
-						   + "                A.YC_FIRST+A.YC_BF_CNT+A.YC_NOW_CNT as YC_SUM,"
-                           + "                SUM(ISNULL(X1.YC_DAYS,0)) AS YC_USE, A.YC_TOTAL - SUM(ISNULL(X1.YC_DAYS,0)) AS YC_REMAIN, "
-						   + "                (CASE WHEN A.YC_TYPE IN (1,3) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(M,-3,DATEADD(YEAR,1,A.USE_FRDT)),112) "
+						   + "                A.YC_FIRST+A.YC_BF+A.YC_NOW as YC_SUM,"
+                           + "                ISNULL(X1.YC_DAYS,0) AS YC_USE, A.YC_TOTAL - ISNULL(X1.YC_DAYS,0) AS YC_REMAIN, "
+						   + "                (CASE WHEN A.YC_TYPE IN (1) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(M,-3,DATEADD(YEAR,1,A.USE_FRDT)),112) "
 						   + "                      ELSE CONVERT(CHAR,DATEADD(DAY,1,DATEADD(M,-6,A.USE_TODT)),112) END) AS FR_H1, "
-						   + "                (CASE WHEN A.YC_TYPE IN (1,3) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,9,DATEADD(M,-3,DATEADD(YEAR,1,A.USE_FRDT))),112) "
+                           + "                (CASE WHEN A.YC_TYPE IN (1) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,9,DATEADD(M,-3,DATEADD(YEAR,1,A.USE_FRDT))),112) "
 						   + "                      ELSE CONVERT(CHAR,DATEADD(DAY,10,DATEADD(M,-6,A.USE_TODT)),112) END) AS TO_H1, "
-						   + "                (CASE WHEN A.YC_TYPE IN (1,3) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,-1,DATEADD(M,-1,DATEADD(YEAR,1,A.USE_FRDT))),112) "
+						   + "                (CASE WHEN A.YC_TYPE IN (1) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,-1,DATEADD(M,-1,DATEADD(YEAR,1,A.USE_FRDT))),112) "
 						   + "                      ELSE CONVERT(CHAR,DATEADD(M,-2,A.USE_TODT),112) END) AS FR_H2, "
-						   + "                (CASE WHEN A.YC_TYPE IN (1,3) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,8,DATEADD(M,-1,DATEADD(YEAR,1,A.USE_FRDT))),112)  "
+						   + "                (CASE WHEN A.YC_TYPE IN (1) AND DATEDIFF(DAY, A.IN_DATE, '" + sldt + "')<365 THEN CONVERT(CHAR,DATEADD(DAY,8,DATEADD(M,-1,DATEADD(YEAR,1,A.USE_FRDT))),112)  "
 						   + "                      ELSE CONVERT(CHAR,DATEADD(DAY,9,DATEADD(M,-2,A.USE_TODT)),112) END) AS TO_H2 "
 						   + "           FROM DUTY_TRSDYYC A "
-						   + "           LEFT OUTER JOIN DUTY_TRSHREQ X1 "
-						   + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN AND X1.AP_TAG NOT IN ('2','4') AND X1.PSTY<>'D' "  //취소,반려는 카운트 제외
+						   + "           LEFT OUTER JOIN (SELECT REQ_YEAR, SABN, SUM(YC_DAYS) YC_DAYS FROM DUTY_TRSHREQ "
+                           + "                             WHERE AP_TAG NOT IN ('2','4') AND PSTY<>'D' AND REQ_YEAR = '" + sldt.Substring(0, 4) + "' GROUP BY REQ_YEAR, SABN) X1 " //취소,반려는 카운트 제외
+                           + "             ON A.YC_YEAR=X1.REQ_YEAR AND A.SAWON_NO=X1.SABN  "  
 						   + "           INNER JOIN " + wagedb + ".DBO.MSTEMBS X3 "
                            + "             ON A.SAWON_NO=X3.EMBSSABN AND (X3.EMBSSTAT='1' OR (X3.EMBSSTAT='2' AND X3.EMBSTSDT>='" + sldt + "')) AND X3.EMBSIPDT <> ''"
                            + "			 LEFT OUTER JOIN " + wagedb + ".DBO.MSTDEPR X4 "
-                           + "			   ON X3.EMBSDPCD=X4.DEPRCODE ";
-				if (lv == 1)  //부서장일경우
-					qry += " WHERE X3.EMBSDPCD IN (SELECT DEPT FROM DUTY_PWERDEPT WHERE SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
+                           + "			   ON X3.EMBSDPCD=X4.DEPRCODE "
+                           + "        WHERE A.YC_YEAR = '" + sldt.Substring(0, 4) + "'";
+
+                if (lv == 1)  //부서장일경우
+					qry += " AND X3.EMBSDPCD IN (SELECT DEPT FROM DUTY_PWERDEPT WHERE SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
 				else
-					qry += " WHERE X3.EMBSDPCD LIKE '" + dpcd + "'";
-				//qry += "           AND ( (A.YC_TYPE IN (0,2) AND A.YC_YEAR='" + sldt.Substring(0, 4) + "' ) OR (A.YC_TYPE IN (1,3) AND A.USE_FRDT<='" + sldt + "' AND A.USE_TODT>='" + sldt + "') ) "
-                qry += "          GROUP BY A.YC_YEAR, A.SAWON_NO, A.SAWON_NM, X3.EMBSEMAL, X3.EMBSDPCD, X4.DEPRNAM2, A.YC_TYPE, A.IN_DATE, A.CALC_FRDT, A.CALC_TODT, A.USE_FRDT, A.USE_TODT,"
-                    + "                   A.YC_FIRST, A.YC_BF_CNT, A.YC_NOW_CNT, A.YC_BASE, A.YC_ADD, A.YC_CHANGE, A.YC_TOTAL  ) A1 "
-                    + "  ORDER BY A1.EMBSDPCD, A1.SAWON_NO ";
+					qry += " AND X3.EMBSDPCD LIKE '" + dpcd + "'";
+
+                qry += " ) A1 ORDER BY A1.EMBSDPCD, A1.SAWON_NO ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("SEARCH_YC", dt, ref ds);
@@ -3542,7 +3543,7 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		//연차촉진 조회 TRSHREQ
+		//연차내역조회 TRSHREQ
 		public void GetSEARCH_TRSHREQDatas(string sabn, string yc_year, DataSet ds)
 		{
 			try
@@ -3622,8 +3623,8 @@ namespace DUTY1000
 		{
 			try
 			{
-				string qry = " SELECT YC_BASE+YC_FIRST+YC_ADD as YC_SUM, * "
-						   + "   FROM DUTY_TRSDYYC "
+				string qry = " SELECT YC_FIRST+YC_BF+YC_NOW as YC_SUM, * "
+                           + "   FROM DUTY_TRSDYYC "
 						   + "  WHERE YC_YEAR='" + year + "' AND SAWON_NO='" + sabn + "' ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);

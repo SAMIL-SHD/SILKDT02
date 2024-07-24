@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
@@ -44,11 +45,11 @@
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_type = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdv1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_sabn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -133,7 +134,7 @@
             this.srLabel7 = new DevExpress.XtraEditors.LabelControl();
             this.txt_name = new SilkRoad.UserControls.SRTextEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.txt_now_cnt = new SilkRoad.UserControls.SRTextEdit();
+            this.txt_now = new SilkRoad.UserControls.SRTextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.txt_first = new SilkRoad.UserControls.SRTextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -142,14 +143,14 @@
             this.dat_indt = new DevExpress.XtraEditors.DateEdit();
             this.cmb_type = new SilkRoad.UserControls.SRCombo();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.txt_bf_cnt = new SilkRoad.UserControls.SRTextEdit();
+            this.txt_bf = new SilkRoad.UserControls.SRTextEdit();
             this.srLabel10 = new DevExpress.XtraEditors.LabelControl();
             this.srPanel6 = new SilkRoad.UserControls.SRPanel();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.srLabel52 = new DevExpress.XtraEditors.LabelControl();
             this.txt_sabn = new SilkRoad.UserControls.SRTextEdit();
             this.dat_year = new SilkRoad.UserControls.SRDate();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd1)).BeginInit();
@@ -193,13 +194,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_rcnt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_use.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_now_cnt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_now.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_first.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_change.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_indt.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_indt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_type.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_bf_cnt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_bf.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel6)).BeginInit();
             this.srPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_sabn.Properties)).BeginInit();
@@ -247,6 +248,36 @@
             this.gridColumn18.VisibleIndex = 12;
             this.gridColumn18.Width = 55;
             // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "전송일자";
+            this.gridColumn23.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.gridColumn23.FieldName = "SEND_DT";
+            this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.OptionsColumn.AllowEdit = false;
+            this.gridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn23.OptionsColumn.ReadOnly = true;
+            this.gridColumn23.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn23.Visible = true;
+            this.gridColumn23.VisibleIndex = 2;
+            this.gridColumn23.Width = 84;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
+            // gridColumn24
+            // 
+            this.gridColumn24.Caption = "전송자";
+            this.gridColumn24.FieldName = "SEND_ID";
+            this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.OptionsColumn.AllowEdit = false;
+            this.gridColumn24.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn24.OptionsColumn.ReadOnly = true;
+            this.gridColumn24.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn24.Visible = true;
+            this.gridColumn24.VisibleIndex = 3;
+            // 
             // gridColumn26
             // 
             this.gridColumn26.AppearanceCell.Options.UseTextOptions = true;
@@ -280,36 +311,6 @@
             this.gridColumn27.VisibleIndex = 3;
             this.gridColumn27.Width = 41;
             // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "전송일자";
-            this.gridColumn23.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.gridColumn23.FieldName = "SEND_DT";
-            this.gridColumn23.Name = "gridColumn23";
-            this.gridColumn23.OptionsColumn.AllowEdit = false;
-            this.gridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn23.OptionsColumn.ReadOnly = true;
-            this.gridColumn23.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 2;
-            this.gridColumn23.Width = 84;
-            // 
-            // repositoryItemMemoEdit1
-            // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            // 
-            // gridColumn24
-            // 
-            this.gridColumn24.Caption = "전송자";
-            this.gridColumn24.FieldName = "SEND_ID";
-            this.gridColumn24.Name = "gridColumn24";
-            this.gridColumn24.OptionsColumn.AllowEdit = false;
-            this.gridColumn24.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn24.OptionsColumn.ReadOnly = true;
-            this.gridColumn24.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 3;
-            // 
             // col_type
             // 
             this.col_type.Caption = "계산방법";
@@ -319,7 +320,9 @@
             this.col_type.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.col_type.OptionsColumn.ReadOnly = true;
             this.col_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.col_type.Width = 112;
+            this.col_type.Visible = true;
+            this.col_type.VisibleIndex = 5;
+            this.col_type.Width = 60;
             // 
             // grdv1
             // 
@@ -481,7 +484,7 @@
             this.gridColumn1.FieldName = "IN_DATE_NM";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 5;
+            this.gridColumn1.VisibleIndex = 6;
             // 
             // gridColumn2
             // 
@@ -494,8 +497,6 @@
             this.gridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 6;
             this.gridColumn2.Width = 162;
             // 
             // gridColumn3
@@ -579,7 +580,7 @@
             this.gridColumn5.Caption = "전년연차";
             this.gridColumn5.DisplayFormat.FormatString = "{0:#,###.#}";
             this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn5.FieldName = "YC_BF_CNT";
+            this.gridColumn5.FieldName = "YC_BF";
             this.gridColumn5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
@@ -587,7 +588,7 @@
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_BF_CNT", "{0:#,###.#}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_BF", "{0:#,###.#}")});
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 14;
             this.gridColumn5.Width = 43;
@@ -600,7 +601,7 @@
             this.gridColumn10.Caption = "당해연차";
             this.gridColumn10.DisplayFormat.FormatString = "{0:#,###.#}";
             this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn10.FieldName = "YC_NOW_CNT";
+            this.gridColumn10.FieldName = "YC_NOW";
             this.gridColumn10.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
@@ -608,7 +609,7 @@
             this.gridColumn10.OptionsColumn.ReadOnly = true;
             this.gridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn10.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_NOW_CNT", "{0:#,###.#}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_NOW", "{0:#,###.#}")});
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 15;
             this.gridColumn10.Width = 43;
@@ -1545,7 +1546,7 @@
             this.srPanel7.Controls.Add(this.srLabel7);
             this.srPanel7.Controls.Add(this.txt_name);
             this.srPanel7.Controls.Add(this.labelControl12);
-            this.srPanel7.Controls.Add(this.txt_now_cnt);
+            this.srPanel7.Controls.Add(this.txt_now);
             this.srPanel7.Controls.Add(this.labelControl13);
             this.srPanel7.Controls.Add(this.txt_first);
             this.srPanel7.Controls.Add(this.labelControl11);
@@ -1554,7 +1555,7 @@
             this.srPanel7.Controls.Add(this.dat_indt);
             this.srPanel7.Controls.Add(this.cmb_type);
             this.srPanel7.Controls.Add(this.labelControl9);
-            this.srPanel7.Controls.Add(this.txt_bf_cnt);
+            this.srPanel7.Controls.Add(this.txt_bf);
             this.srPanel7.Controls.Add(this.srLabel10);
             this.srPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.srPanel7.Location = new System.Drawing.Point(2, 96);
@@ -1754,30 +1755,30 @@
             this.labelControl12.TabIndex = 525;
             this.labelControl12.Text = "당해연차";
             // 
-            // txt_now_cnt
+            // txt_now
             // 
-            this.txt_now_cnt.EditValue = "";
-            this.txt_now_cnt.Enabled = false;
-            this.txt_now_cnt.EnterMoveNextControl = true;
-            this.txt_now_cnt.Location = new System.Drawing.Point(107, 157);
-            this.txt_now_cnt.Name = "txt_now_cnt";
-            this.txt_now_cnt.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txt_now_cnt.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.txt_now_cnt.Properties.Appearance.Options.UseBackColor = true;
-            this.txt_now_cnt.Properties.Appearance.Options.UseFont = true;
-            this.txt_now_cnt.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_now_cnt.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_now_cnt.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txt_now_cnt.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.txt_now_cnt.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txt_now_cnt.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txt_now_cnt.Properties.AutoHeight = false;
-            this.txt_now_cnt.Properties.LookAndFeel.SkinName = "Lilian";
-            this.txt_now_cnt.Properties.Mask.EditMask = "n1";
-            this.txt_now_cnt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txt_now_cnt.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txt_now_cnt.Size = new System.Drawing.Size(72, 23);
-            this.txt_now_cnt.TabIndex = 524;
+            this.txt_now.EditValue = "";
+            this.txt_now.Enabled = false;
+            this.txt_now.EnterMoveNextControl = true;
+            this.txt_now.Location = new System.Drawing.Point(107, 157);
+            this.txt_now.Name = "txt_now";
+            this.txt_now.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txt_now.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.txt_now.Properties.Appearance.Options.UseBackColor = true;
+            this.txt_now.Properties.Appearance.Options.UseFont = true;
+            this.txt_now.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_now.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_now.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txt_now.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.txt_now.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txt_now.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txt_now.Properties.AutoHeight = false;
+            this.txt_now.Properties.LookAndFeel.SkinName = "Lilian";
+            this.txt_now.Properties.Mask.EditMask = "n1";
+            this.txt_now.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txt_now.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txt_now.Size = new System.Drawing.Size(72, 23);
+            this.txt_now.TabIndex = 524;
             // 
             // labelControl13
             // 
@@ -1956,30 +1957,30 @@
             this.labelControl9.TabIndex = 397;
             this.labelControl9.Text = "전년연차";
             // 
-            // txt_bf_cnt
+            // txt_bf
             // 
-            this.txt_bf_cnt.EditValue = "";
-            this.txt_bf_cnt.Enabled = false;
-            this.txt_bf_cnt.EnterMoveNextControl = true;
-            this.txt_bf_cnt.Location = new System.Drawing.Point(107, 130);
-            this.txt_bf_cnt.Name = "txt_bf_cnt";
-            this.txt_bf_cnt.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txt_bf_cnt.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.txt_bf_cnt.Properties.Appearance.Options.UseBackColor = true;
-            this.txt_bf_cnt.Properties.Appearance.Options.UseFont = true;
-            this.txt_bf_cnt.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_bf_cnt.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_bf_cnt.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txt_bf_cnt.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.txt_bf_cnt.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txt_bf_cnt.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txt_bf_cnt.Properties.AutoHeight = false;
-            this.txt_bf_cnt.Properties.LookAndFeel.SkinName = "Lilian";
-            this.txt_bf_cnt.Properties.Mask.EditMask = "n1";
-            this.txt_bf_cnt.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txt_bf_cnt.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txt_bf_cnt.Size = new System.Drawing.Size(72, 23);
-            this.txt_bf_cnt.TabIndex = 5;
+            this.txt_bf.EditValue = "";
+            this.txt_bf.Enabled = false;
+            this.txt_bf.EnterMoveNextControl = true;
+            this.txt_bf.Location = new System.Drawing.Point(107, 130);
+            this.txt_bf.Name = "txt_bf";
+            this.txt_bf.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txt_bf.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.txt_bf.Properties.Appearance.Options.UseBackColor = true;
+            this.txt_bf.Properties.Appearance.Options.UseFont = true;
+            this.txt_bf.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_bf.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_bf.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txt_bf.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.txt_bf.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txt_bf.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txt_bf.Properties.AutoHeight = false;
+            this.txt_bf.Properties.LookAndFeel.SkinName = "Lilian";
+            this.txt_bf.Properties.Mask.EditMask = "n1";
+            this.txt_bf.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txt_bf.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txt_bf.Size = new System.Drawing.Size(72, 23);
+            this.txt_bf.TabIndex = 5;
             // 
             // srLabel10
             // 
@@ -2153,13 +2154,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_rcnt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_use.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_now_cnt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_now.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_first.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_change.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_indt.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dat_indt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_type.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_bf_cnt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_bf.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel6)).EndInit();
             this.srPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txt_sabn.Properties)).EndInit();
@@ -2210,7 +2211,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private SilkRoad.UserControls.SRTextEdit txt_bf_cnt;
+        private SilkRoad.UserControls.SRTextEdit txt_bf;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit repositoryItemColorPickEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit repositoryItemColorPickEdit2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
@@ -2227,7 +2228,7 @@
 		private DevExpress.XtraEditors.LabelControl labelControl6;
 		private SilkRoad.UserControls.SRDate dat_year;
 		private DevExpress.XtraEditors.LabelControl labelControl12;
-		private SilkRoad.UserControls.SRTextEdit txt_now_cnt;
+		private SilkRoad.UserControls.SRTextEdit txt_now;
 		private DevExpress.XtraEditors.LabelControl labelControl13;
 		private SilkRoad.UserControls.SRTextEdit txt_first;
 		private DevExpress.XtraEditors.LabelControl labelControl11;

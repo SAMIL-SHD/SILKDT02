@@ -3465,8 +3465,8 @@ namespace SilkRoad.DbCmd_DT02
 
         private SqlCommand GetDUTY_TRSDYYCInCmd()
         {
-            string queryStatements = "INSERT INTO DBO.DUTY_TRSDYYC(YC_YEAR, YC_TYPE, PROC_DT, SAWON_NO, SAWON_NM, IN_DATE, CALC_FRDT, CALC_TODT, USE_FRDT, USE_TODT, YC_FIRST, YC_BF_CNT, YC_NOW_CNT, YC_CHANGE, YC_BASE, YC_ADD, YC_TOTAL, REG_DT, REG_ID, MOD_DT, MOD_ID"
-                                   + ") VALUES (@YC_YEAR, @YC_TYPE, @PROC_DT, @SAWON_NO, @SAWON_NM, @IN_DATE, @CALC_FRDT, @CALC_TODT, @USE_FRDT, @USE_TODT, @YC_FIRST, @YC_BF_CNT, @YC_NOW_CNT, @YC_CHANGE, @YC_BASE, @YC_ADD, @YC_TOTAL, @REG_DT, @REG_ID, @MOD_DT, @MOD_ID"
+            string queryStatements = "INSERT INTO DBO.DUTY_TRSDYYC(YC_YEAR, YC_TYPE, SAWON_NO, SAWON_NM, STAT, IN_DATE, EMBSTSDT, CALC_DATE, USE_FRDT, USE_TODT, YC_FIRST, YC_BF, YC_NOW, YC_CHANGE, YC_TOTAL, REG_DT, REG_ID, MOD_DT, MOD_ID"
+                                   + ") VALUES (@YC_YEAR, @YC_TYPE, @SAWON_NO, @SAWON_NM, @STAT, @IN_DATE, @EMBSTSDT, @CALC_DATE, @USE_FRDT, @USE_TODT, @YC_FIRST, @YC_BF, @YC_NOW, @YC_CHANGE, @YC_TOTAL, @REG_DT, @REG_ID, @MOD_DT, @MOD_ID"
                                    + ")";
 
             SqlCommand ocm = new SqlCommand();
@@ -3475,20 +3475,18 @@ namespace SilkRoad.DbCmd_DT02
 
             ocm.Parameters.Add("@YC_YEAR", SqlDbType.Char, 4, "YC_YEAR");
             ocm.Parameters.Add("@YC_TYPE", SqlDbType.Int, 4, "YC_TYPE");
-            ocm.Parameters.Add("@PROC_DT", SqlDbType.Char, 8, "PROC_DT");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
             ocm.Parameters.Add("@SAWON_NM", SqlDbType.VarChar, 40, "SAWON_NM");
+            ocm.Parameters.Add("@STAT", SqlDbType.Int, 4, "STAT");
             ocm.Parameters.Add("@IN_DATE", SqlDbType.Char, 8, "IN_DATE");
-            ocm.Parameters.Add("@CALC_FRDT", SqlDbType.Char, 8, "CALC_FRDT");
-            ocm.Parameters.Add("@CALC_TODT", SqlDbType.Char, 8, "CALC_TODT");
+            ocm.Parameters.Add("@EMBSTSDT", SqlDbType.Char, 8, "EMBSTSDT");
+            ocm.Parameters.Add("@CALC_DATE", SqlDbType.Char, 8, "CALC_DATE");
             ocm.Parameters.Add("@USE_FRDT", SqlDbType.Char, 8, "USE_FRDT");
             ocm.Parameters.Add("@USE_TODT", SqlDbType.Char, 8, "USE_TODT");
             ocm.Parameters.Add("@YC_FIRST", SqlDbType.Decimal, 5, "YC_FIRST");
-            ocm.Parameters.Add("@YC_BF_CNT", SqlDbType.Decimal, 5, "YC_BF_CNT");
-            ocm.Parameters.Add("@YC_NOW_CNT", SqlDbType.Decimal, 5, "YC_NOW_CNT");
+            ocm.Parameters.Add("@YC_BF", SqlDbType.Decimal, 5, "YC_BF");
+            ocm.Parameters.Add("@YC_NOW", SqlDbType.Decimal, 5, "YC_NOW");
             ocm.Parameters.Add("@YC_CHANGE", SqlDbType.Decimal, 5, "YC_CHANGE");
-            ocm.Parameters.Add("@YC_BASE", SqlDbType.Decimal, 5, "YC_BASE");
-            ocm.Parameters.Add("@YC_ADD", SqlDbType.Decimal, 5, "YC_ADD");
             ocm.Parameters.Add("@YC_TOTAL", SqlDbType.Decimal, 5, "YC_TOTAL");
             ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
             ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
@@ -3502,23 +3500,8 @@ namespace SilkRoad.DbCmd_DT02
 
         {
             string queryStatements = "UPDATE DBO.DUTY_TRSDYYC SET "
-                                   //+ "   YC_TYPE = @YC_TYPE, "
-                                   //+ "   PROC_DT = @PROC_DT, "
-                                   //+ "   SAWON_NM = @SAWON_NM, "
-                                   //+ "   IN_DATE = @IN_DATE, "
-                                   //+ "   CALC_FRDT = @CALC_FRDT, "
-                                   //+ "   CALC_TODT = @CALC_TODT, "
-                                   //+ "   USE_FRDT = @USE_FRDT, "
-                                   //+ "   USE_TODT = @USE_TODT, "
-                                   //+ "   YC_FIRST = @YC_FIRST, "
-                                   //+ "   YC_BF_CNT = @YC_BF_CNT, "
-                                   //+ "   YC_NOW_CNT = @YC_NOW_CNT, "
                                    + "   YC_CHANGE = @YC_CHANGE, "
-                                   //+ "   YC_BASE = @YC_BASE, "
-                                   //+ "   YC_ADD = @YC_ADD, "
                                    + "   YC_TOTAL = @YC_TOTAL, "
-                                   //+ "   REG_DT = @REG_DT, "
-                                   //+ "   REG_ID = @REG_ID, "
                                    + "   MOD_DT = @MOD_DT, "
                                    + "   MOD_ID = @MOD_ID "
                                    + " WHERE YC_YEAR = @YC_YEAR"
@@ -3530,24 +3513,9 @@ namespace SilkRoad.DbCmd_DT02
             ocm.CommandType = CommandType.Text;
 
             ocm.Parameters.Add("@YC_YEAR", SqlDbType.Char, 4, "YC_YEAR");
-            //ocm.Parameters.Add("@YC_TYPE", SqlDbType.Int, 4, "YC_TYPE");
-            //ocm.Parameters.Add("@PROC_DT", SqlDbType.Char, 8, "PROC_DT");
             ocm.Parameters.Add("@SAWON_NO", SqlDbType.VarChar, 15, "SAWON_NO");
-            //ocm.Parameters.Add("@SAWON_NM", SqlDbType.VarChar, 40, "SAWON_NM");
-            //ocm.Parameters.Add("@IN_DATE", SqlDbType.Char, 8, "IN_DATE");
-            //ocm.Parameters.Add("@CALC_FRDT", SqlDbType.Char, 8, "CALC_FRDT");
-            //ocm.Parameters.Add("@CALC_TODT", SqlDbType.Char, 8, "CALC_TODT");
-            //ocm.Parameters.Add("@USE_FRDT", SqlDbType.Char, 8, "USE_FRDT");
-            //ocm.Parameters.Add("@USE_TODT", SqlDbType.Char, 8, "USE_TODT");
-            //ocm.Parameters.Add("@YC_FIRST", SqlDbType.Decimal, 5, "YC_FIRST");
-            //ocm.Parameters.Add("@YC_BF_CNT", SqlDbType.Decimal, 5, "YC_BF_CNT");
-            //ocm.Parameters.Add("@YC_NOW_CNT", SqlDbType.Decimal, 5, "YC_NOW_CNT");
             ocm.Parameters.Add("@YC_CHANGE", SqlDbType.Decimal, 5, "YC_CHANGE");
-            //ocm.Parameters.Add("@YC_BASE", SqlDbType.Decimal, 5, "YC_BASE");
-            //ocm.Parameters.Add("@YC_ADD", SqlDbType.Decimal, 5, "YC_ADD");
             ocm.Parameters.Add("@YC_TOTAL", SqlDbType.Decimal, 5, "YC_TOTAL");
-            //ocm.Parameters.Add("@REG_DT", SqlDbType.VarChar, 20, "REG_DT");
-            //ocm.Parameters.Add("@REG_ID", SqlDbType.VarChar, 20, "REG_ID");
             ocm.Parameters.Add("@MOD_DT", SqlDbType.VarChar, 20, "MOD_DT");
             ocm.Parameters.Add("@MOD_ID", SqlDbType.VarChar, 20, "MOD_ID");
 

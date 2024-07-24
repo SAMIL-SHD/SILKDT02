@@ -179,7 +179,7 @@ namespace DUTY1000
                 DataRow hrow = ds.Tables["DUTY_TRSDYYC"].Select("YC_YEAR = '" + clib.DateToText(dat_year.DateTime).Substring(0, 4) + "' AND SAWON_NO = '" + txt_sabn.Text.ToString().Trim() + "'")[0];
 
                 hrow["YC_CHANGE"] = clib.TextToDecimal(txt_change.Text.ToString());
-                hrow["YC_TOTAL"] = clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_bf_cnt.Text.ToString()) + clib.TextToDecimal(txt_now_cnt.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString());
+                hrow["YC_TOTAL"] = clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_bf.Text.ToString()) + clib.TextToDecimal(txt_now.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString());
                 hrow["MOD_DT"] = gd.GetNow();
                 hrow["MOD_ID"] = SilkRoad.Config.SRConfig.USID;
 
@@ -374,7 +374,7 @@ namespace DUTY1000
 		//조정연차 입력시 잔여연차 재계산
 		private void txt_change_EditValueChanged(object sender, EventArgs e)
 		{
-			txt_rcnt.Text = clib.TextToDecimal(txt_first.Text.ToString()) + (clib.TextToDecimal(txt_bf_cnt.Text.ToString()) + clib.TextToDecimal(txt_now_cnt.Text.ToString())).ToString() + clib.TextToDecimal(txt_change.Text.ToString());
+			txt_rcnt.Text = (clib.TextToDecimal(txt_first.Text.ToString()) + clib.TextToDecimal(txt_bf.Text.ToString()) + clib.TextToDecimal(txt_now.Text.ToString()) + clib.TextToDecimal(txt_change.Text.ToString()) - clib.TextToDecimal(txt_use.Text.ToString())).ToString();
 		}
 		//그리드 더블클릭시 코드 조회
 		private void grdv1_DoubleClick(object sender, EventArgs e)
@@ -414,8 +414,8 @@ namespace DUTY1000
                 cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
                 dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
                 txt_first.Text = drow["YC_FIRST"].ToString();
-                txt_bf_cnt.Text = drow["YC_BF_CNT"].ToString();
-                txt_now_cnt.Text = drow["YC_NOW_CNT"].ToString();
+                txt_bf.Text = drow["YC_BF"].ToString();
+                txt_now.Text = drow["YC_NOW"].ToString();
                 txt_tcnt.Text = drow["YC_SUM"].ToString();
 
                 txt_change.Text = drow["YC_CHANGE"].ToString();
@@ -434,7 +434,7 @@ namespace DUTY1000
                 df.GetSEARCH_DUTY_MSTYCCJDatas(drow["SAWON_NO"].ToString(), drow["YC_YEAR"].ToString(), "", "", ds);
                 grd.DataSource = ds.Tables["SEARCH_DUTY_MSTYCCJ"];
 
-                if (admin_lv > 2)
+                if (admin_lv > 1)
                     SetButtonEnable("111");
                 else
                     SetButtonEnable("001");
