@@ -226,13 +226,24 @@ namespace DUTY1000
 
                 GW_LINE();
 
-                df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds);
-                for (int i = 0; i < ds.Tables["DEL_GW_LINE"].Rows.Count; i++)
+                //부서 결재라인 검색
+                string gw_tb_nm = "";
+                df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds); 
+                if (ds.Tables["DEL_GW_LINE"].Rows.Count == 0)
+                {
+                    //개인별 결재라인 검색
+                    df.GetDEL_GW_LINE_DEPTDatas(1, sl_embs.EditValue.ToString(), ds);
+                    gw_tb_nm = "DEL_GW_LINE_DEPT";
+                }
+                else
+                    gw_tb_nm = "DEL_GW_LINE";
+
+                for (int i = 0; i < ds.Tables[gw_tb_nm].Rows.Count; i++)
                 {
                     DataRow nrow = ds.Tables["GRD_LINE"].NewRow();
-                    nrow["LINE_SABN"] = ds.Tables["DEL_GW_LINE"].Rows[i]["LINE_SABN"].ToString();
-                    nrow["LINE_SANM"] = ds.Tables["DEL_GW_LINE"].Rows[i]["LINE_SANM"].ToString();
-                    nrow["LINE_JIWK"] = ds.Tables["DEL_GW_LINE"].Rows[i]["LINE_JIWK"].ToString();
+                    nrow["LINE_SABN"] = ds.Tables[gw_tb_nm].Rows[i]["LINE_SABN"].ToString();
+                    nrow["LINE_SANM"] = ds.Tables[gw_tb_nm].Rows[i]["LINE_SANM"].ToString();
+                    nrow["LINE_JIWK"] = ds.Tables[gw_tb_nm].Rows[i]["LINE_JIWK"].ToString();
                     ds.Tables["GRD_LINE"].Rows.Add(nrow);
                 }
 
@@ -314,7 +325,6 @@ namespace DUTY1000
                     nrow["LINE_AP_DT"] = gd.GetNow();
                     ds.Tables["DUTY_TRSHREQ_DT"].Rows.Add(nrow);
 
-                    df.GetDUTY_GW_LINEDatas(ds);
                     for (int i = 0; i < grdv_sign.RowCount; i++)
                     {
                         if (grdv_sign.GetVisibleRowHandle(i) > -1 && grdv_sign.GetDataRow(grdv_sign.GetVisibleRowHandle(i))["LINE_JIWK"].ToString() == "")
@@ -337,14 +347,6 @@ namespace DUTY1000
                         nrow["LINE_JIWK"] = crow["LINE_JIWK"].ToString();
                         nrow["LINE_AP_DT"] = "";
                         ds.Tables["DUTY_TRSHREQ_DT"].Rows.Add(nrow);
-
-                        DataRow nrow2 = ds.Tables["DUTY_GW_LINE"].NewRow();
-                        nrow2["SABN"] = sl_embs.EditValue.ToString();
-                        nrow2["LINE_SQ"] = i + 1;
-                        nrow2["LINE_SABN"] = crow["LINE_SABN"].ToString();
-                        nrow2["LINE_SANM"] = crow["LINE_SANM"].ToString();
-                        nrow2["LINE_JIWK"] = crow["LINE_JIWK"].ToString();
-                        ds.Tables["DUTY_GW_LINE"].Rows.Add(nrow2);
                     }
 
                     hrow["REMARK1"] = txt_remk1.Text.ToString();
@@ -356,13 +358,8 @@ namespace DUTY1000
                     hrow["PSTY"] = "A";
                     ds.Tables["DUTY_TRSHREQ"].Rows.Add(hrow);
 
-                    df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds);
-                    for (int i = 0; i < ds.Tables["DEL_GW_LINE"].Rows.Count; i++)
-                    {
-                        ds.Tables["DEL_GW_LINE"].Rows[i].Delete();
-                    }
 
-                    string[] tableNames = new string[] { "DUTY_TRSHREQ", "DUTY_TRSHREQ_DT", "DEL_GW_LINE", "DUTY_GW_LINE" };
+                    string[] tableNames = new string[] { "DUTY_TRSHREQ", "DUTY_TRSHREQ_DT" }; //, "DEL_GW_LINE", "DUTY_GW_LINE" };
                     SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                     outVal = cmd.setUpdate(ref ds, tableNames, null);
                 }
@@ -454,9 +451,9 @@ namespace DUTY1000
                     txt_name.Text = drow["SAWON_NM"].ToString();
                     cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
                     dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
-                    txt_bf_cnt.Text = drow["YC_BASE"].ToString();
-                    txt_first.Text = drow["YC_FIRST"].ToString();
-                    txt_now_cnt.Text = drow["YC_ADD"].ToString();
+                    //txt_bf_cnt.Text = drow["YC_BASE"].ToString();
+                    //txt_first.Text = drow["YC_FIRST"].ToString();
+                    //txt_now_cnt.Text = drow["YC_ADD"].ToString();
                     txt_tcnt.Text = drow["YC_SUM"].ToString();
 
                     txt_change.Text = drow["YC_CHANGE"].ToString();

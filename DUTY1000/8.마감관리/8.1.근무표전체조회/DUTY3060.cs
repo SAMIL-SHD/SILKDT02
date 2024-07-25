@@ -96,7 +96,13 @@ namespace DUTY1000
 				df.Get3060_SEARCHDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), cmb_sq.SelectedIndex + 1, ds);
 				grd_gt.DataSource = ds.Tables["3060_SEARCH"];
 			}
-		}
+
+            df.Get3060_CHK1Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+            grd1.DataSource = ds.Tables["3060_CHK1"];
+
+            df.Get3060_CHK2Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+            grd2.DataSource = ds.Tables["3060_CHK2"];
+        }
 		//취소
 		private void btn_canc_Click(object sender, EventArgs e)
 		{
@@ -107,6 +113,11 @@ namespace DUTY1000
 		{
             clib.gridToExcel(grdv_gt, "근무표조회_" + clib.DateToText(DateTime.Now), true);
 		}
+
+        private void btn_errchk_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region 3 EVENT
@@ -226,11 +237,11 @@ namespace DUTY1000
             return isError;
         }
 
-		#endregion
+        #endregion
 
-		#region 9. ETC
+        #region 9. ETC
 
-		#endregion
-		
-	}
+        #endregion
+
+    }
 }

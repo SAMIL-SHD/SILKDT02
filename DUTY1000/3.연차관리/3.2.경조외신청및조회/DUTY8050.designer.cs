@@ -236,7 +236,7 @@
             this.srTitle1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.srTitle1.Name = "srTitle1";
             this.srTitle1.Size = new System.Drawing.Size(162, 39);
-            this.srTitle1.SRTitleTxt = "휴가신청및조회";
+            this.srTitle1.SRTitleTxt = "경조외신청및조회";
             this.srTitle1.TabIndex = 26;
             this.srTitle1.TabStop = false;
             // 
@@ -575,7 +575,7 @@
             this.xtraTabPage3.Controls.Add(this.grd_hg);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(1087, 170);
-            this.xtraTabPage3.Text = "휴가내역";
+            this.xtraTabPage3.Text = "경조외내역";
             // 
             // grd_hg
             // 
@@ -844,7 +844,7 @@
             this.xtraTabPage4.Controls.Add(this.grd_del);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(1087, 170);
-            this.xtraTabPage4.Text = "휴가삭제내역";
+            this.xtraTabPage4.Text = "경조외삭제내역";
             // 
             // grd_del
             // 
@@ -1208,7 +1208,7 @@
             this.srLabel1.Size = new System.Drawing.Size(101, 23);
             this.srLabel1.SRBulletColor = System.Drawing.Color.Empty;
             this.srLabel1.TabIndex = 515;
-            this.srLabel1.Text = "휴가구분";
+            this.srLabel1.Text = "경조외구분";
             this.srLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // srLabel11
@@ -1241,6 +1241,7 @@
             this.btn_add.Text = "추가";
             this.btn_add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Visible = false;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // grd_sign
@@ -1294,6 +1295,9 @@
             this.gridColumn23.Caption = "담당직함(예:팀장)";
             this.gridColumn23.FieldName = "LINE_JIWK";
             this.gridColumn23.Name = "gridColumn23";
+            this.gridColumn23.OptionsColumn.AllowEdit = false;
+            this.gridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn23.OptionsColumn.ReadOnly = true;
             this.gridColumn23.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 1;
@@ -1307,8 +1311,6 @@
             this.gridColumn33.ColumnEdit = this.repositoryItemButtonEdit1;
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.OptionsColumn.TabStop = false;
-            this.gridColumn33.Visible = true;
-            this.gridColumn33.VisibleIndex = 2;
             this.gridColumn33.Width = 33;
             // 
             // repositoryItemButtonEdit1
@@ -1408,6 +1410,7 @@
             this.sl_line.Properties.View = this.gridView4;
             this.sl_line.Size = new System.Drawing.Size(120, 23);
             this.sl_line.TabIndex = 7;
+            this.sl_line.Visible = false;
             // 
             // gridView4
             // 
@@ -1645,7 +1648,7 @@
             this.sl_gnmu.Properties.DisplayMember = "G_FNM";
             this.sl_gnmu.Properties.LookAndFeel.SkinName = "Lilian";
             this.sl_gnmu.Properties.MaxLength = 4;
-            this.sl_gnmu.Properties.NullText = "휴가선택";
+            this.sl_gnmu.Properties.NullText = "경조외선택";
             this.sl_gnmu.Properties.PopupFormSize = new System.Drawing.Size(300, 500);
             this.sl_gnmu.Properties.ValueMember = "G_CODE";
             this.sl_gnmu.Properties.View = this.gridView5;

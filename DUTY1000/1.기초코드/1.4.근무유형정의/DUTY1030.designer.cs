@@ -210,7 +210,7 @@
             this.col_auto.AppearanceHeader.Options.UseTextOptions = true;
             this.col_auto.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col_auto.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.col_auto.Caption = "연차/휴가일수";
+            this.col_auto.Caption = "일수/시간";
             this.col_auto.DisplayFormat.FormatString = "{0:#,##0.###}";
             this.col_auto.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.col_auto.FieldName = "YC_DAY";
@@ -619,7 +619,7 @@
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(90, 23);
             this.labelControl2.TabIndex = 407;
-            this.labelControl2.Text = "연차/휴가일수";
+            this.labelControl2.Text = "일수/시간";
             // 
             // txt_yc_day
             // 
@@ -673,8 +673,9 @@
             "Call대기",
             "월차",
             "연차",
-            "휴가(유급)",
-            "휴가(무급)"});
+            "경조외(유급)",
+            "경조외(무급)",
+            "시차"});
             this.cmb_gtype.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmb_gtype.Size = new System.Drawing.Size(140, 23);
             this.cmb_gtype.TabIndex = 5;

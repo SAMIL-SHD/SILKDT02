@@ -81,6 +81,8 @@ namespace DUTY1000
                 p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "관리권한 없음";
             }
+
+            btn_yc.Enabled = admin_lv > 1 ? true : false;
             btn_search.PerformClick();
         }
         #endregion

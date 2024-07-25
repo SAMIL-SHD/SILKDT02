@@ -236,7 +236,7 @@
             this.cmb_type.Properties.Items.AddRange(new object[] {
             "전체",
             "연차",
-            "휴가"});
+            "경조외"});
             this.cmb_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmb_type.Size = new System.Drawing.Size(112, 22);
             this.cmb_type.TabIndex = 536;

@@ -487,7 +487,8 @@ namespace DUTY1000
 							}
 							nrow["PLAN_SQ"] = sq;
 							nrow["REMARK"] = drow["REMARK"].ToString().Trim();
-							nrow["ALLOW_OFF"] = clib.TextToDecimal(drow["ALLOW_OFF"].ToString());
+                            nrow["STAN_OFF"] = clib.TextToDecimal(drow["STAN_OFF"].ToString());
+                            nrow["ALLOW_OFF"] = clib.TextToDecimal(drow["ALLOW_OFF"].ToString());
 							nrow["MM_CNT1"] = clib.TextToDecimal(drow["MM_CNT1"].ToString());
 							nrow["MM_CNT2"] = clib.TextToDecimal(drow["MM_CNT2"].ToString());
 							nrow["MM_CNT3"] = clib.TextToDecimal(drow["MM_CNT3"].ToString());
@@ -619,8 +620,9 @@ namespace DUTY1000
                 nrow["SAWON_NO"] = sl_nurs.EditValue.ToString();
 				nrow["SAWON_NM"] = trow["NAME"].ToString();
 				nrow["PLAN_SQ"] = max_sq + 1;
-				nrow["ALLOW_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
-				ds.Tables["SEARCH_PLAN"].Rows.Add(nrow);
+				nrow["STAN_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
+                nrow["ALLOW_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
+                ds.Tables["SEARCH_PLAN"].Rows.Add(nrow);
 			}
 		}
 		//라인삭제
@@ -701,12 +703,29 @@ namespace DUTY1000
 			}
         }
 
-		#endregion
+        //허용off 재계산
+        private void btn_calc_off_Click(object sender, EventArgs e)
+        {
+            decimal lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
+            for (int i = 0; i < ds.Tables["SEARCH_PLAN"].Rows.Count; i++)
+            {
+                decimal lc_cnt = 0;
+                DataRow drow = ds.Tables["SEARCH_PLAN"].Rows[i];
+                for (int d = 1; d <= lastday; d++)
+                {
+                    lc_cnt += drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() == "" ? 0 : 1;
+                }
+                if (lastday != lc_cnt)
+                    drow["ALLOW_OFF"] = Math.Round(clib.TextToDecimal(drow["STAN_OFF"].ToString()) * lc_cnt / lastday, 0, MidpointRounding.AwayFromZero).ToString();
+            }
+        }
 
-		#region 3 EVENT
-		
-		//메뉴 활성화시
-		private void duty3010_Activated(object sender, EventArgs e)
+        #endregion
+
+        #region 3 EVENT
+
+        //메뉴 활성화시
+        private void duty3010_Activated(object sender, EventArgs e)
 		{
 			END_CHK();
 
@@ -1380,6 +1399,5 @@ namespace DUTY1000
 		}
 
         #endregion
-
     }
 }

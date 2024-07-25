@@ -33,33 +33,37 @@
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule7 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue5 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraGrid.StyleFormatCondition();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule7 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule8 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression3 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule9 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule10 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression4 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule10 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule11 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression5 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule12 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression6 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule13 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression7 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule14 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression8 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             this.persn_o = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.grdcol_off = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.repositoryItemTextEdit11 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn59 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -135,8 +139,7 @@
             this.grdcol_day31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.grdcol_off = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemTextEdit11 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.grdcol_soff = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.persn_d = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.persn_e = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -254,6 +257,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.pan_top = new DevExpress.XtraEditors.PanelControl();
+            this.btn_calc_off = new SilkRoad.UserControls.SRButton();
             this.cmb_sq = new SilkRoad.UserControls.SRCombo();
             this.sl_gnmu = new SilkRoad.UserControls.SRLookup2();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -287,6 +291,7 @@
             this.dat_yymm = new SilkRoad.UserControls.SRDate();
             this.srLabel6 = new SilkRoad.UserControls.SRLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
@@ -305,7 +310,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grd1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_lk_gnmu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_sl_gnmu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sRgridLookup21View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
@@ -392,6 +396,40 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MM_CNT4", "{0:#,###.#}")});
             this.persn_o.Visible = true;
             this.persn_o.Width = 40;
+            // 
+            // grdcol_off
+            // 
+            this.grdcol_off.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
+            this.grdcol_off.AppearanceHeader.Options.UseForeColor = true;
+            this.grdcol_off.AppearanceHeader.Options.UseTextOptions = true;
+            this.grdcol_off.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdcol_off.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.grdcol_off.Caption = "허용OFF";
+            this.grdcol_off.ColumnEdit = this.repositoryItemTextEdit11;
+            this.grdcol_off.DisplayFormat.FormatString = "{0:#,##0.#}";
+            this.grdcol_off.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.grdcol_off.FieldName = "ALLOW_OFF";
+            this.grdcol_off.Name = "grdcol_off";
+            this.grdcol_off.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_off.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_off.OptionsColumn.AllowMove = false;
+            this.grdcol_off.OptionsColumn.AllowSize = false;
+            this.grdcol_off.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_off.OptionsColumn.TabStop = false;
+            this.grdcol_off.OptionsFilter.AllowAutoFilter = false;
+            this.grdcol_off.OptionsFilter.AllowFilter = false;
+            this.grdcol_off.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_off.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.grdcol_off.Visible = true;
+            this.grdcol_off.Width = 44;
+            // 
+            // repositoryItemTextEdit11
+            // 
+            this.repositoryItemTextEdit11.AutoHeight = false;
+            this.repositoryItemTextEdit11.Mask.EditMask = "n0";
+            this.repositoryItemTextEdit11.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.repositoryItemTextEdit11.Mask.UseMaskAsDisplayFormat = true;
+            this.repositoryItemTextEdit11.Name = "repositoryItemTextEdit11";
             // 
             // gridColumn30
             // 
@@ -975,6 +1013,7 @@
             this.grdcol_day29,
             this.grdcol_day30,
             this.grdcol_day31,
+            this.grdcol_soff,
             this.grdcol_off,
             this.persn_d,
             this.persn_e,
@@ -989,7 +1028,16 @@
             formatConditionRuleExpression1.Appearance.Options.UseForeColor = true;
             formatConditionRuleExpression1.Expression = "[MM_CNT4] != [ALLOW_OFF]";
             gridFormatRule1.Rule = formatConditionRuleExpression1;
+            gridFormatRule2.Column = this.grdcol_off;
+            gridFormatRule2.Name = "Format0";
+            formatConditionRuleExpression2.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            formatConditionRuleExpression2.Appearance.ForeColor = System.Drawing.Color.Red;
+            formatConditionRuleExpression2.Appearance.Options.UseFont = true;
+            formatConditionRuleExpression2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression2.Expression = "[STAN_OFF] != [ALLOW_OFF]";
+            gridFormatRule2.Rule = formatConditionRuleExpression2;
             this.grdv1.FormatRules.Add(gridFormatRule1);
+            this.grdv1.FormatRules.Add(gridFormatRule2);
             this.grdv1.GridControl = this.grd1;
             this.grdv1.Name = "grdv1";
             this.grdv1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -1948,47 +1996,33 @@
             this.gridBand12.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
             this.gridBand12.AppearanceHeader.Options.UseForeColor = true;
             this.gridBand12.Caption = "기준";
+            this.gridBand12.Columns.Add(this.grdcol_soff);
             this.gridBand12.Columns.Add(this.grdcol_off);
             this.gridBand12.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
             this.gridBand12.Name = "gridBand12";
             this.gridBand12.VisibleIndex = 2;
-            this.gridBand12.Width = 44;
+            this.gridBand12.Width = 85;
             // 
-            // grdcol_off
+            // grdcol_soff
             // 
-            this.grdcol_off.AppearanceCell.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grdcol_off.AppearanceCell.Options.UseBackColor = true;
-            this.grdcol_off.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
-            this.grdcol_off.AppearanceHeader.Options.UseForeColor = true;
-            this.grdcol_off.AppearanceHeader.Options.UseTextOptions = true;
-            this.grdcol_off.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.grdcol_off.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.grdcol_off.Caption = "허용OFF";
-            this.grdcol_off.ColumnEdit = this.repositoryItemTextEdit11;
-            this.grdcol_off.DisplayFormat.FormatString = "{0:#,##0.#}";
-            this.grdcol_off.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.grdcol_off.FieldName = "ALLOW_OFF";
-            this.grdcol_off.Name = "grdcol_off";
-            this.grdcol_off.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.grdcol_off.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.grdcol_off.OptionsColumn.AllowMove = false;
-            this.grdcol_off.OptionsColumn.AllowSize = false;
-            this.grdcol_off.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.grdcol_off.OptionsColumn.TabStop = false;
-            this.grdcol_off.OptionsFilter.AllowAutoFilter = false;
-            this.grdcol_off.OptionsFilter.AllowFilter = false;
-            this.grdcol_off.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-            this.grdcol_off.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.grdcol_off.Visible = true;
-            this.grdcol_off.Width = 44;
-            // 
-            // repositoryItemTextEdit11
-            // 
-            this.repositoryItemTextEdit11.AutoHeight = false;
-            this.repositoryItemTextEdit11.Mask.EditMask = "n1";
-            this.repositoryItemTextEdit11.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.repositoryItemTextEdit11.Mask.UseMaskAsDisplayFormat = true;
-            this.repositoryItemTextEdit11.Name = "repositoryItemTextEdit11";
+            this.grdcol_soff.AppearanceCell.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grdcol_soff.AppearanceCell.Options.UseBackColor = true;
+            this.grdcol_soff.AppearanceHeader.Options.UseTextOptions = true;
+            this.grdcol_soff.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.grdcol_soff.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.grdcol_soff.Caption = "기준OFF";
+            this.grdcol_soff.ColumnEdit = this.repositoryItemTextEdit11;
+            this.grdcol_soff.FieldName = "STAN_OFF";
+            this.grdcol_soff.Name = "grdcol_soff";
+            this.grdcol_soff.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_soff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_soff.OptionsColumn.AllowMove = false;
+            this.grdcol_soff.OptionsColumn.AllowSize = false;
+            this.grdcol_soff.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_soff.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+            this.grdcol_soff.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.grdcol_soff.Visible = true;
+            this.grdcol_soff.Width = 41;
             // 
             // gridBand28
             // 
@@ -2229,27 +2263,27 @@
             this.gridColumn54,
             this.gridColumn55,
             this.gridColumn56});
-            gridFormatRule2.Name = "Format0";
+            gridFormatRule3.Name = "Format0";
             formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
             formatConditionRuleValue1.Value1 = "반려";
-            gridFormatRule2.Rule = formatConditionRuleValue1;
-            gridFormatRule3.Name = "Format1";
+            gridFormatRule3.Rule = formatConditionRuleValue1;
+            gridFormatRule4.Name = "Format1";
             formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
             formatConditionRuleValue2.Value1 = "상신";
-            gridFormatRule3.Rule = formatConditionRuleValue2;
-            gridFormatRule4.Name = "Format2";
+            gridFormatRule4.Rule = formatConditionRuleValue2;
+            gridFormatRule5.Name = "Format2";
             formatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             formatConditionRuleValue3.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
             formatConditionRuleValue3.Value1 = "승인";
-            gridFormatRule4.Rule = formatConditionRuleValue3;
-            this.grdv2.FormatRules.Add(gridFormatRule2);
+            gridFormatRule5.Rule = formatConditionRuleValue3;
             this.grdv2.FormatRules.Add(gridFormatRule3);
             this.grdv2.FormatRules.Add(gridFormatRule4);
+            this.grdv2.FormatRules.Add(gridFormatRule5);
             this.grdv2.GridControl = this.grd2;
             this.grdv2.Name = "grdv2";
             this.grdv2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -3168,14 +3202,14 @@
             this.grdv_kt1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn17,
             this.gridColumn18});
-            gridFormatRule5.ApplyToRow = true;
-            gridFormatRule5.Name = "Format0";
+            gridFormatRule6.ApplyToRow = true;
+            gridFormatRule6.Name = "Format0";
             formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.Red;
             formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
             formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
             formatConditionRuleValue4.Expression = "[DATA_CHK] = \'1\'";
-            gridFormatRule5.Rule = formatConditionRuleValue4;
-            this.grdv_kt1.FormatRules.Add(gridFormatRule5);
+            gridFormatRule6.Rule = formatConditionRuleValue4;
+            this.grdv_kt1.FormatRules.Add(gridFormatRule6);
             this.grdv_kt1.GridControl = this.grd_kt1;
             this.grdv_kt1.Name = "grdv_kt1";
             this.grdv_kt1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -3320,14 +3354,14 @@
             this.grdv_kt2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn19,
             this.gridColumn23});
-            gridFormatRule6.ApplyToRow = true;
-            gridFormatRule6.Name = "Format0";
+            gridFormatRule7.ApplyToRow = true;
+            gridFormatRule7.Name = "Format0";
             formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.Red;
             formatConditionRuleValue5.Appearance.Options.UseForeColor = true;
             formatConditionRuleValue5.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
             formatConditionRuleValue5.Expression = "[DATA_CHK] = \'1\'";
-            gridFormatRule6.Rule = formatConditionRuleValue5;
-            this.grdv_kt2.FormatRules.Add(gridFormatRule6);
+            gridFormatRule7.Rule = formatConditionRuleValue5;
+            this.grdv_kt2.FormatRules.Add(gridFormatRule7);
             this.grdv_kt2.GridControl = this.grd_kt2;
             this.grdv_kt2.Name = "grdv_kt2";
             this.grdv_kt2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -3588,20 +3622,20 @@
             this.gridColumn73,
             this.gridColumn74,
             this.gridColumn75});
-            gridFormatRule7.ApplyToRow = true;
-            gridFormatRule7.Name = "Format0";
-            formatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            formatConditionRuleExpression2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression2.Expression = "[CHK1_NM] = \'Y\'";
-            gridFormatRule7.Rule = formatConditionRuleExpression2;
             gridFormatRule8.ApplyToRow = true;
-            gridFormatRule8.Name = "Format1";
-            formatConditionRuleExpression3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            gridFormatRule8.Name = "Format0";
+            formatConditionRuleExpression3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             formatConditionRuleExpression3.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression3.Expression = "[CHK2_NM] = \'Y\'";
+            formatConditionRuleExpression3.Expression = "[CHK1_NM] = \'Y\'";
             gridFormatRule8.Rule = formatConditionRuleExpression3;
-            this.grdv_dyyc.FormatRules.Add(gridFormatRule7);
+            gridFormatRule9.ApplyToRow = true;
+            gridFormatRule9.Name = "Format1";
+            formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            formatConditionRuleExpression4.Appearance.Options.UseBackColor = true;
+            formatConditionRuleExpression4.Expression = "[CHK2_NM] = \'Y\'";
+            gridFormatRule9.Rule = formatConditionRuleExpression4;
             this.grdv_dyyc.FormatRules.Add(gridFormatRule8);
+            this.grdv_dyyc.FormatRules.Add(gridFormatRule9);
             this.grdv_dyyc.GridControl = this.grd_dyyc;
             this.grdv_dyyc.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "SAWON_NO", this.col_sabn, "{0:#,###} 명"),
@@ -4006,14 +4040,14 @@
             this.grdv_dept.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.col_code,
             this.col_name});
-            gridFormatRule9.ApplyToRow = true;
-            gridFormatRule9.Name = "Format0";
+            gridFormatRule10.ApplyToRow = true;
+            gridFormatRule10.Name = "Format0";
             formatConditionRuleValue6.Appearance.ForeColor = System.Drawing.Color.Red;
             formatConditionRuleValue6.Appearance.Options.UseForeColor = true;
             formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
             formatConditionRuleValue6.Expression = "[CHK] = \'1\'";
-            gridFormatRule9.Rule = formatConditionRuleValue6;
-            this.grdv_dept.FormatRules.Add(gridFormatRule9);
+            gridFormatRule10.Rule = formatConditionRuleValue6;
+            this.grdv_dept.FormatRules.Add(gridFormatRule10);
             this.grdv_dept.GridControl = this.grd_dept;
             this.grdv_dept.Name = "grdv_dept";
             this.grdv_dept.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -4113,6 +4147,7 @@
             // pan_top
             // 
             this.pan_top.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+            this.pan_top.Controls.Add(this.btn_calc_off);
             this.pan_top.Controls.Add(this.cmb_sq);
             this.pan_top.Controls.Add(this.sl_gnmu);
             this.pan_top.Controls.Add(this.btn_yc_adp);
@@ -4147,6 +4182,24 @@
             this.pan_top.Name = "pan_top";
             this.pan_top.Size = new System.Drawing.Size(1380, 82);
             this.pan_top.TabIndex = 480;
+            // 
+            // btn_calc_off
+            // 
+            this.btn_calc_off.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_calc_off.Authority = false;
+            this.btn_calc_off.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.btn_calc_off.Image = global::DUTY1000.Properties.Resources.refresh;
+            this.btn_calc_off.Location = new System.Drawing.Point(1036, 30);
+            this.btn_calc_off.Name = "btn_calc_off";
+            this.btn_calc_off.Size = new System.Drawing.Size(126, 24);
+            this.btn_calc_off.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.A;
+            this.btn_calc_off.SRWidthType = SilkRoad.UserControls.SRButton.WidthType.Custom;
+            this.btn_calc_off.TabIndex = 546;
+            this.btn_calc_off.TabStop = false;
+            this.btn_calc_off.Text = "허용off재계산";
+            this.btn_calc_off.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_calc_off.UseVisualStyleBackColor = true;
+            this.btn_calc_off.Click += new System.EventHandler(this.btn_calc_off_Click);
             // 
             // cmb_sq
             // 
@@ -4205,32 +4258,32 @@
             this.gridColumn66,
             this.gridColumn76});
             this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            gridFormatRule10.ApplyToRow = true;
-            gridFormatRule10.Name = "Format0";
-            formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            formatConditionRuleExpression4.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression4.Expression = "[G_TYPE] IN (8)";
-            gridFormatRule10.Rule = formatConditionRuleExpression4;
             gridFormatRule11.ApplyToRow = true;
-            gridFormatRule11.Name = "Format1";
-            formatConditionRuleExpression5.Expression = "[G_TYPE] IN (1,2,3,4,5,6,7)";
+            gridFormatRule11.Name = "Format0";
+            formatConditionRuleExpression5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            formatConditionRuleExpression5.Appearance.Options.UseBackColor = true;
+            formatConditionRuleExpression5.Expression = "[G_TYPE] IN (8)";
             gridFormatRule11.Rule = formatConditionRuleExpression5;
             gridFormatRule12.ApplyToRow = true;
-            gridFormatRule12.Name = "Format2";
-            formatConditionRuleExpression6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            formatConditionRuleExpression6.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression6.Expression = "[G_TYPE] IN (11,12)";
+            gridFormatRule12.Name = "Format1";
+            formatConditionRuleExpression6.Expression = "[G_TYPE] IN (1,2,3,4,5,6,7)";
             gridFormatRule12.Rule = formatConditionRuleExpression6;
             gridFormatRule13.ApplyToRow = true;
-            gridFormatRule13.Name = "Format3";
-            formatConditionRuleExpression7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            gridFormatRule13.Name = "Format2";
+            formatConditionRuleExpression7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             formatConditionRuleExpression7.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression7.Expression = "[G_TYPE] IN (13,14)";
+            formatConditionRuleExpression7.Expression = "[G_TYPE] IN (11,12)";
             gridFormatRule13.Rule = formatConditionRuleExpression7;
-            this.gridView5.FormatRules.Add(gridFormatRule10);
+            gridFormatRule14.ApplyToRow = true;
+            gridFormatRule14.Name = "Format3";
+            formatConditionRuleExpression8.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            formatConditionRuleExpression8.Appearance.Options.UseBackColor = true;
+            formatConditionRuleExpression8.Expression = "[G_TYPE] IN (13,14)";
+            gridFormatRule14.Rule = formatConditionRuleExpression8;
             this.gridView5.FormatRules.Add(gridFormatRule11);
             this.gridView5.FormatRules.Add(gridFormatRule12);
             this.gridView5.FormatRules.Add(gridFormatRule13);
+            this.gridView5.FormatRules.Add(gridFormatRule14);
             this.gridView5.Name = "gridView5";
             this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView5.OptionsView.ShowGroupPanel = false;
@@ -4673,6 +4726,7 @@
             this.Load += new System.EventHandler(this.duty3010_Load);
             this.Shown += new System.EventHandler(this.duty3010_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.duty3010_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).EndInit();
             this.srPanel1.ResumeLayout(false);
@@ -4691,7 +4745,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grd1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_lk_gnmu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_sl_gnmu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sRgridLookup21View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
@@ -4986,7 +5039,9 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_soff;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
+        private SilkRoad.UserControls.SRButton btn_calc_off;
     }
 }
 

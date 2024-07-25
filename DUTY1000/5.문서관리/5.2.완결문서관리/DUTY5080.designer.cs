@@ -813,7 +813,8 @@
             this.cmb_type.Properties.Items.AddRange(new object[] {
             "전체",
             "연차",
-            "휴가"});
+            "경조외",
+            "시차"});
             this.cmb_type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmb_type.Size = new System.Drawing.Size(57, 22);
             this.cmb_type.TabIndex = 538;

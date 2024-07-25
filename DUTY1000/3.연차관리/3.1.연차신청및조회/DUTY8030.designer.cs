@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(duty8030));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
@@ -63,7 +64,7 @@
             this.btn_exit = new SilkRoad.UserControls.SRButton();
             this.lb_ends = new SilkRoad.UserControls.SRLabel();
             this.btn_clear = new SilkRoad.UserControls.SRButton();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -224,7 +225,7 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cmb_type = new SilkRoad.UserControls.SRCombo();
             this.dat_indt = new DevExpress.XtraEditors.DateEdit();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.연차삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -1637,6 +1638,7 @@
             this.btn_add.Text = "추가";
             this.btn_add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Visible = false;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // grd_sign
@@ -1690,6 +1692,8 @@
             this.gridColumn10.Caption = "담당직함(예:팀장)";
             this.gridColumn10.FieldName = "LINE_JIWK";
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.ReadOnly = true;
             this.gridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 1;
@@ -1703,8 +1707,6 @@
             this.gridColumn33.ColumnEdit = this.repositoryItemButtonEdit1;
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.OptionsColumn.TabStop = false;
-            this.gridColumn33.Visible = true;
-            this.gridColumn33.VisibleIndex = 2;
             this.gridColumn33.Width = 33;
             // 
             // repositoryItemButtonEdit1
@@ -1851,6 +1853,7 @@
             this.sl_line.Properties.View = this.gridView4;
             this.sl_line.Size = new System.Drawing.Size(120, 23);
             this.sl_line.TabIndex = 7;
+            this.sl_line.Visible = false;
             // 
             // gridView4
             // 

@@ -397,6 +397,12 @@
     <Compile Include="2.근무관리\2.8.인사카드\rpt_2210_9.designer.cs">
       <DependentUpon>rpt_2210_9.cs</DependentUpon>
     </Compile>
+    <Compile Include="3.연차관리\3.0.시차발생및사용현황\DUTY8040.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3.연차관리\3.0.시차발생및사용현황\DUTY8040.designer.cs">
+      <DependentUpon>DUTY8040.cs</DependentUpon>
+    </Compile>
     <Compile Include="3.연차관리\3.4.사원별연차관리\DUTY8021.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -541,6 +547,12 @@
     <Compile Include="8.마감관리\8.2.연차정산관리\DUTY3070.designer.cs">
       <DependentUpon>DUTY3070.cs</DependentUpon>
     </Compile>
+    <Compile Include="9.환경설정\9.1.결재라인관리\DUTY9070.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9.환경설정\9.1.결재라인관리\DUTY9070.designer.cs">
+      <DependentUpon>DUTY9070.cs</DependentUpon>
+    </Compile>
     <Compile Include="9.환경설정\9.1.월별시급관리\DUTY9010.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -633,16 +645,16 @@
     <Compile Include="3.연차관리\3.5.연차휴가사용촉구\Rpt_8010.designer.cs">
       <DependentUpon>Rpt_8010.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.2.휴가신청및조회\DUTY8050.cs">
+    <Compile Include="3.연차관리\3.2.경조외신청및조회\DUTY8050.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.2.휴가신청및조회\DUTY8050.designer.cs">
+    <Compile Include="3.연차관리\3.2.경조외신청및조회\DUTY8050.designer.cs">
       <DependentUpon>DUTY8050.cs</DependentUpon>
     </Compile>
-    <Compile Include="3.연차관리\3.3.연차및휴가현황\DUTY8090.cs">
+    <Compile Include="3.연차관리\3.3.연차및경조외현황\DUTY8090.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3.연차관리\3.3.연차및휴가현황\DUTY8090.designer.cs">
+    <Compile Include="3.연차관리\3.3.연차및경조외현황\DUTY8090.designer.cs">
       <DependentUpon>DUTY8090.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="1.기초코드\1.3.부서-직원설정\DUTY1011.resx">
@@ -744,6 +756,9 @@
     <EmbeddedResource Include="2.근무관리\2.8.인사카드\rpt_2210_9.resx">
       <DependentUpon>rpt_2210_9.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="3.연차관리\3.0.시차발생및사용현황\DUTY8040.resx">
+      <DependentUpon>DUTY8040.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="3.연차관리\3.4.사원별연차관리\DUTY8021.resx">
       <DependentUpon>DUTY8021.cs</DependentUpon>
     </EmbeddedResource>
@@ -816,6 +831,9 @@
     <EmbeddedResource Include="8.마감관리\8.2.연차정산관리\DUTY3070.resx">
       <DependentUpon>DUTY3070.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="9.환경설정\9.1.결재라인관리\DUTY9070.resx">
+      <DependentUpon>DUTY9070.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9.환경설정\9.1.월별시급관리\DUTY9010.resx">
       <DependentUpon>DUTY9010.cs</DependentUpon>
     </EmbeddedResource>
@@ -872,10 +890,10 @@
     <EmbeddedResource Include="3.연차관리\3.5.연차휴가사용촉구\Rpt_8010.resx">
       <DependentUpon>Rpt_8010.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.2.휴가신청및조회\DUTY8050.resx">
+    <EmbeddedResource Include="3.연차관리\3.2.경조외신청및조회\DUTY8050.resx">
       <DependentUpon>DUTY8050.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3.연차관리\3.3.연차및휴가현황\DUTY8090.resx">
+    <EmbeddedResource Include="3.연차관리\3.3.연차및경조외현황\DUTY8090.resx">
       <DependentUpon>DUTY8090.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
@@ -953,6 +971,10 @@
   <ItemGroup>
     <None Include="Resources\인쇄.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

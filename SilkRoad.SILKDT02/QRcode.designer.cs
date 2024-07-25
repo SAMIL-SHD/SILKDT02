@@ -116,7 +116,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::SilkRoad.SILKDT02.Properties.Resources.kshp_qr;
+            this.pictureBox2.Image = global::SilkRoad.SILKDT02.Properties.Resources.sghp_qr1;
             this.pictureBox2.InitialImage = null;
             this.pictureBox2.Location = new System.Drawing.Point(34, 13);
             this.pictureBox2.Name = "pictureBox2";

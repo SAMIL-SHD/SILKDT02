@@ -141,7 +141,7 @@ namespace DUTY1000
 						DataRow crow = ds.Tables["5080_AP_YCHG_LIST"].Rows[i];
 						if (crow["CHK"].ToString() == "1")
 						{
-							string tb_nm = crow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+							string tb_nm = crow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : crow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
 							df.Get5060_DUTY_TRSHREQDatas(crow["SEQNO"].ToString(), tb_nm, ds);
                             if (ds.Tables[tb_nm].Rows.Count > 0)
                             {
@@ -211,7 +211,7 @@ namespace DUTY1000
         {
             DataRow drow = grdv_ap.GetFocusedDataRow();
             string seqno = drow["SEQNO"].ToString();
-            string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+            string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
             
             if (e.ClickedItem.ToString() == "미리보기")
             {
@@ -223,7 +223,7 @@ namespace DUTY1000
             }
             else if (e.ClickedItem.ToString() == "결재라인수정")
             {
-                string tb_nm2 = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ_DT" : "DUTY_TRSJREQ_DT";
+                string tb_nm2 = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ_DT" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ_DT" : "DUTY_TRSTREQ_DT";
                 duty5081 s = new duty5081(tb_nm2, seqno);
                 s.ShowDialog();
             }
