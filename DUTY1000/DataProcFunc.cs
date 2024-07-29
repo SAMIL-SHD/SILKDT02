@@ -406,7 +406,7 @@ namespace DUTY1000
 						   + "   LEFT OUTER JOIN SILKDBCM.DBO.MSTUSER X3 "
 						   + "     ON A.REG_ID = X3.USERIDEN "
 						   + "  WHERE A.SAWON_NO = '" + sabn + "' "
-						   + "  ORDER BY A.DEPT_SEQ ";
+						   + "  ORDER BY A.MOVE_DATE ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("S_TRSDEPT", dt, ref ds);
@@ -1644,13 +1644,13 @@ namespace DUTY1000
 			try
 			{
 				string qry = " SELECT (CASE WHEN A.G_TYPE IN (1,2,3,4,5,6,7) THEN '1.근무' "
-						   + "			    WHEN A.G_TYPE IN (11,12) THEN '3.연차' "
-						   + "			    WHEN A.G_TYPE IN (13,14) THEN '4.경조외' "
-                           + "			    WHEN A.G_TYPE IN (15) THEN '2.시차' "
+						   + "			    WHEN A.G_TYPE IN (11,12) THEN '2.연차' "
+						   + "			    WHEN A.G_TYPE IN (13,14) THEN '3.경조외' "
+                           //+ "			    WHEN A.G_TYPE IN (15) THEN '2.시차' "
                            + "              ELSE '' END) G_TYPE_NM, "
 						   + "        A.G_CODE, A.G_FNM, A.G_SNM "
-						   + "   FROM DUTY_MSTGNMU A "
-                           + "  WHERE A.G_TYPE NOT IN (8,9,10) "
+                           + "   FROM DUTY_MSTGNMU A "
+                           + "  WHERE A.G_TYPE NOT IN (8,9,10,15) "
                            + "  ORDER BY G_TYPE_NM, A.G_CODE ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -1671,10 +1671,10 @@ namespace DUTY1000
 						   + "        (CASE WHEN A.G_TYPE IN (1,2,3,4,5,6,7) THEN '1.근무' "
 						   + "			    WHEN A.G_TYPE IN (11,12) THEN '3.연차' WHEN A.G_TYPE IN (8) THEN '4.당직' "
 						   + "			    WHEN A.G_TYPE IN (13,14) THEN '4.경조외' "
-                           + "			    WHEN A.G_TYPE IN (15) THEN '2.시차' "
+                           //+ "			    WHEN A.G_TYPE IN (15) THEN '2.시차' "
                            + "              ELSE '' END) G_TYPE_NM "
 						   + "   FROM DUTY_MSTGNMU A "
-                           + "  WHERE A.G_TYPE NOT IN (9,10) "
+                           + "  WHERE A.G_TYPE NOT IN (9,10,15) "
                            + "  ORDER BY G_TYPE_NM, A.G_CODE ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -1962,14 +1962,41 @@ namespace DUTY1000
 				System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
+        }
+        //조회부서 간호사 허용off조회
+        public void Get3010_NURS_OFFDatas(string yymm, DataSet ds)
+        {
+            try
+            {
+                string qry = " SELECT A.GJTMSABN AS SABN, RTRIM(X1.EMBSNAME) NAME, "
+                           + "        ISNULL(A.GJTMTIME, 0) GJTMTIME, "
+                           + "        ISNULL(A.GJTMTM03, 0) GJTMTM03, "
+                           + "        ISNULL(A.GJTMTM04, 0) GJTMTM04 "
+                           + "   FROM TRSGJTM A "
+                           + "   LEFT OUTER JOIN MSTEMBS X1 "
+                           + "     ON A.GJTMSABN = X1.EMBSSABN "
+                           + "  INNER JOIN ( "
+                           + "           SELECT GJTMSABN, MAX(GJTMDATE) GJTMDATE "
+                           + "             FROM TRSGJTM "
+                           + "            WHERE LEFT(GJTMDATE, 6) < '" + yymm + "' GROUP BY GJTMSABN ) X2 "
+                           + "     ON A.GJTMSABN = X2.GJTMSABN AND A.GJTMDATE = X2.GJTMDATE ";
 
-		#endregion
-				
-		#region 3011 - 간호사사용부서설정
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
+                dp.AddDatatable2Dataset("3010_NURS_OFF", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-		//부서코드 불러오기
-		public void GetSEARCH_NURSDEPTDatas(DataSet ds)
+        #endregion
+
+        #region 3011 - 간호사사용부서설정
+
+        //부서코드 불러오기
+        public void GetSEARCH_NURSDEPTDatas(DataSet ds)
 		{
 			try
 			{
@@ -2953,9 +2980,13 @@ namespace DUTY1000
                            + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X1 "
                            + "     ON A.SABN=X1.EMBSSABN "
                            + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X2 "
-                           + "     ON X1.EMBSDPCD=X2.DEPRCODE "
-                           + "  GROUP BY X1.EMBSDPCD, X2.DEPRNAM2, A.SABN, X1.EMBSNAME, X1.EMBSPTSA "
-                           + "  ORDER BY X1.EMBSDPCD, A.SABN ";
+                           + "     ON X1.EMBSDPCD=X2.DEPRCODE ";
+                if (admin_lv == 1)
+                    qry += " INNER JOIN DUTY_PWERDEPT X9 "
+                        + "     ON X1.EMBSDPCD = X9.DEPT "
+                        + "    AND X9.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                qry += "  GROUP BY X1.EMBSDPCD, X2.DEPRNAM2, A.SABN, X1.EMBSNAME, X1.EMBSPTSA "
+                    + "  ORDER BY X1.EMBSDPCD, A.SABN ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset("8040_SEARCH", dt, ref ds);
@@ -2975,7 +3006,8 @@ namespace DUTY1000
                            + "        SUBSTRING(OT_DATE,3,2)+'.'+SUBSTRING(OT_DATE,5,2)+'.'+SUBSTRING(OT_DATE,7,2) AS DATE_NM, "
                            + "        (OT_TIME * 1.5) AS YC_TIME "
                            + "   FROM DUTY_TRSOVTM "
-                           + "  WHERE LEFT(OT_DATE,4)='" + year + "' AND OT_GUBN = '3' "
+                           + "  WHERE SABN = '" + sabn + "' AND LEFT(OT_DATE,4)='" + year + "' "
+                           + "    AND OT_GUBN = '3' "
                            + "  ORDER BY OT_DATE ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
@@ -3106,6 +3138,8 @@ namespace DUTY1000
                 string dt_nm = FLAG == "D" ? "SEARCH_DEL_YC_LIST" : FLAG == "A" ? "SEARCH_AP_YC_LIST" : "SEARCH_YC_LIST";
                 string qry = " SELECT A.*, '' CHK, '' C_CHK, "
                            + "		  RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
+                           + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                           + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                            + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
@@ -3139,7 +3173,7 @@ namespace DUTY1000
                 else if (FLAG == "C")
                     qry += "  AND ISNULL(A.AP_TAG,'') IN ('2','4','5','8')";
 
-                qry += "  ORDER BY A.REQ_DATE DESC, X3.EMBSDPCD, A.SABN ";
+                qry += "  ORDER BY X3.EMBSDPCD, A.SABN, A.REQ_DATE DESC ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset(dt_nm, dt, ref ds);
@@ -3258,6 +3292,8 @@ namespace DUTY1000
                 string dt_nm = FLAG == "C" ? "SEARCH_JREQ_LIST" : "SEARCH_DEL_JREQ_LIST";
                 string qry = " SELECT A.*, '' CHK, '' C_CHK, "
                            + "		  RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
+                           + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                           + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                            + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
@@ -3287,7 +3323,7 @@ namespace DUTY1000
                     //+ "  WHERE ('" + fr_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) "
                     //+ "        OR '" + to_yymm + "' BETWEEN LEFT(A.REQ_DATE,6) AND LEFT(A.REQ_DATE2,6) ) "
                     + "    AND X3.EMBSDPCD LIKE '" + dept + "' AND " + w_dt
-                    + "  ORDER BY A.REQ_DATE DESC, X3.EMBSDPCD, A.SABN ";
+                    + "  ORDER BY X3.EMBSDPCD, A.SABN, A.REQ_DATE DESC ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset(dt_nm, dt, ref ds);
@@ -3385,11 +3421,13 @@ namespace DUTY1000
 
                 if (type == 0 || type == 1)
                 {
-                    qry = " SELECT '1' TYPE, '연차' TYPE_NM, A.REQ_DATE, A.AP_TAG, "
+                    qry = " SELECT '1' TYPE, '연차' TYPE_NM, A.REQ_DATE, A.AP_TAG, X3.EMBSDPCD, A.SABN, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                         + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                         + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                         + "		   RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, RTRIM(X3.EMBSNAME) SAWON_NM , "
+                        + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                        + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, "
                         + "        A.YC_DAYS AS USE_DAYS, "
                         + "        ISNULL(A.GUBN,'C') AS GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
@@ -3422,11 +3460,13 @@ namespace DUTY1000
                 }
                 if (type == 0 || type == 2)
                 {
-                    qry += " SELECT '2' TYPE, '경조외' TYPE_NM, A.REQ_DATE, A.AP_TAG, "
+                    qry += " SELECT '2' TYPE, '경조외' TYPE_NM, A.REQ_DATE, A.AP_TAG, X3.EMBSDPCD, A.SABN, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                         + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                         + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                         + "		   RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, RTRIM(X3.EMBSNAME) SAWON_NM, "
+                        + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                        + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                         + "        X1.G_FNM AS GNMU_NM, "
                         + "        A.HOLI_DAYS AS USE_DAYS, "
                         + "        ISNULL(A.GUBN,'C') AS GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
@@ -3452,7 +3492,7 @@ namespace DUTY1000
                         + "    AND X3.EMBSDPCD LIKE '" + dept + "'";
                 }
 
-                qry += " ORDER BY TYPE, REQ_DATE ";
+                qry += " ORDER BY EMBSDPCD, SABN, TYPE, REQ_DATE ";
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset("SEARCH_8090_LIST", dt, ref ds);
@@ -3564,6 +3604,8 @@ namespace DUTY1000
 						   + "          WHERE YC_YEAR=A1.YC_YEAR AND SAWON_NO=A1.SAWON_NO) AS YCCJ_SQ"
 						   + "   FROM ( "
 						   + "         SELECT A.YC_YEAR, A.SAWON_NO SAWON_NO, RTRIM(A.SAWON_NM) SAWON_NM, RTRIM(X3.EMBSEMAL) GW_EMAIL, X3.EMBSDPCD, RTRIM(ISNULL(X4.DEPRNAM2,'')) DEPT_NM, "
+                           + "                LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                           + "                SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                            + "                A.YC_TYPE, A.IN_DATE, A.EMBSTSDT, A.CALC_DATE, A.USE_FRDT, A.USE_TODT,"
 						   + "                A.YC_FIRST, A.YC_BF, A.YC_NOW, A.YC_CHANGE, A.YC_TOTAL, "
                            + "				  (CASE A.YC_TYPE WHEN 0 THEN '회계년도' WHEN 1 THEN '입사일' "
@@ -3734,6 +3776,8 @@ namespace DUTY1000
                 string qry = "  SELECT X1.*, "
                            + "         X1.YC_TDAY AS YC_TOTAL, X1.YC_USE_DAY AS YC_USE, X1.YC_REMAIN_DAY AS YC_REMAIN, "
                            + "         X2.EMBSDPCD AS DEPTCODE, RTRIM(ISNULL(X3.DEPRNAM1,'')) DEPT_NM, RTRIM(X2.EMBSEMAL) GW_EMAIL,  "
+                           + "         LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X2.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                           + "         SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X2.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                            + "         (CASE WHEN X1.DOC_TYPE='202101' THEN '1차' ELSE '2차' END) TYPE_NM "
                            + "    FROM (SELECT YC_YEAR, SAWON_NO, DOC_TYPE, MAX(YC_SQ) YC_SQ FROM DUTY_MSTYCCJ "
                            + "           WHERE YC_YEAR='" + year + "' GROUP BY YC_YEAR, SAWON_NO, DOC_TYPE ) A "
@@ -3881,6 +3925,8 @@ namespace DUTY1000
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                            + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                            + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
+                           + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                           + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                            + "		  X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, X5.LINE_SABN, "
                            + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, A.YC_DAYS, "
                            + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
@@ -3904,25 +3950,50 @@ namespace DUTY1000
                     qry += "  AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
 
                 qry += " UNION ALL "
-					+ "  SELECT A.SEQNO, '2' AS TYPE, '경조외' AS _NM, A.AP_TAG, A.REQ_DATE, A.SABN, "
-                    + "         (CASE WHEN ISNULL(A.ADD_PHOTO,'')='' THEN '' ELSE '문서보기' END) AS PHOTO_REMARK, ISNULL(A.ADD_PHOTO,'') AS ADD_PHOTO, '' CHK, "
-                    + "         (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
+					+ " SELECT A.SEQNO, '2' AS TYPE, '경조외' AS _NM, A.AP_TAG, A.REQ_DATE, A.SABN, "
+                    + "        (CASE WHEN ISNULL(A.ADD_PHOTO,'')='' THEN '' ELSE '문서보기' END) AS PHOTO_REMARK, ISNULL(A.ADD_PHOTO,'') AS ADD_PHOTO, '' CHK, "
+                    + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
 					+ "			     ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
 					+ "					  SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
-					+ "		    X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, X5.LINE_SABN, "
-                    + "         X1.G_FNM+(CASE X1.G_TYPE WHEN 13 THEN '_유급' ELSE '_무급' END) AS GNMU_NM, A.HOLI_DAYS AS YC_DAYS, "
-					+ "         A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                    + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                    + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
+                    + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, X5.LINE_SABN, "
+                    + "        X1.G_FNM+(CASE X1.G_TYPE WHEN 13 THEN '_유급' ELSE '_무급' END) AS GNMU_NM, A.HOLI_DAYS AS YC_DAYS, "
+					+ "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
                     + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
                     + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
                     + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, REMARK1, REMARK2 "
-                    + "    FROM DUTY_TRSJREQ A "
-					+ "    LEFT OUTER JOIN DUTY_MSTGNMU X1 "
-					+ "      ON A.REQ_TYPE=X1.G_CODE "
-					+ "    LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X3 "
-					+ "      ON A.SABN=X3.EMBSSABN "
-					+ "    LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
-					+ "      ON X3.EMBSDPCD=X4.DEPRCODE "
+                    + "   FROM DUTY_TRSJREQ A "
+					+ "   LEFT OUTER JOIN DUTY_MSTGNMU X1 "
+					+ "     ON A.REQ_TYPE=X1.G_CODE "
+					+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X3 "
+					+ "     ON A.SABN=X3.EMBSSABN "
+					+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
+					+ "     ON X3.EMBSDPCD=X4.DEPRCODE "
                     + "   LEFT OUTER JOIN DUTY_TRSJREQ_DT X5 "
+                    + "     ON A.SEQNO=X5.SEQNO "
+                    + "    AND A.LINE_CNT+1=X5.LINE_SQ "
+                    + "  WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN ('1','3') ";
+                if (admin_lv < 3)
+                    qry += "  AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+
+                qry += " UNION ALL "
+                    + " SELECT A.SEQNO, '3' AS TYPE, '시차' AS _NM, A.AP_TAG, A.REQ_DATE, A.SABN, '' AS PHOTO_REMARK, '' AS ADD_PHOTO, '' CHK, "
+                    + "        SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) AS DATE_NM, "
+                    + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                    + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
+                    + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, X5.LINE_SABN, "
+                    + "        '시차' AS GNMU_NM, A.YC_TIME AS YC_DAYS, "
+                    + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                    + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                    + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
+                    + "        REPLACE(A.LINE_REMK,X5.LINE_SANM,'['+X5.LINE_SANM+']') AS LINE_STAT, REMARK1, REMARK2 "
+                    + "   FROM DUTY_TRSTREQ A "
+                    + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X3 "
+                    + "     ON A.SABN=X3.EMBSSABN "
+                    + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
+                    + "     ON X3.EMBSDPCD=X4.DEPRCODE "
+                    + "   LEFT OUTER JOIN DUTY_TRSTREQ_DT X5 "
                     + "     ON A.SEQNO=X5.SEQNO "
                     + "    AND A.LINE_CNT+1=X5.LINE_SQ "
                     + "  WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN ('1','3') ";
@@ -4053,7 +4124,9 @@ namespace DUTY1000
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                         + "			    ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                         + "					 SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
-                        + "		  X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
+                        + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
+                        + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                        + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END) AS GNMU_NM, A.YC_DAYS, "
                         + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
                         + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
@@ -4084,7 +4157,7 @@ namespace DUTY1000
                                + "         (LEFT(REQ_DATE2,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR ('" + fr_yy + "' <= LEFT(REQ_DATE,4) AND LEFT(REQ_DATE2,4) <= '" + to_yy + "') )";
 
                     if (admin_lv < 3)
-                        qry += " AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                        qry += " AND (A.SABN = '" + SilkRoad.Config.SRConfig.USID + "' OR X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
                 }
                 if (gubn == 0)
                     qry += " UNION ALL ";
@@ -4092,11 +4165,13 @@ namespace DUTY1000
                 if (gubn == 0 || gubn == 2)
                 {
                     qry += " SELECT A.SEQNO, '2' AS TYPE, '경조외' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, X1.G_TYPE, "
-                        + "         (CASE WHEN ISNULL(A.ADD_PHOTO,'')='' THEN '' ELSE '문서보기' END) AS PHOTO_REMARK, '' ADD_PHOTO, '' CHK, "
+                        + "         (CASE WHEN ISNULL(A.ADD_PHOTO,'')='' THEN '' ELSE '문서보기' END) AS PHOTO_REMARK, A.ADD_PHOTO, '' CHK, "
                         + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
                         + "			     ELSE SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2)+'~'+ "
                         + "				      SUBSTRING(A.REQ_DATE2,3,2)+'.'+SUBSTRING(A.REQ_DATE2,5,2)+'.'+SUBSTRING(A.REQ_DATE2,7,2) END) AS DATE_NM, "
                         + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
+                        + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                        + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
                         + "        X1.G_FNM+(CASE X1.G_TYPE WHEN 13 THEN '_유급' ELSE '_무급' END) AS GNMU_NM, A.HOLI_DAYS AS YC_DAYS, "
                         + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
                         + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
@@ -4125,11 +4200,51 @@ namespace DUTY1000
                         + "         (LEFT(REQ_DATE2,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "') OR ('" + fr_yy + "' <= LEFT(REQ_DATE,4) AND LEFT(REQ_DATE2,4) <= '" + to_yy + "') )";
 
                     if (admin_lv < 3)
-                        qry += " AND X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                        qry += " AND (A.SABN = '" + SilkRoad.Config.SRConfig.USID + "' OR X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
                 }
 
-				qry += " ) A1 "
-					+ " ORDER BY A1.EMBSDPCD, A1.REQ_DATE DESC, A1.TYPE, A1.SABN ";
+                if (gubn == 0)
+                    qry += " UNION ALL ";
+
+                if (gubn == 0 || gubn == 3)
+                {
+                    qry += " SELECT A.SEQNO, '3' AS TYPE, '시차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, 15 AS G_TYPE, '' AS PHOTO_REMARK, '' ADD_PHOTO, '' CHK, "
+                        + "        SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) AS DATE_NM, "
+                        + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
+                        + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
+                        + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
+                        + "        '시차' AS GNMU_NM, A.YC_TIME AS YC_DAYS, "
+                        + "        A.GUBN, (CASE ISNULL(A.GUBN,'C') WHEN 'C' THEN '신청' ELSE '철회' END) AS GUBN_NM, "
+                        + "        (CASE isnull(A.AP_TAG,'') WHEN '1' THEN '상신' WHEN '2' THEN '취소' WHEN '3' THEN '진행' "
+                        + "              WHEN '4' THEN '반려' WHEN '5' THEN '승인' WHEN '8' THEN '완료' WHEN '9' THEN '정산' ELSE '' END) AP_TAG_NM, "
+                        + "        A.LINE_REMK, A.AP_DT, A.AP_USID+(CASE A.AP_USID WHEN 'SAMIL' THEN '(SilkRoader)' ELSE '('+RTRIM(X3A.EMBSNAME)+')' END) AS AP_USID, "
+                        + "        LEFT(A.INDT,4)+' 년  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,5,2)))+' 월  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,7,2)))+' 일' AS INDT_NM, "
+                        + "        REMARK1, REMARK2 "
+                        + "   FROM DUTY_TRSTREQ A "
+                        //+ "   LEFT OUTER JOIN DUTY_MSTGNMU X1 "
+                        //+ "     ON A.REQ_TYPE=X1.G_CODE "
+                        + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X3 "
+                        + "     ON A.SABN=X3.EMBSSABN "
+                        + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTEMBS X3A "
+                        + "     ON A.AP_USID=X3A.EMBSSABN "
+                        + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
+                        + "     ON X3.EMBSDPCD=X4.DEPRCODE "
+                        + "   LEFT OUTER JOIN DUTY_TRSTREQ_DT X5 "
+                        + "     ON A.SEQNO=X5.SEQNO "
+                        + "    AND A.LINE_MAX=X5.LINE_SQ ";
+                    //if (admin_lv == 1)
+                    //    qry += " INNER JOIN DUTY_PWERDEPT P1 "
+                    //        + "     ON X3.EMBSDPCD = P1.DEPT "
+                    //        + "    AND P1.SABN = '" + SilkRoad.Config.SRConfig.USID + "' ";
+                    qry += "   WHERE A.PSTY<>'D' AND isnull(A.AP_TAG,'') IN " + ap_tag
+                        + "     AND LEFT(REQ_DATE,4) BETWEEN '" + fr_yy + "' AND '" + to_yy + "'";
+
+                    if (admin_lv < 3)
+                        qry += " AND (A.SABN = '" + SilkRoad.Config.SRConfig.USID + "' OR X5.LINE_SABN = '" + SilkRoad.Config.SRConfig.USID + "') ";
+                }
+
+                qry += " ) A1 "
+					+ " ORDER BY A1.EMBSDPCD, A1.SABN, A1.REQ_DATE DESC, A1.TYPE ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
 				dp.AddDatatable2Dataset("5080_AP_YCHG_LIST", dt, ref ds);
@@ -4146,29 +4261,40 @@ namespace DUTY1000
         {
             try
             {
-                string c1 = tb_nm == "DUTY_TRSHREQ" ? "YC_DAYS" : "HOLI_DAYS";
-                string c2 = tb_nm == "DUTY_TRSHREQ" ? "+'~'+X2.G_FNM" : "";
+                string c1 = tb_nm == "DUTY_TRSHREQ" ? "YC_DAYS" : tb_nm == "DUTY_TRSJREQ" ? "HOLI_DAYS" : "YC_TIME";
+                string c2 = tb_nm == "DUTY_TRSHREQ" ? "(CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END)" : tb_nm == "DUTY_TRSJREQ" ? "X1.G_FNM" : "'시차'";
+                string c3 = tb_nm == "DUTY_TRSTREQ" ? "LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일'" 
+                    : "(CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일' "
+                        + "			     ELSE LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일 ~ \r\n'+ "
+                        + "					  LEFT(A.REQ_DATE2,4)+'년 '+SUBSTRING(A.REQ_DATE2,5,2)+'월 '+SUBSTRING(A.REQ_DATE2,7,2)+'일'  END)";
                 string qry = " SELECT A1.*, "
                            + "        (CASE WHEN A1.G_TYPE = 11 THEN '1' ELSE '' END) CHK1, "
                            + "        (CASE WHEN A1.G_TYPE = 12 THEN '1' ELSE '' END) CHK2, "
                            + "        (CASE WHEN A1.G_TYPE IN (13,14) THEN '1' ELSE '' END) CHK3, "
+                           + "        (CASE WHEN A1.REQ_TYPE = '' THEN '1' ELSE '' END) CHK4, "
                            + "        (CASE WHEN A1.G_TYPE = 11 THEN A1.GNMU_NM ELSE '' END) GNMU_NM1, "
                            + "        (CASE WHEN A1.G_TYPE = 12 THEN A1.GNMU_NM ELSE '' END) GNMU_NM2, "
                            + "        (CASE WHEN A1.G_TYPE IN (13,14) THEN A1.GNMU_NM ELSE '' END) GNMU_NM3, "
+                           + "        (CASE WHEN A1.REQ_TYPE = '' THEN '시차' ELSE '' END) GNMU_NM4, "
                            + "        (CASE WHEN A1.G_TYPE = 11 THEN A1.DATE_NM ELSE '' END) DATE_NM1, "
                            + "        (CASE WHEN A1.G_TYPE = 12 THEN A1.DATE_NM ELSE '' END) DATE_NM2, "
                            + "        (CASE WHEN A1.G_TYPE IN (13,14) THEN A1.DATE_NM ELSE '' END) DATE_NM3, "
+                           + "        (CASE WHEN A1.REQ_TYPE = '' THEN A1.DATE_NM ELSE '' END) DATE_NM4, "
                            + "        (CASE WHEN A1.G_TYPE = 11 THEN '('+CONVERT(VARCHAR,A1.YC_DAYS)+') 일간' ELSE '' END) YC_DAYS1, "
                            + "        (CASE WHEN A1.G_TYPE = 12 THEN '('+CONVERT(VARCHAR,A1.YC_DAYS)+') 일간' ELSE '' END) YC_DAYS2, "
-                           + "        (CASE WHEN A1.G_TYPE IN (13,14) THEN '('+CONVERT(VARCHAR,A1.YC_DAYS)+') 일간' ELSE '' END) YC_DAYS3 "
+                           + "        (CASE WHEN A1.G_TYPE IN (13,14) THEN '('+CONVERT(VARCHAR,A1.YC_DAYS)+') 일간' ELSE '' END) YC_DAYS3, "
+                           + "        (CASE WHEN A1.REQ_TYPE = '' THEN '('+CONVERT(VARCHAR,A1.YC_DAYS)+') 시간' ELSE '' END) YC_DAYS4 "
                            + "   FROM ( ";
 
-                qry += " SELECT A.SEQNO, A.GUBN, '1' AS TYPE, '연차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, X1.G_TYPE, A." + c1 + " as YC_DAYS, "
-                    + "		   X3.EMBSDPCD, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, RTRIM(ISNULL(X5.POSINAM1,'')) AS POSI_NM, RTRIM(X3.EMBSNAME) SAWON_NM, "
-                    + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM" + c2 + " END) AS GNMU_NM, "
-                    + "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일' "
-                    + "			     ELSE LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일 ~ \r\n'+ "
-                    + "					  LEFT(A.REQ_DATE2,4)+'년 '+SUBSTRING(A.REQ_DATE2,5,2)+'월 '+SUBSTRING(A.REQ_DATE2,7,2)+'일'  END) AS DATE_NM, "
+                qry += " SELECT A.SEQNO, A.GUBN, '1' AS TYPE, '연차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.REQ_TYPE, A.SABN, X1.G_TYPE, A." + c1 + " as YC_DAYS, "
+                    + "		   X3.EMBSDPCD, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, " //RTRIM(ISNULL(X5.POSINAM1,'')) AS POSI_NM, 
+                    + "        RTRIM(ISNULL(X5.LINE_JIWK,'')) AS POSI_NM, RTRIM(X3.EMBSNAME) SAWON_NM, "
+                    + "        " + c2 + " AS GNMU_NM, "
+                    + "        " + c3 + " AS DATE_NM, "
+                    //+ "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM" + c2 + " END) AS GNMU_NM, "
+                    //+ "        (CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일' "
+                    //+ "			     ELSE LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일 ~ \r\n'+ "
+                    //+ "					  LEFT(A.REQ_DATE2,4)+'년 '+SUBSTRING(A.REQ_DATE2,5,2)+'월 '+SUBSTRING(A.REQ_DATE2,7,2)+'일'  END) AS DATE_NM, "
                     + "        LEFT(A.INDT,4)+' 년  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,5,2)))+' 월  '+CONVERT(VARCHAR,CONVERT(INT,SUBSTRING(A.INDT,7,2)))+' 일' AS INDT_NM, "
                     + "        A.LINE_REMK, A.REMARK1, A.REMARK2 "
                     + "   FROM " + tb_nm + " A "
@@ -4183,8 +4309,10 @@ namespace DUTY1000
                     + "     ON A.SABN=X3.EMBSSABN "
                     + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTDEPR X4 "
                     + "     ON X3.EMBSDPCD=X4.DEPRCODE "
-                    + "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTPOSI X5 "
-                    + "     ON X3.EMBSPSCD=X5.POSICODE "
+                    //+ "   LEFT OUTER JOIN " + wagedb + ".dbo.MSTPOSI X5 "
+                    //+ "     ON X3.EMBSPSCD=X5.POSICODE "
+                    + "   LEFT OUTER JOIN " + tb_nm + "_DT X5 "
+                    + "     ON A.SEQNO=X5.SEQNO AND X5.LINE_SQ=1 "
                     + "  WHERE A.SEQNO = " + clib.TextToDecimal(seqno);
 
                 qry += " ) A1 ";
@@ -4293,9 +4421,9 @@ namespace DUTY1000
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset("3060_CHK1", dt, ref ds);
-                DataRow nrow = ds.Tables["3060_CHK1"].NewRow();
-                nrow["ERR_CHK"] = "";
-                ds.Tables["3060_CHK1"].Rows.Add(nrow);
+                //DataRow nrow = ds.Tables["3060_CHK1"].NewRow();
+                //nrow["ERR_CHK"] = "";
+                ds.Tables["3060_CHK1"].Columns.Add("ERR_CHK"); //.Rows.Add(nrow);
 
             }
             catch (System.Exception ec)
@@ -4313,9 +4441,10 @@ namespace DUTY1000
 
                 DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
                 dp.AddDatatable2Dataset("3060_CHK2", dt, ref ds);
-                DataRow nrow = ds.Tables["3060_CHK2"].NewRow();
-                nrow["ERR_CHK"] = "";
-                ds.Tables["3060_CHK2"].Rows.Add(nrow);
+                ds.Tables["3060_CHK2"].Columns.Add("ERR_CHK");
+                //DataRow nrow = ds.Tables["3060_CHK2"].NewRow();
+                //nrow["ERR_CHK"] = "";
+                //ds.Tables["3060_CHK2"].Rows.Add(nrow);
             }
             catch (System.Exception ec)
             {
@@ -4993,8 +5122,28 @@ namespace DUTY1000
         }
         #endregion
 
-        #region 9010 - 시급관리
+        #region 9010 - 시급조회
 
+        //시급 조회
+        public void GetSEARCH_T_AMTDatas(string yymm, DataSet ds)
+        {
+            try
+            {
+                string qry = "  EXEC USP_SEARCH_T_AMT '" + yymm + "' ";
+
+                DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), dbname, qry);
+                dp.AddDatatable2Dataset("SEARCH_T_AMT", dt, ref ds);
+            }
+            catch (System.Exception ec)
+            {
+                System.Windows.Forms.MessageBox.Show("자료를 가져오는중 오류가 발생했습니다. : " + ec.Message,
+                                                     "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region 9011 - 시급관리-사용안함
         //시급처리
         public void GetS_INFOSD01Datas(string yymm, DataSet ds)
         {

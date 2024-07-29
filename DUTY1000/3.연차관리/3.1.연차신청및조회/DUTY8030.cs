@@ -56,10 +56,10 @@ namespace DUTY1000
 				
 				txt_sabn.Text = "";
 				txt_name.Text = "";
-				txt_bf_cnt.Text = "";
+				txt_bf.Text = "";
 				txt_change.Text = "";
 				txt_first.Text = "";
-				txt_now_cnt.Text = "";
+				txt_now.Text = "";
 				txt_tcnt.Text = "";
 				txt_use.Text = "";
 				txt_rcnt.Text = "";
@@ -181,10 +181,10 @@ namespace DUTY1000
 			{
 				txt_sabn.Text = "";
 				txt_name.Text = "";
-				txt_bf_cnt.Text = "";
+				txt_bf.Text = "";
 				txt_change.Text = "";
 				txt_first.Text = "";
-				txt_now_cnt.Text = "";
+				txt_now.Text = "";
 				txt_tcnt.Text = "";
 				txt_use.Text = "";
 				txt_rcnt.Text = "";
@@ -451,9 +451,9 @@ namespace DUTY1000
                     txt_name.Text = drow["SAWON_NM"].ToString();
                     cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
                     dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
-                    //txt_bf_cnt.Text = drow["YC_BASE"].ToString();
-                    //txt_first.Text = drow["YC_FIRST"].ToString();
-                    //txt_now_cnt.Text = drow["YC_ADD"].ToString();
+                    txt_first.Text = drow["YC_FIRST"].ToString();
+                    txt_bf.Text = drow["YC_BF"].ToString();
+                    txt_now.Text = drow["YC_NOW"].ToString();
                     txt_tcnt.Text = drow["YC_SUM"].ToString();
 
                     txt_change.Text = drow["YC_CHANGE"].ToString();
@@ -510,9 +510,9 @@ namespace DUTY1000
 				txt_name.Text = drow["SAWON_NM"].ToString();
 				cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
 				dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
-				txt_bf_cnt.Text = drow["YC_BASE"].ToString();
-				txt_first.Text = drow["YC_FIRST"].ToString();
-				txt_now_cnt.Text = drow["YC_ADD"].ToString();
+                txt_first.Text = drow["YC_FIRST"].ToString();
+                txt_bf.Text = drow["YC_BF"].ToString();
+				txt_now.Text = drow["YC_NOW"].ToString();
 				txt_tcnt.Text = drow["YC_SUM"].ToString();
 
 				txt_change.Text = drow["YC_CHANGE"].ToString();
@@ -544,12 +544,13 @@ namespace DUTY1000
 				txt_name.Text = drow["SAWON_NM"].ToString();
 				cmb_type.SelectedIndex = clib.TextToInt(drow["YC_TYPE"].ToString());
 				dat_indt.DateTime = clib.TextToDate(drow["IN_DATE"].ToString());
-				txt_bf_cnt.Text = drow["YC_BASE"].ToString();
-				txt_change.Text = drow["YC_CHANGE"].ToString();
-				txt_first.Text = drow["YC_FIRST"].ToString();
-				txt_now_cnt.Text = drow["YC_ADD"].ToString();
-				txt_tcnt.Text = drow["YC_TOTAL"].ToString();
-				txt_use.Text = "";
+                txt_first.Text = drow["YC_FIRST"].ToString();
+                txt_bf.Text = drow["YC_BF"].ToString();
+				txt_now.Text = drow["YC_NOW"].ToString();
+                txt_tcnt.Text = drow["YC_SUM"].ToString();
+
+                txt_change.Text = drow["YC_CHANGE"].ToString();
+                txt_use.Text = "";
 				txt_rcnt.Text = drow["YC_TOTAL"].ToString();
 
 				df.GetSEARCH_TRSHREQDatas(drow["SAWON_NO"].ToString(), drow["YC_YEAR"].ToString(), ds);

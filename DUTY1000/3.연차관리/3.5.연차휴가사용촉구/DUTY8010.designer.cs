@@ -118,6 +118,7 @@
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
@@ -450,9 +451,10 @@
             this.grdv1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.grdv1.ColumnPanelRowHeight = 36;
             this.grdv1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
             this.col_sawon_no,
             this.col_sawon_nm,
-            this.gridColumn1,
+            this.gridColumn6,
             this.col_email,
             this.col_partnm,
             this.col_sq,
@@ -508,14 +510,14 @@
             this.col_sawon_no.OptionsColumn.ReadOnly = true;
             this.col_sawon_no.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_sawon_no.Visible = true;
-            this.col_sawon_no.VisibleIndex = 0;
-            this.col_sawon_no.Width = 103;
+            this.col_sawon_no.VisibleIndex = 1;
+            this.col_sawon_no.Width = 79;
             // 
             // col_sawon_nm
             // 
             this.col_sawon_nm.AppearanceCell.Options.UseTextOptions = true;
             this.col_sawon_nm.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col_sawon_nm.Caption = "성명";
+            this.col_sawon_nm.Caption = "이름";
             this.col_sawon_nm.FieldName = "SAWON_NM";
             this.col_sawon_nm.Name = "col_sawon_nm";
             this.col_sawon_nm.OptionsColumn.AllowEdit = false;
@@ -525,8 +527,8 @@
             this.col_sawon_nm.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SAWON_NM", "{0:#,##0} 명")});
             this.col_sawon_nm.Visible = true;
-            this.col_sawon_nm.VisibleIndex = 1;
-            this.col_sawon_nm.Width = 89;
+            this.col_sawon_nm.VisibleIndex = 2;
+            this.col_sawon_nm.Width = 80;
             // 
             // gridColumn1
             // 
@@ -538,7 +540,7 @@
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 96;
             // 
             // col_email
@@ -554,7 +556,7 @@
     "([WORKDATE], 6, 2)";
             this.col_email.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.col_email.Visible = true;
-            this.col_email.VisibleIndex = 3;
+            this.col_email.VisibleIndex = 4;
             this.col_email.Width = 172;
             // 
             // col_partnm
@@ -569,7 +571,7 @@
             this.col_partnm.OptionsColumn.ReadOnly = true;
             this.col_partnm.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_partnm.Visible = true;
-            this.col_partnm.VisibleIndex = 4;
+            this.col_partnm.VisibleIndex = 5;
             this.col_partnm.Width = 48;
             // 
             // col_sq
@@ -587,7 +589,7 @@
             this.col_sq.OptionsColumn.ReadOnly = true;
             this.col_sq.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_sq.Visible = true;
-            this.col_sq.VisibleIndex = 5;
+            this.col_sq.VisibleIndex = 6;
             this.col_sq.Width = 35;
             // 
             // gridColumn2
@@ -600,7 +602,7 @@
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 6;
+            this.gridColumn2.VisibleIndex = 7;
             this.gridColumn2.Width = 132;
             // 
             // gridColumn3
@@ -613,7 +615,7 @@
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 7;
+            this.gridColumn3.VisibleIndex = 8;
             this.gridColumn3.Width = 116;
             // 
             // gridColumn4
@@ -623,7 +625,7 @@
             this.gridColumn4.FieldName = "SAWON_SIGN";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 8;
+            this.gridColumn4.VisibleIndex = 9;
             // 
             // repositoryItemPictureEdit1
             // 
@@ -1466,6 +1468,19 @@
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 1;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "주민번호";
+            this.gridColumn6.FieldName = "D_JMNO";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn6.OptionsColumn.ReadOnly = true;
+            this.gridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.Width = 110;
+            // 
             // duty8010
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1617,6 +1632,7 @@
 		private DevExpress.XtraEditors.DateEdit dat_sldt;
 		private SilkRoad.UserControls.SRLabel srLabel19;
 		private SilkRoad.UserControls.SRLabel lb_power;
-	}
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+    }
 }
 

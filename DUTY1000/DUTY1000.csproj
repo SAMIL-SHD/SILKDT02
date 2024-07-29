@@ -523,10 +523,10 @@
     <Compile Include="2.근무관리\2.6.간호사근무관리\rpt_3010.Designer.cs">
       <DependentUpon>rpt_3010.cs</DependentUpon>
     </Compile>
-    <Compile Include="2.근무관리\2.7.근무마감설정\DUTY3020.cs">
+    <Compile Include="2.근무관리\2.7.간호사근무마감설정\DUTY3020.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2.근무관리\2.7.근무마감설정\DUTY3020.designer.cs">
+    <Compile Include="2.근무관리\2.7.간호사근무마감설정\DUTY3020.designer.cs">
       <DependentUpon>DUTY3020.cs</DependentUpon>
     </Compile>
     <Compile Include="8.마감관리\8.4.근무집계표\DUTY3080.cs">
@@ -552,6 +552,12 @@
     </Compile>
     <Compile Include="9.환경설정\9.1.결재라인관리\DUTY9070.designer.cs">
       <DependentUpon>DUTY9070.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9.환경설정\9.1.월별시급관리\DUTY9011.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9.환경설정\9.1.월별시급관리\DUTY9011.designer.cs">
+      <DependentUpon>DUTY9011.cs</DependentUpon>
     </Compile>
     <Compile Include="9.환경설정\9.1.월별시급관리\DUTY9010.cs">
       <SubType>Form</SubType>
@@ -819,7 +825,7 @@
     <EmbeddedResource Include="2.근무관리\2.6.간호사근무관리\rpt_3010.resx">
       <DependentUpon>rpt_3010.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2.근무관리\2.7.근무마감설정\DUTY3020.resx">
+    <EmbeddedResource Include="2.근무관리\2.7.간호사근무마감설정\DUTY3020.resx">
       <DependentUpon>DUTY3020.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="8.마감관리\8.4.근무집계표\DUTY3080.resx">
@@ -833,6 +839,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9.환경설정\9.1.결재라인관리\DUTY9070.resx">
       <DependentUpon>DUTY9070.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9.환경설정\9.1.월별시급관리\DUTY9011.resx">
+      <DependentUpon>DUTY9011.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9.환경설정\9.1.월별시급관리\DUTY9010.resx">
       <DependentUpon>DUTY9010.cs</DependentUpon>

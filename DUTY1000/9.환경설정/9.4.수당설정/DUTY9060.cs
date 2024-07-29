@@ -37,6 +37,7 @@ namespace DUTY1000
             sl_sdcd7.Properties.DataSource = ds.Tables["SL_SD"];
             sl_sdcd8.Properties.DataSource = ds.Tables["SL_SD"];
             sl_sdcd9.Properties.DataSource = ds.Tables["SL_SD"];
+            sl_sdcd10.Properties.DataSource = ds.Tables["SL_SD"];
 
             df.GetSL_GTDatas(ds);
             sl_gtcd1.Properties.DataSource = ds.Tables["SL_GT"];
@@ -48,6 +49,7 @@ namespace DUTY1000
             sl_gtcd7.Properties.DataSource = ds.Tables["SL_GT"];
             sl_gtcd8.Properties.DataSource = ds.Tables["SL_GT"];
             sl_gtcd9.Properties.DataSource = ds.Tables["SL_GT"];
+            sl_gtcd10.Properties.DataSource = ds.Tables["SL_GT"];
         }
         #endregion
 
@@ -64,8 +66,9 @@ namespace DUTY1000
 			sl_sdcd7.EditValue = null;
 			sl_sdcd8.EditValue = null;
 			sl_sdcd9.EditValue = null;
+            sl_sdcd10.EditValue = null;
 
-			sl_gtcd1.EditValue = null;
+            sl_gtcd1.EditValue = null;
 			sl_gtcd2.EditValue = null;
 			sl_gtcd3.EditValue = null;
 			sl_gtcd4.EditValue = null;
@@ -74,6 +77,7 @@ namespace DUTY1000
 			sl_gtcd7.EditValue = null;
 			sl_gtcd8.EditValue = null;
 			sl_gtcd9.EditValue = null;
+            sl_gtcd10.EditValue = null;
         }
 		private void duty9060_Shown(object sender, EventArgs e)
 		{
@@ -93,6 +97,11 @@ namespace DUTY1000
                 {
                     sl_sdcd2.EditValue = srow["SD_CODE"].ToString().Trim() == "" ? null : srow["SD_CODE"].ToString().Trim();
                     sl_gtcd2.EditValue = srow["GT_CODE"].ToString().Trim() == "" ? null : srow["GT_CODE"].ToString().Trim();
+                }
+                else if (srow["SQ"].ToString() == "10") //나이트감독수당
+                {
+                    sl_sdcd10.EditValue = srow["SD_CODE"].ToString().Trim() == "" ? null : srow["SD_CODE"].ToString().Trim();
+                    sl_gtcd10.EditValue = srow["GT_CODE"].ToString().Trim() == "" ? null : srow["GT_CODE"].ToString().Trim();
                 }
                 else if (srow["SQ"].ToString() == "3") //야식비
                 {
@@ -146,7 +155,7 @@ namespace DUTY1000
             {
 				df.GetDUTY_INFOSD06Datas(ds);
 				DataRow nrow;
-                for (int i = 1; i < 10; i++)
+                for (int i = 1; i <= 10; i++)
                 {
                     if (ds.Tables["DUTY_INFOSD06"].Select("SQ = " + i).Length > 0)
                     {
@@ -170,6 +179,12 @@ namespace DUTY1000
                         nrow["SD_CODE"] = sl_sdcd2.EditValue == null ? "" : sl_sdcd2.EditValue.ToString();
                         nrow["SD_NAME"] = "나이트수당";
                         nrow["GT_CODE"] = sl_gtcd2.EditValue == null ? "" : sl_gtcd2.EditValue.ToString();
+                    }
+                    else if (i == 10)  //나이트감독수당
+                    {
+                        nrow["SD_CODE"] = sl_sdcd10.EditValue == null ? "" : sl_sdcd10.EditValue.ToString();
+                        nrow["SD_NAME"] = "나이트감독수당";
+                        nrow["GT_CODE"] = sl_gtcd10.EditValue == null ? "" : sl_gtcd10.EditValue.ToString();
                     }
                     else if (i == 3)  //야식비
                     {

@@ -58,12 +58,23 @@ namespace WAGE1000
         {
             SetCancel();
 			btn_search_CK();
+
+            search();
         }
 
         #endregion
 
         #region 2 Button
-		
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            search();
+        }
+        private void search()
+        {
+            df.GetSEARCH_MSTEMBSDatas(cmb_s_stat.SelectedIndex, ds);
+            grd1.DataSource = ds.Tables["SEARCH_MSTEMBS"];
+        }
         /// <summary>엑셀버튼</summary>
         private void btn_exel_Click(object sender, EventArgs e)
         {
@@ -367,9 +378,15 @@ namespace WAGE1000
             if (e.KeyCode == Keys.Escape)   //취소
                 btn_clear.PerformClick();            
         }
-		
-		//그리드 더블클릭시 코드 조회
-		private void grdv1_DoubleClick(object sender, EventArgs e)
+
+        private void grdv1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+        //그리드 더블클릭시 코드 조회
+        private void grdv1_DoubleClick(object sender, EventArgs e)
 		{
 			DataRow drow = grdv1.GetFocusedDataRow();
             if (drow == null)
@@ -503,13 +520,6 @@ namespace WAGE1000
 
         private void btn_search_CK()
         {
-			int r_index = grdv1.FocusedRowHandle;
-			int t_index = grdv1.TopRowIndex;
-			df.GetSEARCH_MSTEMBSDatas(ds);
-			grd1.DataSource = ds.Tables["SEARCH_MSTEMBS"];
-			grdv1.FocusedRowHandle = r_index;
-			grdv1.TopRowIndex = t_index;
-
 			df.GetWAGE_GLOVDatas(ds);
 			sl_glcd.Properties.DataSource = ds.Tables["WAGE_GLOV"];
 			df.GetWAGE_DEPRDatas(ds);
@@ -521,7 +531,7 @@ namespace WAGE1000
             df.GetWAGE_GRADDatas(ds);
 			sl_grcd.Properties.DataSource = ds.Tables["WAGE_GRAD"];
         }
-		#endregion
-		
-	}
+        #endregion
+
+    }
 }

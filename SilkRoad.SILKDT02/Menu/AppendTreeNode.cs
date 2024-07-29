@@ -101,7 +101,7 @@ namespace SilkRoad.SILKDT02
                     tl.AppendNode(new object[] { "근무및당직관리", "DUTY1000.duty2060", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty3030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "간호사근무관리", "DUTY1000.duty3010", "", "" }, rootNode2);
-					tl.AppendNode(new object[] { "근무표마감관리", "DUTY1000.duty3020", "", "" }, rootNode2);
+					tl.AppendNode(new object[] { "간호사근무마감설정", "DUTY1000.duty3020", "", "" }, rootNode2);
 
 					TreeListNode rootNode3 = tl.AppendNode(new object[] { "연차및경조외관리", "", "", "" }, parentForRootNodes);
                     tl.AppendNode(new object[] { "시차발생및사용현황", "DUTY1000.duty8040", "", "" }, rootNode3);
@@ -129,9 +129,10 @@ namespace SilkRoad.SILKDT02
 
                     rootNode2 = tl.AppendNode(new object[] { "환경설정", "", "", "" }, parentForRootNodes);
                     tl.AppendNode(new object[] { "결재라인관리", "DUTY1000.duty9070", "", "" }, rootNode2);
-                    //tl.AppendNode(new object[] { "월별시급관리", "DUTY1000.duty9010", "", "" }, rootNode2); //인사급여에서 관리
+                    tl.AppendNode(new object[] { "사원별시급조회", "DUTY1000.duty9010", "", "" }, rootNode2);
+                    //tl.AppendNode(new object[] { "월별시급관리", "DUTY1000.duty9011", "", "" }, rootNode2); //인사급여(인사세부사항 - 연봉, 주근로시간으로 계산)에서 관리
                     tl.AppendNode(new object[] { "당직시간관리", "DUTY1000.duty9020", "", "" }, rootNode2);
-                    //tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2); //인사급여에서 관리
+                    //tl.AppendNode(new object[] { "근로시간관리", "DUTY1000.duty9030", "", "" }, rootNode2); //인사급여(인사세부사항 - 주근로시간)에서 관리
                     tl.AppendNode(new object[] { "건별수당관리", "DUTY1000.duty9040", "", "" }, rootNode2);
 					//tl.AppendNode(new object[] { "만근수당관리", "DUTY1000.duty9050", "", "" }, rootNode2); //인사급여에서 처리.
                     tl.AppendNode(new object[] { "수당근태코드연결", "DUTY1000.duty9060", "", "" }, rootNode2);

@@ -398,7 +398,7 @@ namespace DUTY1000
 									DataRow drow = grdv_end.GetDataRow(grdv_end.GetVisibleRowHandle(i));
                                     SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                                     
-                                    for (int j = 1; j <= 9; j++)
+                                    for (int j = 1; j <= 10; j++)
                                     {
                                         if (clib.TextToDecimal(drow["WGPCSD" + j.ToString().PadLeft(2, '0')].ToString()) != 0)
                                         {
@@ -506,7 +506,20 @@ namespace DUTY1000
 								{
 									nrow = ds.Tables["MSTWGPC"].Select("WGPCYYMM = '" + drow["END_YYMM"].ToString() + "' AND WGPCSABN = '" + drow["SAWON_NO"].ToString().Trim() + "'")[0];
 
-									nrow["WGPCUPDT"] = gd.GetNow().Substring(0, 8);
+                                    for (int i = 0; i < grdv_end.Columns.Count; i++) //연동할 항목금액 0으로 초기화
+                                    {
+                                        if (grdv_end.Columns[i].FieldName.Substring(4, 2) == "SD")
+                                        {
+                                            if (ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2))).Length > 0)
+                                            {
+                                                DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2)))[0];
+                                                sd_code = irow["SD_CODE"].ToString().Trim() == "" ? "" : irow["SD_CODE"].ToString().Substring(2, 2);
+                                                if (sd_code != "" && clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString()) != 0)
+                                                    nrow["WGPCSD" + sd_code] = 0;
+                                            }
+                                        }
+                                    }
+                                    nrow["WGPCUPDT"] = gd.GetNow().Substring(0, 8);
 									nrow["WGPCPSTY"] = "U";
 								}
 								else
@@ -538,7 +551,7 @@ namespace DUTY1000
                                             DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2)))[0];
                                             sd_code = irow["SD_CODE"].ToString().Trim() == "" ? "" : irow["SD_CODE"].ToString().Substring(2, 2);
                                             if (sd_code != "" && clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString()) != 0)
-                                                nrow["WGPCSD" + sd_code] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                                nrow["WGPCSD" + sd_code] = clib.TextToDecimal(nrow["WGPCSD" + sd_code].ToString()) + clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
                                         }
                                     }
 								}
@@ -550,7 +563,20 @@ namespace DUTY1000
 								{
 									nrow2 = ds.Tables["MSTGTMM"].Select("GTMMYYMM = '" + drow["END_YYMM"].ToString() + "' AND GTMMSABN = '" + drow["SAWON_NO"].ToString().Trim() + "'")[0];
 
-									nrow2["GTMMUPDT"] = gd.GetNow().Substring(0, 8);
+                                    for (int i = 0; i < grdv_end.Columns.Count; i++) //연동할 항목금액 0으로 초기화
+                                    {
+                                        if (grdv_end.Columns[i].FieldName.Substring(4, 2) == "GT")
+                                        {
+                                            if (ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2))).Length > 0)
+                                            {
+                                                DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2)))[0];
+                                                gt_code = irow["GT_CODE"].ToString().Trim() == "" ? "" : irow["GT_CODE"].ToString().Substring(2, 2);
+                                                if (gt_code != "" && clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString()) != 0)
+                                                    nrow2["GTMMGT" + gt_code] = 0;
+                                            }
+                                        }
+                                    }
+                                    nrow2["GTMMUPDT"] = gd.GetNow().Substring(0, 8);
 									nrow2["GTMMPSTY"] = "U";
 								}
 								else
@@ -579,9 +605,8 @@ namespace DUTY1000
                                             DataRow irow = ds.Tables["DUTY_INFOSD06"].Select("SQ = " + clib.TextToInt(grdv_end.Columns[i].FieldName.Substring(6, 2)))[0];
                                             gt_code = irow["GT_CODE"].ToString().Trim() == "" ? "" : irow["GT_CODE"].ToString().Substring(2, 2);
                                             if (gt_code != "" && clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString()) != 0)
-                                                nrow2["GTMMGT" + gt_code] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
+                                                nrow2["GTMMGT" + gt_code] = clib.TextToDecimal(nrow2["GTMMGT" + gt_code].ToString()) + clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
                                         }
-                                        //nrow2["GTMM" + grdv_end.Columns[i].FieldName.Substring(4, 4)] = clib.TextToDecimal(drow[grdv_end.Columns[i].FieldName.ToString()].ToString());
                                     }
                                 }
 
@@ -666,7 +691,7 @@ namespace DUTY1000
         //듀티 최종마감체크
 		private void DUTYEND_CHK()
 		{
-			string yymm = clib.DateToText(dat_yymm.DateTime).Substring(0, 6);
+			string yymm = clib.DateToText(dat_p_yymm.DateTime).Substring(0, 6);
 
             df.Get2020_SEARCH_ENDSDatas(yymm, ds);
 			if (ds.Tables["2020_SEARCH_ENDS"].Rows.Count > 0) //마감월이 저장되어 있으면

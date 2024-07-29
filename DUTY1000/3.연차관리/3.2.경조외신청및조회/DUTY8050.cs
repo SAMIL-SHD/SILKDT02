@@ -546,5 +546,9 @@ namespace DUTY1000
 
         #endregion
 
+        private void grd_hg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

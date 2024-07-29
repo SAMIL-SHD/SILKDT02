@@ -276,7 +276,7 @@ namespace DUTY1000
 
             string photo_nm = srow["ADD_PHOTO"].ToString();
             string dn_Path = Application.StartupPath + "\\DN_FILE\\" + photo_nm;
-            string type = srow["ADD_PHOTO"].ToString() == "1" ? "HREQ" : "JREQ";
+            string type = srow["TYPE"].ToString() == "1" ? "HREQ" : "JREQ";
             string year = srow["REQ_DATE"].ToString().Substring(0, 4);
 
             DialogResult dr = MessageBox.Show("해당 첨부파일을 다운로드 하시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);

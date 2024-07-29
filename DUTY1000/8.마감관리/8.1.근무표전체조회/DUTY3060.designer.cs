@@ -33,14 +33,6 @@
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression2 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression3 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression4 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression5 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression6 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             this.btn_exit = new SilkRoad.UserControls.SRButton();
             this.srPanel1 = new SilkRoad.UserControls.SRPanel();
             this.srTitle1 = new SilkRoad.UserControls.SRTitle();
@@ -126,6 +118,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -158,6 +152,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdv2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_exit
@@ -1430,28 +1425,15 @@
             this.gridColumn11});
             gridFormatRule1.ApplyToRow = true;
             gridFormatRule1.Name = "Format0";
-            formatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            formatConditionRuleExpression1.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression1.Expression = "[TYPE] = \'1\'";
+            formatConditionRuleExpression1.Appearance.ForeColor = System.Drawing.Color.Red;
+            formatConditionRuleExpression1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression1.Expression = "[ERR_CHK] = \'1\'";
             gridFormatRule1.Rule = formatConditionRuleExpression1;
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Name = "Format1";
-            formatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            formatConditionRuleExpression2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression2.Expression = "[TYPE] = \'2\'";
-            gridFormatRule2.Rule = formatConditionRuleExpression2;
-            gridFormatRule3.ApplyToRow = true;
-            gridFormatRule3.Name = "Format2";
-            formatConditionRuleExpression3.Appearance.ForeColor = System.Drawing.Color.Red;
-            formatConditionRuleExpression3.Appearance.Options.UseForeColor = true;
-            formatConditionRuleExpression3.Expression = "[GUBN] = \'D\'";
-            gridFormatRule3.Rule = formatConditionRuleExpression3;
             this.grdv1.FormatRules.Add(gridFormatRule1);
-            this.grdv1.FormatRules.Add(gridFormatRule2);
-            this.grdv1.FormatRules.Add(gridFormatRule3);
             this.grdv1.GridControl = this.grd1;
             this.grdv1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "USE_DAYS", null, "{0:#,##0.#}")});
+            this.grdv1.IndicatorWidth = 40;
             this.grdv1.Name = "grdv1";
             this.grdv1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.grdv1.OptionsBehavior.AutoExpandAllGroups = true;
@@ -1463,6 +1445,7 @@
             this.grdv1.OptionsView.ShowGroupedColumns = true;
             this.grdv1.OptionsView.ShowGroupPanel = false;
             this.grdv1.RowHeight = 25;
+            this.grdv1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv1_CustomDrawRowIndicator);
             // 
             // gridColumn12
             // 
@@ -1594,7 +1577,7 @@
             this.btn_errchk.Authority = false;
             this.btn_errchk.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.btn_errchk.Image = ((System.Drawing.Image)(resources.GetObject("btn_errchk.Image")));
-            this.btn_errchk.Location = new System.Drawing.Point(461, 40);
+            this.btn_errchk.Location = new System.Drawing.Point(530, 24);
             this.btn_errchk.Name = "btn_errchk";
             this.btn_errchk.Size = new System.Drawing.Size(70, 24);
             this.btn_errchk.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.R;
@@ -1607,12 +1590,13 @@
             // 
             // txt_msg
             // 
+            this.txt_msg.Dock = System.Windows.Forms.DockStyle.Left;
             this.txt_msg.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.txt_msg.Location = new System.Drawing.Point(28, 40);
+            this.txt_msg.Location = new System.Drawing.Point(2, 22);
             this.txt_msg.Multiline = true;
             this.txt_msg.Name = "txt_msg";
             this.txt_msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_msg.Size = new System.Drawing.Size(427, 634);
+            this.txt_msg.Size = new System.Drawing.Size(525, 657);
             this.txt_msg.TabIndex = 276;
             // 
             // srGroupBox3
@@ -1670,30 +1654,17 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5});
-            gridFormatRule4.ApplyToRow = true;
-            gridFormatRule4.Name = "Format0";
-            formatConditionRuleExpression4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            formatConditionRuleExpression4.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression4.Expression = "[TYPE] = \'1\'";
-            gridFormatRule4.Rule = formatConditionRuleExpression4;
-            gridFormatRule5.ApplyToRow = true;
-            gridFormatRule5.Name = "Format1";
-            formatConditionRuleExpression5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            formatConditionRuleExpression5.Appearance.Options.UseBackColor = true;
-            formatConditionRuleExpression5.Expression = "[TYPE] = \'2\'";
-            gridFormatRule5.Rule = formatConditionRuleExpression5;
-            gridFormatRule6.ApplyToRow = true;
-            gridFormatRule6.Name = "Format2";
-            formatConditionRuleExpression6.Appearance.ForeColor = System.Drawing.Color.Red;
-            formatConditionRuleExpression6.Appearance.Options.UseForeColor = true;
-            formatConditionRuleExpression6.Expression = "[GUBN] = \'D\'";
-            gridFormatRule6.Rule = formatConditionRuleExpression6;
-            this.grdv2.FormatRules.Add(gridFormatRule4);
-            this.grdv2.FormatRules.Add(gridFormatRule5);
-            this.grdv2.FormatRules.Add(gridFormatRule6);
+            gridFormatRule2.ApplyToRow = true;
+            gridFormatRule2.Name = "Format0";
+            formatConditionRuleExpression2.Appearance.ForeColor = System.Drawing.Color.Red;
+            formatConditionRuleExpression2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleExpression2.Expression = "[ERR_CHK] = \'1\'";
+            gridFormatRule2.Rule = formatConditionRuleExpression2;
+            this.grdv2.FormatRules.Add(gridFormatRule2);
             this.grdv2.GridControl = this.grd2;
             this.grdv2.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "USE_DAYS", null, "{0:#,##0.#}")});
+            this.grdv2.IndicatorWidth = 40;
             this.grdv2.Name = "grdv2";
             this.grdv2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.grdv2.OptionsBehavior.AutoExpandAllGroups = true;
@@ -1705,6 +1676,7 @@
             this.grdv2.OptionsView.ShowGroupedColumns = true;
             this.grdv2.OptionsView.ShowGroupPanel = false;
             this.grdv2.RowHeight = 25;
+            this.grdv2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdv2_CustomDrawRowIndicator);
             // 
             // gridColumn2
             // 
@@ -1781,11 +1753,32 @@
             this.repositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = true;
             this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
             // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerReportsProgress = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // marqueeProgressBarControl1
+            // 
+            this.marqueeProgressBarControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.marqueeProgressBarControl1.EditValue = "EFWEF";
+            this.marqueeProgressBarControl1.Location = new System.Drawing.Point(411, 363);
+            this.marqueeProgressBarControl1.Name = "marqueeProgressBarControl1";
+            this.marqueeProgressBarControl1.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.marqueeProgressBarControl1.Properties.ShowTitle = true;
+            this.marqueeProgressBarControl1.Size = new System.Drawing.Size(519, 31);
+            this.marqueeProgressBarControl1.TabIndex = 483;
+            this.marqueeProgressBarControl1.Visible = false;
+            // 
             // duty3060
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1341, 757);
+            this.Controls.Add(this.marqueeProgressBarControl1);
             this.Controls.Add(this.srTabControl1);
             this.Controls.Add(this.srPanel1);
             this.Name = "duty3060";
@@ -1826,6 +1819,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdv2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1917,6 +1911,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private DevExpress.XtraEditors.MarqueeProgressBarControl marqueeProgressBarControl1;
     }
 }
 

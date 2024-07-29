@@ -23,6 +23,7 @@ namespace DUTY1000
             xrCheckBox1.Checked = ds.Tables["5080_REPORT"].Rows[0]["CHK1"].ToString() == "1" ? true : false;
             xrCheckBox2.Checked = ds.Tables["5080_REPORT"].Rows[0]["CHK2"].ToString() == "1" ? true : false;
             xrCheckBox3.Checked = ds.Tables["5080_REPORT"].Rows[0]["CHK3"].ToString() == "1" ? true : false;
+            xrCheckBox4.Checked = ds.Tables["5080_REPORT"].Rows[0]["CHK4"].ToString() == "1" ? true : false;
         }
 
         private void pan_sign_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

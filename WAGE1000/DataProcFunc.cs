@@ -133,38 +133,40 @@ namespace WAGE1000
 			}
 		}
 		//인사기본정보조회
-		public void GetSEARCH_MSTEMBSDatas(DataSet ds)
+		public void GetSEARCH_MSTEMBSDatas(int stat, DataSet ds)
 		{
 			try
 			{
-				string qry = " SELECT A.*, "
-						   + "        RTRIM(X1.GLOVNAM1) AS GLOV_NM, RTRIM(X2.DEPRNAM1) AS DEPR_NM, "
-						   + "        RTRIM(X3.JONGNAM1) AS JONG_NM, RTRIM(X4.POSINAM1) AS POSI_NM, RTRIM(X5.GRADNAM1) AS GRAD_NM, "
+                string qry = " SELECT A.*, "
+                           + "        RTRIM(X1.GLOVNAM1) AS GLOV_NM, RTRIM(X2.DEPRNAM1) AS DEPR_NM, "
+                           + "        RTRIM(X3.JONGNAM1) AS JONG_NM, RTRIM(X4.POSINAM1) AS POSI_NM, RTRIM(X5.GRADNAM1) AS GRAD_NM, "
                            + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))),6)+'-'+"
-						   + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))),7,7) AS JMNO_NM, "
-						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))) AS D_JMNO, "
-						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPHPN) as varchar(20))) AS D_HPNO, "
-						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTLN) as varchar(20))) AS D_TLNO, "
-						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD1) as varchar(100))) AS D_ADR1, "
-						   + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD2) as varchar(100))) AS D_ADR2, "
-						   + "        RTRIM(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD1) as varchar(100)))+' '+ "
-						   + "        cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD2) as varchar(100))) AS D_ADDR, "
-						   + "        (CASE A.EMBSIPDT WHEN '' THEN '' ELSE LEFT(A.EMBSIPDT,4)+'-'+SUBSTRING(A.EMBSIPDT,5,2)+'-'+SUBSTRING(A.EMBSIPDT,7,2) END) IPDT_NM, "
-						   + "        (CASE A.EMBSTSDT WHEN '' THEN '' ELSE LEFT(A.EMBSTSDT,4)+'-'+SUBSTRING(A.EMBSTSDT,5,2)+'-'+SUBSTRING(A.EMBSTSDT,7,2) END) TSDT_NM, "
-						   + "        (CASE A.EMBSSTAT WHEN 1 THEN '재직' WHEN 2 THEN '퇴직' ELSE '' END) STAT_NM, "
-						   + "        (CASE A.EMBSADGB WHEN '1' THEN 'Y' ELSE '' END) ADGB_NM "
-						   + "   FROM MSTEMBS A "
-						   + "   LEFT OUTER JOIN MSTGLOV X1 "
-						   + "     ON A.EMBSGLCD=X1.GLOVCODE "
-						   + "   LEFT OUTER JOIN MSTDEPR X2 "
-						   + "     ON A.EMBSDPCD=X2.DEPRCODE "
-						   + "   LEFT OUTER JOIN MSTJONG X3 "
-						   + "     ON A.EMBSJOCD=X3.JONGCODE "
+                           + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))),7,7) AS JMNO_NM, "
+                           + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTSA) as varchar(13))) AS D_JMNO, "
+                           + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPHPN) as varchar(20))) AS D_HPNO, "
+                           + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPTLN) as varchar(20))) AS D_TLNO, "
+                           + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD1) as varchar(100))) AS D_ADR1, "
+                           + "        RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD2) as varchar(100))) AS D_ADR2, "
+                           + "        RTRIM(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD1) as varchar(100)))+' '+ "
+                           + "        cast(DECRYPTBYPASSPHRASE('samilpas',A.EMBSPAD2) as varchar(100))) AS D_ADDR, "
+                           + "        (CASE A.EMBSIPDT WHEN '' THEN '' ELSE LEFT(A.EMBSIPDT,4)+'-'+SUBSTRING(A.EMBSIPDT,5,2)+'-'+SUBSTRING(A.EMBSIPDT,7,2) END) IPDT_NM, "
+                           + "        (CASE A.EMBSTSDT WHEN '' THEN '' ELSE LEFT(A.EMBSTSDT,4)+'-'+SUBSTRING(A.EMBSTSDT,5,2)+'-'+SUBSTRING(A.EMBSTSDT,7,2) END) TSDT_NM, "
+                           + "        (CASE A.EMBSSTAT WHEN 1 THEN '재직' WHEN 2 THEN '퇴직' ELSE '' END) STAT_NM, "
+                           + "        (CASE A.EMBSADGB WHEN '1' THEN 'Y' ELSE '' END) ADGB_NM "
+                           + "   FROM MSTEMBS A "
+                           + "   LEFT OUTER JOIN MSTGLOV X1 "
+                           + "     ON A.EMBSGLCD=X1.GLOVCODE "
+                           + "   LEFT OUTER JOIN MSTDEPR X2 "
+                           + "     ON A.EMBSDPCD=X2.DEPRCODE "
+                           + "   LEFT OUTER JOIN MSTJONG X3 "
+                           + "     ON A.EMBSJOCD=X3.JONGCODE "
                            + "   LEFT OUTER JOIN MSTPOSI X4 "
                            + "     ON A.EMBSPSCD=X4.POSICODE "
                            + "   LEFT OUTER JOIN MSTGRAD X5 "
-						   + "     ON A.EMBSGRCD=X5.GRADCODE "
-						   + "  ORDER BY A.EMBSSABN ";
+                           + "     ON A.EMBSGRCD=X5.GRADCODE ";
+                if (stat > 0)
+                    qry += "  WHERE EMBSSTAT = " + stat;
+                qry += "  ORDER BY A.EMBSJOCD, A.EMBSDPCD, A.EMBSSABN ";
 
 				DataTable dt = gd.GetDataInQuery(clib.TextToInt(DataAccess.DBtype), wagedb, qry);
 				dp.AddDatatable2Dataset("SEARCH_MSTEMBS", dt, ref ds);

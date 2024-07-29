@@ -41,8 +41,10 @@ namespace DUTY1000
                 sl_dept.EditValue = null;
                 sl_line.EditValue = null;
 
+                int t_index = grdv1.TopRowIndex;
                 df.Get9070_SEARCH_DEPTDatas(ds);
                 grd1.DataSource = ds.Tables["9070_SEARCH_DEPT"];
+                grdv1.TopRowIndex = t_index;
             }
             if (stat == 0 || stat == 2)
             {
@@ -54,8 +56,10 @@ namespace DUTY1000
                 sl_embs.EditValue = null;
                 sl_line2.EditValue = null;
 
+                int t_index = grdv2.TopRowIndex;
                 df.Get9070_SEARCH_SABNDatas(ds);
                 grd2.DataSource = ds.Tables["9070_SEARCH_SABN"];
+                grdv2.TopRowIndex = t_index;
             }
 
             DataTable _dt = new DataTable();
@@ -108,6 +112,8 @@ namespace DUTY1000
         {
             if (isNoError_um(1))
             {
+                int t_index = grdv1.TopRowIndex;
+                string _code = sl_dept.EditValue.ToString();
                 df.GetDEL_GW_LINE_DEPTDatas(2, sl_dept.EditValue.ToString(), ds);
                 for (int i = 0; i < ds.Tables["DEL_GW_LINE_DEPT"].Rows.Count; i++)
                 {
@@ -119,6 +125,9 @@ namespace DUTY1000
                 }
 
                 grd_dept.DataSource = ds.Tables["GRD_LINE"];
+                grdv1.TopRowIndex = t_index;
+                grdv1.FocusedRowHandle = _code == "" ? 0 : grdv1.LocateByValue("CODE", _code, null);
+
                 sl_dept.Enabled = false;
                 SetButtonEnable("0111");
             }
@@ -218,6 +227,8 @@ namespace DUTY1000
         {
             if (isNoError_um(3))
             {
+                int t_index = grdv2.TopRowIndex;
+                string _code = sl_embs.EditValue.ToString();
                 df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds);
                 for (int i = 0; i < ds.Tables["DEL_GW_LINE"].Rows.Count; i++)
                 {
@@ -229,6 +240,8 @@ namespace DUTY1000
                 }
 
                 grd_sabn.DataSource = ds.Tables["GRD_LINE2"];
+                grdv2.TopRowIndex = t_index;
+                grdv2.FocusedRowHandle = _code == "" ? 0 : grdv2.LocateByValue("SABN", _code, null);
                 sl_embs.Enabled = false;
                 SetButtonEnable2("0111");
             }

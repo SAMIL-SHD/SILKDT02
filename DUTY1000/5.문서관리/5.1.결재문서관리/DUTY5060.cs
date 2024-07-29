@@ -88,7 +88,7 @@ namespace DUTY1000
             {
                 proc();
                 if (ds.Tables["5060_AP_YCHG_LIST"].Rows.Count == 0)
-                    MessageBox.Show("결재할 연차/휴가 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("결재할 근태원 내역이 없습니다!", "결재", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void proc()
@@ -115,7 +115,7 @@ namespace DUTY1000
 						DataRow drow = ds.Tables["5060_AP_YCHG_LIST"].Rows[i];
 						if (drow["CHK"].ToString() == "1")
 						{
-							string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+							string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
 							df.Get5060_DUTY_TRSHREQDatas(drow["SEQNO"].ToString(), tb_nm, ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
@@ -165,7 +165,7 @@ namespace DUTY1000
 						DataRow drow = ds.Tables["5060_AP_YCHG_LIST"].Rows[i];
 						if (drow["CHK"].ToString() == "1")
 						{
-							string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+							string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
 							df.Get5060_DUTY_TRSHREQDatas(drow["SEQNO"].ToString(), tb_nm, ds);
 							if (ds.Tables[tb_nm].Rows.Count > 0)
 							{
@@ -226,7 +226,7 @@ namespace DUTY1000
 
                 string sldt = srow["SEQNO"].ToString();
                 string type = srow["TYPE"].ToString();
-                string tb_nm = type == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+                string tb_nm = type == "1" ? "DUTY_TRSHREQ" : type == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
 
                 df.Get5060_DUTY_TRSHREQDatas(srow["SEQNO"].ToString(), tb_nm, ds);
                 if (ds.Tables[tb_nm].Rows.Count > 0)
@@ -257,7 +257,7 @@ namespace DUTY1000
         {
             DataRow drow = grdv_ap.GetFocusedDataRow();
             string seqno = drow["SEQNO"].ToString();
-            string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+            string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
 
             int iTopRow = grdv_ap.TopRowIndex;
             if (e.ClickedItem.ToString() == "결재")
@@ -282,7 +282,7 @@ namespace DUTY1000
 
             string photo_nm = srow["ADD_PHOTO"].ToString();
             string dn_Path = Application.StartupPath + "\\DN_FILE\\" + photo_nm;
-            string type = srow["ADD_PHOTO"].ToString() == "1" ? "HREQ" : "JREQ";
+            string type = srow["TYPE"].ToString() == "1" ? "HREQ" : "JREQ";
             string year = srow["REQ_DATE"].ToString().Substring(0, 4);
 
             DialogResult dr = MessageBox.Show("해당 첨부파일을 다운로드 하시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);

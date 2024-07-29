@@ -156,6 +156,10 @@
             this.srLabel3 = new SilkRoad.UserControls.SRLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.휴가삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -592,6 +596,7 @@
             this.grd_hg.TabStop = false;
             this.grd_hg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_hg});
+            this.grd_hg.Click += new System.EventHandler(this.grd_hg_Click);
             // 
             // grdv_hg
             // 
@@ -609,9 +614,11 @@
             this.grdv_hg.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.grdv_hg.ColumnPanelRowHeight = 36;
             this.grdv_hg.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn39,
             this.gridColumn40,
+            this.gridColumn27,
             this.gridColumn41,
+            this.gridColumn28,
+            this.gridColumn39,
             this.gridColumn42,
             this.gridColumn13,
             this.gridColumn43,
@@ -668,7 +675,7 @@
             this.gridColumn39.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CODE", "{0}건")});
             this.gridColumn39.Visible = true;
-            this.gridColumn39.VisibleIndex = 0;
+            this.gridColumn39.VisibleIndex = 4;
             this.gridColumn39.Width = 130;
             // 
             // repositoryItemMemoEdit2
@@ -685,8 +692,8 @@
             this.gridColumn40.OptionsColumn.ReadOnly = true;
             this.gridColumn40.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn40.Visible = true;
-            this.gridColumn40.VisibleIndex = 2;
-            this.gridColumn40.Width = 116;
+            this.gridColumn40.VisibleIndex = 0;
+            this.gridColumn40.Width = 87;
             // 
             // gridColumn41
             // 
@@ -698,8 +705,8 @@
             this.gridColumn41.OptionsColumn.ReadOnly = true;
             this.gridColumn41.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn41.Visible = true;
-            this.gridColumn41.VisibleIndex = 1;
-            this.gridColumn41.Width = 111;
+            this.gridColumn41.VisibleIndex = 2;
+            this.gridColumn41.Width = 76;
             // 
             // gridColumn42
             // 
@@ -714,7 +721,7 @@
             this.gridColumn42.OptionsColumn.ReadOnly = true;
             this.gridColumn42.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn42.Visible = true;
-            this.gridColumn42.VisibleIndex = 3;
+            this.gridColumn42.VisibleIndex = 5;
             this.gridColumn42.Width = 129;
             // 
             // gridColumn13
@@ -735,7 +742,7 @@
             this.gridColumn13.OptionsColumn.ReadOnly = true;
             this.gridColumn13.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 4;
+            this.gridColumn13.VisibleIndex = 6;
             this.gridColumn13.Width = 42;
             // 
             // gridColumn43
@@ -755,7 +762,7 @@
             this.gridColumn43.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "HOLI_DAYS", "{0:#,##0.###}")});
             this.gridColumn43.Visible = true;
-            this.gridColumn43.VisibleIndex = 5;
+            this.gridColumn43.VisibleIndex = 7;
             this.gridColumn43.Width = 42;
             // 
             // gridColumn44
@@ -773,7 +780,7 @@
             this.gridColumn44.OptionsColumn.ReadOnly = true;
             this.gridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn44.Visible = true;
-            this.gridColumn44.VisibleIndex = 6;
+            this.gridColumn44.VisibleIndex = 8;
             this.gridColumn44.Width = 39;
             // 
             // gridColumn45
@@ -787,7 +794,7 @@
             this.gridColumn45.OptionsColumn.ReadOnly = true;
             this.gridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn45.Visible = true;
-            this.gridColumn45.VisibleIndex = 7;
+            this.gridColumn45.VisibleIndex = 9;
             this.gridColumn45.Width = 173;
             // 
             // gridColumn24
@@ -800,7 +807,7 @@
             this.gridColumn24.OptionsColumn.ReadOnly = true;
             this.gridColumn24.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 8;
+            this.gridColumn24.VisibleIndex = 10;
             this.gridColumn24.Width = 156;
             // 
             // gridColumn59
@@ -814,7 +821,7 @@
             this.gridColumn59.OptionsColumn.ReadOnly = true;
             this.gridColumn59.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn59.Visible = true;
-            this.gridColumn59.VisibleIndex = 9;
+            this.gridColumn59.VisibleIndex = 11;
             this.gridColumn59.Width = 217;
             // 
             // repositoryItemCheckEdit3
@@ -878,9 +885,11 @@
             this.grdv_del.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.grdv_del.ColumnPanelRowHeight = 36;
             this.grdv_del.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn29,
             this.gridColumn3,
+            this.gridColumn30,
+            this.gridColumn1,
             this.gridColumn4,
             this.gridColumn14,
             this.gridColumn5,
@@ -937,7 +946,7 @@
             this.gridColumn1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CODE", "{0}건")});
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.VisibleIndex = 4;
             this.gridColumn1.Width = 130;
             // 
             // gridColumn2
@@ -950,8 +959,8 @@
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 116;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 91;
             // 
             // gridColumn3
             // 
@@ -963,8 +972,8 @@
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 111;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 76;
             // 
             // gridColumn4
             // 
@@ -976,7 +985,7 @@
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 129;
             // 
             // gridColumn14
@@ -996,7 +1005,7 @@
             this.gridColumn14.OptionsColumn.ReadOnly = true;
             this.gridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 4;
+            this.gridColumn14.VisibleIndex = 6;
             this.gridColumn14.Width = 43;
             // 
             // gridColumn5
@@ -1016,7 +1025,7 @@
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "HOLI_DAYS", "{0:#,##0.###}")});
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 5;
+            this.gridColumn5.VisibleIndex = 7;
             this.gridColumn5.Width = 42;
             // 
             // gridColumn6
@@ -1028,7 +1037,7 @@
             this.gridColumn6.FieldName = "AP_TAG_NM";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.VisibleIndex = 8;
             this.gridColumn6.Width = 40;
             // 
             // gridColumn9
@@ -1042,7 +1051,7 @@
             this.gridColumn9.OptionsColumn.ReadOnly = true;
             this.gridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
+            this.gridColumn9.VisibleIndex = 9;
             this.gridColumn9.Width = 162;
             // 
             // repositoryItemMemoEdit4
@@ -1059,7 +1068,7 @@
             this.gridColumn25.OptionsColumn.ReadOnly = true;
             this.gridColumn25.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 8;
+            this.gridColumn25.VisibleIndex = 10;
             this.gridColumn25.Width = 154;
             // 
             // gridColumn10
@@ -1076,7 +1085,7 @@
             this.gridColumn10.OptionsColumn.ReadOnly = true;
             this.gridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 9;
+            this.gridColumn10.VisibleIndex = 11;
             this.gridColumn10.Width = 203;
             // 
             // gridColumn11
@@ -1091,7 +1100,7 @@
             this.gridColumn11.OptionsColumn.ReadOnly = true;
             this.gridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 10;
+            this.gridColumn11.VisibleIndex = 12;
             this.gridColumn11.Width = 86;
             // 
             // gridColumn12
@@ -1105,7 +1114,7 @@
             this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 11;
+            this.gridColumn12.VisibleIndex = 13;
             this.gridColumn12.Width = 80;
             // 
             // repositoryItemCheckEdit1
@@ -1885,6 +1894,58 @@
             this.휴가삭제ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.휴가삭제ToolStripMenuItem.Text = "휴가삭제";
             // 
+            // gridColumn27
+            // 
+            this.gridColumn27.Caption = "사번";
+            this.gridColumn27.FieldName = "SABN";
+            this.gridColumn27.Name = "gridColumn27";
+            this.gridColumn27.OptionsColumn.AllowEdit = false;
+            this.gridColumn27.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn27.OptionsColumn.ReadOnly = true;
+            this.gridColumn27.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn27.Visible = true;
+            this.gridColumn27.VisibleIndex = 1;
+            this.gridColumn27.Width = 78;
+            // 
+            // gridColumn28
+            // 
+            this.gridColumn28.Caption = "주민번호";
+            this.gridColumn28.FieldName = "D_JMNO";
+            this.gridColumn28.Name = "gridColumn28";
+            this.gridColumn28.OptionsColumn.AllowEdit = false;
+            this.gridColumn28.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn28.OptionsColumn.ReadOnly = true;
+            this.gridColumn28.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn28.Visible = true;
+            this.gridColumn28.VisibleIndex = 3;
+            this.gridColumn28.Width = 105;
+            // 
+            // gridColumn29
+            // 
+            this.gridColumn29.Caption = "사번";
+            this.gridColumn29.FieldName = "SABN";
+            this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.OptionsColumn.AllowEdit = false;
+            this.gridColumn29.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn29.OptionsColumn.ReadOnly = true;
+            this.gridColumn29.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn29.Visible = true;
+            this.gridColumn29.VisibleIndex = 1;
+            this.gridColumn29.Width = 82;
+            // 
+            // gridColumn30
+            // 
+            this.gridColumn30.Caption = "주민번호";
+            this.gridColumn30.FieldName = "D_JMNO";
+            this.gridColumn30.Name = "gridColumn30";
+            this.gridColumn30.OptionsColumn.AllowEdit = false;
+            this.gridColumn30.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn30.OptionsColumn.ReadOnly = true;
+            this.gridColumn30.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.gridColumn30.Visible = true;
+            this.gridColumn30.VisibleIndex = 3;
+            this.gridColumn30.Width = 112;
+            // 
             // duty8050
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2082,6 +2143,10 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 휴가삭제ToolStripMenuItem;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn30;
     }
 }
 

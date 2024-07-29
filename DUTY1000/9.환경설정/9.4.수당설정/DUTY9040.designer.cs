@@ -36,6 +36,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btn_exit = new SilkRoad.UserControls.SRButton();
             this.srPanel1 = new SilkRoad.UserControls.SRPanel();
+            this.lb_ends = new SilkRoad.UserControls.SRLabel();
             this.srTitle1 = new SilkRoad.UserControls.SRTitle();
             this.srPanel3 = new SilkRoad.UserControls.SRPanel();
             this.btn_set = new SilkRoad.UserControls.SRButton();
@@ -81,9 +82,8 @@
             this.grdv = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.col_night = new DevExpress.XtraGrid.Columns.GridColumn();
             this.srPanel4 = new SilkRoad.UserControls.SRPanel();
             this.grd_sd04 = new DevExpress.XtraGrid.GridControl();
@@ -104,7 +104,6 @@
             this.btn_s_excel = new SilkRoad.UserControls.SRButton();
             this.btn_s_canc = new SilkRoad.UserControls.SRButton();
             this.btn_search = new SilkRoad.UserControls.SRButton();
-            this.lb_ends = new SilkRoad.UserControls.SRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
             this.srPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel3)).BeginInit();
@@ -239,6 +238,19 @@
             this.srPanel1.Name = "srPanel1";
             this.srPanel1.Size = new System.Drawing.Size(1400, 46);
             this.srPanel1.TabIndex = 0;
+            // 
+            // lb_ends
+            // 
+            this.lb_ends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_ends.AutoSize = true;
+            this.lb_ends.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ends.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.lb_ends.ForeColor = System.Drawing.Color.Red;
+            this.lb_ends.Location = new System.Drawing.Point(960, 17);
+            this.lb_ends.Name = "lb_ends";
+            this.lb_ends.Size = new System.Drawing.Size(246, 15);
+            this.lb_ends.TabIndex = 520;
+            this.lb_ends.Text = "[기준일자는 퇴사일 조회조건에 해당합니다.]";
             // 
             // srTitle1
             // 
@@ -903,7 +915,6 @@
             this.gridColumn11,
             this.gridColumn12,
             this.gridColumn13,
-            this.gridColumn14,
             this.gridColumn16,
             this.col_night});
             gridFormatRule1.ApplyToRow = true;
@@ -962,25 +973,6 @@
             this.gridColumn13.VisibleIndex = 2;
             this.gridColumn13.Width = 104;
             // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "고정수당";
-            this.gridColumn14.ColumnEdit = this.repositoryItemTextEdit2;
-            this.gridColumn14.FieldName = "SD_FIX";
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn14.Width = 110;
-            // 
-            // repositoryItemTextEdit2
-            // 
-            this.repositoryItemTextEdit2.AllowMouseWheel = false;
-            this.repositoryItemTextEdit2.AutoHeight = false;
-            this.repositoryItemTextEdit2.Mask.EditMask = "n0";
-            this.repositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.repositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = true;
-            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
-            // 
             // gridColumn16
             // 
             this.gridColumn16.Caption = "건별수당";
@@ -993,6 +985,15 @@
             this.gridColumn16.VisibleIndex = 3;
             this.gridColumn16.Width = 110;
             // 
+            // repositoryItemTextEdit2
+            // 
+            this.repositoryItemTextEdit2.AllowMouseWheel = false;
+            this.repositoryItemTextEdit2.AutoHeight = false;
+            this.repositoryItemTextEdit2.Mask.EditMask = "n0";
+            this.repositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.repositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = true;
+            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            // 
             // col_night
             // 
             this.col_night.Caption = "N감독수당";
@@ -1001,8 +1002,6 @@
             this.col_night.Name = "col_night";
             this.col_night.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.col_night.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.col_night.Visible = true;
-            this.col_night.VisibleIndex = 4;
             this.col_night.Width = 110;
             // 
             // srPanel4
@@ -1256,6 +1255,7 @@
             this.pivotGridField7.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.pivotGridField7.FieldName = "SD_NIGHT_SPV";
             this.pivotGridField7.Name = "pivotGridField7";
+            this.pivotGridField7.Visible = false;
             this.pivotGridField7.Width = 75;
             // 
             // srPanel2
@@ -1356,19 +1356,6 @@
             this.btn_search.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
-            // 
-            // lb_ends
-            // 
-            this.lb_ends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lb_ends.AutoSize = true;
-            this.lb_ends.BackColor = System.Drawing.Color.Transparent;
-            this.lb_ends.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.lb_ends.ForeColor = System.Drawing.Color.Red;
-            this.lb_ends.Location = new System.Drawing.Point(960, 17);
-            this.lb_ends.Name = "lb_ends";
-            this.lb_ends.Size = new System.Drawing.Size(246, 15);
-            this.lb_ends.TabIndex = 520;
-            this.lb_ends.Text = "[기준일자는 퇴사일 조회조건에 해당합니다.]";
             // 
             // duty9040
             // 
@@ -1490,7 +1477,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn col_night;

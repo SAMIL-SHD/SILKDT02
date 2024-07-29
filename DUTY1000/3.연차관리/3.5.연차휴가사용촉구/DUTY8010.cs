@@ -238,14 +238,14 @@ namespace DUTY1000
             if (drow["DOC_TYPE"].ToString() == "202101") //1차촉진양식
             {
                 Rpt_8021 r2 = new Rpt_8021(drow["SAWON_NO"].ToString(), SilkRoad.Config.SRConfig.WorkPlaceName, "SEARCH_8010", ds);
-                r2.DataSource = ds.Tables["SEARCH_8010"].Select("SAWON_NO = '" + drow["SAWON_NO"] + "'").CopyToDataTable();
+                r2.DataSource = ds.Tables["SEARCH_8010"].Select("SAWON_NO = '" + drow["SAWON_NO"] + "' AND YC_SQ = " + drow["YC_SQ"] + "").CopyToDataTable();
                 r2.CreateDocument();
                 r.Pages.AddRange(r2.Pages);
             }
             else if (drow["DOC_TYPE"].ToString() == "202102") //2차촉진양식
             {
                 Rpt_8022 r2 = new Rpt_8022(drow["SAWON_NO"].ToString(), SilkRoad.Config.SRConfig.WorkPlaceName, "SEARCH_8010", ds);
-                r2.DataSource = ds.Tables["SEARCH_8010"].Select("SAWON_NO = '" + drow["SAWON_NO"] + "'").CopyToDataTable();
+                r2.DataSource = ds.Tables["SEARCH_8010"].Select("SAWON_NO = '" + drow["SAWON_NO"] + "' AND YC_SQ = " + drow["YC_SQ"] + "").CopyToDataTable();
                 r2.CreateDocument();
                 r.Pages.AddRange(r2.Pages);
             }

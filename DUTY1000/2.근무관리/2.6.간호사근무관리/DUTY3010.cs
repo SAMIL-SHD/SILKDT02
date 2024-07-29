@@ -614,14 +614,16 @@ namespace DUTY1000
 			else
 			{
 				int max_sq = clib.TextToInt(ds.Tables["SEARCH_PLAN"].Compute("MAX(PLAN_SQ)", null).ToString());
-				DataRow trow = ds.Tables["3010_SEARCH_NURS"].Select("CODE = '" + sl_nurs.EditValue.ToString() + "'")[0];
+
+                df.Get3010_NURS_OFFDatas(clib.DateToText(dat_yymm.DateTime), ds);
+                DataRow trow = ds.Tables["3010_NURS_OFF"].Select("SABN = '" + sl_nurs.EditValue.ToString() + "'")[0];
 				DataRow nrow = ds.Tables["SEARCH_PLAN"].NewRow();
                 //nrow["YYMM_SQ"] = cmb_sq.SelectedIndex + 1;
                 nrow["SAWON_NO"] = sl_nurs.EditValue.ToString();
 				nrow["SAWON_NM"] = trow["NAME"].ToString();
 				nrow["PLAN_SQ"] = max_sq + 1;
-				nrow["STAN_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
-                nrow["ALLOW_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
+				nrow["STAN_OFF"] = clib.TextToDecimal(trow["GJTMTM04"].ToString());
+                nrow["ALLOW_OFF"] = clib.TextToDecimal(trow["GJTMTM04"].ToString());
                 ds.Tables["SEARCH_PLAN"].Rows.Add(nrow);
 			}
 		}
@@ -713,7 +715,10 @@ namespace DUTY1000
                 DataRow drow = ds.Tables["SEARCH_PLAN"].Rows[i];
                 for (int d = 1; d <= lastday; d++)
                 {
-                    lc_cnt += drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() == "" ? 0 : 1;
+                    if (ds.Tables["3010_GNMU"].Select("G_CODE = '" + drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() + "'").Length > 0) //무급휴가 체크
+                        lc_cnt += ds.Tables["3010_GNMU"].Select("G_CODE = '" + drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() + "'")[0]["G_TYPE"].ToString() == "14" ? 0 : 1;                    
+                    else
+                        lc_cnt += drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() == "" ? 0 : 1;
                 }
                 if (lastday != lc_cnt)
                     drow["ALLOW_OFF"] = Math.Round(clib.TextToDecimal(drow["STAN_OFF"].ToString()) * lc_cnt / lastday, 0, MidpointRounding.AwayFromZero).ToString();
