@@ -116,12 +116,15 @@ namespace DUTY1000
                     txt_yc_day.Text = drow["YC_DAY"].ToString();
                     sr_bgcolor.Text = drow["G_COLOR"].ToString().Trim();	
 					_Flag = "";
-                    SetButtonEnable("1101");
+                    if (drow["PSTY"].ToString() == "C")
+                        SetButtonEnable("0101");
+                    else
+                        SetButtonEnable("0111");
                 }
 				else
 				{
 					_Flag = "C"; //신규
-					SetButtonEnable("1111");
+					SetButtonEnable("0101");
 				}
 				txt_gcode.Enabled = false;
 				txt_nam1.Focus();
@@ -281,7 +284,8 @@ namespace DUTY1000
                 return;
 
 			txt_gcode.Text = grdv1.GetFocusedRowCellValue("G_CODE").ToString();
-			btn_proc.PerformClick();
+            btn_proc.Enabled = true;
+            btn_proc.PerformClick();
 		}		
 		
 		private void cmb_gtype_SelectedIndexChanged(object sender, EventArgs e)

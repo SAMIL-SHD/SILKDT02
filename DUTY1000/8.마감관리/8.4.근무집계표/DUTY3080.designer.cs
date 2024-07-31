@@ -222,74 +222,71 @@
             this.btn_search = new SilkRoad.UserControls.SRButton();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.grd_search = new DevExpress.XtraGrid.GridControl();
-            this.grdv_search = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
-            this.gridBand8 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn65 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand9 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.bandedGridColumn66 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn67 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn96 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn68 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn90 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn91 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn92 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn93 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn94 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn95 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn97 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn98 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn99 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn100 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn101 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn102 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn103 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn104 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn105 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn106 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn107 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn108 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn109 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn110 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn111 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn112 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn113 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn114 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn115 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn116 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand10 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.bandedGridColumn117 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn118 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn126 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn119 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn120 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn121 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn122 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn123 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn124 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn125 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn127 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn128 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn129 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn130 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn131 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn132 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn133 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn134 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn135 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn136 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn137 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn138 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn139 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn140 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn141 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn142 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn143 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn144 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn145 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn146 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.grdv_search = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.bandedGridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn65 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn117 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn118 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn119 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn120 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn121 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn122 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn123 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn124 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn125 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn126 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn127 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn128 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn129 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn130 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn131 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn132 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn133 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn134 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn135 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn136 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn137 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn138 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn139 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn140 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn141 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn142 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn143 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn144 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn145 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn146 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn66 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn67 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn68 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn90 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn91 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn92 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn93 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn94 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn95 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn96 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn97 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn98 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn99 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn100 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn101 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn102 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn103 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn104 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn105 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn106 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn107 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn108 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn109 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn111 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn112 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn113 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn114 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn115 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bandedGridColumn116 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.bandedGridColumn57 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -453,7 +450,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemMemoEdit2,
             this.repositoryItemMemoEdit3});
-            this.grd1.Size = new System.Drawing.Size(1155, 548);
+            this.grd1.Size = new System.Drawing.Size(1153, 547);
             this.grd1.TabIndex = 0;
             this.grd1.TabStop = false;
             this.grd1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -588,7 +585,7 @@
             this.gridBand1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.gridBand1.Name = "gridBand1";
             this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 410;
+            this.gridBand1.Width = 294;
             // 
             // col_partname
             // 
@@ -658,7 +655,6 @@
             this.col_remark.OptionsColumn.AllowMove = false;
             this.col_remark.OptionsColumn.ReadOnly = true;
             this.col_remark.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.col_remark.Visible = true;
             // 
             // col_chk
             // 
@@ -672,7 +668,6 @@
             this.col_chk.OptionsColumn.AllowMove = false;
             this.col_chk.OptionsColumn.ReadOnly = true;
             this.col_chk.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.col_chk.Visible = true;
             this.col_chk.Width = 41;
             // 
             // gridBand2
@@ -1310,7 +1305,7 @@
             this.pnlDetailTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDetailTop.Location = new System.Drawing.Point(0, 0);
             this.pnlDetailTop.Name = "pnlDetailTop";
-            this.pnlDetailTop.Size = new System.Drawing.Size(1155, 44);
+            this.pnlDetailTop.Size = new System.Drawing.Size(1153, 44);
             this.pnlDetailTop.TabIndex = 0;
             // 
             // cmb_gubn
@@ -1537,7 +1532,7 @@
             this.srPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.srPanel4.Location = new System.Drawing.Point(0, 0);
             this.srPanel4.Name = "srPanel4";
-            this.srPanel4.Size = new System.Drawing.Size(1155, 44);
+            this.srPanel4.Size = new System.Drawing.Size(1153, 44);
             this.srPanel4.TabIndex = 0;
             // 
             // btn_excel
@@ -1693,7 +1688,7 @@
             this.xtraTabPage1.Controls.Add(this.grd1);
             this.xtraTabPage1.Controls.Add(this.pnlDetailTop);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1155, 592);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1153, 591);
             this.xtraTabPage1.Text = "근무집계작업";
             // 
             // xtraTabPage2
@@ -1705,7 +1700,7 @@
             this.xtraTabPage2.Controls.Add(this.grd_end);
             this.xtraTabPage2.Controls.Add(this.srPanel5);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1155, 592);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1153, 591);
             this.xtraTabPage2.Text = "급여처리";
             // 
             // grd_end
@@ -1717,7 +1712,7 @@
             this.grd_end.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1,
             this.grd_d_chk});
-            this.grd_end.Size = new System.Drawing.Size(1155, 548);
+            this.grd_end.Size = new System.Drawing.Size(1153, 547);
             this.grd_end.TabIndex = 3;
             this.grd_end.TabStop = false;
             this.grd_end.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1906,7 +1901,6 @@
             this.bandedGridColumn5.Name = "bandedGridColumn5";
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn5.OptionsColumn.AllowMove = false;
             this.bandedGridColumn5.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn5.Visible = true;
@@ -1919,7 +1913,6 @@
             this.bandedGridColumn7.Name = "bandedGridColumn7";
             this.bandedGridColumn7.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn7.OptionsColumn.AllowMove = false;
             this.bandedGridColumn7.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn7.Visible = true;
@@ -1934,7 +1927,6 @@
             this.bandedGridColumn8.Name = "bandedGridColumn8";
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn8.OptionsColumn.AllowMove = false;
             this.bandedGridColumn8.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn8.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -1951,7 +1943,6 @@
             this.bandedGridColumn9.Name = "bandedGridColumn9";
             this.bandedGridColumn9.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn9.OptionsColumn.AllowMove = false;
             this.bandedGridColumn9.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn9.Visible = true;
@@ -3188,7 +3179,7 @@
             this.srPanel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.srPanel5.Location = new System.Drawing.Point(0, 0);
             this.srPanel5.Name = "srPanel5";
-            this.srPanel5.Size = new System.Drawing.Size(1155, 44);
+            this.srPanel5.Size = new System.Drawing.Size(1153, 44);
             this.srPanel5.TabIndex = 2;
             // 
             // btn_canc2
@@ -3214,7 +3205,7 @@
             this.btn_wage_canc.Authority = false;
             this.btn_wage_canc.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.btn_wage_canc.Image = ((System.Drawing.Image)(resources.GetObject("btn_wage_canc.Image")));
-            this.btn_wage_canc.Location = new System.Drawing.Point(1068, 8);
+            this.btn_wage_canc.Location = new System.Drawing.Point(1066, 8);
             this.btn_wage_canc.Name = "btn_wage_canc";
             this.btn_wage_canc.Size = new System.Drawing.Size(80, 24);
             this.btn_wage_canc.SRAuthCrud = SilkRoad.UserControls.SRButton.AuthCrudType.NONE;
@@ -3366,7 +3357,7 @@
             this.xtraTabPage3.Controls.Add(this.grd_search);
             this.xtraTabPage3.Controls.Add(this.srPanel4);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1155, 592);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1153, 591);
             this.xtraTabPage3.Text = "근무수당조회";
             // 
             // grd_search
@@ -3378,7 +3369,7 @@
             this.grd_search.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit4,
             this.repositoryItemCheckEdit2});
-            this.grd_search.Size = new System.Drawing.Size(1155, 548);
+            this.grd_search.Size = new System.Drawing.Size(1153, 547);
             this.grd_search.TabIndex = 4;
             this.grd_search.TabStop = false;
             this.grd_search.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -3407,13 +3398,9 @@
             this.grdv_search.Appearance.Row.Options.UseFont = true;
             this.grdv_search.Appearance.ViewCaption.Font = new System.Drawing.Font("굴림체", 9F);
             this.grdv_search.Appearance.ViewCaption.Options.UseFont = true;
-            this.grdv_search.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBand8,
-            this.gridBand9,
-            this.gridBand10});
             this.grdv_search.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.grdv_search.ColumnPanelRowHeight = 25;
-            this.grdv_search.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.grdv_search.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.bandedGridColumn4,
             this.bandedGridColumn10,
             this.bandedGridColumn11,
@@ -3531,7 +3518,17 @@
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPYSD27", this.bandedGridColumn113, "{0:#,###}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPYSD28", this.bandedGridColumn114, "{0:#,###}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPYSD29", this.bandedGridColumn115, "{0:#,###}"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPYSD30", this.bandedGridColumn116, "{0:#,###}")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPYSD30", this.bandedGridColumn116, "{0:#,###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT01", this.bandedGridColumn117, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT02", this.bandedGridColumn118, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT03", this.bandedGridColumn119, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT04", this.bandedGridColumn120, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT05", this.bandedGridColumn121, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT06", this.bandedGridColumn122, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT07", this.bandedGridColumn123, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT08", this.bandedGridColumn124, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT09", this.bandedGridColumn125, "{0:#,###.###}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "WGPCGT10", this.bandedGridColumn126, "{0:#,###.###}")});
             this.grdv_search.Name = "grdv_search";
             this.grdv_search.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.grdv_search.OptionsBehavior.Editable = false;
@@ -3542,19 +3539,8 @@
             this.grdv_search.OptionsView.ColumnAutoWidth = false;
             this.grdv_search.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
             this.grdv_search.OptionsView.ShowFooter = true;
-            this.grdv_search.OptionsView.ShowGroupPanel = false;
+            this.grdv_search.OptionsView.ShowGroupedColumns = true;
             this.grdv_search.RowHeight = 36;
-            // 
-            // gridBand8
-            // 
-            this.gridBand8.Columns.Add(this.bandedGridColumn4);
-            this.gridBand8.Columns.Add(this.bandedGridColumn10);
-            this.gridBand8.Columns.Add(this.bandedGridColumn11);
-            this.gridBand8.Columns.Add(this.bandedGridColumn65);
-            this.gridBand8.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            this.gridBand8.Name = "gridBand8";
-            this.gridBand8.VisibleIndex = 0;
-            this.gridBand8.Width = 310;
             // 
             // bandedGridColumn4
             // 
@@ -3565,10 +3551,10 @@
             this.bandedGridColumn4.Name = "bandedGridColumn4";
             this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn4.OptionsColumn.AllowMove = false;
             this.bandedGridColumn4.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn4.Visible = true;
+            this.bandedGridColumn4.VisibleIndex = 0;
             this.bandedGridColumn4.Width = 63;
             // 
             // bandedGridColumn10
@@ -3578,10 +3564,10 @@
             this.bandedGridColumn10.Name = "bandedGridColumn10";
             this.bandedGridColumn10.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn10.OptionsColumn.AllowMove = false;
             this.bandedGridColumn10.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn10.Visible = true;
+            this.bandedGridColumn10.VisibleIndex = 1;
             this.bandedGridColumn10.Width = 84;
             // 
             // bandedGridColumn11
@@ -3593,12 +3579,12 @@
             this.bandedGridColumn11.Name = "bandedGridColumn11";
             this.bandedGridColumn11.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn11.OptionsColumn.AllowMove = false;
             this.bandedGridColumn11.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn11.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SAWON_NO", "{0:#,###} 명")});
             this.bandedGridColumn11.Visible = true;
+            this.bandedGridColumn11.VisibleIndex = 2;
             this.bandedGridColumn11.Width = 81;
             // 
             // bandedGridColumn65
@@ -3610,47 +3596,553 @@
             this.bandedGridColumn65.Name = "bandedGridColumn65";
             this.bandedGridColumn65.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn65.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn65.OptionsColumn.AllowMove = false;
             this.bandedGridColumn65.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn65.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn65.Visible = true;
+            this.bandedGridColumn65.VisibleIndex = 3;
             this.bandedGridColumn65.Width = 82;
             // 
-            // gridBand9
+            // bandedGridColumn117
             // 
-            this.gridBand9.Columns.Add(this.bandedGridColumn66);
-            this.gridBand9.Columns.Add(this.bandedGridColumn67);
-            this.gridBand9.Columns.Add(this.bandedGridColumn96);
-            this.gridBand9.Columns.Add(this.bandedGridColumn68);
-            this.gridBand9.Columns.Add(this.bandedGridColumn90);
-            this.gridBand9.Columns.Add(this.bandedGridColumn91);
-            this.gridBand9.Columns.Add(this.bandedGridColumn92);
-            this.gridBand9.Columns.Add(this.bandedGridColumn93);
-            this.gridBand9.Columns.Add(this.bandedGridColumn94);
-            this.gridBand9.Columns.Add(this.bandedGridColumn95);
-            this.gridBand9.Columns.Add(this.bandedGridColumn97);
-            this.gridBand9.Columns.Add(this.bandedGridColumn98);
-            this.gridBand9.Columns.Add(this.bandedGridColumn99);
-            this.gridBand9.Columns.Add(this.bandedGridColumn100);
-            this.gridBand9.Columns.Add(this.bandedGridColumn101);
-            this.gridBand9.Columns.Add(this.bandedGridColumn102);
-            this.gridBand9.Columns.Add(this.bandedGridColumn103);
-            this.gridBand9.Columns.Add(this.bandedGridColumn104);
-            this.gridBand9.Columns.Add(this.bandedGridColumn105);
-            this.gridBand9.Columns.Add(this.bandedGridColumn106);
-            this.gridBand9.Columns.Add(this.bandedGridColumn107);
-            this.gridBand9.Columns.Add(this.bandedGridColumn108);
-            this.gridBand9.Columns.Add(this.bandedGridColumn109);
-            this.gridBand9.Columns.Add(this.bandedGridColumn110);
-            this.gridBand9.Columns.Add(this.bandedGridColumn111);
-            this.gridBand9.Columns.Add(this.bandedGridColumn112);
-            this.gridBand9.Columns.Add(this.bandedGridColumn113);
-            this.gridBand9.Columns.Add(this.bandedGridColumn114);
-            this.gridBand9.Columns.Add(this.bandedGridColumn115);
-            this.gridBand9.Columns.Add(this.bandedGridColumn116);
-            this.gridBand9.Name = "gridBand9";
-            this.gridBand9.VisibleIndex = 1;
-            this.gridBand9.Width = 815;
+            this.bandedGridColumn117.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn117.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn117.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn117.Caption = "당직시간";
+            this.bandedGridColumn117.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn117.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn117.FieldName = "WGPCGT01";
+            this.bandedGridColumn117.Name = "bandedGridColumn117";
+            this.bandedGridColumn117.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn117.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn117.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn117.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn117.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn117.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT01", "{0:#,###.#}")});
+            this.bandedGridColumn117.Visible = true;
+            this.bandedGridColumn117.VisibleIndex = 14;
+            this.bandedGridColumn117.Width = 70;
+            // 
+            // bandedGridColumn118
+            // 
+            this.bandedGridColumn118.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn118.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn118.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn118.Caption = "나이트";
+            this.bandedGridColumn118.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn118.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn118.FieldName = "WGPCGT02";
+            this.bandedGridColumn118.Name = "bandedGridColumn118";
+            this.bandedGridColumn118.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn118.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn118.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn118.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn118.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn118.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT02", "{0:#,###.#}")});
+            this.bandedGridColumn118.Visible = true;
+            this.bandedGridColumn118.VisibleIndex = 15;
+            this.bandedGridColumn118.Width = 70;
+            // 
+            // bandedGridColumn119
+            // 
+            this.bandedGridColumn119.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn119.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn119.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn119.Caption = "야식";
+            this.bandedGridColumn119.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn119.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn119.FieldName = "WGPCGT03";
+            this.bandedGridColumn119.Name = "bandedGridColumn119";
+            this.bandedGridColumn119.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn119.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn119.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn119.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn119.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn119.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT03", "{0:#,###.#}")});
+            this.bandedGridColumn119.Visible = true;
+            this.bandedGridColumn119.VisibleIndex = 17;
+            this.bandedGridColumn119.Width = 70;
+            // 
+            // bandedGridColumn120
+            // 
+            this.bandedGridColumn120.Caption = "연장시간";
+            this.bandedGridColumn120.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn120.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn120.FieldName = "WGPCGT04";
+            this.bandedGridColumn120.Name = "bandedGridColumn120";
+            this.bandedGridColumn120.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn120.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn120.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn120.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn120.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn120.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TCNT", "{0:#,###.#}")});
+            this.bandedGridColumn120.Visible = true;
+            this.bandedGridColumn120.VisibleIndex = 18;
+            this.bandedGridColumn120.Width = 70;
+            // 
+            // bandedGridColumn121
+            // 
+            this.bandedGridColumn121.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn121.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn121.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn121.Caption = "OFF";
+            this.bandedGridColumn121.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn121.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn121.FieldName = "WGPCGT05";
+            this.bandedGridColumn121.Name = "bandedGridColumn121";
+            this.bandedGridColumn121.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn121.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn121.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn121.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn121.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn121.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT05", "{0:#,###.#}")});
+            this.bandedGridColumn121.Visible = true;
+            this.bandedGridColumn121.VisibleIndex = 19;
+            this.bandedGridColumn121.Width = 70;
+            // 
+            // bandedGridColumn122
+            // 
+            this.bandedGridColumn122.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn122.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn122.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn122.Caption = "휴근시간";
+            this.bandedGridColumn122.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn122.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn122.FieldName = "WGPCGT06";
+            this.bandedGridColumn122.Name = "bandedGridColumn122";
+            this.bandedGridColumn122.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn122.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn122.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn122.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn122.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn122.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT06", "{0:#,###.#}")});
+            this.bandedGridColumn122.Visible = true;
+            this.bandedGridColumn122.VisibleIndex = 20;
+            this.bandedGridColumn122.Width = 70;
+            // 
+            // bandedGridColumn123
+            // 
+            this.bandedGridColumn123.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn123.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn123.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn123.Caption = "콜";
+            this.bandedGridColumn123.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn123.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn123.FieldName = "WGPCGT07";
+            this.bandedGridColumn123.Name = "bandedGridColumn123";
+            this.bandedGridColumn123.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn123.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn123.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn123.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn123.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn123.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT07", "{0:#,###.#}")});
+            this.bandedGridColumn123.Visible = true;
+            this.bandedGridColumn123.VisibleIndex = 21;
+            this.bandedGridColumn123.Width = 70;
+            // 
+            // bandedGridColumn124
+            // 
+            this.bandedGridColumn124.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn124.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn124.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn124.Caption = "콜대기";
+            this.bandedGridColumn124.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn124.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn124.FieldName = "WGPCGT08";
+            this.bandedGridColumn124.Name = "bandedGridColumn124";
+            this.bandedGridColumn124.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn124.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn124.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn124.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn124.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn124.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT08", "{0:#,###.#}")});
+            this.bandedGridColumn124.Visible = true;
+            this.bandedGridColumn124.VisibleIndex = 22;
+            this.bandedGridColumn124.Width = 70;
+            // 
+            // bandedGridColumn125
+            // 
+            this.bandedGridColumn125.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn125.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn125.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn125.Caption = "연차정산";
+            this.bandedGridColumn125.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn125.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn125.FieldName = "WGPCGT09";
+            this.bandedGridColumn125.Name = "bandedGridColumn125";
+            this.bandedGridColumn125.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn125.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn125.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn125.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn125.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn125.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT09", "{0:#,###.#}")});
+            this.bandedGridColumn125.Visible = true;
+            this.bandedGridColumn125.VisibleIndex = 23;
+            this.bandedGridColumn125.Width = 70;
+            // 
+            // bandedGridColumn126
+            // 
+            this.bandedGridColumn126.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn126.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn126.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn126.Caption = "나이트감독";
+            this.bandedGridColumn126.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn126.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn126.FieldName = "WGPCGT10";
+            this.bandedGridColumn126.Name = "bandedGridColumn126";
+            this.bandedGridColumn126.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn126.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn126.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn126.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn126.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn126.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT10", "{0:#,###.#}")});
+            this.bandedGridColumn126.Visible = true;
+            this.bandedGridColumn126.VisibleIndex = 16;
+            this.bandedGridColumn126.Width = 70;
+            // 
+            // bandedGridColumn127
+            // 
+            this.bandedGridColumn127.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn127.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn127.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn127.Caption = "C011";
+            this.bandedGridColumn127.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn127.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn127.FieldName = "WGPCGT11";
+            this.bandedGridColumn127.Name = "bandedGridColumn127";
+            this.bandedGridColumn127.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn127.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn127.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn127.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn127.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn127.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT11", "{0:#,###.#}")});
+            this.bandedGridColumn127.Width = 70;
+            // 
+            // bandedGridColumn128
+            // 
+            this.bandedGridColumn128.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn128.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn128.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn128.Caption = "C012";
+            this.bandedGridColumn128.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn128.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn128.FieldName = "WGPCGT12";
+            this.bandedGridColumn128.Name = "bandedGridColumn128";
+            this.bandedGridColumn128.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn128.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn128.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn128.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn128.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn128.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT12", "{0:#,###.#}")});
+            this.bandedGridColumn128.Width = 70;
+            // 
+            // bandedGridColumn129
+            // 
+            this.bandedGridColumn129.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn129.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn129.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn129.Caption = "C013";
+            this.bandedGridColumn129.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn129.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn129.FieldName = "WGPCGT13";
+            this.bandedGridColumn129.Name = "bandedGridColumn129";
+            this.bandedGridColumn129.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn129.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn129.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn129.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn129.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn129.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT13", "{0:#,###.#}")});
+            this.bandedGridColumn129.Width = 70;
+            // 
+            // bandedGridColumn130
+            // 
+            this.bandedGridColumn130.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn130.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn130.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn130.Caption = "C014";
+            this.bandedGridColumn130.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn130.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn130.FieldName = "WGPCGT14";
+            this.bandedGridColumn130.Name = "bandedGridColumn130";
+            this.bandedGridColumn130.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn130.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn130.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn130.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn130.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn130.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT14", "{0:#,###.#}")});
+            this.bandedGridColumn130.Width = 70;
+            // 
+            // bandedGridColumn131
+            // 
+            this.bandedGridColumn131.Caption = "C015";
+            this.bandedGridColumn131.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn131.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn131.FieldName = "WGPCGT15";
+            this.bandedGridColumn131.Name = "bandedGridColumn131";
+            this.bandedGridColumn131.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn131.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn131.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn131.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn131.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn131.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DANG_TTIME", "{0:#,###.#}")});
+            this.bandedGridColumn131.Width = 70;
+            // 
+            // bandedGridColumn132
+            // 
+            this.bandedGridColumn132.Caption = "C016";
+            this.bandedGridColumn132.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn132.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn132.FieldName = "WGPCGT16";
+            this.bandedGridColumn132.Name = "bandedGridColumn132";
+            this.bandedGridColumn132.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn132.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn132.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn132.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn132.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn132.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TTIME", "{0:#,###.#}")});
+            this.bandedGridColumn132.Width = 70;
+            // 
+            // bandedGridColumn133
+            // 
+            this.bandedGridColumn133.Caption = "C017";
+            this.bandedGridColumn133.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn133.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn133.FieldName = "WGPCGT17";
+            this.bandedGridColumn133.Name = "bandedGridColumn133";
+            this.bandedGridColumn133.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn133.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn133.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn133.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn133.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn133.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TTIME", "{0:#,###.#}")});
+            this.bandedGridColumn133.Width = 70;
+            // 
+            // bandedGridColumn134
+            // 
+            this.bandedGridColumn134.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn134.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn134.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn134.Caption = "C018";
+            this.bandedGridColumn134.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn134.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn134.FieldName = "WGPCGT18";
+            this.bandedGridColumn134.Name = "bandedGridColumn134";
+            this.bandedGridColumn134.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn134.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn134.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn134.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn134.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn134.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT04", "{0:#,###.#}")});
+            this.bandedGridColumn134.Width = 70;
+            // 
+            // bandedGridColumn135
+            // 
+            this.bandedGridColumn135.Caption = "C019";
+            this.bandedGridColumn135.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn135.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn135.FieldName = "WGPCGT19";
+            this.bandedGridColumn135.Name = "bandedGridColumn135";
+            this.bandedGridColumn135.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn135.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn135.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn135.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn135.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn135.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT19", "{0:#,###.#}")});
+            this.bandedGridColumn135.Width = 70;
+            // 
+            // bandedGridColumn136
+            // 
+            this.bandedGridColumn136.Caption = "C020";
+            this.bandedGridColumn136.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn136.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn136.FieldName = "WGPCGT20";
+            this.bandedGridColumn136.Name = "bandedGridColumn136";
+            this.bandedGridColumn136.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn136.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn136.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn136.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn136.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn136.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT20", "{0:#,###.#}")});
+            this.bandedGridColumn136.Width = 70;
+            // 
+            // bandedGridColumn137
+            // 
+            this.bandedGridColumn137.Caption = "C021";
+            this.bandedGridColumn137.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn137.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn137.FieldName = "WGPCGT21";
+            this.bandedGridColumn137.Name = "bandedGridColumn137";
+            this.bandedGridColumn137.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn137.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn137.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn137.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn137.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn137.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT21", "{0:#,###.#}")});
+            this.bandedGridColumn137.Width = 70;
+            // 
+            // bandedGridColumn138
+            // 
+            this.bandedGridColumn138.Caption = "C022";
+            this.bandedGridColumn138.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn138.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn138.FieldName = "WGPCGT22";
+            this.bandedGridColumn138.Name = "bandedGridColumn138";
+            this.bandedGridColumn138.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn138.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn138.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn138.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn138.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn138.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT22", "{0:#,###.#}")});
+            this.bandedGridColumn138.Width = 70;
+            // 
+            // bandedGridColumn139
+            // 
+            this.bandedGridColumn139.Caption = "C023";
+            this.bandedGridColumn139.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn139.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn139.FieldName = "WGPCGT23";
+            this.bandedGridColumn139.Name = "bandedGridColumn139";
+            this.bandedGridColumn139.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn139.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn139.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn139.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn139.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn139.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT23", "{0:#,###.#}")});
+            this.bandedGridColumn139.Width = 70;
+            // 
+            // bandedGridColumn140
+            // 
+            this.bandedGridColumn140.Caption = "C024";
+            this.bandedGridColumn140.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn140.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn140.FieldName = "WGPCGT24";
+            this.bandedGridColumn140.Name = "bandedGridColumn140";
+            this.bandedGridColumn140.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn140.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn140.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn140.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn140.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn140.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT24", "{0:#,###.#}")});
+            this.bandedGridColumn140.Width = 70;
+            // 
+            // bandedGridColumn141
+            // 
+            this.bandedGridColumn141.Caption = "C025";
+            this.bandedGridColumn141.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn141.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn141.FieldName = "WGPCGT25";
+            this.bandedGridColumn141.Name = "bandedGridColumn141";
+            this.bandedGridColumn141.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn141.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn141.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn141.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn141.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn141.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT25", "{0:#,###.#}")});
+            this.bandedGridColumn141.Width = 70;
+            // 
+            // bandedGridColumn142
+            // 
+            this.bandedGridColumn142.Caption = "C026";
+            this.bandedGridColumn142.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn142.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn142.FieldName = "WGPCGT26";
+            this.bandedGridColumn142.Name = "bandedGridColumn142";
+            this.bandedGridColumn142.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn142.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn142.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn142.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn142.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn142.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT26", "{0:#,###.#}")});
+            this.bandedGridColumn142.Width = 70;
+            // 
+            // bandedGridColumn143
+            // 
+            this.bandedGridColumn143.Caption = "C027";
+            this.bandedGridColumn143.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn143.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn143.FieldName = "WGPCGT27";
+            this.bandedGridColumn143.Name = "bandedGridColumn143";
+            this.bandedGridColumn143.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn143.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn143.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn143.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn143.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn143.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT27", "{0:#,###.#}")});
+            this.bandedGridColumn143.Width = 70;
+            // 
+            // bandedGridColumn144
+            // 
+            this.bandedGridColumn144.Caption = "C028";
+            this.bandedGridColumn144.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn144.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn144.FieldName = "WGPCGT28";
+            this.bandedGridColumn144.Name = "bandedGridColumn144";
+            this.bandedGridColumn144.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn144.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn144.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn144.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn144.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn144.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT28", "{0:#,###.#}")});
+            this.bandedGridColumn144.Width = 70;
+            // 
+            // bandedGridColumn145
+            // 
+            this.bandedGridColumn145.Caption = "C029";
+            this.bandedGridColumn145.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn145.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn145.FieldName = "WGPCGT29";
+            this.bandedGridColumn145.Name = "bandedGridColumn145";
+            this.bandedGridColumn145.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn145.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn145.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn145.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn145.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn145.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT29", "{0:#,###.#}")});
+            this.bandedGridColumn145.Width = 70;
+            // 
+            // bandedGridColumn146
+            // 
+            this.bandedGridColumn146.Caption = "C030";
+            this.bandedGridColumn146.DisplayFormat.FormatString = "{0:#,###.###}";
+            this.bandedGridColumn146.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn146.FieldName = "WGPCGT30";
+            this.bandedGridColumn146.Name = "bandedGridColumn146";
+            this.bandedGridColumn146.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn146.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn146.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn146.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn146.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn146.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT30", "{0:#,###.#}")});
+            this.bandedGridColumn146.Width = 70;
             // 
             // bandedGridColumn66
             // 
@@ -3669,6 +4161,7 @@
             this.bandedGridColumn66.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD01", "{0:#,###}")});
             this.bandedGridColumn66.Visible = true;
+            this.bandedGridColumn66.VisibleIndex = 4;
             this.bandedGridColumn66.Width = 80;
             // 
             // bandedGridColumn67
@@ -3691,29 +4184,8 @@
             this.bandedGridColumn67.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD02", "{0:#,###}")});
             this.bandedGridColumn67.Visible = true;
+            this.bandedGridColumn67.VisibleIndex = 5;
             this.bandedGridColumn67.Width = 80;
-            // 
-            // bandedGridColumn96
-            // 
-            this.bandedGridColumn96.AppearanceHeader.ForeColor = System.Drawing.Color.Navy;
-            this.bandedGridColumn96.AppearanceHeader.Options.UseForeColor = true;
-            this.bandedGridColumn96.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn96.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn96.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn96.Caption = "나이트감독수당";
-            this.bandedGridColumn96.DisplayFormat.FormatString = "{0:#,###}";
-            this.bandedGridColumn96.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn96.FieldName = "WGPCSD10";
-            this.bandedGridColumn96.Name = "bandedGridColumn96";
-            this.bandedGridColumn96.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn96.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn96.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn96.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn96.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn96.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD10", "{0:#,###}")});
-            this.bandedGridColumn96.Visible = true;
-            this.bandedGridColumn96.Width = 95;
             // 
             // bandedGridColumn68
             // 
@@ -3735,6 +4207,7 @@
             this.bandedGridColumn68.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD03", "{0:#,###}")});
             this.bandedGridColumn68.Visible = true;
+            this.bandedGridColumn68.VisibleIndex = 7;
             this.bandedGridColumn68.Width = 80;
             // 
             // bandedGridColumn90
@@ -3757,6 +4230,7 @@
             this.bandedGridColumn90.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD04", "{0:#,###}")});
             this.bandedGridColumn90.Visible = true;
+            this.bandedGridColumn90.VisibleIndex = 8;
             this.bandedGridColumn90.Width = 80;
             // 
             // bandedGridColumn91
@@ -3779,6 +4253,7 @@
             this.bandedGridColumn91.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD05", "{0:#,###}")});
             this.bandedGridColumn91.Visible = true;
+            this.bandedGridColumn91.VisibleIndex = 9;
             this.bandedGridColumn91.Width = 80;
             // 
             // bandedGridColumn92
@@ -3801,6 +4276,7 @@
             this.bandedGridColumn92.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD06", "{0:#,###}")});
             this.bandedGridColumn92.Visible = true;
+            this.bandedGridColumn92.VisibleIndex = 10;
             this.bandedGridColumn92.Width = 80;
             // 
             // bandedGridColumn93
@@ -3820,6 +4296,7 @@
             this.bandedGridColumn93.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD07", "{0:#,###}")});
             this.bandedGridColumn93.Visible = true;
+            this.bandedGridColumn93.VisibleIndex = 11;
             this.bandedGridColumn93.Width = 80;
             // 
             // bandedGridColumn94
@@ -3842,6 +4319,7 @@
             this.bandedGridColumn94.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD08", "{0:#,###}")});
             this.bandedGridColumn94.Visible = true;
+            this.bandedGridColumn94.VisibleIndex = 12;
             this.bandedGridColumn94.Width = 80;
             // 
             // bandedGridColumn95
@@ -3864,7 +4342,31 @@
             this.bandedGridColumn95.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD09", "{0:#,###}")});
             this.bandedGridColumn95.Visible = true;
+            this.bandedGridColumn95.VisibleIndex = 13;
             this.bandedGridColumn95.Width = 80;
+            // 
+            // bandedGridColumn96
+            // 
+            this.bandedGridColumn96.AppearanceHeader.ForeColor = System.Drawing.Color.Navy;
+            this.bandedGridColumn96.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn96.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn96.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn96.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.bandedGridColumn96.Caption = "나이트감독수당";
+            this.bandedGridColumn96.DisplayFormat.FormatString = "{0:#,###}";
+            this.bandedGridColumn96.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.bandedGridColumn96.FieldName = "WGPCSD10";
+            this.bandedGridColumn96.Name = "bandedGridColumn96";
+            this.bandedGridColumn96.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn96.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridColumn96.OptionsColumn.AllowMove = false;
+            this.bandedGridColumn96.OptionsColumn.ReadOnly = true;
+            this.bandedGridColumn96.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.bandedGridColumn96.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD10", "{0:#,###}")});
+            this.bandedGridColumn96.Visible = true;
+            this.bandedGridColumn96.VisibleIndex = 6;
+            this.bandedGridColumn96.Width = 95;
             // 
             // bandedGridColumn97
             // 
@@ -4229,574 +4731,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCSD30", "{0:#,###}")});
             this.bandedGridColumn116.Width = 80;
             // 
-            // gridBand10
-            // 
-            this.gridBand10.Columns.Add(this.bandedGridColumn117);
-            this.gridBand10.Columns.Add(this.bandedGridColumn118);
-            this.gridBand10.Columns.Add(this.bandedGridColumn126);
-            this.gridBand10.Columns.Add(this.bandedGridColumn119);
-            this.gridBand10.Columns.Add(this.bandedGridColumn120);
-            this.gridBand10.Columns.Add(this.bandedGridColumn121);
-            this.gridBand10.Columns.Add(this.bandedGridColumn122);
-            this.gridBand10.Columns.Add(this.bandedGridColumn123);
-            this.gridBand10.Columns.Add(this.bandedGridColumn124);
-            this.gridBand10.Columns.Add(this.bandedGridColumn125);
-            this.gridBand10.Columns.Add(this.bandedGridColumn127);
-            this.gridBand10.Columns.Add(this.bandedGridColumn128);
-            this.gridBand10.Columns.Add(this.bandedGridColumn129);
-            this.gridBand10.Columns.Add(this.bandedGridColumn130);
-            this.gridBand10.Columns.Add(this.bandedGridColumn131);
-            this.gridBand10.Columns.Add(this.bandedGridColumn132);
-            this.gridBand10.Columns.Add(this.bandedGridColumn133);
-            this.gridBand10.Columns.Add(this.bandedGridColumn134);
-            this.gridBand10.Columns.Add(this.bandedGridColumn135);
-            this.gridBand10.Columns.Add(this.bandedGridColumn136);
-            this.gridBand10.Columns.Add(this.bandedGridColumn137);
-            this.gridBand10.Columns.Add(this.bandedGridColumn138);
-            this.gridBand10.Columns.Add(this.bandedGridColumn139);
-            this.gridBand10.Columns.Add(this.bandedGridColumn140);
-            this.gridBand10.Columns.Add(this.bandedGridColumn141);
-            this.gridBand10.Columns.Add(this.bandedGridColumn142);
-            this.gridBand10.Columns.Add(this.bandedGridColumn143);
-            this.gridBand10.Columns.Add(this.bandedGridColumn144);
-            this.gridBand10.Columns.Add(this.bandedGridColumn145);
-            this.gridBand10.Columns.Add(this.bandedGridColumn146);
-            this.gridBand10.Name = "gridBand10";
-            this.gridBand10.VisibleIndex = 2;
-            this.gridBand10.Width = 700;
-            // 
-            // bandedGridColumn117
-            // 
-            this.bandedGridColumn117.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn117.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn117.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn117.Caption = "당직시간";
-            this.bandedGridColumn117.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn117.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn117.FieldName = "WGPCGT01";
-            this.bandedGridColumn117.Name = "bandedGridColumn117";
-            this.bandedGridColumn117.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn117.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn117.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn117.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn117.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn117.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT01", "{0:#,###.#}")});
-            this.bandedGridColumn117.Visible = true;
-            this.bandedGridColumn117.Width = 70;
-            // 
-            // bandedGridColumn118
-            // 
-            this.bandedGridColumn118.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn118.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn118.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn118.Caption = "나이트";
-            this.bandedGridColumn118.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn118.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn118.FieldName = "WGPCGT02";
-            this.bandedGridColumn118.Name = "bandedGridColumn118";
-            this.bandedGridColumn118.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn118.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn118.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn118.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn118.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn118.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT02", "{0:#,###.#}")});
-            this.bandedGridColumn118.Visible = true;
-            this.bandedGridColumn118.Width = 70;
-            // 
-            // bandedGridColumn126
-            // 
-            this.bandedGridColumn126.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn126.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn126.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn126.Caption = "나이트감독";
-            this.bandedGridColumn126.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn126.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn126.FieldName = "WGPCGT10";
-            this.bandedGridColumn126.Name = "bandedGridColumn126";
-            this.bandedGridColumn126.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn126.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn126.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn126.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn126.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn126.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT10", "{0:#,###.#}")});
-            this.bandedGridColumn126.Visible = true;
-            this.bandedGridColumn126.Width = 70;
-            // 
-            // bandedGridColumn119
-            // 
-            this.bandedGridColumn119.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn119.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn119.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn119.Caption = "야식";
-            this.bandedGridColumn119.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn119.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn119.FieldName = "WGPCGT03";
-            this.bandedGridColumn119.Name = "bandedGridColumn119";
-            this.bandedGridColumn119.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn119.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn119.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn119.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn119.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn119.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT03", "{0:#,###.#}")});
-            this.bandedGridColumn119.Visible = true;
-            this.bandedGridColumn119.Width = 70;
-            // 
-            // bandedGridColumn120
-            // 
-            this.bandedGridColumn120.Caption = "연장시간";
-            this.bandedGridColumn120.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn120.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn120.FieldName = "WGPCGT04";
-            this.bandedGridColumn120.Name = "bandedGridColumn120";
-            this.bandedGridColumn120.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn120.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn120.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn120.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn120.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn120.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TCNT", "{0:#,###.#}")});
-            this.bandedGridColumn120.Visible = true;
-            this.bandedGridColumn120.Width = 70;
-            // 
-            // bandedGridColumn121
-            // 
-            this.bandedGridColumn121.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn121.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn121.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn121.Caption = "OFF";
-            this.bandedGridColumn121.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn121.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn121.FieldName = "WGPCGT05";
-            this.bandedGridColumn121.Name = "bandedGridColumn121";
-            this.bandedGridColumn121.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn121.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn121.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn121.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn121.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn121.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT05", "{0:#,###.#}")});
-            this.bandedGridColumn121.Visible = true;
-            this.bandedGridColumn121.Width = 70;
-            // 
-            // bandedGridColumn122
-            // 
-            this.bandedGridColumn122.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn122.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn122.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn122.Caption = "휴근시간";
-            this.bandedGridColumn122.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn122.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn122.FieldName = "WGPCGT06";
-            this.bandedGridColumn122.Name = "bandedGridColumn122";
-            this.bandedGridColumn122.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn122.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn122.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn122.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn122.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn122.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT06", "{0:#,###.#}")});
-            this.bandedGridColumn122.Visible = true;
-            this.bandedGridColumn122.Width = 70;
-            // 
-            // bandedGridColumn123
-            // 
-            this.bandedGridColumn123.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn123.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn123.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn123.Caption = "콜";
-            this.bandedGridColumn123.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn123.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn123.FieldName = "WGPCGT07";
-            this.bandedGridColumn123.Name = "bandedGridColumn123";
-            this.bandedGridColumn123.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn123.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn123.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn123.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn123.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn123.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT07", "{0:#,###.#}")});
-            this.bandedGridColumn123.Visible = true;
-            this.bandedGridColumn123.Width = 70;
-            // 
-            // bandedGridColumn124
-            // 
-            this.bandedGridColumn124.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn124.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn124.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn124.Caption = "콜대기";
-            this.bandedGridColumn124.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn124.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn124.FieldName = "WGPCGT08";
-            this.bandedGridColumn124.Name = "bandedGridColumn124";
-            this.bandedGridColumn124.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn124.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn124.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn124.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn124.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn124.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT08", "{0:#,###.#}")});
-            this.bandedGridColumn124.Visible = true;
-            this.bandedGridColumn124.Width = 70;
-            // 
-            // bandedGridColumn125
-            // 
-            this.bandedGridColumn125.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn125.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn125.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn125.Caption = "연차정산";
-            this.bandedGridColumn125.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn125.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn125.FieldName = "WGPCGT09";
-            this.bandedGridColumn125.Name = "bandedGridColumn125";
-            this.bandedGridColumn125.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn125.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn125.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn125.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn125.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn125.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT09", "{0:#,###.#}")});
-            this.bandedGridColumn125.Visible = true;
-            this.bandedGridColumn125.Width = 70;
-            // 
-            // bandedGridColumn127
-            // 
-            this.bandedGridColumn127.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn127.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn127.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn127.Caption = "C011";
-            this.bandedGridColumn127.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn127.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn127.FieldName = "WGPCGT11";
-            this.bandedGridColumn127.Name = "bandedGridColumn127";
-            this.bandedGridColumn127.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn127.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn127.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn127.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn127.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn127.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT11", "{0:#,###.#}")});
-            this.bandedGridColumn127.Width = 70;
-            // 
-            // bandedGridColumn128
-            // 
-            this.bandedGridColumn128.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn128.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn128.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn128.Caption = "C012";
-            this.bandedGridColumn128.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn128.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn128.FieldName = "WGPCGT12";
-            this.bandedGridColumn128.Name = "bandedGridColumn128";
-            this.bandedGridColumn128.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn128.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn128.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn128.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn128.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn128.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT12", "{0:#,###.#}")});
-            this.bandedGridColumn128.Width = 70;
-            // 
-            // bandedGridColumn129
-            // 
-            this.bandedGridColumn129.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn129.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn129.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn129.Caption = "C013";
-            this.bandedGridColumn129.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn129.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn129.FieldName = "WGPCGT13";
-            this.bandedGridColumn129.Name = "bandedGridColumn129";
-            this.bandedGridColumn129.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn129.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn129.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn129.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn129.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn129.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT13", "{0:#,###.#}")});
-            this.bandedGridColumn129.Width = 70;
-            // 
-            // bandedGridColumn130
-            // 
-            this.bandedGridColumn130.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn130.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn130.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn130.Caption = "C014";
-            this.bandedGridColumn130.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn130.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn130.FieldName = "WGPCGT14";
-            this.bandedGridColumn130.Name = "bandedGridColumn130";
-            this.bandedGridColumn130.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn130.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn130.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn130.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn130.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn130.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT14", "{0:#,###.#}")});
-            this.bandedGridColumn130.Width = 70;
-            // 
-            // bandedGridColumn131
-            // 
-            this.bandedGridColumn131.Caption = "C015";
-            this.bandedGridColumn131.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn131.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn131.FieldName = "WGPCGT15";
-            this.bandedGridColumn131.Name = "bandedGridColumn131";
-            this.bandedGridColumn131.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn131.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn131.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn131.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn131.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn131.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DANG_TTIME", "{0:#,###.#}")});
-            this.bandedGridColumn131.Width = 70;
-            // 
-            // bandedGridColumn132
-            // 
-            this.bandedGridColumn132.Caption = "C016";
-            this.bandedGridColumn132.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn132.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn132.FieldName = "WGPCGT16";
-            this.bandedGridColumn132.Name = "bandedGridColumn132";
-            this.bandedGridColumn132.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn132.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn132.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn132.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn132.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn132.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OT_TTIME", "{0:#,###.#}")});
-            this.bandedGridColumn132.Width = 70;
-            // 
-            // bandedGridColumn133
-            // 
-            this.bandedGridColumn133.Caption = "C017";
-            this.bandedGridColumn133.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn133.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn133.FieldName = "WGPCGT17";
-            this.bandedGridColumn133.Name = "bandedGridColumn133";
-            this.bandedGridColumn133.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn133.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn133.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn133.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn133.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn133.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CALL_TTIME", "{0:#,###.#}")});
-            this.bandedGridColumn133.Width = 70;
-            // 
-            // bandedGridColumn134
-            // 
-            this.bandedGridColumn134.AppearanceHeader.Options.UseTextOptions = true;
-            this.bandedGridColumn134.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn134.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.bandedGridColumn134.Caption = "C018";
-            this.bandedGridColumn134.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn134.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn134.FieldName = "WGPCGT18";
-            this.bandedGridColumn134.Name = "bandedGridColumn134";
-            this.bandedGridColumn134.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn134.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn134.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn134.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn134.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn134.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT04", "{0:#,###.#}")});
-            this.bandedGridColumn134.Width = 70;
-            // 
-            // bandedGridColumn135
-            // 
-            this.bandedGridColumn135.Caption = "C019";
-            this.bandedGridColumn135.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn135.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn135.FieldName = "WGPCGT19";
-            this.bandedGridColumn135.Name = "bandedGridColumn135";
-            this.bandedGridColumn135.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn135.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn135.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn135.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn135.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn135.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT19", "{0:#,###.#}")});
-            this.bandedGridColumn135.Width = 70;
-            // 
-            // bandedGridColumn136
-            // 
-            this.bandedGridColumn136.Caption = "C020";
-            this.bandedGridColumn136.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn136.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn136.FieldName = "WGPCGT20";
-            this.bandedGridColumn136.Name = "bandedGridColumn136";
-            this.bandedGridColumn136.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn136.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn136.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn136.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn136.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn136.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT20", "{0:#,###.#}")});
-            this.bandedGridColumn136.Width = 70;
-            // 
-            // bandedGridColumn137
-            // 
-            this.bandedGridColumn137.Caption = "C021";
-            this.bandedGridColumn137.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn137.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn137.FieldName = "WGPCGT21";
-            this.bandedGridColumn137.Name = "bandedGridColumn137";
-            this.bandedGridColumn137.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn137.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn137.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn137.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn137.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn137.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT21", "{0:#,###.#}")});
-            this.bandedGridColumn137.Width = 70;
-            // 
-            // bandedGridColumn138
-            // 
-            this.bandedGridColumn138.Caption = "C022";
-            this.bandedGridColumn138.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn138.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn138.FieldName = "WGPCGT22";
-            this.bandedGridColumn138.Name = "bandedGridColumn138";
-            this.bandedGridColumn138.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn138.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn138.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn138.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn138.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn138.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT22", "{0:#,###.#}")});
-            this.bandedGridColumn138.Width = 70;
-            // 
-            // bandedGridColumn139
-            // 
-            this.bandedGridColumn139.Caption = "C023";
-            this.bandedGridColumn139.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn139.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn139.FieldName = "WGPCGT23";
-            this.bandedGridColumn139.Name = "bandedGridColumn139";
-            this.bandedGridColumn139.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn139.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn139.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn139.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn139.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn139.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT23", "{0:#,###.#}")});
-            this.bandedGridColumn139.Width = 70;
-            // 
-            // bandedGridColumn140
-            // 
-            this.bandedGridColumn140.Caption = "C024";
-            this.bandedGridColumn140.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn140.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn140.FieldName = "WGPCGT24";
-            this.bandedGridColumn140.Name = "bandedGridColumn140";
-            this.bandedGridColumn140.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn140.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn140.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn140.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn140.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn140.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT24", "{0:#,###.#}")});
-            this.bandedGridColumn140.Width = 70;
-            // 
-            // bandedGridColumn141
-            // 
-            this.bandedGridColumn141.Caption = "C025";
-            this.bandedGridColumn141.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn141.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn141.FieldName = "WGPCGT25";
-            this.bandedGridColumn141.Name = "bandedGridColumn141";
-            this.bandedGridColumn141.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn141.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn141.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn141.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn141.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn141.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT25", "{0:#,###.#}")});
-            this.bandedGridColumn141.Width = 70;
-            // 
-            // bandedGridColumn142
-            // 
-            this.bandedGridColumn142.Caption = "C026";
-            this.bandedGridColumn142.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn142.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn142.FieldName = "WGPCGT26";
-            this.bandedGridColumn142.Name = "bandedGridColumn142";
-            this.bandedGridColumn142.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn142.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn142.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn142.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn142.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn142.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT26", "{0:#,###.#}")});
-            this.bandedGridColumn142.Width = 70;
-            // 
-            // bandedGridColumn143
-            // 
-            this.bandedGridColumn143.Caption = "C027";
-            this.bandedGridColumn143.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn143.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn143.FieldName = "WGPCGT27";
-            this.bandedGridColumn143.Name = "bandedGridColumn143";
-            this.bandedGridColumn143.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn143.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn143.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn143.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn143.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn143.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT27", "{0:#,###.#}")});
-            this.bandedGridColumn143.Width = 70;
-            // 
-            // bandedGridColumn144
-            // 
-            this.bandedGridColumn144.Caption = "C028";
-            this.bandedGridColumn144.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn144.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn144.FieldName = "WGPCGT28";
-            this.bandedGridColumn144.Name = "bandedGridColumn144";
-            this.bandedGridColumn144.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn144.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn144.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn144.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn144.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn144.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT28", "{0:#,###.#}")});
-            this.bandedGridColumn144.Width = 70;
-            // 
-            // bandedGridColumn145
-            // 
-            this.bandedGridColumn145.Caption = "C029";
-            this.bandedGridColumn145.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn145.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn145.FieldName = "WGPCGT29";
-            this.bandedGridColumn145.Name = "bandedGridColumn145";
-            this.bandedGridColumn145.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn145.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn145.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn145.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn145.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn145.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT29", "{0:#,###.#}")});
-            this.bandedGridColumn145.Width = 70;
-            // 
-            // bandedGridColumn146
-            // 
-            this.bandedGridColumn146.Caption = "C030";
-            this.bandedGridColumn146.DisplayFormat.FormatString = "{0:#,###.###}";
-            this.bandedGridColumn146.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.bandedGridColumn146.FieldName = "WGPCGT30";
-            this.bandedGridColumn146.Name = "bandedGridColumn146";
-            this.bandedGridColumn146.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn146.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridColumn146.OptionsColumn.AllowMove = false;
-            this.bandedGridColumn146.OptionsColumn.ReadOnly = true;
-            this.bandedGridColumn146.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.bandedGridColumn146.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WGPCGT30", "{0:#,###.#}")});
-            this.bandedGridColumn146.Width = 70;
-            // 
             // repositoryItemMemoEdit4
             // 
             this.repositoryItemMemoEdit4.Name = "repositoryItemMemoEdit4";
@@ -5041,71 +4975,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn88;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn89;
         private DevExpress.XtraGrid.GridControl grd_search;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView grdv_search;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn4;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn10;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn11;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn65;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn66;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn67;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn68;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn90;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn91;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn92;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn93;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn94;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn95;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn96;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn97;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn98;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn99;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn100;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn101;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn102;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn103;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn104;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn105;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn106;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn107;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn108;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn109;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn110;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn111;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn112;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn113;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn114;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn115;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn116;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn117;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn118;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn119;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn120;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn121;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn122;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn123;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn124;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn125;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn126;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn127;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn128;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn129;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn130;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn131;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn132;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn133;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn134;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn135;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn136;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn137;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn138;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn139;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn140;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn141;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn142;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn143;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn144;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn145;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn146;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit4;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn148;
@@ -5130,9 +4999,71 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand13;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand9;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand10;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdv_search;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn65;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn117;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn118;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn119;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn120;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn121;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn122;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn123;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn124;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn125;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn126;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn127;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn128;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn129;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn130;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn131;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn132;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn133;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn134;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn135;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn136;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn137;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn138;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn139;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn140;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn141;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn142;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn143;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn144;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn145;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn146;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn66;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn67;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn68;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn90;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn91;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn92;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn93;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn94;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn95;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn96;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn97;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn98;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn99;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn100;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn101;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn102;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn103;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn104;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn105;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn106;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn107;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn108;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn109;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn110;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn111;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn112;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn113;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn114;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn115;
+        private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn116;
     }
 }
 

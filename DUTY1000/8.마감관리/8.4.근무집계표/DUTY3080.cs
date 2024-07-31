@@ -240,9 +240,9 @@ namespace DUTY1000
 								{
                                     string sd_code = drow["GUBN"].ToString().PadLeft(2, '0');
 
-                                    if (ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["SLDT"].ToString().Substring(0, 6) + "'").Length > 0)
+                                    if (ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["YYMM"].ToString() + "'").Length > 0)
 									{
-                                        DataRow nrow = ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["SLDT"].ToString().Substring(0, 6) + "' ")[0];
+                                        DataRow nrow = ds.Tables["S_DUTY_MSTWGPC"].Select("SAWON_NO = '" + drow["SAWON_NO"].ToString().Trim() + "' AND END_YYMM = '" + drow["YYMM"].ToString() + "' ")[0];
 
 										nrow["WGPCSD" + sd_code] = clib.TextToDecimal(nrow["WGPCSD" + sd_code].ToString()) + clib.TextToDecimal(drow["SD" + sd_code].ToString());
                                         nrow["WGPCGT" + sd_code] = clib.TextToDecimal(nrow["WGPCGT" + sd_code].ToString()) + clib.TextToDecimal(drow["GT" + sd_code].ToString());
@@ -252,7 +252,7 @@ namespace DUTY1000
                                         DataRow nrow = ds.Tables["S_DUTY_MSTWGPC"].NewRow();
 
                                         nrow["SAWON_NO"] = drow["SAWON_NO"].ToString().Trim();
-                                        nrow["END_YYMM"] = drow["SLDT"].ToString().Substring(0, 6);
+                                        nrow["END_YYMM"] = drow["YYMM"].ToString();
                                         for (int i = 1; i <= 50; i++)
                                         {
                                             nrow["WGPCSD" + i.ToString().PadLeft(2, '0')] = 0;
@@ -267,7 +267,7 @@ namespace DUTY1000
 									}
 
                                     //사원별 수당구분별 마감여부 이력.
-									df.GetDUTY_MSTWGPC_ENDDatas(drow["SLDT"].ToString().Substring(0, 6), drow["SAWON_NO"].ToString().Trim(), clib.TextToInt(drow["GUBN"].ToString()), ds);
+									df.GetDUTY_MSTWGPC_ENDDatas(drow["YYMM"].ToString(), drow["SAWON_NO"].ToString().Trim(), clib.TextToInt(drow["GUBN"].ToString()), ds);
 									if (ds.Tables["DUTY_MSTWGPC_END"].Rows.Count == 0)
 									{
 										DataRow erow = ds.Tables["DUTY_MSTWGPC_END"].NewRow();

@@ -99,11 +99,9 @@
             this.srGroupBox1 = new SilkRoad.UserControls.SRGroupBox();
             this.grd1 = new DevExpress.XtraGrid.GridControl();
             this.grdv1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
-            this.gridBand23 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn18 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bgc_name = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand27 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.grdcol_day01 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.grd_lk_gnmu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -137,12 +135,9 @@
             this.grdcol_day29 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.grdcol_day30 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.grdcol_day31 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.grdcol_soff = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.persn_d = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.persn_e = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.persn_de = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.persn_y = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.grd_sl_gnmu = new SilkRoad.UserControls.SRgridLookup2();
             this.sRgridLookup21View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -291,6 +286,11 @@
             this.dat_yymm = new SilkRoad.UserControls.SRDate();
             this.srLabel6 = new SilkRoad.UserControls.SRLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.gridBand23 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gridBand27 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srPanel1)).BeginInit();
@@ -1016,7 +1016,7 @@
             this.grdcol_soff,
             this.grdcol_off,
             this.persn_d,
-            this.persn_e,
+            this.persn_de,
             this.persn_n,
             this.persn_o,
             this.persn_y});
@@ -1058,16 +1058,6 @@
             this.grdv1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdv_CellValueChanging);
             this.grdv1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdv_MouseDown);
             this.grdv1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.grdv_MouseMove);
-            // 
-            // gridBand23
-            // 
-            this.gridBand23.Columns.Add(this.bandedGridColumn8);
-            this.gridBand23.Columns.Add(this.bandedGridColumn18);
-            this.gridBand23.Columns.Add(this.bgc_name);
-            this.gridBand23.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            this.gridBand23.Name = "gridBand23";
-            this.gridBand23.VisibleIndex = 0;
-            this.gridBand23.Width = 175;
             // 
             // bandedGridColumn8
             // 
@@ -1136,45 +1126,6 @@
             this.bgc_name.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bgc_name.Visible = true;
             this.bgc_name.Width = 80;
-            // 
-            // gridBand27
-            // 
-            this.gridBand27.Caption = "일자별 근무신청 현황";
-            this.gridBand27.Columns.Add(this.bandedGridColumn9);
-            this.gridBand27.Columns.Add(this.grdcol_day01);
-            this.gridBand27.Columns.Add(this.grdcol_day02);
-            this.gridBand27.Columns.Add(this.grdcol_day03);
-            this.gridBand27.Columns.Add(this.grdcol_day04);
-            this.gridBand27.Columns.Add(this.grdcol_day05);
-            this.gridBand27.Columns.Add(this.grdcol_day06);
-            this.gridBand27.Columns.Add(this.grdcol_day07);
-            this.gridBand27.Columns.Add(this.grdcol_day08);
-            this.gridBand27.Columns.Add(this.grdcol_day09);
-            this.gridBand27.Columns.Add(this.grdcol_day10);
-            this.gridBand27.Columns.Add(this.grdcol_day11);
-            this.gridBand27.Columns.Add(this.grdcol_day12);
-            this.gridBand27.Columns.Add(this.grdcol_day13);
-            this.gridBand27.Columns.Add(this.grdcol_day14);
-            this.gridBand27.Columns.Add(this.grdcol_day15);
-            this.gridBand27.Columns.Add(this.grdcol_day16);
-            this.gridBand27.Columns.Add(this.grdcol_day17);
-            this.gridBand27.Columns.Add(this.grdcol_day18);
-            this.gridBand27.Columns.Add(this.grdcol_day19);
-            this.gridBand27.Columns.Add(this.grdcol_day20);
-            this.gridBand27.Columns.Add(this.grdcol_day21);
-            this.gridBand27.Columns.Add(this.grdcol_day22);
-            this.gridBand27.Columns.Add(this.grdcol_day23);
-            this.gridBand27.Columns.Add(this.grdcol_day24);
-            this.gridBand27.Columns.Add(this.grdcol_day25);
-            this.gridBand27.Columns.Add(this.grdcol_day26);
-            this.gridBand27.Columns.Add(this.grdcol_day27);
-            this.gridBand27.Columns.Add(this.grdcol_day28);
-            this.gridBand27.Columns.Add(this.grdcol_day29);
-            this.gridBand27.Columns.Add(this.grdcol_day30);
-            this.gridBand27.Columns.Add(this.grdcol_day31);
-            this.gridBand27.Name = "gridBand27";
-            this.gridBand27.VisibleIndex = 1;
-            this.gridBand27.Width = 1160;
             // 
             // bandedGridColumn9
             // 
@@ -1982,27 +1933,6 @@
             this.grdcol_day31.Visible = true;
             this.grdcol_day31.Width = 35;
             // 
-            // gridBand1
-            // 
-            this.gridBand1.Caption = " ";
-            this.gridBand1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-            this.gridBand1.Name = "gridBand1";
-            this.gridBand1.Visible = false;
-            this.gridBand1.VisibleIndex = -1;
-            this.gridBand1.Width = 40;
-            // 
-            // gridBand12
-            // 
-            this.gridBand12.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
-            this.gridBand12.AppearanceHeader.Options.UseForeColor = true;
-            this.gridBand12.Caption = "기준";
-            this.gridBand12.Columns.Add(this.grdcol_soff);
-            this.gridBand12.Columns.Add(this.grdcol_off);
-            this.gridBand12.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-            this.gridBand12.Name = "gridBand12";
-            this.gridBand12.VisibleIndex = 2;
-            this.gridBand12.Width = 85;
-            // 
             // grdcol_soff
             // 
             this.grdcol_soff.AppearanceCell.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2023,19 +1953,6 @@
             this.grdcol_soff.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.grdcol_soff.Visible = true;
             this.grdcol_soff.Width = 41;
-            // 
-            // gridBand28
-            // 
-            this.gridBand28.Caption = "개인 근무수";
-            this.gridBand28.Columns.Add(this.persn_d);
-            this.gridBand28.Columns.Add(this.persn_e);
-            this.gridBand28.Columns.Add(this.persn_n);
-            this.gridBand28.Columns.Add(this.persn_o);
-            this.gridBand28.Columns.Add(this.persn_y);
-            this.gridBand28.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
-            this.gridBand28.Name = "gridBand28";
-            this.gridBand28.VisibleIndex = 3;
-            this.gridBand28.Width = 120;
             // 
             // persn_d
             // 
@@ -2060,28 +1977,29 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MM_CNT1", "{0:#,###}")});
             this.persn_d.Width = 30;
             // 
-            // persn_e
+            // persn_de
             // 
-            this.persn_e.Caption = "E";
-            this.persn_e.DisplayFormat.FormatString = "{0:#,###}";
-            this.persn_e.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.persn_e.FieldName = "MM_CNT2";
-            this.persn_e.Name = "persn_e";
-            this.persn_e.OptionsColumn.AllowEdit = false;
-            this.persn_e.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.persn_e.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.persn_e.OptionsColumn.AllowMove = false;
-            this.persn_e.OptionsColumn.AllowSize = false;
-            this.persn_e.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.persn_e.OptionsColumn.ReadOnly = true;
-            this.persn_e.OptionsColumn.TabStop = false;
-            this.persn_e.OptionsFilter.AllowAutoFilter = false;
-            this.persn_e.OptionsFilter.AllowFilter = false;
-            this.persn_e.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
-            this.persn_e.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.persn_e.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.persn_de.Caption = "DE";
+            this.persn_de.DisplayFormat.FormatString = "{0:#,###}";
+            this.persn_de.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.persn_de.FieldName = "MM_CNT2";
+            this.persn_de.Name = "persn_de";
+            this.persn_de.OptionsColumn.AllowEdit = false;
+            this.persn_de.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.persn_de.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.persn_de.OptionsColumn.AllowMove = false;
+            this.persn_de.OptionsColumn.AllowSize = false;
+            this.persn_de.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.persn_de.OptionsColumn.ReadOnly = true;
+            this.persn_de.OptionsColumn.TabStop = false;
+            this.persn_de.OptionsFilter.AllowAutoFilter = false;
+            this.persn_de.OptionsFilter.AllowFilter = false;
+            this.persn_de.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
+            this.persn_de.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.persn_de.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MM_CNT2", "{0:#,###}")});
-            this.persn_e.Width = 30;
+            this.persn_de.Visible = true;
+            this.persn_de.Width = 39;
             // 
             // persn_y
             // 
@@ -4712,6 +4630,89 @@
             this.srLabel6.Text = "조회년월";
             this.srLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // gridBand23
+            // 
+            this.gridBand23.Columns.Add(this.bandedGridColumn8);
+            this.gridBand23.Columns.Add(this.bandedGridColumn18);
+            this.gridBand23.Columns.Add(this.bgc_name);
+            this.gridBand23.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.gridBand23.Name = "gridBand23";
+            this.gridBand23.VisibleIndex = 0;
+            this.gridBand23.Width = 175;
+            // 
+            // gridBand27
+            // 
+            this.gridBand27.Caption = "일자별 근무신청 현황";
+            this.gridBand27.Columns.Add(this.bandedGridColumn9);
+            this.gridBand27.Columns.Add(this.grdcol_day01);
+            this.gridBand27.Columns.Add(this.grdcol_day02);
+            this.gridBand27.Columns.Add(this.grdcol_day03);
+            this.gridBand27.Columns.Add(this.grdcol_day04);
+            this.gridBand27.Columns.Add(this.grdcol_day05);
+            this.gridBand27.Columns.Add(this.grdcol_day06);
+            this.gridBand27.Columns.Add(this.grdcol_day07);
+            this.gridBand27.Columns.Add(this.grdcol_day08);
+            this.gridBand27.Columns.Add(this.grdcol_day09);
+            this.gridBand27.Columns.Add(this.grdcol_day10);
+            this.gridBand27.Columns.Add(this.grdcol_day11);
+            this.gridBand27.Columns.Add(this.grdcol_day12);
+            this.gridBand27.Columns.Add(this.grdcol_day13);
+            this.gridBand27.Columns.Add(this.grdcol_day14);
+            this.gridBand27.Columns.Add(this.grdcol_day15);
+            this.gridBand27.Columns.Add(this.grdcol_day16);
+            this.gridBand27.Columns.Add(this.grdcol_day17);
+            this.gridBand27.Columns.Add(this.grdcol_day18);
+            this.gridBand27.Columns.Add(this.grdcol_day19);
+            this.gridBand27.Columns.Add(this.grdcol_day20);
+            this.gridBand27.Columns.Add(this.grdcol_day21);
+            this.gridBand27.Columns.Add(this.grdcol_day22);
+            this.gridBand27.Columns.Add(this.grdcol_day23);
+            this.gridBand27.Columns.Add(this.grdcol_day24);
+            this.gridBand27.Columns.Add(this.grdcol_day25);
+            this.gridBand27.Columns.Add(this.grdcol_day26);
+            this.gridBand27.Columns.Add(this.grdcol_day27);
+            this.gridBand27.Columns.Add(this.grdcol_day28);
+            this.gridBand27.Columns.Add(this.grdcol_day29);
+            this.gridBand27.Columns.Add(this.grdcol_day30);
+            this.gridBand27.Columns.Add(this.grdcol_day31);
+            this.gridBand27.Name = "gridBand27";
+            this.gridBand27.VisibleIndex = 1;
+            this.gridBand27.Width = 1160;
+            // 
+            // gridBand1
+            // 
+            this.gridBand1.Caption = " ";
+            this.gridBand1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+            this.gridBand1.Name = "gridBand1";
+            this.gridBand1.Visible = false;
+            this.gridBand1.VisibleIndex = -1;
+            this.gridBand1.Width = 40;
+            // 
+            // gridBand12
+            // 
+            this.gridBand12.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
+            this.gridBand12.AppearanceHeader.Options.UseForeColor = true;
+            this.gridBand12.Caption = "기준";
+            this.gridBand12.Columns.Add(this.grdcol_soff);
+            this.gridBand12.Columns.Add(this.grdcol_off);
+            this.gridBand12.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+            this.gridBand12.Name = "gridBand12";
+            this.gridBand12.VisibleIndex = 2;
+            this.gridBand12.Width = 85;
+            // 
+            // gridBand28
+            // 
+            this.gridBand28.Caption = "개인 근무수";
+            this.gridBand28.Columns.Add(this.persn_d);
+            this.gridBand28.Columns.Add(this.persn_de);
+            this.gridBand28.Columns.Add(this.persn_n);
+            this.gridBand28.Columns.Add(this.persn_o);
+            this.gridBand28.Columns.Add(this.persn_y);
+            this.gridBand28.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+            this.gridBand28.Name = "gridBand28";
+            this.gridBand28.VisibleIndex = 3;
+            this.gridBand28.Width = 159;
+            // 
             // duty3010
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -4869,7 +4870,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day30;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_day31;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_d;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_e;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_de;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_n;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn persn_o;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_off;
@@ -5035,13 +5036,13 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn9;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit11;
         private SilkRoad.UserControls.SRCombo cmb_sq;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_soff;
+        private SilkRoad.UserControls.SRButton btn_calc_off;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand23;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand27;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand12;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn grdcol_soff;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand28;
-        private SilkRoad.UserControls.SRButton btn_calc_off;
     }
 }
 

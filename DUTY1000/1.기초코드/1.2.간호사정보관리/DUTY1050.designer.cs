@@ -558,6 +558,8 @@
             this.col_allowoff.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.col_allowoff.OptionsColumn.ReadOnly = true;
             this.col_allowoff.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
+            this.col_allowoff.Visible = true;
+            this.col_allowoff.VisibleIndex = 4;
             this.col_allowoff.Width = 49;
             // 
             // col_limitoff
@@ -575,7 +577,7 @@
             this.col_limitoff.OptionsColumn.ReadOnly = true;
             this.col_limitoff.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_limitoff.Visible = true;
-            this.col_limitoff.VisibleIndex = 4;
+            this.col_limitoff.VisibleIndex = 5;
             this.col_limitoff.Width = 51;
             // 
             // col_hpno
@@ -591,7 +593,7 @@
             this.col_hpno.OptionsColumn.ReadOnly = true;
             this.col_hpno.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_hpno.Visible = true;
-            this.col_hpno.VisibleIndex = 5;
+            this.col_hpno.VisibleIndex = 6;
             this.col_hpno.Width = 98;
             // 
             // col_email
@@ -607,7 +609,7 @@
             this.col_email.OptionsColumn.ReadOnly = true;
             this.col_email.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.col_email.Visible = true;
-            this.col_email.VisibleIndex = 6;
+            this.col_email.VisibleIndex = 7;
             this.col_email.Width = 144;
             // 
             // gridColumn12
@@ -620,7 +622,7 @@
             this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 7;
+            this.gridColumn12.VisibleIndex = 8;
             this.gridColumn12.Width = 62;
             // 
             // insa_jakuk
@@ -832,7 +834,7 @@
             // 
             this.cmb_limitoff.EditValue = "     ";
             this.cmb_limitoff.EnterMoveNextControl = true;
-            this.cmb_limitoff.Location = new System.Drawing.Point(116, 164);
+            this.cmb_limitoff.Location = new System.Drawing.Point(116, 183);
             this.cmb_limitoff.Name = "cmb_limitoff";
             this.cmb_limitoff.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.cmb_limitoff.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -874,7 +876,7 @@
             this.labelControl22.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl22.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl22.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.labelControl22.Location = new System.Drawing.Point(6, 164);
+            this.labelControl22.Location = new System.Drawing.Point(6, 183);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(110, 22);
             this.labelControl22.TabIndex = 456;
@@ -892,7 +894,7 @@
             this.labelControl20.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl20.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl20.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.labelControl20.Location = new System.Drawing.Point(6, 222);
+            this.labelControl20.Location = new System.Drawing.Point(6, 241);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(110, 22);
             this.labelControl20.TabIndex = 455;
@@ -910,7 +912,7 @@
             this.labelControl21.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl21.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl21.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.labelControl21.Location = new System.Drawing.Point(6, 198);
+            this.labelControl21.Location = new System.Drawing.Point(6, 217);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(110, 22);
             this.labelControl21.TabIndex = 454;
@@ -920,7 +922,7 @@
             // 
             this.cmb_stat.EditValue = "정    상";
             this.cmb_stat.EnterMoveNextControl = true;
-            this.cmb_stat.Location = new System.Drawing.Point(116, 198);
+            this.cmb_stat.Location = new System.Drawing.Point(116, 217);
             this.cmb_stat.Name = "cmb_stat";
             this.cmb_stat.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.cmb_stat.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -942,7 +944,7 @@
             this.dat_lday.EditValue = "";
             this.dat_lday.Enabled = false;
             this.dat_lday.EnterMoveNextControl = true;
-            this.dat_lday.Location = new System.Drawing.Point(116, 222);
+            this.dat_lday.Location = new System.Drawing.Point(116, 241);
             this.dat_lday.Name = "dat_lday";
             this.dat_lday.Properties.AllowMouseWheel = false;
             this.dat_lday.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
@@ -1079,7 +1081,7 @@
             // 
             this.cmb_allowoff.EditValue = "     ";
             this.cmb_allowoff.EnterMoveNextControl = true;
-            this.cmb_allowoff.Location = new System.Drawing.Point(116, 296);
+            this.cmb_allowoff.Location = new System.Drawing.Point(116, 159);
             this.cmb_allowoff.Name = "cmb_allowoff";
             this.cmb_allowoff.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.cmb_allowoff.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -1118,7 +1120,6 @@
             this.cmb_allowoff.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmb_allowoff.Size = new System.Drawing.Size(140, 22);
             this.cmb_allowoff.TabIndex = 417;
-            this.cmb_allowoff.Visible = false;
             // 
             // labelControl13
             // 
@@ -1132,12 +1133,11 @@
             this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl13.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.labelControl13.Location = new System.Drawing.Point(6, 296);
+            this.labelControl13.Location = new System.Drawing.Point(6, 159);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(110, 22);
             this.labelControl13.TabIndex = 416;
             this.labelControl13.Text = "고정OFF수";
-            this.labelControl13.Visible = false;
             // 
             // labelControl1
             // 

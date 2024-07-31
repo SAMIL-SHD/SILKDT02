@@ -345,7 +345,7 @@ namespace DUTY1000
                     {
                         DataRow nrow = ds.Tables["DUTY_TRSDYYC"].Rows[0];
                         nrow["YC_CHANGE"] = clib.TextToDecimal(drow[2].ToString());
-                        nrow["YC_TOTAL"] = clib.TextToDecimal(nrow["YC_BASE"].ToString()) + clib.TextToDecimal(drow[2].ToString()) + clib.TextToDecimal(nrow["YC_FIRST"].ToString()) + clib.TextToDecimal(nrow["YC_ADD"].ToString());
+                        nrow["YC_TOTAL"] = clib.TextToDecimal(nrow["YC_FIRST"].ToString()) + clib.TextToDecimal(drow[2].ToString()) + clib.TextToDecimal(nrow["YC_BF"].ToString()) + clib.TextToDecimal(nrow["YC_NOW"].ToString());
                         nrow["MOD_DT"] = gd.GetNow();
                         nrow["MOD_ID"] = SilkRoad.Config.SRConfig.USID;
 

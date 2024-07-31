@@ -102,18 +102,23 @@ namespace SilkRoad.SILKDT02
 					tl.AppendNode(new object[] { "OFF신청조회", "DUTY1000.duty3030", "", "" }, rootNode2);
                     tl.AppendNode(new object[] { "간호사근무관리", "DUTY1000.duty3010", "", "" }, rootNode2);
 					tl.AppendNode(new object[] { "간호사근무마감설정", "DUTY1000.duty3020", "", "" }, rootNode2);
+                    if (SilkRoad.Config.SRConfig.USID == "SAMIL")  //특정ID일때 메뉴 보이게 (임시로 SAMIL)
+                        tl.AppendNode(new object[] { "근무표전체조회", "DUTY1000.duty3060", "", "" }, rootNode2);
 
-					TreeListNode rootNode3 = tl.AppendNode(new object[] { "연차및경조외관리", "", "", "" }, parentForRootNodes);
+                    TreeListNode rootNode3 = tl.AppendNode(new object[] { "연차및경조외관리", "", "", "" }, parentForRootNodes);
                     tl.AppendNode(new object[] { "시차발생및사용현황", "DUTY1000.duty8040", "", "" }, rootNode3);
                     tl.AppendNode(new object[] { "연차신청및조회", "DUTY1000.duty8030", "", "" }, rootNode3);
 					tl.AppendNode(new object[] { "경조외신청및조회", "DUTY1000.duty8050", "", "" }, rootNode3);
 					tl.AppendNode(new object[] { "연차및경조외현황", "DUTY1000.duty8090", "", "" }, rootNode3);
 					tl.AppendNode(new object[] { "사원별연차관리", "DUTY1000.duty8020", "", "" }, rootNode3);
 					tl.AppendNode(new object[] { "연차휴가사용촉구현황", "DUTY1000.duty8010", "", "" }, rootNode3);
-					
-					TreeListNode rootNode4 = tl.AppendNode(new object[] { "문서관리", "", "", "" }, parentForRootNodes);
-					tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4); //1신청,3진행,
-					tl.AppendNode(new object[] { "완결문서관리", "DUTY1000.duty5080", "", "" }, rootNode4); //2취소,4반려,5승인,8완료
+
+                    if (ACConfig.G_MSYN == "1")
+                    {
+                        TreeListNode rootNode4 = tl.AppendNode(new object[] { "문서관리", "", "", "" }, parentForRootNodes);
+                        tl.AppendNode(new object[] { "결재문서관리", "DUTY1000.duty5060", "", "" }, rootNode4); //1신청,3진행,
+                        tl.AppendNode(new object[] { "완결문서관리", "DUTY1000.duty5080", "", "" }, rootNode4); //2취소,4반려,5승인,8완료
+                    }
 
                     #endregion
                     break;

@@ -42,6 +42,12 @@
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow18 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrCheckBox4 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell51 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrCheckBox1 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -94,12 +100,6 @@
             this.pan_sign = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
-            this.xrTableRow18 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrCheckBox4 = new DevExpress.XtraReports.UI.XRCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -305,6 +305,90 @@
             this.xrTableCell6.StylePriority.UseTextAlignment = false;
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell6.Weight = 0.16686359258892325D;
+            // 
+            // xrTableRow18
+            // 
+            this.xrTableRow18.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell9,
+            this.xrTableCell13,
+            this.xrTableCell16,
+            this.xrTableCell18});
+            this.xrTableRow18.Dpi = 254F;
+            this.xrTableRow18.Name = "xrTableRow18";
+            this.xrTableRow18.Weight = 1.4824131721913489D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell9.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrCheckBox4});
+            this.xrTableCell9.Dpi = 254F;
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);
+            this.xrTableCell9.StylePriority.UseBorders = false;
+            this.xrTableCell9.StylePriority.UsePadding = false;
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell9.Weight = 0.53658662238807675D;
+            // 
+            // xrCheckBox4
+            // 
+            this.xrCheckBox4.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrCheckBox4.Dpi = 254F;
+            this.xrCheckBox4.Font = new System.Drawing.Font("맑은 고딕", 10F);
+            this.xrCheckBox4.LocationFloat = new DevExpress.Utils.PointFloat(46.16643F, 47.21761F);
+            this.xrCheckBox4.Name = "xrCheckBox4";
+            this.xrCheckBox4.Padding = new DevExpress.XtraPrinting.PaddingInfo(60, 0, 0, 0, 254F);
+            this.xrCheckBox4.SizeF = new System.Drawing.SizeF(256.3538F, 80.08652F);
+            this.xrCheckBox4.StylePriority.UseBorders = false;
+            this.xrCheckBox4.StylePriority.UseFont = false;
+            this.xrCheckBox4.StylePriority.UsePadding = false;
+            this.xrCheckBox4.StylePriority.UseTextAlignment = false;
+            this.xrCheckBox4.Text = "  시    차";
+            // 
+            // xrTableCell13
+            // 
+            this.xrTableCell13.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell13.Dpi = 254F;
+            this.xrTableCell13.Font = new System.Drawing.Font("맑은 고딕", 10F);
+            this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);
+            this.xrTableCell13.StylePriority.UseBorders = false;
+            this.xrTableCell13.StylePriority.UseFont = false;
+            this.xrTableCell13.StylePriority.UsePadding = false;
+            this.xrTableCell13.StylePriority.UseTextAlignment = false;
+            this.xrTableCell13.Text = "[GNMU_NM4]";
+            this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell13.Weight = 0.8401392186830714D;
+            // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
+            this.xrTableCell16.Dpi = 254F;
+            this.xrTableCell16.Font = new System.Drawing.Font("맑은 고딕", 10F);
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);
+            this.xrTableCell16.StylePriority.UseBorders = false;
+            this.xrTableCell16.StylePriority.UseFont = false;
+            this.xrTableCell16.StylePriority.UsePadding = false;
+            this.xrTableCell16.StylePriority.UseTextAlignment = false;
+            this.xrTableCell16.Text = "[DATE_NM4]";
+            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell16.Weight = 0.74785831999999119D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell18.Dpi = 254F;
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 0, 0, 0, 254F);
+            this.xrTableCell18.StylePriority.UseBorders = false;
+            this.xrTableCell18.StylePriority.UsePadding = false;
+            this.xrTableCell18.StylePriority.UseTextAlignment = false;
+            this.xrTableCell18.Text = "[YC_DAYS4]";
+            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell18.Weight = 0.347043327564572D;
             // 
             // xrTableRow4
             // 
@@ -515,7 +599,7 @@
             this.xrCheckBox3.StylePriority.UseFont = false;
             this.xrCheckBox3.StylePriority.UsePadding = false;
             this.xrCheckBox3.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox3.Text = "  휴    가";
+            this.xrCheckBox3.Text = "  경 조 외";
             // 
             // xrTableCell14
             // 
@@ -964,90 +1048,6 @@
             this.PageFooter.Dpi = 254F;
             this.PageFooter.HeightF = 63.95804F;
             this.PageFooter.Name = "PageFooter";
-            // 
-            // xrTableRow18
-            // 
-            this.xrTableRow18.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell9,
-            this.xrTableCell13,
-            this.xrTableCell16,
-            this.xrTableCell18});
-            this.xrTableRow18.Dpi = 254F;
-            this.xrTableRow18.Name = "xrTableRow18";
-            this.xrTableRow18.Weight = 1.4824131721913489D;
-            // 
-            // xrTableCell9
-            // 
-            this.xrTableCell9.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell9.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrCheckBox4});
-            this.xrTableCell9.Dpi = 254F;
-            this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);
-            this.xrTableCell9.StylePriority.UseBorders = false;
-            this.xrTableCell9.StylePriority.UsePadding = false;
-            this.xrTableCell9.StylePriority.UseTextAlignment = false;
-            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell9.Weight = 0.53658662238807675D;
-            // 
-            // xrTableCell13
-            // 
-            this.xrTableCell13.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell13.Dpi = 254F;
-            this.xrTableCell13.Font = new System.Drawing.Font("맑은 고딕", 10F);
-            this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);
-            this.xrTableCell13.StylePriority.UseBorders = false;
-            this.xrTableCell13.StylePriority.UseFont = false;
-            this.xrTableCell13.StylePriority.UsePadding = false;
-            this.xrTableCell13.StylePriority.UseTextAlignment = false;
-            this.xrTableCell13.Text = "[GNMU_NM4]";
-            this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell13.Weight = 0.8401392186830714D;
-            // 
-            // xrTableCell16
-            // 
-            this.xrTableCell16.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.xrTableCell16.Dpi = 254F;
-            this.xrTableCell16.Font = new System.Drawing.Font("맑은 고딕", 10F);
-            this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);
-            this.xrTableCell16.StylePriority.UseBorders = false;
-            this.xrTableCell16.StylePriority.UseFont = false;
-            this.xrTableCell16.StylePriority.UsePadding = false;
-            this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            this.xrTableCell16.Text = "[DATE_NM4]";
-            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell16.Weight = 0.74785831999999119D;
-            // 
-            // xrTableCell18
-            // 
-            this.xrTableCell18.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell18.Dpi = 254F;
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 0, 0, 0, 254F);
-            this.xrTableCell18.StylePriority.UseBorders = false;
-            this.xrTableCell18.StylePriority.UsePadding = false;
-            this.xrTableCell18.StylePriority.UseTextAlignment = false;
-            this.xrTableCell18.Text = "[YC_DAYS4]";
-            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell18.Weight = 0.347043327564572D;
-            // 
-            // xrCheckBox4
-            // 
-            this.xrCheckBox4.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrCheckBox4.Dpi = 254F;
-            this.xrCheckBox4.Font = new System.Drawing.Font("맑은 고딕", 10F);
-            this.xrCheckBox4.LocationFloat = new DevExpress.Utils.PointFloat(46.16643F, 47.21761F);
-            this.xrCheckBox4.Name = "xrCheckBox4";
-            this.xrCheckBox4.Padding = new DevExpress.XtraPrinting.PaddingInfo(60, 0, 0, 0, 254F);
-            this.xrCheckBox4.SizeF = new System.Drawing.SizeF(256.3538F, 80.08652F);
-            this.xrCheckBox4.StylePriority.UseBorders = false;
-            this.xrCheckBox4.StylePriority.UseFont = false;
-            this.xrCheckBox4.StylePriority.UsePadding = false;
-            this.xrCheckBox4.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox4.Text = "  시    차";
             // 
             // rpt_5081
             // 

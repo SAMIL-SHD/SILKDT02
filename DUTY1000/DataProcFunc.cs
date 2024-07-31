@@ -1963,7 +1963,7 @@ namespace DUTY1000
 													 "조회오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
         }
-        //조회부서 간호사 허용off조회
+        //조회부서 간호사 허용off조회->사용안함.
         public void Get3010_NURS_OFFDatas(string yymm, DataSet ds)
         {
             try
@@ -4209,7 +4209,8 @@ namespace DUTY1000
                 if (gubn == 0 || gubn == 3)
                 {
                     qry += " SELECT A.SEQNO, '3' AS TYPE, '시차' AS TYPE_NM, A.AP_TAG, A.REQ_DATE, A.SABN, 15 AS G_TYPE, '' AS PHOTO_REMARK, '' ADD_PHOTO, '' CHK, "
-                        + "        SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) AS DATE_NM, "
+                        + "        SUBSTRING(A.REQ_DATE,3,2)+'.'+SUBSTRING(A.REQ_DATE,5,2)+'.'+SUBSTRING(A.REQ_DATE,7,2) "
+                        + "        +'('+LEFT(A.FR_TIME,2)+':'+SUBSTRING(A.FR_TIME,3,2)+'~'+LEFT(A.TO_TIME,2)+':'+SUBSTRING(A.TO_TIME,3,2)+')' AS DATE_NM, "
                         + "		   X3.EMBSDPCD, RTRIM(X3.EMBSNAME) SAWON_NM, RTRIM(ISNULL(X4.DEPRNAM1,'')) AS DEPT_NM, "
                         + "        LEFT(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),6)+'-'+ "
                         + "        SUBSTRING(RTRIM(cast(DECRYPTBYPASSPHRASE('samilpas',X3.EMBSPTSA) as varchar(13))),7,7) AS D_JMNO, "
@@ -4263,7 +4264,7 @@ namespace DUTY1000
             {
                 string c1 = tb_nm == "DUTY_TRSHREQ" ? "YC_DAYS" : tb_nm == "DUTY_TRSJREQ" ? "HOLI_DAYS" : "YC_TIME";
                 string c2 = tb_nm == "DUTY_TRSHREQ" ? "(CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN X1.G_FNM ELSE X1.G_FNM+'~'+X2.G_FNM END)" : tb_nm == "DUTY_TRSJREQ" ? "X1.G_FNM" : "'시차'";
-                string c3 = tb_nm == "DUTY_TRSTREQ" ? "LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일'" 
+                string c3 = tb_nm == "DUTY_TRSTREQ" ? "LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일'+' ('+LEFT(A.FR_TIME,2)+':'+SUBSTRING(A.FR_TIME,3,2)+'~'+LEFT(A.TO_TIME,2)+':'+SUBSTRING(A.TO_TIME,3,2)+')' "
                     : "(CASE WHEN A.REQ_DATE=A.REQ_DATE2 THEN LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일' "
                         + "			     ELSE LEFT(A.REQ_DATE,4)+'년 '+SUBSTRING(A.REQ_DATE,5,2)+'월 '+SUBSTRING(A.REQ_DATE,7,2)+'일 ~ \r\n'+ "
                         + "					  LEFT(A.REQ_DATE2,4)+'년 '+SUBSTRING(A.REQ_DATE2,5,2)+'월 '+SUBSTRING(A.REQ_DATE2,7,2)+'일'  END)";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleExpression formatConditionRuleExpression1 = new DevExpress.XtraEditors.FormatConditionRuleExpression();
             DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule2 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
@@ -38,7 +39,7 @@
             this.splashManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::SilkRoad.SILKDT02.WaitForm1), true, true);
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -47,7 +48,7 @@
             this.tlcPara = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar5 = new DevExpress.XtraBars.Bar();
             this.Mbtn_1 = new DevExpress.XtraBars.BarLargeButtonItem();
             this.Mbtn_2 = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -72,14 +73,14 @@
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.lookup_MyMenu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.마이메뉴설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.xtraTabbedMdiManager1 = new SilkRoad.SILKDT02.TabbedMdiManagerX();
+            this.xtraTabbedMdiManager1 = new SilkRoad.SILKDT02.TabbedMdiManagerX(this.components);
             this.barLargeButtonItem1 = new DevExpress.XtraBars.BarLargeButtonItem();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.mm_end = new DevExpress.XtraEditors.MemoEdit();
@@ -147,9 +148,9 @@
             this.hideContainerLeft.BackColor = System.Drawing.SystemColors.Control;
             this.hideContainerLeft.Controls.Add(this.dockPanel1);
             this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.hideContainerLeft.Location = new System.Drawing.Point(0, 51);
+            this.hideContainerLeft.Location = new System.Drawing.Point(0, 54);
             this.hideContainerLeft.Name = "hideContainerLeft";
-            this.hideContainerLeft.Size = new System.Drawing.Size(20, 551);
+            this.hideContainerLeft.Size = new System.Drawing.Size(24, 541);
             // 
             // dockPanel1
             // 
@@ -471,31 +472,31 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1008, 51);
+            this.barDockControlTop.Size = new System.Drawing.Size(1008, 54);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 602);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 595);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1008, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1008, 32);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 551);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 541);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1008, 51);
+            this.barDockControlRight.Location = new System.Drawing.Point(1008, 54);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 551);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 541);
             // 
             // barStaticItem1
             // 
@@ -585,6 +586,7 @@
             this.xtraTabbedMdiManager1.AppearancePage.Header.Options.UseFont = true;
             this.xtraTabbedMdiManager1.AppearancePage.HeaderActive.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
             this.xtraTabbedMdiManager1.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageHeader;
             this.xtraTabbedMdiManager1.FloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabbedMdiManager1.FloatOnDrag = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabbedMdiManager1.FloatPageDragMode = DevExpress.XtraTabbedMdi.FloatPageDragMode.FullWindow;

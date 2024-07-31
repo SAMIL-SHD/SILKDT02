@@ -70,6 +70,7 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -94,7 +95,7 @@
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(2719.129F, 59.70833F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(2766F, 59.70833F);
             this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseFont = false;
             this.xrTable1.StylePriority.UseTextAlignment = false;
@@ -136,6 +137,7 @@
             this.c_29,
             this.c_30,
             this.c_31,
+            this.xrTableCell1,
             this.xrTableCell5,
             this.xrTableCell7,
             this.xrTableCell8});
@@ -528,6 +530,17 @@
             // 
             this.formattingRule1.Name = "formattingRule1";
             // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell1.Dpi = 254F;
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.StylePriority.UseBackColor = false;
+            this.xrTableCell1.StylePriority.UseBorders = false;
+            this.xrTableCell1.Weight = 0.38008919969725818D;
+            // 
             // rpt_3010_sub
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -594,5 +607,6 @@
 		private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
 		private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
 		private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
-	}
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
+    }
 }
