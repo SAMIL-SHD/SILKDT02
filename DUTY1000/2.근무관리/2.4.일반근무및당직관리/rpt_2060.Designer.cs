@@ -156,8 +156,8 @@
             this.xrTableCell71 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell72 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lb_part = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lb_part = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -632,15 +632,15 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel4.Dpi = 254F;
             this.xrLabel4.Font = new System.Drawing.Font("맑은 고딕", 20F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(636.9043F, 0F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(745.3834F, 0F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(1523.948F, 116.6283F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(1049.549F, 106.045F);
             this.xrLabel4.StylePriority.UseBackColor = false;
             this.xrLabel4.StylePriority.UseBorders = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "2021.11월 근무및당직";
+            this.xrLabel4.Text = "2024년 7월 직원근무표";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // TopMargin
@@ -1382,26 +1382,30 @@
             this.xrTableCell6.Visible = false;
             this.xrTableCell6.Weight = 0.491362322713007D;
             // 
-            // lb_part
-            // 
-            this.lb_part.Dpi = 254F;
-            this.lb_part.LocationFloat = new DevExpress.Utils.PointFloat(198.4375F, 116.4167F);
-            this.lb_part.Name = "lb_part";
-            this.lb_part.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
-            this.lb_part.SizeF = new System.Drawing.SizeF(396.8749F, 58.42F);
-            this.lb_part.StylePriority.UseTextAlignment = false;
-            this.lb_part.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
             // xrLabel2
             // 
             this.xrLabel2.Dpi = 254F;
+            this.xrLabel2.Font = new System.Drawing.Font("맑은 고딕", 10F);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 116.4167F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(198.4375F, 58.42F);
+            this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "부      서 : ";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrLabel2.Text = "부   서 : ";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // lb_part
+            // 
+            this.lb_part.Dpi = 254F;
+            this.lb_part.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
+            this.lb_part.LocationFloat = new DevExpress.Utils.PointFloat(198.4375F, 116.4167F);
+            this.lb_part.Name = "lb_part";
+            this.lb_part.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.lb_part.SizeF = new System.Drawing.SizeF(468.3125F, 58.41999F);
+            this.lb_part.StylePriority.UseFont = false;
+            this.lb_part.StylePriority.UseTextAlignment = false;
+            this.lb_part.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // rpt_2060
             // 
@@ -1506,8 +1510,6 @@
         private DevExpress.XtraReports.UI.XRTableCell c_29;
         private DevExpress.XtraReports.UI.XRTableCell c_30;
         private DevExpress.XtraReports.UI.XRTableCell c_31;
-        private DevExpress.XtraReports.UI.XRLabel lb_part;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo3;
@@ -1561,5 +1563,7 @@
 		private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
 		private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
 		private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
-	}
+        private DevExpress.XtraReports.UI.XRLabel lb_part;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+    }
 }

@@ -21,10 +21,8 @@ namespace DUTY1000
         private string dbname = SilkRoad.DAL.DataAccess.DBname + SilkRoad.Config.SRConfig.WorkPlaceNo;
 
         private string ends_yn = "";
-        private string ends_yn2 = "";
 		
 		private int admin_lv = 0;
-        private string p_dpcd = "";
         public duty8050()
         {
             InitializeComponent();
@@ -39,9 +37,7 @@ namespace DUTY1000
         private void SetCancel(int stat)
         {
 			if (stat == 0)
-			{
-				sl_dept.Enabled = p_dpcd == "%" ? true : false;
-				
+			{				
 				if (ds.Tables["DUTY_TRSJREQ"] != null)
 					ds.Tables["DUTY_TRSJREQ"].Clear();
 				grd_hg.DataSource = null;
@@ -82,24 +78,27 @@ namespace DUTY1000
                 SetButtonEnable2("100");
 			}
 
-			df.GetSEARCH_DEPTDatas(ds);
-			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-			df.Get8030_SEARCH_EMBSDatas(p_dpcd, ds);
-			sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
-			df.Get8050_SEARCH_GNMUDatas(ds);
+            df.GetSEARCH_DEPT_POWERDatas(admin_lv, ds);
+            sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT_POWER"];
+            df.GetSEARCH_EMBS_POWERDatas(admin_lv, ds);
+            sl_embs.Properties.DataSource = ds.Tables["SEARCH_EMBS_POWER"];
+
+            df.Get8050_SEARCH_GNMUDatas(ds);
 			sl_gnmu.Properties.DataSource = ds.Tables["8050_SEARCH_GNMU"];
         }
 		
         //휴가신청내역 조회
         private void baseInfoSearch()
         {
-			//END_CHK();
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-			df.GetSEARCH_JREQ_LISTDatas("C", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_JREQ_LISTDatas("C", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd_hg.DataSource = ds.Tables["SEARCH_JREQ_LIST"];
-			df.GetSEARCH_JREQ_LISTDatas("D", clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
+			df.GetSEARCH_JREQ_LISTDatas("D", admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, ds);
 			grd_del.DataSource = ds.Tables["SEARCH_DEL_JREQ_LIST"];
-		}
+
+            if (ds.Tables["SEARCH_JREQ_LIST"].Rows.Count == 0)
+                MessageBox.Show("조회된 휴가내역이 없습니다!", "조회", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         #endregion
 
@@ -125,23 +124,15 @@ namespace DUTY1000
 			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				admin_lv = 3;
-                p_dpcd = "%";
                 lb_power.Text = "전체관리 권한";
-				sl_dept.Enabled = true;
 			}
             else if (admin_lv == 1)
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서조회 권한";
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
 			}
             else
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
-                lb_power.Text = "조회권한 없음";				
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
+                lb_power.Text = "조회권한 없음";
             }
 			
             SetCancel(0);
@@ -183,16 +174,29 @@ namespace DUTY1000
                 sl_line.EditValue = null;
                 sl_line.Enabled = true;
                 btn_add.Enabled = true;
+                dat_ycdt.DateTime = DateTime.Today;
+                dat_ycdt2.DateTime = DateTime.Today;
 
                 GW_LINE();
 
+                //부서 결재라인 검색
+                string gw_tb_nm = "";
                 df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds);
-                for (int i = 0; i < ds.Tables["DEL_GW_LINE"].Rows.Count; i++)
+                if (ds.Tables["DEL_GW_LINE"].Rows.Count == 0)
+                {
+                    //개인별 결재라인 검색
+                    df.GetDEL_GW_LINE_DEPTDatas(1, sl_embs.EditValue.ToString(), ds);
+                    gw_tb_nm = "DEL_GW_LINE_DEPT";
+                }
+                else
+                    gw_tb_nm = "DEL_GW_LINE";
+
+                for (int i = 0; i < ds.Tables[gw_tb_nm].Rows.Count; i++)
                 {
                     DataRow nrow = ds.Tables["GRD_LINE"].NewRow();
-                    nrow["LINE_SABN"] = ds.Tables["DEL_GW_LINE"].Rows[i]["LINE_SABN"].ToString();
-                    nrow["LINE_SANM"] = ds.Tables["DEL_GW_LINE"].Rows[i]["LINE_SANM"].ToString();
-                    nrow["LINE_JIWK"] = ds.Tables["DEL_GW_LINE"].Rows[i]["LINE_JIWK"].ToString();
+                    nrow["LINE_SABN"] = ds.Tables[gw_tb_nm].Rows[i]["LINE_SABN"].ToString();
+                    nrow["LINE_SANM"] = ds.Tables[gw_tb_nm].Rows[i]["LINE_SANM"].ToString();
+                    nrow["LINE_JIWK"] = ds.Tables[gw_tb_nm].Rows[i]["LINE_JIWK"].ToString();
                     ds.Tables["GRD_LINE"].Rows.Add(nrow);
                 }
 
@@ -255,7 +259,7 @@ namespace DUTY1000
                     nrow["LINE_AP_DT"] = gd.GetNow();
                     ds.Tables["DUTY_TRSJREQ_DT"].Rows.Add(nrow);
 
-                    df.GetDUTY_GW_LINEDatas(ds);
+                    //df.GetDUTY_GW_LINEDatas(ds);
                     for (int i = 0; i < grdv_sign.RowCount; i++)
                     {
                         if (grdv_sign.GetVisibleRowHandle(i) > -1 && grdv_sign.GetDataRow(grdv_sign.GetVisibleRowHandle(i))["LINE_JIWK"].ToString() == "")
@@ -279,13 +283,13 @@ namespace DUTY1000
                         nrow["LINE_AP_DT"] = "";
                         ds.Tables["DUTY_TRSJREQ_DT"].Rows.Add(nrow);
 
-                        DataRow nrow2 = ds.Tables["DUTY_GW_LINE"].NewRow();
-                        nrow2["SABN"] = sl_embs.EditValue.ToString();
-                        nrow2["LINE_SQ"] = i + 1;
-                        nrow2["LINE_SABN"] = crow["LINE_SABN"].ToString();
-                        nrow2["LINE_SANM"] = crow["LINE_SANM"].ToString();
-                        nrow2["LINE_JIWK"] = crow["LINE_JIWK"].ToString();
-                        ds.Tables["DUTY_GW_LINE"].Rows.Add(nrow2);
+                        //DataRow nrow2 = ds.Tables["DUTY_GW_LINE"].NewRow();
+                        //nrow2["SABN"] = sl_embs.EditValue.ToString();
+                        //nrow2["LINE_SQ"] = i + 1;
+                        //nrow2["LINE_SABN"] = crow["LINE_SABN"].ToString();
+                        //nrow2["LINE_SANM"] = crow["LINE_SANM"].ToString();
+                        //nrow2["LINE_JIWK"] = crow["LINE_JIWK"].ToString();
+                        //ds.Tables["DUTY_GW_LINE"].Rows.Add(nrow2);
                     }
 
                     hrow["REMARK1"] = txt_remk1.Text.ToString();
@@ -297,13 +301,13 @@ namespace DUTY1000
                     hrow["PSTY"] = "A";
                     ds.Tables["DUTY_TRSJREQ"].Rows.Add(hrow);
 
-                    df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds);
-                    for (int i = 0; i < ds.Tables["DEL_GW_LINE"].Rows.Count; i++)
-                    {
-                        ds.Tables["DEL_GW_LINE"].Rows[i].Delete();
-                    }
+                    //df.GetDEL_GW_LINEDatas(sl_embs.EditValue.ToString(), ds);
+                    //for (int i = 0; i < ds.Tables["DEL_GW_LINE"].Rows.Count; i++)
+                    //{
+                    //    ds.Tables["DEL_GW_LINE"].Rows[i].Delete();
+                    //}
 
-                    string[] tableNames = new string[] { "DUTY_TRSJREQ", "DUTY_TRSJREQ_DT", "DEL_GW_LINE", "DUTY_GW_LINE" };
+                    string[] tableNames = new string[] { "DUTY_TRSJREQ", "DUTY_TRSJREQ_DT" }; //, "DEL_GW_LINE", "DUTY_GW_LINE" };
                     SilkRoad.DbCmd_DT02.DbCmd_DT02 cmd = new SilkRoad.DbCmd_DT02.DbCmd_DT02();
                     outVal = cmd.setUpdate(ref ds, tableNames, null);
                 }
@@ -542,5 +546,9 @@ namespace DUTY1000
 
         #endregion
 
+        private void grd_hg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

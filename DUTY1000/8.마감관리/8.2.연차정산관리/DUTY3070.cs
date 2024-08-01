@@ -37,7 +37,7 @@ namespace DUTY1000
 				if (ds.Tables["SEARCH_HREQ"] != null)
 					ds.Tables["SEARCH_HREQ"].Clear();
 				grd1.DataSource = null;
-				SetButtonEnable("100000");
+				SetButtonEnable("10000");
 				dat_yymm.Enabled = true;
 			}
 			else if (stat == 3)
@@ -46,7 +46,10 @@ namespace DUTY1000
 					ds.Tables["S_DUTY_TRSHREQ2"].Clear();
 				pv_grd.DataSource = null;
 			}
-		}
+
+            df.GetSEARCH_DEPTDatas(ds);
+            sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
+        }
 
         #endregion
 
@@ -55,7 +58,8 @@ namespace DUTY1000
         private void duty3070_Load(object sender, EventArgs e)
         {
 			dat_s_yymm.DateTime = DateTime.Now;
-			dat_yymm.DateTime = DateTime.Now;
+            sl_dept.EditValue = null;
+            dat_yymm.DateTime = DateTime.Now;
 
 			dat_frmm.DateTime = clib.TextToDate(clib.DateToText(DateTime.Now).Substring(0, 4) + "0101");
 			dat_tomm.DateTime = DateTime.Now;
@@ -94,62 +98,74 @@ namespace DUTY1000
             clib.gridToExcel(grdv_search, "연차정산내역_" + clib.DateToText(DateTime.Now), true);
 		}
 
-		//처리
-		private void btn_proc_Click(object sender, EventArgs e)
+        //사원조회
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
+            df.Get3070_SEARCH_SABNDatas(dept, ds);
+            grd2.DataSource = ds.Tables["3070_SEARCH_SABN"];
+        }
+        //처리
+        private void btn_proc_Click(object sender, EventArgs e)
 		{
 			if (isNoError_um(2))
 			{
 				df.GetSEARCH_HREQDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);                
 				if (ds.Tables["SEARCH_HREQ"].Rows.Count > 0)				
-                    SetButtonEnable("011111");                
+                    SetButtonEnable("01111");                
 				else				
-                    SetButtonEnable("010011");                				
+                    SetButtonEnable("01001");                				
 
 				grd1.DataSource = ds.Tables["SEARCH_HREQ"];	
 				dat_yymm.Enabled = false;
 			}
         }
         //사원추가
-        private void btn_lineadd_Click(object sender, EventArgs e)
+        private void grdv2_DoubleClick(object sender, EventArgs e)
         {
-            if (sl_embs.EditValue != null)
+            DataRow drow = grdv2.GetFocusedDataRow();
+            if (drow == null)
+                return;
+
+            if (btn_proc.Enabled == true)
+                btn_proc.PerformClick();
+
+            if (ds.Tables["SEARCH_HREQ"].Select("SABN = '" + drow["SABN"].ToString() + "'").Length > 0)
             {
-                if (ds.Tables["SEARCH_HREQ"].Select("SABN = '" + sl_embs.EditValue.ToString() + "'").Length > 0)
-                {
-                    MessageBox.Show(sl_embs.Text.ToString() + "님은 이미 추가되어 있습니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    DataRow nrow = ds.Tables["SEARCH_HREQ"].NewRow();
-                    nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
-                    nrow["EMBSDPCD"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["EMBSDPCD"].ToString();
-                    nrow["DEPT_NM"] = ds.Tables["8030_SEARCH_EMBS"].Select("CODE = '" + sl_embs.EditValue.ToString() + "'")[0]["DEPT_NM"].ToString();
-                    nrow["SABN_NM"] = sl_embs.Text.ToString();
-                    nrow["SEQNO"] = 0;
-                    nrow["SABN"] = sl_embs.EditValue.ToString();
-                    nrow["GUBN"] = "C";
-                    nrow["REQ_YEAR"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4);
-                    nrow["REQ_DATE"] = clib.DateToText(clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddMonths(1).AddDays(-1));
-                    nrow["REQ_DATE2"] = clib.DateToText(clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddMonths(1).AddDays(-1));
-                    nrow["REQ_TYPE"] = "";
-                    nrow["REQ_TYPE2"] = "";
-                    nrow["YC_DAYS"] = 0;
-                    nrow["AP_TAG"] = "9";
-                    nrow["AP_DT"] = "";
-                    nrow["AP_USID"] = "";
-                    nrow["RT_DT"] = "";
-                    nrow["RT_USID"] = "";
-                    nrow["LINE_CNT"] = 0;
-                    nrow["LINE_MAX"] = 0;
-                    nrow["LINE_REMK"] = "";
-                    nrow["REMARK1"] = "";
-                    nrow["REMARK2"] = "";
-                    nrow["USID"] = SilkRoad.Config.SRConfig.USID;
-                    nrow["PSTY"] = "A";
-                    ds.Tables["SEARCH_HREQ"].Rows.Add(nrow);
-                }
+                MessageBox.Show(drow["EMBSNAME"].ToString() + "님은 이미 추가되어 있습니다.", "확인", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DataRow nrow = ds.Tables["SEARCH_HREQ"].NewRow();
+                nrow["YYMM_NM"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "-" + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
+                nrow["EMBSDPCD"] = drow["EMBSDPCD"].ToString();
+                nrow["DEPT_NM"] = drow["DEPR_NM"].ToString();
+                nrow["SABN_NM"] = drow["EMBSNAME"].ToString();
+                nrow["SEQNO"] = 0;
+                nrow["SABN"] = drow["SABN"].ToString();
+                nrow["GUBN"] = "C";
+                nrow["REQ_YEAR"] = clib.DateToText(dat_yymm.DateTime).Substring(0, 4);
+                nrow["REQ_DATE"] = clib.DateToText(clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddMonths(1).AddDays(-1));
+                nrow["REQ_DATE2"] = clib.DateToText(clib.TextToDate(clib.DateToText(dat_yymm.DateTime).Substring(0, 6) + "01").AddMonths(1).AddDays(-1));
+                nrow["REQ_TYPE"] = "";
+                nrow["REQ_TYPE2"] = "";
+                nrow["YC_DAYS"] = 0;
+                nrow["AP_TAG"] = "9";
+                nrow["AP_DT"] = "";
+                nrow["AP_USID"] = "";
+                nrow["RT_DT"] = "";
+                nrow["RT_USID"] = "";
+                nrow["LINE_CNT"] = 0;
+                nrow["LINE_MAX"] = 0;
+                nrow["LINE_REMK"] = "";
+                nrow["REMARK1"] = "";
+                nrow["REMARK2"] = "";
+                nrow["USID"] = SilkRoad.Config.SRConfig.USID;
+                nrow["PSTY"] = "A";
+                ds.Tables["SEARCH_HREQ"].Rows.Add(nrow);
             }
         }
+
         //사원삭제
         private void btn_linedel_Click(object sender, EventArgs e)
         {
@@ -223,8 +239,8 @@ namespace DUTY1000
         //삭제
         private void btn_del_Click(object sender, EventArgs e)
         {
-            string yymm = clib.DateToText(dat_s_yymm.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_s_yymm.DateTime).Substring(4, 2);
-            END_CHK(clib.DateToText(dat_s_yymm.DateTime).Substring(0, 6));
+            string yymm = clib.DateToText(dat_yymm.DateTime).Substring(0, 4) + "." + clib.DateToText(dat_yymm.DateTime).Substring(4, 2);
+            END_CHK(clib.DateToText(dat_yymm.DateTime).Substring(0, 6));
             if (ends_yn == "Y")
             {
                 MessageBox.Show(yymm + "월은 최종 마감되어 삭제할 수 없습니다.", "마감완료", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -239,6 +255,7 @@ namespace DUTY1000
                     int outVal = 0;
                     try
                     {
+                        df.GetSEARCH_HREQDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
                         for (int i = 0; i < ds.Tables["SEARCH_HREQ"].Rows.Count; i++)
                         {
                             DataRow drow = ds.Tables["SEARCH_HREQ"].Rows[i];
@@ -315,7 +332,7 @@ namespace DUTY1000
         {
             DataRow drow = grdv_search.GetFocusedDataRow();
 
-            SetButtonEnable("100000");
+            SetButtonEnable("10000");
             dat_yymm.DateTime = clib.TextToDate(drow["REQ_DATE"].ToString());
             btn_proc.PerformClick();
         }
@@ -323,9 +340,9 @@ namespace DUTY1000
         {
             //df.GetLOOK_DANG_EMBSDatas(ds);
             //sl_embs.Properties.DataSource = ds.Tables["LOOK_DANG_EMBS"];
-            df.Get8030_SEARCH_EMBSDatas("%", ds);
-            sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
-            sl_embs.EditValue = null;
+            //df.Get8030_SEARCH_EMBSDatas("%", ds);
+            //sl_embs.Properties.DataSource = ds.Tables["8030_SEARCH_EMBS"];
+            //sl_embs.EditValue = null;
         }
 
         private void END_CHK(string yymm)
@@ -421,7 +438,6 @@ namespace DUTY1000
             btn_del.Enabled = arr.Substring(2, 1) == "1" ? true : false;
             btn_linedel.Enabled = arr.Substring(3, 1) == "1" ? true : false;
             btn_canc.Enabled = arr.Substring(4, 1) == "1" ? true : false;
-            btn_lineadd.Enabled = arr.Substring(5, 1) == "1" ? true : false;
         }
 
 

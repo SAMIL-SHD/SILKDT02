@@ -57,6 +57,17 @@ namespace DUTY1000
             }
         }
 
+        private void SetWindows()
+        {
+            btn_set.Enabled = false;
+            srSplitContainer1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+
+            df.GetSL_SD_LISTDatas(ds);
+            grd_sd04.DataSource = ds.Tables["SL_SD_LIST"];
+            sl_sd_list.Properties.DataSource = ds.Tables["SL_SD_LIST"];
+
+            SetButtonEnable("10000");
+        }
         #endregion
 
         #region 1 Form
@@ -69,7 +80,10 @@ namespace DUTY1000
 		private void duty9040_Shown(object sender, EventArgs e)
 		{
 			SetCancel(1);
-		}
+
+            if (SilkRoad.Config.SRConfig.USID != "SAMIL")
+                SetWindows();
+        }
 
         #endregion
 
@@ -120,15 +134,15 @@ namespace DUTY1000
             {
                 if (outVal > 0)
                 {
-                    //MessageBox.Show("해당 내용이 저장되었습니다.", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btn_set.Enabled = false;
-                    srSplitContainer1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+                    SetWindows();
+                    //btn_set.Enabled = false;
+                    //srSplitContainer1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
 
-                    df.GetSL_SD_LISTDatas(ds);
-                    grd_sd04.DataSource = ds.Tables["SL_SD_LIST"];
-                    sl_sd_list.Properties.DataSource = ds.Tables["SL_SD_LIST"];
+                    //df.GetSL_SD_LISTDatas(ds);
+                    //grd_sd04.DataSource = ds.Tables["SL_SD_LIST"];
+                    //sl_sd_list.Properties.DataSource = ds.Tables["SL_SD_LIST"];
 
-                    SetButtonEnable("10000");
+                    //SetButtonEnable("10000");
                 }
                 Cursor = Cursors.Default;
             }

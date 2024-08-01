@@ -5,6 +5,9 @@ using SilkRoad.Common;
 using DevExpress.XtraScheduler;
 using System.Drawing;
 using DevExpress.XtraReports.UI;
+using System.IO;
+using System.Net;
+using System.Diagnostics;
 
 namespace DUTY1000
 {
@@ -81,14 +84,18 @@ namespace DUTY1000
                 admin_lv = 3;
                 lb_power.Text = "전체관리 권한";
             }
-            else if (admin_lv == 1)
-            {
-                lb_power.Text = "부서조회 권한";
-            }
             else
             {
-                lb_power.Text = "조회권한 없음";
+                lb_power.Text = "";
             }
+            //else if (admin_lv == 1)
+            //{
+            //    lb_power.Text = "부서조회 권한";
+            //}
+            //else
+            //{
+            //    lb_power.Text = "조회권한 없음";
+            //}
 
             proc();
 		}
@@ -134,7 +141,7 @@ namespace DUTY1000
 						DataRow crow = ds.Tables["5080_AP_YCHG_LIST"].Rows[i];
 						if (crow["CHK"].ToString() == "1")
 						{
-							string tb_nm = crow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+							string tb_nm = crow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : crow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
 							df.Get5060_DUTY_TRSHREQDatas(crow["SEQNO"].ToString(), tb_nm, ds);
                             if (ds.Tables[tb_nm].Rows.Count > 0)
                             {
@@ -204,7 +211,7 @@ namespace DUTY1000
         {
             DataRow drow = grdv_ap.GetFocusedDataRow();
             string seqno = drow["SEQNO"].ToString();
-            string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : "DUTY_TRSJREQ";
+            string tb_nm = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ" : "DUTY_TRSTREQ";
             
             if (e.ClickedItem.ToString() == "미리보기")
             {
@@ -213,6 +220,12 @@ namespace DUTY1000
             else if (e.ClickedItem.ToString() == "인쇄")
             {
                 print(2, drow["GUBN"].ToString(), seqno, tb_nm);
+            }
+            else if (e.ClickedItem.ToString() == "결재라인수정")
+            {
+                string tb_nm2 = drow["TYPE"].ToString() == "1" ? "DUTY_TRSHREQ_DT" : drow["TYPE"].ToString() == "2" ? "DUTY_TRSJREQ_DT" : "DUTY_TRSTREQ_DT";
+                duty5081 s = new duty5081(tb_nm2, seqno);
+                s.ShowDialog();
             }
         }
 
@@ -256,6 +269,60 @@ namespace DUTY1000
             //	}
             //}
         }
+
+        private void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
+        {
+            DataRow srow = grdv_ap.GetFocusedDataRow();
+
+            string photo_nm = srow["ADD_PHOTO"].ToString();
+            string dn_Path = Application.StartupPath + "\\DN_FILE\\" + photo_nm;
+            string type = srow["TYPE"].ToString() == "1" ? "HREQ" : "JREQ";
+            string year = srow["REQ_DATE"].ToString().Substring(0, 4);
+
+            DialogResult dr = MessageBox.Show("해당 첨부파일을 다운로드 하시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.Cancel)
+                return;
+
+            try
+            {
+                if (!Directory.Exists(Application.StartupPath + "\\DN_FILE"))
+                    Directory.CreateDirectory(Application.StartupPath + "\\DN_FILE");
+
+                FileInfo fd = new FileInfo(dn_Path);
+
+                if (!fd.Exists)  //파일이 존재하지 않으면 다운로드
+                {
+                    string uri = "http://" + SilkRoad.DAL.DataAccess.DBhost.Replace(",9245", "") + ":8080/image/" + type +"/" + year + "/" + photo_nm;
+                    HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(uri);
+                    HttpWebResponse ws = (HttpWebResponse)wr.GetResponse();
+                    Stream str = ws.GetResponseStream();
+                    byte[] inBuf = new byte[100000];
+                    int bytesToRead = (int)inBuf.Length;
+                    int bytesRead = 0;
+                    while (bytesToRead > 0)
+                    {
+                        int n = str.Read(inBuf, bytesRead, bytesToRead);
+                        if (n == 0)
+                            break;
+                        bytesRead += n;
+                        bytesToRead -= n;
+                    }
+
+                    FileStream fstr = new FileStream(dn_Path, FileMode.OpenOrCreate, FileAccess.Write);
+                    fstr.Write(inBuf, 0, bytesRead); //다운로드완료.
+                    str.Close();
+                    fstr.Close();
+                }
+                dr = MessageBox.Show("다운로드된 파일 위치에서 여시겠습니까?", "확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dr == DialogResult.OK)
+                    Process.Start(Application.StartupPath + "\\DN_FILE\\");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "에러", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+
         private void grdv_ap_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
 		{			
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)            
@@ -318,10 +385,10 @@ namespace DUTY1000
             return isError;
         }
 
-		#endregion
+        #endregion
 
-		#region 9. ETC
-        
+        #region 9. ETC
+
         #endregion
 
     }

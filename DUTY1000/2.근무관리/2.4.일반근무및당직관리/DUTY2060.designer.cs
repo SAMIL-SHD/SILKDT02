@@ -3309,7 +3309,9 @@
             this.col_type.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.col_type.OptionsColumn.ReadOnly = true;
             this.col_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.col_type.Width = 112;
+            this.col_type.Visible = true;
+            this.col_type.VisibleIndex = 1;
+            this.col_type.Width = 74;
             // 
             // gridColumn32
             // 
@@ -3317,7 +3319,7 @@
             this.gridColumn32.FieldName = "IN_DATE_NM";
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
-            this.gridColumn32.VisibleIndex = 1;
+            this.gridColumn32.VisibleIndex = 2;
             // 
             // gridColumn53
             // 
@@ -3330,8 +3332,6 @@
             this.gridColumn53.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn53.OptionsColumn.ReadOnly = true;
             this.gridColumn53.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn53.Visible = true;
-            this.gridColumn53.VisibleIndex = 2;
             this.gridColumn53.Width = 162;
             // 
             // gridColumn54
@@ -3345,8 +3345,6 @@
             this.gridColumn54.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn54.OptionsColumn.ReadOnly = true;
             this.gridColumn54.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn54.Visible = true;
-            this.gridColumn54.VisibleIndex = 3;
             this.gridColumn54.Width = 81;
             // 
             // gridColumn55
@@ -3358,8 +3356,6 @@
             this.gridColumn55.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn55.OptionsColumn.ReadOnly = true;
             this.gridColumn55.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
-            this.gridColumn55.Visible = true;
-            this.gridColumn55.VisibleIndex = 4;
             this.gridColumn55.Width = 78;
             // 
             // gridColumn63
@@ -3367,17 +3363,17 @@
             this.gridColumn63.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn63.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn63.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn63.Caption = "기본연차";
+            this.gridColumn63.Caption = "월차";
             this.gridColumn63.DisplayFormat.FormatString = "{0:#,###.#}";
             this.gridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn63.FieldName = "YC_BASE";
+            this.gridColumn63.FieldName = "YC_FIRST";
             this.gridColumn63.Name = "gridColumn63";
             this.gridColumn63.OptionsColumn.AllowEdit = false;
             this.gridColumn63.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn63.OptionsColumn.ReadOnly = true;
             this.gridColumn63.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn63.Visible = true;
-            this.gridColumn63.VisibleIndex = 5;
+            this.gridColumn63.VisibleIndex = 3;
             this.gridColumn63.Width = 39;
             // 
             // gridColumn67
@@ -3385,35 +3381,35 @@
             this.gridColumn67.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn67.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn67.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn67.Caption = "1년미만연차";
+            this.gridColumn67.Caption = "전년연차";
             this.gridColumn67.DisplayFormat.FormatString = "{0:#,###.#}";
             this.gridColumn67.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn67.FieldName = "YC_FIRST";
+            this.gridColumn67.FieldName = "YC_BF";
             this.gridColumn67.Name = "gridColumn67";
             this.gridColumn67.OptionsColumn.AllowEdit = false;
             this.gridColumn67.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn67.OptionsColumn.ReadOnly = true;
             this.gridColumn67.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn67.Visible = true;
-            this.gridColumn67.VisibleIndex = 6;
-            this.gridColumn67.Width = 56;
+            this.gridColumn67.VisibleIndex = 4;
+            this.gridColumn67.Width = 39;
             // 
             // gridColumn68
             // 
             this.gridColumn68.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn68.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn68.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.gridColumn68.Caption = "가산연차";
+            this.gridColumn68.Caption = "당해연차";
             this.gridColumn68.DisplayFormat.FormatString = "{0:#,###.#}";
             this.gridColumn68.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn68.FieldName = "YC_ADD";
+            this.gridColumn68.FieldName = "YC_NOW";
             this.gridColumn68.Name = "gridColumn68";
             this.gridColumn68.OptionsColumn.AllowEdit = false;
             this.gridColumn68.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn68.OptionsColumn.ReadOnly = true;
             this.gridColumn68.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn68.Visible = true;
-            this.gridColumn68.VisibleIndex = 7;
+            this.gridColumn68.VisibleIndex = 5;
             this.gridColumn68.Width = 37;
             // 
             // gridColumn69
@@ -3437,7 +3433,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_TOTAL", "{0:#,###.#}")});
             this.gridColumn69.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumn69.Visible = true;
-            this.gridColumn69.VisibleIndex = 8;
+            this.gridColumn69.VisibleIndex = 6;
             this.gridColumn69.Width = 40;
             // 
             // gridColumn70
@@ -3455,7 +3451,7 @@
             this.gridColumn70.OptionsColumn.ReadOnly = true;
             this.gridColumn70.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn70.Visible = true;
-            this.gridColumn70.VisibleIndex = 9;
+            this.gridColumn70.VisibleIndex = 7;
             this.gridColumn70.Width = 38;
             // 
             // gridColumn71
@@ -3477,7 +3473,7 @@
             this.gridColumn71.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_USE", "{0:#,##0.###}")});
             this.gridColumn71.Visible = true;
-            this.gridColumn71.VisibleIndex = 10;
+            this.gridColumn71.VisibleIndex = 8;
             this.gridColumn71.Width = 58;
             // 
             // gridColumn72
@@ -3500,7 +3496,7 @@
             this.gridColumn72.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "YC_REMAIN", "{0:#,###.###}")});
             this.gridColumn72.Visible = true;
-            this.gridColumn72.VisibleIndex = 11;
+            this.gridColumn72.VisibleIndex = 9;
             this.gridColumn72.Width = 58;
             // 
             // insa_jakuk

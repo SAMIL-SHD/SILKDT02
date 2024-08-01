@@ -332,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\kshp_qr.png" />
+    <None Include="Resources\sghp_qr1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

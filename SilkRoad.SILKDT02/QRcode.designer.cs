@@ -109,14 +109,14 @@
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(436, 450);
+            this.pictureBox1.Size = new System.Drawing.Size(436, 435);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::SilkRoad.SILKDT02.Properties.Resources.kshp_qr;
+            this.pictureBox2.Image = global::SilkRoad.SILKDT02.Properties.Resources.sghp_qr1;
             this.pictureBox2.InitialImage = null;
             this.pictureBox2.Location = new System.Drawing.Point(34, 13);
             this.pictureBox2.Name = "pictureBox2";
@@ -128,22 +128,22 @@
             // srPanel1
             // 
             this.srPanel1.Controls.Add(this.txt_url);
-            this.srPanel1.Location = new System.Drawing.Point(34, 280);
+            this.srPanel1.Location = new System.Drawing.Point(5, 291);
             this.srPanel1.Name = "srPanel1";
-            this.srPanel1.Size = new System.Drawing.Size(363, 87);
+            this.srPanel1.Size = new System.Drawing.Size(421, 87);
             this.srPanel1.TabIndex = 3;
             // 
             // txt_url
             // 
-            this.txt_url.EditValue = "http://125.136.91.159:8080/kshp/home";
-            this.txt_url.Location = new System.Drawing.Point(10, 9);
+            this.txt_url.EditValue = "http://112.216.130.162:8080/sghp";
+            this.txt_url.Location = new System.Drawing.Point(7, 9);
             this.txt_url.Name = "txt_url";
             this.txt_url.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txt_url.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
             this.txt_url.Properties.Appearance.Options.UseBackColor = true;
             this.txt_url.Properties.Appearance.Options.UseFont = true;
             this.txt_url.Properties.ReadOnly = true;
-            this.txt_url.Size = new System.Drawing.Size(343, 66);
+            this.txt_url.Size = new System.Drawing.Size(406, 66);
             this.txt_url.TabIndex = 0;
             // 
             // srTabControl1
@@ -152,7 +152,7 @@
             this.srTabControl1.Location = new System.Drawing.Point(0, 0);
             this.srTabControl1.Name = "srTabControl1";
             this.srTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.srTabControl1.Size = new System.Drawing.Size(436, 450);
+            this.srTabControl1.Size = new System.Drawing.Size(436, 435);
             this.srTabControl1.TabIndex = 4;
             this.srTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -167,7 +167,7 @@
             this.xtraTabPage1.Controls.Add(this.pictureBox2);
             this.xtraTabPage1.Controls.Add(this.srPanel1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(430, 420);
+            this.xtraTabPage1.Size = new System.Drawing.Size(430, 405);
             this.xtraTabPage1.Text = "QR코드 및 주소";
             // 
             // xtraTabPage2
@@ -179,7 +179,7 @@
             this.xtraTabPage2.AutoScroll = true;
             this.xtraTabPage2.Controls.Add(this.mm_end);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(430, 420);
+            this.xtraTabPage2.Size = new System.Drawing.Size(430, 405);
             this.xtraTabPage2.Text = "월마감프로세스";
             // 
             // mm_end
@@ -190,14 +190,14 @@
             this.mm_end.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.5F);
             this.mm_end.Properties.Appearance.Options.UseFont = true;
             this.mm_end.Properties.ReadOnly = true;
-            this.mm_end.Size = new System.Drawing.Size(749, 455);
+            this.mm_end.Size = new System.Drawing.Size(717, 384);
             this.mm_end.TabIndex = 8;
             // 
             // QRcode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 450);
+            this.ClientSize = new System.Drawing.Size(436, 435);
             this.Controls.Add(this.srTabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

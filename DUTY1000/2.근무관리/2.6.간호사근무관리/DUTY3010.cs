@@ -487,7 +487,8 @@ namespace DUTY1000
 							}
 							nrow["PLAN_SQ"] = sq;
 							nrow["REMARK"] = drow["REMARK"].ToString().Trim();
-							nrow["ALLOW_OFF"] = clib.TextToDecimal(drow["ALLOW_OFF"].ToString());
+                            nrow["STAN_OFF"] = clib.TextToDecimal(drow["STAN_OFF"].ToString());
+                            nrow["ALLOW_OFF"] = clib.TextToDecimal(drow["ALLOW_OFF"].ToString());
 							nrow["MM_CNT1"] = clib.TextToDecimal(drow["MM_CNT1"].ToString());
 							nrow["MM_CNT2"] = clib.TextToDecimal(drow["MM_CNT2"].ToString());
 							nrow["MM_CNT3"] = clib.TextToDecimal(drow["MM_CNT3"].ToString());
@@ -613,14 +614,17 @@ namespace DUTY1000
 			else
 			{
 				int max_sq = clib.TextToInt(ds.Tables["SEARCH_PLAN"].Compute("MAX(PLAN_SQ)", null).ToString());
-				DataRow trow = ds.Tables["3010_SEARCH_NURS"].Select("CODE = '" + sl_nurs.EditValue.ToString() + "'")[0];
+
+                //df.Get3010_NURS_OFFDatas(clib.DateToText(dat_yymm.DateTime), ds);
+                DataRow trow = ds.Tables["3010_SEARCH_NURS"].Select("CODE = '" + sl_nurs.EditValue.ToString() + "'")[0];
 				DataRow nrow = ds.Tables["SEARCH_PLAN"].NewRow();
                 //nrow["YYMM_SQ"] = cmb_sq.SelectedIndex + 1;
                 nrow["SAWON_NO"] = sl_nurs.EditValue.ToString();
 				nrow["SAWON_NM"] = trow["NAME"].ToString();
 				nrow["PLAN_SQ"] = max_sq + 1;
-				nrow["ALLOW_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
-				ds.Tables["SEARCH_PLAN"].Rows.Add(nrow);
+				nrow["STAN_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
+                nrow["ALLOW_OFF"] = clib.TextToDecimal(trow["ALLOW_OFF"].ToString());
+                ds.Tables["SEARCH_PLAN"].Rows.Add(nrow);
 			}
 		}
 		//라인삭제
@@ -701,12 +705,32 @@ namespace DUTY1000
 			}
         }
 
-		#endregion
+        //허용off 재계산
+        private void btn_calc_off_Click(object sender, EventArgs e)
+        {
+            decimal lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
+            for (int i = 0; i < ds.Tables["SEARCH_PLAN"].Rows.Count; i++)
+            {
+                decimal lc_cnt = 0;
+                DataRow drow = ds.Tables["SEARCH_PLAN"].Rows[i];
+                for (int d = 1; d <= lastday; d++)
+                {
+                    if (ds.Tables["3010_GNMU"].Select("G_CODE = '" + drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() + "'").Length > 0) //무급휴가 체크
+                        lc_cnt += ds.Tables["3010_GNMU"].Select("G_CODE = '" + drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() + "'")[0]["G_TYPE"].ToString() == "14" ? 0 : 1;                    
+                    else
+                        lc_cnt += drow["D" + d.ToString().PadLeft(2, '0')].ToString().Trim() == "" ? 0 : 1;
+                }
+                if (lastday != lc_cnt)
+                    drow["ALLOW_OFF"] = Math.Round(clib.TextToDecimal(drow["STAN_OFF"].ToString()) * lc_cnt / lastday, 0, MidpointRounding.AwayFromZero).ToString();
+            }
+        }
 
-		#region 3 EVENT
-		
-		//메뉴 활성화시
-		private void duty3010_Activated(object sender, EventArgs e)
+        #endregion
+
+        #region 3 EVENT
+
+        //메뉴 활성화시
+        private void duty3010_Activated(object sender, EventArgs e)
 		{
 			END_CHK();
 
@@ -1269,7 +1293,7 @@ namespace DUTY1000
 			DataRow srow = ds.Tables["SEARCH_PLAN"].Select("SAWON_NO = '" + sabn + "'")[0];
 
 			int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
-            double Day = 0, Eve = 0, Night = 0, Off = 0;
+            double Day = 0, Eve = 0, DayEve = 0, Night = 0, Off = 0;
 			decimal yc = 0;
 			for (int k = 1; k <= lastday; k++)
 			{
@@ -1280,13 +1304,15 @@ namespace DUTY1000
 					{
 						case "1":
 						case "5":
-                            if (trow["G_CODE"].ToString() == "06")
-                            {
-                                Day += 0.5;
-                            }
+                            if (trow["G_CODE"].ToString() == "06")                            
+                                Day += 0.5;                            
                             else
                                 Day += 1;
-							break;
+
+                            if (trow["G_CODE"].ToString() == "07")
+                                DayEve += 1;
+
+                            break;
 						case "2":
                                 Eve += 1;
 							break;
@@ -1304,8 +1330,9 @@ namespace DUTY1000
 					}
 				}
 			}
-			srow["MM_CNT1"] = Day;
-			srow["MM_CNT2"] = Eve;
+			srow["MM_CNT1"] = Day; //사용안함.
+
+			srow["MM_CNT2"] = DayEve;
 			srow["MM_CNT3"] = Night;
 			srow["MM_CNT4"] = Off;
 			srow["MM_CNT5"] = yc;
@@ -1380,6 +1407,5 @@ namespace DUTY1000
 		}
 
         #endregion
-
     }
 }

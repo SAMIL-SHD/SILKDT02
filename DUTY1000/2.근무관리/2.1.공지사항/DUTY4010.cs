@@ -26,6 +26,7 @@ namespace DUTY1000
         DataProcFunc df = new DataProcFunc();
         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 		int idx = 0;
+        private int admin_lv = 0;
         public duty4010()
         {
             InitializeComponent();
@@ -45,7 +46,10 @@ namespace DUTY1000
 			srLabel1.Text = "공지사항 등록중입니다.";
 			txt_title.Text = "";
 			mm_Contents.Text = "";
-            SetButtonEnable("10");
+            if (admin_lv < 2)
+                SetButtonEnable("00");
+            else
+                SetButtonEnable("10");
         }
 
         //사원기본정보 및 연차정보 , 휴가사용내역, 휴일사용내역 조회
@@ -66,10 +70,30 @@ namespace DUTY1000
 			baseInfoSearch();
         }
 
+        private void duty4010_Shown(object sender, EventArgs e)
+        {
+            df.GetMSTUSER_CHKDatas(ds);  //부서관리여부
+            if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
+                admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
+
+            if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
+            {
+                admin_lv = 2;
+                lb_power.Text = "전체관리 권한";
+            }
+            else if (admin_lv == 1)
+            {
+                lb_power.Text = "부서관리 권한";
+            }
+            else
+            {
+                lb_power.Text = "관리권한 없음";
+            }
+        }
         #endregion
 
         #region 2 Button
-		
+
         //저장버튼
         private void btn_save_Click(object sender, EventArgs e)
         {
@@ -191,7 +215,11 @@ namespace DUTY1000
 			
 			srLabel1.Text = "공지사항 수정중입니다.";
 			idx = clib.TextToInt(drow["IDX"].ToString());
-			SetButtonEnable("11");
+
+            if (admin_lv < 2)
+                SetButtonEnable("00");
+            else
+                SetButtonEnable("11");
 			
 			if (drow["NOTIDATE"].ToString().Trim() != "")
 				dat_sldt.DateTime = clib.TextToDate(drow["NOTIDATE"].ToString());

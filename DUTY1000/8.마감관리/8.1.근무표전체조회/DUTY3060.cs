@@ -5,7 +5,9 @@ using SilkRoad.Common;
 using System.Data.OleDb;
 using System.Collections;
 using System.Drawing;
+using System.ComponentModel;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraEditors;
 
 namespace DUTY1000
 {
@@ -32,9 +34,18 @@ namespace DUTY1000
                 ds.Tables["3060_SEARCH"].Clear();
             grd_gt.DataSource = null;
 
+            if (ds.Tables["3060_CHK1"] != null)
+                ds.Tables["3060_CHK1"].Clear();
+            if (ds.Tables["3060_CHK2"] != null)
+                ds.Tables["3060_CHK2"].Clear();
+            grd1.DataSource = null;
+            grd2.DataSource = null;
+
             df.Get2060_DANG_GNMUDatas(ds);
 			grd_sl_gnmu.DataSource = ds.Tables["2060_DANG_GNMU"];
-		}
+
+            txt_msg.Text = "";
+        }
 
         #endregion
 
@@ -58,7 +69,9 @@ namespace DUTY1000
 		{
 			if (isNoError_um(1))
 			{
-				df.GetSEARCH_HOLIDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+                txt_msg.Text = "";
+
+                df.GetSEARCH_HOLIDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
 				//1.기준년월에 따른 하단 일자컬럼header 일자, 요일 설정
 				int lastday = clib.TextToInt(clib.DateToText(clib.TextToDateLast(clib.DateToText(dat_yymm.DateTime))).Substring(6, 2));
 
@@ -96,7 +109,13 @@ namespace DUTY1000
 				df.Get3060_SEARCHDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), cmb_sq.SelectedIndex + 1, ds);
 				grd_gt.DataSource = ds.Tables["3060_SEARCH"];
 			}
-		}
+
+            df.Get3060_CHK1Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+            grd1.DataSource = ds.Tables["3060_CHK1"];
+
+            df.Get3060_CHK2Datas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), ds);
+            grd2.DataSource = ds.Tables["3060_CHK2"];
+        }
 		//취소
 		private void btn_canc_Click(object sender, EventArgs e)
 		{
@@ -107,6 +126,30 @@ namespace DUTY1000
 		{
             clib.gridToExcel(grdv_gt, "근무표조회_" + clib.DateToText(DateTime.Now), true);
 		}
+        //검증 처리
+        private void btn_errchk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txt_msg.Text = "";
+                btn_errchk.Enabled = false;
+                //btn_canc.Enabled = true;
+                btn_exit.Enabled = false;
+
+                this.Cursor = Cursors.WaitCursor;
+
+                //AppendMessage("작업을 시작합니다.");
+
+                marqueeProgressBarControl1.Visible = true;
+                marqueeProgressBarControl1.Properties.Stopped = false;
+                // 비동기로 작업을 시작합니다. DoWork 이벤트를 발생
+                this.bgWorker.RunWorkerAsync(null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("오류가 발생했습니다", ex);
+            }
+        }
         #endregion
 
         #region 3 EVENT
@@ -192,12 +235,22 @@ namespace DUTY1000
                 return;
 
             DataRow drow = grdv_gt.GetFocusedDataRow();
-			//df.Get3010_KT_DTDatas(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6), drow["SAWON_NO"].ToString().Trim(), ds);
-			//grd_kt1.DataSource = ds.Tables["3010_KT_DT1"];
-			//grd_kt2.DataSource = ds.Tables["3010_KT_DT2"];
-		}
+            //df.Get3010_KT_DTDatas(clib.DateToText(dat_yymm3.DateTime).Substring(0, 6), drow["SAWON_NO"].ToString().Trim(), ds);
+            //grd_kt1.DataSource = ds.Tables["3010_KT_DT1"];
+            //grd_kt2.DataSource = ds.Tables["3010_KT_DT2"];
+        }
+        private void grdv1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+        private void grdv2_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
 
-		#endregion		
+        #endregion
 
         #region 7. Error Check
 
@@ -226,11 +279,132 @@ namespace DUTY1000
             return isError;
         }
 
-		#endregion
+        #endregion
+        
+        #region 8. BackgroundWorker
 
-		#region 9. ETC
+        private void CallBackGroundWorker()
+        {
+            //if (!this.bgWorker.IsBusy)
+            //{
+            //	this.progressBarControl1.Visible = true;
+            //	this.bgWorker.RunWorkerAsync();
+            //}
+        }
 
-		#endregion
-		
-	}
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            this.DoWork((BackgroundWorker)sender, e);
+            e.Result = null;
+        }
+        private void DoWork(BackgroundWorker worker, DoWorkEventArgs e)
+        {
+            /*
+			* 실행중인 Form 과 다른 쓰레드에서 동작하므로
+			* 처리할 메서드에서는 UI 객체의 속성값(Value, Text 등..)을 사용하지 못합니다.
+			*
+			* 작업에 필요한 값은 매개변수로 전달받아야 하고 UI객체의 상태를 변화시킬 필요가 있는 경우
+			* ProgressChanged
+			* RunWorkerCompleted
+			* 이벤트를 사용해야 합니다.
+			*/
+
+            double nMax = ds.Tables["3060_CHK1"].Rows.Count + ds.Tables["3060_CHK2"].Rows.Count;
+            int iPartCnt = 0;
+            int iSendCnt = 0;
+
+            this.Invoke(new Action(delegate ()
+            {
+                string msg = "";
+                // 1->2에 있는지 췤
+                for (int i = 0; i < ds.Tables["3060_CHK1"].Rows.Count; i++)
+                {
+                    DataRow drow = ds.Tables["3060_CHK1"].Rows[i];
+                    string sabn = drow["SABN"].ToString();
+                    string dd = drow["DD"].ToString();
+                    string gnmu = drow["GNMU"].ToString();
+                    if (ds.Tables["3060_CHK2"].Select("SABN = '" + sabn + "' AND DD = '" + dd + "' AND GNMU = '" + gnmu + "'").Length == 0)
+                    {
+                        iPartCnt = 1;
+                        iSendCnt++;
+                        drow["ERR_CHK"] = "1";
+                        msg = iSendCnt + ".(" + sabn + ")" + drow["SABN_NM"].ToString() + "님의 " + dd + "일 (" + gnmu + ")" + drow["G_FNM"].ToString() + " 근무가 휴가원에 존재하지 않습니다.";
+
+                        txt_msg.AppendText($"{msg}{Environment.NewLine}");
+                        txt_msg.ScrollToCaret();
+                    }
+                    else
+                        drow["ERR_CHK"] = "";
+
+                    marqueeProgressBarControl1.Text = "검증작업중...(" + sabn + ")" + drow["SABN_NM"].ToString().Trim();
+                }
+                // 2->1에 있는지 췤
+                for (int i = 0; i < ds.Tables["3060_CHK2"].Rows.Count; i++)
+                {
+                    DataRow drow = ds.Tables["3060_CHK2"].Rows[i];
+                    string sabn = drow["SABN"].ToString();
+                    string dd = drow["DD"].ToString();
+                    string gnmu = drow["GNMU"].ToString();
+                    if (ds.Tables["3060_CHK1"].Select("SABN = '" + sabn + "' AND DD = '" + dd + "' AND GNMU = '" + gnmu + "'").Length == 0)
+                    {
+                        if (iPartCnt == 1)
+                        {
+                            msg = "-------------------------------------------------------------------------------------";
+                            txt_msg.AppendText($"{msg}{Environment.NewLine}");
+                        }
+                        iPartCnt = 2;
+                        iSendCnt++;
+
+                        drow["ERR_CHK"] = "1";
+                        msg = iSendCnt + ".(" + sabn + ")" + drow["SABN_NM"].ToString() + "님의 " + dd + "일 (" + gnmu + ")" + drow["G_FNM"].ToString() + " 근무가 근무표에 존재하지 않습니다.";
+
+                        txt_msg.AppendText($"{msg}{Environment.NewLine}");
+                        txt_msg.ScrollToCaret();
+                    }
+                    else
+                        drow["ERR_CHK"] = "";
+
+                    marqueeProgressBarControl1.Text = "검증작업중...(" + sabn + ")" + drow["SABN_NM"].ToString().Trim();
+                }
+            }));
+        }
+        private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //this.progressBarControl1.Position = e.ProgressPercentage;
+        }
+
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                if (e.Error != null)    // 예외 발생
+                {
+                    XtraMessageBox.Show(e.Error.Message, "예외", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else                    // 완료
+                {
+                    XtraMessageBox.Show("검증이 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("오류가 발생했습니다", ex);
+            }
+            finally
+            {
+                btn_errchk.Enabled = true;
+                btn_exit.Enabled = true;
+                this.marqueeProgressBarControl1.Visible = false;
+                marqueeProgressBarControl1.Properties.Stopped = true;
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        #endregion
+
+        #region 9. ETC
+
+        #endregion
+
+    }
 }

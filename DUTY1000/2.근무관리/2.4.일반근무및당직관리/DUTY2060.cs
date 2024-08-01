@@ -391,7 +391,9 @@ namespace DUTY1000
 									crow["D" + k.ToString().PadLeft(2, '0')] = "01";  //데이근무
 							}
 						}
-					}
+
+                        month_calc(crow["SAWON_NO"].ToString());
+                    }
 
 					if (admin_lv == 1)  //부서장일때 관리부서인지 체크
 					{
@@ -631,8 +633,11 @@ namespace DUTY1000
 				for (int i = 0; i < ds.Tables["SEARCH_DANG_PLAN"].Rows.Count; i++)
 				{
 					DataRow drow = ds.Tables["SEARCH_DANG_PLAN"].Rows[i];
-					if (drow.RowState != DataRowState.Deleted)
-						drow["D"+d_nm] = sl_gnmu.EditValue.ToString();
+                    if (drow.RowState != DataRowState.Deleted)
+                    {
+                        drow["D" + d_nm] = sl_gnmu.EditValue.ToString();
+                        month_calc(drow["SAWON_NO"].ToString());
+                    }
 				}
 			}
 		}

@@ -290,27 +290,30 @@ namespace SilkRoad.SILKDT02
         private bool CheckUscp(string dllName)
         {
             bool res = false;
-            SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
+            
+            return true;  //부서관리로 아이디별 통제하므로 일단 pass
 
-            if ("3030014,3030450,1030001".Contains(SRConfig.USID)) //테스트
-                return true;
+   //         SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
 
-            if (SRConfig.USID == "SAMIL" || dllName.ToUpper().Substring(0, 1) == "W" || ("DUTY1,DUTY5,DUTY9").Contains(dllName.ToUpper().Substring(0, 5))
-                || ("DUTY3070,DUTY3080,DUTY3090").Contains(dllName.ToUpper().Substring(0, 8)))
-				return true;
+   //         if ("3030014,3030450,1030001".Contains(SRConfig.USID)) //테스트
+   //             return true;
 
-			//메뉴 권한 검사     
-			string qry = "  SELECT USCPIDEN "
-					   + "    FROM COMMDB" + SilkRoad.Config.SRConfig.WorkPlaceNo + ".DBO.MSTUSCP "
-					   + "   WHERE USCPIDEN = '" + SilkRoad.Config.SRConfig.USID + "' "
-					   + "     AND USCPFMID = '" + dllName + "'";
+   //         if (SRConfig.USID == "SAMIL" || dllName.ToUpper().Substring(0, 1) == "W" || ("DUTY1,DUTY5,DUTY9").Contains(dllName.ToUpper().Substring(0, 5))
+   //             || ("DUTY3070,DUTY3080,DUTY3090").Contains(dllName.ToUpper().Substring(0, 8)))
+			//	return true;
 
-			object iden = gd.GetOneData(1, "COMMDB" + SilkRoad.Config.SRConfig.WorkPlaceNo, qry);
+			////메뉴 권한 검사     
+			//string qry = "  SELECT USCPIDEN "
+			//		   + "    FROM COMMDB" + SilkRoad.Config.SRConfig.WorkPlaceNo + ".DBO.MSTUSCP "
+			//		   + "   WHERE USCPIDEN = '" + SilkRoad.Config.SRConfig.USID + "' "
+			//		   + "     AND USCPFMID = '" + dllName + "'";
 
-			if (iden != null && iden.ToString().Length > 0)
-				res = true;
+			//object iden = gd.GetOneData(1, "COMMDB" + SilkRoad.Config.SRConfig.WorkPlaceNo, qry);
 
-			return res;
+			//if (iden != null && iden.ToString().Length > 0)
+			//	res = true;
+
+			//return res;
         }
 
         private void tb_Click(object sender, ItemClickEventArgs e)

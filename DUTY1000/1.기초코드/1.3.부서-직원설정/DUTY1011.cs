@@ -117,7 +117,8 @@ namespace DUTY1000
 							nrow["MOVE_DATE"] = clib.DateToText(dat_move.DateTime);
 							nrow["FR_DEPT"] = drow["DEPTCODE"].ToString();
 							nrow["TO_DEPT"] = sl_dept.EditValue;
-							nrow["REG_DT"] = gd.GetNow();
+                            nrow["REMARK"] = "";
+                            nrow["REG_DT"] = gd.GetNow();
 							nrow["REG_ID"] = SilkRoad.Config.SRConfig.USID;
 							ds.Tables["DUTY_TRSDEPT"].Rows.Add(nrow);
 

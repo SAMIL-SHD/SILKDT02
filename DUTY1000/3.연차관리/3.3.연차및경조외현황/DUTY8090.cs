@@ -14,14 +14,9 @@ namespace DUTY1000
         ClearNEnableControls cec = new ClearNEnableControls();
         public DataSet ds = new DataSet();
         DataProcFunc df = new DataProcFunc();
-        SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();
-		
-        private string ends_yn = "";
-		
+        SilkRoad.DataProc.GetData gd = new SilkRoad.DataProc.GetData();	
 		private int admin_lv = 0;
-        private string msyn = "";
-        private string upyn = "";
-        private string p_dpcd = "";
+
         public duty8090()
         {
             InitializeComponent();
@@ -36,9 +31,7 @@ namespace DUTY1000
         private void SetCancel(int stat)
         {
 			if (stat == 0)
-			{
-				sl_dept.Enabled = p_dpcd == "%" ? true : false;
-				
+			{				
 				if (ds.Tables["DUTY_TRSJREQ"] != null)
 					ds.Tables["DUTY_TRSJREQ"].Clear();
 				if (ds.Tables["SEARCH_JREQ_LIST"] != null)
@@ -46,9 +39,8 @@ namespace DUTY1000
 				grd1.DataSource = null;
 			}
 
-			df.GetSEARCH_DEPTDatas(ds);
-			sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT"];
-			df.Get2020_SEARCH_EMBSDatas(p_dpcd, ds);
+            df.GetSEARCH_DEPT_POWERDatas(admin_lv, ds);
+            sl_dept.Properties.DataSource = ds.Tables["SEARCH_DEPT_POWER"];
         }
 		
         //연차/휴가신청내역 조회
@@ -56,9 +48,11 @@ namespace DUTY1000
         {
 			//END_CHK();
 			string dept = sl_dept.EditValue == null ? "%" : sl_dept.EditValue.ToString();
-			df.GetSEARCH_8090_LISTDatas(clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, cmb_type.SelectedIndex, ds);
+			df.GetSEARCH_8090_LISTDatas(admin_lv, clib.DateToText(dat_yymm.DateTime).Substring(0, 6), clib.DateToText(dat_yymm2.DateTime).Substring(0, 6), dept, cmb_type.SelectedIndex, ds);
 			grd1.DataSource = ds.Tables["SEARCH_8090_LIST"];
-		}
+            if (ds.Tables["SEARCH_8090_LIST"].Rows.Count == 0)
+                MessageBox.Show("조회된 연차/휴가내역이 없습니다!", "조회", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         #endregion
 
@@ -77,48 +71,19 @@ namespace DUTY1000
             if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
                 admin_lv = clib.TextToInt(ds.Tables["MSTUSER_CHK"].Rows[0]["EMBSADGB"].ToString()); //권한레벨
 
-			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL" || admin_lv > 1)
+			if (SilkRoad.Config.ACConfig.G_MSYN == "1" || SilkRoad.Config.SRConfig.USID == "SAMIL")
 			{
 				admin_lv = 3;
-                p_dpcd = "%";
                 lb_power.Text = "전체조회 권한";
-				sl_dept.Enabled = true;
 			}
             else if (admin_lv == 1)
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
                 lb_power.Text = "부서조회 권한";
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
 			}
             else
             {
-                p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
-                lb_power.Text = "조회권한 없음";				
-				sl_dept.EditValue = p_dpcd;
-				sl_dept.Enabled = false;
+                lb_power.Text = "조회권한 없음";	
             }
-
-    //        if (ds.Tables["MSTUSER_CHK"].Rows.Count > 0)
-    //        {
-    //            msyn = ds.Tables["MSTUSER_CHK"].Rows[0]["USERMSYN"].ToString(); //전체조회
-    //            upyn = ds.Tables["MSTUSER_CHK"].Rows[0]["USERUPYN"].ToString(); //부서조회
-    //        }
-    //        //사용자부서연결
-    //        if (SilkRoad.Config.SRConfig.USID == "SAMIL" || msyn == "1")
-    //        {
-    //            p_dpcd = "%";
-    //            lb_power.Text = "전체조회 권한";
-				//sl_dept.Enabled = true;
-    //        }
-    //        else
-    //        {
-				//p_dpcd = SilkRoad.Config.SRConfig.US_DPCD == null ? null : SilkRoad.Config.SRConfig.US_DPCD.Trim();
-    //            lb_power.Text = upyn == "1" ? "부서조회 권한" : "조회권한 없음";
-
-				//sl_dept.EditValue = p_dpcd;
-				//sl_dept.Enabled = false;
-    //        }
 			
             SetCancel(0);
 		}
