@@ -31,7 +31,7 @@ namespace SilkRoad.SILKDT02
 				//silkroad config 위치
 				string parentPath, fullPath;
 #if DEBUG
-                parentPath = @"C:\silkroad\";
+                parentPath = @"D:\silkroad\";
 #else
                 string drv = Application.StartupPath.Substring(0, 3);
                 if (Application.StartupPath.ToUpper().Contains("SILKROAD"))                
